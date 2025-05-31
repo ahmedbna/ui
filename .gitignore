@@ -67,9 +67,9 @@ packages/*/android/
 packages/*/ios/
 
 # CLI specific
-packages/cli/bin/
-packages/cli/dist/
-packages/cli/lib/
+# packages/cli/bin/
+# packages/cli/dist/
+# packages/cli/lib/
 *.log
 
 # Storybook
