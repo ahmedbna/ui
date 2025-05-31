@@ -10,7 +10,7 @@ import {
 import { useTheme } from '../../hooks';
 
 export interface ButtonProps {
-  title: string;
+  title?: string;
   onPress: () => void;
   variant?:
     | 'default'
@@ -23,7 +23,8 @@ export interface ButtonProps {
   disabled?: boolean;
   loading?: boolean;
   style?: ViewStyle;
-  children: React.ReactNode;
+  textStyle?: TextStyle;
+  children?: React.ReactNode;
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -34,6 +35,7 @@ export const Button: React.FC<ButtonProps> = ({
   disabled = false,
   loading = false,
   style,
+  textStyle,
   children,
 }) => {
   const theme = useTheme();
@@ -46,50 +48,51 @@ export const Button: React.FC<ButtonProps> = ({
       flexDirection: 'row',
     },
     default: {
-      backgroundColor: theme.colors.primary,
-      paddingHorizontal: theme.spacing[4],
-      paddingVertical: theme.spacing[2],
+      backgroundColor: theme.colors.primary[500] || theme.colors.primary,
+      paddingHorizontal: theme.spacing.md,
+      paddingVertical: theme.spacing.sm,
       minHeight: 40,
     },
     destructive: {
-      backgroundColor: theme.colors.destructive,
-      paddingHorizontal: theme.spacing[4],
-      paddingVertical: theme.spacing[2],
+      backgroundColor:
+        theme.colors.destructive[500] || theme.colors.destructive,
+      paddingHorizontal: theme.spacing.md,
+      paddingVertical: theme.spacing.sm,
       minHeight: 40,
     },
     outline: {
       backgroundColor: 'transparent',
       borderWidth: 1,
       borderColor: theme.colors.border,
-      paddingHorizontal: theme.spacing[4],
-      paddingVertical: theme.spacing[2],
+      paddingHorizontal: theme.spacing.md,
+      paddingVertical: theme.spacing.sm,
       minHeight: 40,
     },
     secondary: {
-      backgroundColor: theme.colors.secondary,
-      paddingHorizontal: theme.spacing[4],
-      paddingVertical: theme.spacing[2],
+      backgroundColor: theme.colors.secondary[500] || theme.colors.secondary,
+      paddingHorizontal: theme.spacing.md,
+      paddingVertical: theme.spacing.sm,
       minHeight: 40,
     },
     ghost: {
       backgroundColor: 'transparent',
-      paddingHorizontal: theme.spacing[4],
-      paddingVertical: theme.spacing[2],
+      paddingHorizontal: theme.spacing.md,
+      paddingVertical: theme.spacing.sm,
       minHeight: 40,
     },
     link: {
       backgroundColor: 'transparent',
-      paddingHorizontal: theme.spacing[2],
-      paddingVertical: theme.spacing[1],
+      paddingHorizontal: theme.spacing.sm,
+      paddingVertical: theme.spacing.xs,
     },
     sm: {
-      paddingHorizontal: theme.spacing[3],
-      paddingVertical: theme.spacing[1],
+      paddingHorizontal: theme.spacing.sm,
+      paddingVertical: theme.spacing.xs,
       minHeight: 36,
     },
     lg: {
-      paddingHorizontal: theme.spacing[8],
-      paddingVertical: theme.spacing[3],
+      paddingHorizontal: theme.spacing.xl,
+      paddingVertical: theme.spacing.md,
       minHeight: 44,
     },
     icon: {
@@ -99,6 +102,38 @@ export const Button: React.FC<ButtonProps> = ({
     },
     disabled: {
       opacity: 0.5,
+    },
+  });
+
+  const textStyles = StyleSheet.create({
+    base: {
+      fontSize: theme.typography.fontSizes.base,
+      fontWeight: theme.typography.fontWeights.medium,
+    },
+    default: {
+      color: theme.colors.primary[50] || '#ffffff',
+    },
+    destructive: {
+      color: theme.colors.destructive[50] || '#ffffff',
+    },
+    outline: {
+      color: theme.colors.foreground,
+    },
+    secondary: {
+      color: theme.colors.secondary[900] || theme.colors.foreground,
+    },
+    ghost: {
+      color: theme.colors.foreground,
+    },
+    link: {
+      color: theme.colors.primary[500] || theme.colors.primary,
+      textDecorationLine: 'underline',
+    },
+    sm: {
+      fontSize: theme.typography.fontSizes.sm,
+    },
+    lg: {
+      fontSize: theme.typography.fontSizes.lg,
     },
   });
 
@@ -120,6 +155,20 @@ export const Button: React.FC<ButtonProps> = ({
     return styles;
   };
 
+  const getTextStyle = (): TextStyle[] => {
+    const styles = [textStyles.base, textStyles[variant]];
+
+    if (size !== 'default' && textStyles[size]) {
+      styles.push(textStyles[size]);
+    }
+
+    if (textStyle) {
+      styles.push(textStyle);
+    }
+
+    return styles;
+  };
+
   return (
     <TouchableOpacity
       style={getButtonStyle()}
@@ -127,7 +176,18 @@ export const Button: React.FC<ButtonProps> = ({
       disabled={disabled || loading}
       activeOpacity={0.7}
     >
-      {children}
+      {loading && (
+        <ActivityIndicator
+          size='small'
+          color={
+            variant === 'outline' || variant === 'ghost'
+              ? theme.colors.foreground
+              : '#ffffff'
+          }
+          style={{ marginRight: children || title ? 8 : 0 }}
+        />
+      )}
+      {children || <Text style={getTextStyle()}>{title}</Text>}
     </TouchableOpacity>
   );
 };

@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-    "lib": ["ES2020"],
-    "module": "CommonJS",
+    "lib": ["ES2020", "DOM"],
+    "module": "ESNext",
     "moduleResolution": "node",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
@@ -12,9 +12,14 @@
     "declaration": true,
     "outDir": "./dist",
     "rootDir": "./src",
-    "types": ["node"],
-    "resolveJsonModule": true
+    "types": ["react-native"],
+    "resolveJsonModule": true,
+    "jsx": "react-jsx",
+    "allowJs": true,
+    "noEmit": false,
+    "isolatedModules": true,
+    "noFallthroughCasesInSwitch": true
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist"]
+  "exclude": ["node_modules", "dist", "**/*.test.ts", "**/*.test.tsx"]
 }
