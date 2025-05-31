@@ -1,0 +1,60 @@
+#!/usr/bin/env node
+
+const path = require('path');
+const { spawn } = require('child_process');
+
+// Get the directory of this script
+const binDir = __dirname;
+const cliDir = path.dirname(binDir);
+
+// Check if we're in development (TypeScript files exist) or production (compiled JS exists)
+const srcIndex = path.join(cliDir, 'src', 'index.ts');
+const distIndex = path.join(cliDir, 'dist', 'index.js');
+const fs = require('fs');
+
+let targetFile;
+let useTs = false;
+
+if (fs.existsSync(distIndex)) {
+  // Production: use compiled JavaScript
+  targetFile = distIndex;
+} else if (fs.existsSync(srcIndex)) {
+  // Development: use TypeScript with ts-node
+  targetFile = srcIndex;
+  useTs = true;
+} else {
+  console.error('Error: CLI source files not found. Please build the project first.');
+  process.exit(1);
+}
+
+// Spawn the appropriate process
+const args = process.argv.slice(2);
+
+if (useTs) {
+  // Check if ts-node is available
+  try {
+    require.resolve('ts-node');
+    const child = spawn('npx', ['ts-node', targetFile, ...args], {
+      stdio: 'inherit',
+      cwd: cliDir
+    });
+    
+    child.on('exit', (code) => {
+      process.exit(code || 0);
+    });
+  } catch (error) {
+    console.error('Error: ts-node not found. Please install ts-node or build the project first.');
+    console.error('Run: npm run build');
+    process.exit(1);
+  }
+} else {
+  // Use compiled JavaScript
+  const child = spawn('node', [targetFile, ...args], {
+    stdio: 'inherit',
+    cwd: cliDir
+  });
+  
+  child.on('exit', (code) => {
+    process.exit(code || 0);
+  });
+}
