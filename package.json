@@ -1,0 +1,17 @@
+{
+  "name": "bna",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "test": "turbo run test"
+  },
+  "devDependencies": {
+    "turbo": "^1.10.0",
+    "@changesets/cli": "^2.26.0"
+  }
+}

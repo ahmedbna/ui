@@ -1,0 +1,23 @@
+{
+  "button": {
+    "name": "Button",
+    "files": [
+      {
+        "path": "components/ui/button.tsx",
+        "template": "button.template.tsx"
+      }
+    ],
+    "dependencies": ["react-native-vector-icons"],
+    "devDependencies": ["@types/react-native-vector-icons"]
+  },
+  "input": {
+    "name": "Input",
+    "files": [
+      {
+        "path": "components/ui/input.tsx",
+        "template": "input.template.tsx"
+      }
+    ],
+    "dependencies": []
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "bna",
+  "version": "1.0.0",
+  "bin": {
+    "bna": "./bin/bna"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "commander": "^11.1.0",
+    "fs-extra": "^11.3.0",
+    "ora": "^7.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/fs-extra": "^11.0.0",
+    "typescript": "^5.0.0"
+  }
+}
