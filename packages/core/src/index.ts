@@ -10,6 +10,7 @@ export { useColorScheme, useIsDarkMode } from './hooks/useColorScheme';
 
 // Providers
 export { ThemeProvider, ThemeContext } from './providers/ThemeProvider';
+export type { ThemeContextType } from './providers/ThemeProvider';
 
 // Theme
 export {

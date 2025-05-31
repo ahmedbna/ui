@@ -48,14 +48,13 @@ export const Button: React.FC<ButtonProps> = ({
       flexDirection: 'row',
     },
     default: {
-      backgroundColor: theme.colors.primary[500] || theme.colors.primary,
+      backgroundColor: theme.colors.primary[500],
       paddingHorizontal: theme.spacing.md,
       paddingVertical: theme.spacing.sm,
       minHeight: 40,
     },
     destructive: {
-      backgroundColor:
-        theme.colors.destructive[500] || theme.colors.destructive,
+      backgroundColor: theme.colors.destructive[500],
       paddingHorizontal: theme.spacing.md,
       paddingVertical: theme.spacing.sm,
       minHeight: 40,
@@ -69,7 +68,7 @@ export const Button: React.FC<ButtonProps> = ({
       minHeight: 40,
     },
     secondary: {
-      backgroundColor: theme.colors.secondary[500] || theme.colors.secondary,
+      backgroundColor: theme.colors.secondary[500],
       paddingHorizontal: theme.spacing.md,
       paddingVertical: theme.spacing.sm,
       minHeight: 40,
@@ -126,7 +125,7 @@ export const Button: React.FC<ButtonProps> = ({
       color: theme.colors.foreground,
     },
     link: {
-      color: theme.colors.primary[500] || theme.colors.primary,
+      color: theme.colors.primary[500],
       textDecorationLine: 'underline',
     },
     sm: {
@@ -158,8 +157,8 @@ export const Button: React.FC<ButtonProps> = ({
   const getTextStyle = (): TextStyle[] => {
     const styles = [textStyles.base, textStyles[variant]];
 
-    if (size !== 'default' && textStyles[size]) {
-      styles.push(textStyles[size]);
+    if (size !== 'default' && size in textStyles) {
+      styles.push(textStyles[size as keyof typeof textStyles]);
     }
 
     if (textStyle) {

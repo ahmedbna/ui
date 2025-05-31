@@ -13,11 +13,32 @@ export interface ColorScale {
 }
 
 export interface ThemeColors {
-  primary: Partial<ColorScale>;
-  secondary: Partial<ColorScale>;
-  accent: Partial<ColorScale>;
-  destructive: Partial<ColorScale>;
-  muted: Partial<ColorScale>;
+  primary: {
+    50?: string;
+    500: string;
+    600?: string;
+    900?: string;
+  } & Partial<ColorScale>;
+  secondary: {
+    100?: string;
+    500: string;
+    900?: string;
+  } & Partial<ColorScale>;
+  accent: {
+    100?: string;
+    500: string;
+    900?: string;
+  } & Partial<ColorScale>;
+  destructive: {
+    500: string;
+    600?: string;
+    50?: string;
+  } & Partial<ColorScale>;
+  muted: {
+    50?: string;
+    100?: string;
+    500: string;
+  } & Partial<ColorScale>;
   background: string;
   foreground: string;
   card: string;
@@ -52,10 +73,10 @@ export interface ThemeTypography {
     '4xl': number;
   };
   fontWeights: {
-    normal: string;
-    medium: string;
-    semibold: string;
-    bold: string;
+    normal: '400';
+    medium: '500';
+    semibold: '600';
+    bold: '700';
   };
   lineHeights: {
     tight: number;

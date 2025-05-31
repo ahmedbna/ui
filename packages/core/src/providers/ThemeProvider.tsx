@@ -9,7 +9,8 @@ import { Theme, ColorScheme } from '../theme/types';
 import { lightTheme, darkTheme } from '../theme';
 import { useColorScheme } from '../hooks/useColorScheme';
 
-interface ThemeContextType {
+// Export the interface so it can be used by other modules
+export interface ThemeContextType {
   theme: Theme;
   colorScheme: ColorScheme;
   setColorScheme: (scheme: ColorScheme) => void;

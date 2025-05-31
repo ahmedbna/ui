@@ -1,14 +1,18 @@
+import { ViewStyle, TextStyle, ImageStyle } from 'react-native';
+
+type Style = ViewStyle | TextStyle | ImageStyle;
+
 /**
  * Utility to conditionally apply styles in React Native
  * Merges style objects and arrays conditionally
  */
 export function mergeStyles(
-  ...styles: (object | undefined | false | null)[]
-): object {
+  ...styles: (Style | undefined | false | null)[]
+): Style {
   return styles.reduce((acc, style) => {
     if (!style) return acc;
     return { ...acc, ...style };
-  }, {});
+  }, {} as Style);
 }
 
 /**
