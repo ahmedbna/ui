@@ -1,3 +1,4 @@
+// packages/cli/src/commands/init.ts
 import path from 'path';
 import { exec } from 'child_process';
 import { promisify } from 'util';
@@ -6,35 +7,102 @@ import { fileOps } from '../utils/file-operations';
 import { configManager } from '../utils/config-manager';
 import { dependencyManager } from '../utils/dependency-manager';
 import { InitOptions } from '../types';
+import prompts from 'prompts';
 
 const execAsync = promisify(exec);
 
-export async function initCommand(projectName: string, options: InitOptions) {
+export async function initCommand(
+  projectName?: string,
+  options: InitOptions = {}
+) {
   try {
-    logger.info(`Initializing ${projectName} with BNA UI Library...`);
+    let targetProjectName = projectName;
+    let isExistingProject = false;
 
-    const projectPath = path.join(process.cwd(), projectName);
+    // If no project name provided, check if we're in an existing project
+    if (!projectName) {
+      const packageJsonPath = path.join(process.cwd(), 'package.json');
+      if (await fileOps.exists(packageJsonPath)) {
+        const response = await prompts({
+          type: 'confirm',
+          name: 'initExisting',
+          message: 'Initialize BNA in the current directory?',
+          initial: true,
+        });
 
-    // Check if directory already exists
-    if (await fileOps.exists(projectPath)) {
-      if (!options.overwrite) {
-        logger.error(
-          `Directory ${projectName} already exists. Use --overwrite to continue.`
-        );
-        process.exit(1);
+        if (response.initExisting) {
+          isExistingProject = true;
+          targetProjectName = path.basename(process.cwd());
+        } else {
+          process.exit(0);
+        }
+      } else {
+        const response = await prompts({
+          type: 'text',
+          name: 'projectName',
+          message: 'What is your project name?',
+          initial: 'my-app',
+        });
+
+        if (!response.projectName) {
+          process.exit(0);
+        }
+        targetProjectName = response.projectName;
       }
-
-      logger.warn('Overwriting existing directory...');
     }
 
-    // Create project directory
-    // await fileOps.ensureDir(projectPath);
+    if (!targetProjectName) {
+      logger.error('Project name is required');
+      process.exit(1);
+    }
 
-    // Create Expo project
-    await createExpoProject(projectName);
+    logger.info(
+      `${
+        isExistingProject ? 'Setting up' : 'Initializing'
+      } ${targetProjectName} with BNA UI Library...`
+    );
 
-    // Navigate to project directory and set up UI library
-    process.chdir(projectPath);
+    let projectPath = process.cwd();
+
+    if (!isExistingProject) {
+      projectPath = path.join(process.cwd(), targetProjectName);
+
+      // Check if directory already exists
+      if (await fileOps.exists(projectPath)) {
+        if (!options.overwrite) {
+          const response = await prompts({
+            type: 'confirm',
+            name: 'overwrite',
+            message: `Directory ${targetProjectName} already exists. Continue?`,
+            initial: false,
+          });
+
+          if (!response.overwrite) {
+            process.exit(0);
+          }
+        }
+        logger.warn('Using existing directory...');
+      }
+
+      // Create Expo project
+      await createExpoProject(targetProjectName);
+
+      // Navigate to project directory
+      process.chdir(projectPath);
+    } else {
+      // Check if it's an Expo project
+      const appJsonPath = path.join(projectPath, 'app.json');
+      const expoJsonPath = path.join(projectPath, 'expo.json');
+
+      if (
+        !(await fileOps.exists(appJsonPath)) &&
+        !(await fileOps.exists(expoJsonPath))
+      ) {
+        logger.warn(
+          "This doesn't appear to be an Expo project. Continuing anyway..."
+        );
+      }
+    }
 
     // Initialize config
     const config = await configManager.initConfig();
@@ -51,17 +119,26 @@ export async function initCommand(projectName: string, options: InitOptions) {
     // Setup additional configurations
     await setupAdditionalConfigs();
 
+    // Update App.tsx to include ThemeProvider
+    await updateAppTsx();
+
     logger.break();
-    logger.success('🎉 Project created successfully!');
+    logger.success('🎉 BNA UI Library setup completed!');
     logger.break();
-    logger.log('Next steps:');
-    logger.log(`  cd ${projectName}`);
-    logger.log('  npx expo start');
-    logger.break();
-    logger.log('To add components:');
+
+    if (!isExistingProject) {
+      logger.log('Next steps:');
+      logger.log(`  cd ${targetProjectName}`);
+      logger.log('  npx expo start');
+      logger.break();
+    }
+
+    logger.log('Add components with:');
     logger.log('  npx bna add button');
-    logger.log('  npx bna add input');
+    logger.log('  npx bna add input card');
     logger.log('  npx bna add --all');
+    logger.break();
+    logger.log('Documentation: https://your-docs-url.com');
   } catch (error) {
     logger.error(`Failed to initialize project: ${error}`);
     process.exit(1);
@@ -72,7 +149,7 @@ async function createExpoProject(projectName: string) {
   logger.startSpinner('Creating Expo project...');
 
   try {
-    // Use latest Expo CLI with SDK 51+ support
+    // Remove stdio option from execAsync call
     await execAsync(
       `npx create-expo-app@latest ${projectName} --template blank-typescript`
     );
@@ -831,4 +908,89 @@ The project includes a comprehensive theming system supporting light and dark mo
 `;
 
   await fileOps.writeFile(readmePath, readmeContent);
+}
+
+// Implementation of updateAppTsx function
+async function updateAppTsx() {
+  logger.startSpinner('Updating App.tsx with ThemeProvider...');
+
+  try {
+    const appTsxPath = path.join(process.cwd(), 'App.tsx');
+
+    // Check if App.tsx exists
+    if (!(await fileOps.exists(appTsxPath))) {
+      logger.warn('App.tsx not found, creating new one...');
+    }
+
+    const appTsxContent = `import React from 'react';
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
+import { ThemeProvider } from '@/lib/theme-context';
+import { useTheme } from '@/hooks/useTheme';
+
+function AppContent() {
+  const { theme, isDark } = useTheme();
+
+  return (
+    <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.background }]}>
+      <View style={styles.content}>
+        <Text style={[styles.title, { color: theme.colors.foreground }]}>
+          Welcome to Your App
+        </Text>
+        <Text style={[styles.subtitle, { color: theme.colors.mutedForeground }]}>
+          BNA UI Library is ready to use!
+        </Text>
+        <Text style={[styles.instruction, { color: theme.colors.mutedForeground }]}>
+          Run: npx bna add button
+        </Text>
+      </View>
+      <StatusBar style={isDark ? 'light' : 'dark'} />
+    </SafeAreaView>
+  );
+}
+
+export default function App() {
+  return (
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  content: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 20,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 8,
+    textAlign: 'center',
+  },
+  subtitle: {
+    fontSize: 16,
+    marginBottom: 20,
+    textAlign: 'center',
+  },
+  instruction: {
+    fontSize: 14,
+    textAlign: 'center',
+    fontFamily: 'monospace',
+    marginTop: 20,
+  },
+});
+`;
+
+    await fileOps.writeFile(appTsxPath, appTsxContent);
+    logger.succeedSpinner('App.tsx updated with ThemeProvider');
+  } catch (error) {
+    logger.failSpinner('Failed to update App.tsx');
+    throw error;
+  }
 }

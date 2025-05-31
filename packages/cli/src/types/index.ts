@@ -23,7 +23,7 @@ export interface ComponentRegistry {
 }
 
 export interface InitOptions {
-  template: string;
+  template?: string;
   typescript?: boolean;
   overwrite?: boolean;
 }

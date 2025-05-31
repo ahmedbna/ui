@@ -1,23 +1,52 @@
 {
   "name": "bna",
   "version": "1.0.0",
+  "description": "A CLI for Expo React Native UI Library similar to shadcn/ui",
+  "main": "dist/index.js",
   "bin": {
     "bna": "./bin/bna"
   },
+  "files": [
+    "dist",
+    "bin",
+    "templates"
+  ],
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run clean && npm run build",
+    "test": "echo \"No tests yet\" && exit 0"
+  },
+  "keywords": [
+    "expo",
+    "react-native",
+    "ui",
+    "components",
+    "cli",
+    "shadcn"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "your-repo-url"
   },
   "dependencies": {
     "chalk": "^5.4.1",
     "commander": "^11.1.0",
     "fs-extra": "^11.3.0",
-    "ora": "^7.0.1"
+    "ora": "^7.0.1",
+    "prompts": "^2.4.2",
+    "node-fetch": "^3.3.2"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
     "@types/fs-extra": "^11.0.0",
+    "@types/prompts": "^2.4.0",
     "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
   }
 }
