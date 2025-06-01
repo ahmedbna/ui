@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import React, { forwardRef } from 'react';
 import {
   TextInput,

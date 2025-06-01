@@ -1,13 +1,11 @@
 #!/usr/bin/env node
 
-import path from 'path';
-import { spawn } from 'child_process';
-import { fileURLToPath } from 'url';
-import fs from 'fs';
+const fs = require('fs');
+const path = require('path');
+const { spawn } = require('child_process');
 
-// Get the directory of this script (ES module equivalent of __dirname)
-const __filename = fileURLToPath(import.meta.url);
-const binDir = path.dirname(__filename);
+// In CommonJS, __dirname is already available
+const binDir = __dirname;
 const cliDir = path.dirname(binDir);
 
 // Check if we're in development (TypeScript files exist) or production (compiled JS exists)
@@ -35,24 +33,15 @@ if (fs.existsSync(distIndex)) {
 const args = process.argv.slice(2);
 
 if (useTs) {
-  // Check if ts-node is available
-  try {
-    await import('ts-node');
-    const child = spawn('npx', ['ts-node', targetFile, ...args], {
-      stdio: 'inherit',
-      cwd: cliDir,
-    });
+  // Use ts-node for development
+  const child = spawn('npx', ['ts-node', targetFile, ...args], {
+    stdio: 'inherit',
+    cwd: cliDir,
+  });
 
-    child.on('exit', (code) => {
-      process.exit(code || 0);
-    });
-  } catch (error) {
-    console.error(
-      'Error: ts-node not found. Please install ts-node or build the project first.'
-    );
-    console.error('Run: npm run build');
-    process.exit(1);
-  }
+  child.on('exit', (code) => {
+    process.exit(code || 0);
+  });
 } else {
   // Use compiled JavaScript
   const child = spawn('node', [targetFile, ...args], {

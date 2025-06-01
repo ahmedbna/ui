@@ -1,6 +1,5 @@
 {
   "name": "bna",
-  "type": "module",
   "version": "1.0.0",
   "description": "BNA CLI for Expo React Native UI Library",
   "main": "dist/index.js",
@@ -34,12 +33,12 @@
     "url": "your-repo-url"
   },
   "dependencies": {
-    "chalk": "^5.4.1",
+    "chalk": "^4.1.2",
     "commander": "^11.1.0",
     "fs-extra": "^11.3.0",
-    "ora": "^7.0.1",
+    "ora": "^5.4.1",
     "prompts": "^2.4.2",
-    "node-fetch": "^3.3.2"
+    "node-fetch": "^2.7.0"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",

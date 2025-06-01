@@ -9,7 +9,7 @@ type Style = ViewStyle | TextStyle | ImageStyle;
 export function mergeStyles(
   ...styles: (Style | undefined | false | null)[]
 ): Style {
-  return styles.reduce((acc, style) => {
+  return styles.reduce<Style>((acc: Style, style) => {
     if (!style) return acc;
     return { ...acc, ...style };
   }, {} as Style);
