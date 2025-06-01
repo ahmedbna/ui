@@ -1,16 +1,18 @@
 #!/usr/bin/env node
 
-const path = require('path');
-const { spawn } = require('child_process');
+import path from 'path';
+import { spawn } from 'child_process';
+import { fileURLToPath } from 'url';
+import fs from 'fs';
 
-// Get the directory of this script
-const binDir = __dirname;
+// Get the directory of this script (ES module equivalent of __dirname)
+const __filename = fileURLToPath(import.meta.url);
+const binDir = path.dirname(__filename);
 const cliDir = path.dirname(binDir);
 
 // Check if we're in development (TypeScript files exist) or production (compiled JS exists)
 const srcIndex = path.join(cliDir, 'src', 'index.ts');
 const distIndex = path.join(cliDir, 'dist', 'index.js');
-const fs = require('fs');
 
 let targetFile;
 let useTs = false;
@@ -23,7 +25,9 @@ if (fs.existsSync(distIndex)) {
   targetFile = srcIndex;
   useTs = true;
 } else {
-  console.error('Error: CLI source files not found. Please build the project first.');
+  console.error(
+    'Error: CLI source files not found. Please build the project first.'
+  );
   process.exit(1);
 }
 
@@ -33,17 +37,19 @@ const args = process.argv.slice(2);
 if (useTs) {
   // Check if ts-node is available
   try {
-    require.resolve('ts-node');
+    await import('ts-node');
     const child = spawn('npx', ['ts-node', targetFile, ...args], {
       stdio: 'inherit',
-      cwd: cliDir
+      cwd: cliDir,
     });
-    
+
     child.on('exit', (code) => {
       process.exit(code || 0);
     });
   } catch (error) {
-    console.error('Error: ts-node not found. Please install ts-node or build the project first.');
+    console.error(
+      'Error: ts-node not found. Please install ts-node or build the project first.'
+    );
     console.error('Run: npm run build');
     process.exit(1);
   }
@@ -51,9 +57,9 @@ if (useTs) {
   // Use compiled JavaScript
   const child = spawn('node', [targetFile, ...args], {
     stdio: 'inherit',
-    cwd: cliDir
+    cwd: cliDir,
   });
-  
+
   child.on('exit', (code) => {
     process.exit(code || 0);
   });

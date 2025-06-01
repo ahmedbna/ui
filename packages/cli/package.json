@@ -1,7 +1,8 @@
 {
   "name": "bna",
+  "type": "module",
   "version": "1.0.0",
-  "description": "A CLI for Expo React Native UI Library similar to shadcn/ui",
+  "description": "BNA CLI for Expo React Native UI Library",
   "main": "dist/index.js",
   "bin": {
     "bna": "./bin/bna"
@@ -26,7 +27,7 @@
     "cli",
     "shadcn"
   ],
-  "author": "Your Name",
+  "author": "BNA",
   "license": "MIT",
   "repository": {
     "type": "git",

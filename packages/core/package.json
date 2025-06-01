@@ -1,5 +1,5 @@
 {
-  "name": "bna",
+  "name": "bna-core",
   "version": "0.1.0",
   "description": "Core components and utilities for Expo React Native UI library",
   "main": "dist/index.js",

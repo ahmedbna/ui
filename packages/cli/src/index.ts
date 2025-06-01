@@ -7,15 +7,17 @@ const program = new Command();
 
 program
   .name('bna')
-  .description('CLI for Expo React Native UI Library')
+  .description('BNA UI Library CLI for Expo Projects')
   .version('1.0.0');
 
 program
   .command('init')
-  .description('Initialize a new Expo project with UI library')
-  .argument('<project-name>', 'Name of the project')
-  .option('-t, --template <template>', 'Template to use', 'default')
-  .action(initCommand);
+  .argument('[project-name]', 'Name of the project')
+  .option('-o, --overwrite', 'Overwrite existing directory')
+  .description('Initialize a new project with BNA UI Library')
+  .action(async (projectName, options) => {
+    await initCommand(projectName, options);
+  });
 
 program
   .command('add')

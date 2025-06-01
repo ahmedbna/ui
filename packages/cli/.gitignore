@@ -1,0 +1,199 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# Dependencies
+node_modules/
+node_modules
+/node_modules
+packages/*/node_modules/
+packages/*/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+.yarnrc.yml
+
+# Package manager files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Testing
+/coverage
+coverage/
+packages/*/coverage/
+*.coverage
+.nyc_output
+.jest/
+
+# Build outputs
+/build
+/dist
+/lib
+/es
+packages/*/build/
+packages/*/dist/
+packages/*/lib/
+packages/*/es/
+*.tgz
+
+# Next.js (for documentation sites)
+/.next/
+/out/
+packages/*/out/
+packages/*/.next/
+
+# Expo
+.expo/
+.expo-shared/
+packages/*/.expo/
+packages/*/.expo-shared/
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build/
+packages/*/web-build/
+
+# React Native
+*.hprof
+android/
+ios/
+packages/*/android/
+packages/*/ios/
+
+# CLI specific
+# packages/cli/bin/
+# packages/cli/dist/
+# packages/cli/lib/
+*.log
+
+# Storybook
+.storybook/
+storybook-static/
+packages/*/storybook-static/
+
+# Documentation
+docs/build/
+packages/*/docs/build/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+lerna-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Environment variables
+.env*
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Temporary folders
+tmp/
+temp/
+.tmp/
+.temp/
+
+# Certificate files
+*.pem
+*.crt
+*.key
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+packages/*/tsconfig.tsbuildinfo
+
+# ESLint
+.eslintcache
+
+# Parcel-bundler cache
+.cache
+.parcel-cache
+
+# Microbundle cache
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Stylelint cache
+.stylelintcache
+
+# Rush temporary files
+common/temp/
+
+# Vercel
+.vercel
+
+# Turborepo
+.turbo
+
+# Local development
+.local
+
+# Component library specific
+packages/*/storybook-static/
+packages/*/chromatic-build/
+packages/*/coverage/
+
+# CLI development
+packages/cli/templates/*/node_modules/
+packages/cli/templates/*/.expo/
+packages/cli/test-output/
+
+# Theme files (if generated)
+packages/*/theme-generated.*
+theme-output/
+
+# Documentation assets
+*.sketch
+*.fig
+*.xd
+
+# Test artifacts
+__tests__/coverage/
+e2e/artifacts/
+packages/*/e2e/artifacts/
+
+# Changeset
+.changeset/release.json
+
+# Generated files
+CHANGELOG.md
+packages/*/CHANGELOG.md
