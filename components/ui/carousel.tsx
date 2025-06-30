@@ -90,9 +90,15 @@ export const Carousel = forwardRef<CarouselRef, CarouselProps>(
     const [containerWidth, setContainerWidth] = useState(screenWidth);
     const [isUserInteracting, setIsUserInteracting] = useState(false);
 
-    // Use useRef to store timer ID
-    const autoPlayTimerRef = useRef<NodeJS.Timeout | null>(null);
-    const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+    // Use useRef to store timer ID and prevent stale closures
+    const autoPlayTimerRef = useRef<number | null>(null);
+    const scrollTimeoutRef = useRef<number | null>(null);
+    const currentIndexRef = useRef(currentIndex); // Keep ref in sync for auto play
+
+    // Update ref when currentIndex changes
+    useEffect(() => {
+      currentIndexRef.current = currentIndex;
+    }, [currentIndex]);
 
     // Calculate slide dimensions
     const slideWidth = itemWidth || containerWidth - spacing * 2;
@@ -133,36 +139,62 @@ export const Carousel = forwardRef<CarouselRef, CarouselProps>(
     // Navigation functions
     const goToSlide = useCallback(
       (index: number) => {
-        if (index >= 0 && index < children.length) {
+        if (index >= 0 && index < children.length && index !== currentIndex) {
           setCurrentIndex(index);
           setIsUserInteracting(true);
           scrollToIndex(index);
+
+          // Clear auto play timeout to prevent conflicts
+          if (scrollTimeoutRef.current) {
+            clearTimeout(scrollTimeoutRef.current);
+            scrollTimeoutRef.current = null;
+          }
         }
       },
-      [children.length, scrollToIndex]
+      [children.length, scrollToIndex, currentIndex]
     );
 
     const goToNext = useCallback(() => {
-      const nextIndex = currentIndex + 1;
+      const nextIndex = currentIndexRef.current + 1;
       const targetIndex =
-        nextIndex < children.length ? nextIndex : loop ? 0 : currentIndex;
-      if (targetIndex !== currentIndex) {
+        nextIndex < children.length
+          ? nextIndex
+          : loop
+          ? 0
+          : currentIndexRef.current;
+      if (targetIndex !== currentIndexRef.current) {
         setCurrentIndex(targetIndex);
         setIsUserInteracting(true);
         scrollToIndex(targetIndex);
+
+        // Clear auto play timeout to prevent conflicts
+        if (scrollTimeoutRef.current) {
+          clearTimeout(scrollTimeoutRef.current);
+          scrollTimeoutRef.current = null;
+        }
       }
-    }, [currentIndex, children.length, loop, scrollToIndex]);
+    }, [children.length, loop, scrollToIndex]);
 
     const goToPrevious = useCallback(() => {
-      const prevIndex = currentIndex - 1;
+      const prevIndex = currentIndexRef.current - 1;
       const targetIndex =
-        prevIndex >= 0 ? prevIndex : loop ? children.length - 1 : currentIndex;
-      if (targetIndex !== currentIndex) {
+        prevIndex >= 0
+          ? prevIndex
+          : loop
+          ? children.length - 1
+          : currentIndexRef.current;
+      if (targetIndex !== currentIndexRef.current) {
         setCurrentIndex(targetIndex);
         setIsUserInteracting(true);
         scrollToIndex(targetIndex);
+
+        // Clear auto play timeout to prevent conflicts
+        if (scrollTimeoutRef.current) {
+          clearTimeout(scrollTimeoutRef.current);
+          scrollTimeoutRef.current = null;
+        }
       }
-    }, [currentIndex, loop, children.length, scrollToIndex]);
+    }, [loop, children.length, scrollToIndex]);
 
     // Expose methods through ref
     useImperativeHandle(
@@ -176,20 +208,26 @@ export const Carousel = forwardRef<CarouselRef, CarouselProps>(
       [goToSlide, goToNext, goToPrevious, currentIndex]
     );
 
-    // Start auto play
+    // Start auto play - Fixed to actually scroll the view
     const startAutoPlay = useCallback(() => {
       if (!autoPlay || children.length <= 1 || isUserInteracting) return;
 
       clearTimers();
 
-      (autoPlayTimerRef.current as any) = setInterval(() => {
-        setCurrentIndex((prevIndex) => {
-          const nextIndex = prevIndex + 1;
-          if (nextIndex >= children.length) {
-            return loop ? 0 : prevIndex;
-          }
-          return nextIndex;
-        });
+      autoPlayTimerRef.current = setInterval(() => {
+        const nextIndex = currentIndexRef.current + 1;
+        const targetIndex =
+          nextIndex >= children.length
+            ? loop
+              ? 0
+              : currentIndexRef.current
+            : nextIndex;
+
+        if (targetIndex !== currentIndexRef.current) {
+          // Update state and scroll to new position
+          setCurrentIndex(targetIndex);
+          scrollToIndex(targetIndex, true);
+        }
       }, autoPlayInterval);
     }, [
       autoPlay,
@@ -198,6 +236,7 @@ export const Carousel = forwardRef<CarouselRef, CarouselProps>(
       loop,
       isUserInteracting,
       clearTimers,
+      scrollToIndex,
     ]);
 
     // Stop auto play
@@ -253,8 +292,9 @@ export const Carousel = forwardRef<CarouselRef, CarouselProps>(
           setCurrentIndex(index);
         }
 
+        // Re-enable auto play after user interaction ends
         if (autoPlay) {
-          (scrollTimeoutRef.current as any) = setTimeout(() => {
+          scrollTimeoutRef.current = setTimeout(() => {
             setIsUserInteracting(false);
           }, 1000);
         }
