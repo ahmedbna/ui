@@ -8,76 +8,69 @@ import { ProgressInteractive } from '@/docs/demo/progress/progress-interactive';
 import { ProgressLabels } from '@/docs/demo/progress/progress-labels';
 import { ProgressMedia } from '@/docs/demo/progress/progress-media';
 import { ProgressSteps } from '@/docs/demo/progress/progress-steps';
-import React from 'react';
-import { ScrollView } from 'react-native';
 
 // Main demo screen combining all examples
 export function ProgressExample() {
   return (
-    <ScrollView
+    <View
       style={{
         flex: 1,
         padding: 16,
+        justifyContent: 'center',
       }}
     >
-      <View style={{ gap: 32 }}>
-        <View>
-          <Text variant='heading' style={{ marginBottom: 16 }}>
-            Progress Examples
-          </Text>
+      <Text variant='heading' style={{ marginBottom: 16 }}>
+        Progress
+      </Text>
 
-          <View style={{ gap: 32 }}>
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Default
-              </Text>
-              <ProgressDemo />
-            </View>
-
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Interactive
-              </Text>
-              <ProgressInteractive />
-            </View>
-
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Different Heights
-              </Text>
-              <ProgressHeights />
-            </View>
-
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                With Labels
-              </Text>
-              <ProgressLabels />
-            </View>
-
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Animated Progress
-              </Text>
-              <ProgressAnimated />
-            </View>
-
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Media Player Style
-              </Text>
-              <ProgressMedia />
-            </View>
-
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Step Progress
-              </Text>
-              <ProgressSteps />
-            </View>
-          </View>
-        </View>
+      <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Default
+        </Text>
+        <ProgressDemo />
       </View>
-    </ScrollView>
+
+      {/* <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Interactive
+        </Text>
+        <ProgressInteractive />
+      </View> */}
+
+      {/* <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Different Heights
+        </Text>
+        <ProgressHeights />
+      </View> */}
+
+      {/* <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          With Labels
+        </Text>
+        <ProgressLabels />
+      </View> */}
+
+      {/* <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Animated Progress
+        </Text>
+        <ProgressAnimated />
+      </View> */}
+
+      {/* <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Media Player Style
+        </Text>
+        <ProgressMedia />
+      </View> */}
+
+      {/* <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Step Progress
+        </Text>
+        <ProgressSteps />
+      </View> */}
+    </View>
   );
 }

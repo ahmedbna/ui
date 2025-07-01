@@ -13,63 +13,58 @@ import { ScrollView } from 'react-native';
 // Main demo screen combining all examples
 export function SwitchExample() {
   return (
-    <ScrollView
+    <View
       style={{
         flex: 1,
         padding: 16,
+        justifyContent: 'center',
       }}
     >
-      <View style={{ gap: 32 }}>
-        <View>
-          <Text variant='heading' style={{ marginBottom: 16 }}>
-            Switch Examples
-          </Text>
+      <Text variant='heading' style={{ marginBottom: 16 }}>
+        Switch
+      </Text>
 
-          <View style={{ gap: 24 }}>
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Default
-              </Text>
-              <SwitchDemo />
-            </View>
-
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Without Label
-              </Text>
-              <SwitchSimple />
-            </View>
-
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                With Error State
-              </Text>
-              <SwitchError />
-            </View>
-
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Disabled State
-              </Text>
-              <SwitchDisabled />
-            </View>
-
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Settings List
-              </Text>
-              <SwitchSettings />
-            </View>
-
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Custom Colors
-              </Text>
-              <SwitchColors />
-            </View>
-          </View>
-        </View>
+      <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Default
+        </Text>
+        <SwitchDemo />
       </View>
-    </ScrollView>
+
+      <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Without Label
+        </Text>
+        <SwitchSimple />
+      </View>
+
+      <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          With Error State
+        </Text>
+        <SwitchError />
+      </View>
+
+      <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Disabled State
+        </Text>
+        <SwitchDisabled />
+      </View>
+
+      <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Settings List
+        </Text>
+        <SwitchSettings />
+      </View>
+
+      <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Custom Colors
+        </Text>
+        <SwitchColors />
+      </View>
+    </View>
   );
 }

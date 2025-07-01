@@ -61,7 +61,7 @@ export function ComboboxLarge() {
 
   return (
     <Combobox value={value} onValueChange={setValue}>
-      <ComboboxTrigger style={{ width: 300 }}>
+      <ComboboxTrigger>
         <ComboboxValue placeholder='Search from 200+ items...' />
       </ComboboxTrigger>
       <ComboboxContent maxHeight={300}>

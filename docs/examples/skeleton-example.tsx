@@ -13,63 +13,58 @@ import { ScrollView } from 'react-native';
 // Main demo screen combining all examples
 export function SkeletonExample() {
   return (
-    <ScrollView
+    <View
       style={{
         flex: 1,
         padding: 16,
+        justifyContent: 'center',
       }}
     >
-      <View style={{ gap: 32 }}>
-        <View>
-          <Text variant='heading' style={{ marginBottom: 16 }}>
-            Skeleton Examples
-          </Text>
+      <Text variant='heading' style={{ marginBottom: 16 }}>
+        Skeleton
+      </Text>
 
-          <View style={{ gap: 24 }}>
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Default
-              </Text>
-              <SkeletonDemo />
-            </View>
-
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Different Sizes
-              </Text>
-              <SkeletonSizes />
-            </View>
-
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Card Layout
-              </Text>
-              <SkeletonCard />
-            </View>
-
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Profile Layout
-              </Text>
-              <SkeletonProfile />
-            </View>
-
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                List Items
-              </Text>
-              <SkeletonList />
-            </View>
-
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Custom Shapes
-              </Text>
-              <SkeletonShapes />
-            </View>
-          </View>
-        </View>
+      <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Default
+        </Text>
+        <SkeletonDemo />
       </View>
-    </ScrollView>
+
+      {/* <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Different Sizes
+        </Text>
+        <SkeletonSizes />
+      </View> */}
+
+      {/* <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Card Layout
+        </Text>
+        <SkeletonCard />
+      </View> */}
+
+      {/* <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Profile Layout
+        </Text>
+        <SkeletonProfile />
+      </View> */}
+
+      {/* <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          List Items
+        </Text>
+        <SkeletonList />
+      </View> */}
+
+      {/* <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Custom Shapes
+        </Text>
+        <SkeletonShapes />
+      </View> */}
+    </View>
   );
 }

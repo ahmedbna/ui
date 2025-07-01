@@ -21,7 +21,7 @@ export function FilePickerValidation() {
         maxFiles={2}
         maxSizeBytes={1 * 1024 * 1024} // 1MB limit
         allowedExtensions={['pdf', 'doc', 'docx', 'txt']}
-        placeholder='Select documents (PDF, DOC, DOCX, TXT only)'
+        placeholder='Select (PDF, DOC, DOCX, TXT only)'
         showFileInfo={true}
       />
 

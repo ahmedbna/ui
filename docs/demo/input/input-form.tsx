@@ -2,7 +2,6 @@
 import { Input, GroupedInput, GroupedInputItem } from '@/components/ui/input';
 import { View } from '@/components/ui/view';
 import { Button } from '@/components/ui/button';
-import { Text } from '@/components/ui/text';
 import {
   User,
   Mail,
@@ -155,9 +154,7 @@ export function InputForm() {
         />
       </GroupedInput>
 
-      <Button onPress={handleSubmit}>
-        <Text>Submit Form</Text>
-      </Button>
+      <Button onPress={handleSubmit}>Submit Form</Button>
     </View>
   );
 }

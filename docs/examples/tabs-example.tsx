@@ -11,61 +11,56 @@ import { ScrollView } from 'react-native';
 // Main demo screen combining all tab examples
 export function TabsExample() {
   return (
-    <ScrollView
+    <View
       style={{
         flex: 1,
         padding: 16,
+        justifyContent: 'center',
       }}
     >
-      <View style={{ gap: 32 }}>
-        <View>
-          <Text variant='heading' style={{ marginBottom: 16 }}>
-            Tabs Examples
-          </Text>
+      <Text variant='heading' style={{ marginBottom: 16 }}>
+        Tabs
+      </Text>
 
-          <View style={{ gap: 32 }}>
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Default Tabs
-              </Text>
-              <Text variant='caption' style={{ marginBottom: 16 }}>
-                Basic horizontal tabs with three panels
-              </Text>
-              <TabsDemo />
-            </View>
-
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Vertical Orientation
-              </Text>
-              <Text variant='caption' style={{ marginBottom: 16 }}>
-                Tabs arranged vertically for sidebar-style navigation
-              </Text>
-              <TabsVertical />
-            </View>
-
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Disabled States
-              </Text>
-              <Text variant='caption' style={{ marginBottom: 16 }}>
-                Some tabs can be disabled to prevent interaction
-              </Text>
-              <TabsDisabled />
-            </View>
-
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Custom Styling
-              </Text>
-              <Text variant='caption' style={{ marginBottom: 16 }}>
-                Tabs with custom colors, shadows, and themed content areas
-              </Text>
-              <TabsStyled />
-            </View>
-          </View>
-        </View>
+      <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Default Tabs
+        </Text>
+        <Text variant='caption' style={{ marginBottom: 16 }}>
+          Basic horizontal tabs with three panels
+        </Text>
+        <TabsDemo />
       </View>
-    </ScrollView>
+
+      <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Vertical Orientation
+        </Text>
+        <Text variant='caption' style={{ marginBottom: 16 }}>
+          Tabs arranged vertically for sidebar-style navigation
+        </Text>
+        <TabsVertical />
+      </View>
+
+      <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Disabled States
+        </Text>
+        <Text variant='caption' style={{ marginBottom: 16 }}>
+          Some tabs can be disabled to prevent interaction
+        </Text>
+        <TabsDisabled />
+      </View>
+
+      <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Custom Styling
+        </Text>
+        <Text variant='caption' style={{ marginBottom: 16 }}>
+          Tabs with custom colors, shadows, and themed content areas
+        </Text>
+        <TabsStyled />
+      </View>
+    </View>
   );
 }

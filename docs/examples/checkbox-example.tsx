@@ -12,63 +12,58 @@ import { ScrollView } from 'react-native';
 // Main demo screen combining all checkbox examples
 export function CheckboxExample() {
   return (
-    <ScrollView
+    <View
       style={{
         flex: 1,
         padding: 16,
+        justifyContent: 'center',
       }}
     >
-      <View style={{ gap: 32 }}>
-        <View>
-          <Text variant='heading' style={{ marginBottom: 16 }}>
-            Checkbox Examples
-          </Text>
+      <Text variant='heading' style={{ marginBottom: 16 }}>
+        Checkbox
+      </Text>
 
-          <View style={{ gap: 24 }}>
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Default
-              </Text>
-              <CheckboxDemo />
-            </View>
+      {/* <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Default
+        </Text>
+        <CheckboxDemo />
+      </View> */}
+      {/* 
+      <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Different States
+        </Text>
+        <CheckboxStates />
+      </View> */}
 
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Different States
-              </Text>
-              <CheckboxStates />
-            </View>
+      {/*  <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Without Label
+        </Text>
+        <CheckboxWithoutLabel />
+      </View> */}
 
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Without Label
-              </Text>
-              <CheckboxWithoutLabel />
-            </View>
+      {/* <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          With Error State
+        </Text>
+        <CheckboxWithError />
+      </View> */}
 
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                With Error State
-              </Text>
-              <CheckboxWithError />
-            </View>
+      {/* <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Custom Styling
+        </Text>
+        <CheckboxCustomStyling />
+      </View> */}
 
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Custom Styling
-              </Text>
-              <CheckboxCustomStyling />
-            </View>
-
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Checkbox Group
-              </Text>
-              <CheckboxGroup />
-            </View>
-          </View>
-        </View>
+      <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Checkbox Group
+        </Text>
+        <CheckboxGroup />
       </View>
-    </ScrollView>
+    </View>
   );
 }

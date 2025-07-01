@@ -15,77 +15,72 @@ import { ScrollView } from 'react-native';
 // Main demo screen combining all examples
 export function ColorPickerExample() {
   return (
-    <ScrollView
+    <View
       style={{
         flex: 1,
         padding: 16,
+        justifyContent: 'center',
       }}
     >
-      <View style={{ gap: 32 }}>
-        <View>
-          <Text variant='heading' style={{ marginBottom: 16 }}>
-            Color Picker Examples
-          </Text>
+      <Text variant='heading' style={{ marginBottom: 16 }}>
+        Color Picker
+      </Text>
 
-          <View style={{ gap: 24 }}>
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Default
-              </Text>
-              <ColorPickerDemo />
-            </View>
+      {/* <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Default
+        </Text>
+        <ColorPickerDemo />
+      </View> */}
 
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Different Sizes
-              </Text>
-              <ColorPickerSizes />
-            </View>
+      {/* <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Different Sizes
+        </Text>
+        <ColorPickerSizes />
+      </View> */}
 
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                With Initial Colors
-              </Text>
-              <ColorPickerColors />
-            </View>
+      {/* <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          With Initial Colors
+        </Text>
+        <ColorPickerColors />
+      </View> */}
 
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Disabled State
-              </Text>
-              <ColorPickerDisabled />
-            </View>
+      {/* <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Disabled State
+        </Text>
+        <ColorPickerDisabled />
+      </View> */}
 
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Color Swatch Only
-              </Text>
-              <ColorSwatchDemo />
-            </View>
+      {/* <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Color Swatch Only
+        </Text>
+        <ColorSwatchDemo />
+      </View> */}
 
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Custom Styling
-              </Text>
-              <ColorPickerStyled />
-            </View>
+      {/* <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Custom Styling
+        </Text>
+        <ColorPickerStyled />
+      </View> */}
 
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Color Palette
-              </Text>
-              <ColorPickerPalette />
-            </View>
+      {/* <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Color Palette
+        </Text>
+        <ColorPickerPalette />
+      </View> */}
 
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                With Labels
-              </Text>
-              <ColorPickerLabeled />
-            </View>
-          </View>
-        </View>
+      <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          With Labels
+        </Text>
+        <ColorPickerLabeled />
       </View>
-    </ScrollView>
+    </View>
   );
 }

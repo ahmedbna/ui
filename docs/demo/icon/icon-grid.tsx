@@ -47,8 +47,6 @@ export function IconGrid() {
         flexDirection: 'row',
         flexWrap: 'wrap',
         gap: 16,
-        justifyContent: 'space-between',
-        maxWidth: 240,
       }}
     >
       {icons.map((IconComponent, index) => (

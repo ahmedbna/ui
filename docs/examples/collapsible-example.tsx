@@ -11,56 +11,51 @@ import { ScrollView } from 'react-native';
 // Main demo screen combining all collapsible examples
 export function CollapsibleExample() {
   return (
-    <ScrollView
+    <View
       style={{
         flex: 1,
         padding: 16,
+        justifyContent: 'center',
       }}
     >
-      <View style={{ gap: 32 }}>
-        <View>
-          <Text variant='heading' style={{ marginBottom: 16 }}>
-            Collapsible Examples
-          </Text>
+      <Text variant='heading' style={{ marginBottom: 16 }}>
+        Collapsible
+      </Text>
 
-          <View style={{ gap: 24 }}>
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Default
-              </Text>
-              <CollapsibleDemo />
-            </View>
+      {/* <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Default
+        </Text>
+        <CollapsibleDemo />
+      </View> */}
 
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Multiple Collapsibles
-              </Text>
-              <CollapsibleMultiple />
-            </View>
+      {/* <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Multiple Collapsibles
+        </Text>
+        <CollapsibleMultiple />
+      </View> */}
 
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Nested Collapsibles
-              </Text>
-              <CollapsibleNested />
-            </View>
+      {/* <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Nested Collapsibles
+        </Text>
+        <CollapsibleNested />
+      </View> */}
 
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                With Interactive Content
-              </Text>
-              <CollapsibleWithContent />
-            </View>
+      {/* <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          With Interactive Content
+        </Text>
+        <CollapsibleWithContent />
+      </View> */}
 
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                FAQ Style
-              </Text>
-              <CollapsibleFAQ />
-            </View>
-          </View>
-        </View>
+      <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          FAQ Style
+        </Text>
+        <CollapsibleFAQ />
       </View>
-    </ScrollView>
+    </View>
   );
 }

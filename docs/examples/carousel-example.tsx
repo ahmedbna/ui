@@ -23,14 +23,14 @@ export function CarouselExample() {
         Carousel
       </Text>
 
-      <View>
+      {/* <View>
         <Text variant='title'>Default Carousel</Text>
         <Text variant='caption' style={{ marginBottom: 16 }}>
           Basic carousel with auto-play and indicators
         </Text>
 
         <CarouselDemo />
-      </View>
+      </View> */}
 
       {/* <View>
         <Text variant='title'>With Navigation Arrows</Text>
@@ -72,13 +72,13 @@ export function CarouselExample() {
         <CarouselNoIndicators />
       </View> */}
 
-      {/* <View>
+      <View>
         <Text variant='title'>Manual Control</Text>
         <Text variant='body' style={{ marginBottom: 16, opacity: 0.7 }}>
           External controls with progress tracking
         </Text>
         <CarouselManual />
-      </View> */}
+      </View>
     </View>
   );
 }

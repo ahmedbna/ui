@@ -17,7 +17,7 @@ export function ComboboxGroups() {
 
   return (
     <Combobox value={value} onValueChange={setValue}>
-      <ComboboxTrigger style={{ width: 250 }}>
+      <ComboboxTrigger>
         <ComboboxValue placeholder='Select technology...' />
       </ComboboxTrigger>
       <ComboboxContent>

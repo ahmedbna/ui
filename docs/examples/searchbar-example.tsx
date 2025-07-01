@@ -14,71 +14,65 @@ import { ScrollView } from 'react-native';
 // Main demo screen combining all examples
 export function SearchBarExample() {
   return (
-    <ScrollView
+    <View
       style={{
         flex: 1,
         padding: 16,
+        justifyContent: 'center',
       }}
-      showsVerticalScrollIndicator={false}
     >
-      <View style={{ gap: 32 }}>
-        <View>
-          <Text variant='heading' style={{ marginBottom: 16 }}>
-            SearchBar Examples
-          </Text>
+      <Text variant='heading' style={{ marginBottom: 16 }}>
+        Searchbar
+      </Text>
 
-          <View style={{ gap: 24 }}>
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Default
-              </Text>
-              <SearchBarDemo />
-            </View>
-
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                With Loading State
-              </Text>
-              <SearchBarLoading />
-            </View>
-
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Custom Icons
-              </Text>
-              <SearchBarIcons />
-            </View>
-
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                With Suggestions
-              </Text>
-              <SearchBarSuggestions />
-            </View>
-
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Custom Styling
-              </Text>
-              <SearchBarStyled />
-            </View>
-
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Without Clear Button
-              </Text>
-              <SearchBarNoClear />
-            </View>
-
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Instant Search
-              </Text>
-              <SearchBarInstant />
-            </View>
-          </View>
-        </View>
+      <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Default
+        </Text>
+        <SearchBarDemo />
       </View>
-    </ScrollView>
+
+      {/* <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          With Loading State
+        </Text>
+        <SearchBarLoading />
+      </View> */}
+
+      {/* <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Custom Icons
+        </Text>
+        <SearchBarIcons />
+      </View> */}
+
+      {/* <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          With Suggestions
+        </Text>
+        <SearchBarSuggestions />
+      </View> */}
+
+      {/* <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Custom Styling
+        </Text>
+        <SearchBarStyled />
+      </View> */}
+
+      {/* <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Without Clear Button
+        </Text>
+        <SearchBarNoClear />
+      </View> */}
+
+      {/* <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Instant Search
+        </Text>
+        <SearchBarInstant />
+      </View> */}
+    </View>
   );
 }

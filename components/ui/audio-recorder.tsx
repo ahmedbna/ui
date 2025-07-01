@@ -4,7 +4,7 @@ import { AudioWaveform } from '@/components/ui/audio-waveform';
 import { Button } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
 import { useThemeColor } from '@/hooks/useThemeColor';
-import { BORDER_RADIUS, CORNERS } from '@/theme/globals';
+import { BORDER_RADIUS } from '@/theme/globals';
 import {
   AudioModule,
   RecordingOptions,

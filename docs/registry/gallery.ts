@@ -100,4 +100,42 @@ export const galleryRegistry = {
       dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/DatePickerConstraints.mp4',
     },
   },
+
+  'gallery-controls': {
+    name: 'gallery-controls',
+    description: 'Images with controls',
+    type: 'registry:example',
+    registryDependencies: ['gallery', 'view', 'text'],
+    files: [
+      {
+        path: 'registry/examples/gallery/gallery-controls.tsx',
+        type: 'registry:example',
+        target: '',
+      },
+    ],
+    preview: {
+      light:
+        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/DatePickerConstraints.mp4',
+      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/DatePickerConstraints.mp4',
+    },
+  },
+
+  'gallery-overlays': {
+    name: 'gallery-overlays',
+    description: 'Images with overlays',
+    type: 'registry:example',
+    registryDependencies: ['gallery', 'view', 'text'],
+    files: [
+      {
+        path: 'registry/examples/gallery/gallery-overlays.tsx',
+        type: 'registry:example',
+        target: '',
+      },
+    ],
+    preview: {
+      light:
+        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/DatePickerConstraints.mp4',
+      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/DatePickerConstraints.mp4',
+    },
+  },
 };

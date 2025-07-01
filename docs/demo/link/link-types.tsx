@@ -38,6 +38,7 @@ export function LinkTypes() {
           <Link href='mailto:support@company.com?subject=Help Request'>
             Email with Subject
           </Link>
+          <Link href='sms:+1234567890'>Send SMS</Link>
         </View>
       </View>
     </View>

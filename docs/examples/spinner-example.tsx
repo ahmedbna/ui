@@ -15,77 +15,72 @@ import { ScrollView } from 'react-native';
 // Main demo screen combining all examples
 export function SpinnerExample() {
   return (
-    <ScrollView
+    <View
       style={{
         flex: 1,
         padding: 16,
+        justifyContent: 'center',
       }}
     >
-      <View style={{ gap: 32 }}>
-        <View>
-          <Text variant='heading' style={{ marginBottom: 16 }}>
-            Spinner Examples
-          </Text>
+      <Text variant='heading' style={{ marginBottom: 16 }}>
+        Spinner
+      </Text>
 
-          <View style={{ gap: 24 }}>
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Default
-              </Text>
-              <SpinnerDemo />
-            </View>
-
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Different Variants
-              </Text>
-              <SpinnerVariants />
-            </View>
-
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Different Sizes
-              </Text>
-              <SpinnerSizes />
-            </View>
-
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                With Labels
-              </Text>
-              <SpinnerLabels />
-            </View>
-
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Animation Speeds
-              </Text>
-              <SpinnerSpeeds />
-            </View>
-
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Custom Colors
-              </Text>
-              <SpinnerColors />
-            </View>
-
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Inline Usage
-              </Text>
-              <SpinnerInline />
-            </View>
-
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Loading Overlay
-              </Text>
-              <SpinnerOverlay />
-            </View>
-          </View>
-        </View>
+      <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Default
+        </Text>
+        <SpinnerDemo />
       </View>
-    </ScrollView>
+
+      {/* <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Different Variants
+        </Text>
+        <SpinnerVariants />
+      </View> */}
+
+      {/* <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Different Sizes
+        </Text>
+        <SpinnerSizes />
+      </View> */}
+
+      {/* <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          With Labels
+        </Text>
+        <SpinnerLabels />
+      </View> */}
+
+      {/* <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Animation Speeds
+        </Text>
+        <SpinnerSpeeds />
+      </View> */}
+
+      {/* <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Custom Colors
+        </Text>
+        <SpinnerColors />
+      </View> */}
+
+      {/* <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Inline Usage
+        </Text>
+        <SpinnerInline />
+      </View> */}
+
+      {/* <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Loading Overlay
+        </Text>
+        <SpinnerOverlay />
+      </View> */}
+    </View>
   );
 }

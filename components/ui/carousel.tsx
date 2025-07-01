@@ -495,7 +495,6 @@ export function CarouselIndicators({
             borderRadius: 999,
             backgroundColor: index === current ? primaryColor : secondaryColor,
           }}
-          activeOpacity={0.7}
         />
       ))}
     </View>

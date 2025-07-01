@@ -1,5 +1,5 @@
 // components/ui/file-picker.tsx
-import { Button } from '@/components/ui/button';
+import { Button, ButtonVariant } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
 import { useThemeColor } from '@/hooks/useThemeColor';
@@ -46,6 +46,8 @@ export interface FilePickerProps {
   // Accessibility
   accessibilityLabel?: string;
   accessibilityHint?: string;
+
+  variant?: ButtonVariant;
 }
 
 interface FilePickerMethods {
@@ -65,10 +67,11 @@ export const FilePicker = forwardRef<FilePickerMethods, FilePickerProps>(
       allowedExtensions,
       placeholder = 'Select files',
       disabled = false,
-      style,
+      style = {},
       showFileInfo = true,
       accessibilityLabel,
       accessibilityHint,
+      variant = 'outline',
     },
     ref
   ) => {
@@ -209,16 +212,13 @@ export const FilePicker = forwardRef<FilePickerMethods, FilePickerProps>(
     };
 
     return (
-      <View style={[styles.container, style]}>
+      <View style={[styles.container]}>
         {/* File Picker Button */}
         <Button
-          variant='outline'
+          variant={variant}
           onPress={handlePickerPress}
           disabled={disabled}
-          style={[
-            styles.pickerButton,
-            { borderColor, backgroundColor: 'transparent' },
-          ]}
+          style={[styles.pickerButton, style]}
           accessibilityLabel={accessibilityLabel || `Select ${fileType} files`}
           accessibilityHint={accessibilityHint || 'Opens file picker'}
         >

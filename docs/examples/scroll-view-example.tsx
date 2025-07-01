@@ -9,83 +9,76 @@ import { ScrollViewNested } from '@/docs/demo/scroll-view/scroll-view-nested';
 import { ScrollViewRefresh } from '@/docs/demo/scroll-view/scroll-view-refresh';
 import { ScrollViewStyled } from '@/docs/demo/scroll-view/scroll-view-styled';
 import { ScrollViewVertical } from '@/docs/demo/scroll-view/scroll-view-vertical';
-import React from 'react';
-import { ScrollView } from 'react-native';
 
 // Main demo screen combining all examples
 export function ScrollViewExample() {
   return (
-    <ScrollView
+    <View
       style={{
         flex: 1,
         padding: 16,
+        justifyContent: 'center',
       }}
     >
-      <View style={{ gap: 32 }}>
-        <View>
-          <Text variant='heading' style={{ marginBottom: 16 }}>
-            ScrollView Examples
-          </Text>
+      <Text variant='heading' style={{ marginBottom: 16 }}>
+        ScrollView
+      </Text>
 
-          <View style={{ gap: 24 }}>
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Default
-              </Text>
-              <ScrollViewDemo />
-            </View>
-
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Vertical Scrolling
-              </Text>
-              <ScrollViewVertical />
-            </View>
-
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Horizontal Scrolling
-              </Text>
-              <ScrollViewHorizontal />
-            </View>
-
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Nested ScrollViews
-              </Text>
-              <ScrollViewNested />
-            </View>
-
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Pull to Refresh
-              </Text>
-              <ScrollViewRefresh />
-            </View>
-
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Custom Styling
-              </Text>
-              <ScrollViewStyled />
-            </View>
-
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Scroll Indicators
-              </Text>
-              <ScrollViewIndicators />
-            </View>
-
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Content Inset Adjustments
-              </Text>
-              <ScrollViewInset />
-            </View>
-          </View>
-        </View>
+      <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Default
+        </Text>
+        <ScrollViewDemo />
       </View>
-    </ScrollView>
+
+      {/* <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Vertical Scrolling
+        </Text>
+        <ScrollViewVertical />
+      </View> */}
+
+      {/* <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Horizontal Scrolling
+        </Text>
+        <ScrollViewHorizontal />
+      </View> */}
+
+      {/* <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Nested ScrollViews
+        </Text>
+        <ScrollViewNested />
+      </View> */}
+
+      {/* <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Pull to Refresh
+        </Text>
+        <ScrollViewRefresh />
+      </View> */}
+
+      {/* <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Custom Styling
+        </Text>
+        <ScrollViewStyled />
+      </View> */}
+
+      {/* <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Scroll Indicators
+        </Text>
+        <ScrollViewIndicators />
+      </View> */}
+
+      {/* <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Content Inset Adjustments
+        </Text>
+        <ScrollViewInset />
+      </View> */}
+    </View>
   );
 }

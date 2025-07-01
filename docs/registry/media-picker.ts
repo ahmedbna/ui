@@ -132,27 +132,6 @@ export const mediaPickerRegistry = {
     },
   },
 
-  // Custom button example
-  'media-picker-custom': {
-    name: 'media-picker-custom',
-    description: 'Media picker with custom trigger button',
-    type: 'registry:example',
-    dependencies: ['lucide-react-native'],
-    registryDependencies: ['media-picker', 'text', 'view'],
-    files: [
-      {
-        path: 'registry/examples/media-picker/media-picker-custom.tsx',
-        type: 'registry:example',
-        target: '',
-      },
-    ],
-    preview: {
-      light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-    },
-  },
-
   // Preview example
   'media-picker-preview': {
     name: 'media-picker-preview',

@@ -6,10 +6,13 @@ import { Text } from '@/components/ui/text';
 import { Search, Eye, EyeOff, Copy } from 'lucide-react-native';
 import React, { useState } from 'react';
 import { Pressable } from 'react-native';
+import { useThemeColor } from '@/hooks/useThemeColor';
 
 export function InputRightComponents() {
-  const [showPassword, setShowPassword] = useState(false);
+  const muted = useThemeColor({}, 'mutedForeground');
+
   const [copied, setCopied] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleCopy = () => {
     setCopied(true);
@@ -23,8 +26,8 @@ export function InputRightComponents() {
         placeholder='Search with button...'
         icon={Search}
         rightComponent={
-          <Button size='sm' variant='secondary'>
-            <Text>Go</Text>
+          <Button size='icon' variant='secondary'>
+            <Text variant='caption'>Go</Text>
           </Button>
         }
       />
@@ -35,7 +38,11 @@ export function InputRightComponents() {
         secureTextEntry={!showPassword}
         rightComponent={
           <Pressable onPress={() => setShowPassword(!showPassword)}>
-            {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+            {showPassword ? (
+              <EyeOff size={22} color={muted} />
+            ) : (
+              <Eye size={22} color={muted} />
+            )}
           </Pressable>
         }
       />
@@ -48,7 +55,7 @@ export function InputRightComponents() {
             <View
               style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}
             >
-              <Copy size={16} />
+              <Copy size={18} color={muted} />
               <Text variant='caption'>{copied ? 'Copied!' : 'Copy'}</Text>
             </View>
           </Pressable>

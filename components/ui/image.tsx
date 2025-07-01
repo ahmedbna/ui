@@ -12,8 +12,7 @@ import { forwardRef, useState } from 'react';
 import { ActivityIndicator, StyleSheet } from 'react-native';
 
 export interface ImageProps extends Omit<ExpoImageProps, 'style'> {
-  full?: boolean;
-  variant?: 'rounded' | 'circle';
+  variant?: 'rounded' | 'circle' | 'default';
   source: ImageSource;
   style?: ExpoImageProps['style'];
   containerStyle?: any;
@@ -31,7 +30,6 @@ export const Image = forwardRef<ExpoImage, ImageProps>(
   (
     {
       variant = 'rounded',
-      full = true,
       source,
       style,
       containerStyle,
@@ -57,25 +55,41 @@ export const Image = forwardRef<ExpoImage, ImageProps>(
     const textColor = useThemeColor({}, 'mutedForeground');
     const primaryColor = useThemeColor({}, 'primary');
 
-    // Get size styles - use provided width/height or full size
-    const dimensionStyles = full
-      ? { width: '100%', height: '100%' }
-      : { width, height };
+    // Get border radius based on variant
+    const getBorderRadius = () => {
+      switch (variant) {
+        case 'circle':
+          return CORNERS;
+        case 'rounded':
+          return BORDER_RADIUS;
+        case 'default':
+          return 0;
+        default:
+          return BORDER_RADIUS;
+      }
+    };
 
-    // Get border radius
-    const borderRadius = variant === 'circle' ? CORNERS : BORDER_RADIUS;
+    const borderRadius = getBorderRadius();
 
-    // Combine styles - filter out falsy values and cast to proper type
+    // Container dimensions - fill container by default, or use provided dimensions
+    const containerDimensions =
+      width || height || aspectRatio
+        ? {
+            ...(width ? { width } : {}),
+            ...(height ? { height } : {}),
+            ...(aspectRatio ? { aspectRatio } : {}),
+          }
+        : { width: '100%', height: '100%' };
+
+    // Image styles - always fill the container
     const imageStyles = [
-      dimensionStyles,
-      { borderRadius },
-      aspectRatio ? { aspectRatio } : null,
+      { width: '100%', height: '100%', borderRadius },
       style,
     ].filter(Boolean) as ExpoImageProps['style'];
 
     const containerStyles = [
       styles.container,
-      dimensionStyles,
+      containerDimensions,
       { borderRadius, backgroundColor },
       containerStyle,
     ];

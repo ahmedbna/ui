@@ -6,6 +6,7 @@ import { Linking, Platform } from 'react-native';
 
 type Props = Omit<ComponentProps<typeof ERLink>, 'href'> & {
   href: Href;
+  asChild?: boolean;
   browser?: 'in-app' | 'external';
   children: React.ReactNode;
 };
@@ -22,7 +23,21 @@ const isExternalUrl = (href: Href): boolean => {
     href.startsWith('http://') ||
     href.startsWith('https://') ||
     href.startsWith('mailto:') ||
-    href.startsWith('tel:')
+    href.startsWith('tel:') ||
+    href.startsWith('sms:') ||
+    href.startsWith('whatsapp:') ||
+    href.startsWith('ftp://') ||
+    href.startsWith('file://')
+  );
+};
+
+// Helper function to determine if URL should use native app (not browser)
+const isNativeAppUrl = (href: string): boolean => {
+  return (
+    href.startsWith('mailto:') ||
+    href.startsWith('tel:') ||
+    href.startsWith('sms:') ||
+    href.startsWith('whatsapp:')
   );
 };
 
@@ -37,8 +52,13 @@ const getHrefString = (href: Href): string => {
   throw new Error('Cannot convert object href to string for external use');
 };
 
-export function Link({ href, children, browser = 'in-app', ...rest }: Props) {
-  const router = useRouter();
+export function Link({
+  href,
+  asChild = false,
+  children,
+  browser = 'in-app',
+  ...rest
+}: Props) {
   const isExternal = isExternalUrl(href);
 
   const handlePress = async (event: any) => {
@@ -49,16 +69,45 @@ export function Link({ href, children, browser = 'in-app', ...rest }: Props) {
       const hrefString = getHrefString(href);
 
       if (Platform.OS !== 'web') {
-        if (browser === 'external') {
-          // Open the link in external browser
-          await Linking.openURL(hrefString);
+        // Check if this is a native app URL (email, phone, etc.)
+        if (isNativeAppUrl(hrefString)) {
+          // Always use Linking.openURL for native app URLs
+          try {
+            const canOpen = await Linking.canOpenURL(hrefString);
+            if (canOpen) {
+              await Linking.openURL(hrefString);
+            } else {
+              console.warn(`Cannot open URL: ${hrefString}`);
+              // Optionally show an alert to the user
+            }
+          } catch (error) {
+            console.error('Error opening URL:', error);
+          }
         } else {
-          // Open the link in in-app browser (default)
-          await openBrowserAsync(hrefString);
+          // For HTTP/HTTPS URLs, use browser preference
+          if (browser === 'external') {
+            // Open the link in external browser
+            await Linking.openURL(hrefString);
+          } else {
+            // Open the link in in-app browser (default)
+            try {
+              await openBrowserAsync(hrefString);
+            } catch (error) {
+              console.error('Error opening browser:', error);
+              // Fallback to external browser
+              await Linking.openURL(hrefString);
+            }
+          }
         }
       } else {
-        // On web, open in new tab
-        window.open(hrefString, '_blank');
+        // On web platform
+        if (isNativeAppUrl(hrefString)) {
+          // For web, directly navigate to the URL (browser will handle it)
+          window.location.href = hrefString;
+        } else {
+          // For HTTP/HTTPS URLs, open in new tab
+          window.open(hrefString, '_blank');
+        }
       }
     }
     // For internal navigation, don't prevent default - let ERLink handle it
@@ -67,12 +116,7 @@ export function Link({ href, children, browser = 'in-app', ...rest }: Props) {
   // For external links, use a custom approach to avoid conflicts
   if (isExternal) {
     return (
-      <ERLink
-        asChild={typeof children === 'string' ? false : true}
-        href={href}
-        onPress={handlePress}
-        {...rest}
-      >
+      <ERLink asChild={asChild} href={href} onPress={handlePress} {...rest}>
         {typeof children === 'string' ? (
           <Text variant='link'>{children}</Text>
         ) : (

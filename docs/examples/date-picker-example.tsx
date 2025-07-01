@@ -8,76 +8,69 @@ import { DatePickerForm } from '@/docs/demo/date-picker/date-picker-form';
 import { DatePickerFormats } from '@/docs/demo/date-picker/date-picker-formats';
 import { DatePickerTime } from '@/docs/demo/date-picker/date-picker-time';
 import { DatePickerVariants } from '@/docs/demo/date-picker/date-picker-variants';
-import React from 'react';
-import { ScrollView } from 'react-native';
 
 // Main demo screen combining all examples
 export function DatePickerExample() {
   return (
-    <ScrollView
+    <View
       style={{
         flex: 1,
         padding: 16,
+        justifyContent: 'center',
       }}
     >
-      <View style={{ gap: 32 }}>
-        <View>
-          <Text variant='heading' style={{ marginBottom: 16 }}>
-            Date Picker Examples
-          </Text>
+      <Text variant='heading' style={{ marginBottom: 16 }}>
+        Date Picker
+      </Text>
 
-          <View style={{ gap: 24 }}>
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Default Date Picker
-              </Text>
-              <DatePickerDemo />
-            </View>
+      {/* <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Default Date Picker
+        </Text>
+        <DatePickerDemo />
+      </View> */}
 
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Time Picker
-              </Text>
-              <DatePickerTime />
-            </View>
+      {/* <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Time Picker
+        </Text>
+        <DatePickerTime />
+      </View> */}
 
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Date Time Picker
-              </Text>
-              <DatePickerDateTime />
-            </View>
+      {/* <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Date Time Picker
+        </Text>
+        <DatePickerDateTime />
+      </View> */}
 
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                With Constraints
-              </Text>
-              <DatePickerConstraints />
-            </View>
+      {/* <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          With Constraints
+        </Text>
+        <DatePickerConstraints />
+      </View> */}
 
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Different Variants
-              </Text>
-              <DatePickerVariants />
-            </View>
+      {/* <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Different Variants
+        </Text>
+        <DatePickerVariants />
+      </View> */}
 
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Time Formats
-              </Text>
-              <DatePickerFormats />
-            </View>
+      {/* <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Time Formats
+        </Text>
+        <DatePickerFormats />
+      </View> */}
 
-            <View>
-              <Text variant='title' style={{ marginBottom: 12 }}>
-                Form Integration
-              </Text>
-              <DatePickerForm />
-            </View>
-          </View>
-        </View>
+      <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Form Integration
+        </Text>
+        <DatePickerForm />
       </View>
-    </ScrollView>
+    </View>
   );
 }

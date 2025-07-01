@@ -12,7 +12,9 @@ export function FilePickerStyled() {
         <Text style={{ marginBottom: 8, fontWeight: '500' }}>
           Primary Style
         </Text>
+
         <FilePicker
+          variant='ghost'
           onFilesSelected={(files) => console.log('Primary files:', files)}
           onError={(error) => console.error('Error:', error)}
           fileType='all'
@@ -23,7 +25,7 @@ export function FilePickerStyled() {
             borderWidth: 2,
             borderColor: '#007AFF',
             borderRadius: 12,
-            backgroundColor: '#f0f8ff',
+            // backgroundColor: '#f0f8ff',
           }}
         />
       </View>
@@ -34,6 +36,7 @@ export function FilePickerStyled() {
           Minimal Style
         </Text>
         <FilePicker
+          variant='ghost'
           onFilesSelected={(files) => console.log('Minimal files:', files)}
           onError={(error) => console.error('Error:', error)}
           fileType='image'
@@ -56,6 +59,7 @@ export function FilePickerStyled() {
           Success Style
         </Text>
         <FilePicker
+          variant='ghost'
           onFilesSelected={(files) => console.log('Success files:', files)}
           onError={(error) => console.error('Error:', error)}
           fileType='document'
@@ -66,7 +70,7 @@ export function FilePickerStyled() {
             borderWidth: 2,
             borderColor: '#34C759',
             borderRadius: 16,
-            backgroundColor: '#f0fff4',
+            // backgroundColor: '#f0fff4',
           }}
         />
       </View>
