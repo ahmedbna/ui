@@ -25,8 +25,8 @@ export const datePickerRegistry = {
     ],
     preview: {
       light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/DatePickerPreview.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/DatePickerPreview.mp4',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 01-08-59_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 01-08-59_1.MP4',
     },
   },
 
@@ -45,8 +45,8 @@ export const datePickerRegistry = {
     ],
     preview: {
       light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/DatePickerDemo.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/DatePickerDemo.mp4',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 01-08-59_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 01-08-59_1.MP4',
     },
   },
 
@@ -65,8 +65,8 @@ export const datePickerRegistry = {
     ],
     preview: {
       light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/DatePickerTime.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/DatePickerTime.mp4',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 01-09-26_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 01-09-26_1.MP4',
     },
   },
 
@@ -85,8 +85,8 @@ export const datePickerRegistry = {
     ],
     preview: {
       light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/DatePickerDateTime.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/DatePickerDateTime.mp4',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 01-09-54_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 01-09-54_1.MP4',
     },
   },
 
@@ -105,8 +105,8 @@ export const datePickerRegistry = {
     ],
     preview: {
       light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/DatePickerConstraints.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/DatePickerConstraints.mp4',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 01-10-11_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 01-10-11_1.MP4',
     },
   },
 
@@ -125,8 +125,8 @@ export const datePickerRegistry = {
     ],
     preview: {
       light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/DatePickerVariants.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/DatePickerVariants.mp4',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 01-11-51_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 01-11-51_1.MP4',
     },
   },
 
@@ -145,8 +145,8 @@ export const datePickerRegistry = {
     ],
     preview: {
       light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/DatePickerFormats.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/DatePickerFormats.mp4',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 01-12-10_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 01-12-10_1.MP4',
     },
   },
 
@@ -165,8 +165,8 @@ export const datePickerRegistry = {
     ],
     preview: {
       light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/DatePickerForm.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/DatePickerForm.mp4',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 01-13-34_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 01-13-34_1.MP4',
     },
   },
 };

@@ -138,8 +138,8 @@ export const inputRegistry = {
       },
     ],
     preview: {
-      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/',
+      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5593.PNG',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5593.PNG',
     },
   },
 

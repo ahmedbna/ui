@@ -17,8 +17,8 @@ export const imageRegistry = {
       },
     ],
     preview: {
-      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/',
+      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5575.PNG',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5575.PNG',
     },
   },
 
@@ -36,8 +36,8 @@ export const imageRegistry = {
       },
     ],
     preview: {
-      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/',
+      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5575.PNG',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5575.PNG',
     },
   },
 
@@ -55,8 +55,8 @@ export const imageRegistry = {
       },
     ],
     preview: {
-      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/',
+      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5576.PNG',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5576.PNG',
     },
   },
 
@@ -74,8 +74,8 @@ export const imageRegistry = {
       },
     ],
     preview: {
-      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/',
+      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5577.PNG',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5577.PNG',
     },
   },
 
@@ -93,8 +93,27 @@ export const imageRegistry = {
       },
     ],
     preview: {
-      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/',
+      light:
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 05-41-40_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 05-41-40_1.MP4',
+    },
+  },
+
+  'image-error': {
+    name: 'image-error',
+    description: 'Images with custom error fallback messages',
+    type: 'registry:example',
+    registryDependencies: ['image'],
+    files: [
+      {
+        path: 'registry/examples/image/image-error.tsx',
+        type: 'registry:example',
+        target: '',
+      },
+    ],
+    preview: {
+      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5581.PNG',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5581.PNG',
     },
   },
 
@@ -111,8 +130,8 @@ export const imageRegistry = {
       },
     ],
     preview: {
-      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/',
+      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5584.PNG',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5584.PNG',
     },
   },
 
@@ -129,8 +148,8 @@ export const imageRegistry = {
       },
     ],
     preview: {
-      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/',
+      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5583.PNG',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5583.PNG',
     },
   },
 
@@ -147,8 +166,8 @@ export const imageRegistry = {
       },
     ],
     preview: {
-      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/',
+      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5582.PNG',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5582.PNG',
     },
   },
 };
