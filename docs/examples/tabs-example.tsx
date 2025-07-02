@@ -20,7 +20,7 @@ export function TabsExample() {
         Tabs
       </Text>
 
-      {/* <View>
+      <View>
         <Text variant='title' style={{ marginBottom: 12 }}>
           Default Tabs
         </Text>
@@ -28,7 +28,7 @@ export function TabsExample() {
           Basic horizontal tabs with three panels
         </Text>
         <TabsDemo />
-      </View> */}
+      </View>
 
       {/* <View>
         <Text variant='title' style={{ marginBottom: 12 }}>
@@ -50,7 +50,7 @@ export function TabsExample() {
         <TabsDisabled />
       </View> */}
 
-      <View>
+      {/* <View>
         <Text variant='title' style={{ marginBottom: 12 }}>
           Custom Styling
         </Text>
@@ -58,7 +58,7 @@ export function TabsExample() {
           Tabs with custom colors, shadows, and themed content areas
         </Text>
         <TabsStyled />
-      </View>
+      </View> */}
     </View>
   );
 }
