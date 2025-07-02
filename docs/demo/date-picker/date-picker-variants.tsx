@@ -1,4 +1,3 @@
-// registry/examples/date-picker-variants.tsx
 import { DatePicker } from '@/components/ui/date-picker';
 import { View } from '@/components/ui/view';
 import React, { useState } from 'react';

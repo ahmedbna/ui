@@ -1,8 +1,7 @@
 import { Button } from '@/components/ui/button';
-import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { Star } from 'lucide-react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import { Star } from 'lucide-react-native';
 
 export function ButtonCustom() {
   return (

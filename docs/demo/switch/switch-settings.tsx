@@ -1,4 +1,3 @@
-// registry/examples/switch-settings.tsx
 import { Switch } from '@/components/ui/switch';
 import { View } from '@/components/ui/view';
 import { useThemeColor } from '@/hooks/useThemeColor';

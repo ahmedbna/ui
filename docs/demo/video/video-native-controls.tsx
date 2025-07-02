@@ -1,4 +1,3 @@
-// registry/examples/video-native-controls.tsx
 import { Video } from '@/components/ui/video';
 import React from 'react';
 

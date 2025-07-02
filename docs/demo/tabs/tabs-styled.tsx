@@ -1,5 +1,4 @@
-// docs/demo/tabs/tabs-styled.tsx
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
 import { useState } from 'react';

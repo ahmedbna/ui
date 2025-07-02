@@ -1,4 +1,3 @@
-// registry/examples/switch-disabled.tsx
 import { Switch } from '@/components/ui/switch';
 import { View } from '@/components/ui/view';
 import React, { useState } from 'react';

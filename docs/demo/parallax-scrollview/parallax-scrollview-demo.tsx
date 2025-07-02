@@ -1,4 +1,3 @@
-// registry/examples/parallax-scrollview-demo.tsx
 import { ParallaxScrollView } from '@/components/ui/parallax-scrollview';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';

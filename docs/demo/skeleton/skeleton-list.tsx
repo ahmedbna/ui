@@ -1,4 +1,3 @@
-// registry/examples/skeleton-list.tsx
 import { Skeleton } from '@/components/ui/skeleton';
 import { View } from '@/components/ui/view';
 import { useThemeColor } from '@/hooks/useThemeColor';

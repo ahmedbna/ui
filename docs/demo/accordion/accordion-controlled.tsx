@@ -8,7 +8,6 @@ import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
 import React from 'react';
 
-// registry/examples/accordion-controlled.tsx
 export function AccordionControlled() {
   const [value, setValue] = React.useState<string | string[]>('');
 

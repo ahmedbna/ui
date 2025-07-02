@@ -1,4 +1,3 @@
-// registry/examples/popover-demo.tsx
 import { Button } from '@/components/ui/button';
 import {
   Popover,

@@ -1,4 +1,3 @@
-// registry/examples/icon-sizes.tsx
 import { Icon } from '@/components/ui/icon';
 import { View } from '@/components/ui/view';
 import { Star } from 'lucide-react-native';

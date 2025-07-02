@@ -1,4 +1,3 @@
-// registry/examples/searchbar-styled.tsx
 import { SearchBar } from '@/components/ui/searchbar';
 import { View } from '@/components/ui/view';
 import React, { useState } from 'react';

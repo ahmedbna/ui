@@ -1,4 +1,3 @@
-// registry/examples/onboarding-custom-buttons.tsx
 import { Onboarding, OnboardingStep } from '@/components/ui/onboarding';
 import { Heart, Rocket, Target } from 'lucide-react-native';
 import React from 'react';

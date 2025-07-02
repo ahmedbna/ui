@@ -1,4 +1,3 @@
-// registry/examples/carousel-arrows.tsx
 import { Carousel, CarouselItem } from '@/components/ui/carousel';
 import { Icon } from '@/components/ui/icon';
 import { Text } from '@/components/ui/text';

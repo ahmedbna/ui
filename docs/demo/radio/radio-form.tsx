@@ -1,4 +1,3 @@
-// registry/examples/radio-form.tsx
 import { Button } from '@/components/ui/button';
 import { RadioGroup } from '@/components/ui/radio';
 import { Text } from '@/components/ui/text';

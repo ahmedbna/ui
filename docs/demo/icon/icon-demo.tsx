@@ -1,4 +1,3 @@
-// registry/examples/icon-demo.tsx
 import { Icon } from '@/components/ui/icon';
 import { Heart } from 'lucide-react-native';
 import React from 'react';

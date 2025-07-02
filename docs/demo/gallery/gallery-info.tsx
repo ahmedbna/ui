@@ -1,4 +1,3 @@
-// registry/examples/gallery/gallery-info.tsx
 import { Gallery, GalleryItem } from '@/components/ui/gallery';
 import React from 'react';
 

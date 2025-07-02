@@ -1,4 +1,3 @@
-// registry/examples/icon-interactive.tsx
 import { Button } from '@/components/ui/button';
 import { Icon } from '@/components/ui/icon';
 import { View } from '@/components/ui/view';

@@ -1,4 +1,3 @@
-// registry/examples/onboarding-no-skip.tsx
 import { Onboarding, OnboardingStep } from '@/components/ui/onboarding';
 import { Feather } from '@expo/vector-icons';
 import React from 'react';

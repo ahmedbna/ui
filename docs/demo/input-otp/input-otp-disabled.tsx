@@ -1,4 +1,3 @@
-// registry/examples/input-otp-disabled.tsx
 import { Button } from '@/components/ui/button';
 import { InputOTP } from '@/components/ui/input-otp';
 import { Text } from '@/components/ui/text';

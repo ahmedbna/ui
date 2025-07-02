@@ -1,4 +1,3 @@
-// registry/examples/combobox-multiple.tsx
 import {
   Combobox,
   ComboboxContent,

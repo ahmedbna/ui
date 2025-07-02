@@ -1,9 +1,6 @@
-// registry/examples/onboarding-images.tsx
 import { Image } from '@/components/ui/image';
 import { Onboarding, OnboardingStep } from '@/components/ui/onboarding';
-import { BORDER_RADIUS } from '@/theme/globals';
 import React from 'react';
-import { View } from 'react-native';
 
 const WelcomeImage = () => (
   <Image

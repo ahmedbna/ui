@@ -1,4 +1,3 @@
-// registry/examples/radio-large.tsx
 import { RadioGroup } from '@/components/ui/radio';
 import React, { useState } from 'react';
 

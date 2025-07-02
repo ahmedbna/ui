@@ -1,5 +1,3 @@
-// registry/examples/accordion-demo.tsx
-import React from 'react';
 import {
   Accordion,
   AccordionContent,
@@ -7,6 +5,7 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 import { Text } from '@/components/ui/text';
+import React from 'react';
 
 export function AccordionDemo() {
   return (

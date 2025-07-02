@@ -1,4 +1,3 @@
-// registry/examples/searchbar-icons.tsx
 import { Icon } from '@/components/ui/icon';
 import { SearchBar } from '@/components/ui/searchbar';
 import { View } from '@/components/ui/view';

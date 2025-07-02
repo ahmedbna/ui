@@ -1,4 +1,3 @@
-// registry/examples/combobox-form.tsx
 import { Button } from '@/components/ui/button';
 import {
   Combobox,

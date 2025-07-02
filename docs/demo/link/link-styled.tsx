@@ -1,4 +1,3 @@
-// registry/examples/link-styled.tsx
 import { Link } from '@/components/ui/link';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';

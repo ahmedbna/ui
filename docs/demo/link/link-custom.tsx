@@ -1,4 +1,3 @@
-// registry/examples/link-custom.tsx
 import { Button } from '@/components/ui/button';
 import { Link } from '@/components/ui/link';
 import { Text } from '@/components/ui/text';

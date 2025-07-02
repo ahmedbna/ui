@@ -1,4 +1,3 @@
-// registry/examples/parallax-scrollview-profile.tsx
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { ParallaxScrollView } from '@/components/ui/parallax-scrollview';

@@ -1,4 +1,3 @@
-// registry/examples/video-demo.tsx
 import { Video } from '@/components/ui/video';
 
 export function VideoDemo() {

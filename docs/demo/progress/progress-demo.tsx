@@ -1,4 +1,3 @@
-// registry/examples/progress-demo.tsx
 import { Progress } from '@/components/ui/progress';
 import React from 'react';
 

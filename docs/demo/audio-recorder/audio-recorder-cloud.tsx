@@ -1,4 +1,3 @@
-// docs/demo/audio-recorder/audio-recorder-cloud.tsx
 import { AudioRecorder } from '@/components/ui/audio-recorder';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';

@@ -1,12 +1,11 @@
-// registry/examples/input/input-right-components.tsx
-import { Input } from '@/components/ui/input';
-import { View } from '@/components/ui/view';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import { Text } from '@/components/ui/text';
-import { Search, Eye, EyeOff, Copy } from 'lucide-react-native';
+import { View } from '@/components/ui/view';
+import { useThemeColor } from '@/hooks/useThemeColor';
+import { Copy, Eye, EyeOff, Search } from 'lucide-react-native';
 import React, { useState } from 'react';
 import { Pressable } from 'react-native';
-import { useThemeColor } from '@/hooks/useThemeColor';
 
 export function InputRightComponents() {
   const muted = useThemeColor({}, 'mutedForeground');

@@ -1,7 +1,4 @@
 import { AudioPlayer } from '@/components/ui/audio-player';
-import { Text } from '@/components/ui/text';
-import { View } from '@/components/ui/view';
-import React from 'react';
 
 export function AudioPlayerAutoplay() {
   const sampleAudioUrl =

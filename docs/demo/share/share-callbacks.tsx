@@ -1,4 +1,3 @@
-// registry/examples/share-callbacks.tsx
 import { ShareButton } from '@/components/ui/share';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';

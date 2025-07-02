@@ -1,4 +1,3 @@
-// registry/examples/video-autoplay-loop.tsx
 import { Video } from '@/components/ui/video';
 import React from 'react';
 

@@ -1,4 +1,3 @@
-// registry/examples/file-picker-demo.tsx
 import { FilePicker } from '@/components/ui/file-picker';
 import React from 'react';
 

@@ -1,4 +1,3 @@
-// registry/examples/file-picker-styled.tsx
 import { FilePicker } from '@/components/ui/file-picker';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';

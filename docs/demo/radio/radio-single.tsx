@@ -1,4 +1,3 @@
-// registry/examples/radio-single.tsx
 import { RadioButton } from '@/components/ui/radio';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';

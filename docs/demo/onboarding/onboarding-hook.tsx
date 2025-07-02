@@ -1,10 +1,9 @@
-// registry/examples/onboarding-hook.tsx
+import { Button } from '@/components/ui/button';
 import {
   Onboarding,
   OnboardingStep,
   useOnboarding,
 } from '@/components/ui/onboarding';
-import { Button } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
 import React from 'react';

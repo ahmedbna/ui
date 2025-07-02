@@ -1,4 +1,3 @@
-// registry/examples/avatar-demo.tsx
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import React from 'react';
 

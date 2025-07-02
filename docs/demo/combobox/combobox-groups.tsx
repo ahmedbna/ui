@@ -1,4 +1,3 @@
-// registry/examples/combobox-groups.tsx
 import {
   Combobox,
   ComboboxContent,

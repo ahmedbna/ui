@@ -1,4 +1,3 @@
-// registry/examples/gallery/gallery-layouts.tsx
 import { Gallery, GalleryItem } from '@/components/ui/gallery';
 import { ScrollView } from '@/components/ui/scroll-view';
 import { Text } from '@/components/ui/text';

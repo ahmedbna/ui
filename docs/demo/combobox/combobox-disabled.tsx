@@ -1,4 +1,3 @@
-// registry/examples/combobox-disabled.tsx
 import {
   Combobox,
   ComboboxContent,

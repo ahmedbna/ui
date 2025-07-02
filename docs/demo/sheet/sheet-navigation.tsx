@@ -1,4 +1,3 @@
-// registry/examples/sheet-navigation.tsx
 import { Button } from '@/components/ui/button';
 import { Icon } from '@/components/ui/icon';
 import {
@@ -22,7 +21,6 @@ export function SheetNavigation() {
 
   const textColor = useThemeColor({}, 'text');
   const mutedColor = useThemeColor({}, 'textMuted');
-  const backgroundColor = useThemeColor({}, 'background');
   const borderColor = useThemeColor({}, 'border');
 
   const navigationItems = [

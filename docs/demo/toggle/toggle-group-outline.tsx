@@ -1,4 +1,3 @@
-// docs/demo/toggle/toggle-group-outline.tsx
 import { ToggleGroupSingle } from '@/components/ui/toggle';
 import { Bold, Italic, Underline } from 'lucide-react-native';
 import React, { useState } from 'react';

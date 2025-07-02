@@ -1,4 +1,3 @@
-// registry/examples/progress-media.tsx
 import { Progress } from '@/components/ui/progress';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';

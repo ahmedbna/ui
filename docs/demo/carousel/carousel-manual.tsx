@@ -1,4 +1,3 @@
-// registry/examples/carousel-manual.tsx
 import { Button } from '@/components/ui/button';
 import { Carousel, CarouselItem, CarouselRef } from '@/components/ui/carousel';
 import { Text } from '@/components/ui/text';

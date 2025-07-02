@@ -1,7 +1,6 @@
-// registry/examples/input/input-validation.tsx
 import { Input } from '@/components/ui/input';
 import { View } from '@/components/ui/view';
-import { Mail, Lock } from 'lucide-react-native';
+import { Lock, Mail } from 'lucide-react-native';
 import React, { useState } from 'react';
 
 export function InputValidation() {

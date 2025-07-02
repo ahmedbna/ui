@@ -1,4 +1,3 @@
-// docs/demo/toggle/toggle-demo.tsx
 import { Toggle } from '@/components/ui/toggle';
 import { Bold } from 'lucide-react-native';
 import React, { useState } from 'react';

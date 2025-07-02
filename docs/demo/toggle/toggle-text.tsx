@@ -1,4 +1,3 @@
-// docs/demo/toggle/toggle-text.tsx
 import { Toggle } from '@/components/ui/toggle';
 import { View } from '@/components/ui/view';
 import React, { useState } from 'react';

@@ -1,4 +1,3 @@
-// registry/examples/badge-status.tsx
 import { Badge } from '@/components/ui/badge';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';

@@ -1,4 +1,3 @@
-// docs/demo/toggle/toggle-group-single.tsx
 import { ToggleGroupSingle } from '@/components/ui/toggle';
 import { AlignCenter, AlignLeft, AlignRight } from 'lucide-react-native';
 import React, { useState } from 'react';

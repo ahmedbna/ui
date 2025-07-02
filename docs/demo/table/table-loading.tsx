@@ -1,6 +1,5 @@
-// registry/examples/table-loading.tsx
-import { Table, TableColumn } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
+import { Table, TableColumn } from '@/components/ui/table';
 import { View } from '@/components/ui/view';
 import React, { useState } from 'react';
 

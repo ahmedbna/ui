@@ -1,4 +1,3 @@
-// registry/examples/share-sizes.tsx
 import { ShareButton } from '@/components/ui/share';
 import { View } from '@/components/ui/view';
 import React from 'react';

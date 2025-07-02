@@ -1,6 +1,5 @@
-// registry/examples/carousel-demo.tsx
-import { Text } from '@/components/ui/text';
 import { Carousel, CarouselItem } from '@/components/ui/carousel';
+import { Text } from '@/components/ui/text';
 
 export function CarouselDemo() {
   return (

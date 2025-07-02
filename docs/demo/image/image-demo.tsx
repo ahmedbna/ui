@@ -1,4 +1,3 @@
-// registry/examples/image-demo.tsx
 import { Image } from '@/components/ui/image';
 
 export function ImageDemo() {

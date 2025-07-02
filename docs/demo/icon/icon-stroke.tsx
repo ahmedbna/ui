@@ -1,4 +1,3 @@
-// registry/examples/icon-stroke.tsx
 import { Icon } from '@/components/ui/icon';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';

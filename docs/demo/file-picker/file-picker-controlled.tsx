@@ -1,4 +1,3 @@
-// registry/examples/file-picker-controlled.tsx
 import { Button } from '@/components/ui/button';
 import { useFilePicker } from '@/components/ui/file-picker';
 import { Text } from '@/components/ui/text';

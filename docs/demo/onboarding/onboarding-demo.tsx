@@ -2,7 +2,6 @@ import { Onboarding, useOnboarding } from '@/components/ui/onboarding';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
 
-// Preset configurations for different onboarding types
 export const OnboardingPresets = {
   welcome: [
     {
@@ -78,7 +77,6 @@ export const OnboardingPresets = {
   ],
 };
 
-// Usage example component
 export function OnboardingDemo() {
   const { hasCompletedOnboarding, completeOnboarding, skipOnboarding } =
     useOnboarding();

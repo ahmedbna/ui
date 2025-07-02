@@ -1,4 +1,3 @@
-// registry/examples/sheet-left.tsx
 import { Button } from '@/components/ui/button';
 import {
   Sheet,

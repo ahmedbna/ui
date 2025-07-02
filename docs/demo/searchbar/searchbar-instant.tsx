@@ -1,4 +1,3 @@
-// registry/examples/searchbar-instant.tsx
 import { SearchBar } from '@/components/ui/searchbar';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';

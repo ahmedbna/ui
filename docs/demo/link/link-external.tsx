@@ -1,4 +1,3 @@
-// registry/examples/link-external.tsx
 import { Link } from '@/components/ui/link';
 import { View } from '@/components/ui/view';
 import React from 'react';

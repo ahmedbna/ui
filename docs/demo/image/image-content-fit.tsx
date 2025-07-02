@@ -1,4 +1,3 @@
-// registry/examples/image-content-fit.tsx
 import { Image } from '@/components/ui/image';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';

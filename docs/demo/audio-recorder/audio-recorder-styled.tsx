@@ -1,4 +1,3 @@
-// docs/demo/audio-recorder/audio-recorder-styled.tsx
 import { AudioRecorder } from '@/components/ui/audio-recorder';
 
 export function AudioRecorderStyled() {

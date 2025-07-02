@@ -1,4 +1,3 @@
-// registry/examples/icon-grid.tsx
 import { Icon } from '@/components/ui/icon';
 import { View } from '@/components/ui/view';
 import {

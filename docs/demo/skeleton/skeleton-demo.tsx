@@ -1,4 +1,3 @@
-// registry/examples/skeleton-demo.tsx
 import { Skeleton } from '@/components/ui/skeleton';
 import React from 'react';
 

@@ -1,4 +1,3 @@
-// registry/examples/combobox-large.tsx
 import {
   Combobox,
   ComboboxContent,

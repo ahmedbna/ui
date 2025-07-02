@@ -1,4 +1,3 @@
-// docs/demo/audio-recorder/audio-recorder-hq.tsx
 import { AudioRecorder } from '@/components/ui/audio-recorder';
 import { RecordingPresets } from 'expo-audio';
 

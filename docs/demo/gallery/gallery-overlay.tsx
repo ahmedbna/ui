@@ -1,4 +1,3 @@
-// registry/examples/gallery/gallery-overlay.tsx
 import { Gallery, GalleryItem } from '@/components/ui/gallery';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';

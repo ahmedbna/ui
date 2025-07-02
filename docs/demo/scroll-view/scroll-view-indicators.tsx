@@ -1,4 +1,3 @@
-// registry/examples/scroll-view-indicators.tsx
 import { ScrollView } from '@/components/ui/scroll-view';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';

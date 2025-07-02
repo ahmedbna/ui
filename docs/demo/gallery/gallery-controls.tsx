@@ -1,4 +1,3 @@
-// registry/examples/gallery/gallery-controls.tsx
 import { Gallery, GalleryItem } from '@/components/ui/gallery';
 import React from 'react';
 import { Alert } from 'react-native';

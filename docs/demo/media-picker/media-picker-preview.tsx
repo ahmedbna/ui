@@ -1,4 +1,3 @@
-// registry/examples/media-picker-preview.tsx
 import { MediaAsset, MediaPicker } from '@/components/ui/media-picker';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';

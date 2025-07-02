@@ -1,4 +1,3 @@
-// registry/examples/camera-zoom.tsx
 import { Camera } from '@/components/ui/camera';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';

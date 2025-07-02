@@ -1,8 +1,6 @@
-// registry/examples/picker-form.tsx
-import { Picker } from '@/components/ui/picker';
 import { Button } from '@/components/ui/button';
+import { Picker } from '@/components/ui/picker';
 import { View } from '@/components/ui/view';
-import { Text } from '@/components/ui/text';
 import React, { useState } from 'react';
 
 export function PickerForm() {
