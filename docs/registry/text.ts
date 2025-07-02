@@ -17,8 +17,8 @@ export const textRegistry = {
       },
     ],
     preview: {
-      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/',
+      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5741.PNG',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5741.PNG',
     },
   },
 
@@ -36,8 +36,8 @@ export const textRegistry = {
       },
     ],
     preview: {
-      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/',
+      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5741.PNG',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5741.PNG',
     },
   },
 
@@ -54,8 +54,8 @@ export const textRegistry = {
       },
     ],
     preview: {
-      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/',
+      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5743.PNG',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5743.PNG',
     },
   },
 
@@ -72,8 +72,8 @@ export const textRegistry = {
       },
     ],
     preview: {
-      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/',
+      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5742.PNG',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5742.PNG',
     },
   },
 };

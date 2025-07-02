@@ -17,8 +17,9 @@ export const shareRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.shadcn.com/examples/share-demo-light.png',
-      dark: 'https://ui.shadcn.com/examples/share-demo-dark.png',
+      light:
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 10-26-52_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 10-26-52_1.MP4',
     },
   },
 
@@ -36,8 +37,9 @@ export const shareRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.shadcn.com/examples/share-demo-light.png',
-      dark: 'https://ui.shadcn.com/examples/share-demo-dark.png',
+      light:
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 10-26-52_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 10-26-52_1.MP4',
     },
   },
 
@@ -55,8 +57,9 @@ export const shareRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.shadcn.com/examples/share-variants-light.png',
-      dark: 'https://ui.shadcn.com/examples/share-variants-dark.png',
+      light:
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 10-27-10_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 10-27-10_1.MP4',
     },
   },
 
@@ -74,8 +77,9 @@ export const shareRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.shadcn.com/examples/share-sizes-light.png',
-      dark: 'https://ui.shadcn.com/examples/share-sizes-dark.png',
+      light:
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 10-28-09_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 10-28-09_1.MP4',
     },
   },
 
@@ -93,8 +97,9 @@ export const shareRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.shadcn.com/examples/share-url-only-light.png',
-      dark: 'https://ui.shadcn.com/examples/share-url-only-dark.png',
+      light:
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 10-28-32_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 10-28-32_1.MP4',
     },
   },
 
@@ -112,8 +117,9 @@ export const shareRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.shadcn.com/examples/share-custom-content-light.png',
-      dark: 'https://ui.shadcn.com/examples/share-custom-content-dark.png',
+      light:
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 10-28-51_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 10-28-51_1.MP4',
     },
   },
 
@@ -131,8 +137,9 @@ export const shareRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.shadcn.com/examples/share-icon-only-light.png',
-      dark: 'https://ui.shadcn.com/examples/share-icon-only-dark.png',
+      light:
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 10-29-09_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 10-29-09_1.MP4',
     },
   },
 
@@ -150,8 +157,9 @@ export const shareRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.shadcn.com/examples/share-callbacks-light.png',
-      dark: 'https://ui.shadcn.com/examples/share-callbacks-dark.png',
+      light:
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 10-29-27_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 10-29-27_1.MP4',
     },
   },
 
@@ -168,8 +176,9 @@ export const shareRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.shadcn.com/examples/share-hook-light.png',
-      dark: 'https://ui.shadcn.com/examples/share-hook-dark.png',
+      light:
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 10-29-44_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 10-29-44_1.MP4',
     },
   },
 };
