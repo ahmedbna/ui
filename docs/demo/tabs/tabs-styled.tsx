@@ -2,21 +2,27 @@
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import React from 'react';
+import { useState } from 'react';
 
 export function TabsStyled() {
+  const [value, setValue] = useState('design');
+
   return (
-    <Tabs defaultValue='design' style={{ width: 400 }}>
+    <Tabs defaultValue={value}>
       <TabsList
         style={{
-          backgroundColor: '#f8fafc',
-          borderWidth: 1,
-          borderColor: '#e2e8f0',
+          backgroundColor:
+            value === 'design'
+              ? '#3b82f6'
+              : value === 'development'
+              ? '#10b981'
+              : '#f59e0b',
           shadowColor: '#000',
           shadowOffset: { width: 0, height: 2 },
           shadowOpacity: 0.1,
           shadowRadius: 4,
           elevation: 3,
+          borderRadius: 8,
         }}
       >
         <TabsTrigger

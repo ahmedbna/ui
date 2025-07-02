@@ -20,7 +20,7 @@ export function TabsExample() {
         Tabs
       </Text>
 
-      <View style={{ flex: 1 }}>
+      {/* <View>
         <Text variant='title' style={{ marginBottom: 12 }}>
           Default Tabs
         </Text>
@@ -28,7 +28,7 @@ export function TabsExample() {
           Basic horizontal tabs with three panels
         </Text>
         <TabsDemo />
-      </View>
+      </View> */}
 
       {/* <View>
         <Text variant='title' style={{ marginBottom: 12 }}>
@@ -38,9 +38,9 @@ export function TabsExample() {
           Tabs arranged vertically for sidebar-style navigation
         </Text>
         <TabsVertical />
-      </View>
+      </View> */}
 
-      <View>
+      {/* <View>
         <Text variant='title' style={{ marginBottom: 12 }}>
           Disabled States
         </Text>
@@ -48,7 +48,7 @@ export function TabsExample() {
           Some tabs can be disabled to prevent interaction
         </Text>
         <TabsDisabled />
-      </View>
+      </View> */}
 
       <View>
         <Text variant='title' style={{ marginBottom: 12 }}>
@@ -58,7 +58,7 @@ export function TabsExample() {
           Tabs with custom colors, shadows, and themed content areas
         </Text>
         <TabsStyled />
-      </View> */}
+      </View>
     </View>
   );
 }

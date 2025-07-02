@@ -2,7 +2,7 @@
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
 import { useThemeColor } from '@/hooks/useThemeColor';
-import { CORNERS, FONT_SIZE, HEIGHT } from '@/theme/globals';
+import { BORDER_RADIUS, CORNERS, FONT_SIZE, HEIGHT } from '@/theme/globals';
 import React, { createContext, useContext, useState } from 'react';
 import {
   ScrollView,
@@ -15,6 +15,7 @@ import {
 interface TabsContextType {
   activeTab: string;
   setActiveTab: (value: string) => void;
+  orientation: 'horizontal' | 'vertical';
 }
 
 interface TabsProps {
@@ -54,7 +55,6 @@ const useTabsContext = () => {
   return context;
 };
 
-// Main Tabs component
 export function Tabs({
   children,
   defaultValue,
@@ -64,11 +64,10 @@ export function Tabs({
   const [activeTab, setActiveTab] = useState(defaultValue);
 
   return (
-    <TabsContext.Provider value={{ activeTab, setActiveTab }}>
+    <TabsContext.Provider value={{ activeTab, setActiveTab, orientation }}>
       <View
         style={[
           {
-            flex: 1,
             flexDirection: orientation === 'horizontal' ? 'column' : 'row',
           },
           style,
@@ -80,30 +79,28 @@ export function Tabs({
   );
 }
 
-// TabsList component - FIXED
 export function TabsList({ children, style }: TabsListProps) {
+  const { orientation } = useTabsContext();
   const backgroundColor = useThemeColor({}, 'muted');
 
   return (
     <View
       style={[
         {
-          backgroundColor,
-          borderRadius: CORNERS,
           padding: 6,
+          backgroundColor,
+          borderRadius: orientation === 'horizontal' ? CORNERS : BORDER_RADIUS,
         },
         style,
       ]}
     >
       <ScrollView
-        horizontal
+        horizontal={orientation === 'horizontal'}
         showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
         contentContainerStyle={{
-          flexDirection: 'row',
-          minWidth: '100%', // Ensures content takes at least full width
-        }}
-        style={{
-          flexGrow: 0, // Prevents ScrollView from taking more space than needed
+          flexDirection: orientation === 'horizontal' ? 'row' : 'column',
+          alignItems: 'center',
         }}
       >
         {children}
@@ -112,7 +109,6 @@ export function TabsList({ children, style }: TabsListProps) {
   );
 }
 
-// TabsTrigger component
 export function TabsTrigger({
   children,
   value,
@@ -120,7 +116,7 @@ export function TabsTrigger({
   style,
   textStyle,
 }: TabsTriggerProps) {
-  const { activeTab, setActiveTab } = useTabsContext();
+  const { activeTab, setActiveTab, orientation } = useTabsContext();
   const isActive = activeTab === value;
 
   const primaryColor = useThemeColor({}, 'primary');
@@ -135,13 +131,15 @@ export function TabsTrigger({
 
   const triggerStyle: ViewStyle = {
     paddingHorizontal: 12,
+    paddingVertical: orientation === 'vertical' ? 8 : undefined,
     borderRadius: CORNERS,
     alignItems: 'center',
     justifyContent: 'center',
     minHeight: HEIGHT - 8,
     backgroundColor: isActive ? backgroundColor : 'transparent',
     opacity: disabled ? 0.5 : 1,
-    flex: 1, // This makes tabs distribute evenly when they fit
+    flex: orientation === 'horizontal' ? 1 : undefined,
+    marginBottom: orientation === 'vertical' ? 4 : 0,
     ...style,
   };
 
@@ -149,6 +147,7 @@ export function TabsTrigger({
     fontSize: FONT_SIZE,
     fontWeight: '500',
     color: isActive ? primaryColor : mutedForegroundColor,
+    textAlign: 'center',
     ...textStyle,
   };
 
@@ -168,7 +167,6 @@ export function TabsTrigger({
   );
 }
 
-// TabsContent component
 export function TabsContent({ children, value, style }: TabsContentProps) {
   const { activeTab } = useTabsContext();
   const isActive = activeTab === value;
@@ -181,7 +179,6 @@ export function TabsContent({ children, value, style }: TabsContentProps) {
     <View
       style={[
         {
-          flex: 1,
           paddingTop: 16,
         },
         style,
