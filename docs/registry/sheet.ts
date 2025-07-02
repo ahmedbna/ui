@@ -17,9 +17,8 @@ export const sheetRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/',
     },
   },
 
@@ -37,9 +36,8 @@ export const sheetRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/',
     },
   },
 
@@ -56,9 +54,8 @@ export const sheetRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/',
     },
   },
 
@@ -76,9 +73,8 @@ export const sheetRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/',
     },
   },
 
@@ -95,9 +91,8 @@ export const sheetRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/',
     },
   },
 
@@ -115,9 +110,8 @@ export const sheetRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/',
     },
   },
 };

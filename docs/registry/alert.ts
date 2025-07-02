@@ -18,8 +18,8 @@ export const alertRegistry = {
     ],
     preview: {
       light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-29-2025 06-25-10_1.mov',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-29-2025 06-25-10_1.mov',
     },
   },
 
@@ -38,8 +38,8 @@ export const alertRegistry = {
     ],
     preview: {
       light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-29-2025 06-25-10_1.mov',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-29-2025 06-25-10_1.mov',
     },
   },
 
@@ -58,8 +58,8 @@ export const alertRegistry = {
     ],
     preview: {
       light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-29-2025 06-25-32_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-29-2025 06-25-32_1.MP4',
     },
   },
 
@@ -78,8 +78,8 @@ export const alertRegistry = {
     ],
     preview: {
       light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-29-2025 06-25-52_1.mov',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-29-2025 06-25-52_1.mov',
     },
   },
 
@@ -98,8 +98,8 @@ export const alertRegistry = {
     ],
     preview: {
       light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-29-2025 06-26-10_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-29-2025 06-26-10_1.MP4',
     },
   },
 
@@ -118,8 +118,8 @@ export const alertRegistry = {
     ],
     preview: {
       light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-29-2025 06-26-36_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-29-2025 06-26-36_1.MP4',
     },
   },
 
@@ -138,8 +138,8 @@ export const alertRegistry = {
     ],
     preview: {
       light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-29-2025 06-26-55_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-29-2025 06-26-55_1.MP4',
     },
   },
 
@@ -158,8 +158,8 @@ export const alertRegistry = {
     ],
     preview: {
       light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-29-2025 06-24-45_1.mov',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-29-2025 06-24-45_1.mov',
     },
   },
 
@@ -178,8 +178,8 @@ export const alertRegistry = {
     ],
     preview: {
       light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-29-2025 06-24-45_1.mov',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-29-2025 06-24-45_1.mov',
     },
   },
 
@@ -198,8 +198,8 @@ export const alertRegistry = {
     ],
     preview: {
       light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-29-2025 06-27-15_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-29-2025 06-27-15_1.MP4',
     },
   },
 };

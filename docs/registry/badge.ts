@@ -16,9 +16,8 @@ export const badgeRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5453.PNG',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5453.PNG',
     },
   },
 
@@ -36,9 +35,8 @@ export const badgeRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5453.PNG',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5453.PNG',
     },
   },
 
@@ -56,9 +54,8 @@ export const badgeRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5454.PNG',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5454.PNG',
     },
   },
 
@@ -76,9 +73,8 @@ export const badgeRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5455.PNG',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5455.PNG',
     },
   },
 
@@ -96,9 +92,8 @@ export const badgeRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5456.PNG',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5456.PNG',
     },
   },
 
@@ -116,9 +111,8 @@ export const badgeRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5457.PNG',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5457.PNG',
     },
   },
 
@@ -136,9 +130,8 @@ export const badgeRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5458.PNG',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5458.PNG',
     },
   },
 
@@ -156,9 +149,8 @@ export const badgeRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5460.PNG',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5460.PNG',
     },
   },
 };
