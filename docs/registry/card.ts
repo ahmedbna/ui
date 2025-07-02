@@ -17,8 +17,8 @@ export const cardRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.bna.dev/preview/card-light.png',
-      dark: 'https://ui.bna.dev/preview/card-dark.png',
+      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5489.PNG',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5489.PNG',
     },
   },
 
@@ -36,8 +36,8 @@ export const cardRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.bna.dev/preview/card-demo-light.png',
-      dark: 'https://ui.bna.dev/preview/card-demo-dark.png',
+      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5489.PNG',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5489.PNG',
     },
   },
 
@@ -55,8 +55,8 @@ export const cardRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.bna.dev/preview/card-simple-light.png',
-      dark: 'https://ui.bna.dev/preview/card-simple-dark.png',
+      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5490.PNG',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5490.PNG',
     },
   },
 
@@ -74,8 +74,8 @@ export const cardRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.bna.dev/preview/card-with-image-light.png',
-      dark: 'https://ui.bna.dev/preview/card-with-image-dark.png',
+      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5492.PNG',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5492.PNG',
     },
   },
 
@@ -93,8 +93,8 @@ export const cardRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.bna.dev/preview/card-with-form-light.png',
-      dark: 'https://ui.bna.dev/preview/card-with-form-dark.png',
+      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5493.PNG',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5493.PNG',
     },
   },
 
@@ -112,8 +112,8 @@ export const cardRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.bna.dev/preview/card-stats-light.png',
-      dark: 'https://ui.bna.dev/preview/card-stats-dark.png',
+      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5494.PNG',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5494.PNG',
     },
   },
 
@@ -131,8 +131,8 @@ export const cardRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.bna.dev/preview/card-notification-light.png',
-      dark: 'https://ui.bna.dev/preview/card-notification-dark.png',
+      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5495.PNG',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5495.PNG',
     },
   },
 
@@ -150,8 +150,8 @@ export const cardRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.bna.dev/preview/card-pricing-light.png',
-      dark: 'https://ui.bna.dev/preview/card-pricing-dark.png',
+      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5496.PNG',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5496.PNG',
     },
   },
 };
