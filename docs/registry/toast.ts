@@ -22,8 +22,8 @@ export const toastRegistry = {
     ],
     preview: {
       light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ToastPreview.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ToastPreviewDark.mp4',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-02-2025 06-24-28_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-02-2025 06-24-28_1.MP4',
     },
   },
 
@@ -42,8 +42,8 @@ export const toastRegistry = {
     ],
     preview: {
       light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ToastDemo.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ToastDemoDark.mp4',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-02-2025 06-24-28_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-02-2025 06-24-28_1.MP4',
     },
   },
 
@@ -63,8 +63,8 @@ export const toastRegistry = {
     ],
     preview: {
       light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ToastVariants.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ToastVariantsDark.mp4',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-02-2025 06-25-51_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-02-2025 06-25-51_1.MP4',
     },
   },
 
@@ -83,8 +83,8 @@ export const toastRegistry = {
     ],
     preview: {
       light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ToastActions.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ToastActionsDark.mp4',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-02-2025 06-26-21_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-02-2025 06-26-21_1.MP4',
     },
   },
 
@@ -103,8 +103,8 @@ export const toastRegistry = {
     ],
     preview: {
       light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ToastDuration.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ToastDurationDark.mp4',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-02-2025 06-26-45_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-02-2025 06-26-45_1.MP4',
     },
   },
 
@@ -123,8 +123,8 @@ export const toastRegistry = {
     ],
     preview: {
       light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ToastMultiple.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ToastMultipleDark.mp4',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-02-2025 06-27-16_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-02-2025 06-27-16_1.MP4',
     },
   },
 
@@ -143,8 +143,8 @@ export const toastRegistry = {
     ],
     preview: {
       light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ToastCompact.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ToastCompactDark.mp4',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-02-2025 06-31-55_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-02-2025 06-31-55_1.MP4',
     },
   },
 };
