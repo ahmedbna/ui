@@ -5,11 +5,8 @@ import { ToastActions } from '@/docs/demo/toast/toast-actions';
 import { ToastCompact } from '@/docs/demo/toast/toast-compact';
 import { ToastDemo } from '@/docs/demo/toast/toast-demo';
 import { ToastDuration } from '@/docs/demo/toast/toast-duration';
-import { ToastGestures } from '@/docs/demo/toast/toast-gestures';
 import { ToastMultiple } from '@/docs/demo/toast/toast-multiple';
 import { ToastVariants } from '@/docs/demo/toast/toast-variants';
-import React from 'react';
-import { ScrollView } from 'react-native';
 
 // Main demo screen combining all toast examples
 export function ToastExample() {
@@ -25,13 +22,13 @@ export function ToastExample() {
         Toast
       </Text>
 
-      <View>
+      {/* <View>
         <Text variant='title'>Default</Text>
         <Text variant='caption' style={{ marginBottom: 12 }}>
           Basic toast with title and description
         </Text>
         <ToastDemo />
-      </View>
+      </View> */}
 
       {/* <View>
         <Text variant='title'>Variants</Text>
@@ -65,21 +62,13 @@ export function ToastExample() {
         <ToastMultiple />
       </View> */}
 
-      {/* <View>
+      <View>
         <Text variant='title'>Compact Mode</Text>
         <Text variant='caption' style={{ marginBottom: 12 }}>
           Minimal toasts with icons only or title only
         </Text>
         <ToastCompact />
-      </View> */}
-
-      {/* <View>
-        <Text variant='title'>Gesture Dismissal</Text>
-        <Text variant='caption' style={{ marginBottom: 12 }}>
-          Swipe toasts to dismiss them quickly
-        </Text>
-        <ToastGestures />
-      </View> */}
+      </View>
     </View>
   );
 }

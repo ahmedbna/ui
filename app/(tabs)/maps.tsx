@@ -25,6 +25,9 @@ import { TableLoading } from '@/docs/demo/table/table-loading';
 import { TablePagination } from '@/docs/demo/table/table-pagination';
 import { TableSearch } from '@/docs/demo/table/table-search';
 import { TableSortable } from '@/docs/demo/table/table-sortable';
+import { TextColors } from '@/docs/demo/text/text-colors';
+import { TextDemo } from '@/docs/demo/text/text-demo';
+import { TextVariants } from '@/docs/demo/text/text-variants';
 import { AccordionExample } from '@/docs/examples/accordion-example';
 import { ActionSheetExammple } from '@/docs/examples/action-sheet-example';
 import { AlertExample } from '@/docs/examples/alert-example';
@@ -63,7 +66,10 @@ import { SkeletonExample } from '@/docs/examples/skeleton-example';
 import { SpinnerExample } from '@/docs/examples/spinner-example';
 import { SwitchExample } from '@/docs/examples/switch-example';
 import { TabsExample } from '@/docs/examples/tabs-example';
+import { ToastExample } from '@/docs/examples/toast-example';
+import { ToggleExample } from '@/docs/examples/toggle-example';
+import { VideoExample } from '@/docs/examples/video-example';
 
 export default function MapsScreen() {
-  return <TabsExample />;
+  return <VideoExample />;
 }

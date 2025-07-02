@@ -13,7 +13,7 @@ export function VideoGestures() {
       </Text>
       <Video
         source={{
-          uri: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4',
+          uri: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
         }}
         style={{
           width: '100%',

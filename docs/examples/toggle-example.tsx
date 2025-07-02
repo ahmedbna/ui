@@ -10,8 +10,6 @@ import { ToggleGroupVertical } from '@/docs/demo/toggle/toggle-group-vertical';
 import { ToggleSizes } from '@/docs/demo/toggle/toggle-sizes';
 import { ToggleText } from '@/docs/demo/toggle/toggle-text';
 import { ToggleVariants } from '@/docs/demo/toggle/toggle-variants';
-import React from 'react';
-import { ScrollView } from 'react-native';
 
 // Main demo screen combining all examples
 export function ToggleExample() {
@@ -27,12 +25,12 @@ export function ToggleExample() {
         Toggle
       </Text>
 
-      <View>
+      {/* <View>
         <Text variant='title' style={{ marginBottom: 12 }}>
           Default
         </Text>
         <ToggleDemo />
-      </View>
+      </View> */}
 
       {/* <View>
         <Text variant='title' style={{ marginBottom: 12 }}>
@@ -83,12 +81,12 @@ export function ToggleExample() {
         <ToggleGroupVertical />
       </View> */}
 
-      {/* <View>
+      <View>
         <Text variant='title' style={{ marginBottom: 12 }}>
           Outline Toggle Group
         </Text>
         <ToggleGroupOutline />
-      </View> */}
+      </View>
     </View>
   );
 }

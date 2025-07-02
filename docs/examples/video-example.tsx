@@ -9,8 +9,6 @@ import { VideoAutoplayLoop } from '@/docs/demo/video/video-autoplay-loop';
 import { VideoSources } from '@/docs/demo/video/video-sources';
 import { VideoGestures } from '@/docs/demo/video/video-gestures';
 import { VideoContentFit } from '@/docs/demo/video/video-content-fit';
-import React from 'react';
-import { ScrollView } from 'react-native';
 
 // Main demo screen combining all video examples
 export function VideoExample() {
@@ -26,12 +24,12 @@ export function VideoExample() {
         Video
       </Text>
 
-      <View>
+      {/* <View>
         <Text variant='title' style={{ marginBottom: 12 }}>
           Default Player
         </Text>
         <VideoDemo />
-      </View>
+      </View> */}
 
       {/* <View>
         <Text variant='title' style={{ marginBottom: 12 }}>
@@ -75,12 +73,12 @@ export function VideoExample() {
         <VideoContentFit />
       </View> */}
 
-      {/* <View>
+      <View>
         <Text variant='title' style={{ marginBottom: 12 }}>
           Different Sources
         </Text>
         <VideoSources />
-      </View> */}
+      </View>
     </View>
   );
 }

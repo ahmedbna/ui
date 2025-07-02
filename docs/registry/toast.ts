@@ -147,25 +147,4 @@ export const toastRegistry = {
       dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ToastCompactDark.mp4',
     },
   },
-
-  // Gestures example
-  'toast-gestures': {
-    name: 'toast-gestures',
-    description:
-      'Toast notifications that can be dismissed with swipe gestures',
-    type: 'registry:example',
-    registryDependencies: ['toast', 'button', 'text', 'view'],
-    files: [
-      {
-        path: 'registry/examples/toast/toast-gestures.tsx',
-        type: 'registry:example',
-        target: '',
-      },
-    ],
-    preview: {
-      light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ToastCompact.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ToastCompactDark.mp4',
-    },
-  },
 };

@@ -8,12 +8,12 @@ export function ToastVariants() {
   const { success, error, warning, info } = useToast();
 
   return (
-    <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 12 }}>
+    <View style={{ gap: 12 }}>
       <Button
         onPress={() =>
           success('Success!', 'Your action was completed successfully.')
         }
-        variant='outline'
+        variant='success'
       >
         Success
       </Button>
@@ -22,7 +22,7 @@ export function ToastVariants() {
         onPress={() =>
           error('Error!', 'Something went wrong. Please try again.')
         }
-        variant='outline'
+        variant='destructive'
       >
         Error
       </Button>
@@ -31,14 +31,13 @@ export function ToastVariants() {
         onPress={() =>
           warning('Warning!', 'Please review your input before continuing.')
         }
-        variant='outline'
+        variant='secondary'
       >
         Warning
       </Button>
 
       <Button
         onPress={() => info('Info', "Here's some helpful information for you.")}
-        variant='outline'
       >
         Info
       </Button>

@@ -6,7 +6,7 @@ export function VideoCustomControls() {
   return (
     <Video
       source={{
-        uri: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+        uri: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
       }}
       style={{
         width: '100%',

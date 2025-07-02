@@ -112,7 +112,9 @@ export function Toast({
         }),
       ]).start();
     } else {
-      // If no content, show compact Dynamic Island
+      // If no content, show compact Dynamic Island with icon only
+      setIsExpanded(false);
+
       Animated.parallel([
         Animated.spring(translateY, {
           toValue: 0,
@@ -285,8 +287,10 @@ export function Toast({
           ]}
         >
           {/* Compact state - just icon or indicator */}
-          {!isExpanded && getIcon() && (
-            <View style={{ opacity: hasContent ? 1 : 0 }}>{getIcon()}</View>
+          {!isExpanded && (
+            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+              {getIcon()}
+            </View>
           )}
 
           {/* Expanded state - full content */}

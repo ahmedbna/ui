@@ -1,6 +1,5 @@
 // registry/examples/video-demo.tsx
 import { Video } from '@/components/ui/video';
-import React from 'react';
 
 export function VideoDemo() {
   return (
