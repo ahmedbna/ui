@@ -71,5 +71,5 @@ import { ToggleExample } from '@/docs/examples/toggle-example';
 import { VideoExample } from '@/docs/examples/video-example';
 
 export default function MapsScreen() {
-  return <VideoExample />;
+  return <AvatarExample />;
 }

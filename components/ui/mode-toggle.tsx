@@ -1,4 +1,3 @@
-// components/ui/mode-toggle.tsx
 import { Button, ButtonSize, ButtonVariant } from '@/components/ui/button';
 import { Icon } from '@/components/ui/icon';
 import { useModeToggle } from '@/hooks/useModeToggle';

@@ -1,4 +1,3 @@
-// components/ui/audio-waveform.tsx
 import { useThemeColor } from '@/hooks/useThemeColor';
 import React, { useEffect, useRef } from 'react';
 import {

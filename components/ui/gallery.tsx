@@ -1,5 +1,3 @@
-// components/ui/gallery.tsx
-
 import { Button } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
 import { useThemeColor } from '@/hooks/useThemeColor';

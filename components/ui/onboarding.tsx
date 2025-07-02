@@ -1,4 +1,5 @@
-// components/ui/onboarding.tsx
+import { Button } from '@/components/ui/button';
+import { Text } from '@/components/ui/text';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import React, { useRef, useState } from 'react';
 import {
@@ -15,8 +16,6 @@ import Animated, {
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated';
-import { Button } from '@/components/ui/button';
-import { Text } from '@/components/ui/text';
 
 const { width: screenWidth } = Dimensions.get('window');
 

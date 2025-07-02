@@ -1,4 +1,3 @@
-// components/ui/camera-preview.tsx
 import { Button } from '@/components/ui/button';
 import { Camera, CaptureSuccess } from '@/components/ui/camera';
 import { Image } from '@/components/ui/image';

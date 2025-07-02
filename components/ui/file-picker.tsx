@@ -1,4 +1,3 @@
-// components/ui/file-picker.tsx
 import { Button, ButtonVariant } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';

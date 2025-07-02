@@ -1,4 +1,3 @@
-// components/ui/share.tsx
 import { Button, ButtonVariant } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
 import { useThemeColor } from '@/hooks/useThemeColor';

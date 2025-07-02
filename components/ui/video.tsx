@@ -1,5 +1,3 @@
-// components/ui/video.tsx
-
 import { Progress } from '@/components/ui/progress';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { BORDER_RADIUS } from '@/theme/globals';

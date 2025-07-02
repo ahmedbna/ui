@@ -1,4 +1,3 @@
-// components/ui/switch.tsx
 import { useThemeColor } from '@/hooks/useThemeColor';
 import React from 'react';
 
@@ -20,7 +19,6 @@ export function Switch({ label, error, labelStyle, ...props }: SwitchProps) {
   const mutedColor = useThemeColor({}, 'muted');
   const primary = useThemeColor({}, 'primary');
   const danger = useThemeColor({}, 'red');
-  const muted = useThemeColor({}, 'textMuted');
 
   return (
     <View style={{ marginBottom: 8 }}>

@@ -16,6 +16,8 @@ Expo React Native CLI UI Library
 
 ## Registry
 
+- Separator
+
 ## Get started
 
 1. Install dependencies

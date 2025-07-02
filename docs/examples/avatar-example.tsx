@@ -9,7 +9,6 @@ import { AvatarSizes } from '@/docs/demo/avatar/avatar-sizes';
 import { AvatarStatus } from '@/docs/demo/avatar/avatar-status';
 import { AvatarStyled } from '@/docs/demo/avatar/avatar-styled';
 import React from 'react';
-import { ScrollView } from 'react-native';
 
 // Main demo screen combining all examples
 export function AvatarExample() {
@@ -25,47 +24,47 @@ export function AvatarExample() {
         Avatar
       </Text>
 
-      {/* <View>
+      <View>
         <Text variant='title' style={{ marginBottom: 12 }}>
           Default
         </Text>
         <AvatarDemo />
-      </View> */}
+      </View>
 
-      {/* <View>
+      <View>
         <Text variant='title' style={{ marginBottom: 12 }}>
           Different Sizes
         </Text>
         <AvatarSizes />
-      </View> */}
+      </View>
 
-      {/* <View>
+      <View>
         <Text variant='title' style={{ marginBottom: 12 }}>
           Fallback Only
         </Text>
         <AvatarFallbackDemo />
-      </View> */}
+      </View>
 
-      {/* <View>
+      <View>
         <Text variant='title' style={{ marginBottom: 12 }}>
           Custom Styling
         </Text>
         <AvatarStyled />
-      </View> */}
+      </View>
 
-      {/* <View>
+      <View>
         <Text variant='title' style={{ marginBottom: 12 }}>
           Avatar Group
         </Text>
         <AvatarGroup />
-      </View> */}
+      </View>
 
-      {/* <View>
+      <View>
         <Text variant='title' style={{ marginBottom: 12 }}>
           With Status Indicators
         </Text>
         <AvatarStatus />
-      </View> */}
+      </View>
 
       <View>
         <Text variant='title' style={{ marginBottom: 12 }}>

@@ -1,10 +1,9 @@
-// components/ui/audio-player.tsx
 import { AudioWaveform } from '@/components/ui/audio-waveform';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { Text } from '@/components/ui/text';
 import { useThemeColor } from '@/hooks/useThemeColor';
-import { BORDER_RADIUS, CORNERS } from '@/theme/globals';
+import { BORDER_RADIUS } from '@/theme/globals';
 import { AudioSource, useAudioPlayer } from 'expo-audio';
 import { Pause, Play, RotateCcw, Square } from 'lucide-react-native';
 import { useCallback, useEffect, useState } from 'react';

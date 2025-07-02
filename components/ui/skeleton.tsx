@@ -1,4 +1,3 @@
-// components/ui/skeleton.tsx
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { BORDER_RADIUS, CORNERS } from '@/theme/globals';
 import React, { useEffect, useRef } from 'react';

@@ -1,4 +1,3 @@
-// components/ui/date-picker.tsx
 import { BottomSheet, useBottomSheet } from '@/components/ui/bottom-sheet';
 import { Button } from '@/components/ui/button';
 import { Icon } from '@/components/ui/icon';

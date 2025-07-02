@@ -1,4 +1,3 @@
-// components/ui/media-picker.tsx
 import { Button, ButtonSize, ButtonVariant } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
