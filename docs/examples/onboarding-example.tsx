@@ -7,5 +7,5 @@ import { OnboardingCustomButtons } from '@/docs/demo/onboarding/onboarding-custo
 import { OnboardingHook } from '@/docs/demo/onboarding/onboarding-hook';
 
 export function OnboardingExample() {
-  return <OnboardingDemo />;
+  return <OnboardingHook />;
 }

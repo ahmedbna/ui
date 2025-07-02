@@ -35,7 +35,7 @@ export function OnboardingCustomButtons() {
       onSkip={() => console.log('Custom buttons onboarding skipped!')}
       primaryButtonText='🚀 Launch App'
       nextButtonText='👉 Continue'
-      backButtonText='👈 Go Back'
+      backButtonText='👈 Back'
       skipButtonText='⏭️ Skip for Now'
     />
   );

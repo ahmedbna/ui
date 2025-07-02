@@ -2,6 +2,7 @@
 import { ScrollView } from '@/components/ui/scroll-view';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
+import { BORDER_RADIUS } from '@/theme/globals';
 import React from 'react';
 
 export function ScrollViewHorizontal() {
@@ -21,12 +22,12 @@ export function ScrollViewHorizontal() {
         height: 150,
         borderWidth: 1,
         borderColor: '#e5e7eb',
-        borderRadius: 8,
+        borderRadius: BORDER_RADIUS,
       }}
     >
       <ScrollView
         horizontal={true}
-        contentContainerStyle={{ padding: 16, gap: 16 }}
+        contentContainerStyle={{ padding: 16, gap: 16, alignItems: 'center' }}
         showsHorizontalScrollIndicator={true}
       >
         {Array.from({ length: 10 }, (_, i) => (

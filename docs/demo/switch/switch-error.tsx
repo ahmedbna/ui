@@ -7,12 +7,13 @@ export function SwitchError() {
   const [isEnabled, setIsEnabled] = useState(false);
 
   return (
-    <View style={{ gap: 12 }}>
+    <View style={{ gap: 46 }}>
       <Switch
         label='Terms and conditions'
         value={isEnabled}
         onValueChange={setIsEnabled}
       />
+
       <Switch
         label='Privacy policy'
         value={false}

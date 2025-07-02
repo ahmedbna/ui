@@ -17,7 +17,6 @@ export function RadioLarge() {
       style={{ gap: 12 }}
       optionStyle={{
         paddingVertical: 12,
-        paddingHorizontal: 16,
       }}
       labelStyle={{
         fontSize: 18,

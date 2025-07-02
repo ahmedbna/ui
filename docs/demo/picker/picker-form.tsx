@@ -47,8 +47,6 @@ export function PickerForm() {
 
   return (
     <View style={{ gap: 16 }}>
-      <Text variant='title'>Support Ticket</Text>
-
       <Picker
         options={categories}
         value={category}

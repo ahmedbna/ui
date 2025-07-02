@@ -32,7 +32,7 @@ export function Badge({
   const destructiveColor = useThemeColor({}, 'destructive');
   const destructiveForegroundColor = useThemeColor({}, 'destructiveForeground');
   const borderColor = useThemeColor({}, 'border');
-  const successColor = useThemeColor({}, 'border');
+  const successColor = useThemeColor({}, 'green');
 
   const getBadgeStyle = (): ViewStyle => {
     const baseStyle: ViewStyle = {

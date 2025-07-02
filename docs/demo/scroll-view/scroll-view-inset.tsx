@@ -2,9 +2,13 @@
 import { ScrollView } from '@/components/ui/scroll-view';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
+import { useThemeColor } from '@/hooks/useThemeColor';
+import { BORDER_RADIUS } from '@/theme/globals';
 import React from 'react';
 
 export function ScrollViewInset() {
+  const card = useThemeColor({}, 'card');
+
   return (
     <View style={{ gap: 16 }}>
       {/* Standard ScrollView */}
@@ -17,7 +21,7 @@ export function ScrollViewInset() {
             height: 150,
             borderWidth: 1,
             borderColor: '#e5e7eb',
-            borderRadius: 8,
+            borderRadius: BORDER_RADIUS,
           }}
         >
           <ScrollView contentContainerStyle={{ padding: 16 }}>
@@ -27,8 +31,8 @@ export function ScrollViewInset() {
                 style={{
                   padding: 12,
                   marginBottom: 8,
-                  backgroundColor: '#f3f4f6',
-                  borderRadius: 6,
+                  backgroundColor: card,
+                  borderRadius: BORDER_RADIUS,
                 }}
               >
                 Standard item {i + 1}
@@ -48,7 +52,7 @@ export function ScrollViewInset() {
             height: 150,
             borderWidth: 1,
             borderColor: '#e5e7eb',
-            borderRadius: 8,
+            borderRadius: BORDER_RADIUS,
           }}
         >
           <ScrollView
@@ -64,7 +68,7 @@ export function ScrollViewInset() {
               style={{
                 padding: 16,
                 backgroundColor: '#ddd6fe',
-                borderRadius: 8,
+                borderRadius: BORDER_RADIUS,
                 marginBottom: 16,
                 borderWidth: 2,
                 borderColor: '#8b5cf6',
@@ -82,7 +86,7 @@ export function ScrollViewInset() {
                   padding: 12,
                   marginBottom: 8,
                   backgroundColor: '#fef3c7',
-                  borderRadius: 6,
+                  borderRadius: BORDER_RADIUS,
                   borderLeftWidth: 3,
                   borderLeftColor: '#f59e0b',
                 }}
@@ -95,7 +99,7 @@ export function ScrollViewInset() {
               style={{
                 padding: 16,
                 backgroundColor: '#dcfce7',
-                borderRadius: 8,
+                borderRadius: BORDER_RADIUS,
                 marginTop: 8,
                 borderWidth: 2,
                 borderColor: '#22c55e',

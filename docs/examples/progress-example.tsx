@@ -23,12 +23,12 @@ export function ProgressExample() {
         Progress
       </Text>
 
-      <View>
+      {/* <View>
         <Text variant='title' style={{ marginBottom: 12 }}>
           Default
         </Text>
         <ProgressDemo />
-      </View>
+      </View> */}
 
       {/* <View>
         <Text variant='title' style={{ marginBottom: 12 }}>
@@ -65,12 +65,12 @@ export function ProgressExample() {
         <ProgressMedia />
       </View> */}
 
-      {/* <View>
+      <View>
         <Text variant='title' style={{ marginBottom: 12 }}>
           Step Progress
         </Text>
         <ProgressSteps />
-      </View> */}
+      </View>
     </View>
   );
 }

@@ -23,12 +23,12 @@ export function RadioExample() {
         Radio
       </Text>
 
-      <View>
+      {/* <View>
         <Text variant='title' style={{ marginBottom: 12 }}>
           Default
         </Text>
         <RadioDemo />
-      </View>
+      </View> */}
 
       {/* <View>
         <Text variant='title' style={{ marginBottom: 12 }}>
@@ -65,12 +65,12 @@ export function RadioExample() {
         <RadioSingle />
       </View> */}
 
-      {/* <View>
+      <View>
         <Text variant='title' style={{ marginBottom: 12 }}>
           Form Integration
         </Text>
         <RadioForm />
-      </View> */}
+      </View>
     </View>
   );
 }

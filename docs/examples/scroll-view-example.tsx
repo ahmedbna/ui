@@ -24,12 +24,12 @@ export function ScrollViewExample() {
         ScrollView
       </Text>
 
-      <View>
+      {/* <View>
         <Text variant='title' style={{ marginBottom: 12 }}>
           Default
         </Text>
         <ScrollViewDemo />
-      </View>
+      </View> */}
 
       {/* <View>
         <Text variant='title' style={{ marginBottom: 12 }}>
@@ -73,12 +73,12 @@ export function ScrollViewExample() {
         <ScrollViewIndicators />
       </View> */}
 
-      {/* <View>
+      <View>
         <Text variant='title' style={{ marginBottom: 12 }}>
           Content Inset Adjustments
         </Text>
         <ScrollViewInset />
-      </View> */}
+      </View>
     </View>
   );
 }

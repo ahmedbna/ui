@@ -2,9 +2,13 @@
 import { RadioGroup } from '@/components/ui/radio';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
+import { useThemeColor } from '@/hooks/useThemeColor';
 import React, { useState } from 'react';
 
 export function RadioStyled() {
+  const green = useThemeColor({}, 'green');
+  const card = useThemeColor({}, 'card');
+
   const [value1, setValue1] = useState('red');
   const [value2, setValue2] = useState('plan1');
 
@@ -13,7 +17,7 @@ export function RadioStyled() {
       {/* Custom colors */}
       <View>
         <Text style={{ marginBottom: 12, fontWeight: '500' }}>
-          Custom styling
+          Card-like options
         </Text>
         <RadioGroup
           options={[
@@ -24,9 +28,9 @@ export function RadioStyled() {
           value={value1}
           onValueChange={setValue1}
           optionStyle={{
-            paddingVertical: 8,
+            paddingVertical: 12,
             paddingHorizontal: 12,
-            backgroundColor: '#f8f9fa',
+            backgroundColor: card,
             borderRadius: 8,
             marginBottom: 4,
           }}
@@ -40,7 +44,7 @@ export function RadioStyled() {
       {/* Card-like styling */}
       <View>
         <Text style={{ marginBottom: 12, fontWeight: '500' }}>
-          Card-like options
+          Custom styling
         </Text>
         <RadioGroup
           options={[
@@ -53,10 +57,8 @@ export function RadioStyled() {
           optionStyle={{
             paddingVertical: 16,
             paddingHorizontal: 16,
-            backgroundColor: '#ffffff',
+            backgroundColor: green,
             borderRadius: 12,
-            borderWidth: 1,
-            borderColor: '#e1e5e9',
             marginBottom: 8,
             shadowColor: '#000',
             shadowOffset: { width: 0, height: 1 },

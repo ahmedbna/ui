@@ -48,8 +48,6 @@ export function PickerAdvanced() {
 
   return (
     <View style={{ gap: 16 }}>
-      <Text variant='title'>Choose Your Plan</Text>
-
       <Picker
         sections={sections}
         value={plan}

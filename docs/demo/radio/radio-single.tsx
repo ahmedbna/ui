@@ -31,9 +31,7 @@ export function RadioSingle() {
         ))}
       </View>
 
-      <Text style={{ marginTop: 16, color: '#6b7280' }}>
-        Selected: {selectedValue}
-      </Text>
+      <Text variant='caption'>Selected: {selectedValue}</Text>
     </View>
   );
 }

@@ -34,7 +34,7 @@ export function PopoverControlled() {
       <Text>Status: {isOpen ? 'Open' : 'Closed'}</Text>
 
       <Popover open={isOpen} onOpenChange={setIsOpen}>
-        <PopoverTrigger>
+        <PopoverTrigger asChild>
           <Button>Controlled Popover</Button>
         </PopoverTrigger>
         <PopoverContent>

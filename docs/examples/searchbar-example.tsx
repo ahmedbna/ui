@@ -8,8 +8,6 @@ import { SearchBarSuggestions } from '@/docs/demo/searchbar/searchbar-suggestion
 import { SearchBarStyled } from '@/docs/demo/searchbar/searchbar-styled';
 import { SearchBarNoClear } from '@/docs/demo/searchbar/searchbar-no-clear';
 import { SearchBarInstant } from '@/docs/demo/searchbar/searchbar-instant';
-import React from 'react';
-import { ScrollView } from 'react-native';
 
 // Main demo screen combining all examples
 export function SearchBarExample() {
@@ -25,12 +23,12 @@ export function SearchBarExample() {
         Searchbar
       </Text>
 
-      <View>
+      {/* <View>
         <Text variant='title' style={{ marginBottom: 12 }}>
           Default
         </Text>
         <SearchBarDemo />
-      </View>
+      </View> */}
 
       {/* <View>
         <Text variant='title' style={{ marginBottom: 12 }}>
@@ -67,12 +65,12 @@ export function SearchBarExample() {
         <SearchBarNoClear />
       </View> */}
 
-      {/* <View>
+      <View>
         <Text variant='title' style={{ marginBottom: 12 }}>
           Instant Search
         </Text>
         <SearchBarInstant />
-      </View> */}
+      </View>
     </View>
   );
 }

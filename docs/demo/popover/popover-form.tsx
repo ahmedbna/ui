@@ -28,7 +28,7 @@ export function PopoverForm() {
 
   return (
     <Popover>
-      <PopoverTrigger>
+      <PopoverTrigger asChild>
         <Button>Add Contact</Button>
       </PopoverTrigger>
       <PopoverContent maxWidth={320}>

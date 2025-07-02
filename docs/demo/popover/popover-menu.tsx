@@ -69,8 +69,8 @@ export function PopoverMenu() {
   return (
     <View style={{ gap: 16, alignItems: 'center' }}>
       <Popover>
-        <PopoverTrigger>
-          <Button variant='outline'>⋮ Options</Button>
+        <PopoverTrigger asChild>
+          <Button variant='outline'>⚙️ Options</Button>
         </PopoverTrigger>
         <PopoverContent
           align='end'
@@ -116,12 +116,12 @@ export function PopoverMenu() {
       </Popover>
 
       <Popover>
-        <PopoverTrigger>
-          <Button>📝 Actions</Button>
+        <PopoverTrigger asChild>
+          <Button>✏️ Actions</Button>
         </PopoverTrigger>
         <PopoverContent side='bottom' align='start' style={{ padding: 8 }}>
           <MenuItem
-            icon='✏️'
+            icon='📝'
             label='Edit'
             onPress={() => handleMenuAction('edit')}
           />

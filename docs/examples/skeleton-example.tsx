@@ -7,8 +7,6 @@ import { SkeletonList } from '@/docs/demo/skeleton/skeleton-list';
 import { SkeletonProfile } from '@/docs/demo/skeleton/skeleton-profile';
 import { SkeletonShapes } from '@/docs/demo/skeleton/skeleton-shapes';
 import { SkeletonSizes } from '@/docs/demo/skeleton/skeleton-sizes';
-import React from 'react';
-import { ScrollView } from 'react-native';
 
 // Main demo screen combining all examples
 export function SkeletonExample() {
@@ -24,12 +22,12 @@ export function SkeletonExample() {
         Skeleton
       </Text>
 
-      <View>
+      {/* <View>
         <Text variant='title' style={{ marginBottom: 12 }}>
           Default
         </Text>
         <SkeletonDemo />
-      </View>
+      </View> */}
 
       {/* <View>
         <Text variant='title' style={{ marginBottom: 12 }}>
@@ -59,12 +57,12 @@ export function SkeletonExample() {
         <SkeletonList />
       </View> */}
 
-      {/* <View>
+      <View>
         <Text variant='title' style={{ marginBottom: 12 }}>
           Custom Shapes
         </Text>
         <SkeletonShapes />
-      </View> */}
+      </View>
     </View>
   );
 }

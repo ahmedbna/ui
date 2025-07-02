@@ -10,7 +10,7 @@ export function ShareSizes() {
   };
 
   return (
-    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
+    <View style={{ gap: 12, alignItems: 'center' }}>
       <ShareButton content={shareContent} size='sm'>
         Small
       </ShareButton>

@@ -125,10 +125,7 @@ export function SheetFilter() {
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger>
-        <Button>
-          <Filter size={16} color='white' />
-          <Text style={{ color: 'white', marginLeft: 8 }}>Filter</Text>
-        </Button>
+        <Button icon={Filter}>Filter</Button>
       </SheetTrigger>
       <SheetContent>
         <SheetHeader>

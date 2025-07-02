@@ -1,4 +1,5 @@
 // registry/examples/parallax-scrollview-product.tsx
+import { Button } from '@/components/ui/button';
 import { ParallaxScrollView } from '@/components/ui/parallax-scrollview';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
@@ -29,8 +30,8 @@ export function ParallaxScrollViewProduct() {
             }}
           >
             <View style={{ flex: 1 }}>
-              <Text variant='heading'>Premium Running Shoes</Text>
-              <Text style={{ color: '#6b7280', marginTop: 4 }}>
+              <Text variant='heading'>Running Shoes</Text>
+              <Text variant='caption' style={{ marginTop: 4 }}>
                 Nike Air Zoom Series
               </Text>
             </View>
@@ -53,13 +54,13 @@ export function ParallaxScrollViewProduct() {
                 </Text>
               ))}
             </View>
-            <Text style={{ color: '#6b7280' }}>4.8 (2.1k reviews)</Text>
+            <Text variant='caption'>4.8 (2.1k reviews)</Text>
           </View>
         </View>
 
         <View style={{ gap: 8 }}>
           <Text variant='title'>Description</Text>
-          <Text style={{ fontSize: 16, lineHeight: 24, color: '#4b5563' }}>
+          <Text variant='caption' style={{ fontSize: 16, lineHeight: 24 }}>
             Experience ultimate comfort and performance with these premium
             running shoes. Featuring advanced cushioning technology and
             breathable mesh construction for all-day comfort.
@@ -145,65 +146,35 @@ export function ParallaxScrollViewProduct() {
               style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}
             >
               <Text style={{ color: '#10b981' }}>✓</Text>
-              <Text>Lightweight design for all-day wear</Text>
+              <Text variant='caption'>Lightweight design for all-day wear</Text>
             </View>
             <View
               style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}
             >
               <Text style={{ color: '#10b981' }}>✓</Text>
-              <Text>Enhanced arch support</Text>
+              <Text variant='caption'>Enhanced arch support</Text>
             </View>
           </View>
         </View>
 
         <View
           style={{
-            backgroundColor: '#f9fafb',
-            padding: 16,
             borderRadius: 8,
             gap: 12,
           }}
         >
           <Text variant='title'>Shipping & Returns</Text>
-          <Text style={{ fontSize: 14, color: '#6b7280' }}>
+          <Text style={{ fontSize: 14 }}>
             • Free shipping on orders over $100
           </Text>
-          <Text style={{ fontSize: 14, color: '#6b7280' }}>
-            • 30-day return policy
-          </Text>
-          <Text style={{ fontSize: 14, color: '#6b7280' }}>
-            • 1-year manufacturer warranty
-          </Text>
+          <Text style={{ fontSize: 14 }}>• 30-day return policy</Text>
+          <Text style={{ fontSize: 14 }}>• 1-year manufacturer warranty</Text>
         </View>
 
         <View style={{ gap: 12, marginTop: 8 }}>
-          <View
-            style={{
-              backgroundColor: '#3b82f6',
-              paddingVertical: 16,
-              paddingHorizontal: 24,
-              borderRadius: 8,
-              alignItems: 'center',
-            }}
-          >
-            <Text style={{ color: 'white', fontSize: 16, fontWeight: '600' }}>
-              Add to Cart
-            </Text>
-          </View>
-          <View
-            style={{
-              borderWidth: 1,
-              borderColor: '#3b82f6',
-              paddingVertical: 16,
-              paddingHorizontal: 24,
-              borderRadius: 8,
-              alignItems: 'center',
-            }}
-          >
-            <Text style={{ color: '#3b82f6', fontSize: 16, fontWeight: '600' }}>
-              Add to Wishlist
-            </Text>
-          </View>
+          <Button variant='success'>Add to Cart</Button>
+
+          <Button variant='destructive'>Add to Wishlist</Button>
         </View>
       </View>
     </ParallaxScrollView>

@@ -15,7 +15,7 @@ import React from 'react';
 export function PopoverDemo() {
   return (
     <Popover>
-      <PopoverTrigger>
+      <PopoverTrigger asChild>
         <Button>Open Popover</Button>
       </PopoverTrigger>
       <PopoverContent>

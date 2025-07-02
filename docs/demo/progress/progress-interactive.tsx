@@ -16,7 +16,7 @@ export function ProgressInteractive() {
       <Progress
         value={value}
         interactive
-        height={8}
+        height={18}
         onValueChange={setValue}
         onSeekStart={() => setIsSeeking(true)}
         onSeekEnd={() => setIsSeeking(false)}

@@ -8,30 +8,31 @@ import { View } from 'react-native';
 const WelcomeImage = () => (
   <Image
     source={{
-      uri: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=300&h=300&fit=crop',
+      uri: 'https://images.unsplash.com/photo-1637858868799-7f26a0640eb6?q=80&w=2960&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     }}
-    containerStyle={{ width: 400, height: 400, borderRadius: BORDER_RADIUS }}
-    style={{ width: 400, height: 400, borderRadius: BORDER_RADIUS }}
+    width={300}
+    aspectRatio={1}
+    variant='circle'
   />
 );
 
 const FeaturesImage = () => (
   <Image
     source={{
-      uri: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=300&h=300&fit=crop',
+      uri: 'https://images.unsplash.com/photo-1644190022446-04b99df7259a?q=80&w=2012&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     }}
-    containerStyle={{ width: 400, height: 400, borderRadius: BORDER_RADIUS }}
-    style={{ width: 400, height: 400, borderRadius: BORDER_RADIUS }}
+    width={300}
+    aspectRatio={1}
   />
 );
 
 const StartImage = () => (
   <Image
     source={{
-      uri: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=300&h=300&fit=crop',
+      uri: 'https://images.unsplash.com/photo-1575737698350-52e966f924d4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     }}
-    containerStyle={{ width: 400, height: 400, borderRadius: BORDER_RADIUS }}
-    style={{ width: 400, height: 400, borderRadius: BORDER_RADIUS }}
+    width={420}
+    aspectRatio={9 / 14}
   />
 );
 

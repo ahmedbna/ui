@@ -2,6 +2,7 @@
 import { ScrollView } from '@/components/ui/scroll-view';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
+import { BORDER_RADIUS } from '@/theme/globals';
 import React from 'react';
 
 export function ScrollViewVertical() {
@@ -21,7 +22,7 @@ export function ScrollViewVertical() {
         height: 300,
         borderWidth: 1,
         borderColor: '#e5e7eb',
-        borderRadius: 8,
+        borderRadius: BORDER_RADIUS,
       }}
     >
       <ScrollView

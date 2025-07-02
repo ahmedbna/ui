@@ -1,15 +1,19 @@
 // registry/examples/skeleton-card.tsx
 import { Skeleton } from '@/components/ui/skeleton';
 import { View } from '@/components/ui/view';
+import { useThemeColor } from '@/hooks/useThemeColor';
+import { BORDER_RADIUS } from '@/theme/globals';
 import React from 'react';
 
 export function SkeletonCard() {
+  const card = useThemeColor({}, 'card');
+
   return (
     <View
       style={{
         padding: 16,
-        borderRadius: 8,
-        backgroundColor: '#f8f9fa',
+        borderRadius: BORDER_RADIUS,
+        backgroundColor: card,
         gap: 12,
       }}
     >
@@ -23,7 +27,7 @@ export function SkeletonCard() {
       </View>
 
       {/* Content */}
-      <Skeleton width='100%' height={200} />
+      <Skeleton width='100%' height={200} variant='rounded' />
 
       {/* Footer */}
       <View style={{ gap: 8 }}>

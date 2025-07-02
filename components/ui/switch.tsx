@@ -23,36 +23,58 @@ export function Switch({ label, error, labelStyle, ...props }: SwitchProps) {
   const muted = useThemeColor({}, 'textMuted');
 
   return (
-    <View
-      style={{
-        flex: 1,
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-      }}
-    >
-      {label && (
+    <View style={{ marginBottom: 8 }}>
+      <View
+        style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          minHeight: 32, // Ensure consistent height
+        }}
+      >
+        {label && (
+          <Text
+            variant='caption'
+            numberOfLines={2} // Allow wrapping for longer labels
+            ellipsizeMode='tail'
+            style={[
+              {
+                color: error ? danger : primary,
+                flex: 1, // Take available space
+                marginRight: 12, // Add spacing between label and switch
+              },
+              labelStyle,
+            ]}
+            pointerEvents='none'
+          >
+            {label}
+          </Text>
+        )}
+
+        <RNSwitch
+          trackColor={{ false: mutedColor, true: '#7DD87D' }}
+          thumbColor={props.value ? '#ffffff' : '#f4f3f4'}
+          {...props}
+        />
+      </View>
+
+      {error && (
         <Text
           variant='caption'
-          numberOfLines={1}
+          numberOfLines={2}
           ellipsizeMode='tail'
           style={[
             {
-              color: error ? danger : muted,
+              fontSize: 12, // Slightly smaller for error text
+              color: danger, // Always use danger color for errors
+              marginTop: 4, // Add spacing above error text
             },
-            labelStyle,
           ]}
           pointerEvents='none'
         >
-          {label}
+          {error}
         </Text>
       )}
-
-      <RNSwitch
-        trackColor={{ false: mutedColor, true: '#7DD87D' }}
-        thumbColor={props.value ? '#ffffff' : '#f4f3f4'}
-        {...props}
-      />
     </View>
   );
 }

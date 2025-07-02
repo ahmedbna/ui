@@ -7,8 +7,6 @@ import { SwitchDisabled } from '@/docs/demo/switch/switch-disabled';
 import { SwitchError } from '@/docs/demo/switch/switch-error';
 import { SwitchSettings } from '@/docs/demo/switch/switch-settings';
 import { SwitchSimple } from '@/docs/demo/switch/switch-simple';
-import React from 'react';
-import { ScrollView } from 'react-native';
 
 // Main demo screen combining all examples
 export function SwitchExample() {
@@ -24,43 +22,43 @@ export function SwitchExample() {
         Switch
       </Text>
 
-      <View>
-        <Text variant='title' style={{ marginBottom: 12 }}>
+      {/* <View>
+        <Text variant='title' style={{ marginBottom: 18 }}>
           Default
         </Text>
         <SwitchDemo />
-      </View>
+      </View> */}
 
-      <View>
-        <Text variant='title' style={{ marginBottom: 12 }}>
+      {/* <View>
+        <Text variant='title' style={{ marginBottom: 18 }}>
           Without Label
         </Text>
         <SwitchSimple />
-      </View>
+      </View> */}
 
-      <View>
-        <Text variant='title' style={{ marginBottom: 12 }}>
+      {/* <View>
+        <Text variant='title' style={{ marginBottom: 18 }}>
           With Error State
         </Text>
         <SwitchError />
-      </View>
+      </View> */}
 
-      <View>
-        <Text variant='title' style={{ marginBottom: 12 }}>
+      {/* <View>
+        <Text variant='title' style={{ marginBottom: 18 }}>
           Disabled State
         </Text>
         <SwitchDisabled />
-      </View>
-
+      </View> */}
+      {/* 
       <View>
-        <Text variant='title' style={{ marginBottom: 12 }}>
+        <Text variant='title' style={{ marginBottom: 18 }}>
           Settings List
         </Text>
         <SwitchSettings />
-      </View>
+      </View> */}
 
       <View>
-        <Text variant='title' style={{ marginBottom: 12 }}>
+        <Text variant='title' style={{ marginBottom: 18 }}>
           Custom Colors
         </Text>
         <SwitchColors />

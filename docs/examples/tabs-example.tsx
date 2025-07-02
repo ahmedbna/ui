@@ -5,8 +5,6 @@ import { TabsDemo } from '@/docs/demo/tabs/tabs-demo';
 import { TabsVertical } from '@/docs/demo/tabs/tabs-vertical';
 import { TabsDisabled } from '@/docs/demo/tabs/tabs-disabled';
 import { TabsStyled } from '@/docs/demo/tabs/tabs-styled';
-import React from 'react';
-import { ScrollView } from 'react-native';
 
 // Main demo screen combining all tab examples
 export function TabsExample() {
@@ -22,7 +20,7 @@ export function TabsExample() {
         Tabs
       </Text>
 
-      <View>
+      <View style={{ flex: 1 }}>
         <Text variant='title' style={{ marginBottom: 12 }}>
           Default Tabs
         </Text>
@@ -32,7 +30,7 @@ export function TabsExample() {
         <TabsDemo />
       </View>
 
-      <View>
+      {/* <View>
         <Text variant='title' style={{ marginBottom: 12 }}>
           Vertical Orientation
         </Text>
@@ -60,7 +58,7 @@ export function TabsExample() {
           Tabs with custom colors, shadows, and themed content areas
         </Text>
         <TabsStyled />
-      </View>
+      </View> */}
     </View>
   );
 }

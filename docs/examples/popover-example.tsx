@@ -8,8 +8,6 @@ import { PopoverDemo } from '@/docs/demo/popover/popover-demo';
 import { PopoverForm } from '@/docs/demo/popover/popover-form';
 import { PopoverMenu } from '@/docs/demo/popover/popover-menu';
 import { PopoverPositioning } from '@/docs/demo/popover/popover-positioning';
-import React from 'react';
-import { ScrollView } from 'react-native';
 
 // Main demo screen combining all examples
 export function PopoverExample() {
@@ -25,12 +23,12 @@ export function PopoverExample() {
         Popover
       </Text>
 
-      <View>
+      {/* <View>
         <Text variant='title' style={{ marginBottom: 12 }}>
           Default
         </Text>
         <PopoverDemo />
-      </View>
+      </View> */}
 
       {/* <View>
         <Text variant='title' style={{ marginBottom: 12 }}>
@@ -67,12 +65,12 @@ export function PopoverExample() {
         <PopoverForm />
       </View> */}
 
-      {/* <View>
+      <View>
         <Text variant='title' style={{ marginBottom: 12 }}>
           Menu Style
         </Text>
         <PopoverMenu />
-      </View> */}
+      </View>
     </View>
   );
 }

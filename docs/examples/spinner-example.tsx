@@ -26,12 +26,12 @@ export function SpinnerExample() {
         Spinner
       </Text>
 
-      <View>
+      {/* <View>
         <Text variant='title' style={{ marginBottom: 12 }}>
           Default
         </Text>
         <SpinnerDemo />
-      </View>
+      </View> */}
 
       {/* <View>
         <Text variant='title' style={{ marginBottom: 12 }}>
@@ -75,12 +75,12 @@ export function SpinnerExample() {
         <SpinnerInline />
       </View> */}
 
-      {/* <View>
+      <View>
         <Text variant='title' style={{ marginBottom: 12 }}>
           Loading Overlay
         </Text>
         <SpinnerOverlay />
-      </View> */}
+      </View>
     </View>
   );
 }

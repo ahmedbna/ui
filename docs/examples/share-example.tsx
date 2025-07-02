@@ -9,8 +9,6 @@ import { ShareIconOnly } from '@/docs/demo/share/share-icon-only';
 import { ShareSizes } from '@/docs/demo/share/share-sizes';
 import { ShareUrlOnly } from '@/docs/demo/share/share-url-only';
 import { ShareVariants } from '@/docs/demo/share/share-variants';
-import React from 'react';
-import { ScrollView } from 'react-native';
 
 // Main demo screen combining all examples
 export function ShareExample() {
@@ -26,12 +24,12 @@ export function ShareExample() {
         Share
       </Text>
 
-      <View>
+      {/* <View>
         <Text variant='title' style={{ marginBottom: 12 }}>
           Default
         </Text>
         <ShareDemo />
-      </View>
+      </View> */}
 
       {/* <View>
         <Text variant='title' style={{ marginBottom: 12 }}>
@@ -75,12 +73,12 @@ export function ShareExample() {
         <ShareCallbacks />
       </View> */}
 
-      {/* <View>
+      <View>
         <Text variant='title' style={{ marginBottom: 12 }}>
           Using useShare Hook
         </Text>
         <ShareHook />
-      </View> */}
+      </View>
     </View>
   );
 }
