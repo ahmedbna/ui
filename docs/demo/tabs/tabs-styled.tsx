@@ -8,7 +8,7 @@ export function TabsStyled() {
   const [value, setValue] = useState('design');
 
   return (
-    <Tabs defaultValue={value}>
+    <Tabs value={value} onValueChange={setValue}>
       <TabsList
         style={{
           backgroundColor:

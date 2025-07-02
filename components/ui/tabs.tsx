@@ -3,7 +3,7 @@ import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { BORDER_RADIUS, CORNERS, FONT_SIZE, HEIGHT } from '@/theme/globals';
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 import {
   ScrollView,
   TextStyle,
@@ -20,7 +20,9 @@ interface TabsContextType {
 
 interface TabsProps {
   children: React.ReactNode;
-  defaultValue: string;
+  defaultValue?: string;
+  value?: string;
+  onValueChange?: (value: string) => void;
   orientation?: 'horizontal' | 'vertical';
   style?: ViewStyle;
 }
@@ -57,11 +59,36 @@ const useTabsContext = () => {
 
 export function Tabs({
   children,
-  defaultValue,
+  defaultValue = '',
+  value,
+  onValueChange,
   orientation = 'horizontal',
   style,
 }: TabsProps) {
-  const [activeTab, setActiveTab] = useState(defaultValue);
+  const [internalActiveTab, setInternalActiveTab] = useState(defaultValue);
+
+  // Determine if we're in controlled or uncontrolled mode
+  const isControlled = value !== undefined;
+  const activeTab = isControlled ? value : internalActiveTab;
+
+  // Update internal state when value prop changes (controlled mode)
+  useEffect(() => {
+    if (isControlled && value !== internalActiveTab) {
+      setInternalActiveTab(value);
+    }
+  }, [value, isControlled, internalActiveTab]);
+
+  const setActiveTab = (newValue: string) => {
+    if (!isControlled) {
+      // Uncontrolled mode: update internal state
+      setInternalActiveTab(newValue);
+    }
+
+    // Call onValueChange callback if provided (works in both controlled and uncontrolled modes)
+    if (onValueChange) {
+      onValueChange(newValue);
+    }
+  };
 
   return (
     <TabsContext.Provider value={{ activeTab, setActiveTab, orientation }}>
