@@ -11,33 +11,13 @@ import Link from 'next/link';
 
 const title = 'Build your Component Library';
 const description =
-  'A set of beautifully-designed, accessible components and a code distribution platform. Works with your favorite frameworks. Open Source. Open Code.';
-
+  'Beautifully-designed, accessible React Native components. Built for Expo and React Native. Open Source. Open Code.';
 export const dynamic = 'force-static';
 export const revalidate = false;
 
 export const metadata: Metadata = {
   title,
   description,
-  openGraph: {
-    images: [
-      {
-        url: `/og?title=${encodeURIComponent(
-          title
-        )}&description=${encodeURIComponent(description)}`,
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    images: [
-      {
-        url: `/og?title=${encodeURIComponent(
-          title
-        )}&description=${encodeURIComponent(description)}`,
-      },
-    ],
-  },
 };
 
 export default function Home() {
@@ -45,6 +25,9 @@ export default function Home() {
     <div className='flex flex-1 flex-col'>
       <PageHeader>
         <Announcement />
+        <h1 className='pointer-events-none whitespace-pre-wrap bg-gradient-to-b from-black to-gray-300/80 bg-clip-text text-center text-6xl font-black  text-transparent dark:from-white dark:to-slate-900/10'>
+          BNA UI
+        </h1>
         <PageHeaderHeading>{title}</PageHeaderHeading>
         <PageHeaderDescription>{description}</PageHeaderDescription>
         <PageActions>

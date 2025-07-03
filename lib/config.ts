@@ -1,12 +1,11 @@
 export const siteConfig = {
-  name: 'shadcn/ui',
-  url: 'https://ui.shadcn.com',
-  ogImage: 'https://ui.shadcn.com/og.jpg',
+  name: 'BNA UI',
+  url: 'https://ui.ahmedbna.com',
   description:
-    'A set of beautifully-designed, accessible components and a code distribution platform. Works with your favorite frameworks. Open Source. Open Code.',
+    'BNA UI is a set of beautifully-designed, accessible React Native components. Built for Expo and React Native. Open Source. Open Code.',
   links: {
-    twitter: 'https://twitter.com/shadcn',
-    github: 'https://github.com/shadcn-ui/ui',
+    twitter: 'https://x.com/ahmedbnaa',
+    github: 'https://github.com/ahmedbna/ui',
   },
   navItems: [
     {
@@ -17,21 +16,10 @@ export const siteConfig = {
       href: '/docs/components',
       label: 'Components',
     },
+
     {
-      href: '/blocks',
-      label: 'Blocks',
-    },
-    {
-      href: '/charts/area',
+      href: '/docs/charts',
       label: 'Charts',
-    },
-    {
-      href: '/themes',
-      label: 'Themes',
-    },
-    {
-      href: '/colors',
-      label: 'Colors',
     },
   ],
 };

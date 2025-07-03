@@ -1,5 +1,5 @@
 // docs/registry/alert.ts
-// Registry configuration for alert component and examples
+// Registry configuration for alert component and demo
 
 export const alertRegistry = {
   // Main alert component
@@ -31,7 +31,7 @@ export const alertRegistry = {
     registryDependencies: ['alert', 'button'],
     files: [
       {
-        path: 'registry/examples/alert/alert-demo.tsx',
+        path: 'registry/demo/alert/alert-demo.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -51,7 +51,7 @@ export const alertRegistry = {
     registryDependencies: ['alert', 'button'],
     files: [
       {
-        path: 'registry/examples/alert/alert-three-button-demo.tsx',
+        path: 'registry/demo/alert/alert-three-button-demo.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -71,7 +71,7 @@ export const alertRegistry = {
     registryDependencies: ['alert', 'button'],
     files: [
       {
-        path: 'registry/examples/alert/alert-success-demo.tsx',
+        path: 'registry/demo/alert/alert-success-demo.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -91,7 +91,7 @@ export const alertRegistry = {
     registryDependencies: ['alert', 'button'],
     files: [
       {
-        path: 'registry/examples/alert/alert-error-demo.tsx',
+        path: 'registry/demo/alert/alert-error-demo.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -111,7 +111,7 @@ export const alertRegistry = {
     registryDependencies: ['alert', 'button'],
     files: [
       {
-        path: 'registry/examples/alert/alert-confirm-demo.tsx',
+        path: 'registry/demo/alert/alert-confirm-demo.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -131,7 +131,7 @@ export const alertRegistry = {
     registryDependencies: ['alert', 'button'],
     files: [
       {
-        path: 'registry/examples/alert/alert-custom-demo.tsx',
+        path: 'registry/demo/alert/alert-custom-demo.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -151,7 +151,7 @@ export const alertRegistry = {
     registryDependencies: ['alert', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/alert/alert-visual-demo.tsx',
+        path: 'registry/demo/alert/alert-visual-demo.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -171,7 +171,7 @@ export const alertRegistry = {
     registryDependencies: ['alert', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/alert/alert-visual-destructive-demo.tsx',
+        path: 'registry/demo/alert/alert-visual-destructive-demo.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -183,7 +183,7 @@ export const alertRegistry = {
     },
   },
 
-  // Advanced examples combining multiple alert types
+  // Advanced demo combining multiple alert types
   'alert-advanced-demo': {
     name: 'alert-advanced-demo',
     description: 'Advanced alert usage patterns and combinations',
@@ -191,7 +191,7 @@ export const alertRegistry = {
     registryDependencies: ['alert', 'button', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/alert/alert-advanced-demo.tsx',
+        path: 'registry/demo/alert/alert-advanced-demo.tsx',
         type: 'registry:example',
         target: '',
       },

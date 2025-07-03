@@ -4,6 +4,7 @@ import * as React from 'react';
 import Link, { LinkProps } from 'next/link';
 import { useRouter } from 'next/navigation';
 
+import { source } from '@/lib/source';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import {
@@ -13,9 +14,11 @@ import {
 } from '@/components/ui/popover';
 
 export function MobileNav({
+  tree,
   items,
   className,
 }: {
+  tree: typeof source.pageTree;
   items: { href: string; label: string }[];
   className?: string;
 }) {
@@ -48,9 +51,9 @@ export function MobileNav({
             </div>
             <span className='sr-only'>Toggle Menu</span>
           </div>
-          <span className='flex h-8 items-center text-lg leading-none font-medium'>
+          {/* <span className='flex h-8 items-center text-lg leading-none font-medium'>
             Menu
-          </span>
+          </span> */}
         </Button>
       </PopoverTrigger>
       <PopoverContent
@@ -76,7 +79,7 @@ export function MobileNav({
               ))}
             </div>
           </div>
-          {/* <div className='flex flex-col gap-8'>
+          <div className='flex flex-col gap-8'>
             {tree?.children?.map((group, index) => {
               if (group.type === 'folder') {
                 return (
@@ -103,7 +106,7 @@ export function MobileNav({
                 );
               }
             })}
-          </div> */}
+          </div>
         </div>
       </PopoverContent>
     </Popover>

@@ -1,4 +1,4 @@
-// Registry configuration for view component and examples
+// Registry configuration for view component and demo
 
 export const viewRegistry = {
   // Main view component
@@ -30,7 +30,7 @@ export const viewRegistry = {
     registryDependencies: ['view'],
     files: [
       {
-        path: 'registry/examples/view/view-demo.tsx',
+        path: 'registry/demo/view/view-demo.tsx',
         type: 'registry:example',
         target: '',
       },

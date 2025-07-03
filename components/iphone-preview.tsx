@@ -45,7 +45,7 @@ export const IPhoneVideoPreview = ({
     >
       <div className='relative'>
         {/* iPhone Frame */}
-        <div className='relative bg-primary rounded-[2.5rem] p-[3px] shadow-2xl'>
+        <div className='relative bg-secondary rounded-[2.5rem] p-1 shadow-2xl'>
           <div className='bg-white dark:bg-gray-900 rounded-[2.5rem] overflow-hidden relative'>
             {/* iPhone Notch */}
             <div className='absolute top-1 left-1/2 transform -translate-x-1/2 w-28 h-6.5 bg-black rounded-full z-10' />

@@ -1,5 +1,5 @@
 // docs/registry/audio-waveform.ts
-// Registry configuration for audio-waveform component and examples
+// Registry configuration for audio-waveform component and demo
 
 export const audioWaveformRegistry = {
   // Main audio-waveform component
@@ -32,7 +32,7 @@ export const audioWaveformRegistry = {
     registryDependencies: ['audio-waveform', 'button', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/audio-waveform/audio-waveform-demo.tsx',
+        path: 'registry/demo/audio-waveform/audio-waveform-demo.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -53,7 +53,7 @@ export const audioWaveformRegistry = {
     registryDependencies: ['audio-waveform', 'button', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/audio-waveform/audio-waveform-recording.tsx',
+        path: 'registry/demo/audio-waveform/audio-waveform-recording.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -74,7 +74,7 @@ export const audioWaveformRegistry = {
     registryDependencies: ['audio-waveform', 'button', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/audio-waveform/audio-waveform-interactive.tsx',
+        path: 'registry/demo/audio-waveform/audio-waveform-interactive.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -95,7 +95,7 @@ export const audioWaveformRegistry = {
     registryDependencies: ['audio-waveform', 'button', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/audio-waveform/audio-waveform-styled.tsx',
+        path: 'registry/demo/audio-waveform/audio-waveform-styled.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -116,7 +116,7 @@ export const audioWaveformRegistry = {
     registryDependencies: ['audio-waveform', 'button', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/audio-waveform/audio-waveform-realtime.tsx',
+        path: 'registry/demo/audio-waveform/audio-waveform-realtime.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -137,7 +137,7 @@ export const audioWaveformRegistry = {
     registryDependencies: ['audio-waveform', 'button', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/audio-waveform/audio-waveform-compact.tsx',
+        path: 'registry/demo/audio-waveform/audio-waveform-compact.tsx',
         type: 'registry:example',
         target: '',
       },

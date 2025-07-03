@@ -1,4 +1,4 @@
 {
   "root": true,
-  "pages": ["(root)", "changelog", "components"]
+  "pages": ["(root)", "changelog", "components", "charts"]
 }

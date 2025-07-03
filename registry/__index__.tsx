@@ -49,16 +49,6 @@ import { viewRegistry } from '@/registry/registry/view';
 import { separatorRegistry } from '@/registry/registry/separator';
 
 export const Index: Record<string, any> = {
-  index: {
-    name: 'index',
-    description: '',
-    type: 'registry:style',
-    registryDependencies: ['utils'],
-    files: [],
-    component: null,
-    categories: undefined,
-    meta: undefined,
-  },
   ...accordionRegistry,
   ...actionSheetRegistry,
   ...alertRegistry,

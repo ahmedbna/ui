@@ -1,5 +1,5 @@
 // docs/registry/button.ts
-// Registry configuration for button component and examples
+// Registry configuration for button component and demo
 
 export const buttonRegistry = {
   // Main button component
@@ -36,7 +36,7 @@ export const buttonRegistry = {
     registryDependencies: ['button'],
     files: [
       {
-        path: 'registry/examples/button/button-demo.tsx',
+        path: 'registry/demo/button/button-demo.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -56,7 +56,7 @@ export const buttonRegistry = {
     registryDependencies: ['button'],
     files: [
       {
-        path: 'registry/examples/button/button-variants.tsx',
+        path: 'registry/demo/button/button-variants.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -76,7 +76,7 @@ export const buttonRegistry = {
     registryDependencies: ['button'],
     files: [
       {
-        path: 'registry/examples/button/button-sizes.tsx',
+        path: 'registry/demo/button/button-sizes.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -96,7 +96,7 @@ export const buttonRegistry = {
     registryDependencies: ['button'],
     files: [
       {
-        path: 'registry/examples/button/button-with-icons.tsx',
+        path: 'registry/demo/button/button-with-icons.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -116,7 +116,7 @@ export const buttonRegistry = {
     registryDependencies: ['button'],
     files: [
       {
-        path: 'registry/examples/button/button-icon-only.tsx',
+        path: 'registry/demo/button/button-icon-only.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -136,7 +136,7 @@ export const buttonRegistry = {
     registryDependencies: ['button'],
     files: [
       {
-        path: 'registry/examples/button/button-loading.tsx',
+        path: 'registry/demo/button/button-loading.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -156,7 +156,7 @@ export const buttonRegistry = {
     registryDependencies: ['button'],
     files: [
       {
-        path: 'registry/examples/button/button-disabled.tsx',
+        path: 'registry/demo/button/button-disabled.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -176,7 +176,7 @@ export const buttonRegistry = {
     registryDependencies: ['button'],
     files: [
       {
-        path: 'registry/examples/button/button-custom.tsx',
+        path: 'registry/demo/button/button-custom.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -196,7 +196,7 @@ export const buttonRegistry = {
     registryDependencies: ['button'],
     files: [
       {
-        path: 'registry/examples/button/button-animation.tsx',
+        path: 'registry/demo/button/button-animation.tsx',
         type: 'registry:example',
         target: '',
       },

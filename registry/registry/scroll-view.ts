@@ -1,4 +1,4 @@
-// Registry configuration for scroll-view component and examples
+// Registry configuration for scroll-view component and demo
 
 export const scrollViewRegistry = {
   // Main scroll-view component
@@ -31,7 +31,7 @@ export const scrollViewRegistry = {
     registryDependencies: ['scroll-view', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/scroll-view/scroll-view-demo.tsx',
+        path: 'registry/demo/scroll-view/scroll-view-demo.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -51,7 +51,7 @@ export const scrollViewRegistry = {
     registryDependencies: ['scroll-view', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/scroll-view/scroll-view-vertical.tsx',
+        path: 'registry/demo/scroll-view/scroll-view-vertical.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -71,7 +71,7 @@ export const scrollViewRegistry = {
     registryDependencies: ['scroll-view', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/scroll-view/scroll-view-horizontal.tsx',
+        path: 'registry/demo/scroll-view/scroll-view-horizontal.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -91,7 +91,7 @@ export const scrollViewRegistry = {
     registryDependencies: ['scroll-view', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/scroll-view/scroll-view-nested.tsx',
+        path: 'registry/demo/scroll-view/scroll-view-nested.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -111,7 +111,7 @@ export const scrollViewRegistry = {
     registryDependencies: ['scroll-view', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/scroll-view/scroll-view-refresh.tsx',
+        path: 'registry/demo/scroll-view/scroll-view-refresh.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -131,7 +131,7 @@ export const scrollViewRegistry = {
     registryDependencies: ['scroll-view', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/scroll-view/scroll-view-styled.tsx',
+        path: 'registry/demo/scroll-view/scroll-view-styled.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -151,7 +151,7 @@ export const scrollViewRegistry = {
     registryDependencies: ['scroll-view', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/scroll-view/scroll-view-indicators.tsx',
+        path: 'registry/demo/scroll-view/scroll-view-indicators.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -171,7 +171,7 @@ export const scrollViewRegistry = {
     registryDependencies: ['scroll-view', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/scroll-view/scroll-view-inset.tsx',
+        path: 'registry/demo/scroll-view/scroll-view-inset.tsx',
         type: 'registry:example',
         target: '',
       },

@@ -124,7 +124,7 @@ export function AlertAdvancedDemo() {
       </View>
 
       <Text variant='caption' style={{ opacity: 0.7, marginTop: 8 }}>
-        These examples demonstrate advanced patterns like chained confirmations,
+        These demo demonstrate advanced patterns like chained confirmations,
         dynamic visual alerts, and complex multi-option native alerts.
       </Text>
     </View>

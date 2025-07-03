@@ -1,4 +1,4 @@
-// Registry configuration for switch component and examples
+// Registry configuration for switch component and demo
 
 export const switchRegistry = {
   // Main switch component
@@ -31,7 +31,7 @@ export const switchRegistry = {
     registryDependencies: ['switch'],
     files: [
       {
-        path: 'registry/examples/switch/switch-demo.tsx',
+        path: 'registry/demo/switch/switch-demo.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -50,7 +50,7 @@ export const switchRegistry = {
     registryDependencies: ['switch', 'view'],
     files: [
       {
-        path: 'registry/examples/switch/switch-simple.tsx',
+        path: 'registry/demo/switch/switch-simple.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -69,7 +69,7 @@ export const switchRegistry = {
     registryDependencies: ['switch', 'view'],
     files: [
       {
-        path: 'registry/examples/switch/switch-error.tsx',
+        path: 'registry/demo/switch/switch-error.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -88,7 +88,7 @@ export const switchRegistry = {
     registryDependencies: ['switch', 'view'],
     files: [
       {
-        path: 'registry/examples/switch/switch-disabled.tsx',
+        path: 'registry/demo/switch/switch-disabled.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -107,7 +107,7 @@ export const switchRegistry = {
     registryDependencies: ['switch', 'view'],
     files: [
       {
-        path: 'registry/examples/switch/switch-settings.tsx',
+        path: 'registry/demo/switch/switch-settings.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -126,7 +126,7 @@ export const switchRegistry = {
     registryDependencies: ['switch', 'view'],
     files: [
       {
-        path: 'registry/examples/switch/switch-colors.tsx',
+        path: 'registry/demo/switch/switch-colors.tsx',
         type: 'registry:example',
         target: '',
       },

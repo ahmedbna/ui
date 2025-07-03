@@ -1,4 +1,4 @@
-// Registry configuration for radio component and examples
+// Registry configuration for radio component and demo
 
 export const radioRegistry = {
   // Main radio component
@@ -31,7 +31,7 @@ export const radioRegistry = {
     registryDependencies: ['radio'],
     files: [
       {
-        path: 'registry/examples/radio/radio-demo.tsx',
+        path: 'registry/demo/radio/radio-demo.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -51,7 +51,7 @@ export const radioRegistry = {
     registryDependencies: ['radio'],
     files: [
       {
-        path: 'registry/examples/radio/radio-horizontal.tsx',
+        path: 'registry/demo/radio/radio-horizontal.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -71,7 +71,7 @@ export const radioRegistry = {
     registryDependencies: ['radio', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/radio/radio-disabled.tsx',
+        path: 'registry/demo/radio/radio-disabled.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -91,7 +91,7 @@ export const radioRegistry = {
     registryDependencies: ['radio', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/radio/radio-styled.tsx',
+        path: 'registry/demo/radio/radio-styled.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -111,7 +111,7 @@ export const radioRegistry = {
     registryDependencies: ['radio', 'button', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/radio/radio-form.tsx',
+        path: 'registry/demo/radio/radio-form.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -131,7 +131,7 @@ export const radioRegistry = {
     registryDependencies: ['radio'],
     files: [
       {
-        path: 'registry/examples/radio/radio-large.tsx',
+        path: 'registry/demo/radio/radio-large.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -151,7 +151,7 @@ export const radioRegistry = {
     registryDependencies: ['radio', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/radio/radio-single.tsx',
+        path: 'registry/demo/radio/radio-single.tsx',
         type: 'registry:example',
         target: '',
       },

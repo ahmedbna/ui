@@ -1,4 +1,4 @@
-// Registry configuration for link component and examples
+// Registry configuration for link component and demo
 
 export const linkRegistry = {
   // Main link component
@@ -31,7 +31,7 @@ export const linkRegistry = {
     registryDependencies: ['link', 'view'],
     files: [
       {
-        path: 'registry/examples/link/link-demo.tsx',
+        path: 'registry/demo/link/link-demo.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -51,7 +51,7 @@ export const linkRegistry = {
     registryDependencies: ['link', 'view'],
     files: [
       {
-        path: 'registry/examples/link/link-external.tsx',
+        path: 'registry/demo/link/link-external.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -71,7 +71,7 @@ export const linkRegistry = {
     registryDependencies: ['link', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/link/link-browser.tsx',
+        path: 'registry/demo/link/link-browser.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -91,7 +91,7 @@ export const linkRegistry = {
     registryDependencies: ['link', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/link/link-custom.tsx',
+        path: 'registry/demo/link/link-custom.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -111,7 +111,7 @@ export const linkRegistry = {
     registryDependencies: ['link', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/link/link-types.tsx',
+        path: 'registry/demo/link/link-types.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -131,7 +131,7 @@ export const linkRegistry = {
     registryDependencies: ['link', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/link/link-styled.tsx',
+        path: 'registry/demo/link/link-styled.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -151,7 +151,7 @@ export const linkRegistry = {
     registryDependencies: ['link', 'button', 'view'],
     files: [
       {
-        path: 'registry/examples/link/link-buttons.tsx',
+        path: 'registry/demo/link/link-buttons.tsx',
         type: 'registry:example',
         target: '',
       },

@@ -1,4 +1,4 @@
-// Registry configuration for icon component and examples
+// Registry configuration for icon component and demo
 
 export const iconRegistry = {
   // Main icon component
@@ -30,7 +30,7 @@ export const iconRegistry = {
     registryDependencies: ['icon'],
     files: [
       {
-        path: 'registry/examples/icon/icon-demo.tsx',
+        path: 'registry/demo/icon/icon-demo.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -49,7 +49,7 @@ export const iconRegistry = {
     registryDependencies: ['icon'],
     files: [
       {
-        path: 'registry/examples/icon/icon-sizes.tsx',
+        path: 'registry/demo/icon/icon-sizes.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -68,7 +68,7 @@ export const iconRegistry = {
     registryDependencies: ['icon'],
     files: [
       {
-        path: 'registry/examples/icon/icon-colors.tsx',
+        path: 'registry/demo/icon/icon-colors.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -87,7 +87,7 @@ export const iconRegistry = {
     registryDependencies: ['icon'],
     files: [
       {
-        path: 'registry/examples/icon/icon-stroke.tsx',
+        path: 'registry/demo/icon/icon-stroke.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -106,7 +106,7 @@ export const iconRegistry = {
     registryDependencies: ['icon'],
     files: [
       {
-        path: 'registry/examples/icon/icon-interactive.tsx',
+        path: 'registry/demo/icon/icon-interactive.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -125,7 +125,7 @@ export const iconRegistry = {
     registryDependencies: ['icon'],
     files: [
       {
-        path: 'registry/examples/icon/icon-grid.tsx',
+        path: 'registry/demo/icon/icon-grid.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -144,7 +144,7 @@ export const iconRegistry = {
     registryDependencies: ['icon'],
     files: [
       {
-        path: 'registry/examples/icon/icon-themed.tsx',
+        path: 'registry/demo/icon/icon-themed.tsx',
         type: 'registry:example',
         target: '',
       },

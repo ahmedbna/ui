@@ -1,4 +1,4 @@
-// Registry configuration for skeleton component and examples
+// Registry configuration for skeleton component and demo
 
 export const skeletonRegistry = {
   // Main skeleton component
@@ -31,7 +31,7 @@ export const skeletonRegistry = {
     registryDependencies: ['skeleton'],
     files: [
       {
-        path: 'registry/examples/skeleton/skeleton-demo.tsx',
+        path: 'registry/demo/skeleton/skeleton-demo.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -51,7 +51,7 @@ export const skeletonRegistry = {
     registryDependencies: ['skeleton', 'view'],
     files: [
       {
-        path: 'registry/examples/skeleton/skeleton-sizes.tsx',
+        path: 'registry/demo/skeleton/skeleton-sizes.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -70,7 +70,7 @@ export const skeletonRegistry = {
     registryDependencies: ['skeleton', 'view'],
     files: [
       {
-        path: 'registry/examples/skeleton/skeleton-card.tsx',
+        path: 'registry/demo/skeleton/skeleton-card.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -89,7 +89,7 @@ export const skeletonRegistry = {
     registryDependencies: ['skeleton', 'view'],
     files: [
       {
-        path: 'registry/examples/skeleton/skeleton-profile.tsx',
+        path: 'registry/demo/skeleton/skeleton-profile.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -108,7 +108,7 @@ export const skeletonRegistry = {
     registryDependencies: ['skeleton', 'view'],
     files: [
       {
-        path: 'registry/examples/skeleton/skeleton-list.tsx',
+        path: 'registry/demo/skeleton/skeleton-list.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -127,7 +127,7 @@ export const skeletonRegistry = {
     registryDependencies: ['skeleton', 'view'],
     files: [
       {
-        path: 'registry/examples/skeleton/skeleton-shapes.tsx',
+        path: 'registry/demo/skeleton/skeleton-shapes.tsx',
         type: 'registry:example',
         target: '',
       },

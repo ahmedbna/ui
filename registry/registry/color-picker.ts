@@ -1,4 +1,4 @@
-// Registry configuration for color-picker component and examples
+// Registry configuration for color-picker component and demo
 
 export const colorPickerRegistry = {
   // Main color picker component
@@ -36,7 +36,7 @@ export const colorPickerRegistry = {
     registryDependencies: ['color-picker'],
     files: [
       {
-        path: 'registry/examples/color-picker/color-picker-demo.tsx',
+        path: 'registry/demo/color-picker/color-picker-demo.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -56,7 +56,7 @@ export const colorPickerRegistry = {
     registryDependencies: ['color-picker'],
     files: [
       {
-        path: 'registry/examples/color-picker/color-picker-sizes.tsx',
+        path: 'registry/demo/color-picker/color-picker-sizes.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -76,7 +76,7 @@ export const colorPickerRegistry = {
     registryDependencies: ['color-picker'],
     files: [
       {
-        path: 'registry/examples/color-picker/color-picker-colors.tsx',
+        path: 'registry/demo/color-picker/color-picker-colors.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -96,7 +96,7 @@ export const colorPickerRegistry = {
     registryDependencies: ['color-picker'],
     files: [
       {
-        path: 'registry/examples/color-picker/color-picker-disabled.tsx',
+        path: 'registry/demo/color-picker/color-picker-disabled.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -116,7 +116,7 @@ export const colorPickerRegistry = {
     registryDependencies: ['color-picker'],
     files: [
       {
-        path: 'registry/examples/color-picker/color-swatch-demo.tsx',
+        path: 'registry/demo/color-picker/color-swatch-demo.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -135,7 +135,7 @@ export const colorPickerRegistry = {
     registryDependencies: ['color-picker'],
     files: [
       {
-        path: 'registry/examples/color-picker/color-picker-styled.tsx',
+        path: 'registry/demo/color-picker/color-picker-styled.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -154,7 +154,7 @@ export const colorPickerRegistry = {
     registryDependencies: ['color-picker'],
     files: [
       {
-        path: 'registry/examples/color-picker/color-picker-palette.tsx',
+        path: 'registry/demo/color-picker/color-picker-palette.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -173,7 +173,7 @@ export const colorPickerRegistry = {
     registryDependencies: ['color-picker'],
     files: [
       {
-        path: 'registry/examples/color-picker/color-picker-labeled.tsx',
+        path: 'registry/demo/color-picker/color-picker-labeled.tsx',
         type: 'registry:example',
         target: '',
       },

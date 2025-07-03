@@ -13,7 +13,8 @@ import '@/styles/globals.css';
 
 export const metadata: Metadata = {
   title: 'BNA UI',
-  description: 'Expo React Native UI Component Library',
+  description:
+    'BNA UI is a set of beautifully-designed, accessible React Native components. Built for Expo and React Native. Open Source. Open Code.',
 };
 
 export default function RootLayout({

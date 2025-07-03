@@ -1,4 +1,4 @@
-// Registry configuration for onboarding component and examples
+// Registry configuration for onboarding component and demo
 
 export const onboardingRegistry = {
   // Main onboarding component
@@ -32,7 +32,7 @@ export const onboardingRegistry = {
     registryDependencies: ['onboarding'],
     files: [
       {
-        path: 'registry/examples/onboarding/onboarding-demo.tsx',
+        path: 'registry/demo/onboarding/onboarding-demo.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -52,7 +52,7 @@ export const onboardingRegistry = {
     registryDependencies: ['onboarding', 'image'],
     files: [
       {
-        path: 'registry/examples/onboarding/onboarding-images.tsx',
+        path: 'registry/demo/onboarding/onboarding-images.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -72,7 +72,7 @@ export const onboardingRegistry = {
     registryDependencies: ['onboarding'],
     files: [
       {
-        path: 'registry/examples/onboarding/onboarding-styled.tsx',
+        path: 'registry/demo/onboarding/onboarding-styled.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -92,7 +92,7 @@ export const onboardingRegistry = {
     registryDependencies: ['onboarding'],
     files: [
       {
-        path: 'registry/examples/onboarding/onboarding-no-skip.tsx',
+        path: 'registry/demo/onboarding/onboarding-no-skip.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -112,7 +112,7 @@ export const onboardingRegistry = {
     registryDependencies: ['onboarding'],
     files: [
       {
-        path: 'registry/examples/onboarding/onboarding-no-swipe.tsx',
+        path: 'registry/demo/onboarding/onboarding-no-swipe.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -132,7 +132,7 @@ export const onboardingRegistry = {
     registryDependencies: ['onboarding'],
     files: [
       {
-        path: 'registry/examples/onboarding/onboarding-custom-buttons.tsx',
+        path: 'registry/demo/onboarding/onboarding-custom-buttons.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -151,7 +151,7 @@ export const onboardingRegistry = {
     registryDependencies: ['onboarding', 'view', 'text', 'button'],
     files: [
       {
-        path: 'registry/examples/onboarding/onboarding-hook.tsx',
+        path: 'registry/demo/onboarding/onboarding-hook.tsx',
         type: 'registry:example',
         target: '',
       },

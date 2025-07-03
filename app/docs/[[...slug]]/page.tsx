@@ -7,12 +7,10 @@ import {
   IconArrowUpRight,
 } from '@tabler/icons-react';
 import { findNeighbour } from 'fumadocs-core/server';
-
 import { source } from '@/lib/source';
 import { DocsTableOfContents } from '@/components/docs-toc';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { absoluteUrl } from '@/lib/utils';
 
 export const revalidate = false;
 export const dynamic = 'force-static';
@@ -41,32 +39,6 @@ export async function generateMetadata(props: {
   return {
     title: doc.title,
     description: doc.description,
-    openGraph: {
-      title: doc.title,
-      description: doc.description,
-      type: 'article',
-      url: absoluteUrl(page.url),
-      images: [
-        {
-          url: `/og?title=${encodeURIComponent(
-            doc.title
-          )}&description=${encodeURIComponent(doc.description)}`,
-        },
-      ],
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: doc.title,
-      description: doc.description,
-      images: [
-        {
-          url: `/og?title=${encodeURIComponent(
-            doc.title
-          )}&description=${encodeURIComponent(doc.description)}`,
-        },
-      ],
-      creator: '@shadcn',
-    },
   };
 }
 

@@ -1,4 +1,4 @@
-// Registry configuration for file-picker component and examples
+// Registry configuration for file-picker component and demo
 
 export const filePickerRegistry = {
   // Main file-picker component
@@ -31,7 +31,7 @@ export const filePickerRegistry = {
     registryDependencies: ['file-picker'],
     files: [
       {
-        path: 'registry/examples/file-picker/file-picker-demo.tsx',
+        path: 'registry/demo/file-picker/file-picker-demo.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -50,7 +50,7 @@ export const filePickerRegistry = {
     registryDependencies: ['file-picker', 'view', 'text'],
     files: [
       {
-        path: 'registry/examples/file-picker/file-picker-images.tsx',
+        path: 'registry/demo/file-picker/file-picker-images.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -69,7 +69,7 @@ export const filePickerRegistry = {
     registryDependencies: ['file-picker', 'view', 'text'],
     files: [
       {
-        path: 'registry/examples/file-picker/file-picker-single.tsx',
+        path: 'registry/demo/file-picker/file-picker-single.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -88,7 +88,7 @@ export const filePickerRegistry = {
     registryDependencies: ['file-picker', 'view', 'text'],
     files: [
       {
-        path: 'registry/examples/file-picker/file-picker-validation.tsx',
+        path: 'registry/demo/file-picker/file-picker-validation.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -107,7 +107,7 @@ export const filePickerRegistry = {
     registryDependencies: ['file-picker', 'view', 'text'],
     files: [
       {
-        path: 'registry/examples/file-picker/file-picker-styled.tsx',
+        path: 'registry/demo/file-picker/file-picker-styled.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -126,7 +126,7 @@ export const filePickerRegistry = {
     registryDependencies: ['file-picker', 'button', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/file-picker/file-picker-controlled.tsx',
+        path: 'registry/demo/file-picker/file-picker-controlled.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -145,7 +145,7 @@ export const filePickerRegistry = {
     registryDependencies: ['file-picker', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/file-picker/file-picker-info.tsx',
+        path: 'registry/demo/file-picker/file-picker-info.tsx',
         type: 'registry:example',
         target: '',
       },

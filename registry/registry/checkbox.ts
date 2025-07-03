@@ -1,5 +1,5 @@
 // docs/registry/checkbox.ts
-// Registry configuration for checkbox component and examples
+// Registry configuration for checkbox component and demo
 export const checkboxRegistry = {
   // Main checkbox component
   checkbox: {
@@ -31,7 +31,7 @@ export const checkboxRegistry = {
     registryDependencies: ['checkbox'],
     files: [
       {
-        path: 'registry/examples/checkbox/checkbox-demo.tsx',
+        path: 'registry/demo/checkbox/checkbox-demo.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -52,7 +52,7 @@ export const checkboxRegistry = {
     registryDependencies: ['checkbox', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/checkbox/checkbox-states.tsx',
+        path: 'registry/demo/checkbox/checkbox-states.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -72,7 +72,7 @@ export const checkboxRegistry = {
     registryDependencies: ['checkbox'],
     files: [
       {
-        path: 'registry/examples/checkbox/checkbox-without-label.tsx',
+        path: 'registry/demo/checkbox/checkbox-without-label.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -92,7 +92,7 @@ export const checkboxRegistry = {
     registryDependencies: ['checkbox', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/checkbox/checkbox-with-error.tsx',
+        path: 'registry/demo/checkbox/checkbox-with-error.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -112,7 +112,7 @@ export const checkboxRegistry = {
     registryDependencies: ['checkbox', 'view'],
     files: [
       {
-        path: 'registry/examples/checkbox/checkbox-custom-styling.tsx',
+        path: 'registry/demo/checkbox/checkbox-custom-styling.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -132,7 +132,7 @@ export const checkboxRegistry = {
     registryDependencies: ['checkbox', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/checkbox/checkbox-group.tsx',
+        path: 'registry/demo/checkbox/checkbox-group.tsx',
         type: 'registry:example',
         target: '',
       },

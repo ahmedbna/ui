@@ -1,4 +1,4 @@
-// Registry configuration for carousel component and examples
+// Registry configuration for carousel component and demo
 
 export const carouselRegistry = {
   // Main carousel component
@@ -35,7 +35,7 @@ export const carouselRegistry = {
     registryDependencies: ['carousel'],
     files: [
       {
-        path: 'registry/examples/carousel/carousel-demo.tsx',
+        path: 'registry/demo/carousel/carousel-demo.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -55,7 +55,7 @@ export const carouselRegistry = {
     registryDependencies: ['carousel'],
     files: [
       {
-        path: 'registry/examples/carousel/carousel-arrows.tsx',
+        path: 'registry/demo/carousel/carousel-arrows.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -75,7 +75,7 @@ export const carouselRegistry = {
     registryDependencies: ['carousel'],
     files: [
       {
-        path: 'registry/examples/carousel/carousel-custom-width.tsx',
+        path: 'registry/demo/carousel/carousel-custom-width.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -96,7 +96,7 @@ export const carouselRegistry = {
     dependencies: ['expo-image'],
     files: [
       {
-        path: 'registry/examples/carousel/carousel-images.tsx',
+        path: 'registry/demo/carousel/carousel-images.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -116,7 +116,7 @@ export const carouselRegistry = {
     registryDependencies: ['carousel'],
     files: [
       {
-        path: 'registry/examples/carousel/carousel-cards.tsx',
+        path: 'registry/demo/carousel/carousel-cards.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -136,7 +136,7 @@ export const carouselRegistry = {
     registryDependencies: ['carousel'],
     files: [
       {
-        path: 'registry/examples/carousel/carousel-no-indicators.tsx',
+        path: 'registry/demo/carousel/carousel-no-indicators.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -156,7 +156,7 @@ export const carouselRegistry = {
     registryDependencies: ['carousel', 'button'],
     files: [
       {
-        path: 'registry/examples/carousel/carousel-manual.tsx',
+        path: 'registry/demo/carousel/carousel-manual.tsx',
         type: 'registry:example',
         target: '',
       },

@@ -1,4 +1,4 @@
-// Registry configuration for progress component and examples
+// Registry configuration for progress component and demo
 
 export const progressRegistry = {
   // Main progress component
@@ -30,7 +30,7 @@ export const progressRegistry = {
     registryDependencies: ['progress'],
     files: [
       {
-        path: 'registry/examples/progress/progress-demo.tsx',
+        path: 'registry/demo/progress/progress-demo.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -49,7 +49,7 @@ export const progressRegistry = {
     registryDependencies: ['progress', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/progress/progress-interactive.tsx',
+        path: 'registry/demo/progress/progress-interactive.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -68,7 +68,7 @@ export const progressRegistry = {
     registryDependencies: ['progress', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/progress/progress-heights.tsx',
+        path: 'registry/demo/progress/progress-heights.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -86,7 +86,7 @@ export const progressRegistry = {
     registryDependencies: ['progress', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/progress/progress-labels.tsx',
+        path: 'registry/demo/progress/progress-labels.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -104,7 +104,7 @@ export const progressRegistry = {
     registryDependencies: ['progress', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/progress/progress-animated.tsx',
+        path: 'registry/demo/progress/progress-animated.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -123,7 +123,7 @@ export const progressRegistry = {
     registryDependencies: ['progress', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/progress/progress-media.tsx',
+        path: 'registry/demo/progress/progress-media.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -142,7 +142,7 @@ export const progressRegistry = {
     registryDependencies: ['progress', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/progress/progress-steps.tsx',
+        path: 'registry/demo/progress/progress-steps.tsx',
         type: 'registry:example',
         target: '',
       },

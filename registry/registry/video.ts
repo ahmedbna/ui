@@ -1,4 +1,4 @@
-// Registry configuration for video component and examples
+// Registry configuration for video component and demo
 
 export const videoRegistry = {
   // Main video component
@@ -31,7 +31,7 @@ export const videoRegistry = {
     registryDependencies: ['video'],
     files: [
       {
-        path: 'registry/examples/video/video-demo.tsx',
+        path: 'registry/demo/video/video-demo.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -51,7 +51,7 @@ export const videoRegistry = {
     registryDependencies: ['video'],
     files: [
       {
-        path: 'registry/examples/video/video-native-controls.tsx',
+        path: 'registry/demo/video/video-native-controls.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -71,7 +71,7 @@ export const videoRegistry = {
     registryDependencies: ['video'],
     files: [
       {
-        path: 'registry/examples/video/video-custom-controls.tsx',
+        path: 'registry/demo/video/video-custom-controls.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -91,7 +91,7 @@ export const videoRegistry = {
     registryDependencies: ['video'],
     files: [
       {
-        path: 'registry/examples/video/video-subtitles.tsx',
+        path: 'registry/demo/video/video-subtitles.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -111,7 +111,7 @@ export const videoRegistry = {
     registryDependencies: ['video'],
     files: [
       {
-        path: 'registry/examples/video/video-autoplay-loop.tsx',
+        path: 'registry/demo/video/video-autoplay-loop.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -131,7 +131,7 @@ export const videoRegistry = {
     registryDependencies: ['video', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/video/video-sources.tsx',
+        path: 'registry/demo/video/video-sources.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -151,7 +151,7 @@ export const videoRegistry = {
     registryDependencies: ['video', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/video/video-gestures.tsx',
+        path: 'registry/demo/video/video-gestures.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -171,7 +171,7 @@ export const videoRegistry = {
     registryDependencies: ['video', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/video/video-content-fit.tsx',
+        path: 'registry/demo/video/video-content-fit.tsx',
         type: 'registry:example',
         target: '',
       },

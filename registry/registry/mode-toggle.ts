@@ -1,4 +1,4 @@
-// Registry configuration for mode-toggle component and examples
+// Registry configuration for mode-toggle component and demo
 
 export const modeToggleRegistry = {
   // Main mode-toggle component
@@ -31,7 +31,7 @@ export const modeToggleRegistry = {
     registryDependencies: ['mode-toggle'],
     files: [
       {
-        path: 'registry/examples/mode-toggle/mode-toggle-demo.tsx',
+        path: 'registry/demo/mode-toggle/mode-toggle-demo.tsx',
         type: 'registry:example',
         target: '',
       },

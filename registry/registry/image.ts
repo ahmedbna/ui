@@ -1,4 +1,4 @@
-// Registry configuration for image component and examples
+// Registry configuration for image component and demo
 
 export const imageRegistry = {
   // Main image component
@@ -30,7 +30,7 @@ export const imageRegistry = {
     registryDependencies: ['image'],
     files: [
       {
-        path: 'registry/examples/image/image-demo.tsx',
+        path: 'registry/demo/image/image-demo.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -49,7 +49,7 @@ export const imageRegistry = {
     registryDependencies: ['image'],
     files: [
       {
-        path: 'registry/examples/image/image-variants.tsx',
+        path: 'registry/demo/image/image-variants.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -68,7 +68,7 @@ export const imageRegistry = {
     registryDependencies: ['image'],
     files: [
       {
-        path: 'registry/examples/image/image-sizes.tsx',
+        path: 'registry/demo/image/image-sizes.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -87,7 +87,7 @@ export const imageRegistry = {
     registryDependencies: ['image'],
     files: [
       {
-        path: 'registry/examples/image/image-loading.tsx',
+        path: 'registry/demo/image/image-loading.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -106,7 +106,7 @@ export const imageRegistry = {
     registryDependencies: ['image'],
     files: [
       {
-        path: 'registry/examples/image/image-error.tsx',
+        path: 'registry/demo/image/image-error.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -124,7 +124,7 @@ export const imageRegistry = {
     registryDependencies: ['image'],
     files: [
       {
-        path: 'registry/examples/image/image-gallery.tsx',
+        path: 'registry/demo/image/image-gallery.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -142,7 +142,7 @@ export const imageRegistry = {
     registryDependencies: ['image'],
     files: [
       {
-        path: 'registry/examples/image/image-responsive.tsx',
+        path: 'registry/demo/image/image-responsive.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -160,7 +160,7 @@ export const imageRegistry = {
     registryDependencies: ['image'],
     files: [
       {
-        path: 'registry/examples/image/image-content-fit.tsx',
+        path: 'registry/demo/image/image-content-fit.tsx',
         type: 'registry:example',
         target: '',
       },
