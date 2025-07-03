@@ -1,7 +1,7 @@
-// registry/examples/carousel-images.tsx
 import { Carousel, CarouselItem } from '@/components/ui/carousel';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
+import { BORDER_RADIUS } from '@/theme/globals';
 import { Image } from 'expo-image';
 import React from 'react';
 
@@ -39,7 +39,7 @@ export function CarouselImages() {
               style={{
                 width: '100%',
                 height: 240,
-                borderRadius: 12,
+                borderRadius: BORDER_RADIUS,
               }}
               contentFit='cover'
             />
@@ -50,8 +50,8 @@ export function CarouselImages() {
                 left: 0,
                 right: 0,
                 backgroundColor: 'rgba(0,0,0,0.6)',
-                borderBottomLeftRadius: 12,
-                borderBottomRightRadius: 12,
+                borderBottomLeftRadius: BORDER_RADIUS,
+                borderBottomRightRadius: BORDER_RADIUS,
                 padding: 16,
               }}
             >

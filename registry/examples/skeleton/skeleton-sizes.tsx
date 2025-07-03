@@ -1,4 +1,3 @@
-// registry/examples/skeleton-sizes.tsx
 import { Skeleton } from '@/components/ui/skeleton';
 import { View } from '@/components/ui/view';
 import React from 'react';

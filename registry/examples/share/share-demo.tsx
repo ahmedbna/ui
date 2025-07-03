@@ -1,4 +1,3 @@
-// registry/examples/share-demo.tsx
 import { ShareButton } from '@/components/ui/share';
 import React from 'react';
 

@@ -1,4 +1,3 @@
-// registry/examples/camera-timer.tsx
 import { Camera } from '@/components/ui/camera';
 import React from 'react';
 import { Alert } from 'react-native';

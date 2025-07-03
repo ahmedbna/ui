@@ -17,8 +17,9 @@ export const popoverRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.shadcn.com/preview/popover-light.mp4',
-      dark: 'https://ui.shadcn.com/preview/popover-dark.mp4',
+      light:
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 09-14-01_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 09-14-01_1.MP4',
     },
   },
 
@@ -36,8 +37,9 @@ export const popoverRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.shadcn.com/preview/popover-demo-light.mp4',
-      dark: 'https://ui.shadcn.com/preview/popover-demo-dark.mp4',
+      light:
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 09-14-01_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 09-14-01_1.MP4',
     },
   },
 
@@ -55,8 +57,9 @@ export const popoverRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.shadcn.com/preview/popover-positioning-light.mp4',
-      dark: 'https://ui.shadcn.com/preview/popover-positioning-dark.mp4',
+      light:
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 09-17-57_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 09-17-57_1.MP4',
     },
   },
 
@@ -74,8 +77,9 @@ export const popoverRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.shadcn.com/preview/popover-alignment-light.mp4',
-      dark: 'https://ui.shadcn.com/preview/popover-alignment-dark.mp4',
+      light:
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 09-18-41_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 09-18-41_1.MP4',
     },
   },
 
@@ -93,8 +97,9 @@ export const popoverRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.shadcn.com/preview/popover-controlled-light.mp4',
-      dark: 'https://ui.shadcn.com/preview/popover-controlled-dark.mp4',
+      light:
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 09-19-23_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 09-19-23_1.MP4',
     },
   },
 
@@ -112,8 +117,9 @@ export const popoverRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.shadcn.com/preview/popover-custom-light.mp4',
-      dark: 'https://ui.shadcn.com/preview/popover-custom-dark.mp4',
+      light:
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 09-21-07_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 09-21-07_1.MP4',
     },
   },
 
@@ -131,8 +137,9 @@ export const popoverRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.shadcn.com/preview/popover-form-light.mp4',
-      dark: 'https://ui.shadcn.com/preview/popover-form-dark.mp4',
+      light:
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 09-21-50_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 09-21-50_1.MP4',
     },
   },
 
@@ -150,8 +157,9 @@ export const popoverRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.shadcn.com/preview/popover-menu-light.mp4',
-      dark: 'https://ui.shadcn.com/preview/popover-menu-dark.mp4',
+      light:
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 09-23-30_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 09-23-30_1.MP4',
     },
   },
 };

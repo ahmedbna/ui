@@ -1,4 +1,3 @@
-// registry/examples/combobox-form.tsx
 import { Button } from '@/components/ui/button';
 import {
   Combobox,
@@ -45,7 +44,7 @@ export function ComboboxForm() {
   };
 
   return (
-    <View style={{ gap: 16, width: 300 }}>
+    <View style={{ gap: 16 }}>
       <View>
         <Text style={{ marginBottom: 8, fontWeight: '600' }}>Job Role *</Text>
         <Combobox
@@ -78,9 +77,7 @@ export function ComboboxForm() {
       </View>
 
       <Button onPress={handleSubmit} disabled={submitted}>
-        <Text style={{ color: 'white', fontWeight: '600' }}>
-          {submitted ? 'Submitted!' : 'Submit'}
-        </Text>
+        {submitted ? 'Submitted!' : 'Submit'}
       </Button>
     </View>
   );

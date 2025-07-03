@@ -1,4 +1,3 @@
-// registry/examples/file-picker-validation.tsx
 import { FilePicker, SelectedFile } from '@/components/ui/file-picker';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
@@ -21,7 +20,7 @@ export function FilePickerValidation() {
         maxFiles={2}
         maxSizeBytes={1 * 1024 * 1024} // 1MB limit
         allowedExtensions={['pdf', 'doc', 'docx', 'txt']}
-        placeholder='Select documents (PDF, DOC, DOCX, TXT only)'
+        placeholder='Select (PDF, DOC, DOCX, TXT only)'
         showFileInfo={true}
       />
 

@@ -1,4 +1,3 @@
-// registry/examples/avatar-status.tsx
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { View } from '@/components/ui/view';
 import React from 'react';
@@ -32,8 +31,7 @@ export function AvatarStatus() {
 
       <View style={{ position: 'relative' }}>
         <Avatar size={56}>
-          <AvatarImage source={{ uri: 'https://reactnative.dev/Home/Logo' }} />
-          <AvatarFallback>RN</AvatarFallback>
+          <AvatarFallback>BNA</AvatarFallback>
         </Avatar>
         <View
           style={{

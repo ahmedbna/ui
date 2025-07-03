@@ -1,10 +1,9 @@
-// components/ui/audio-recorder.tsx
 import { AudioPlayer } from '@/components/ui/audio-player';
 import { AudioWaveform } from '@/components/ui/audio-waveform';
 import { Button } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
 import { useThemeColor } from '@/hooks/useThemeColor';
-import { CORNERS } from '@/theme/globals';
+import { BORDER_RADIUS } from '@/theme/globals';
 import {
   AudioModule,
   RecordingOptions,
@@ -400,7 +399,7 @@ export function AudioRecorder({
                   onPress={handleStartRecording}
                   style={[styles.recordButton, { backgroundColor: redColor }]}
                 >
-                  <Mic size={24} color='white' />
+                  <Mic size={32} color='white' />
                 </Button>
               </Animated.View>
             )}
@@ -412,7 +411,7 @@ export function AudioRecorder({
                 onPress={handleStopRecording}
                 style={[styles.stopButton, { backgroundColor: redColor }]}
               >
-                <Square size={24} fill='white' color='white' />
+                <Square size={32} fill='white' color='white' />
               </Button>
             )}
           </View>
@@ -424,9 +423,8 @@ export function AudioRecorder({
 
 const styles = StyleSheet.create({
   container: {
-    borderRadius: CORNERS,
+    borderRadius: BORDER_RADIUS,
     padding: 20,
-    margin: 8,
     alignItems: 'center',
   },
   recordingStatus: {

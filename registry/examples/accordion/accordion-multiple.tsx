@@ -7,7 +7,6 @@ import {
 import { Text } from '@/components/ui/text';
 import React from 'react';
 
-// registry/examples/accordion-multiple.tsx
 export function AccordionMultiple() {
   return (
     <Accordion type='multiple' defaultValue={['item-1', 'item-2']}>

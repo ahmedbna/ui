@@ -1,5 +1,3 @@
-// components/ui/text.tsx
-
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { FONT_SIZE } from '@/theme/globals';
 import React, { forwardRef } from 'react';

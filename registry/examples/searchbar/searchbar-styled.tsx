@@ -1,4 +1,3 @@
-// registry/examples/searchbar-styled.tsx
 import { SearchBar } from '@/components/ui/searchbar';
 import { View } from '@/components/ui/view';
 import React, { useState } from 'react';
@@ -16,13 +15,12 @@ export function SearchBarStyled() {
         value={query1}
         onChangeText={setQuery1}
         containerStyle={{
-          backgroundColor: '#f0f9ff',
           borderRadius: 25,
-          borderWidth: 2,
-          borderColor: '#0ea5e9',
+          borderWidth: 1.5,
+          borderColor: 'green',
         }}
         inputStyle={{
-          color: '#0369a1',
+          color: 'green',
           fontWeight: '500',
         }}
       />
@@ -34,7 +32,7 @@ export function SearchBarStyled() {
         onChangeText={setQuery2}
         containerStyle={{
           backgroundColor: 'transparent',
-          borderBottomWidth: 2,
+          borderBottomWidth: 1,
           borderBottomColor: '#374151',
           borderRadius: 0,
           paddingHorizontal: 0,

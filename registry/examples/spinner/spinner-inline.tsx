@@ -1,4 +1,3 @@
-// registry/examples/spinner-inline.tsx
 import { InlineLoader } from '@/components/ui/spinner';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';

@@ -1,7 +1,7 @@
-// registry/examples/scroll-view-nested.tsx
 import { ScrollView } from '@/components/ui/scroll-view';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
+import { BORDER_RADIUS } from '@/theme/globals';
 import React from 'react';
 
 export function ScrollViewNested() {
@@ -11,7 +11,7 @@ export function ScrollViewNested() {
         height: 300,
         borderWidth: 1,
         borderColor: '#e5e7eb',
-        borderRadius: 8,
+        borderRadius: BORDER_RADIUS,
       }}
     >
       <ScrollView contentContainerStyle={{ padding: 16 }}>
@@ -30,12 +30,16 @@ export function ScrollViewNested() {
                 height: 120,
                 borderWidth: 1,
                 borderColor: '#d1d5db',
-                borderRadius: 8,
+                borderRadius: BORDER_RADIUS,
               }}
             >
               <ScrollView
                 horizontal={true}
-                contentContainerStyle={{ padding: 12, gap: 12 }}
+                contentContainerStyle={{
+                  padding: 12,
+                  gap: 12,
+                  alignItems: 'center',
+                }}
                 showsHorizontalScrollIndicator={true}
               >
                 {Array.from({ length: 8 }, (_, itemIndex) => (
@@ -45,7 +49,7 @@ export function ScrollViewNested() {
                       width: 80,
                       height: 80,
                       backgroundColor: '#3b82f6',
-                      borderRadius: 8,
+                      borderRadius: BORDER_RADIUS,
                       justifyContent: 'center',
                       alignItems: 'center',
                     }}
@@ -69,8 +73,7 @@ export function ScrollViewNested() {
         <Text
           style={{
             padding: 16,
-            backgroundColor: '#f9fafb',
-            borderRadius: 8,
+            borderRadius: BORDER_RADIUS,
             textAlign: 'center',
           }}
         >

@@ -12,7 +12,7 @@ import React from 'react';
 
 export function CardDemo() {
   return (
-    <Card style={{ maxWidth: 350 }}>
+    <Card>
       <CardHeader>
         <CardTitle>Card Title</CardTitle>
         <CardDescription>
@@ -28,7 +28,7 @@ export function CardDemo() {
       </CardContent>
       <CardFooter>
         <Button variant='outline'>Cancel</Button>
-        <Button>Confirm</Button>
+        <Button style={{ flex: 1 }}>Confirm</Button>
       </CardFooter>
     </Card>
   );

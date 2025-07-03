@@ -1,10 +1,11 @@
-// registry/examples/file-picker-info.tsx
 import { FilePicker, SelectedFile } from '@/components/ui/file-picker';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
+import { useThemeColor } from '@/hooks/useThemeColor';
 import React, { useState } from 'react';
 
 export function FilePickerInfo() {
+  const card = useThemeColor({}, 'card');
   const [files, setFiles] = useState<SelectedFile[]>([]);
   const [uploadProgress, setUploadProgress] = useState<any>({});
 
@@ -78,11 +79,10 @@ export function FilePickerInfo() {
               key={index}
               style={{
                 padding: 16,
-                backgroundColor: '#fff',
+                backgroundColor: card,
                 borderRadius: 12,
                 marginBottom: 12,
-                borderWidth: 1,
-                borderColor: '#e0e0e0',
+
                 shadowColor: '#000',
                 shadowOffset: { width: 0, height: 2 },
                 shadowOpacity: 0.1,
@@ -110,18 +110,18 @@ export function FilePickerInfo() {
 
                   <View style={{ gap: 2 }}>
                     {file.size && (
-                      <Text style={{ fontSize: 14, color: '#666' }}>
+                      <Text variant='caption' style={{ fontSize: 14 }}>
                         Size: {formatFileSize(file.size)}
                       </Text>
                     )}
 
                     {file.mimeType && (
-                      <Text style={{ fontSize: 14, color: '#666' }}>
+                      <Text variant='caption' style={{ fontSize: 14 }}>
                         Type: {file.mimeType}
                       </Text>
                     )}
 
-                    <Text style={{ fontSize: 14, color: '#666' }}>
+                    <Text variant='caption' style={{ fontSize: 14 }}>
                       Status:{' '}
                       {uploadProgress[index] >= 100
                         ? 'Uploaded'
@@ -153,7 +153,8 @@ export function FilePickerInfo() {
                         />
                       </View>
                       <Text
-                        style={{ fontSize: 12, color: '#666', marginTop: 4 }}
+                        variant='caption'
+                        style={{ fontSize: 12, marginTop: 4 }}
                       >
                         {Math.round(uploadProgress[index] || 0)}%
                       </Text>

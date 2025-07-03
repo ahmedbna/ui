@@ -1,4 +1,3 @@
-// registry/examples/badge-demo.tsx
 import { Badge } from '@/components/ui/badge';
 import { View } from '@/components/ui/view';
 import React from 'react';

@@ -1,7 +1,6 @@
-// registry/examples/table-custom-cells.tsx
-import { Table, TableColumn } from '@/components/ui/table';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
+import { Table, TableColumn } from '@/components/ui/table';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
 import React from 'react';

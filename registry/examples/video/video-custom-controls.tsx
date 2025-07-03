@@ -1,4 +1,3 @@
-// registry/examples/video-custom-controls.tsx
 import { Video } from '@/components/ui/video';
 import React from 'react';
 
@@ -6,7 +5,7 @@ export function VideoCustomControls() {
   return (
     <Video
       source={{
-        uri: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+        uri: 'https://bna-ui.s3.eu-north-1.amazonaws.com/',
       }}
       style={{
         width: '100%',

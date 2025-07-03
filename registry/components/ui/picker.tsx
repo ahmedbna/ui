@@ -1,4 +1,3 @@
-// components/ui/picker.tsx
 import { Icon } from '@/components/ui/icon';
 import { ScrollView } from '@/components/ui/scroll-view';
 import { Text } from '@/components/ui/text';

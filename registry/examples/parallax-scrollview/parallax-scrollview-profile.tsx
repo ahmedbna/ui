@@ -1,5 +1,5 @@
-// registry/examples/parallax-scrollview-profile.tsx
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Badge } from '@/components/ui/badge';
 import { ParallaxScrollView } from '@/components/ui/parallax-scrollview';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
@@ -15,19 +15,19 @@ export function ParallaxScrollViewProfile() {
         <View style={{ position: 'relative', width: '100%', height: '100%' }}>
           <Image
             source={{
-              uri: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop',
+              uri: 'https://images.unsplash.com/photo-1637858868799-7f26a0640eb6?q=80&w=2960&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
             }}
             style={{ width: '100%', height: '100%' }}
             contentFit='cover'
           />
           <LinearGradient
-            colors={['transparent', 'rgba(0,0,0,0.6)']}
+            colors={['transparent', 'black']}
             style={{
               position: 'absolute',
               bottom: 0,
               left: 0,
               right: 0,
-              height: '70%',
+              height: '80%',
             }}
           />
           <View
@@ -40,7 +40,7 @@ export function ParallaxScrollViewProfile() {
               gap: 12,
             }}
           >
-            <Avatar size={80}>
+            <Avatar size={90}>
               <AvatarImage
                 source={{
                   uri: 'https://avatars.githubusercontent.com/u/99088394?v=4',
@@ -103,17 +103,9 @@ export function ParallaxScrollViewProfile() {
               'GraphQL',
               'MongoDB',
             ].map((skill) => (
-              <View
-                key={skill}
-                style={{
-                  backgroundColor: '#e8f4f8',
-                  paddingHorizontal: 12,
-                  paddingVertical: 6,
-                  borderRadius: 16,
-                }}
-              >
-                <Text style={{ fontSize: 14, color: '#0369a1' }}>{skill}</Text>
-              </View>
+              <Badge variant='success' key={skill}>
+                {skill}
+              </Badge>
             ))}
           </View>
         </View>
@@ -122,16 +114,16 @@ export function ParallaxScrollViewProfile() {
           <Text variant='title'>Experience</Text>
           <View style={{ gap: 12 }}>
             <View>
-              <Text style={{ fontWeight: '600' }}>Senior Mobile Developer</Text>
-              <Text style={{ color: '#666' }}>Tech Corp • 2022 - Present</Text>
+              <Text variant='subtitle'>Senior Mobile Developer</Text>
+              <Text variant='caption'>Tech Corp • 2022 - Present</Text>
               <Text style={{ marginTop: 4 }}>
                 Leading mobile development team and architecting scalable React
                 Native applications.
               </Text>
             </View>
             <View>
-              <Text style={{ fontWeight: '600' }}>Frontend Developer</Text>
-              <Text style={{ color: '#666' }}>StartupXYZ • 2020 - 2022</Text>
+              <Text variant='subtitle'>Frontend Developer</Text>
+              <Text variant='caption'>StartupXYZ • 2020 - 2022</Text>
               <Text style={{ marginTop: 4 }}>
                 Built responsive web applications using React and modern
                 frontend technologies.

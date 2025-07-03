@@ -33,6 +33,7 @@ export function BottomSheetForm() {
             <Input
               value={name}
               onChangeText={setName}
+              variant='outline'
               placeholder='Enter your name'
             />
           </View>
@@ -42,16 +43,25 @@ export function BottomSheetForm() {
             <Input
               value={email}
               onChangeText={setEmail}
+              variant='outline'
               placeholder='Enter your email'
               keyboardType='email-address'
             />
           </View>
 
-          <View style={{ flexDirection: 'row', gap: 12, marginTop: 12 }}>
+          <View
+            style={{
+              flex: 1,
+              width: '100%',
+              flexDirection: 'row',
+              gap: 12,
+              marginTop: 12,
+            }}
+          >
             <Button variant='outline' onPress={close} style={{ flex: 1 }}>
               Cancel
             </Button>
-            <Button onPress={handleSubmit} style={{ flex: 1 }}>
+            <Button onPress={handleSubmit} style={{ flex: 2 }}>
               Save
             </Button>
           </View>

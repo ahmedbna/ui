@@ -1,4 +1,3 @@
-// registry/examples/avatar-group.tsx
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { View } from '@/components/ui/view';
 import React from 'react';
@@ -31,8 +30,12 @@ export function AvatarGroup() {
           zIndex: 3,
         }}
       >
-        <AvatarImage source={{ uri: 'https://reactnative.dev/Home/Logo' }} />
-        <AvatarFallback>RN</AvatarFallback>
+        <AvatarImage
+          source={{
+            uri: 'https://reactnative.dev/img/header_logo.svg',
+          }}
+        />
+        <AvatarFallback>AB</AvatarFallback>
       </Avatar>
 
       <Avatar

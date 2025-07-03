@@ -1,4 +1,3 @@
-// docs/demo/toggle/toggle-disabled.tsx
 import { Toggle } from '@/components/ui/toggle';
 import { View } from '@/components/ui/view';
 import { Bold, Italic } from 'lucide-react-native';

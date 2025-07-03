@@ -1,4 +1,3 @@
-// registry/examples/popover-demo.tsx
 import { Button } from '@/components/ui/button';
 import {
   Popover,
@@ -15,7 +14,7 @@ import React from 'react';
 export function PopoverDemo() {
   return (
     <Popover>
-      <PopoverTrigger>
+      <PopoverTrigger asChild>
         <Button>Open Popover</Button>
       </PopoverTrigger>
       <PopoverContent>

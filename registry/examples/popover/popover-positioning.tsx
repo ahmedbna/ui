@@ -1,4 +1,3 @@
-// registry/examples/popover-positioning.tsx
 import { Button } from '@/components/ui/button';
 import {
   Popover,
@@ -14,8 +13,8 @@ export function PopoverPositioning() {
   return (
     <View style={{ gap: 16, alignItems: 'center' }}>
       <Popover>
-        <PopoverTrigger>
-          <Button>Top</Button>
+        <PopoverTrigger asChild>
+          <Button style={{ width: 200 }}>Top</Button>
         </PopoverTrigger>
         <PopoverContent side='top'>
           <PopoverBody>
@@ -26,8 +25,8 @@ export function PopoverPositioning() {
 
       <View style={{ flexDirection: 'row', gap: 16 }}>
         <Popover>
-          <PopoverTrigger>
-            <Button>Left</Button>
+          <PopoverTrigger asChild>
+            <Button style={{ flex: 1 }}>Left</Button>
           </PopoverTrigger>
           <PopoverContent side='left'>
             <PopoverBody>
@@ -37,8 +36,8 @@ export function PopoverPositioning() {
         </Popover>
 
         <Popover>
-          <PopoverTrigger>
-            <Button>Right</Button>
+          <PopoverTrigger asChild>
+            <Button style={{ flex: 1 }}>Right</Button>
           </PopoverTrigger>
           <PopoverContent side='right'>
             <PopoverBody>
@@ -49,8 +48,8 @@ export function PopoverPositioning() {
       </View>
 
       <Popover>
-        <PopoverTrigger>
-          <Button>Bottom</Button>
+        <PopoverTrigger asChild>
+          <Button style={{ width: 200 }}>Bottom</Button>
         </PopoverTrigger>
         <PopoverContent side='bottom'>
           <PopoverBody>

@@ -7,7 +7,6 @@ import {
 import { Text } from '@/components/ui/text';
 import React from 'react';
 
-// registry/examples/accordion-faq.tsx
 export function AccordionFAQ() {
   return (
     <Accordion type='single' collapsible>

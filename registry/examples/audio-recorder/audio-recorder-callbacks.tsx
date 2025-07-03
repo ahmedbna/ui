@@ -1,9 +1,7 @@
-// docs/demo/audio-recorder/audio-recorder-callbacks.tsx
 import { AudioRecorder } from '@/components/ui/audio-recorder';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import React, { useState } from 'react';
-import { Alert } from 'react-native';
+import { useState } from 'react';
 
 export function AudioRecorderCallbacks() {
   const [status, setStatus] = useState('Ready to record');
@@ -23,14 +21,6 @@ export function AudioRecorderCallbacks() {
     setRecordingCount((prev) => prev + 1);
     setStatus(`📁 Recording #${recordingCount + 1} saved`);
 
-    Alert.alert(
-      'Recording Complete',
-      `This is your ${recordingCount + 1}${getOrdinalSuffix(
-        recordingCount + 1
-      )} recording!`,
-      [{ text: 'Great!' }]
-    );
-
     // Reset status after 3 seconds
     setTimeout(() => setStatus('Ready to record'), 3000);
   };
@@ -48,10 +38,6 @@ export function AudioRecorderCallbacks() {
 
   return (
     <View style={{ width: '100%' }}>
-      <Text variant='caption' style={{ marginBottom: 8, textAlign: 'center' }}>
-        Recorder with comprehensive callback handling
-      </Text>
-
       <Text
         variant='body'
         style={{ marginBottom: 16, textAlign: 'center', fontWeight: '500' }}

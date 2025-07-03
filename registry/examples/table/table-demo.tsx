@@ -1,4 +1,3 @@
-// registry/examples/table-demo.tsx
 import { Table, TableColumn } from '@/components/ui/table';
 import React from 'react';
 

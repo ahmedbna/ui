@@ -1,4 +1,3 @@
-// registry/examples/parallax-scrollview-article.tsx
 import { ParallaxScrollView } from '@/components/ui/parallax-scrollview';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
@@ -39,7 +38,7 @@ export function ParallaxScrollViewArticle() {
           >
             <View
               style={{
-                backgroundColor: '#3b82f6',
+                backgroundColor: 'green',
                 paddingHorizontal: 8,
                 paddingVertical: 4,
                 borderRadius: 4,
@@ -81,13 +80,13 @@ export function ParallaxScrollViewArticle() {
       }
     >
       <View style={{ gap: 16 }}>
-        <Text style={{ fontSize: 18, lineHeight: 28, color: '#374151' }}>
+        <Text variant='caption' style={{ fontSize: 18, lineHeight: 28 }}>
           Mobile development has evolved dramatically over the past decade, with
           new frameworks, tools, and paradigms emerging to meet the ever-growing
           demands of users and businesses alike.
         </Text>
 
-        <Text style={{ fontSize: 16, lineHeight: 24, color: '#4b5563' }}>
+        <Text variant='caption'>
           React Native has established itself as a leading cross-platform
           solution, enabling developers to write once and deploy everywhere. The
           framework's component-based architecture and hot reloading
@@ -96,23 +95,22 @@ export function ParallaxScrollViewArticle() {
 
         <View style={{ gap: 8 }}>
           <Text variant='title'>Key Trends in 2024</Text>
-          <Text style={{ fontSize: 16, lineHeight: 24, color: '#4b5563' }}>
+          <Text variant='caption'>
             • AI-powered development tools and code generation
           </Text>
-          <Text style={{ fontSize: 16, lineHeight: 24, color: '#4b5563' }}>
+          <Text variant='caption'>
             • Enhanced performance optimization techniques
           </Text>
-          <Text style={{ fontSize: 16, lineHeight: 24, color: '#4b5563' }}>
+          <Text variant='caption'>
             • Better cross-platform native module integration
           </Text>
-          <Text style={{ fontSize: 16, lineHeight: 24, color: '#4b5563' }}>
+          <Text variant='caption'>
             • Improved debugging and testing frameworks
           </Text>
         </View>
 
         <View
           style={{
-            backgroundColor: '#f0f9ff',
             padding: 16,
             borderRadius: 8,
             borderLeftWidth: 4,
@@ -125,7 +123,7 @@ export function ParallaxScrollViewArticle() {
           </Text>
         </View>
 
-        <Text style={{ fontSize: 16, lineHeight: 24, color: '#4b5563' }}>
+        <Text variant='caption'>
           Performance optimization remains a critical consideration. Modern apps
           need to handle complex animations, large datasets, and real-time
           updates while maintaining smooth 60fps interactions.
@@ -133,7 +131,7 @@ export function ParallaxScrollViewArticle() {
 
         <View style={{ gap: 8 }}>
           <Text variant='title'>Looking Ahead</Text>
-          <Text style={{ fontSize: 16, lineHeight: 24, color: '#4b5563' }}>
+          <Text variant='caption'>
             The future of mobile development is bright, with emerging
             technologies like AR/VR integration, improved offline capabilities,
             and seamless cloud integration opening new possibilities for
@@ -143,7 +141,7 @@ export function ParallaxScrollViewArticle() {
 
         <View
           style={{
-            borderTopWidth: 1,
+            borderTopWidth: 0.5,
             borderTopColor: '#e5e7eb',
             paddingTop: 16,
             marginTop: 16,

@@ -1,4 +1,3 @@
-// registry/examples/accordion-demo.tsx
 import {
   Accordion,
   AccordionContent,
@@ -8,7 +7,6 @@ import {
 import { Text } from '@/components/ui/text';
 import React from 'react';
 
-// registry/examples/accordion-single.tsx
 export function AccordionSingle() {
   return (
     <Accordion type='single' collapsible>

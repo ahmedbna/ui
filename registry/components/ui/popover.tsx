@@ -1,4 +1,3 @@
-// components/ui/popover.tsx
 import { Button } from '@/components/ui/button';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { BORDER_RADIUS } from '@/theme/globals';

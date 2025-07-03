@@ -1,4 +1,3 @@
-// registry/examples/media-picker-demo.tsx
 import { MediaPicker } from '@/components/ui/media-picker';
 import React from 'react';
 

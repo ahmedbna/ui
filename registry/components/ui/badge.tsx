@@ -1,4 +1,3 @@
-// components/ui/badge.tsx
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
 import { useThemeColor } from '@/hooks/useThemeColor';
@@ -32,10 +31,12 @@ export function Badge({
   const destructiveColor = useThemeColor({}, 'destructive');
   const destructiveForegroundColor = useThemeColor({}, 'destructiveForeground');
   const borderColor = useThemeColor({}, 'border');
-  const successColor = useThemeColor({}, 'border');
+  const successColor = useThemeColor({}, 'green');
 
   const getBadgeStyle = (): ViewStyle => {
     const baseStyle: ViewStyle = {
+      alignItems: 'center',
+      justifyContent: 'center',
       paddingVertical: 6,
       paddingHorizontal: 12,
       borderRadius: CORNERS,
@@ -64,6 +65,7 @@ export function Badge({
     const baseTextStyle: TextStyle = {
       fontSize: 15,
       fontWeight: '500',
+      textAlign: 'center',
     };
 
     switch (variant) {

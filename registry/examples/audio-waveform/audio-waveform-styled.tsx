@@ -82,7 +82,7 @@ export function AudioWaveformStyled() {
       <View
         style={{
           padding: 16,
-          backgroundColor: '#F8F9FA',
+          backgroundColor: 'teal',
           borderRadius: 12,
           borderLeftWidth: 4,
           borderLeftColor: '#34C759',

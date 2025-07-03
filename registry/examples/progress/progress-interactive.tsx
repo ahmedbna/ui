@@ -1,4 +1,3 @@
-// registry/examples/progress-interactive.tsx
 import { Progress } from '@/components/ui/progress';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
@@ -16,7 +15,7 @@ export function ProgressInteractive() {
       <Progress
         value={value}
         interactive
-        height={8}
+        height={18}
         onValueChange={setValue}
         onSeekStart={() => setIsSeeking(true)}
         onSeekEnd={() => setIsSeeking(false)}

@@ -1,7 +1,6 @@
-// registry/examples/input/input-icons.tsx
 import { Input } from '@/components/ui/input';
 import { View } from '@/components/ui/view';
-import { Mail, Lock, Search, Phone } from 'lucide-react-native';
+import { Lock, Mail, Phone, Search } from 'lucide-react-native';
 import React from 'react';
 
 export function InputIcons() {

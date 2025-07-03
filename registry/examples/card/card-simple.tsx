@@ -4,7 +4,7 @@ import React from 'react';
 
 export function CardSimple() {
   return (
-    <Card style={{ maxWidth: 300 }}>
+    <Card>
       <CardContent>
         <Text>
           A simple card with just content. Perfect for displaying basic

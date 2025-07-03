@@ -1,4 +1,3 @@
-// registry/examples/carousel-no-indicators.tsx
 import { Carousel, CarouselItem } from '@/components/ui/carousel';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
@@ -7,7 +6,6 @@ import { Minus, TrendingDown, TrendingUp } from 'lucide-react-native';
 import React from 'react';
 
 export function CarouselNoIndicators() {
-  const cardColor = useThemeColor({}, 'card');
   const textColor = useThemeColor({}, 'text');
 
   const stats = [
@@ -53,82 +51,70 @@ export function CarouselNoIndicators() {
   };
 
   return (
-    <View>
-      <Text
-        variant='body'
-        style={{
-          marginBottom: 16,
-          color: textColor,
-          textAlign: 'center',
-        }}
-      >
-        Use arrows to navigate through stats
-      </Text>
-      <Carousel showArrows showIndicators={false} loop>
-        {stats.map((stat, index) => {
-          const TrendIcon = getTrendIcon(stat.trend);
-          return (
-            <CarouselItem key={index}>
-              <View
+    <Carousel showArrows showIndicators={false} loop>
+      {stats.map((stat, index) => {
+        const TrendIcon = getTrendIcon(stat.trend);
+        return (
+          <CarouselItem key={index}>
+            <View
+              style={{
+                alignItems: 'center',
+                justifyContent: 'center',
+                minHeight: 180,
+                padding: 24,
+              }}
+            >
+              <Text
                 style={{
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  minHeight: 180,
-                  padding: 24,
+                  color: textColor,
+                  opacity: 0.7,
+                  fontSize: 14,
+                  marginBottom: 8,
+                  textTransform: 'uppercase',
+                  letterSpacing: 1,
                 }}
               >
+                {stat.title}
+              </Text>
+
+              <Text
+                variant='title'
+                style={{
+                  color: textColor,
+                  fontSize: 32,
+                  fontWeight: 'bold',
+                  marginBottom: 12,
+                }}
+              >
+                {stat.value}
+              </Text>
+
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  gap: 4,
+                  backgroundColor: `${stat.color}15`,
+                  paddingHorizontal: 12,
+                  paddingVertical: 6,
+                  borderRadius: 20,
+                }}
+              >
+                <TrendIcon size={16} color={stat.color} />
                 <Text
                   style={{
-                    color: textColor,
-                    opacity: 0.7,
+                    color: stat.color,
                     fontSize: 14,
-                    marginBottom: 8,
-                    textTransform: 'uppercase',
-                    letterSpacing: 1,
+                    fontWeight: '600',
                   }}
                 >
-                  {stat.title}
+                  {stat.change}
                 </Text>
-
-                <Text
-                  variant='title'
-                  style={{
-                    color: textColor,
-                    fontSize: 32,
-                    fontWeight: 'bold',
-                    marginBottom: 12,
-                  }}
-                >
-                  {stat.value}
-                </Text>
-
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    gap: 4,
-                    backgroundColor: `${stat.color}15`,
-                    paddingHorizontal: 12,
-                    paddingVertical: 6,
-                    borderRadius: 20,
-                  }}
-                >
-                  <TrendIcon size={16} color={stat.color} />
-                  <Text
-                    style={{
-                      color: stat.color,
-                      fontSize: 14,
-                      fontWeight: '600',
-                    }}
-                  >
-                    {stat.change}
-                  </Text>
-                </View>
               </View>
-            </CarouselItem>
-          );
-        })}
-      </Carousel>
-    </View>
+            </View>
+          </CarouselItem>
+        );
+      })}
+    </Carousel>
   );
 }

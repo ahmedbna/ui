@@ -1,4 +1,3 @@
-// registry/examples/link-buttons.tsx
 import { Button } from '@/components/ui/button';
 import { Link } from '@/components/ui/link';
 import { View } from '@/components/ui/view';
@@ -9,19 +8,19 @@ export function LinkButtons() {
   return (
     <View style={{ gap: 16 }}>
       <View style={{ gap: 12 }}>
-        <Link href='/'>
+        <Link href='/' asChild>
           <Button variant='default' icon={User}>
             View Profile
           </Button>
         </Link>
 
-        <Link href='/'>
+        <Link href='/' asChild>
           <Button variant='outline' icon={Settings}>
             Open Settings
           </Button>
         </Link>
 
-        <Link href='https://github.com' browser='external'>
+        <Link href='https://github.com' browser='external' asChild>
           <Button variant='secondary' icon={ExternalLink}>
             Visit GitHub
           </Button>
@@ -29,38 +28,38 @@ export function LinkButtons() {
       </View>
 
       <View style={{ flexDirection: 'row', gap: 12, flexWrap: 'wrap' }}>
-        <Link href='/'>
+        <Link href='/' asChild>
           <Button variant='default' size='sm'>
             Dashboard
           </Button>
         </Link>
 
-        <Link href='/'>
+        <Link href='/' asChild>
           <Button variant='ghost' size='sm'>
             Help
-          </Button>
-        </Link>
-
-        <Link href='mailto:support@example.com'>
-          <Button variant='link' size='sm'>
-            Contact
           </Button>
         </Link>
       </View>
 
       <View style={{ gap: 8 }}>
-        <Link href='/'>
+        <Link href='/' asChild>
           <Button variant='destructive' size='lg'>
             Danger Zone
           </Button>
         </Link>
 
-        <Link href='/'>
+        <Link href='/' asChild>
           <Button variant='success' size='lg'>
             Success Action
           </Button>
         </Link>
       </View>
+
+      <Link href='mailto:support@example.com' asChild>
+        <Button variant='link' size='sm'>
+          Contact
+        </Button>
+      </Link>
     </View>
   );
 }

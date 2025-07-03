@@ -1,4 +1,3 @@
-// registry/examples/share-hook.tsx
 import { Button } from '@/components/ui/button';
 import { useShare } from '@/components/ui/share';
 import { Text } from '@/components/ui/text';

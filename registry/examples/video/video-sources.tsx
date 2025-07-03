@@ -1,6 +1,5 @@
-// registry/examples/video-sources.tsx
-import { Video } from '@/components/ui/video';
 import { Text } from '@/components/ui/text';
+import { Video } from '@/components/ui/video';
 import { View } from '@/components/ui/view';
 import React from 'react';
 
@@ -8,7 +7,7 @@ export function VideoSources() {
   const videoSources = [
     {
       title: 'MP4 Source',
-      uri: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+      uri: 'https://bna-ui.s3.eu-north-1.amazonaws.com/',
     },
     {
       title: 'Alternative MP4',

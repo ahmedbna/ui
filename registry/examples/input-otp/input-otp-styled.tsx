@@ -1,4 +1,3 @@
-// registry/examples/input-otp-styled.tsx
 import { InputOTP } from '@/components/ui/input-otp';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';

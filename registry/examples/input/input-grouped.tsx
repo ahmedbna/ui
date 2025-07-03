@@ -1,6 +1,5 @@
-// registry/examples/input/input-grouped.tsx
 import { GroupedInput, GroupedInputItem } from '@/components/ui/input';
-import { User, Mail, Phone, MapPin } from 'lucide-react-native';
+import { Mail, MapPin, Phone, User } from 'lucide-react-native';
 import React from 'react';
 
 export function InputGrouped() {

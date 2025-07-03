@@ -1,4 +1,3 @@
-// registry/examples/searchbar-suggestions.tsx
 import { SearchBarWithSuggestions } from '@/components/ui/searchbar';
 import React, { useState } from 'react';
 

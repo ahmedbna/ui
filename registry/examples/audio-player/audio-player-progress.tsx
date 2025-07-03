@@ -1,26 +1,17 @@
 import { AudioPlayer } from '@/components/ui/audio-player';
-import { Text } from '@/components/ui/text';
-import { View } from '@/components/ui/view';
-import React from 'react';
 
 export function AudioPlayerProgress() {
   const sampleAudioUrl =
-    'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav';
+    'https://www.thesoundarchive.com/ringtones/old-phone-ringing.wav';
 
   return (
-    <View style={{ width: '100%' }}>
-      <Text variant='caption' style={{ marginBottom: 12, textAlign: 'center' }}>
-        Simple player with progress bar seeking only
-      </Text>
-
-      <AudioPlayer
-        source={{ uri: sampleAudioUrl }}
-        showControls={true}
-        showWaveform={false}
-        showTimer={true}
-        showProgressBar={true}
-        autoPlay={false}
-      />
-    </View>
+    <AudioPlayer
+      source={{ uri: sampleAudioUrl }}
+      showControls={true}
+      showWaveform={false}
+      showTimer={true}
+      showProgressBar={true}
+      autoPlay={false}
+    />
   );
 }

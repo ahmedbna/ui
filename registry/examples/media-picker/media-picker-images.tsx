@@ -1,4 +1,3 @@
-// registry/examples/media-picker-images.tsx
 import { MediaPicker } from '@/components/ui/media-picker';
 import { Image } from 'lucide-react-native';
 import React from 'react';

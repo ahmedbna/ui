@@ -1,4 +1,3 @@
-// registry/examples/sheet-filter.tsx
 import { Button } from '@/components/ui/button';
 import {
   Sheet,
@@ -13,7 +12,7 @@ import { View } from '@/components/ui/view';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { Filter } from 'lucide-react-native';
 import React, { useState } from 'react';
-import { TouchableOpacity, StyleSheet } from 'react-native';
+import { StyleSheet, TouchableOpacity } from 'react-native';
 
 export function SheetFilter() {
   const [open, setOpen] = useState(false);
@@ -125,10 +124,7 @@ export function SheetFilter() {
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger>
-        <Button>
-          <Filter size={16} color='white' />
-          <Text style={{ color: 'white', marginLeft: 8 }}>Filter</Text>
-        </Button>
+        <Button icon={Filter}>Filter</Button>
       </SheetTrigger>
       <SheetContent>
         <SheetHeader>

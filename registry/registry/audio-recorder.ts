@@ -23,8 +23,8 @@ export const audioRecorderRegistry = {
     ],
     preview: {
       light:
-        'https://ui-lib-previews.s3.amazonaws.com/audio-recorder-light.mp4',
-      dark: 'https://ui-lib-previews.s3.amazonaws.com/audio-recorder-dark.mp4',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-29-2025 20-42-54_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-29-2025 20-42-54_1.MP4',
     },
   },
 
@@ -44,8 +44,8 @@ export const audioRecorderRegistry = {
     ],
     preview: {
       light:
-        'https://ui-lib-previews.s3.amazonaws.com/audio-recorder-demo-light.mp4',
-      dark: 'https://ui-lib-previews.s3.amazonaws.com/audio-recorder-demo-dark.mp4',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-29-2025 20-42-54_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-29-2025 20-42-54_1.MP4',
     },
   },
 
@@ -64,8 +64,8 @@ export const audioRecorderRegistry = {
     ],
     preview: {
       light:
-        'https://ui-lib-previews.s3.amazonaws.com/audio-recorder-voice-light.mp4',
-      dark: 'https://ui-lib-previews.s3.amazonaws.com/audio-recorder-voice-dark.mp4',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-29-2025 20-43-38_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-29-2025 20-43-38_1.MP4',
     },
   },
 
@@ -84,8 +84,8 @@ export const audioRecorderRegistry = {
     ],
     preview: {
       light:
-        'https://ui-lib-previews.s3.amazonaws.com/audio-recorder-hq-light.mp4',
-      dark: 'https://ui-lib-previews.s3.amazonaws.com/audio-recorder-hq-dark.mp4',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-29-2025 20-44-45_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-29-2025 20-44-45_1.MP4',
     },
   },
 
@@ -104,8 +104,8 @@ export const audioRecorderRegistry = {
     ],
     preview: {
       light:
-        'https://ui-lib-previews.s3.amazonaws.com/audio-recorder-minimal-light.mp4',
-      dark: 'https://ui-lib-previews.s3.amazonaws.com/audio-recorder-minimal-dark.mp4',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-29-2025 20-46-02_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-29-2025 20-46-02_1.MP4',
     },
   },
 
@@ -124,8 +124,8 @@ export const audioRecorderRegistry = {
     ],
     preview: {
       light:
-        'https://ui-lib-previews.s3.amazonaws.com/audio-recorder-styled-light.mp4',
-      dark: 'https://ui-lib-previews.s3.amazonaws.com/audio-recorder-styled-dark.mp4',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-29-2025 20-48-19_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-29-2025 20-48-19_1.MP4',
     },
   },
 
@@ -144,8 +144,8 @@ export const audioRecorderRegistry = {
     ],
     preview: {
       light:
-        'https://ui-lib-previews.s3.amazonaws.com/audio-recorder-callbacks-light.mp4',
-      dark: 'https://ui-lib-previews.s3.amazonaws.com/audio-recorder-callbacks-dark.mp4',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-29-2025 20-50-18_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-29-2025 20-50-18_1.MP4',
     },
   },
 
@@ -164,8 +164,8 @@ export const audioRecorderRegistry = {
     ],
     preview: {
       light:
-        'https://ui-lib-previews.s3.amazonaws.com/audio-recorder-cloud-light.mp4',
-      dark: 'https://ui-lib-previews.s3.amazonaws.com/audio-recorder-cloud-dark.mp4',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-29-2025 20-51-43_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-29-2025 20-51-43_1.MP4',
     },
   },
 
@@ -184,8 +184,8 @@ export const audioRecorderRegistry = {
     ],
     preview: {
       light:
-        'https://ui-lib-previews.s3.amazonaws.com/audio-recorder-interview-light.mp4',
-      dark: 'https://ui-lib-previews.s3.amazonaws.com/audio-recorder-interview-dark.mp4',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-29-2025 20-52-32_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-29-2025 20-52-32_1.MP4',
     },
   },
 };

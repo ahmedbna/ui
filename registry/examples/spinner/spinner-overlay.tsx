@@ -1,4 +1,3 @@
-// registry/examples/spinner-overlay.tsx
 import { Button } from '@/components/ui/button';
 import { LoadingOverlay } from '@/components/ui/spinner';
 import { View } from '@/components/ui/view';

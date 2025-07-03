@@ -1,4 +1,3 @@
-// registry/examples/searchbar-no-clear.tsx
 import { SearchBar } from '@/components/ui/searchbar';
 import React, { useState } from 'react';
 

@@ -1,4 +1,3 @@
-// registry/examples/parallax-scrollview-gradient.tsx
 import { ParallaxScrollView } from '@/components/ui/parallax-scrollview';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
@@ -14,13 +13,13 @@ export function ParallaxScrollViewGradient() {
         <View style={{ position: 'relative', width: '100%', height: '100%' }}>
           <Image
             source={{
-              uri: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&h=600&fit=crop',
+              uri: 'https://images.unsplash.com/photo-1575737698350-52e966f924d4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
             }}
             style={{ width: '100%', height: '100%' }}
             contentFit='cover'
           />
           <LinearGradient
-            colors={['transparent', 'rgba(0,0,0,0.8)']}
+            colors={['transparent', 'black']}
             style={{
               position: 'absolute',
               bottom: 0,
@@ -67,10 +66,7 @@ export function ParallaxScrollViewGradient() {
           This technique is commonly used in hero sections, article headers, and
           profile screens where you need to overlay content on images.
         </Text>
-        <View style={{ height: 150, backgroundColor: '#e8f4f8', padding: 16 }}>
-          <Text variant='title'>Feature Section</Text>
-          <Text>Additional content with background color</Text>
-        </View>
+
         <Text>
           The parallax effect works seamlessly with gradient overlays and
           maintains smooth performance even with multiple layers.

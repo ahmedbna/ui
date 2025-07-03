@@ -1,4 +1,3 @@
-// components/ui/combobox.tsx
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { BORDER_RADIUS, CORNERS, FONT_SIZE, HEIGHT } from '@/theme/globals';
 import { ChevronDown } from 'lucide-react-native';

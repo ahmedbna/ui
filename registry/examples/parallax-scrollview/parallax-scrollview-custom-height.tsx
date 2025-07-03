@@ -1,4 +1,3 @@
-// registry/examples/parallax-scrollview-custom-height.tsx
 import { ParallaxScrollView } from '@/components/ui/parallax-scrollview';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
@@ -8,11 +7,11 @@ import React from 'react';
 export function ParallaxScrollViewCustomHeight() {
   return (
     <ParallaxScrollView
-      headerHeight={400}
+      headerHeight={500}
       headerImage={
         <Image
           source={{
-            uri: 'https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=800&h=600&fit=crop',
+            uri: 'https://images.unsplash.com/photo-1644190022446-04b99df7259a?q=80&w=2012&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
           }}
           style={{ width: '100%', height: '100%' }}
           contentFit='cover'
@@ -22,7 +21,7 @@ export function ParallaxScrollViewCustomHeight() {
       <View style={{ gap: 16 }}>
         <Text variant='heading'>Custom Header Height</Text>
         <Text>
-          This example demonstrates a taller header (400px) that provides more
+          This example demonstrates a taller header (500px) that provides more
           visual impact and space for the parallax effect.
         </Text>
         <Text>
@@ -34,9 +33,7 @@ export function ParallaxScrollViewCustomHeight() {
           automatically adjusting the transformation values based on the
           specified height.
         </Text>
-        <View style={{ height: 200, backgroundColor: '#f0f0f0', padding: 16 }}>
-          <Text>Additional content section</Text>
-        </View>
+
         <Text>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua.

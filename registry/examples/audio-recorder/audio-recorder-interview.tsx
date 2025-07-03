@@ -1,4 +1,3 @@
-// docs/demo/audio-recorder/audio-recorder-interview.tsx
 import { AudioRecorder } from '@/components/ui/audio-recorder';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
@@ -30,14 +29,11 @@ export function AudioRecorderInterview() {
 
   return (
     <View style={{ width: '100%' }}>
-      <Text variant='caption' style={{ marginBottom: 12, textAlign: 'center' }}>
-        Professional recorder for interviews and meetings
-      </Text>
-
       <View style={styles.interviewHeader}>
         <Text variant='title' style={styles.interviewTitle}>
           {interviewTitle || 'Ready for Interview'}
         </Text>
+
         <View
           style={[styles.statusBadge, isRecording && styles.recordingBadge]}
         >

@@ -1,65 +1,57 @@
-// registry/examples/carousel-demo.tsx
 import { Carousel, CarouselItem } from '@/components/ui/carousel';
 import { Text } from '@/components/ui/text';
-import { View } from '@/components/ui/view';
-import React from 'react';
 
 export function CarouselDemo() {
   return (
-    <Carousel autoPlay autoPlayInterval={4000} showIndicators>
-      <CarouselItem>
-        <View
+    <Carousel
+      showIndicators={true}
+      showArrows={true}
+      autoPlay={true}
+      loop={true}
+    >
+      {slides.map((slide) => (
+        <CarouselItem
+          key={slide.id}
           style={{
-            alignItems: 'center',
-            justifyContent: 'center',
             minHeight: 200,
-            backgroundColor: '#f0f9ff',
+            justifyContent: 'center',
+            alignItems: 'center',
           }}
         >
-          <Text variant='title' style={{ color: '#0369a1' }}>
-            Welcome to Slide 1
+          <Text variant='subtitle'>{slide.title}</Text>
+          <Text
+            style={{
+              marginTop: 8,
+              opacity: 0.7,
+            }}
+          >
+            {slide.content}
           </Text>
-          <Text style={{ marginTop: 8, textAlign: 'center', color: '#0369a1' }}>
-            This is a beautiful carousel component with auto-play enabled.
-          </Text>
-        </View>
-      </CarouselItem>
-
-      <CarouselItem>
-        <View
-          style={{
-            alignItems: 'center',
-            justifyContent: 'center',
-            minHeight: 200,
-            backgroundColor: '#f0fdf4',
-          }}
-        >
-          <Text variant='title' style={{ color: '#166534' }}>
-            Discover Slide 2
-          </Text>
-          <Text style={{ marginTop: 8, textAlign: 'center', color: '#166534' }}>
-            Swipe left or right to navigate between slides manually.
-          </Text>
-        </View>
-      </CarouselItem>
-
-      <CarouselItem>
-        <View
-          style={{
-            alignItems: 'center',
-            justifyContent: 'center',
-            minHeight: 200,
-            backgroundColor: '#fefce8',
-          }}
-        >
-          <Text variant='title' style={{ color: '#a16207' }}>
-            Explore Slide 3
-          </Text>
-          <Text style={{ marginTop: 8, textAlign: 'center', color: '#a16207' }}>
-            Touch the indicators below to jump to any slide.
-          </Text>
-        </View>
-      </CarouselItem>
+        </CarouselItem>
+      ))}
     </Carousel>
   );
 }
+
+const slides = [
+  {
+    id: 1,
+    title: 'Full Width Slide 1',
+    content: 'This slide takes the full width of the container',
+  },
+  {
+    id: 2,
+    title: 'Full Width Slide 2',
+    content: 'Perfect for hero sections and main content',
+  },
+  {
+    id: 3,
+    title: 'Full Width Slide 3',
+    content: 'Uses paging for smooth navigation',
+  },
+  {
+    id: 4,
+    title: 'Full Width Slide 4',
+    content: 'Default behavior - no spacing needed',
+  },
+];

@@ -1,11 +1,22 @@
-// registry/examples/skeleton-profile.tsx
 import { Skeleton } from '@/components/ui/skeleton';
 import { View } from '@/components/ui/view';
+import { useThemeColor } from '@/hooks/useThemeColor';
+import { BORDER_RADIUS } from '@/theme/globals';
 import React from 'react';
 
 export function SkeletonProfile() {
+  const card = useThemeColor({}, 'card');
+
   return (
-    <View style={{ alignItems: 'center', gap: 16 }}>
+    <View
+      style={{
+        alignItems: 'center',
+        gap: 16,
+        padding: 16,
+        borderRadius: BORDER_RADIUS,
+        backgroundColor: card,
+      }}
+    >
       {/* Profile Picture */}
       <Skeleton width={80} height={80} style={{ borderRadius: 40 }} />
 

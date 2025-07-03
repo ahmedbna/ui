@@ -1,4 +1,3 @@
-// registry/examples/icon-grid.tsx
 import { Icon } from '@/components/ui/icon';
 import { View } from '@/components/ui/view';
 import {
@@ -47,8 +46,6 @@ export function IconGrid() {
         flexDirection: 'row',
         flexWrap: 'wrap',
         gap: 16,
-        justifyContent: 'space-between',
-        maxWidth: 240,
       }}
     >
       {icons.map((IconComponent, index) => (

@@ -25,6 +25,7 @@ export interface InputProps extends Omit<TextInputProps, 'style'> {
   variant?: 'filled' | 'outline';
   disabled?: boolean;
   type?: 'input' | 'textarea';
+  placeholder?: string;
   rows?: number; // Only used when type="textarea"
 }
 
@@ -258,6 +259,7 @@ export const Input = forwardRef<TextInput, InputProps>(
                   onFocus={handleFocus}
                   onBlur={handleBlur}
                   editable={!disabled}
+                  placeholder={placeholder}
                   selectionColor={primary}
                   {...props}
                 />
@@ -582,6 +584,7 @@ export const GroupedInputItem = forwardRef<TextInput, GroupedInputItemProps>(
                     },
                     inputStyle,
                   ]}
+                  placeholder={placeholder}
                   placeholderTextColor={error ? danger + '99' : muted}
                   editable={!disabled}
                   selectionColor={primary}

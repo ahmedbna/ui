@@ -1,4 +1,3 @@
-// registry/examples/toast-actions.tsx
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/toast';
 import { View } from '@/components/ui/view';

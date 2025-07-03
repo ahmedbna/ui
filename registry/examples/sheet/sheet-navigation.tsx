@@ -1,5 +1,5 @@
-// registry/examples/sheet-navigation.tsx
 import { Button } from '@/components/ui/button';
+import { Icon } from '@/components/ui/icon';
 import {
   Sheet,
   SheetContent,
@@ -21,7 +21,6 @@ export function SheetNavigation() {
 
   const textColor = useThemeColor({}, 'text');
   const mutedColor = useThemeColor({}, 'textMuted');
-  const backgroundColor = useThemeColor({}, 'background');
   const borderColor = useThemeColor({}, 'border');
 
   const navigationItems = [
@@ -69,7 +68,11 @@ export function SheetNavigation() {
                 ]}
                 onPress={() => handleItemPress(item.id)}
               >
-                <name size={20} color={isActive ? textColor : mutedColor} />
+                <Icon
+                  name={name}
+                  size={20}
+                  color={isActive ? textColor : mutedColor}
+                />
                 <Text
                   style={[
                     styles.navigationText,

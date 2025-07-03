@@ -1,11 +1,21 @@
-// registry/examples/skeleton-list.tsx
 import { Skeleton } from '@/components/ui/skeleton';
 import { View } from '@/components/ui/view';
+import { useThemeColor } from '@/hooks/useThemeColor';
+import { BORDER_RADIUS } from '@/theme/globals';
 import React from 'react';
 
 export function SkeletonList() {
+  const card = useThemeColor({}, 'card');
+
   return (
-    <View style={{ gap: 16 }}>
+    <View
+      style={{
+        gap: 16,
+        padding: 16,
+        borderRadius: BORDER_RADIUS,
+        backgroundColor: card,
+      }}
+    >
       {Array.from({ length: 5 }, (_, i) => (
         <View
           key={i}

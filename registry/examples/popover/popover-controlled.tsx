@@ -1,4 +1,3 @@
-// registry/examples/popover-controlled.tsx
 import { Button } from '@/components/ui/button';
 import {
   Popover,
@@ -34,7 +33,7 @@ export function PopoverControlled() {
       <Text>Status: {isOpen ? 'Open' : 'Closed'}</Text>
 
       <Popover open={isOpen} onOpenChange={setIsOpen}>
-        <PopoverTrigger>
+        <PopoverTrigger asChild>
           <Button>Controlled Popover</Button>
         </PopoverTrigger>
         <PopoverContent>

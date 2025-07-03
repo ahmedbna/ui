@@ -1,9 +1,8 @@
-// registry/examples/icon-interactive.tsx
+import { Button } from '@/components/ui/button';
 import { Icon } from '@/components/ui/icon';
 import { View } from '@/components/ui/view';
 import { Bookmark, Heart, Share, ThumbsUp } from 'lucide-react-native';
 import React, { useState } from 'react';
-import { Pressable } from 'react-native';
 
 export function IconInteractive() {
   const [liked, setLiked] = useState(false);
@@ -51,16 +50,7 @@ export function IconInteractive() {
     >
       {iconButtons.map(
         ({ icon, active, onPress, activeColor, inactiveColor }, index) => (
-          <Pressable
-            key={index}
-            onPress={onPress}
-            style={({ pressed }) => ({
-              padding: 8,
-              borderRadius: 8,
-              backgroundColor: pressed ? '#f0f0f0' : 'transparent',
-              opacity: pressed ? 0.7 : 1,
-            })}
-          >
+          <Button key={index} variant='ghost' size='icon' onPress={onPress}>
             <Icon
               name={icon}
               size={24}
@@ -68,7 +58,7 @@ export function IconInteractive() {
               fill={active ? activeColor : 'transparent'}
               fillOpacity={active ? 0.2 : 0}
             />
-          </Pressable>
+          </Button>
         )
       )}
     </View>

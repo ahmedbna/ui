@@ -1,15 +1,13 @@
-// registry/examples/input/input-form.tsx
-import { Input, GroupedInput, GroupedInputItem } from '@/components/ui/input';
-import { View } from '@/components/ui/view';
 import { Button } from '@/components/ui/button';
-import { Text } from '@/components/ui/text';
+import { GroupedInput, GroupedInputItem, Input } from '@/components/ui/input';
+import { View } from '@/components/ui/view';
 import {
-  User,
-  Mail,
-  Lock,
-  Phone,
-  CreditCard,
   Calendar,
+  CreditCard,
+  Lock,
+  Mail,
+  Phone,
+  User,
 } from 'lucide-react-native';
 import React, { useState } from 'react';
 
@@ -155,9 +153,7 @@ export function InputForm() {
         />
       </GroupedInput>
 
-      <Button onPress={handleSubmit}>
-        <Text>Submit Form</Text>
-      </Button>
+      <Button onPress={handleSubmit}>Submit Form</Button>
     </View>
   );
 }

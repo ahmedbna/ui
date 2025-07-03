@@ -1,5 +1,5 @@
 import { Picker } from '@/components/ui/picker';
-import { MapPin, User, Settings } from 'lucide-react-native';
+import { MapPin, Settings, User } from 'lucide-react-native';
 import React, { useState } from 'react';
 
 export function PickerStyled() {

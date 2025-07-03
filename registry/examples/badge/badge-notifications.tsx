@@ -1,4 +1,3 @@
-// registry/examples/badge-notifications.tsx
 import { Badge } from '@/components/ui/badge';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
@@ -29,10 +28,11 @@ export function BadgeNotifications() {
           <Badge
             variant='destructive'
             style={{
-              minWidth: 20,
+              width: 20,
               height: 20,
-              paddingHorizontal: 6,
-              paddingVertical: 2,
+              paddingHorizontal: 0,
+              paddingVertical: 0,
+              borderRadius: 999,
             }}
             textStyle={{ fontSize: 12 }}
           >

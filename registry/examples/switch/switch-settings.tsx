@@ -1,9 +1,12 @@
-// registry/examples/switch-settings.tsx
 import { Switch } from '@/components/ui/switch';
 import { View } from '@/components/ui/view';
+import { useThemeColor } from '@/hooks/useThemeColor';
+import { BORDER_RADIUS } from '@/theme/globals';
 import React, { useState } from 'react';
 
 export function SwitchSettings() {
+  const card = useThemeColor({}, 'card');
+
   const [notifications, setNotifications] = useState(true);
   const [darkMode, setDarkMode] = useState(false);
   const [location, setLocation] = useState(true);
@@ -12,8 +15,8 @@ export function SwitchSettings() {
   return (
     <View
       style={{
-        backgroundColor: '#f8f9fa',
-        borderRadius: 8,
+        backgroundColor: card,
+        borderRadius: BORDER_RADIUS,
         padding: 16,
         gap: 16,
       }}

@@ -54,36 +54,28 @@ export function AudioWaveformCompact() {
     >
       <Button
         onPress={() => setIsPlaying(!isPlaying)}
-        style={{
-          backgroundColor: sent ? 'rgba(255, 255, 255, 0.2)' : '#007AFF',
-          borderRadius: 16,
-          width: 32,
-          height: 32,
-          padding: 0,
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
+        variant='ghost'
+        size='icon'
       >
-        <Text style={{ color: sent ? 'white' : 'white', fontSize: 12 }}>
-          {isPlaying ? '⏸️' : '▶️'}
-        </Text>
+        {isPlaying ? '⏸️' : '▶️'}
       </Button>
 
-      <AudioWaveform
-        data={data}
-        isPlaying={isPlaying}
-        progress={progress}
-        showProgress={true}
-        interactive={true}
-        onSeek={setProgress}
-        height={24}
-        barCount={15}
-        barWidth={2}
-        barGap={1}
-        activeColor={sent ? 'white' : '#007AFF'}
-        inactiveColor={sent ? 'rgba(255, 255, 255, 0.4)' : '#C7C7CC'}
-        style={{ flex: 1 }}
-      />
+      <View style={{ flex: 1 }}>
+        <AudioWaveform
+          data={data}
+          isPlaying={isPlaying}
+          progress={progress}
+          showProgress={true}
+          interactive={true}
+          onSeek={setProgress}
+          height={24}
+          barCount={15}
+          barWidth={2}
+          barGap={1}
+          activeColor={sent ? 'white' : '#007AFF'}
+          inactiveColor={sent ? 'rgba(255, 255, 255, 0.4)' : '#C7C7CC'}
+        />
+      </View>
 
       <Text
         style={{
@@ -99,10 +91,6 @@ export function AudioWaveformCompact() {
 
   return (
     <View style={{ gap: 16 }}>
-      <Text variant='body' style={{ textAlign: 'center', marginBottom: 8 }}>
-        Compact voice messages suitable for chat interfaces
-      </Text>
-
       <View style={{ gap: 12 }}>
         <MessageBubble
           data={messageData1}
@@ -133,19 +121,6 @@ export function AudioWaveformCompact() {
           duration='0:15'
           sent={false}
         />
-      </View>
-
-      <View
-        style={{
-          padding: 12,
-          backgroundColor: 'rgba(0, 122, 255, 0.05)',
-          borderRadius: 8,
-          marginTop: 16,
-        }}
-      >
-        <Text variant='caption' style={{ textAlign: 'center', opacity: 0.7 }}>
-          Perfect for messaging apps with minimal footprint
-        </Text>
       </View>
     </View>
   );

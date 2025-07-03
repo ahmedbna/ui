@@ -1,6 +1,5 @@
-// registry/examples/video-content-fit.tsx
-import { Video } from '@/components/ui/video';
 import { Text } from '@/components/ui/text';
+import { Video } from '@/components/ui/video';
 import { View } from '@/components/ui/view';
 import React from 'react';
 

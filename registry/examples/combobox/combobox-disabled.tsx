@@ -1,4 +1,3 @@
-// registry/examples/combobox-disabled.tsx
 import {
   Combobox,
   ComboboxContent,
@@ -22,7 +21,7 @@ export function ComboboxDisabled() {
 
   return (
     <Combobox value={value} onValueChange={setValue} disabled>
-      <ComboboxTrigger style={{ width: 250 }}>
+      <ComboboxTrigger>
         <ComboboxValue placeholder='Select framework...' />
       </ComboboxTrigger>
       <ComboboxContent>

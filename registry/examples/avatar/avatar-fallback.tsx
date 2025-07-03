@@ -1,4 +1,3 @@
-// registry/examples/avatar-fallback.tsx
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { View } from '@/components/ui/view';
 import React from 'react';

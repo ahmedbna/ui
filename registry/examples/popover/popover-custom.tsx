@@ -1,4 +1,3 @@
-// registry/examples/popover-custom.tsx
 import { Button } from '@/components/ui/button';
 import {
   Popover,
@@ -18,7 +17,7 @@ export function PopoverCustom() {
   return (
     <View style={{ gap: 16, alignItems: 'center' }}>
       <Popover>
-        <PopoverTrigger>
+        <PopoverTrigger asChild>
           <Button>Custom Styled</Button>
         </PopoverTrigger>
         <PopoverContent
@@ -29,7 +28,7 @@ export function PopoverCustom() {
           }}
         >
           <PopoverBody style={{ padding: 20 }}>
-            <Text style={{ color: 'white', textAlign: 'center' }}>
+            <Text style={{ color: 'black', textAlign: 'center' }}>
               This popover has custom styling with primary color background
             </Text>
           </PopoverBody>
@@ -37,7 +36,7 @@ export function PopoverCustom() {
       </Popover>
 
       <Popover>
-        <PopoverTrigger>
+        <PopoverTrigger asChild>
           <Button variant='outline'>Large Content</Button>
         </PopoverTrigger>
         <PopoverContent
@@ -65,16 +64,7 @@ export function PopoverCustom() {
 
       <Popover>
         <PopoverTrigger asChild>
-          <Button
-            style={{
-              borderRadius: 50,
-              width: 50,
-              height: 50,
-              padding: 0,
-            }}
-          >
-            <Text style={{ fontSize: 18 }}>?</Text>
-          </Button>
+          <Button size='icon'>?</Button>
         </PopoverTrigger>
         <PopoverContent side='top' align='center'>
           <PopoverBody>

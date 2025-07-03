@@ -1,4 +1,3 @@
-// registry/examples/carousel-cards.tsx
 import { Carousel, CarouselItem } from '@/components/ui/carousel';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
@@ -12,14 +11,6 @@ export function CarouselCards() {
   const primaryColor = useThemeColor({}, 'primary');
 
   const events = [
-    {
-      title: 'Design Conference 2024',
-      location: 'San Francisco, CA',
-      date: 'Mar 15-17, 2024',
-      attendees: 1250,
-      category: 'Design',
-      color: '#3b82f6',
-    },
     {
       title: 'Tech Summit',
       location: 'New York, NY',
@@ -35,6 +26,14 @@ export function CarouselCards() {
       attendees: 850,
       category: 'Creative',
       color: '#f59e0b',
+    },
+    {
+      title: 'Design Conference 2024',
+      location: 'San Francisco, CA',
+      date: 'Mar 15-17, 2024',
+      attendees: 1250,
+      category: 'Design',
+      color: '#3b82f6',
     },
   ];
 

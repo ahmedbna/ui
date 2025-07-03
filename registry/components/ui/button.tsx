@@ -33,7 +33,7 @@ export type ButtonSize = 'default' | 'sm' | 'lg' | 'icon';
 
 export interface ButtonProps extends Omit<TouchableOpacityProps, 'style'> {
   label?: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   animation?: boolean;
   haptic?: boolean;
   icon?: React.ComponentType<LucideProps>;
@@ -85,9 +85,9 @@ export const Button = forwardRef<View, ButtonProps>(
     const getButtonStyle = (): ViewStyle => {
       const baseStyle: ViewStyle = {
         borderRadius: CORNERS,
+        flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        flexDirection: 'row',
       };
 
       // Size variants
@@ -215,7 +215,7 @@ export const Button = forwardRef<View, ButtonProps>(
       triggerHapticFeedback();
 
       // Scale up with bouncy spring animation
-      scale.value = withSpring(1.04, {
+      scale.value = withSpring(1.05, {
         damping: 15,
         stiffness: 400,
         mass: 0.5,
@@ -272,10 +272,58 @@ export const Button = forwardRef<View, ButtonProps>(
       };
     });
 
+    // Extract flex value from style prop
+    const getFlexFromStyle = () => {
+      if (!style) return null;
+
+      const styleArray = Array.isArray(style) ? style : [style];
+
+      // Find the last occurrence of flex (in case of multiple styles with flex)
+      for (let i = styleArray.length - 1; i >= 0; i--) {
+        const s = styleArray[i];
+        if (s && typeof s === 'object' && 'flex' in s) {
+          return s.flex;
+        }
+      }
+      return null;
+    };
+
+    // Alternative simpler solution - replace flex with alignSelf
+    const getPressableStyle = (): ViewStyle => {
+      const flexValue = getFlexFromStyle();
+      // If flex: 1 is applied, use alignSelf: 'stretch' instead to only affect width
+      return flexValue === 1
+        ? {
+            flex: 1,
+            alignSelf: 'stretch',
+          }
+        : flexValue !== null
+        ? {
+            flex: flexValue,
+            maxHeight: size === 'sm' ? 44 : size === 'lg' ? 54 : HEIGHT,
+          }
+        : {};
+    };
+
+    // Updated getStyleWithoutFlex function
+    const getStyleWithoutFlex = () => {
+      if (!style) return style;
+
+      const styleArray = Array.isArray(style) ? style : [style];
+      return styleArray.map((s) => {
+        if (s && typeof s === 'object' && 'flex' in s) {
+          const { flex, ...restStyle } = s;
+          return restStyle;
+        }
+        return s;
+      });
+    };
+
     const buttonStyle = getButtonStyle();
     const finalTextStyle = getButtonTextStyle();
     const contentColor = getColor();
     const iconSize = getIconSize();
+    const styleWithoutFlex = getStyleWithoutFlex();
 
     return animation ? (
       <Pressable
@@ -284,9 +332,10 @@ export const Button = forwardRef<View, ButtonProps>(
         onPressIn={handlePressIn}
         onPressOut={handlePressOut}
         disabled={disabled || loading}
+        style={getPressableStyle()}
         {...props}
       >
-        <Animated.View style={[buttonStyle, animatedStyle, style]}>
+        <Animated.View style={[animatedStyle, buttonStyle, styleWithoutFlex]}>
           {loading ? (
             <ButtonSpinner
               size={size}
@@ -303,14 +352,21 @@ export const Button = forwardRef<View, ButtonProps>(
               <Text style={[finalTextStyle, textStyle]}>{children}</Text>
             </View>
           ) : (
-            children
+            <View
+              style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}
+            >
+              {icon && (
+                <Icon name={icon} color={contentColor} size={iconSize} />
+              )}
+              {children}
+            </View>
           )}
         </Animated.View>
       </Pressable>
     ) : (
       <TouchableOpacity
         ref={ref}
-        style={[buttonStyle, disabled && { opacity: 0.5 }, style]}
+        style={[buttonStyle, disabled && { opacity: 0.5 }, styleWithoutFlex]}
         onPress={handleTouchablePress}
         disabled={disabled || loading}
         activeOpacity={0.8}

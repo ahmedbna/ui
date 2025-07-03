@@ -1,4 +1,3 @@
-// registry/examples/popover-form.tsx
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
@@ -28,7 +27,7 @@ export function PopoverForm() {
 
   return (
     <Popover>
-      <PopoverTrigger>
+      <PopoverTrigger asChild>
         <Button>Add Contact</Button>
       </PopoverTrigger>
       <PopoverContent maxWidth={320}>

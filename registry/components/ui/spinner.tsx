@@ -1,4 +1,3 @@
-// components/ui/spinner.tsx
 import { Text } from '@/components/ui/text';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { BORDER_RADIUS, CORNERS, FONT_SIZE } from '@/theme/globals';

@@ -1,4 +1,3 @@
-// registry/examples/color-picker-demo.tsx
 import { ColorPicker } from '@/components/ui/color-picker';
 import React, { useState } from 'react';
 

@@ -1,5 +1,3 @@
-// components/ui/video.tsx
-
 import { Progress } from '@/components/ui/progress';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { BORDER_RADIUS } from '@/theme/globals';
@@ -370,22 +368,20 @@ export const Video = forwardRef<VideoView, VideoProps>(
     return (
       <View style={[styles.container, { backgroundColor: cardColor }, style]}>
         {nativeControls ? (
-          <View style={styles.videoContainer}>
-            <VideoView
-              ref={ref}
-              player={player}
-              style={styles.video}
-              allowsFullscreen={allowsFullscreen}
-              allowsPictureInPicture={allowsPictureInPicture}
-              nativeControls={nativeControls}
-              contentFit={contentFit}
-              onFullscreenEnter={() => onFullscreenUpdate?.(true)}
-              onFullscreenExit={() => onFullscreenUpdate?.(false)}
-              {...props}
-            />
-          </View>
+          <VideoView
+            ref={ref}
+            player={player}
+            style={styles.video}
+            allowsFullscreen={allowsFullscreen}
+            allowsPictureInPicture={allowsPictureInPicture}
+            nativeControls={nativeControls}
+            contentFit={contentFit}
+            onFullscreenEnter={() => onFullscreenUpdate?.(true)}
+            onFullscreenExit={() => onFullscreenUpdate?.(false)}
+            {...props}
+          />
         ) : (
-          <View style={styles.videoContainer}>
+          <>
             <VideoView
               ref={ref}
               player={player}
@@ -487,7 +483,7 @@ export const Video = forwardRef<VideoView, VideoProps>(
                 </View>
               </Animated.View>
             )}
-          </View>
+          </>
         )}
       </View>
     );
@@ -498,21 +494,11 @@ Video.displayName = 'Video';
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    position: 'relative', // Changed from flex: 1
     width: '100%',
     height: '100%',
     borderRadius: BORDER_RADIUS,
     overflow: 'hidden',
-    position: 'relative',
-  },
-  videoContainer: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    width: '100%',
-    height: '100%',
   },
   video: {
     position: 'absolute',

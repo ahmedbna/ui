@@ -1,4 +1,3 @@
-// registry/examples/sheet-form.tsx
 import { Button } from '@/components/ui/button';
 import {
   Sheet,
@@ -12,7 +11,7 @@ import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import React, { useState } from 'react';
-import { TextInput, StyleSheet, Alert } from 'react-native';
+import { Alert, StyleSheet, TextInput } from 'react-native';
 
 export function SheetForm() {
   const [open, setOpen] = useState(false);

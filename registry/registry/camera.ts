@@ -22,8 +22,8 @@ export const cameraRegistry = {
     ],
     preview: {
       light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/camera-preview-light.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/camera-preview-dark.mp4',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-30-2025 01-48-08_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-30-2025 01-48-08_1.MP4',
     },
   },
 
@@ -42,8 +42,8 @@ export const cameraRegistry = {
     ],
     preview: {
       light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/camera-demo-light.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/camera-demo-dark.mp4',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-30-2025 01-48-08_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-30-2025 01-48-08_1.MP4',
     },
   },
 
@@ -62,8 +62,8 @@ export const cameraRegistry = {
     ],
     preview: {
       light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/camera-custom-light.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/camera-custom-dark.mp4',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-30-2025 01-49-50_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-30-2025 01-49-50_1.MP4',
     },
   },
 
@@ -82,8 +82,8 @@ export const cameraRegistry = {
     ],
     preview: {
       light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/camera-picture-light.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/camera-picture-dark.mp4',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-30-2025 01-50-18_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-30-2025 01-50-18_1.MP4',
     },
   },
 
@@ -102,8 +102,8 @@ export const cameraRegistry = {
     ],
     preview: {
       light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/camera-video-light.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/camera-video-dark.mp4',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-30-2025 01-50-47_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-30-2025 01-50-47_1.MP4',
     },
   },
 
@@ -122,8 +122,8 @@ export const cameraRegistry = {
     ],
     preview: {
       light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/camera-timer-light.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/camera-timer-dark.mp4',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-30-2025 01-51-44_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-30-2025 01-51-44_1.MP4',
     },
   },
 
@@ -142,8 +142,8 @@ export const cameraRegistry = {
     ],
     preview: {
       light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/camera-zoom-light.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/camera-zoom-dark.mp4',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-30-2025 01-52-21_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-30-2025 01-52-21_1.MP4',
     },
   },
 
@@ -162,28 +162,8 @@ export const cameraRegistry = {
     ],
     preview: {
       light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/camera-settings-light.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/camera-settings-dark.mp4',
-    },
-  },
-
-  // Minimal example
-  'camera-minimal': {
-    name: 'camera-minimal',
-    description: 'Camera with minimal controls for simple use cases',
-    type: 'registry:example',
-    registryDependencies: ['camera'],
-    files: [
-      {
-        path: 'registry/examples/camera/camera-minimal.tsx',
-        type: 'registry:example',
-        target: '',
-      },
-    ],
-    preview: {
-      light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/camera-minimal-light.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/camera-minimal-dark.mp4',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-30-2025 01-53-38_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-30-2025 01-53-38_1.MP4',
     },
   },
 };

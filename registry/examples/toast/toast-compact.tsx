@@ -1,4 +1,3 @@
-// registry/examples/toast-compact.tsx
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/toast';
 import { View } from '@/components/ui/view';
@@ -8,14 +7,14 @@ export function ToastCompact() {
   const { toast } = useToast();
 
   return (
-    <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 12 }}>
+    <View style={{ gap: 12 }}>
       <Button
         onPress={() =>
           toast({
             variant: 'success',
           })
         }
-        variant='outline'
+        variant='success'
       >
         Success Icon Only
       </Button>
@@ -26,7 +25,7 @@ export function ToastCompact() {
             variant: 'error',
           })
         }
-        variant='outline'
+        variant='destructive'
       >
         Error Icon Only
       </Button>
@@ -37,7 +36,7 @@ export function ToastCompact() {
             variant: 'warning',
           })
         }
-        variant='outline'
+        variant='secondary'
       >
         Warning Icon Only
       </Button>
@@ -59,7 +58,6 @@ export function ToastCompact() {
             title: 'Title only',
           })
         }
-        variant='outline'
       >
         Title Only
       </Button>

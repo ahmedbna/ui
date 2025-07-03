@@ -15,81 +15,75 @@ import { Image, StyleSheet } from 'react-native';
 export function AudioPlayerMusic() {
   const [isLiked, setIsLiked] = useState(false);
   const sampleAudioUrl =
-    'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav';
+    'https://www.thesoundarchive.com/ringtones/old-phone-ringing.wav';
 
   return (
-    <View style={{ width: '100%' }}>
-      <Text variant='caption' style={{ marginBottom: 12, textAlign: 'center' }}>
-        Music player with album art and track controls
-      </Text>
-
-      <View style={styles.musicPlayer}>
-        {/* Album Art */}
-        <View style={styles.albumArtContainer}>
-          <Image
-            source={{
-              uri: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=200&h=200&fit=crop&crop=center',
-            }}
-            style={styles.albumArt}
-          />
-        </View>
-
-        {/* Track Information */}
-        <View style={styles.trackInfo}>
-          <Text variant='body' style={styles.trackTitle}>
-            Midnight Waves
-          </Text>
-          <Text variant='caption' style={styles.artistName}>
-            Ocean Sounds Orchestra
-          </Text>
-        </View>
-
-        {/* Action Buttons */}
-        <View style={styles.actionButtons}>
-          <Button
-            variant='ghost'
-            size='icon'
-            onPress={() => setIsLiked(!isLiked)}
-            style={styles.actionButton}
-          >
-            <Heart
-              size={20}
-              color={isLiked ? '#ff6b6b' : '#666'}
-              fill={isLiked ? '#ff6b6b' : 'transparent'}
-            />
-          </Button>
-          <Button variant='ghost' size='icon' style={styles.actionButton}>
-            <MoreHorizontal size={20} color='#666' />
-          </Button>
-        </View>
-
-        {/* Audio Player */}
-        <AudioPlayer
-          source={{ uri: sampleAudioUrl }}
-          showControls={true}
-          showWaveform={true}
-          showTimer={true}
-          showProgressBar={false}
-          autoPlay={false}
-          style={styles.playerContainer}
+    <View style={styles.musicPlayer}>
+      {/* Album Art */}
+      <View style={styles.albumArtContainer}>
+        <Image
+          source={{
+            uri: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=200&h=200&fit=crop&crop=center',
+          }}
+          style={styles.albumArt}
         />
+      </View>
 
-        {/* Additional Controls */}
-        <View style={styles.additionalControls}>
-          <Button variant='ghost' size='icon' style={styles.controlButton}>
-            <Shuffle size={18} color='#666' />
-          </Button>
-          <Button variant='ghost' size='icon' style={styles.controlButton}>
-            <SkipBack size={18} color='#666' />
-          </Button>
-          <View style={styles.spacer} />
-          <Button variant='ghost' size='icon' style={styles.controlButton}>
-            <SkipForward size={18} color='#666' />
-          </Button>
-          <Button variant='ghost' size='icon' style={styles.controlButton}>
-            <Shuffle size={18} color='#666' />
-          </Button>
-        </View>
+      {/* Track Information */}
+      <View style={styles.trackInfo}>
+        <Text variant='body' style={styles.trackTitle}>
+          Midnight Waves
+        </Text>
+        <Text variant='caption' style={styles.artistName}>
+          Ocean Sounds Orchestra
+        </Text>
+      </View>
+
+      {/* Action Buttons */}
+      <View style={styles.actionButtons}>
+        <Button
+          variant='ghost'
+          size='icon'
+          onPress={() => setIsLiked(!isLiked)}
+          style={styles.actionButton}
+        >
+          <Heart
+            size={20}
+            color={isLiked ? '#ff6b6b' : '#666'}
+            fill={isLiked ? '#ff6b6b' : 'transparent'}
+          />
+        </Button>
+        <Button variant='ghost' size='icon' style={styles.actionButton}>
+          <MoreHorizontal size={20} color='#666' />
+        </Button>
+      </View>
+
+      {/* Audio Player */}
+      <AudioPlayer
+        source={{ uri: sampleAudioUrl }}
+        showControls={true}
+        showWaveform={true}
+        showTimer={true}
+        showProgressBar={false}
+        autoPlay={false}
+        style={styles.playerContainer}
+      />
+
+      {/* Additional Controls */}
+      <View style={styles.additionalControls}>
+        <Button variant='ghost' size='icon' style={styles.controlButton}>
+          <Shuffle size={18} color='#666' />
+        </Button>
+        <Button variant='ghost' size='icon' style={styles.controlButton}>
+          <SkipBack size={18} color='#666' />
+        </Button>
+        <View style={styles.spacer} />
+        <Button variant='ghost' size='icon' style={styles.controlButton}>
+          <SkipForward size={18} color='#666' />
+        </Button>
+        <Button variant='ghost' size='icon' style={styles.controlButton}>
+          <Shuffle size={18} color='#666' />
+        </Button>
       </View>
     </View>
   );
@@ -97,7 +91,7 @@ export function AudioPlayerMusic() {
 
 const styles = StyleSheet.create({
   musicPlayer: {
-    backgroundColor: '#ffffff',
+    backgroundColor: '#F2F2F7',
     borderRadius: 16,
     padding: 20,
     shadowColor: '#000',

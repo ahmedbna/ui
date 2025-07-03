@@ -1,4 +1,3 @@
-// components/ui/avatar.tsx
 import { Image } from '@/components/ui/image';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
@@ -38,7 +37,7 @@ interface AvatarImageProps {
 }
 
 export function AvatarImage({ source, style }: AvatarImageProps) {
-  return <Image full source={source} style={[style]} />;
+  return <Image source={source} style={[style]} />;
 }
 
 interface AvatarFallbackProps {

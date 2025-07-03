@@ -14,11 +14,11 @@ import { Image } from 'react-native';
 
 export function CardWithImage() {
   return (
-    <Card style={{ maxWidth: 350 }}>
+    <Card>
       <View style={{ borderRadius: 26, overflow: 'hidden', marginBottom: 16 }}>
         <Image
           source={{ uri: 'https://picsum.photos/350/200' }}
-          style={{ width: '100%', height: 200 }}
+          style={{ width: '100%', height: 300 }}
           resizeMode='cover'
         />
       </View>

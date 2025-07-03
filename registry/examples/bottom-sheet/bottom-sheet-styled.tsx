@@ -40,7 +40,7 @@ export function BottomSheetStyled() {
             </Text>
           </View>
 
-          <Button onPress={close} style={{ backgroundColor: accentColor }}>
+          <Button variant='success' onPress={close}>
             Get Started
           </Button>
         </View>

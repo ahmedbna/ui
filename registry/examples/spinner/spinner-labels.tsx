@@ -1,4 +1,3 @@
-// registry/examples/spinner-labels.tsx
 import { Spinner } from '@/components/ui/spinner';
 import { View } from '@/components/ui/view';
 import React from 'react';

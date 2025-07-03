@@ -1,9 +1,10 @@
-// registry/examples/media-picker-gallery.tsx
-import { MediaPicker } from '@/components/ui/media-picker';
+import { MediaAsset, MediaPicker } from '@/components/ui/media-picker';
 import { Folder } from 'lucide-react-native';
-import React from 'react';
+import React, { useState } from 'react';
 
 export function MediaPickerGallery() {
+  const [selected, setSelected] = useState<MediaAsset[]>([]);
+
   return (
     <MediaPicker
       mediaType='all'
@@ -13,9 +14,8 @@ export function MediaPickerGallery() {
       buttonText='Open Gallery'
       icon={Folder}
       variant='outline'
-      onSelectionChange={(assets) => {
-        console.log('Selected from gallery:', assets);
-      }}
+      selectedAssets={selected}
+      onSelectionChange={setSelected}
     />
   );
 }

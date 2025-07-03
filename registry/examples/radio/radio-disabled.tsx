@@ -1,4 +1,3 @@
-// registry/examples/radio-disabled.tsx
 import { RadioGroup } from '@/components/ui/radio';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';

@@ -1,4 +1,3 @@
-// registry/examples/input-otp-demo.tsx
 import { InputOTP } from '@/components/ui/input-otp';
 import React, { useState } from 'react';
 

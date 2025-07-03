@@ -4,13 +4,15 @@ import React from 'react';
 
 export function ButtonVariants() {
   return (
-    <View style={{ gap: 12, flexDirection: 'row', flexWrap: 'wrap' }}>
-      <Button variant='default' onPress={() => {}}>
-        Default
-      </Button>
-      <Button variant='destructive' onPress={() => {}}>
-        Destructive
-      </Button>
+    <View style={{ gap: 12 }}>
+      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+        <Button variant='default' onPress={() => {}} style={{ flex: 1 }}>
+          Default
+        </Button>
+        <Button variant='destructive' onPress={() => {}} style={{ flex: 2 }}>
+          Destructive
+        </Button>
+      </View>
       <Button variant='success' onPress={() => {}}>
         Success
       </Button>

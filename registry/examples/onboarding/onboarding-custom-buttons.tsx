@@ -1,4 +1,3 @@
-// registry/examples/onboarding-custom-buttons.tsx
 import { Onboarding, OnboardingStep } from '@/components/ui/onboarding';
 import { Heart, Rocket, Target } from 'lucide-react-native';
 import React from 'react';
@@ -35,7 +34,7 @@ export function OnboardingCustomButtons() {
       onSkip={() => console.log('Custom buttons onboarding skipped!')}
       primaryButtonText='🚀 Launch App'
       nextButtonText='👉 Continue'
-      backButtonText='👈 Go Back'
+      backButtonText='👈 Back'
       skipButtonText='⏭️ Skip for Now'
     />
   );

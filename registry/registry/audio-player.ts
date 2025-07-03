@@ -19,25 +19,9 @@ export const audioPlayerRegistry = {
     ],
     preview: {
       light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-29-2025 20-06-28_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-29-2025 20-06-28_1.MP4',
     },
-  },
-
-  // Audio waveform component (dependency)
-  'audio-waveform': {
-    name: 'audio-waveform',
-    description:
-      'Interactive waveform visualization component for audio playback with seeking capabilities.',
-    type: 'registry:ui',
-    registryDependencies: ['view'],
-    files: [
-      {
-        path: 'registry/components/ui/audio-waveform.tsx',
-        type: 'registry:ui',
-        target: '',
-      },
-    ],
   },
 
   // Default demo
@@ -55,8 +39,8 @@ export const audioPlayerRegistry = {
     ],
     preview: {
       light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-29-2025 20-06-28_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-29-2025 20-06-28_1.MP4',
     },
   },
 
@@ -75,8 +59,8 @@ export const audioPlayerRegistry = {
     ],
     preview: {
       light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-29-2025 20-07-40_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-29-2025 20-07-40_1.MP4',
     },
   },
 
@@ -95,8 +79,8 @@ export const audioPlayerRegistry = {
     ],
     preview: {
       light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-29-2025 20-08-03_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-29-2025 20-08-03_1.MP4',
     },
   },
 
@@ -115,8 +99,8 @@ export const audioPlayerRegistry = {
     ],
     preview: {
       light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-29-2025 20-08-29_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-29-2025 20-08-29_1.MP4',
     },
   },
 
@@ -135,8 +119,8 @@ export const audioPlayerRegistry = {
     ],
     preview: {
       light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-29-2025 20-08-49_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-29-2025 20-08-49_1.MP4',
     },
   },
 
@@ -155,29 +139,8 @@ export const audioPlayerRegistry = {
     ],
     preview: {
       light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-    },
-  },
-
-  // Podcast player example
-  'audio-player-podcast': {
-    name: 'audio-player-podcast',
-    description:
-      'Audio player optimized for podcast playback with episode information',
-    type: 'registry:example',
-    registryDependencies: ['audio-player', 'text', 'view', 'image'],
-    files: [
-      {
-        path: 'registry/examples/audio-player/audio-player-podcast.tsx',
-        type: 'registry:example',
-        target: '',
-      },
-    ],
-    preview: {
-      light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-29-2025 20-11-56_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-29-2025 20-11-56_1.MP4',
     },
   },
 
@@ -197,8 +160,8 @@ export const audioPlayerRegistry = {
     ],
     preview: {
       light:
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-      dark: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-29-2025 20-13-01_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_06-29-2025 20-13-01_1.MP4',
     },
   },
 };

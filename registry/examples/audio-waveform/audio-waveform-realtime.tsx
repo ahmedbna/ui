@@ -173,9 +173,9 @@ export function AudioWaveformRealtime() {
           </Text>
           <View style={{ flexDirection: 'row', gap: 8, alignItems: 'center' }}>
             <Button
-              onPress={() => setAmplitude(Math.max(0.1, amplitude - 0.1))}
+              size='icon'
               variant='outline'
-              style={{ width: 40 }}
+              onPress={() => setAmplitude(Math.max(0.1, amplitude - 0.1))}
             >
               -
             </Button>
@@ -197,9 +197,9 @@ export function AudioWaveformRealtime() {
               />
             </View>
             <Button
-              onPress={() => setAmplitude(Math.min(1, amplitude + 0.1))}
+              size='icon'
               variant='outline'
-              style={{ width: 40 }}
+              onPress={() => setAmplitude(Math.min(1, amplitude + 0.1))}
             >
               +
             </Button>

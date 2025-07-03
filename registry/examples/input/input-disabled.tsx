@@ -1,7 +1,6 @@
-// registry/examples/input/input-disabled.tsx
 import { Input } from '@/components/ui/input';
 import { View } from '@/components/ui/view';
-import { User, Mail } from 'lucide-react-native';
+import { Mail, User } from 'lucide-react-native';
 import React from 'react';
 
 export function InputDisabled() {

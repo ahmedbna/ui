@@ -1,4 +1,3 @@
-// registry/examples/radio-large.tsx
 import { RadioGroup } from '@/components/ui/radio';
 import React, { useState } from 'react';
 
@@ -17,7 +16,6 @@ export function RadioLarge() {
       style={{ gap: 12 }}
       optionStyle={{
         paddingVertical: 12,
-        paddingHorizontal: 16,
       }}
       labelStyle={{
         fontSize: 18,

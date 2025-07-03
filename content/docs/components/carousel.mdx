@@ -53,7 +53,6 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  useCarousel,
 } from '@/components/ui/carousel';
 ```
 
@@ -181,48 +180,6 @@ Navigation arrow component for manual slide control.
 | `disabled`  | `boolean`           | `false` | Whether the arrow is disabled.             |
 | `style`     | `ViewStyle`         | -       | Additional styles for the arrow container. |
 
-### useCarousel Hook
-
-A custom hook for controlling carousel state externally.
-
-```tsx
-const { currentIndex, goToSlide, goToNext, goToPrevious } =
-  useCarousel(totalSlides);
-```
-
-| Parameter     | Type     | Description             |
-| ------------- | -------- | ----------------------- |
-| `totalSlides` | `number` | Total number of slides. |
-
-| Return Value   | Type                      | Description                     |
-| -------------- | ------------------------- | ------------------------------- |
-| `currentIndex` | `number`                  | Current active slide index.     |
-| `goToSlide`    | `(index: number) => void` | Navigate to a specific slide.   |
-| `goToNext`     | `() => void`              | Navigate to the next slide.     |
-| `goToPrevious` | `() => void`              | Navigate to the previous slide. |
-
-## Advanced Usage
-
-### External Control with useCarousel
-
-```tsx
-import { useCarousel } from '@/components/ui/carousel';
-
-function MyComponent() {
-  const { currentIndex, goToSlide, goToNext, goToPrevious } = useCarousel(5);
-
-  return (
-    <View>
-      <Button onPress={goToPrevious}>Previous</Button>
-      <Button onPress={goToNext}>Next</Button>
-      <Button onPress={() => goToSlide(2)}>Go to slide 3</Button>
-
-      <Carousel onIndexChange={goToSlide}>{/* Your carousel items */}</Carousel>
-    </View>
-  );
-}
-```
-
 ### Custom Styling
 
 ```tsx
@@ -262,7 +219,6 @@ function MyComponent() {
 - **Custom Layouts**: Support for custom item widths and spacing for multi-item views
 - **Responsive**: Adapts to container width automatically
 - **Smooth Animations**: Hardware-accelerated scrolling with momentum and spring physics
-- **External Control**: useCarousel hook for programmatic control
 - **Accessibility**: Built-in accessibility support with proper ARIA labels
 
 ## Accessibility

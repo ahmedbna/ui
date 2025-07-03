@@ -1,4 +1,3 @@
-// registry/examples/file-picker-controlled.tsx
 import { Button } from '@/components/ui/button';
 import { useFilePicker } from '@/components/ui/file-picker';
 import { Text } from '@/components/ui/text';
@@ -60,7 +59,6 @@ export function FilePickerControlled() {
       <View
         style={{
           padding: 12,
-          backgroundColor: '#f5f5f5',
           borderRadius: 8,
         }}
       >
@@ -104,7 +102,6 @@ export function FilePickerControlled() {
                 justifyContent: 'space-between',
                 alignItems: 'center',
                 padding: 8,
-                backgroundColor: '#fff',
                 borderRadius: 6,
                 marginBottom: 4,
                 borderWidth: 1,

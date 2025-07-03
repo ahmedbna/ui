@@ -1,8 +1,7 @@
-// registry/examples/onboarding-styled.tsx
 import { Onboarding, OnboardingStep } from '@/components/ui/onboarding';
 import { Feather } from '@expo/vector-icons';
-import React from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
+import React from 'react';
 
 const GradientIcon = ({
   iconName,

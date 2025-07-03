@@ -1,4 +1,3 @@
-// registry/examples/avatar-styled.tsx
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { View } from '@/components/ui/view';
 import React from 'react';
@@ -33,12 +32,11 @@ export function AvatarStyled() {
           borderColor: '#10b981',
         }}
       >
-        <AvatarImage source={{ uri: 'https://reactnative.dev/Home/Logo' }} />
         <AvatarFallback
           style={{ backgroundColor: '#10b981' }}
           textStyle={{ color: 'white', fontWeight: 'bold' }}
         >
-          RN
+          BNA
         </AvatarFallback>
       </Avatar>
 

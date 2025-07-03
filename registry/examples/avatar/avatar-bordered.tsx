@@ -1,4 +1,3 @@
-// registry/examples/avatar-bordered.tsx
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { View } from '@/components/ui/view';
 import React from 'react';
@@ -38,8 +37,7 @@ export function AvatarBordered() {
           elevation: 8,
         }}
       >
-        <AvatarImage source={{ uri: 'https://reactnative.dev/Home/Logo' }} />
-        <AvatarFallback>RN</AvatarFallback>
+        <AvatarFallback>BNA</AvatarFallback>
       </Avatar>
 
       <Avatar

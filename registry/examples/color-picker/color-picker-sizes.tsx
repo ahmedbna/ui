@@ -1,4 +1,3 @@
-// registry/examples/color-picker-sizes.tsx
 import { ColorPicker } from '@/components/ui/color-picker';
 import { View } from '@/components/ui/view';
 import React, { useState } from 'react';

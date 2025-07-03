@@ -1,5 +1,4 @@
-// components/ui/gallery.tsx
-
+import { Button } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { BORDER_RADIUS } from '@/theme/globals';
@@ -26,7 +25,6 @@ import Animated, {
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated';
-import { Button } from './button';
 
 const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 

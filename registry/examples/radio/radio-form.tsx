@@ -1,4 +1,3 @@
-// registry/examples/radio-form.tsx
 import { Button } from '@/components/ui/button';
 import { RadioGroup } from '@/components/ui/radio';
 import { Text } from '@/components/ui/text';
@@ -24,7 +23,7 @@ export function RadioForm() {
   };
 
   return (
-    <View style={{ padding: 16, gap: 24 }}>
+    <View style={{ paddingVertical: 16, gap: 24 }}>
       <Text style={{ fontSize: 18, fontWeight: '600' }}>User Preferences</Text>
 
       <View>
@@ -76,9 +75,7 @@ export function RadioForm() {
       </View>
 
       <Button onPress={handleSubmit} style={{ marginTop: 8 }}>
-        <Text style={{ color: 'white', fontWeight: '600' }}>
-          Save Preferences
-        </Text>
+        Save Preferences
       </Button>
     </View>
   );

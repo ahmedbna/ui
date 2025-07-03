@@ -12,21 +12,15 @@ import React from 'react';
 export function ButtonIconOnly() {
   return (
     <View style={{ gap: 12, flexDirection: 'row', flexWrap: 'wrap' }}>
-      <Button size='icon' onPress={() => {}}>
-        <Settings size={20} color='white' />
-      </Button>
-      <Button size='icon' variant='outline' onPress={() => {}}>
-        <Heart size={20} color='#18181b' />
-      </Button>
-      <Button size='icon' variant='secondary' onPress={() => {}}>
-        <Share size={20} color='#18181b' />
-      </Button>
-      <Button size='icon' variant='ghost' onPress={() => {}}>
-        <MoreHorizontal size={20} color='#18181b' />
-      </Button>
-      <Button size='icon' variant='destructive' onPress={() => {}}>
-        <MessageCircle size={20} color='white' />
-      </Button>
+      <Button size='icon' icon={Settings} />
+
+      <Button size='icon' variant='outline' icon={Heart} />
+
+      <Button size='icon' variant='secondary' icon={Share} />
+
+      <Button size='icon' variant='ghost' icon={MoreHorizontal} />
+
+      <Button size='icon' variant='destructive' icon={MessageCircle} />
     </View>
   );
 }

@@ -1,4 +1,3 @@
-// registry/examples/file-picker-single.tsx
 import { FilePicker, SelectedFile } from '@/components/ui/file-picker';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
@@ -19,10 +18,9 @@ export function FilePickerSingle() {
         placeholder='Select a document'
         showFileInfo={true}
       />
-      {selectedFile && (
-        <View
-          style={{ padding: 12, backgroundColor: '#f5f5f5', borderRadius: 8 }}
-        >
+
+      {selectedFile.length > 0 && (
+        <View style={{ padding: 12, borderRadius: 8 }}>
           <Text style={{ fontWeight: '500' }}>Selected File:</Text>
           <Text style={{ fontSize: 14 }}>{selectedFile[0].name}</Text>
           {selectedFile[0].size && (

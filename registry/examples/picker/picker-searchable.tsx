@@ -1,4 +1,3 @@
-// registry/examples/picker-searchable.tsx
 import { Picker } from '@/components/ui/picker';
 import React, { useState } from 'react';
 

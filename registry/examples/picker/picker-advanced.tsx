@@ -1,7 +1,6 @@
-// registry/examples/picker-advanced.tsx
 import { Picker } from '@/components/ui/picker';
-import { View } from '@/components/ui/view';
 import { Text } from '@/components/ui/text';
+import { View } from '@/components/ui/view';
 import React, { useState } from 'react';
 
 export function PickerAdvanced() {
@@ -48,8 +47,6 @@ export function PickerAdvanced() {
 
   return (
     <View style={{ gap: 16 }}>
-      <Text variant='title'>Choose Your Plan</Text>
-
       <Picker
         sections={sections}
         value={plan}

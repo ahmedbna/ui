@@ -1,4 +1,3 @@
-// components/ui/audio-waveform.tsx
 import { useThemeColor } from '@/hooks/useThemeColor';
 import React, { useEffect, useRef } from 'react';
 import {
@@ -69,6 +68,29 @@ export function AudioWaveform({
   // Container ref for measuring dimensions
   const containerRef = useRef<View>(null);
   const containerWidth = useRef(0);
+
+  // Calculate total width including gaps
+  const totalWidth = barCount * barWidth + (barCount - 1) * barGap;
+
+  // Calculate progress line position more accurately
+  const getProgressLinePosition = () => {
+    const progressRatio = Math.max(0, Math.min(100, progress)) / 100;
+
+    if (progressRatio === 0) return 0;
+    if (progressRatio === 1) return totalWidth - 1; // Slight offset to keep within bounds
+
+    // Calculate which bar the progress falls on
+    const exactBarPosition = progressRatio * barCount;
+    const barIndex = Math.floor(exactBarPosition);
+    const barProgress = exactBarPosition - barIndex;
+
+    // Calculate position accounting for bars and gaps
+    let position = barIndex * (barWidth + barGap);
+    position += barProgress * barWidth;
+
+    // Ensure we don't exceed the waveform width
+    return Math.min(position, totalWidth - 1);
+  };
 
   // Update animated values when data changes (for real-time updates)
   useEffect(() => {
@@ -144,10 +166,10 @@ export function AudioWaveform({
   ).current;
 
   const handleSeek = (x: number) => {
-    if (!interactive || !onSeek || containerWidth.current === 0) return;
+    if (!interactive || !onSeek) return;
 
-    const clampedX = Math.max(0, Math.min(containerWidth.current, x));
-    const seekPercentage = (clampedX / containerWidth.current) * 100;
+    const clampedX = Math.max(0, Math.min(totalWidth, x));
+    const seekPercentage = (clampedX / totalWidth) * 100;
     onSeek(seekPercentage);
   };
 
@@ -164,19 +186,19 @@ export function AudioWaveform({
     containerWidth.current = event.nativeEvent.layout.width;
   };
 
-  const totalWidth = barCount * barWidth + (barCount - 1) * barGap;
-
   return (
     <View
       style={[styles.container, { height }, style]}
-      {...(interactive ? panResponder.panHandlers : {})}
       onLayout={onLayout}
       ref={containerRef}
     >
-      <View style={[styles.waveform, { width: totalWidth }]}>
+      <View
+        style={[styles.waveform, { width: totalWidth }]}
+        {...(interactive ? panResponder.panHandlers : {})}
+      >
         {animatedBars.map((animatedValue, index) => {
           const progressRatio = progress / 100;
-          const barProgress = index / barCount;
+          const barProgress = (index + 0.5) / barCount; // Use center of bar for comparison
           const isActive = showProgress ? barProgress <= progressRatio : false;
           const isPastProgress = showProgress
             ? barProgress > progressRatio
@@ -186,7 +208,7 @@ export function AudioWaveform({
           let opacity = 1;
           if (showProgress && isPastProgress) {
             const distanceFromProgress = barProgress - progressRatio;
-            opacity = Math.max(0.4, 1 - distanceFromProgress * 1.5);
+            opacity = Math.max(0.3, 1 - distanceFromProgress * 2);
           }
 
           return (
@@ -220,21 +242,21 @@ export function AudioWaveform({
             </View>
           );
         })}
-      </View>
 
-      {/* Progress indicator line */}
-      {showProgress && (
-        <View
-          style={[
-            styles.progressLine,
-            {
-              left: (progress / 100) * totalWidth,
-              height: height * 0.9,
-              backgroundColor: finalActiveColor,
-            },
-          ]}
-        />
-      )}
+        {/* Progress indicator line */}
+        {showProgress && (
+          <View
+            style={[
+              styles.progressLine,
+              {
+                left: getProgressLinePosition(),
+                height: height * 0.95,
+                backgroundColor: finalActiveColor,
+              },
+            ]}
+          />
+        )}
+      </View>
 
       {/* Invisible overlay for better touch handling */}
       {interactive && (
@@ -282,6 +304,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+    position: 'relative',
   },
   barContainer: {
     justifyContent: 'center',
@@ -296,8 +319,9 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: 2,
     borderRadius: 1,
-    opacity: 0.8,
-    top: '10%',
+    opacity: 0.9,
+    top: '2.5%',
+    zIndex: 10,
   },
   touchOverlay: {
     position: 'absolute',

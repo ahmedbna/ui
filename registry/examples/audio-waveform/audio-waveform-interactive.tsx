@@ -59,51 +59,37 @@ export function AudioWaveformInteractive() {
 
   return (
     <View style={{ gap: 16 }}>
+      <AudioWaveform
+        data={audioData}
+        isPlaying={isPlaying}
+        progress={progress}
+        showProgress={true}
+        interactive={true}
+        onSeek={handleSeek}
+        onSeekStart={handleSeekStart}
+        onSeekEnd={handleSeekEnd}
+        height={80}
+        barCount={40}
+        barWidth={4}
+        barGap={2}
+        activeColor='#007AFF'
+        inactiveColor='#E5E5E7'
+      />
+
       <View
         style={{
-          padding: 16,
-          backgroundColor: 'rgba(0, 122, 255, 0.05)',
-          borderRadius: 12,
-          borderWidth: 1,
-          borderColor: 'rgba(0, 122, 255, 0.1)',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          marginTop: 12,
         }}
       >
-        <Text variant='caption' style={{ marginBottom: 12, opacity: 0.7 }}>
-          Tap and drag on the waveform to seek
+        <Text variant='caption' style={{ opacity: 0.6 }}>
+          {formatTime(progress)}
         </Text>
-
-        <AudioWaveform
-          data={audioData}
-          isPlaying={isPlaying}
-          progress={progress}
-          showProgress={true}
-          interactive={true}
-          onSeek={handleSeek}
-          onSeekStart={handleSeekStart}
-          onSeekEnd={handleSeekEnd}
-          height={80}
-          barCount={40}
-          barWidth={4}
-          barGap={2}
-          activeColor='#007AFF'
-          inactiveColor='#E5E5E7'
-        />
-
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            marginTop: 12,
-          }}
-        >
-          <Text variant='caption' style={{ opacity: 0.6 }}>
-            {formatTime(progress)}
-          </Text>
-          <Text variant='caption' style={{ opacity: 0.6 }}>
-            3:00
-          </Text>
-        </View>
+        <Text variant='caption' style={{ opacity: 0.6 }}>
+          3:00
+        </Text>
       </View>
 
       <View style={{ flexDirection: 'row', gap: 12, alignItems: 'center' }}>

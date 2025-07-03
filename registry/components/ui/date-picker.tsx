@@ -1,4 +1,3 @@
-// components/ui/date-picker.tsx
 import { BottomSheet, useBottomSheet } from '@/components/ui/bottom-sheet';
 import { Button } from '@/components/ui/button';
 import { Icon } from '@/components/ui/icon';
@@ -745,7 +744,7 @@ export function DatePicker({
     borderWidth: variant === 'group' ? 0 : 1,
     borderColor: variant === 'outline' ? borderColor : cardColor,
     borderRadius: CORNERS,
-    backgroundColor: variant === 'outline' ? 'transparent' : cardColor,
+    backgroundColor: variant === 'filled' ? cardColor : 'transparent',
     minHeight: variant === 'group' ? 'auto' : HEIGHT,
   };
 

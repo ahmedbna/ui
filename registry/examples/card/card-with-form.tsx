@@ -21,7 +21,7 @@ export function CardWithForm() {
   const textColor = useThemeColor({}, 'text');
 
   return (
-    <Card style={{ maxWidth: 350 }}>
+    <Card>
       <CardHeader>
         <CardTitle>Sign In</CardTitle>
         <CardDescription>
@@ -39,7 +39,7 @@ export function CardWithForm() {
               style={{
                 borderWidth: 1,
                 borderColor,
-                borderRadius: 8,
+                borderRadius: 999,
                 padding: 12,
                 backgroundColor,
                 color: textColor,
@@ -58,7 +58,7 @@ export function CardWithForm() {
               style={{
                 borderWidth: 1,
                 borderColor,
-                borderRadius: 8,
+                borderRadius: 999,
                 padding: 12,
                 backgroundColor,
                 color: textColor,

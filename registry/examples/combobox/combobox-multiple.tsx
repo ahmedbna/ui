@@ -1,4 +1,3 @@
-// registry/examples/combobox-multiple.tsx
 import {
   Combobox,
   ComboboxContent,
@@ -29,7 +28,7 @@ export function ComboboxMultiple() {
 
   return (
     <Combobox multiple values={values} onValuesChange={setValues}>
-      <ComboboxTrigger style={{ width: 300 }}>
+      <ComboboxTrigger>
         <ComboboxValue placeholder='Select skills...' />
       </ComboboxTrigger>
       <ComboboxContent>

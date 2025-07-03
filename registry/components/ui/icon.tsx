@@ -1,4 +1,3 @@
-// components/ui/icon.tsx
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { LucideProps } from 'lucide-react-native';
 import React from 'react';

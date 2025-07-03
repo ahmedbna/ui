@@ -1,4 +1,3 @@
-// registry/examples/date-picker-formats.tsx
 import { DatePicker } from '@/components/ui/date-picker';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';

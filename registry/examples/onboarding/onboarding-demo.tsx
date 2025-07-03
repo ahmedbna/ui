@@ -1,38 +1,114 @@
-// registry/examples/onboarding-demo.tsx
-import { Onboarding, OnboardingStep } from '@/components/ui/onboarding';
-import { HeartHandshake, Rocket, Stars } from 'lucide-react-native';
-import React from 'react';
+import { Onboarding, useOnboarding } from '@/components/ui/onboarding';
+import { Text } from '@/components/ui/text';
+import { View } from '@/components/ui/view';
 
-export function OnboardingDemo() {
-  const steps: OnboardingStep[] = [
+export const OnboardingPresets = {
+  welcome: [
     {
-      id: '1',
+      id: 'welcome',
       title: 'Welcome to Our App',
       description:
-        "Discover amazing features and start your journey with us. We're excited to have you on board!",
-      icon: <HeartHandshake />,
+        'Discover amazing features and get started with your journey.',
+      icon: <Text style={{ fontSize: 80 }}>👋</Text>,
     },
     {
-      id: '2',
-      title: 'Explore Features',
+      id: 'features',
+      title: 'Powerful Features',
       description:
-        'Take advantage of our powerful tools designed to make your life easier and more productive.',
-      icon: <Rocket />,
+        'Experience cutting-edge functionality designed to make your life easier.',
+      icon: <Text style={{ fontSize: 80 }}>⚡</Text>,
     },
     {
-      id: '3',
-      title: 'Get Started',
-      description:
-        "You're all set! Let's begin your journey and make the most of what we have to offer.",
-      icon: <Stars />,
+      id: 'personalize',
+      title: 'Personalize Your Experience',
+      description: 'Customize the app to match your preferences and workflow.',
+      icon: <Text style={{ fontSize: 80 }}>🎨</Text>,
     },
-  ];
+    {
+      id: 'ready',
+      title: "You're All Set!",
+      description:
+        "Everything is ready. Let's start exploring what you can achieve.",
+      icon: <Text style={{ fontSize: 80 }}>🚀</Text>,
+    },
+  ],
+
+  features: [
+    {
+      id: 'organize',
+      title: 'Stay Organized',
+      description: 'Keep all your important information in one secure place.',
+      icon: <Text style={{ fontSize: 80 }}>📋</Text>,
+    },
+    {
+      id: 'collaborate',
+      title: 'Collaborate Seamlessly',
+      description: 'Work together with your team in real-time, anywhere.',
+      icon: <Text style={{ fontSize: 80 }}>🤝</Text>,
+    },
+    {
+      id: 'automate',
+      title: 'Automate Your Workflow',
+      description: 'Set up smart automations to save time and reduce errors.',
+      icon: <Text style={{ fontSize: 80 }}>🤖</Text>,
+    },
+  ],
+
+  security: [
+    {
+      id: 'secure',
+      title: 'Your Data is Secure',
+      description:
+        'We use end-to-end encryption to keep your information safe.',
+      icon: <Text style={{ fontSize: 80 }}>🔒</Text>,
+    },
+    {
+      id: 'privacy',
+      title: 'Privacy First',
+      description: 'We never share your personal data with third parties.',
+      icon: <Text style={{ fontSize: 80 }}>🛡️</Text>,
+    },
+    {
+      id: 'control',
+      title: "You're in Control",
+      description: 'Manage your privacy settings and data preferences anytime.',
+      icon: <Text style={{ fontSize: 80 }}>⚙️</Text>,
+    },
+  ],
+};
+
+export function OnboardingDemo() {
+  const { hasCompletedOnboarding, completeOnboarding, skipOnboarding } =
+    useOnboarding();
+
+  if (hasCompletedOnboarding) {
+    return (
+      <View
+        style={{
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+          paddingHorizontal: 24,
+        }}
+      >
+        <Text variant='title'>Welcome Back!</Text>
+        <Text variant='body'>You've already completed the onboarding.</Text>
+      </View>
+    );
+  }
 
   return (
     <Onboarding
-      steps={steps}
-      onComplete={() => console.log('Onboarding completed!')}
-      onSkip={() => console.log('Onboarding skipped!')}
+      steps={OnboardingPresets.welcome}
+      onComplete={completeOnboarding}
+      onSkip={skipOnboarding}
+      showSkip={true}
+      showProgress={true}
+      swipeEnabled={true}
+      primaryButtonText='Get Started'
+      skipButtonText='Skip'
+      nextButtonText='Next'
+      backButtonText='Back'
     />
   );
 }

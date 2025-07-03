@@ -1,4 +1,3 @@
-// registry/examples/gallery/gallery-controls.tsx
 import { Gallery, GalleryItem } from '@/components/ui/gallery';
 import React from 'react';
 import { Alert } from 'react-native';
@@ -6,27 +5,51 @@ import { Alert } from 'react-native';
 const controlImages: GalleryItem[] = [
   {
     id: '1',
-    uri: 'https://picsum.photos/400/400?random=41',
-    title: 'Download Me',
-    description: 'Click the download button to save this image',
+    uri: 'https://images.unsplash.com/photo-1637858868799-7f26a0640eb6?q=80&w=2960&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    title: 'City Skyline',
+    description: 'Modern architecture at sunset',
+    thumbnail:
+      'https://images.unsplash.com/photo-1637858868799-7f26a0640eb6?q=80&w=2960&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   },
   {
     id: '2',
-    uri: 'https://picsum.photos/400/400?random=42',
-    title: 'Share This',
-    description: 'Use the share button to send this image to friends',
+    uri: 'https://images.unsplash.com/photo-1644190022446-04b99df7259a?q=80&w=2012&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    title: 'Winter Wonderland',
+    description: 'Snow-covered peaks and pristine wilderness',
+    thumbnail:
+      'https://images.unsplash.com/photo-1644190022446-04b99df7259a?q=80&w=2012&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   },
   {
     id: '3',
-    uri: 'https://picsum.photos/400/400?random=43',
-    title: 'Interactive Gallery',
-    description: 'Zoom, pan, and navigate through the images',
+    uri: 'https://images.unsplash.com/photo-1717732596477-04f8c5d53387?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    title: 'Ocean Waves',
+    description: 'Peaceful ocean scene with rolling waves',
+    thumbnail:
+      'https://images.unsplash.com/photo-1717732596477-04f8c5d53387?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   },
   {
     id: '4',
-    uri: 'https://picsum.photos/400/400?random=44',
-    title: 'Full Controls',
-    description: 'All features enabled for the best experience',
+    uri: 'https://images.unsplash.com/photo-1575737698350-52e966f924d4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    title: 'Forest Path',
+    description: 'A winding path through ancient trees',
+    thumbnail:
+      'https://images.unsplash.com/photo-1575737698350-52e966f924d4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+  },
+  {
+    id: '5',
+    uri: 'https://images.unsplash.com/photo-1667830867718-da7f5a45d20d?q=80&w=1064&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    title: 'Desert Dunes',
+    description: 'Golden sand dunes stretching to the horizon',
+    thumbnail:
+      'https://images.unsplash.com/photo-1667830867718-da7f5a45d20d?q=80&w=1064&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+  },
+  {
+    id: '6',
+    uri: 'https://images.unsplash.com/photo-1593085512500-5d55148d6f0d?q=80&w=2334&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    title: 'Beautiful Landscape',
+    description: 'A stunning view of mountains and valleys',
+    thumbnail:
+      'https://images.unsplash.com/photo-1593085512500-5d55148d6f0d?q=80&w=2334&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   },
 ];
 
@@ -39,10 +62,6 @@ export function GalleryControls() {
 
   const handleShare = (item: GalleryItem) => {
     Alert.alert('Share', `Sharing: ${item.title || 'Image'}`, [{ text: 'OK' }]);
-  };
-
-  const handleItemPress = (item: GalleryItem, index: number) => {
-    console.log(`Pressed item ${index}: ${item.title}`);
   };
 
   return (
@@ -61,7 +80,6 @@ export function GalleryControls() {
       enableShare={true}
       onDownload={handleDownload}
       onShare={handleShare}
-      onItemPress={handleItemPress}
     />
   );
 }

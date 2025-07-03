@@ -1,4 +1,3 @@
-// registry/examples/link-types.tsx
 import { Link } from '@/components/ui/link';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
@@ -38,6 +37,7 @@ export function LinkTypes() {
           <Link href='mailto:support@company.com?subject=Help Request'>
             Email with Subject
           </Link>
+          <Link href='sms:+1234567890'>Send SMS</Link>
         </View>
       </View>
     </View>

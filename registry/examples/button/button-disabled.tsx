@@ -15,9 +15,7 @@ export function ButtonDisabled() {
       <Button disabled variant='destructive' onPress={() => {}}>
         Disabled Destructive
       </Button>
-      <Button disabled size='icon' onPress={() => {}}>
-        <Lock size={20} color='white' />
-      </Button>
+      <Button disabled size='icon' onPress={() => {}} icon={Lock} />
     </View>
   );
 }

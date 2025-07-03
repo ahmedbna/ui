@@ -1,4 +1,3 @@
-// registry/examples/color-picker-disabled.tsx
 import { ColorPicker } from '@/components/ui/color-picker';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';

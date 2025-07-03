@@ -1,4 +1,3 @@
-// registry/examples/popover-alignment.tsx
 import { Button } from '@/components/ui/button';
 import {
   Popover,
@@ -17,7 +16,7 @@ export function PopoverAlignment() {
         <Text variant='title'>Bottom Side Alignment</Text>
         <View style={{ flexDirection: 'row', gap: 16 }}>
           <Popover>
-            <PopoverTrigger>
+            <PopoverTrigger asChild>
               <Button>Start</Button>
             </PopoverTrigger>
             <PopoverContent side='bottom' align='start'>
@@ -28,7 +27,7 @@ export function PopoverAlignment() {
           </Popover>
 
           <Popover>
-            <PopoverTrigger>
+            <PopoverTrigger asChild>
               <Button>Center</Button>
             </PopoverTrigger>
             <PopoverContent side='bottom' align='center'>
@@ -39,7 +38,7 @@ export function PopoverAlignment() {
           </Popover>
 
           <Popover>
-            <PopoverTrigger>
+            <PopoverTrigger asChild>
               <Button>End</Button>
             </PopoverTrigger>
             <PopoverContent side='bottom' align='end'>
@@ -55,7 +54,7 @@ export function PopoverAlignment() {
         <Text variant='title'>Right Side Alignment</Text>
         <View style={{ gap: 16 }}>
           <Popover>
-            <PopoverTrigger>
+            <PopoverTrigger asChild>
               <Button>Start</Button>
             </PopoverTrigger>
             <PopoverContent side='right' align='start'>
@@ -66,7 +65,7 @@ export function PopoverAlignment() {
           </Popover>
 
           <Popover>
-            <PopoverTrigger>
+            <PopoverTrigger asChild>
               <Button>Center</Button>
             </PopoverTrigger>
             <PopoverContent side='right' align='center'>
@@ -77,7 +76,7 @@ export function PopoverAlignment() {
           </Popover>
 
           <Popover>
-            <PopoverTrigger>
+            <PopoverTrigger asChild>
               <Button>End</Button>
             </PopoverTrigger>
             <PopoverContent side='right' align='end'>

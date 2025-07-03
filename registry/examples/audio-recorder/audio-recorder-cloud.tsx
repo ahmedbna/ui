@@ -1,9 +1,8 @@
-// docs/demo/audio-recorder/audio-recorder-cloud.tsx
 import { AudioRecorder } from '@/components/ui/audio-recorder';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
 import React, { useState } from 'react';
-import { ActivityIndicator, Alert } from 'react-native';
+import { ActivityIndicator } from 'react-native';
 
 export function AudioRecorderCloud() {
   const [uploading, setUploading] = useState(false);
@@ -34,18 +33,12 @@ export function AudioRecorderCloud() {
     try {
       const cloudUrl = await simulateCloudUpload(uri);
 
-      Alert.alert(
-        '☁️ Upload Complete',
-        `Recording uploaded to cloud storage!\n\nURL: ${cloudUrl}`,
-        [{ text: 'Perfect!' }]
-      );
+      console.log(`Recording uploaded to cloud storage!\n\nURL: ${cloudUrl}`);
 
       setUploadProgress(0);
     } catch (error) {
-      Alert.alert(
-        'Upload Failed',
-        'Failed to upload recording to cloud storage.'
-      );
+      console.log('Failed to upload recording to cloud storage.');
+
       setUploading(false);
       setUploadProgress(0);
     }
@@ -53,10 +46,6 @@ export function AudioRecorderCloud() {
 
   return (
     <View style={{ width: '100%' }}>
-      <Text variant='caption' style={{ marginBottom: 12, textAlign: 'center' }}>
-        Automatic cloud storage integration
-      </Text>
-
       <AudioRecorder
         quality='high'
         showWaveform={true}

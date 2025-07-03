@@ -1,4 +1,3 @@
-// registry/examples/share-sizes.tsx
 import { ShareButton } from '@/components/ui/share';
 import { View } from '@/components/ui/view';
 import React from 'react';
@@ -10,7 +9,7 @@ export function ShareSizes() {
   };
 
   return (
-    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
+    <View style={{ gap: 12, alignItems: 'center' }}>
       <ShareButton content={shareContent} size='sm'>
         Small
       </ShareButton>

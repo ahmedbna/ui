@@ -1,4 +1,3 @@
-// components/ui/data-table.tsx
 import { Button } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';

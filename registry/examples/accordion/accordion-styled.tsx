@@ -6,17 +6,19 @@ import {
 } from '@/components/ui/accordion';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
+import { useThemeColor } from '@/hooks/useThemeColor';
+import { BORDER_RADIUS } from '@/theme/globals';
 import React from 'react';
 
 export function AccordionStyled() {
+  const card = useThemeColor({}, 'card');
+
   return (
     <View
       style={{
-        backgroundColor: '#f8f9fa',
         padding: 16,
-        borderRadius: 12,
-        borderWidth: 1,
-        borderColor: '#e9ecef',
+        backgroundColor: card,
+        borderRadius: BORDER_RADIUS,
       }}
     >
       <Accordion type='single' collapsible>

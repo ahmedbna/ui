@@ -1,4 +1,3 @@
-// registry/examples/searchbar-loading.tsx
 import { SearchBar } from '@/components/ui/searchbar';
 import React, { useState } from 'react';
 
