@@ -1,77 +1,101 @@
 ---
 title: Introduction
-description: shadcn/ui is a set of beautifully-designed, accessible components and a code distribution platform. Works with your favorite frameworks and AI models. Open Source. Open Code.
+description: BNA UI is a set of beautifully-designed, accessible React Native components and a code distribution platform. Built for Expo and React Native. Open Source. Open Code.
 ---
 
-**This is not a component library. It is how you build your component library.**
+**This is not a component library. It is how you build your mobile component library.**
 
-You know how most traditional component libraries work: you install a package from NPM, import the components, and use them in your app.
+You know how most traditional React Native component libraries work: you install a package from NPM, import the components, and use them in your app.
 
-This approach works well until you need to customize a component to fit your design system or require one that isn’t included in the library. **Often, you end up wrapping library components, writing workarounds to override styles, or mixing components from different libraries with incompatible APIs.**
+This approach works well until you need to customize a component to fit your mobile design system or require one that isn't included in the library. **Often, you end up wrapping library components, writing workarounds to override styles, or mixing components from different libraries with incompatible APIs and platform-specific quirks.**
 
-This is what shadcn/ui aims to solve. It is built around the following principles:
+This is what BNA UI aims to solve. It is built around the following principles:
 
 - **Open Code:** The top layer of your component code is open for modification.
+- **Mobile-First:** Every component is designed specifically for React Native and Expo.
+- **Cross-Platform:** Components work seamlessly across iOS, Android, and web.
 - **Composition:** Every component uses a common, composable interface, making them predictable.
 - **Distribution:** A flat-file schema and command-line tool make it easy to distribute components.
-- **Beautiful Defaults:** Carefully chosen default styles, so you get great design out-of-the-box.
+- **Beautiful Defaults:** Carefully chosen default styles optimized for mobile interfaces.
 - **AI-Ready:** Open code for LLMs to read, understand, and improve.
 
 ## Open Code
 
-shadcn/ui hands you the actual component code. You have full control to customize and extend the components to your needs. This means:
+BNA UI hands you the actual component code. You have full control to customize and extend the components to your mobile needs. This means:
 
-- **Full Transparency:** You see exactly how each component is built.
-- **Easy Customization:** Modify any part of a component to fit your design and functionality requirements.
-- **AI Integration:** Access to the code makes it straightforward for LLMs to read, understand, and even improve your components.
+- **Full Transparency:** You see exactly how each component is built for React Native.
+- **Easy Customization:** Modify any part of a component to fit your mobile design and functionality requirements.
+- **Platform Flexibility:** Adapt components for specific iOS or Android behaviors when needed.
+- **AI Integration:** Access to the code makes it straightforward for LLMs to read, understand, and even improve your mobile components.
 
-_In a typical library, if you need to change a button’s behavior, you have to override styles or wrap the component. With shadcn/ui, you simply edit the button code directly._
+_In a typical React Native library, if you need to change a button's touch behavior or add haptic feedback, you have to override styles or wrap the component. With BNA UI, you simply edit the button code directly._
 
 <Accordion collapsible>
-  <AccordionItem value="faq-1" className="border-none">
+  <AccordionItem value='faq-1' className='border-none'>
     <AccordionTrigger>
       How do I pull upstream updates in an Open Code approach?
     </AccordionTrigger>
     <AccordionContent>
       <p>
-        shadcn/ui follows a headless component architecture. This means the core
-        of your app can receive fixes by updating your dependencies, for
-        instance, radix-ui or input-otp.
+        BNA UI follows a headless component architecture. This means the core of
+        your app can receive fixes by updating your dependencies, for instance,
+        react-native-reanimated, expo-haptics, or react-native-gesture-handler.
       </p>
-      <p className="mt-4">
-        The topmost layer, i.e., the one closest to your design system, is not
-        coupled with the implementation of the library. It stays open for
-        modification.
+      <p className='mt-4'>
+        The topmost layer, i.e., the one closest to your mobile design system,
+        is not coupled with the implementation of the library. It stays open for
+        modification while leveraging the power of Expo and React Native
+        primitives.
       </p>
     </AccordionContent>
   </AccordionItem>
 </Accordion>
 
+## Mobile-First Design
+
+BNA UI is built specifically for mobile interfaces and React Native development:
+
+- **Touch Optimized:** All components are designed with touch interactions in mind, including proper touch targets and gestures.
+- **Performance Focused:** Components are optimized for mobile performance with minimal re-renders and efficient animations.
+- **Native Feel:** Components respect platform conventions and feel native on both iOS and Android.
+- **Responsive:** Components adapt to different screen sizes and orientations seamlessly.
+
+## Cross-Platform Excellence
+
+Every component in BNA UI works consistently across platforms while respecting platform-specific conventions:
+
+- **iOS & Android:** Components automatically adapt to platform design guidelines.
+- **Expo Web:** Full compatibility with Expo's web target for universal apps.
+- **Consistent API:** Write once, works everywhere with platform-appropriate styling.
+
 ## Composition
 
-Every component in shadcn/ui shares a common, composable interface. **If a component does not exist, we bring it in, make it composable, and adjust its style to match and work with the rest of the design system.**
+Every component in BNA UI shares a common, composable interface. **If a component does not exist, we bring it in, make it composable, and adjust its style to match and work with the rest of the mobile design system.**
 
-_A shared, composable interface means it's predictable for both your team and LLMs. You are not learning different APIs for every new component. Even for third-party ones._
+_A shared, composable interface means it's predictable for both your team and LLMs. You are not learning different APIs for every new component. Even for third-party React Native ones._
 
 ## Distribution
 
-shadcn/ui is also a code distribution system. It defines a schema for components and a CLI to distribute them.
+BNA UI is also a code distribution system designed for React Native and Expo projects. It defines a schema for mobile components and a CLI to distribute them.
 
-- **Schema:** A flat-file structure that defines the components, their dependencies, and properties.
-- **CLI:** A command-line tool to distribute and install components across projects with cross-framework support.
+- **Schema:** A flat-file structure that defines the mobile components, their dependencies, and platform-specific properties.
+- **CLI:** A command-line tool to distribute and install components across React Native projects with Expo support.
+- **Expo Integration:** Seamless integration with Expo CLI and development workflow.
 
-_You can use the schema to distribute your components to other projects or have AI generate completely new components based on existing schema._
+_You can use the schema to distribute your mobile components to other projects or have AI generate completely new React Native components based on existing schema._
 
 ## Beautiful Defaults
 
-shadcn/ui comes with a large collection of components that have carefully chosen default styles. They are designed to look good on their own and to work well together as a consistent system:
+BNA UI comes with a large collection of mobile components that have carefully chosen default styles. They are designed to look good on mobile devices and to work well together as a consistent system:
 
-- **Good Out-of-the-Box:** Your UI has a clean and minimal look without extra work.
-- **Unified Design:** Components naturally fit with one another. Each component is built to match the others, keeping your UI consistent.
+- **Mobile-Optimized:** Your UI has a clean and modern mobile look without extra work.
+- **Platform Appropriate:** Components automatically follow iOS and Android design guidelines.
+- **Unified Design:** Components naturally fit with one another across all platforms.
+- **Touch-Friendly:** All interactive elements meet accessibility guidelines for touch targets.
 - **Easily Customizable:** If you want to change something, it's simple to override and extend the defaults.
 
 ## AI-Ready
 
-The design of shadcn/ui makes it easy for AI tools to work with your code. Its open code and consistent API allow AI models to read, understand, and even generate new components.
+The design of BNA UI makes it easy for AI tools to work with your React Native code. Its open code and consistent API allow AI models to read, understand, and even generate new mobile components.
 
-_An AI model can learn how your components work and suggest improvements or even create new components that integrate with your existing design._
+_An AI model can learn how your mobile components work and suggest improvements or even create new React Native components that integrate with your existing mobile design system._

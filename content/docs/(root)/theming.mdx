@@ -1,582 +1,314 @@
 ---
 title: Theming
-description: Using CSS Variables and color utilities for theming.
+description: BNA UI theming system for your React Native UI components using TypeScript constants and color utilities.
 ---
 
-You can choose between using CSS variables (recommended) or utility classes for theming.
+## Overview
 
-## CSS Variables
+Your theming system provides a structured approach to managing colors, dimensions, and styling across your React Native application. The theme is built around light and dark color schemes with support for semantic color naming.
 
-```tsx /bg-background/ /text-foreground/
-<div className="bg-background text-foreground" />
+## Color System
+
+### Light Theme
+
+```typescript
+const lightColors = {
+  // Base colors
+  background: '#FFFFFF',
+  foreground: '#000000',
+
+  // Card colors
+  card: '#F2F2F7',
+  cardForeground: '#000000',
+
+  // Primary colors
+  primary: '#18181b',
+  primaryForeground: '#FFFFFF',
+
+  // Secondary colors
+  secondary: '#F2F2F7',
+  secondaryForeground: '#18181b',
+
+  // System colors
+  destructive: '#ef4444',
+  destructiveForeground: '#FFFFFF',
+
+  // Interactive colors
+  blue: '#007AFF',
+  green: '#34C759',
+  red: '#FF3B30',
+  orange: '#FF9500',
+  yellow: '#FFCC00',
+  pink: '#FF2D92',
+  purple: '#AF52DE',
+  teal: '#5AC8FA',
+  indigo: '#5856D6',
+};
 ```
 
-To use CSS variables for theming set `tailwind.cssVariables` to `true` in your `components.json` file.
+### Dark Theme
 
-```json {8} title="components.json" showLineNumbers
-{
-  "style": "default",
-  "rsc": true,
-  "tailwind": {
-    "config": "",
-    "css": "app/globals.css",
-    "baseColor": "neutral",
-    "cssVariables": true
+```typescript
+const darkColors = {
+  // Base colors
+  background: '#000000',
+  foreground: '#FFFFFF',
+
+  // Card colors
+  card: '#1C1C1E',
+  cardForeground: '#FFFFFF',
+
+  // Primary colors
+  primary: '#e4e4e7',
+  primaryForeground: '#18181b',
+
+  // Secondary colors
+  secondary: '#1C1C1E',
+  secondaryForeground: '#FFFFFF',
+
+  // System colors
+  destructive: '#dc2626',
+  destructiveForeground: '#FFFFFF',
+
+  // Interactive colors (adapted for dark mode)
+  blue: '#0A84FF',
+  green: '#30D158',
+  red: '#FF453A',
+  orange: '#FF9F0A',
+  yellow: '#FFD60A',
+  pink: '#FF375F',
+  purple: '#BF5AF2',
+  teal: '#64D2FF',
+  indigo: '#5E5CE6',
+};
+```
+
+## Global Constants
+
+### Dimensions
+
+```typescript
+export const HEIGHT = 48; // Standard component height
+export const FONT_SIZE = 17; // Base font size
+export const BORDER_RADIUS = 26; // Standard border radius
+export const CORNERS = 999; // Fully rounded corners
+```
+
+### Usage Examples
+
+```typescript
+// Using in StyleSheet
+const styles = StyleSheet.create({
+  button: {
+    height: HEIGHT,
+    borderRadius: BORDER_RADIUS,
+    backgroundColor: Colors.light.primary,
   },
-  "aliases": {
-    "components": "@/components",
-    "utils": "@/lib/utils",
-    "ui": "@/components/ui",
-    "lib": "@/lib",
-    "hooks": "@/hooks"
+
+  roundedButton: {
+    height: HEIGHT,
+    borderRadius: CORNERS,
+    backgroundColor: Colors.light.blue,
   },
-  "iconLibrary": "lucide"
-}
-```
 
-## Utility classes
-
-```tsx /bg-zinc-950/ /text-zinc-50/ /dark:bg-white/ /dark:text-zinc-950/
-<div className="bg-zinc-950 dark:bg-white" />
-```
-
-To use utility classes for theming set `tailwind.cssVariables` to `false` in your `components.json` file.
-
-```json {8} title="components.json" showLineNumbers
-{
-  "style": "default",
-  "rsc": true,
-  "tailwind": {
-    "config": "",
-    "css": "app/globals.css",
-    "baseColor": "neutral",
-    "cssVariables": false
+  text: {
+    fontSize: FONT_SIZE,
+    color: Colors.light.foreground,
   },
-  "aliases": {
-    "components": "@/components",
-    "utils": "@/lib/utils",
-    "ui": "@/components/ui",
-    "lib": "@/lib",
-    "hooks": "@/hooks"
-  },
-  "iconLibrary": "lucide"
+});
+```
+
+## Color Conventions
+
+### Semantic Naming
+
+The color system follows a semantic naming convention where each color has a corresponding foreground color:
+
+- `background` / `foreground` - Main app background and text
+- `card` / `cardForeground` - Card backgrounds and text
+- `primary` / `primaryForeground` - Primary actions and buttons
+- `secondary` / `secondaryForeground` - Secondary actions
+- `destructive` / `destructiveForeground` - Error states and dangerous actions
+
+### iOS System Colors
+
+The theme includes iOS system colors that automatically adapt to the user's appearance settings:
+
+- `blue` - Default buttons, links, selected tabs
+- `green` - Success states, completed tasks
+- `red` - Delete buttons, error states
+- `orange` - Warning states
+- `yellow` - Highlights and accents
+- `pink` - Creative accents
+- `purple` - Feature highlights
+- `teal` - Communication features
+- `indigo` - System features
+
+## Theme Context
+
+### Setting Up Theme Provider
+
+```typescript
+import { Colors } from './colors';
+import { useColorScheme } from 'react-native';
+
+export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
+  const colorScheme = useColorScheme();
+
+  // Create custom themes that use your Colors
+  const customLightTheme = {
+    ...DefaultTheme,
+    colors: {
+      ...DefaultTheme.colors,
+      primary: Colors.light.primary,
+      background: Colors.light.background,
+      card: Colors.light.card,
+      text: Colors.light.text,
+      border: Colors.light.border,
+      notification: Colors.light.red,
+    },
+  };
+
+  const customDarkTheme = {
+    ...DarkTheme,
+    colors: {
+      ...DarkTheme.colors,
+      primary: Colors.dark.primary,
+      background: Colors.dark.background,
+      card: Colors.dark.card,
+      text: Colors.dark.text,
+      border: Colors.dark.border,
+      notification: Colors.dark.red,
+    },
+  };
+
+  return (
+    <ThemeContext.Provider
+      value={colorScheme === 'dark' ? customDarkTheme : customLightTheme}
+    >
+      {children}
+    </ThemeContext.Provider>
+  );
+};
+```
+
+### Using Theme in Components
+
+```typescript
+const Button = ({ children, variant = 'primary' }: ButtonProps) => {
+  const color = useThemeColor({}, variant);
+
+  const buttonStyle = {
+    height: HEIGHT,
+    borderRadius: BORDER_RADIUS,
+    backgroundColor: color,
+    justifyContent: 'center' as const,
+    alignItems: 'center' as const,
+  };
+
+  const textStyle = {
+    color: colors[`${variant}Foreground`],
+    fontSize: FONT_SIZE,
+    fontWeight: '600' as const,
+  };
+
+  return (
+    <Pressable style={buttonStyle}>
+      <Text style={textStyle}>{children}</Text>
+    </Pressable>
+  );
+};
+```
+
+## Component Examples
+
+### Card Component
+
+```typescript
+const Card = ({ children }: { children: React.ReactNode }) => {
+  const color = useThemeColor({}, 'card');
+
+  return (
+    <View
+      style={{
+        backgroundColor: color,
+        borderRadius: BORDER_RADIUS,
+        padding: 16,
+        marginVertical: 8,
+      }}
+    >
+      {children}
+    </View>
+  );
+};
+```
+
+## Customization
+
+### Adding New Colors
+
+To add new colors to your theme:
+
+1. Add the color to both light and dark color objects:
+
+```typescript
+const lightColors = {
+  // ... existing colors
+  success: '#34C759',
+  successForeground: '#FFFFFF',
+};
+
+const darkColors = {
+  // ... existing colors
+  success: '#30D158',
+  successForeground: '#FFFFFF',
+};
+```
+
+2. Update the ColorKeys type:
+
+```typescript
+export type ColorKeys = keyof typeof lightColors;
+```
+
+### Modifying Global Constants
+
+Update the global constants to match your design system:
+
+```typescript
+export const HEIGHT = 44; // Smaller height
+export const FONT_SIZE = 16; // Smaller font
+export const BORDER_RADIUS = 12; // Less rounded
+export const CORNERS = 22; // Moderately rounded
+```
+
+## TypeScript Support
+
+The theme system is fully typed with TypeScript:
+
+```typescript
+// Color keys are typed
+export type ColorKeys = keyof typeof lightColors;
+
+// Theme context is typed
+export interface ThemeContextType {
+  colors: typeof lightColors;
+  isDark: boolean;
+}
+
+// Component props can use color keys
+interface ButtonProps {
+  variant?: ColorKeys;
+  children: React.ReactNode;
 }
 ```
 
-## Convention
+## Best Practices
 
-We use a simple `background` and `foreground` convention for colors. The `background` variable is used for the background color of the component and the `foreground` variable is used for the text color.
+1. **Use semantic colors** - Prefer `primary` over specific colors like `blue`
+2. **Consistent spacing** - Use the global constants for consistent dimensions
+3. **Automatic dark mode** - Always provide both light and dark variants
+4. **Accessibility** - Ensure sufficient contrast between foreground and background colors
+5. **Platform consistency** - Use iOS system colors where appropriate
 
-<Callout className="mt-4">
-
-The `background` suffix is omitted when the variable is used for the background color of the component.
-
-</Callout>
-
-Given the following CSS variables:
-
-```css
---primary: oklch(0.205 0 0);
---primary-foreground: oklch(0.985 0 0);
-```
-
-The `background` color of the following component will be `var(--primary)` and the `foreground` color will be `var(--primary-foreground)`.
-
-```tsx
-<div className="bg-primary text-primary-foreground">Hello</div>
-```
-
-## List of variables
-
-Here's the list of variables available for customization:
-
-```css title="app/globals.css" showLineNumbers
-:root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-}
-
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.269 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.371 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.439 0 0);
-}
-```
-
-## Adding new colors
-
-To add new colors, you need to add them to your CSS file and to your `tailwind.config.js` file.
-
-```css title="app/globals.css" showLineNumbers
-:root {
-  --warning: oklch(0.84 0.16 84);
-  --warning-foreground: oklch(0.28 0.07 46);
-}
-
-.dark {
-  --warning: oklch(0.41 0.11 46);
-  --warning-foreground: oklch(0.99 0.02 95);
-}
-
-@theme inline {
-  --color-warning: var(--warning);
-  --color-warning-foreground: var(--warning-foreground);
-}
-```
-
-You can now use the `warning` utility class in your components.
-
-```tsx /bg-warning/ /text-warning-foreground/
-<div className="bg-warning text-warning-foreground" />
-```
-
-## Other color formats
-
-See the [Tailwind CSS documentation](https://tailwindcss.com/docs/colors) for more information on using colors in Tailwind CSS.
-
-## Base Colors
-
-For reference, here's a list of the base colors that are available.
-
-### Neutral
-
-<CodeCollapsibleWrapper>
-
-```css title="app/globals.css" showLineNumbers
-:root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-}
-
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
-}
-```
-
-</CodeCollapsibleWrapper>
-
-### Stone
-
-<CodeCollapsibleWrapper>
-
-```css title="app/globals.css" showLineNumbers
-:root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.147 0.004 49.25);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.147 0.004 49.25);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.147 0.004 49.25);
-  --primary: oklch(0.216 0.006 56.043);
-  --primary-foreground: oklch(0.985 0.001 106.423);
-  --secondary: oklch(0.97 0.001 106.424);
-  --secondary-foreground: oklch(0.216 0.006 56.043);
-  --muted: oklch(0.97 0.001 106.424);
-  --muted-foreground: oklch(0.553 0.013 58.071);
-  --accent: oklch(0.97 0.001 106.424);
-  --accent-foreground: oklch(0.216 0.006 56.043);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.923 0.003 48.717);
-  --input: oklch(0.923 0.003 48.717);
-  --ring: oklch(0.709 0.01 56.259);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0.001 106.423);
-  --sidebar-foreground: oklch(0.147 0.004 49.25);
-  --sidebar-primary: oklch(0.216 0.006 56.043);
-  --sidebar-primary-foreground: oklch(0.985 0.001 106.423);
-  --sidebar-accent: oklch(0.97 0.001 106.424);
-  --sidebar-accent-foreground: oklch(0.216 0.006 56.043);
-  --sidebar-border: oklch(0.923 0.003 48.717);
-  --sidebar-ring: oklch(0.709 0.01 56.259);
-}
-
-.dark {
-  --background: oklch(0.147 0.004 49.25);
-  --foreground: oklch(0.985 0.001 106.423);
-  --card: oklch(0.216 0.006 56.043);
-  --card-foreground: oklch(0.985 0.001 106.423);
-  --popover: oklch(0.216 0.006 56.043);
-  --popover-foreground: oklch(0.985 0.001 106.423);
-  --primary: oklch(0.923 0.003 48.717);
-  --primary-foreground: oklch(0.216 0.006 56.043);
-  --secondary: oklch(0.268 0.007 34.298);
-  --secondary-foreground: oklch(0.985 0.001 106.423);
-  --muted: oklch(0.268 0.007 34.298);
-  --muted-foreground: oklch(0.709 0.01 56.259);
-  --accent: oklch(0.268 0.007 34.298);
-  --accent-foreground: oklch(0.985 0.001 106.423);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.553 0.013 58.071);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.216 0.006 56.043);
-  --sidebar-foreground: oklch(0.985 0.001 106.423);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0.001 106.423);
-  --sidebar-accent: oklch(0.268 0.007 34.298);
-  --sidebar-accent-foreground: oklch(0.985 0.001 106.423);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.553 0.013 58.071);
-}
-```
-
-</CodeCollapsibleWrapper>
-
-### Zinc
-
-<CodeCollapsibleWrapper>
-
-```css title="app/globals.css" showLineNumbers
-:root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.141 0.005 285.823);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.141 0.005 285.823);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.141 0.005 285.823);
-  --primary: oklch(0.21 0.006 285.885);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.967 0.001 286.375);
-  --secondary-foreground: oklch(0.21 0.006 285.885);
-  --muted: oklch(0.967 0.001 286.375);
-  --muted-foreground: oklch(0.552 0.016 285.938);
-  --accent: oklch(0.967 0.001 286.375);
-  --accent-foreground: oklch(0.21 0.006 285.885);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.92 0.004 286.32);
-  --input: oklch(0.92 0.004 286.32);
-  --ring: oklch(0.705 0.015 286.067);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.141 0.005 285.823);
-  --sidebar-primary: oklch(0.21 0.006 285.885);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.967 0.001 286.375);
-  --sidebar-accent-foreground: oklch(0.21 0.006 285.885);
-  --sidebar-border: oklch(0.92 0.004 286.32);
-  --sidebar-ring: oklch(0.705 0.015 286.067);
-}
-
-.dark {
-  --background: oklch(0.141 0.005 285.823);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.21 0.006 285.885);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.21 0.006 285.885);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.92 0.004 286.32);
-  --primary-foreground: oklch(0.21 0.006 285.885);
-  --secondary: oklch(0.274 0.006 286.033);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.274 0.006 286.033);
-  --muted-foreground: oklch(0.705 0.015 286.067);
-  --accent: oklch(0.274 0.006 286.033);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.552 0.016 285.938);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.21 0.006 285.885);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.274 0.006 286.033);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.552 0.016 285.938);
-}
-```
-
-</CodeCollapsibleWrapper>
-
-### Gray
-
-<CodeCollapsibleWrapper>
-
-```css title="app/globals.css" showLineNumbers
-:root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.13 0.028 261.692);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.13 0.028 261.692);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.13 0.028 261.692);
-  --primary: oklch(0.21 0.034 264.665);
-  --primary-foreground: oklch(0.985 0.002 247.839);
-  --secondary: oklch(0.967 0.003 264.542);
-  --secondary-foreground: oklch(0.21 0.034 264.665);
-  --muted: oklch(0.967 0.003 264.542);
-  --muted-foreground: oklch(0.551 0.027 264.364);
-  --accent: oklch(0.967 0.003 264.542);
-  --accent-foreground: oklch(0.21 0.034 264.665);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.928 0.006 264.531);
-  --input: oklch(0.928 0.006 264.531);
-  --ring: oklch(0.707 0.022 261.325);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0.002 247.839);
-  --sidebar-foreground: oklch(0.13 0.028 261.692);
-  --sidebar-primary: oklch(0.21 0.034 264.665);
-  --sidebar-primary-foreground: oklch(0.985 0.002 247.839);
-  --sidebar-accent: oklch(0.967 0.003 264.542);
-  --sidebar-accent-foreground: oklch(0.21 0.034 264.665);
-  --sidebar-border: oklch(0.928 0.006 264.531);
-  --sidebar-ring: oklch(0.707 0.022 261.325);
-}
-
-.dark {
-  --background: oklch(0.13 0.028 261.692);
-  --foreground: oklch(0.985 0.002 247.839);
-  --card: oklch(0.21 0.034 264.665);
-  --card-foreground: oklch(0.985 0.002 247.839);
-  --popover: oklch(0.21 0.034 264.665);
-  --popover-foreground: oklch(0.985 0.002 247.839);
-  --primary: oklch(0.928 0.006 264.531);
-  --primary-foreground: oklch(0.21 0.034 264.665);
-  --secondary: oklch(0.278 0.033 256.848);
-  --secondary-foreground: oklch(0.985 0.002 247.839);
-  --muted: oklch(0.278 0.033 256.848);
-  --muted-foreground: oklch(0.707 0.022 261.325);
-  --accent: oklch(0.278 0.033 256.848);
-  --accent-foreground: oklch(0.985 0.002 247.839);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.551 0.027 264.364);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.21 0.034 264.665);
-  --sidebar-foreground: oklch(0.985 0.002 247.839);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0.002 247.839);
-  --sidebar-accent: oklch(0.278 0.033 256.848);
-  --sidebar-accent-foreground: oklch(0.985 0.002 247.839);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.551 0.027 264.364);
-}
-```
-
-</CodeCollapsibleWrapper>
-
-### Slate
-
-<CodeCollapsibleWrapper>
-
-```css title="app/globals.css" showLineNumbers
-:root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.984 0.003 247.858);
-  --sidebar-foreground: oklch(0.129 0.042 264.695);
-  --sidebar-primary: oklch(0.208 0.042 265.755);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.968 0.007 247.896);
-  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
-  --sidebar-border: oklch(0.929 0.013 255.508);
-  --sidebar-ring: oklch(0.704 0.04 256.788);
-}
-
-.dark {
-  --background: oklch(0.129 0.042 264.695);
-  --foreground: oklch(0.984 0.003 247.858);
-  --card: oklch(0.208 0.042 265.755);
-  --card-foreground: oklch(0.984 0.003 247.858);
-  --popover: oklch(0.208 0.042 265.755);
-  --popover-foreground: oklch(0.984 0.003 247.858);
-  --primary: oklch(0.929 0.013 255.508);
-  --primary-foreground: oklch(0.208 0.042 265.755);
-  --secondary: oklch(0.279 0.041 260.031);
-  --secondary-foreground: oklch(0.984 0.003 247.858);
-  --muted: oklch(0.279 0.041 260.031);
-  --muted-foreground: oklch(0.704 0.04 256.788);
-  --accent: oklch(0.279 0.041 260.031);
-  --accent-foreground: oklch(0.984 0.003 247.858);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.551 0.027 264.364);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.208 0.042 265.755);
-  --sidebar-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.279 0.041 260.031);
-  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.551 0.027 264.364);
-}
-```
-
-</CodeCollapsibleWrapper>
+This theming system provides a solid foundation for building consistent, accessible, and platform-appropriate React Native applications.
