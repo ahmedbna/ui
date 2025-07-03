@@ -120,14 +120,14 @@ export const galleryRegistry = {
     },
   },
 
-  'gallery-overlays': {
-    name: 'gallery-overlays',
-    description: 'Images with overlays',
+  'gallery-overlay': {
+    name: 'gallery-overlay',
+    description: 'Images with overlay',
     type: 'registry:example',
     registryDependencies: ['gallery', 'view', 'text'],
     files: [
       {
-        path: 'registry/demo/gallery/gallery-overlays.tsx',
+        path: 'registry/demo/gallery/gallery-overlay.tsx',
         type: 'registry:example',
         target: '',
       },
