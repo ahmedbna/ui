@@ -8,6 +8,7 @@ import {
 } from '@/components/page-header';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { Previews } from '@/components/previews';
 
 const title = 'Build your Component Library';
 const description =
@@ -36,6 +37,8 @@ export default function Home() {
           </Button>
         </PageActions>
       </PageHeader>
+
+      <Previews />
     </div>
   );
 }
