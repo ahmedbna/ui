@@ -1,5 +1,3 @@
-import Image from 'next/image';
-
 import { ComponentPreviewTabs } from '@/components/component-preview-tabs';
 import { ComponentSource } from '@/components/component-source';
 import { Index } from '@/registry/__index__';

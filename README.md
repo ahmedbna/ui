@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# BNA UI
 
-## Getting Started
+**This is not a component library. It is how you build your mobile component library.**
 
-First, run the development server:
+You know how most traditional React Native component libraries work: you install a package from NPM, import the components, and use them in your app.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+This approach works well until you need to customize a component to fit your mobile design system or require one that isn't included in the library. **Often, you end up wrapping library components, writing workarounds to override styles, or mixing components from different libraries with incompatible APIs and platform-specific quirks.**
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This is what BNA UI aims to solve. It is built around the following principles:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Open Code:** The top layer of your component code is open for modification.
+- **Mobile-First:** Every component is designed specifically for React Native and Expo.
+- **Cross-Platform:** Components work seamlessly across iOS, Android, and web.
+- **Composition:** Every component uses a common, composable interface, making them predictable.
+- **Distribution:** A flat-file schema and command-line tool make it easy to distribute components.
+- **Beautiful Defaults:** Carefully chosen default styles optimized for mobile interfaces.
+- **AI-Ready:** Open code for LLMs to read, understand, and improve.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Open Code
 
-## Learn More
+BNA UI hands you the actual component code. You have full control to customize and extend the components to your mobile needs. This means:
 
-To learn more about Next.js, take a look at the following resources:
+- **Full Transparency:** You see exactly how each component is built for React Native.
+- **Easy Customization:** Modify any part of a component to fit your mobile design and functionality requirements.
+- **Platform Flexibility:** Adapt components for specific iOS or Android behaviors when needed.
+- **AI Integration:** Access to the code makes it straightforward for LLMs to read, understand, and even improve your mobile components.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+_In a typical React Native library, if you need to change a button's touch behavior or add haptic feedback, you have to override styles or wrap the component. With BNA UI, you simply edit the button code directly._
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Mobile-First Design
 
-## Deploy on Vercel
+BNA UI is built specifically for mobile interfaces and React Native development:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Touch Optimized:** All components are designed with touch interactions in mind, including proper touch targets and gestures.
+- **Performance Focused:** Components are optimized for mobile performance with minimal re-renders and efficient animations.
+- **Native Feel:** Components respect platform conventions and feel native on both iOS and Android.
+- **Responsive:** Components adapt to different screen sizes and orientations seamlessly.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Cross-Platform Excellence
+
+Every component in BNA UI works consistently across platforms while respecting platform-specific conventions:
+
+- **iOS & Android:** Components automatically adapt to platform design guidelines.
+- **Expo Web:** Full compatibility with Expo's web target for universal apps.
+- **Consistent API:** Write once, works everywhere with platform-appropriate styling.
+
+## Composition
+
+Every component in BNA UI shares a common, composable interface. **If a component does not exist, we bring it in, make it composable, and adjust its style to match and work with the rest of the mobile design system.**
+
+_A shared, composable interface means it's predictable for both your team and LLMs. You are not learning different APIs for every new component. Even for third-party React Native ones._
+
+## Distribution
+
+BNA UI is also a code distribution system designed for React Native and Expo projects. It defines a schema for mobile components and a CLI to distribute them.
+
+- **Schema:** A flat-file structure that defines the mobile components, their dependencies, and platform-specific properties.
+- **CLI:** A command-line tool to distribute and install components across React Native projects with Expo support.
+- **Expo Integration:** Seamless integration with Expo CLI and development workflow.
+
+_You can use the schema to distribute your mobile components to other projects or have AI generate completely new React Native components based on existing schema._
+
+## Beautiful Defaults
+
+BNA UI comes with a large collection of mobile components that have carefully chosen default styles. They are designed to look good on mobile devices and to work well together as a consistent system:
+
+- **Mobile-Optimized:** Your UI has a clean and modern mobile look without extra work.
+- **Platform Appropriate:** Components automatically follow iOS and Android design guidelines.
+- **Unified Design:** Components naturally fit with one another across all platforms.
+- **Touch-Friendly:** All interactive elements meet accessibility guidelines for touch targets.
+- **Easily Customizable:** If you want to change something, it's simple to override and extend the defaults.
+
+## AI-Ready
+
+The design of BNA UI makes it easy for AI tools to work with your React Native code. Its open code and consistent API allow AI models to read, understand, and even generate new mobile components.
+
+_An AI model can learn how your mobile components work and suggest improvements or even create new React Native components that integrate with your existing mobile design system._
