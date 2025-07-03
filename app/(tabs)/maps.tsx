@@ -61,6 +61,7 @@ import { ProgressExample } from '@/docs/examples/progress-example';
 import { RadioExample } from '@/docs/examples/radio-example';
 import { ScrollViewExample } from '@/docs/examples/scroll-view-example';
 import { SearchBarExample } from '@/docs/examples/searchbar-example';
+import { SeparatorExample } from '@/docs/examples/separator-example';
 import { ShareExample } from '@/docs/examples/share-example';
 import { SkeletonExample } from '@/docs/examples/skeleton-example';
 import { SpinnerExample } from '@/docs/examples/spinner-example';
@@ -71,5 +72,5 @@ import { ToggleExample } from '@/docs/examples/toggle-example';
 import { VideoExample } from '@/docs/examples/video-example';
 
 export default function MapsScreen() {
-  return <AvatarExample />;
+  return <SeparatorExample />;
 }
