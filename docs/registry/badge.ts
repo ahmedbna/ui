@@ -1,4 +1,4 @@
-// Registry configuration for badge component and examples
+// Registry configuration for badge component and demo
 
 export const badgeRegistry = {
   // Main badge component
@@ -29,7 +29,7 @@ export const badgeRegistry = {
     registryDependencies: ['badge'],
     files: [
       {
-        path: 'registry/examples/badge/badge-demo.tsx',
+        path: 'registry/demo/badge/badge-demo.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -48,7 +48,7 @@ export const badgeRegistry = {
     registryDependencies: ['badge'],
     files: [
       {
-        path: 'registry/examples/badge/badge-icons.tsx',
+        path: 'registry/demo/badge/badge-icons.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -67,7 +67,7 @@ export const badgeRegistry = {
     registryDependencies: ['badge'],
     files: [
       {
-        path: 'registry/examples/badge/badge-notifications.tsx',
+        path: 'registry/demo/badge/badge-notifications.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -86,7 +86,7 @@ export const badgeRegistry = {
     registryDependencies: ['badge'],
     files: [
       {
-        path: 'registry/examples/badge/badge-styled.tsx',
+        path: 'registry/demo/badge/badge-styled.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -105,7 +105,7 @@ export const badgeRegistry = {
     registryDependencies: ['badge'],
     files: [
       {
-        path: 'registry/examples/badge/badge-interactive.tsx',
+        path: 'registry/demo/badge/badge-interactive.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -124,7 +124,7 @@ export const badgeRegistry = {
     registryDependencies: ['badge'],
     files: [
       {
-        path: 'registry/examples/badge/badge-sizes.tsx',
+        path: 'registry/demo/badge/badge-sizes.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -143,7 +143,7 @@ export const badgeRegistry = {
     registryDependencies: ['badge'],
     files: [
       {
-        path: 'registry/examples/badge/badge-status.tsx',
+        path: 'registry/demo/badge/badge-status.tsx',
         type: 'registry:example',
         target: '',
       },

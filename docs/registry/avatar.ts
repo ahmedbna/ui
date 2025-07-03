@@ -1,4 +1,4 @@
-// Registry configuration for avatar component and examples
+// Registry configuration for avatar component and demo
 
 export const avatarRegistry = {
   // Main avatar component
@@ -29,7 +29,7 @@ export const avatarRegistry = {
     registryDependencies: ['avatar'],
     files: [
       {
-        path: 'registry/examples/avatar/avatar-demo.tsx',
+        path: 'registry/demo/avatar/avatar-demo.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -48,7 +48,7 @@ export const avatarRegistry = {
     registryDependencies: ['avatar'],
     files: [
       {
-        path: 'registry/examples/avatar/avatar-sizes.tsx',
+        path: 'registry/demo/avatar/avatar-sizes.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -67,7 +67,7 @@ export const avatarRegistry = {
     registryDependencies: ['avatar'],
     files: [
       {
-        path: 'registry/examples/avatar/avatar-fallback.tsx',
+        path: 'registry/demo/avatar/avatar-fallback.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -86,7 +86,7 @@ export const avatarRegistry = {
     registryDependencies: ['avatar'],
     files: [
       {
-        path: 'registry/examples/avatar/avatar-styled.tsx',
+        path: 'registry/demo/avatar/avatar-styled.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -105,7 +105,7 @@ export const avatarRegistry = {
     registryDependencies: ['avatar'],
     files: [
       {
-        path: 'registry/examples/avatar/avatar-group.tsx',
+        path: 'registry/demo/avatar/avatar-group.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -124,7 +124,7 @@ export const avatarRegistry = {
     registryDependencies: ['avatar'],
     files: [
       {
-        path: 'registry/examples/avatar/avatar-status.tsx',
+        path: 'registry/demo/avatar/avatar-status.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -143,7 +143,7 @@ export const avatarRegistry = {
     registryDependencies: ['avatar'],
     files: [
       {
-        path: 'registry/examples/avatar/avatar-bordered.tsx',
+        path: 'registry/demo/avatar/avatar-bordered.tsx',
         type: 'registry:example',
         target: '',
       },

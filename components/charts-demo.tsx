@@ -450,7 +450,7 @@ export const ChartsDemo: React.FC = () => {
         />
       </ChartContainer>
 
-      {/* Interactive Examples */}
+      {/* Interactive demo */}
       <ChartContainer
         title='Interactive Line Chart'
         description='Touch and drag to explore data points'
@@ -575,7 +575,7 @@ export const ChartsDemo: React.FC = () => {
       {/* Progress Ring Charts */}
       <ChartContainer
         title='Progress Indicators'
-        description='Various progress ring examples'
+        description='Various progress ring demo'
       >
         <View
           style={{

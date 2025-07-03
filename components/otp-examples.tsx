@@ -42,7 +42,7 @@ export function InputOTPExamples() {
 
   return (
     <View style={{ padding: 20, gap: 32 }}>
-      <Text variant='heading'>InputOTP Examples</Text>
+      <Text variant='heading'>InputOTP demo</Text>
 
       {/* Basic OTP */}
       <View style={{ gap: 8 }}>

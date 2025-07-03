@@ -1,4 +1,4 @@
-// Registry configuration for tabs component and examples
+// Registry configuration for tabs component and demo
 
 export const tabsRegistry = {
   // Main tabs component
@@ -31,7 +31,7 @@ export const tabsRegistry = {
     registryDependencies: ['tabs', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/tabs/tabs-demo.tsx',
+        path: 'registry/demo/tabs/tabs-demo.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -50,7 +50,7 @@ export const tabsRegistry = {
     registryDependencies: ['tabs', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/tabs/tabs-vertical.tsx',
+        path: 'registry/demo/tabs/tabs-vertical.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -69,7 +69,7 @@ export const tabsRegistry = {
     registryDependencies: ['tabs', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/tabs/tabs-disabled.tsx',
+        path: 'registry/demo/tabs/tabs-disabled.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -88,7 +88,7 @@ export const tabsRegistry = {
     registryDependencies: ['tabs', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/tabs/tabs-styled.tsx',
+        path: 'registry/demo/tabs/tabs-styled.tsx',
         type: 'registry:example',
         target: '',
       },

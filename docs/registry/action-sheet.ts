@@ -1,5 +1,5 @@
 // docs/registry/action-sheet.ts
-// Registry configuration for action sheet component and examples
+// Registry configuration for action sheet component and demo
 
 export const actionSheetRegistry = {
   // Main action sheet component
@@ -31,7 +31,7 @@ export const actionSheetRegistry = {
     registryDependencies: ['action-sheet', 'button'],
     files: [
       {
-        path: 'registry/examples/action-sheet/action-sheet-demo.tsx',
+        path: 'registry/demo/action-sheet/action-sheet-demo.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -51,7 +51,7 @@ export const actionSheetRegistry = {
     registryDependencies: ['action-sheet', 'button', 'icon'],
     files: [
       {
-        path: 'registry/examples/action-sheet/action-sheet-icons.tsx',
+        path: 'registry/demo/action-sheet/action-sheet-icons.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -72,7 +72,7 @@ export const actionSheetRegistry = {
     registryDependencies: ['action-sheet', 'button', 'icon'],
     files: [
       {
-        path: 'registry/examples/action-sheet/action-sheet-destructive.tsx',
+        path: 'registry/demo/action-sheet/action-sheet-destructive.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -92,7 +92,7 @@ export const actionSheetRegistry = {
     registryDependencies: ['action-sheet', 'button', 'icon'],
     files: [
       {
-        path: 'registry/examples/action-sheet/action-sheet-disabled.tsx',
+        path: 'registry/demo/action-sheet/action-sheet-disabled.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -112,7 +112,7 @@ export const actionSheetRegistry = {
     registryDependencies: ['action-sheet', 'button', 'icon'],
     files: [
       {
-        path: 'registry/examples/action-sheet/action-sheet-styled.tsx',
+        path: 'registry/demo/action-sheet/action-sheet-styled.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -132,7 +132,7 @@ export const actionSheetRegistry = {
     registryDependencies: ['action-sheet', 'button', 'icon'],
     files: [
       {
-        path: 'registry/examples/action-sheet/action-sheet-long.tsx',
+        path: 'registry/demo/action-sheet/action-sheet-long.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -152,7 +152,7 @@ export const actionSheetRegistry = {
     registryDependencies: ['action-sheet', 'button', 'view', 'icon'],
     files: [
       {
-        path: 'registry/examples/action-sheet/action-sheet-hook.tsx',
+        path: 'registry/demo/action-sheet/action-sheet-hook.tsx',
         type: 'registry:example',
         target: '',
       },

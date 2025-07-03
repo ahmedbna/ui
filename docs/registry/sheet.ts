@@ -1,4 +1,4 @@
-// Registry configuration for sheet component and examples
+// Registry configuration for sheet component and demo
 
 export const sheetRegistry = {
   // Main sheet component
@@ -31,7 +31,7 @@ export const sheetRegistry = {
     registryDependencies: ['sheet', 'button', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/sheet/sheet-demo.tsx',
+        path: 'registry/demo/sheet/sheet-demo.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -50,7 +50,7 @@ export const sheetRegistry = {
     registryDependencies: ['sheet', 'button', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/sheet/sheet-left.tsx',
+        path: 'registry/demo/sheet/sheet-left.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -70,7 +70,7 @@ export const sheetRegistry = {
     registryDependencies: ['sheet', 'button', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/sheet/sheet-navigation.tsx',
+        path: 'registry/demo/sheet/sheet-navigation.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -89,7 +89,7 @@ export const sheetRegistry = {
     registryDependencies: ['sheet', 'button', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/sheet/sheet-form.tsx',
+        path: 'registry/demo/sheet/sheet-form.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -109,7 +109,7 @@ export const sheetRegistry = {
     registryDependencies: ['sheet', 'button', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/sheet/sheet-filter.tsx',
+        path: 'registry/demo/sheet/sheet-filter.tsx',
         type: 'registry:example',
         target: '',
       },

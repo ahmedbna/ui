@@ -1,4 +1,4 @@
-// Registry configuration for date-picker component and examples
+// Registry configuration for date-picker component and demo
 
 export const datePickerRegistry = {
   // Main date-picker component
@@ -38,7 +38,7 @@ export const datePickerRegistry = {
     registryDependencies: ['date-picker'],
     files: [
       {
-        path: 'registry/examples/date-picker/date-picker-demo.tsx',
+        path: 'registry/demo/date-picker/date-picker-demo.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -58,7 +58,7 @@ export const datePickerRegistry = {
     registryDependencies: ['date-picker', 'view'],
     files: [
       {
-        path: 'registry/examples/date-picker/date-picker-time.tsx',
+        path: 'registry/demo/date-picker/date-picker-time.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -78,7 +78,7 @@ export const datePickerRegistry = {
     registryDependencies: ['date-picker'],
     files: [
       {
-        path: 'registry/examples/date-picker/date-picker-datetime.tsx',
+        path: 'registry/demo/date-picker/date-picker-datetime.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -98,7 +98,7 @@ export const datePickerRegistry = {
     registryDependencies: ['date-picker', 'view'],
     files: [
       {
-        path: 'registry/examples/date-picker/date-picker-constraints.tsx',
+        path: 'registry/demo/date-picker/date-picker-constraints.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -118,7 +118,7 @@ export const datePickerRegistry = {
     registryDependencies: ['date-picker', 'view'],
     files: [
       {
-        path: 'registry/examples/date-picker/date-picker-variants.tsx',
+        path: 'registry/demo/date-picker/date-picker-variants.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -138,7 +138,7 @@ export const datePickerRegistry = {
     registryDependencies: ['date-picker', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/date-picker/date-picker-formats.tsx',
+        path: 'registry/demo/date-picker/date-picker-formats.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -158,7 +158,7 @@ export const datePickerRegistry = {
     registryDependencies: ['date-picker', 'button', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/date-picker/date-picker-form.tsx',
+        path: 'registry/demo/date-picker/date-picker-form.tsx',
         type: 'registry:example',
         target: '',
       },

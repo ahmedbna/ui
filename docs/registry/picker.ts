@@ -1,4 +1,4 @@
-// Registry configuration for picker component and examples
+// Registry configuration for picker component and demo
 
 export const pickerRegistry = {
   // Main picker component
@@ -31,7 +31,7 @@ export const pickerRegistry = {
     registryDependencies: ['picker'],
     files: [
       {
-        path: 'registry/examples/picker/picker-demo.tsx',
+        path: 'registry/demo/picker/picker-demo.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -50,7 +50,7 @@ export const pickerRegistry = {
     registryDependencies: ['picker'],
     files: [
       {
-        path: 'registry/examples/picker/picker-sections.tsx',
+        path: 'registry/demo/picker/picker-sections.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -69,7 +69,7 @@ export const pickerRegistry = {
     registryDependencies: ['picker'],
     files: [
       {
-        path: 'registry/examples/picker/picker-multiple.tsx',
+        path: 'registry/demo/picker/picker-multiple.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -88,7 +88,7 @@ export const pickerRegistry = {
     registryDependencies: ['picker'],
     files: [
       {
-        path: 'registry/examples/picker/picker-searchable.tsx',
+        path: 'registry/demo/picker/picker-searchable.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -107,7 +107,7 @@ export const pickerRegistry = {
     registryDependencies: ['picker', 'view', 'text'],
     files: [
       {
-        path: 'registry/examples/picker/picker-variants.tsx',
+        path: 'registry/demo/picker/picker-variants.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -127,7 +127,7 @@ export const pickerRegistry = {
     registryDependencies: ['picker'],
     files: [
       {
-        path: 'registry/examples/picker/picker-styled.tsx',
+        path: 'registry/demo/picker/picker-styled.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -146,7 +146,7 @@ export const pickerRegistry = {
     registryDependencies: ['picker', 'view', 'text', 'button'],
     files: [
       {
-        path: 'registry/examples/picker/picker-form.tsx',
+        path: 'registry/demo/picker/picker-form.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -166,7 +166,7 @@ export const pickerRegistry = {
     registryDependencies: ['picker', 'view', 'text'],
     files: [
       {
-        path: 'registry/examples/picker/picker-advanced.tsx',
+        path: 'registry/demo/picker/picker-advanced.tsx',
         type: 'registry:example',
         target: '',
       },

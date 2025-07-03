@@ -1,4 +1,4 @@
-// Registry configuration for table component and examples
+// Registry configuration for table component and demo
 
 export const tableRegistry = {
   // Main table component
@@ -31,7 +31,7 @@ export const tableRegistry = {
     registryDependencies: ['table'],
     files: [
       {
-        path: 'registry/examples/table/table-demo.tsx',
+        path: 'registry/demo/table/table-demo.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -50,7 +50,7 @@ export const tableRegistry = {
     registryDependencies: ['table'],
     files: [
       {
-        path: 'registry/examples/table/table-sortable.tsx',
+        path: 'registry/demo/table/table-sortable.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -69,7 +69,7 @@ export const tableRegistry = {
     registryDependencies: ['table', 'avatar', 'badge', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/table/table-custom-cells.tsx',
+        path: 'registry/demo/table/table-custom-cells.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -88,7 +88,7 @@ export const tableRegistry = {
     registryDependencies: ['table'],
     files: [
       {
-        path: 'registry/examples/table/table-pagination.tsx',
+        path: 'registry/demo/table/table-pagination.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -107,7 +107,7 @@ export const tableRegistry = {
     registryDependencies: ['table'],
     files: [
       {
-        path: 'registry/examples/table/table-search.tsx',
+        path: 'registry/demo/table/table-search.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -126,7 +126,7 @@ export const tableRegistry = {
     registryDependencies: ['table', 'button', 'view'],
     files: [
       {
-        path: 'registry/examples/table/table-loading.tsx',
+        path: 'registry/demo/table/table-loading.tsx',
         type: 'registry:example',
         target: '',
       },

@@ -1,4 +1,4 @@
-// Registry configuration for accordion component and examples
+// Registry configuration for accordion component and demo
 
 export const accordionRegistry = {
   // Main accordion component
@@ -31,7 +31,7 @@ export const accordionRegistry = {
     registryDependencies: ['accordion'],
     files: [
       {
-        path: 'registry/examples/accordion/accordion-demo.tsx',
+        path: 'registry/demo/accordion/accordion-demo.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -51,7 +51,7 @@ export const accordionRegistry = {
     registryDependencies: ['accordion'],
     files: [
       {
-        path: 'registry/examples/accordion/accordion-single.tsx',
+        path: 'registry/demo/accordion/accordion-single.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -72,7 +72,7 @@ export const accordionRegistry = {
     registryDependencies: ['accordion'],
     files: [
       {
-        path: 'registry/examples/accordion/accordion-multiple.tsx',
+        path: 'registry/demo/accordion/accordion-multiple.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -92,7 +92,7 @@ export const accordionRegistry = {
     registryDependencies: ['accordion'],
     files: [
       {
-        path: 'registry/examples/accordion/accordion-controlled.tsx',
+        path: 'registry/demo/accordion/accordion-controlled.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -113,7 +113,7 @@ export const accordionRegistry = {
     registryDependencies: ['accordion'],
     files: [
       {
-        path: 'registry/examples/accordion/accordion-faq.tsx',
+        path: 'registry/demo/accordion/accordion-faq.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -133,7 +133,7 @@ export const accordionRegistry = {
     registryDependencies: ['accordion'],
     files: [
       {
-        path: 'registry/examples/accordion/accordion-non-collapsible.tsx',
+        path: 'registry/demo/accordion/accordion-non-collapsible.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -153,7 +153,7 @@ export const accordionRegistry = {
     registryDependencies: ['accordion'],
     files: [
       {
-        path: 'registry/examples/accordion/accordion-styled.tsx',
+        path: 'registry/demo/accordion/accordion-styled.tsx',
         type: 'registry:example',
         target: '',
       },

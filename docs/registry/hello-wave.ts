@@ -1,4 +1,4 @@
-// Registry configuration for hello-wave component and examples
+// Registry configuration for hello-wave component and demo
 
 export const helloWaveRegistry = {
   // Main hello-wave component
@@ -31,7 +31,7 @@ export const helloWaveRegistry = {
     registryDependencies: ['hello-wave'],
     files: [
       {
-        path: 'registry/examples/hello-wave/hello-wave-demo.tsx',
+        path: 'registry/demo/hello-wave/hello-wave-demo.tsx',
         type: 'registry:example',
         target: '',
       },

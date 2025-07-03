@@ -1,5 +1,5 @@
 // docs/registry/card.ts
-// Registry configuration for card component and examples
+// Registry configuration for card component and demo
 
 export const cardRegistry = {
   // Main card component
@@ -30,7 +30,7 @@ export const cardRegistry = {
     registryDependencies: ['card', 'button'],
     files: [
       {
-        path: 'registry/examples/card/card-demo.tsx',
+        path: 'registry/demo/card/card-demo.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -49,7 +49,7 @@ export const cardRegistry = {
     registryDependencies: ['card'],
     files: [
       {
-        path: 'registry/examples/card/card-simple.tsx',
+        path: 'registry/demo/card/card-simple.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -68,7 +68,7 @@ export const cardRegistry = {
     registryDependencies: ['card', 'button'],
     files: [
       {
-        path: 'registry/examples/card/card-with-image.tsx',
+        path: 'registry/demo/card/card-with-image.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -87,7 +87,7 @@ export const cardRegistry = {
     registryDependencies: ['card', 'button'],
     files: [
       {
-        path: 'registry/examples/card/card-with-form.tsx',
+        path: 'registry/demo/card/card-with-form.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -106,7 +106,7 @@ export const cardRegistry = {
     registryDependencies: ['card'],
     files: [
       {
-        path: 'registry/examples/card/card-stats.tsx',
+        path: 'registry/demo/card/card-stats.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -125,7 +125,7 @@ export const cardRegistry = {
     registryDependencies: ['card', 'button', 'icon'],
     files: [
       {
-        path: 'registry/examples/card/card-notification.tsx',
+        path: 'registry/demo/card/card-notification.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -144,7 +144,7 @@ export const cardRegistry = {
     registryDependencies: ['card', 'button', 'icon'],
     files: [
       {
-        path: 'registry/examples/card/card-pricing.tsx',
+        path: 'registry/demo/card/card-pricing.tsx',
         type: 'registry:example',
         target: '',
       },

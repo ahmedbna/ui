@@ -145,7 +145,7 @@ export default function ActionSheetExample() {
   return (
     <View style={styles.container}>
       <Text variant='title' style={styles.title}>
-        ActionSheet Examples
+        ActionSheet demo
       </Text>
 
       <Text variant='caption' style={styles.subtitle}>

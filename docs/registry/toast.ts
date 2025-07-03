@@ -1,4 +1,4 @@
-// Registry configuration for toast component and examples
+// Registry configuration for toast component and demo
 
 export const toastRegistry = {
   // Main toast component
@@ -35,7 +35,7 @@ export const toastRegistry = {
     registryDependencies: ['toast', 'button'],
     files: [
       {
-        path: 'registry/examples/toast/toast-demo.tsx',
+        path: 'registry/demo/toast/toast-demo.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -56,7 +56,7 @@ export const toastRegistry = {
     registryDependencies: ['toast', 'button', 'view'],
     files: [
       {
-        path: 'registry/examples/toast/toast-variants.tsx',
+        path: 'registry/demo/toast/toast-variants.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -76,7 +76,7 @@ export const toastRegistry = {
     registryDependencies: ['toast', 'button', 'view'],
     files: [
       {
-        path: 'registry/examples/toast/toast-actions.tsx',
+        path: 'registry/demo/toast/toast-actions.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -96,7 +96,7 @@ export const toastRegistry = {
     registryDependencies: ['toast', 'button', 'view'],
     files: [
       {
-        path: 'registry/examples/toast/toast-duration.tsx',
+        path: 'registry/demo/toast/toast-duration.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -116,7 +116,7 @@ export const toastRegistry = {
     registryDependencies: ['toast', 'button', 'view'],
     files: [
       {
-        path: 'registry/examples/toast/toast-multiple.tsx',
+        path: 'registry/demo/toast/toast-multiple.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -136,7 +136,7 @@ export const toastRegistry = {
     registryDependencies: ['toast', 'button', 'view'],
     files: [
       {
-        path: 'registry/examples/toast/toast-compact.tsx',
+        path: 'registry/demo/toast/toast-compact.tsx',
         type: 'registry:example',
         target: '',
       },

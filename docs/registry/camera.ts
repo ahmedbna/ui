@@ -1,4 +1,4 @@
-// Registry configuration for camera component and examples
+// Registry configuration for camera component and demo
 
 export const cameraRegistry = {
   // Main camera component
@@ -35,7 +35,7 @@ export const cameraRegistry = {
     registryDependencies: ['camera'],
     files: [
       {
-        path: 'registry/examples/camera/camera-demo.tsx',
+        path: 'registry/demo/camera/camera-demo.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -55,7 +55,7 @@ export const cameraRegistry = {
     registryDependencies: ['camera'],
     files: [
       {
-        path: 'registry/examples/camera/camera-custom-controls.tsx',
+        path: 'registry/demo/camera/camera-custom-controls.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -75,7 +75,7 @@ export const cameraRegistry = {
     registryDependencies: ['camera'],
     files: [
       {
-        path: 'registry/examples/camera/camera-picture-only.tsx',
+        path: 'registry/demo/camera/camera-picture-only.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -95,7 +95,7 @@ export const cameraRegistry = {
     registryDependencies: ['camera'],
     files: [
       {
-        path: 'registry/examples/camera/camera-video.tsx',
+        path: 'registry/demo/camera/camera-video.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -115,7 +115,7 @@ export const cameraRegistry = {
     registryDependencies: ['camera'],
     files: [
       {
-        path: 'registry/examples/camera/camera-timer.tsx',
+        path: 'registry/demo/camera/camera-timer.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -135,7 +135,7 @@ export const cameraRegistry = {
     registryDependencies: ['camera'],
     files: [
       {
-        path: 'registry/examples/camera/camera-zoom.tsx',
+        path: 'registry/demo/camera/camera-zoom.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -155,7 +155,7 @@ export const cameraRegistry = {
     registryDependencies: ['camera'],
     files: [
       {
-        path: 'registry/examples/camera/camera-settings.tsx',
+        path: 'registry/demo/camera/camera-settings.tsx',
         type: 'registry:example',
         target: '',
       },

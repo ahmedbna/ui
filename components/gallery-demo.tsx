@@ -107,7 +107,7 @@ export function GalleryDemo() {
       showsVerticalScrollIndicator={false}
     >
       <Text variant='heading' style={styles.title}>
-        Gallery Examples
+        Gallery demo
       </Text>
 
       {/* Basic Gallery */}

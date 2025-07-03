@@ -1,4 +1,4 @@
-// Registry configuration for gallery component and examples
+// Registry configuration for gallery component and demo
 
 export const galleryRegistry = {
   // Main gallery component
@@ -32,7 +32,7 @@ export const galleryRegistry = {
     registryDependencies: ['gallery'],
     files: [
       {
-        path: 'registry/examples/gallery/gallery-demo.tsx',
+        path: 'registry/demo/gallery/gallery-demo.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -51,7 +51,7 @@ export const galleryRegistry = {
     registryDependencies: ['gallery', 'view', 'text'],
     files: [
       {
-        path: 'registry/examples/gallery/gallery-grid.tsx',
+        path: 'registry/demo/gallery/gallery-grid.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -70,7 +70,7 @@ export const galleryRegistry = {
     registryDependencies: ['gallery'],
     files: [
       {
-        path: 'registry/examples/gallery/gallery-info.tsx',
+        path: 'registry/demo/gallery/gallery-info.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -89,7 +89,7 @@ export const galleryRegistry = {
     registryDependencies: ['gallery', 'view', 'text'],
     files: [
       {
-        path: 'registry/examples/gallery/gallery-layouts.tsx',
+        path: 'registry/demo/gallery/gallery-layouts.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -108,7 +108,7 @@ export const galleryRegistry = {
     registryDependencies: ['gallery', 'view', 'text'],
     files: [
       {
-        path: 'registry/examples/gallery/gallery-controls.tsx',
+        path: 'registry/demo/gallery/gallery-controls.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -120,14 +120,14 @@ export const galleryRegistry = {
     },
   },
 
-  'gallery-overlays': {
-    name: 'gallery-overlays',
-    description: 'Images with overlays',
+  'gallery-overlay': {
+    name: 'gallery-overlay',
+    description: 'Images with overlay',
     type: 'registry:example',
     registryDependencies: ['gallery', 'view', 'text'],
     files: [
       {
-        path: 'registry/examples/gallery/gallery-overlays.tsx',
+        path: 'registry/demo/gallery/gallery-overlay.tsx',
         type: 'registry:example',
         target: '',
       },

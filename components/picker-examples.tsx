@@ -88,7 +88,7 @@ export function PickerExamples() {
   return (
     <View style={styles.container}>
       <Text variant='title' style={styles.sectionTitle}>
-        Picker Component Examples
+        Picker Component demo
       </Text>
 
       {/* Basic Picker */}

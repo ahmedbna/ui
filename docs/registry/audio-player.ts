@@ -1,5 +1,5 @@
 // docs/registry/audio-player.ts
-// Registry configuration for audio player component and examples
+// Registry configuration for audio player component and demo
 
 export const audioPlayerRegistry = {
   // Main audio player component
@@ -32,7 +32,7 @@ export const audioPlayerRegistry = {
     registryDependencies: ['audio-player', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/audio-player/audio-player-demo.tsx',
+        path: 'registry/demo/audio-player/audio-player-demo.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -52,7 +52,7 @@ export const audioPlayerRegistry = {
     registryDependencies: ['audio-player', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/audio-player/audio-player-minimal.tsx',
+        path: 'registry/demo/audio-player/audio-player-minimal.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -72,7 +72,7 @@ export const audioPlayerRegistry = {
     registryDependencies: ['audio-player', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/audio-player/audio-player-waveform.tsx',
+        path: 'registry/demo/audio-player/audio-player-waveform.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -92,7 +92,7 @@ export const audioPlayerRegistry = {
     registryDependencies: ['audio-player', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/audio-player/audio-player-progress.tsx',
+        path: 'registry/demo/audio-player/audio-player-progress.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -112,7 +112,7 @@ export const audioPlayerRegistry = {
     registryDependencies: ['audio-player', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/audio-player/audio-player-autoplay.tsx',
+        path: 'registry/demo/audio-player/audio-player-autoplay.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -132,7 +132,7 @@ export const audioPlayerRegistry = {
     registryDependencies: ['audio-player', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/audio-player/audio-player-styled.tsx',
+        path: 'registry/demo/audio-player/audio-player-styled.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -153,7 +153,7 @@ export const audioPlayerRegistry = {
     registryDependencies: ['audio-player', 'text', 'view', 'image', 'button'],
     files: [
       {
-        path: 'registry/examples/audio-player/audio-player-music.tsx',
+        path: 'registry/demo/audio-player/audio-player-music.tsx',
         type: 'registry:example',
         target: '',
       },

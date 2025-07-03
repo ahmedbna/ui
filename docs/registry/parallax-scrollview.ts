@@ -1,4 +1,4 @@
-// Registry configuration for parallax-scrollview component and examples
+// Registry configuration for parallax-scrollview component and demo
 
 export const parallaxScrollViewRegistry = {
   // Main parallax-scrollview component
@@ -31,7 +31,7 @@ export const parallaxScrollViewRegistry = {
     registryDependencies: ['parallax-scrollview', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/parallax-scrollview/parallax-scrollview-demo.tsx',
+        path: 'registry/demo/parallax-scrollview/parallax-scrollview-demo.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -51,7 +51,7 @@ export const parallaxScrollViewRegistry = {
     registryDependencies: ['parallax-scrollview', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/parallax-scrollview/parallax-scrollview-custom-height.tsx',
+        path: 'registry/demo/parallax-scrollview/parallax-scrollview-custom-height.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -72,7 +72,7 @@ export const parallaxScrollViewRegistry = {
     registryDependencies: ['parallax-scrollview', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/parallax-scrollview/parallax-scrollview-gradient.tsx',
+        path: 'registry/demo/parallax-scrollview/parallax-scrollview-gradient.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -93,7 +93,7 @@ export const parallaxScrollViewRegistry = {
     registryDependencies: ['parallax-scrollview', 'avatar', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/parallax-scrollview/parallax-scrollview-profile.tsx',
+        path: 'registry/demo/parallax-scrollview/parallax-scrollview-profile.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -114,7 +114,7 @@ export const parallaxScrollViewRegistry = {
     registryDependencies: ['parallax-scrollview', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/parallax-scrollview/parallax-scrollview-article.tsx',
+        path: 'registry/demo/parallax-scrollview/parallax-scrollview-article.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -134,7 +134,7 @@ export const parallaxScrollViewRegistry = {
     registryDependencies: ['parallax-scrollview', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/parallax-scrollview/parallax-scrollview-product.tsx',
+        path: 'registry/demo/parallax-scrollview/parallax-scrollview-product.tsx',
         type: 'registry:example',
         target: '',
       },

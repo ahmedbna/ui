@@ -1,4 +1,4 @@
-// Registry configuration for camera preview component and examples
+// Registry configuration for camera preview component and demo
 
 export const cameraPreviewRegistry = {
   // Main camera preview component
@@ -44,7 +44,7 @@ export const cameraPreviewRegistry = {
     registryDependencies: ['camera-preview'],
     files: [
       {
-        path: 'registry/examples/camera-preview/camera-preview-demo.tsx',
+        path: 'registry/demo/camera-preview/camera-preview-demo.tsx',
         type: 'registry:example',
         target: '',
       },

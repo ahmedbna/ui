@@ -1,4 +1,4 @@
-// Registry configuration for text component and examples
+// Registry configuration for text component and demo
 
 export const textRegistry = {
   // Main text component
@@ -30,7 +30,7 @@ export const textRegistry = {
     registryDependencies: ['text', 'view'],
     files: [
       {
-        path: 'registry/examples/text/text-demo.tsx',
+        path: 'registry/demo/text/text-demo.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -48,7 +48,7 @@ export const textRegistry = {
     registryDependencies: ['text', 'view'],
     files: [
       {
-        path: 'registry/examples/text/text-variants.tsx',
+        path: 'registry/demo/text/text-variants.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -66,7 +66,7 @@ export const textRegistry = {
     registryDependencies: ['text', 'view'],
     files: [
       {
-        path: 'registry/examples/text/text-colors.tsx',
+        path: 'registry/demo/text/text-colors.tsx',
         type: 'registry:example',
         target: '',
       },

@@ -1,4 +1,4 @@
-// Registry configuration for share component and examples
+// Registry configuration for share component and demo
 
 export const shareRegistry = {
   // Main share component
@@ -31,7 +31,7 @@ export const shareRegistry = {
     registryDependencies: ['share'],
     files: [
       {
-        path: 'registry/examples/share/share-demo.tsx',
+        path: 'registry/demo/share/share-demo.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -51,7 +51,7 @@ export const shareRegistry = {
     registryDependencies: ['share', 'view'],
     files: [
       {
-        path: 'registry/examples/share/share-variants.tsx',
+        path: 'registry/demo/share/share-variants.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -71,7 +71,7 @@ export const shareRegistry = {
     registryDependencies: ['share', 'view'],
     files: [
       {
-        path: 'registry/examples/share/share-sizes.tsx',
+        path: 'registry/demo/share/share-sizes.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -91,7 +91,7 @@ export const shareRegistry = {
     registryDependencies: ['share', 'view'],
     files: [
       {
-        path: 'registry/examples/share/share-url-only.tsx',
+        path: 'registry/demo/share/share-url-only.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -111,7 +111,7 @@ export const shareRegistry = {
     registryDependencies: ['share', 'view'],
     files: [
       {
-        path: 'registry/examples/share/share-custom-content.tsx',
+        path: 'registry/demo/share/share-custom-content.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -131,7 +131,7 @@ export const shareRegistry = {
     registryDependencies: ['share', 'view'],
     files: [
       {
-        path: 'registry/examples/share/share-icon-only.tsx',
+        path: 'registry/demo/share/share-icon-only.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -151,7 +151,7 @@ export const shareRegistry = {
     registryDependencies: ['share', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/share/share-callbacks.tsx',
+        path: 'registry/demo/share/share-callbacks.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -170,7 +170,7 @@ export const shareRegistry = {
     registryDependencies: ['share', 'text', 'view', 'button'],
     files: [
       {
-        path: 'registry/examples/share/share-hook.tsx',
+        path: 'registry/demo/share/share-hook.tsx',
         type: 'registry:example',
         target: '',
       },

@@ -89,9 +89,7 @@ export function ComboboxExamples() {
 
   return (
     <View style={styles.container}>
-      <Text style={[styles.title, { color: textColor }]}>
-        Combobox Examples
-      </Text>
+      <Text style={[styles.title, { color: textColor }]}>Combobox demo</Text>
 
       {/* Basic combobox example with custom value display */}
       <View style={styles.section}>

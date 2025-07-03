@@ -37,7 +37,7 @@ export const audioRecorderRegistry = {
     registryDependencies: ['audio-recorder', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/audio-recorder/audio-recorder-demo.tsx',
+        path: 'registry/demo/audio-recorder/audio-recorder-demo.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -57,7 +57,7 @@ export const audioRecorderRegistry = {
     registryDependencies: ['audio-recorder', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/audio-recorder/audio-recorder-voice.tsx',
+        path: 'registry/demo/audio-recorder/audio-recorder-voice.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -77,7 +77,7 @@ export const audioRecorderRegistry = {
     registryDependencies: ['audio-recorder', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/audio-recorder/audio-recorder-hq.tsx',
+        path: 'registry/demo/audio-recorder/audio-recorder-hq.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -97,7 +97,7 @@ export const audioRecorderRegistry = {
     registryDependencies: ['audio-recorder', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/audio-recorder/audio-recorder-minimal.tsx',
+        path: 'registry/demo/audio-recorder/audio-recorder-minimal.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -117,7 +117,7 @@ export const audioRecorderRegistry = {
     registryDependencies: ['audio-recorder', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/audio-recorder/audio-recorder-styled.tsx',
+        path: 'registry/demo/audio-recorder/audio-recorder-styled.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -137,7 +137,7 @@ export const audioRecorderRegistry = {
     registryDependencies: ['audio-recorder', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/audio-recorder/audio-recorder-callbacks.tsx',
+        path: 'registry/demo/audio-recorder/audio-recorder-callbacks.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -157,7 +157,7 @@ export const audioRecorderRegistry = {
     registryDependencies: ['audio-recorder', 'text', 'view', 'loading-spinner'],
     files: [
       {
-        path: 'registry/examples/audio-recorder/audio-recorder-cloud.tsx',
+        path: 'registry/demo/audio-recorder/audio-recorder-cloud.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -177,7 +177,7 @@ export const audioRecorderRegistry = {
     registryDependencies: ['audio-recorder', 'text', 'view', 'badge'],
     files: [
       {
-        path: 'registry/examples/audio-recorder/audio-recorder-interview.tsx',
+        path: 'registry/demo/audio-recorder/audio-recorder-interview.tsx',
         type: 'registry:example',
         target: '',
       },

@@ -17,7 +17,7 @@ import React from 'react';
 import { ScrollView } from 'react-native';
 
 export function AlertExamples() {
-  // Native alert examples
+  // Native alert demo
   const handleTwoButtonAlert = () => {
     createTwoButtonAlert({
       title: 'Two Button Alert',
@@ -106,7 +106,7 @@ export function AlertExamples() {
   return (
     <ScrollView style={{ flex: 1, padding: 16 }}>
       <Text variant='heading' style={{ marginBottom: 24 }}>
-        Alert Examples
+        Alert demo
       </Text>
 
       {/* Native Alerts */}

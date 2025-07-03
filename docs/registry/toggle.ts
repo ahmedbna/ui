@@ -1,5 +1,5 @@
 // docs/registry/toggle.ts
-// Registry configuration for toggle component and examples
+// Registry configuration for toggle component and demo
 
 export const toggleRegistry = {
   // Main toggle component
@@ -31,7 +31,7 @@ export const toggleRegistry = {
     registryDependencies: ['toggle'],
     files: [
       {
-        path: 'registry/examples/toggle/toggle-demo.tsx',
+        path: 'registry/demo/toggle/toggle-demo.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -51,7 +51,7 @@ export const toggleRegistry = {
     registryDependencies: ['toggle'],
     files: [
       {
-        path: 'registry/examples/toggle/toggle-variants.tsx',
+        path: 'registry/demo/toggle/toggle-variants.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -71,7 +71,7 @@ export const toggleRegistry = {
     registryDependencies: ['toggle'],
     files: [
       {
-        path: 'registry/examples/toggle/toggle-sizes.tsx',
+        path: 'registry/demo/toggle/toggle-sizes.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -91,7 +91,7 @@ export const toggleRegistry = {
     registryDependencies: ['toggle'],
     files: [
       {
-        path: 'registry/examples/toggle/toggle-text.tsx',
+        path: 'registry/demo/toggle/toggle-text.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -111,7 +111,7 @@ export const toggleRegistry = {
     registryDependencies: ['toggle'],
     files: [
       {
-        path: 'registry/examples/toggle/toggle-disabled.tsx',
+        path: 'registry/demo/toggle/toggle-disabled.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -131,7 +131,7 @@ export const toggleRegistry = {
     registryDependencies: ['toggle'],
     files: [
       {
-        path: 'registry/examples/toggle/toggle-group-single.tsx',
+        path: 'registry/demo/toggle/toggle-group-single.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -151,7 +151,7 @@ export const toggleRegistry = {
     registryDependencies: ['toggle'],
     files: [
       {
-        path: 'registry/examples/toggle/toggle-group-multiple.tsx',
+        path: 'registry/demo/toggle/toggle-group-multiple.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -171,7 +171,7 @@ export const toggleRegistry = {
     registryDependencies: ['toggle'],
     files: [
       {
-        path: 'registry/examples/toggle/toggle-group-vertical.tsx',
+        path: 'registry/demo/toggle/toggle-group-vertical.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -191,7 +191,7 @@ export const toggleRegistry = {
     registryDependencies: ['toggle'],
     files: [
       {
-        path: 'registry/examples/toggle/toggle-group-outline.tsx',
+        path: 'registry/demo/toggle/toggle-group-outline.tsx',
         type: 'registry:example',
         target: '',
       },

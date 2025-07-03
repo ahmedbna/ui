@@ -443,7 +443,7 @@ DATA TABLE COMPONENT DOCUMENTATION
 - `cell?: (value: any, row: T) => React.ReactNode` - Custom cell renderer
 - `headerCell?: () => React.ReactNode` - Custom header renderer
 
-## Usage Examples
+## Usage demo
 
 ### Basic Usage
 ```tsx

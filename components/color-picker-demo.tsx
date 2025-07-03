@@ -42,7 +42,7 @@ export function ColorPickerDemo() {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.section}>
-        <Text variant='title'>Color Picker Examples</Text>
+        <Text variant='title'>Color Picker demo</Text>
         <Text variant='caption' style={styles.subtitle}>
           Tap on any color swatch to open the color picker
         </Text>

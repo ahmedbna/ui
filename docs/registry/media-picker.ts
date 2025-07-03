@@ -1,4 +1,4 @@
-// Registry configuration for media-picker component and examples
+// Registry configuration for media-picker component and demo
 
 export const mediaPickerRegistry = {
   // Main media-picker component
@@ -36,7 +36,7 @@ export const mediaPickerRegistry = {
     registryDependencies: ['media-picker'],
     files: [
       {
-        path: 'registry/examples/media-picker/media-picker-demo.tsx',
+        path: 'registry/demo/media-picker/media-picker-demo.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -57,7 +57,7 @@ export const mediaPickerRegistry = {
     registryDependencies: ['media-picker'],
     files: [
       {
-        path: 'registry/examples/media-picker/media-picker-images.tsx',
+        path: 'registry/demo/media-picker/media-picker-images.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -78,7 +78,7 @@ export const mediaPickerRegistry = {
     registryDependencies: ['media-picker'],
     files: [
       {
-        path: 'registry/examples/media-picker/media-picker-videos.tsx',
+        path: 'registry/demo/media-picker/media-picker-videos.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -99,7 +99,7 @@ export const mediaPickerRegistry = {
     registryDependencies: ['media-picker', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/media-picker/media-picker-multiple.tsx',
+        path: 'registry/demo/media-picker/media-picker-multiple.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -120,7 +120,7 @@ export const mediaPickerRegistry = {
     registryDependencies: ['media-picker'],
     files: [
       {
-        path: 'registry/examples/media-picker/media-picker-gallery.tsx',
+        path: 'registry/demo/media-picker/media-picker-gallery.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -141,7 +141,7 @@ export const mediaPickerRegistry = {
     registryDependencies: ['media-picker', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/media-picker/media-picker-preview.tsx',
+        path: 'registry/demo/media-picker/media-picker-preview.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -162,7 +162,7 @@ export const mediaPickerRegistry = {
     registryDependencies: ['media-picker', 'text', 'view'],
     files: [
       {
-        path: 'registry/examples/media-picker/media-picker-quality.tsx',
+        path: 'registry/demo/media-picker/media-picker-quality.tsx',
         type: 'registry:example',
         target: '',
       },

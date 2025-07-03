@@ -1,4 +1,4 @@
-// Registry configuration for input component and examples
+// Registry configuration for input component and demo
 
 export const inputRegistry = {
   // Main input component
@@ -32,7 +32,7 @@ export const inputRegistry = {
     registryDependencies: ['input'],
     files: [
       {
-        path: 'registry/examples/input/input-demo.tsx',
+        path: 'registry/demo/input/input-demo.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -53,7 +53,7 @@ export const inputRegistry = {
     registryDependencies: ['input', 'view'],
     files: [
       {
-        path: 'registry/examples/input/input-icons.tsx',
+        path: 'registry/demo/input/input-icons.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -74,7 +74,7 @@ export const inputRegistry = {
     registryDependencies: ['input', 'view'],
     files: [
       {
-        path: 'registry/examples/input/input-variants.tsx',
+        path: 'registry/demo/input/input-variants.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -95,7 +95,7 @@ export const inputRegistry = {
     registryDependencies: ['input', 'view'],
     files: [
       {
-        path: 'registry/examples/input/input-validation.tsx',
+        path: 'registry/demo/input/input-validation.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -117,7 +117,7 @@ export const inputRegistry = {
     registryDependencies: ['input', 'view', 'button', 'text'],
     files: [
       {
-        path: 'registry/examples/input/input-right-components.tsx',
+        path: 'registry/demo/input/input-right-components.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -138,7 +138,7 @@ export const inputRegistry = {
     registryDependencies: ['input', 'view'],
     files: [
       {
-        path: 'registry/examples/input/input-disabled.tsx',
+        path: 'registry/demo/input/input-disabled.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -158,7 +158,7 @@ export const inputRegistry = {
     registryDependencies: ['input'],
     files: [
       {
-        path: 'registry/examples/input/input-grouped.tsx',
+        path: 'registry/demo/input/input-grouped.tsx',
         type: 'registry:example',
         target: '',
       },
@@ -179,7 +179,7 @@ export const inputRegistry = {
     registryDependencies: ['input', 'button', 'view', 'text'],
     files: [
       {
-        path: 'registry/examples/input/input-form.tsx',
+        path: 'registry/demo/input/input-form.tsx',
         type: 'registry:example',
         target: '',
       },

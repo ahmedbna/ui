@@ -86,7 +86,7 @@ export function AudioExample() {
             variant='body'
             style={{ color: mutedColor, textAlign: 'center' }}
           >
-            Interactive examples of audio recording, playback, and waveform
+            Interactive demo of audio recording, playback, and waveform
             visualization
           </Text>
         </View>
@@ -217,11 +217,11 @@ export function AudioExample() {
           </View>
         </View>
 
-        {/* Customization Examples */}
+        {/* Customization demo */}
         <View style={[styles.section, { backgroundColor: secondaryColor }]}>
           <View style={styles.sectionHeader}>
             <Text variant='title' style={{ color: textColor }}>
-              Customization Examples
+              Customization demo
             </Text>
             <Text variant='body' style={{ color: mutedColor }}>
               Different styles and configurations
