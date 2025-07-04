@@ -27,7 +27,9 @@ export async function StarsCount() {
 
   return (
     <span className='text-muted-foreground text-xs tabular-nums'>
-      {json.stargazers_count >= 1000
+      {json.stargazers_count === 0
+        ? null
+        : json.stargazers_count >= 1000
         ? `${(json.stargazers_count / 1000).toFixed(1)}k`
         : json.stargazers_count.toLocaleString()}
     </span>
