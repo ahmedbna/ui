@@ -7,6 +7,7 @@ import { ModeSwitcher } from '@/components/mode-switcher';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { source } from '@/lib/source';
+import EmailButton from './email-button';
 
 export function SiteHeader() {
   const pageTree = source.pageTree;
@@ -30,13 +31,8 @@ export function SiteHeader() {
           </Button>
           <MainNav items={siteConfig.navItems} className='hidden lg:flex' />
           <div className='ml-auto flex items-center gap-2 md:flex-1 md:justify-end'>
-            {/* <div className='hidden w-full flex-1 md:flex md:w-auto md:flex-none'>
-              <CommandMenu tree={pageTree} colors={colors} />
-            </div>
-            <Separator
-              orientation='vertical'
-              className='ml-2 hidden lg:block'
-            /> */}
+            <EmailButton />
+            <Separator orientation='vertical' />
             <GitHubLink />
             <Separator orientation='vertical' />
             <ModeSwitcher />
