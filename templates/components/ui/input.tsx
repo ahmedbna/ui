@@ -294,6 +294,8 @@ export const Input = forwardRef<TextInput, InputProps>(
   }
 );
 
+Input.displayName = 'Input';
+
 export interface GroupedInputProps {
   children: React.ReactNode;
   containerStyle?: ViewStyle;
@@ -605,3 +607,5 @@ export const GroupedInputItem = forwardRef<TextInput, GroupedInputItemProps>(
     return renderItemContent();
   }
 );
+
+GroupedInputItem.displayName = 'GroupedInputItem';
