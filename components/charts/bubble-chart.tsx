@@ -1,9 +1,6 @@
 // components/ui/charts/bubble-chart.tsx
 
-import {
-  BubbleChartDataPoint,
-  ChartConfig,
-} from '@/components/ui/charts/types';
+import { BubbleChartDataPoint, ChartConfig } from '@/components/charts/types';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { useEffect, useState } from 'react';
 import { LayoutChangeEvent, View, ViewStyle } from 'react-native';

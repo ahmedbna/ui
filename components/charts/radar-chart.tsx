@@ -1,6 +1,6 @@
 // components/ui/charts/radar-chart.tsx
 
-import { ChartConfig, RadarChartDataPoint } from '@/components/ui/charts/types';
+import { ChartConfig, RadarChartDataPoint } from '@/components/charts/types';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { useEffect, useState } from 'react';
 import { LayoutChangeEvent, View, ViewStyle } from 'react-native';

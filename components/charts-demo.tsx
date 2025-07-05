@@ -1,42 +1,42 @@
 // components/charts-demo.tsx
 
-import { AreaChart } from '@/components/ui/charts/area-chart';
-import { BarChart } from '@/components/ui/charts/bar-chart';
-import { BubbleChart } from '@/components/ui/charts/bubble-chart';
+import { AreaChart } from '@/components/charts/area-chart';
+import { BarChart } from '@/components/charts/bar-chart';
+import { BubbleChart } from '@/components/charts/bubble-chart';
 import {
   CandlestickChart,
   CandlestickDataPoint,
-} from '@/components/ui/charts/candlestick-chart';
-import { ChartContainer } from '@/components/ui/charts/chart-container';
-import { ColumnChart } from '@/components/ui/charts/column-chart';
-import { DoughnutChart } from '@/components/ui/charts/doughnut-chart';
-import { HeatmapChart } from '@/components/ui/charts/heatmap-chart';
-import { LineChart } from '@/components/ui/charts/line-chart';
-import { PieChart } from '@/components/ui/charts/pie-chart';
-import { PolarAreaChart } from '@/components/ui/charts/polar-area-chart';
-import { ProgressRingChart } from '@/components/ui/charts/progress-ring-chart';
-import { RadarChart } from '@/components/ui/charts/radar-chart';
-import { RadialBarChart } from '@/components/ui/charts/radial-bar-chart';
-import { ScatterPlot } from '@/components/ui/charts/scatter-chart';
+} from '@/components/charts/candlestick-chart';
+import { ChartContainer } from '@/components/charts/chart-container';
+import { ColumnChart } from '@/components/charts/column-chart';
+import { DoughnutChart } from '@/components/charts/doughnut-chart';
+import { HeatmapChart } from '@/components/charts/heatmap-chart';
+import { LineChart } from '@/components/charts/line-chart';
+import { PieChart } from '@/components/charts/pie-chart';
+import { PolarAreaChart } from '@/components/charts/polar-area-chart';
+import { ProgressRingChart } from '@/components/charts/progress-ring-chart';
+import { RadarChart } from '@/components/charts/radar-chart';
+import { RadialBarChart } from '@/components/charts/radial-bar-chart';
+import { ScatterPlot } from '@/components/charts/scatter-chart';
 import {
   StackedAreaChart,
   StackedAreaDataPoint,
-} from '@/components/ui/charts/stacked-area-chart';
+} from '@/components/charts/stacked-area-chart';
 import {
   StackedBarChart,
   StackedBarDataPoint,
-} from '@/components/ui/charts/stacked-bar-chart';
+} from '@/components/charts/stacked-bar-chart';
 import {
   TreeMapChart,
   TreeMapDataPoint,
-} from '@/components/ui/charts/treemap-chart';
+} from '@/components/charts/treemap-chart';
 import {
   BubbleChartDataPoint,
   ChartDataPoint,
   HeatmapDataPoint,
   LineChartDataPoint,
   RadarChartDataPoint,
-} from '@/components/ui/charts/types';
+} from '@/components/charts/types';
 import { Text } from '@/components/ui/text';
 import React from 'react';
 import { View } from 'react-native';

@@ -1,6 +1,6 @@
 // components/ui/charts/polar-chart.tsx
 
-import { ChartConfig, ChartDataPoint } from '@/components/ui/charts/types';
+import { ChartConfig, ChartDataPoint } from '@/components/charts/types';
 import { Text } from '@/components/ui/text';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { useEffect, useState } from 'react';

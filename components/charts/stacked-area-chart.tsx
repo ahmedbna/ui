@@ -1,6 +1,6 @@
 // components/ui/charts/stacked-area-chart.tsx
 
-import { ChartConfig } from '@/components/ui/charts/types';
+import { ChartConfig } from '@/components/charts/types';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { useEffect, useState } from 'react';
 import { LayoutChangeEvent, View, ViewStyle } from 'react-native';

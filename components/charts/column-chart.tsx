@@ -1,6 +1,6 @@
 // components/ui/charts/column-chart.tsx
 
-import { ChartConfig, ChartDataPoint } from '@/components/ui/charts/types';
+import { ChartConfig, ChartDataPoint } from '@/components/charts/types';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { useEffect, useState } from 'react';
 import { LayoutChangeEvent, View, ViewStyle } from 'react-native';

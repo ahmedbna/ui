@@ -1,7 +1,7 @@
 // components/ui/charts/area-chart.tsx
 
-import { LineChart } from '@/components/ui/charts/line-chart';
-import { ChartConfig, LineChartDataPoint } from '@/components/ui/charts/types';
+import { LineChart } from '@/components/charts/line-chart';
+import { ChartConfig, LineChartDataPoint } from '@/components/charts/types';
 import { ViewStyle } from 'react-native';
 
 type Props = {

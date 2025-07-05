@@ -1,6 +1,6 @@
 // components/ui/charts/progress-ring-chart.tsx
 
-import { ChartConfig } from '@/components/ui/charts/types';
+import { ChartConfig } from '@/components/charts/types';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { useEffect } from 'react';
 import { View, ViewStyle } from 'react-native';
