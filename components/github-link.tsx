@@ -21,15 +21,13 @@ export function GitHubLink() {
 
 export async function StarsCount() {
   const data = await fetch('https://api.github.com/repos/ahmedbna/ui', {
-    next: { revalidate: 86400 }, // Cache for 1 day (86400 seconds)
+    next: { revalidate: 3600 }, // Cache for 1 hour (3600 seconds)
   });
   const json = await data.json();
 
   return (
     <span className='text-muted-foreground text-xs tabular-nums'>
-      {json.stargazers_count === 0
-        ? null
-        : json.stargazers_count >= 1000
+      {json.stargazers_count >= 1000
         ? `${(json.stargazers_count / 1000).toFixed(1)}k`
         : json.stargazers_count?.toLocaleString()}
     </span>
