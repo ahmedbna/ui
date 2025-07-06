@@ -69,9 +69,3 @@ BNA UI comes with a large collection of mobile components that have carefully ch
 - **Unified Design:** Components naturally fit with one another across all platforms.
 - **Touch-Friendly:** All interactive elements meet accessibility guidelines for touch targets.
 - **Easily Customizable:** If you want to change something, it's simple to override and extend the defaults.
-
-## AI-Ready
-
-The design of BNA UI makes it easy for AI tools to work with your React Native code. Its open code and consistent API allow AI models to read, understand, and even generate new mobile components.
-
-_An AI model can learn how your mobile components work and suggest improvements or even create new React Native components that integrate with your existing mobile design system._
