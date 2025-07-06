@@ -10,9 +10,9 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Previews } from '@/components/previews';
 
-const title = 'Expo, React Native UI Component Library';
+const title = 'Expo React Native UI Components Library';
 const description =
-  'Beautiful, accessible Expo, React Native components that work seamlessly across iOS and Android. Open Source. Open Code.';
+  'Beautiful, accessible Expo, React Native components that work seamlessly across iOS and Android';
 export const dynamic = 'force-static';
 export const revalidate = false;
 
