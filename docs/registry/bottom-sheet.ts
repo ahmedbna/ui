@@ -12,9 +12,9 @@ export const bottomSheetRegistry = {
     registryDependencies: ['text', 'view'],
     files: [
       {
-        path: 'registry/components/ui/bottom-sheet.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/bottom-sheet.tsx',
+        target: 'components/ui/bottom-sheet.tsx',
       },
     ],
     preview: {
@@ -32,9 +32,9 @@ export const bottomSheetRegistry = {
     registryDependencies: ['bottom-sheet', 'button'],
     files: [
       {
-        path: 'registry/demo/bottom-sheet/bottom-sheet-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/bottom-sheet/bottom-sheet-demo.tsx',
+        target: 'components/demo/bottom-sheet/bottom-sheet-demo.tsx',
       },
     ],
     preview: {
@@ -52,9 +52,9 @@ export const bottomSheetRegistry = {
     registryDependencies: ['bottom-sheet', 'button'],
     files: [
       {
-        path: 'registry/demo/bottom-sheet/bottom-sheet-title.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/bottom-sheet/bottom-sheet-title.tsx',
+        target: 'components/demo/bottom-sheet/bottom-sheet-title.tsx',
       },
     ],
     preview: {
@@ -72,9 +72,9 @@ export const bottomSheetRegistry = {
     registryDependencies: ['bottom-sheet', 'button'],
     files: [
       {
-        path: 'registry/demo/bottom-sheet/bottom-sheet-snap-points.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/bottom-sheet/bottom-sheet-snap-points.tsx',
+        target: 'components/demo/bottom-sheet/bottom-sheet-snap-points.tsx',
       },
     ],
     preview: {
@@ -92,9 +92,9 @@ export const bottomSheetRegistry = {
     registryDependencies: ['bottom-sheet', 'button', 'input'],
     files: [
       {
-        path: 'registry/demo/bottom-sheet/bottom-sheet-form.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/bottom-sheet/bottom-sheet-form.tsx',
+        target: 'components/demo/bottom-sheet/bottom-sheet-form.tsx',
       },
     ],
     preview: {
@@ -112,9 +112,9 @@ export const bottomSheetRegistry = {
     registryDependencies: ['bottom-sheet', 'button'],
     files: [
       {
-        path: 'registry/demo/bottom-sheet/bottom-sheet-list.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/bottom-sheet/bottom-sheet-list.tsx',
+        target: 'components/demo/bottom-sheet/bottom-sheet-list.tsx',
       },
     ],
     preview: {
@@ -132,9 +132,9 @@ export const bottomSheetRegistry = {
     registryDependencies: ['bottom-sheet', 'button'],
     files: [
       {
-        path: 'registry/demo/bottom-sheet/bottom-sheet-no-dismiss.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/bottom-sheet/bottom-sheet-no-dismiss.tsx',
+        target: 'components/demo/bottom-sheet/bottom-sheet-no-dismiss.tsx',
       },
     ],
     preview: {
@@ -152,8 +152,9 @@ export const bottomSheetRegistry = {
     registryDependencies: ['bottom-sheet', 'button'],
     files: [
       {
-        path: 'registry/demo/bottom-sheet/bottom-sheet-styled.tsx',
         type: 'registry:example',
+        path: 'registry/demo/bottom-sheet/bottom-sheet-styled.tsx',
+        target: 'components/demo/bottom-sheet/bottom-sheet-styled.tsx',
       },
     ],
     preview: {
@@ -170,8 +171,9 @@ export const bottomSheetRegistry = {
     registryDependencies: ['bottom-sheet', 'button', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/bottom-sheet/bottom-sheet-menu.tsx',
         type: 'registry:example',
+        path: 'registry/demo/bottom-sheet/bottom-sheet-menu.tsx',
+        target: 'components/demo/bottom-sheet/bottom-sheet-menu.tsx',
       },
     ],
     preview: {

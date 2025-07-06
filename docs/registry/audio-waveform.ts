@@ -11,9 +11,9 @@ export const audioWaveformRegistry = {
     registryDependencies: ['text', 'view'],
     files: [
       {
-        path: 'registry/components/ui/audio-waveform.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/audio-waveform.tsx',
+        target: 'components/ui/audio-waveform.tsx',
       },
     ],
     preview: {
@@ -32,9 +32,9 @@ export const audioWaveformRegistry = {
     registryDependencies: ['audio-waveform', 'button', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/audio-waveform/audio-waveform-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/audio-waveform/audio-waveform-demo.tsx',
+        target: 'components/demo/audio-waveform/audio-waveform-demo.tsx',
       },
     ],
     preview: {
@@ -53,9 +53,9 @@ export const audioWaveformRegistry = {
     registryDependencies: ['audio-waveform', 'button', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/audio-waveform/audio-waveform-recording.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/audio-waveform/audio-waveform-recording.tsx',
+        target: 'components/demo/audio-waveform/audio-waveform-recording.tsx',
       },
     ],
     preview: {
@@ -74,9 +74,9 @@ export const audioWaveformRegistry = {
     registryDependencies: ['audio-waveform', 'button', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/audio-waveform/audio-waveform-interactive.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/audio-waveform/audio-waveform-interactive.tsx',
+        target: 'components/demo/audio-waveform/audio-waveform-interactive.tsx',
       },
     ],
     preview: {
@@ -95,9 +95,9 @@ export const audioWaveformRegistry = {
     registryDependencies: ['audio-waveform', 'button', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/audio-waveform/audio-waveform-styled.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/audio-waveform/audio-waveform-styled.tsx',
+        target: 'components/demo/audio-waveform/audio-waveform-styled.tsx',
       },
     ],
     preview: {
@@ -116,9 +116,9 @@ export const audioWaveformRegistry = {
     registryDependencies: ['audio-waveform', 'button', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/audio-waveform/audio-waveform-realtime.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/audio-waveform/audio-waveform-realtime.tsx',
+        target: 'components/demo/audio-waveform/audio-waveform-realtime.tsx',
       },
     ],
     preview: {
@@ -137,9 +137,9 @@ export const audioWaveformRegistry = {
     registryDependencies: ['audio-waveform', 'button', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/audio-waveform/audio-waveform-compact.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/audio-waveform/audio-waveform-compact.tsx',
+        target: 'components/demo/audio-waveform/audio-waveform-compact.tsx',
       },
     ],
     preview: {

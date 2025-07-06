@@ -9,16 +9,16 @@ export const buttonRegistry = {
       'A versatile button component with multiple variants, sizes, and interactive animations.',
     type: 'registry:ui',
     dependencies: [
+      'lucide-react-native',
       'react-native-reanimated',
       'react-native-gesture-handler',
-      'lucide-react-native',
     ],
     registryDependencies: ['text', 'icon', 'spinner'],
     files: [
       {
-        path: 'registry/components/ui/button.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/button.tsx',
+        target: 'components/ui/button.tsx',
       },
     ],
     preview: {
@@ -36,9 +36,9 @@ export const buttonRegistry = {
     registryDependencies: ['button'],
     files: [
       {
-        path: 'registry/demo/button/button-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/button/button-demo.tsx',
+        target: 'components/demo/button/button-demo.tsx',
       },
     ],
     preview: {
@@ -56,9 +56,9 @@ export const buttonRegistry = {
     registryDependencies: ['button'],
     files: [
       {
-        path: 'registry/demo/button/button-variants.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/button/button-variants.tsx',
+        target: 'components/demo/button/button-variants.tsx',
       },
     ],
     preview: {
@@ -76,9 +76,9 @@ export const buttonRegistry = {
     registryDependencies: ['button'],
     files: [
       {
-        path: 'registry/demo/button/button-sizes.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/button/button-sizes.tsx',
+        target: 'components/demo/button/button-sizes.tsx',
       },
     ],
     preview: {
@@ -96,9 +96,9 @@ export const buttonRegistry = {
     registryDependencies: ['button'],
     files: [
       {
-        path: 'registry/demo/button/button-with-icons.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/button/button-with-icons.tsx',
+        target: 'components/demo/button/button-with-icons.tsx',
       },
     ],
     preview: {
@@ -116,9 +116,9 @@ export const buttonRegistry = {
     registryDependencies: ['button'],
     files: [
       {
-        path: 'registry/demo/button/button-icon-only.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/button/button-icon-only.tsx',
+        target: 'components/demo/button/button-icon-only.tsx',
       },
     ],
     preview: {
@@ -136,9 +136,9 @@ export const buttonRegistry = {
     registryDependencies: ['button'],
     files: [
       {
-        path: 'registry/demo/button/button-loading.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/button/button-loading.tsx',
+        target: 'components/demo/button/button-loading.tsx',
       },
     ],
     preview: {
@@ -156,9 +156,9 @@ export const buttonRegistry = {
     registryDependencies: ['button'],
     files: [
       {
-        path: 'registry/demo/button/button-disabled.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/button/button-disabled.tsx',
+        target: 'components/demo/button/button-disabled.tsx',
       },
     ],
     preview: {
@@ -176,9 +176,9 @@ export const buttonRegistry = {
     registryDependencies: ['button'],
     files: [
       {
-        path: 'registry/demo/button/button-custom.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/button/button-custom.tsx',
+        target: 'components/demo/button/button-custom.tsx',
       },
     ],
     preview: {
@@ -196,9 +196,9 @@ export const buttonRegistry = {
     registryDependencies: ['button'],
     files: [
       {
-        path: 'registry/demo/button/button-animation.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/button/button-animation.tsx',
+        target: 'components/demo/button/button-animation.tsx',
       },
     ],
     preview: {

@@ -10,9 +10,9 @@ export const badgeRegistry = {
     registryDependencies: ['text', 'view'],
     files: [
       {
-        path: 'registry/components/ui/badge.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/badge.tsx',
+        target: 'components/ui/badge.tsx',
       },
     ],
     preview: {
@@ -29,9 +29,9 @@ export const badgeRegistry = {
     registryDependencies: ['badge'],
     files: [
       {
-        path: 'registry/demo/badge/badge-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/badge/badge-demo.tsx',
+        target: 'components/demo/badge/badge-demo.tsx',
       },
     ],
     preview: {
@@ -48,9 +48,9 @@ export const badgeRegistry = {
     registryDependencies: ['badge'],
     files: [
       {
-        path: 'registry/demo/badge/badge-icons.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/badge/badge-icons.tsx',
+        target: 'components/demo/badge/badge-icons.tsx',
       },
     ],
     preview: {
@@ -67,9 +67,9 @@ export const badgeRegistry = {
     registryDependencies: ['badge'],
     files: [
       {
-        path: 'registry/demo/badge/badge-notifications.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/badge/badge-notifications.tsx',
+        target: 'components/demo/badge/badge-notifications.tsx',
       },
     ],
     preview: {
@@ -86,9 +86,9 @@ export const badgeRegistry = {
     registryDependencies: ['badge'],
     files: [
       {
-        path: 'registry/demo/badge/badge-styled.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/badge/badge-styled.tsx',
+        target: 'components/demo/badge/badge-styled.tsx',
       },
     ],
     preview: {
@@ -105,9 +105,9 @@ export const badgeRegistry = {
     registryDependencies: ['badge'],
     files: [
       {
-        path: 'registry/demo/badge/badge-interactive.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/badge/badge-interactive.tsx',
+        target: 'components/demo/badge/badge-interactive.tsx',
       },
     ],
     preview: {
@@ -124,9 +124,9 @@ export const badgeRegistry = {
     registryDependencies: ['badge'],
     files: [
       {
-        path: 'registry/demo/badge/badge-sizes.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/badge/badge-sizes.tsx',
+        target: 'components/demo/badge/badge-sizes.tsx',
       },
     ],
     preview: {
@@ -143,9 +143,9 @@ export const badgeRegistry = {
     registryDependencies: ['badge'],
     files: [
       {
-        path: 'registry/demo/badge/badge-status.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/badge/badge-status.tsx',
+        target: 'components/demo/badge/badge-status.tsx',
       },
     ],
     preview: {

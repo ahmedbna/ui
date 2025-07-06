@@ -10,9 +10,9 @@ export const avatarRegistry = {
     registryDependencies: ['text', 'view', 'image'],
     files: [
       {
-        path: 'registry/components/ui/avatar.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/avatar.tsx',
+        target: 'components/ui/avatar.tsx',
       },
     ],
     preview: {
@@ -29,9 +29,9 @@ export const avatarRegistry = {
     registryDependencies: ['avatar'],
     files: [
       {
-        path: 'registry/demo/avatar/avatar-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/avatar/avatar-demo.tsx',
+        target: 'components/demo/avatar/avatar-demo.tsx',
       },
     ],
     preview: {
@@ -48,9 +48,9 @@ export const avatarRegistry = {
     registryDependencies: ['avatar'],
     files: [
       {
-        path: 'registry/demo/avatar/avatar-sizes.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/avatar/avatar-sizes.tsx',
+        target: 'components/demo/avatar/avatar-sizes.tsx',
       },
     ],
     preview: {
@@ -67,9 +67,9 @@ export const avatarRegistry = {
     registryDependencies: ['avatar'],
     files: [
       {
-        path: 'registry/demo/avatar/avatar-fallback.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/avatar/avatar-fallback.tsx',
+        target: 'components/demo/avatar/avatar-fallback.tsx',
       },
     ],
     preview: {
@@ -86,9 +86,9 @@ export const avatarRegistry = {
     registryDependencies: ['avatar'],
     files: [
       {
-        path: 'registry/demo/avatar/avatar-styled.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/avatar/avatar-styled.tsx',
+        target: 'components/demo/avatar/avatar-styled.tsx',
       },
     ],
     preview: {
@@ -105,9 +105,9 @@ export const avatarRegistry = {
     registryDependencies: ['avatar'],
     files: [
       {
-        path: 'registry/demo/avatar/avatar-group.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/avatar/avatar-group.tsx',
+        target: 'components/demo/avatar/avatar-group.tsx',
       },
     ],
     preview: {
@@ -124,9 +124,9 @@ export const avatarRegistry = {
     registryDependencies: ['avatar'],
     files: [
       {
-        path: 'registry/demo/avatar/avatar-status.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/avatar/avatar-status.tsx',
+        target: 'components/demo/avatar/avatar-status.tsx',
       },
     ],
     preview: {
@@ -143,9 +143,9 @@ export const avatarRegistry = {
     registryDependencies: ['avatar'],
     files: [
       {
-        path: 'registry/demo/avatar/avatar-bordered.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/avatar/avatar-bordered.tsx',
+        target: 'components/demo/avatar/avatar-bordered.tsx',
       },
     ],
     preview: {

@@ -11,9 +11,9 @@ export const alertRegistry = {
     registryDependencies: ['text', 'view'],
     files: [
       {
-        path: 'registry/components/ui/alert.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/alert.tsx',
+        target: 'components/ui/alert.tsx',
       },
     ],
     preview: {
@@ -31,9 +31,9 @@ export const alertRegistry = {
     registryDependencies: ['alert', 'button'],
     files: [
       {
-        path: 'registry/demo/alert/alert-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/alert/alert-demo.tsx',
+        target: 'components/demo/alert/alert-demo.tsx',
       },
     ],
     preview: {
@@ -51,9 +51,9 @@ export const alertRegistry = {
     registryDependencies: ['alert', 'button'],
     files: [
       {
-        path: 'registry/demo/alert/alert-three-button-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/alert/alert-three-button-demo.tsx',
+        target: 'components/demo/alert/alert-three-button-demo.tsx',
       },
     ],
     preview: {
@@ -71,9 +71,9 @@ export const alertRegistry = {
     registryDependencies: ['alert', 'button'],
     files: [
       {
-        path: 'registry/demo/alert/alert-success-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/alert/alert-success-demo.tsx',
+        target: 'components/demo/alert/alert-success-demo.tsx',
       },
     ],
     preview: {
@@ -91,9 +91,9 @@ export const alertRegistry = {
     registryDependencies: ['alert', 'button'],
     files: [
       {
-        path: 'registry/demo/alert/alert-error-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/alert/alert-error-demo.tsx',
+        target: 'components/demo/alert/alert-error-demo.tsx',
       },
     ],
     preview: {
@@ -111,9 +111,9 @@ export const alertRegistry = {
     registryDependencies: ['alert', 'button'],
     files: [
       {
-        path: 'registry/demo/alert/alert-confirm-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/alert/alert-confirm-demo.tsx',
+        target: 'components/demo/alert/alert-confirm-demo.tsx',
       },
     ],
     preview: {
@@ -131,9 +131,9 @@ export const alertRegistry = {
     registryDependencies: ['alert', 'button'],
     files: [
       {
-        path: 'registry/demo/alert/alert-custom-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/alert/alert-custom-demo.tsx',
+        target: 'components/demo/alert/alert-custom-demo.tsx',
       },
     ],
     preview: {
@@ -151,9 +151,9 @@ export const alertRegistry = {
     registryDependencies: ['alert', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/alert/alert-visual-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/alert/alert-visual-demo.tsx',
+        target: 'components/demo/alert/alert-visual-demo.tsx',
       },
     ],
     preview: {
@@ -171,9 +171,9 @@ export const alertRegistry = {
     registryDependencies: ['alert', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/alert/alert-visual-destructive-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/alert/alert-visual-destructive-demo.tsx',
+        target: 'components/demo/alert/alert-visual-destructive-demo.tsx',
       },
     ],
     preview: {
@@ -191,9 +191,9 @@ export const alertRegistry = {
     registryDependencies: ['alert', 'button', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/alert/alert-advanced-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/alert/alert-advanced-demo.tsx',
+        target: 'components/demo/alert/alert-advanced-demo.tsx',
       },
     ],
     preview: {

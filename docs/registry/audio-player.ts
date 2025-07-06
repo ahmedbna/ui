@@ -12,9 +12,9 @@ export const audioPlayerRegistry = {
     registryDependencies: ['button', 'progress', 'text', 'audio-waveform'],
     files: [
       {
-        path: 'registry/components/ui/audio-player.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/audio-player.tsx',
+        target: 'components/ui/audio-player.tsx',
       },
     ],
     preview: {
@@ -32,9 +32,9 @@ export const audioPlayerRegistry = {
     registryDependencies: ['audio-player', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/audio-player/audio-player-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/audio-player/audio-player-demo.tsx',
+        target: 'components/demo/audio-player/audio-player-demo.tsx',
       },
     ],
     preview: {
@@ -52,9 +52,9 @@ export const audioPlayerRegistry = {
     registryDependencies: ['audio-player', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/audio-player/audio-player-minimal.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/audio-player/audio-player-minimal.tsx',
+        target: 'components/demo/audio-player/audio-player-minimal.tsx',
       },
     ],
     preview: {
@@ -72,9 +72,9 @@ export const audioPlayerRegistry = {
     registryDependencies: ['audio-player', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/audio-player/audio-player-waveform.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/audio-player/audio-player-waveform.tsx',
+        target: 'components/demo/audio-player/audio-player-waveform.tsx',
       },
     ],
     preview: {
@@ -92,9 +92,9 @@ export const audioPlayerRegistry = {
     registryDependencies: ['audio-player', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/audio-player/audio-player-progress.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/audio-player/audio-player-progress.tsx',
+        target: 'components/demo/audio-player/audio-player-progress.tsx',
       },
     ],
     preview: {
@@ -112,9 +112,9 @@ export const audioPlayerRegistry = {
     registryDependencies: ['audio-player', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/audio-player/audio-player-autoplay.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/audio-player/audio-player-autoplay.tsx',
+        target: 'components/demo/audio-player/audio-player-autoplay.tsx',
       },
     ],
     preview: {
@@ -132,9 +132,9 @@ export const audioPlayerRegistry = {
     registryDependencies: ['audio-player', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/audio-player/audio-player-styled.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/audio-player/audio-player-styled.tsx',
+        target: 'components/demo/audio-player/audio-player-styled.tsx',
       },
     ],
     preview: {
@@ -153,9 +153,9 @@ export const audioPlayerRegistry = {
     registryDependencies: ['audio-player', 'text', 'view', 'image', 'button'],
     files: [
       {
-        path: 'registry/demo/audio-player/audio-player-music.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/audio-player/audio-player-music.tsx',
+        target: 'components/demo/audio-player/audio-player-music.tsx',
       },
     ],
     preview: {
