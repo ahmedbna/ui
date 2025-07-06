@@ -19,6 +19,28 @@ export const revalidate = false;
 export const metadata: Metadata = {
   title: 'BNA UI',
   description: title,
+  openGraph: {
+    title: 'BNA UI',
+    description:
+      'Beautiful, accessible Expo, React Native components that work seamlessly across iOS and Android',
+    url: 'https://ui.ahmedbna.com',
+    siteName: 'BNA UI',
+    images: [
+      {
+        url: 'https://bna-ui.s3.eu-north-1.amazonaws.com/bna-ui-header.png', // Must be absolute URL
+        alt: 'BNA UI',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'BNA UI',
+    description:
+      'Beautiful, accessible Expo, React Native components that work seamlessly across iOS and Android',
+    images: ['https://bna-ui.s3.eu-north-1.amazonaws.com/bna-ui-header.png'],
+  },
 };
 
 export default function Home() {
