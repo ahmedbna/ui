@@ -9,6 +9,8 @@ export const onboardingRegistry = {
     type: 'registry:ui',
     dependencies: ['react-native-gesture-handler', 'react-native-reanimated'],
     registryDependencies: ['button', 'text'],
+    hooks: ['useThemeColor'],
+    theme: [],
     files: [
       {
         type: 'registry:ui',
@@ -30,6 +32,8 @@ export const onboardingRegistry = {
     type: 'registry:example',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['onboarding'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -50,6 +54,8 @@ export const onboardingRegistry = {
     description: 'Onboarding flow with custom images for each step',
     type: 'registry:example',
     registryDependencies: ['onboarding', 'image'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -70,6 +76,8 @@ export const onboardingRegistry = {
     type: 'registry:example',
     dependencies: ['lucide-react-native', 'expo-linear-gradient'],
     registryDependencies: ['onboarding'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -90,6 +98,8 @@ export const onboardingRegistry = {
     type: 'registry:example',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['onboarding'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -110,6 +120,8 @@ export const onboardingRegistry = {
     type: 'registry:example',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['onboarding'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -130,6 +142,8 @@ export const onboardingRegistry = {
     type: 'registry:example',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['onboarding'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -149,6 +163,8 @@ export const onboardingRegistry = {
     description: 'Media picker showing selected media previews',
     type: 'registry:example',
     registryDependencies: ['onboarding', 'view', 'text', 'button'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',

@@ -9,6 +9,8 @@ export const sheetRegistry = {
     type: 'registry:ui',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['button', 'text', 'view'],
+    hooks: ['useThemeColor'],
+    theme: ['globals'],
     files: [
       {
         type: 'registry:ui',
@@ -29,6 +31,8 @@ export const sheetRegistry = {
     description: 'A basic sheet that slides in from the right side',
     type: 'registry:example',
     registryDependencies: ['sheet', 'button', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -48,6 +52,8 @@ export const sheetRegistry = {
     description: 'A sheet that slides in from the left side',
     type: 'registry:example',
     registryDependencies: ['sheet', 'button', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -68,6 +74,8 @@ export const sheetRegistry = {
     type: 'registry:example',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['sheet', 'button', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -87,6 +95,8 @@ export const sheetRegistry = {
     description: 'A sheet that slides in from the form side',
     type: 'registry:example',
     registryDependencies: ['sheet', 'button', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -107,6 +117,8 @@ export const sheetRegistry = {
     type: 'registry:example',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['sheet', 'button', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',

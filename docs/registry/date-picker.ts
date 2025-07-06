@@ -16,6 +16,8 @@ export const datePickerRegistry = {
       'text',
       'view',
     ],
+    hooks: ['useThemeColor'],
+    theme: ['globals'],
     files: [
       {
         type: 'registry:ui',
@@ -36,6 +38,8 @@ export const datePickerRegistry = {
     description: 'A basic date picker with calendar view',
     type: 'registry:example',
     registryDependencies: ['date-picker'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -56,6 +60,8 @@ export const datePickerRegistry = {
     description: 'A time picker with hour and minute selection',
     type: 'registry:example',
     registryDependencies: ['date-picker', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -76,6 +82,8 @@ export const datePickerRegistry = {
     description: 'A combined date and time picker',
     type: 'registry:example',
     registryDependencies: ['date-picker'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -96,6 +104,8 @@ export const datePickerRegistry = {
     description: 'Date picker with minimum and maximum date limits',
     type: 'registry:example',
     registryDependencies: ['date-picker', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -116,6 +126,8 @@ export const datePickerRegistry = {
     description: 'Date pickers with different styling variants',
     type: 'registry:example',
     registryDependencies: ['date-picker', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -136,6 +148,8 @@ export const datePickerRegistry = {
     description: 'Time picker with 12-hour and 24-hour formats',
     type: 'registry:example',
     registryDependencies: ['date-picker', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -156,6 +170,8 @@ export const datePickerRegistry = {
     description: 'Date picker integrated within a form with validation',
     type: 'registry:example',
     registryDependencies: ['date-picker', 'button', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',

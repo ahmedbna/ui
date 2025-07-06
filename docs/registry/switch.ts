@@ -9,6 +9,8 @@ export const switchRegistry = {
     type: 'registry:ui',
     dependencies: [],
     registryDependencies: ['text', 'view'],
+    hooks: ['useThemeColor'],
+    theme: [],
     files: [
       {
         type: 'registry:ui',
@@ -29,6 +31,8 @@ export const switchRegistry = {
     description: 'A basic switch with label',
     type: 'registry:example',
     registryDependencies: ['switch'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -48,6 +52,8 @@ export const switchRegistry = {
     description: 'A switch without label text',
     type: 'registry:example',
     registryDependencies: ['switch', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -67,6 +73,8 @@ export const switchRegistry = {
     description: 'Switch with error message and styling',
     type: 'registry:example',
     registryDependencies: ['switch', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -86,6 +94,8 @@ export const switchRegistry = {
     description: 'Switches in disabled state',
     type: 'registry:example',
     registryDependencies: ['switch', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -105,6 +115,8 @@ export const switchRegistry = {
     description: 'Multiple switches arranged in a settings list',
     type: 'registry:example',
     registryDependencies: ['switch', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -124,6 +136,8 @@ export const switchRegistry = {
     description: 'Switches with custom colors and styling',
     type: 'registry:example',
     registryDependencies: ['switch', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',

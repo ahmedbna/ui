@@ -9,6 +9,8 @@ export const helloWaveRegistry = {
     type: 'registry:ui',
     dependencies: ['react-native-reanimated'],
     registryDependencies: ['text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:ui',
@@ -29,6 +31,8 @@ export const helloWaveRegistry = {
     description: 'An animated waving hand emoji',
     type: 'registry:example',
     registryDependencies: ['hello-wave'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',

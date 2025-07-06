@@ -9,6 +9,8 @@ export const cardRegistry = {
     type: 'registry:ui',
     dependencies: [],
     registryDependencies: ['text', 'view'],
+    hooks: ['useThemeColor'],
+    theme: ['globals'],
     files: [
       {
         type: 'registry:ui',
@@ -28,6 +30,8 @@ export const cardRegistry = {
     description: 'A complete card with header, content, and footer sections',
     type: 'registry:example',
     registryDependencies: ['card', 'button'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -47,6 +51,8 @@ export const cardRegistry = {
     description: 'A minimal card with just content',
     type: 'registry:example',
     registryDependencies: ['card'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -66,6 +72,8 @@ export const cardRegistry = {
     description: 'Card featuring an image with content below',
     type: 'registry:example',
     registryDependencies: ['card', 'button'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -85,6 +93,8 @@ export const cardRegistry = {
     description: 'Interactive card containing a login form',
     type: 'registry:example',
     registryDependencies: ['card', 'button'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -104,6 +114,8 @@ export const cardRegistry = {
     description: 'Grid of cards displaying key metrics and statistics',
     type: 'registry:example',
     registryDependencies: ['card'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -123,6 +135,8 @@ export const cardRegistry = {
     description: 'Card designed for displaying notifications with actions',
     type: 'registry:example',
     registryDependencies: ['card', 'button', 'icon'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -142,6 +156,8 @@ export const cardRegistry = {
     description: 'Professional pricing cards with feature lists and CTAs',
     type: 'registry:example',
     registryDependencies: ['card', 'button', 'icon'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',

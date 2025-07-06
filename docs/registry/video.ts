@@ -9,6 +9,8 @@ export const videoRegistry = {
     type: 'registry:ui',
     dependencies: ['expo-video', 'lucide-react-native'],
     registryDependencies: ['progress', 'text', 'view'],
+    hooks: ['useThemeColor'],
+    theme: ['globals'],
     files: [
       {
         type: 'registry:ui',
@@ -29,6 +31,8 @@ export const videoRegistry = {
     description: 'A basic video player with custom controls',
     type: 'registry:example',
     registryDependencies: ['video'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -49,6 +53,8 @@ export const videoRegistry = {
     description: 'Video player using native system controls',
     type: 'registry:example',
     registryDependencies: ['video'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -69,6 +75,8 @@ export const videoRegistry = {
     description: 'Video player with custom control interface',
     type: 'registry:example',
     registryDependencies: ['video'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -89,6 +97,8 @@ export const videoRegistry = {
     description: 'Video player with subtitle support',
     type: 'registry:example',
     registryDependencies: ['video'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -109,6 +119,8 @@ export const videoRegistry = {
     description: 'Video that automatically plays and loops',
     type: 'registry:example',
     registryDependencies: ['video'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -129,6 +141,8 @@ export const videoRegistry = {
     description: 'Video players with different source types',
     type: 'registry:example',
     registryDependencies: ['video', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -149,6 +163,8 @@ export const videoRegistry = {
     description: 'Video player with tap-to-play and seek gestures',
     type: 'registry:example',
     registryDependencies: ['video', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -169,6 +185,8 @@ export const videoRegistry = {
     description: 'Videos with different content fitting options',
     type: 'registry:example',
     registryDependencies: ['video', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',

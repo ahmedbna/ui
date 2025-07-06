@@ -7,8 +7,15 @@ export const galleryRegistry = {
     description:
       'A responsive image gallery component with fullscreen viewing, zoom, and gesture support.',
     type: 'registry:ui',
-    dependencies: ['lucide-react-native', 'expo-document-picker'],
-    registryDependencies: ['button', 'text', 'view'],
+    dependencies: [
+      'expo-image',
+      'lucide-react-native',
+      'react-native-gesture-handler',
+      'react-native-reanimated',
+    ],
+    registryDependencies: ['button', 'text'],
+    hooks: ['useThemeColor'],
+    theme: ['globals'],
     files: [
       {
         type: 'registry:ui',
@@ -30,6 +37,8 @@ export const galleryRegistry = {
       'A basic image gallery with grid layout and fullscreen viewing',
     type: 'registry:example',
     registryDependencies: ['gallery'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -49,6 +58,8 @@ export const galleryRegistry = {
     description: 'Gallery with custom columns, spacing, and aspect ratio',
     type: 'registry:example',
     registryDependencies: ['gallery', 'view', 'text'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -68,6 +79,8 @@ export const galleryRegistry = {
     description: 'Gallery displaying image titles and descriptions',
     type: 'registry:example',
     registryDependencies: ['gallery'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -87,6 +100,8 @@ export const galleryRegistry = {
     description: 'Various gallery layouts and configurations',
     type: 'registry:example',
     registryDependencies: ['gallery', 'view', 'text'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -106,6 +121,8 @@ export const galleryRegistry = {
     description: 'Images with controls',
     type: 'registry:example',
     registryDependencies: ['gallery', 'view', 'text'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -125,6 +142,8 @@ export const galleryRegistry = {
     description: 'Images with overlay',
     type: 'registry:example',
     registryDependencies: ['gallery', 'view', 'text'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',

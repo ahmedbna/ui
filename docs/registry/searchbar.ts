@@ -9,6 +9,8 @@ export const searchbarRegistry = {
     type: 'registry:ui',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['icon', 'text', 'view'],
+    hooks: ['useThemeColor'],
+    theme: ['globals'],
     files: [
       {
         type: 'registry:ui',
@@ -29,6 +31,8 @@ export const searchbarRegistry = {
     description: 'A basic search bar with search functionality',
     type: 'registry:example',
     registryDependencies: ['searchbar'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -49,6 +53,8 @@ export const searchbarRegistry = {
     description: 'Search bar with loading indicator',
     type: 'registry:example',
     registryDependencies: ['searchbar'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -69,6 +75,8 @@ export const searchbarRegistry = {
     description: 'Search bar with custom left and right icons',
     type: 'registry:example',
     registryDependencies: ['searchbar', 'icon'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -89,6 +97,8 @@ export const searchbarRegistry = {
     description: 'Search bar with dropdown suggestions',
     type: 'registry:example',
     registryDependencies: ['searchbar'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -109,6 +119,8 @@ export const searchbarRegistry = {
     description: 'Search bar with custom styling and colors',
     type: 'registry:example',
     registryDependencies: ['searchbar'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -129,6 +141,8 @@ export const searchbarRegistry = {
     description: 'Search bar without the clear button',
     type: 'registry:example',
     registryDependencies: ['searchbar'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -149,6 +163,8 @@ export const searchbarRegistry = {
     description: 'Search bar with no debounce for instant search',
     type: 'registry:example',
     registryDependencies: ['searchbar', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',

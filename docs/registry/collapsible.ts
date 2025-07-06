@@ -8,7 +8,9 @@ export const collapsibleRegistry = {
       'An interactive component which can be expanded/collapsed to show and hide content.',
     type: 'registry:ui',
     dependencies: ['lucide-react-native'],
-    registryDependencies: ['text', 'view'],
+    registryDependencies: ['icon', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:ui',
@@ -29,6 +31,8 @@ export const collapsibleRegistry = {
     description: 'A basic collapsible component with title and content',
     type: 'registry:example',
     registryDependencies: ['collapsible', 'text'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -49,6 +53,8 @@ export const collapsibleRegistry = {
     description: 'Multiple collapsible components working independently',
     type: 'registry:example',
     registryDependencies: ['collapsible', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -69,6 +75,8 @@ export const collapsibleRegistry = {
     description: 'Collapsible components nested within each other',
     type: 'registry:example',
     registryDependencies: ['collapsible', 'text'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -89,6 +97,8 @@ export const collapsibleRegistry = {
     description: 'Collapsible containing interactive elements like checkboxes',
     type: 'registry:example',
     registryDependencies: ['collapsible', 'checkbox', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -109,6 +119,8 @@ export const collapsibleRegistry = {
     description: 'Collapsible components styled as frequently asked questions',
     type: 'registry:example',
     registryDependencies: ['collapsible', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',

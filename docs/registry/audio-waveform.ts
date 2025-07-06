@@ -9,6 +9,8 @@ export const audioWaveformRegistry = {
       'A customizable audio waveform visualization component with playback progress and interactive seeking capabilities.',
     type: 'registry:ui',
     registryDependencies: ['text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:ui',
@@ -30,6 +32,8 @@ export const audioWaveformRegistry = {
       'A basic audio waveform with playback controls and progress tracking',
     type: 'registry:example',
     registryDependencies: ['audio-waveform', 'button', 'text', 'view'],
+    hooks: [],
+    theme: ['useThemeColor'],
     files: [
       {
         type: 'registry:example',
@@ -51,6 +55,8 @@ export const audioWaveformRegistry = {
       'An animated waveform for recording visualization with real-time audio levels',
     type: 'registry:example',
     registryDependencies: ['audio-waveform', 'button', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -72,6 +78,8 @@ export const audioWaveformRegistry = {
       'A waveform with touch-based seeking functionality and custom audio data',
     type: 'registry:example',
     registryDependencies: ['audio-waveform', 'button', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -93,6 +101,8 @@ export const audioWaveformRegistry = {
       'Multiple themed waveforms with custom colors, dimensions, and styles',
     type: 'registry:example',
     registryDependencies: ['audio-waveform', 'button', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -114,6 +124,8 @@ export const audioWaveformRegistry = {
       'A waveform that updates with real-time audio data and configurable patterns',
     type: 'registry:example',
     registryDependencies: ['audio-waveform', 'button', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -135,6 +147,8 @@ export const audioWaveformRegistry = {
       'Compact waveforms suitable for chat messages and minimal interfaces',
     type: 'registry:example',
     registryDependencies: ['audio-waveform', 'button', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',

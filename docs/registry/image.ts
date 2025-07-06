@@ -9,6 +9,8 @@ export const imageRegistry = {
     type: 'registry:ui',
     dependencies: ['expo-image'],
     registryDependencies: ['text', 'view'],
+    hooks: ['useThemeColor'],
+    theme: ['globals'],
     files: [
       {
         type: 'registry:ui',
@@ -28,6 +30,8 @@ export const imageRegistry = {
     description: 'A basic image with loading indicator and error fallback',
     type: 'registry:example',
     registryDependencies: ['image'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -47,6 +51,8 @@ export const imageRegistry = {
     description: 'Images with different border radius variants',
     type: 'registry:example',
     registryDependencies: ['image'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -66,6 +72,8 @@ export const imageRegistry = {
     description: 'Images in different sizes and aspect ratios',
     type: 'registry:example',
     registryDependencies: ['image'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -85,6 +93,8 @@ export const imageRegistry = {
     description: 'Images with different loading indicator configurations',
     type: 'registry:example',
     registryDependencies: ['image'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -104,6 +114,8 @@ export const imageRegistry = {
     description: 'Images with custom error fallback messages',
     type: 'registry:example',
     registryDependencies: ['image'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -122,6 +134,8 @@ export const imageRegistry = {
     description: 'Multiple images arranged in a gallery layout',
     type: 'registry:example',
     registryDependencies: ['image'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -140,6 +154,8 @@ export const imageRegistry = {
     description: 'Responsive images that adapt to container size',
     type: 'registry:example',
     registryDependencies: ['image'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -158,6 +174,8 @@ export const imageRegistry = {
     description: 'Images with different content fit modes',
     type: 'registry:example',
     registryDependencies: ['image'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',

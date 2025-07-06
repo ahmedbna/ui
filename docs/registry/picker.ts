@@ -9,6 +9,8 @@ export const pickerRegistry = {
     type: 'registry:ui',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['icon', 'scroll-view', 'text', 'view'],
+    hooks: ['useThemeColor'],
+    theme: ['globals'],
     files: [
       {
         type: 'registry:ui',
@@ -29,6 +31,8 @@ export const pickerRegistry = {
     description: 'A basic picker with simple options',
     type: 'registry:example',
     registryDependencies: ['picker'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -48,6 +52,8 @@ export const pickerRegistry = {
     description: 'Picker with grouped options in sections',
     type: 'registry:example',
     registryDependencies: ['picker'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -67,6 +73,8 @@ export const pickerRegistry = {
     description: 'Picker allowing multiple selections',
     type: 'registry:example',
     registryDependencies: ['picker'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -86,6 +94,8 @@ export const pickerRegistry = {
     description: 'Picker with search functionality',
     type: 'registry:example',
     registryDependencies: ['picker'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -105,6 +115,8 @@ export const pickerRegistry = {
     description: 'Different picker variants: outline, filled, and group',
     type: 'registry:example',
     registryDependencies: ['picker', 'view', 'text'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -125,6 +137,8 @@ export const pickerRegistry = {
     type: 'registry:example',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['picker'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -144,6 +158,8 @@ export const pickerRegistry = {
     description: 'Picker integrated with form validation and error handling',
     type: 'registry:example',
     registryDependencies: ['picker', 'view', 'text', 'button'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -164,6 +180,8 @@ export const pickerRegistry = {
       'Picker with descriptions, disabled options, and custom modal title',
     type: 'registry:example',
     registryDependencies: ['picker', 'view', 'text'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',

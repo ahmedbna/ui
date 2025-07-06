@@ -9,6 +9,8 @@ export const iconRegistry = {
     type: 'registry:ui',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['text', 'view'],
+    hooks: ['useThemeColor'],
+    theme: [],
     files: [
       {
         type: 'registry:ui',
@@ -28,6 +30,8 @@ export const iconRegistry = {
     description: 'A basic icon with default styling',
     type: 'registry:example',
     registryDependencies: ['icon'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -47,6 +51,8 @@ export const iconRegistry = {
     description: 'Icons in different sizes',
     type: 'registry:example',
     registryDependencies: ['icon'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -66,6 +72,8 @@ export const iconRegistry = {
     description: 'Icons with custom colors and themed colors',
     type: 'registry:example',
     registryDependencies: ['icon'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -85,6 +93,8 @@ export const iconRegistry = {
     description: 'Icons with different stroke weights',
     type: 'registry:example',
     registryDependencies: ['icon'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -104,6 +114,8 @@ export const iconRegistry = {
     description: 'Icons with press and hover interactions',
     type: 'registry:example',
     registryDependencies: ['icon'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -123,6 +135,8 @@ export const iconRegistry = {
     description: 'A grid of commonly used icons',
     type: 'registry:example',
     registryDependencies: ['icon'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -142,6 +156,8 @@ export const iconRegistry = {
     description: 'Icons that adapt to light and dark themes',
     type: 'registry:example',
     registryDependencies: ['icon'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',

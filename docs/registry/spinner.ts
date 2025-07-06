@@ -8,7 +8,9 @@ export const spinnerRegistry = {
       'A loading indicator component with multiple variants and customization options.',
     type: 'registry:ui',
     dependencies: ['lucide-react-native'],
-    registryDependencies: ['text', 'view'],
+    registryDependencies: ['text'],
+    hooks: ['useThemeColor'],
+    theme: ['globals'],
     files: [
       {
         type: 'registry:ui',
@@ -29,6 +31,8 @@ export const spinnerRegistry = {
     description: 'A basic spinner with default styling',
     type: 'registry:example',
     registryDependencies: ['spinner'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -50,6 +54,8 @@ export const spinnerRegistry = {
       'Different spinner variants: default, circle, dots, pulse, and bars',
     type: 'registry:example',
     registryDependencies: ['spinner', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -70,6 +76,8 @@ export const spinnerRegistry = {
     description: 'Spinners in different sizes: sm, default, lg, and icon',
     type: 'registry:example',
     registryDependencies: ['spinner', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -90,6 +98,8 @@ export const spinnerRegistry = {
     description: 'Spinners with custom loading labels',
     type: 'registry:example',
     registryDependencies: ['spinner', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -111,6 +121,8 @@ export const spinnerRegistry = {
       'Spinners with different animation speeds: slow, normal, and fast',
     type: 'registry:example',
     registryDependencies: ['spinner', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -131,6 +143,8 @@ export const spinnerRegistry = {
     description: 'Spinners with custom colors and styling',
     type: 'registry:example',
     registryDependencies: ['spinner', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -151,6 +165,8 @@ export const spinnerRegistry = {
     description: 'Full-screen loading overlay with backdrop',
     type: 'registry:example',
     registryDependencies: ['spinner', 'button', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -171,6 +187,8 @@ export const spinnerRegistry = {
     description: 'Small spinners for inline usage in buttons or text',
     type: 'registry:example',
     registryDependencies: ['spinner', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',

@@ -9,6 +9,8 @@ export const linkRegistry = {
     type: 'registry:ui',
     dependencies: ['expo-router', 'expo-web-browser'],
     registryDependencies: ['text'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:ui',
@@ -29,6 +31,8 @@ export const linkRegistry = {
     description: 'Basic internal navigation links',
     type: 'registry:example',
     registryDependencies: ['link', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -49,6 +53,8 @@ export const linkRegistry = {
     description: 'Links that open external URLs',
     type: 'registry:example',
     registryDependencies: ['link', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -69,6 +75,8 @@ export const linkRegistry = {
     description: 'Links with different browser opening behaviors',
     type: 'registry:example',
     registryDependencies: ['link', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -89,6 +97,8 @@ export const linkRegistry = {
     description: 'Links with custom child components instead of text',
     type: 'registry:example',
     registryDependencies: ['link', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -109,6 +119,8 @@ export const linkRegistry = {
     description: 'Various types of links including mailto and tel',
     type: 'registry:example',
     registryDependencies: ['link', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -129,6 +141,8 @@ export const linkRegistry = {
     description: 'Links with custom styling and variants',
     type: 'registry:example',
     registryDependencies: ['link', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -149,6 +163,8 @@ export const linkRegistry = {
     description: 'Links styled as buttons for navigation',
     type: 'registry:example',
     registryDependencies: ['link', 'button', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',

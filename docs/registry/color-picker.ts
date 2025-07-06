@@ -14,6 +14,8 @@ export const colorPickerRegistry = {
       'react-native-svg',
     ],
     registryDependencies: ['text', 'view'],
+    hooks: ['useThemeColor'],
+    theme: ['globals'],
     files: [
       {
         type: 'registry:ui',
@@ -34,6 +36,8 @@ export const colorPickerRegistry = {
     description: 'A basic color picker with swatch and modal selection',
     type: 'registry:example',
     registryDependencies: ['color-picker'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -54,6 +58,8 @@ export const colorPickerRegistry = {
     description: 'Color pickers with different swatch sizes',
     type: 'registry:example',
     registryDependencies: ['color-picker'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -74,6 +80,8 @@ export const colorPickerRegistry = {
     description: 'Color pickers with different initial colors',
     type: 'registry:example',
     registryDependencies: ['color-picker'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -94,6 +102,8 @@ export const colorPickerRegistry = {
     description: 'Disabled color picker that cannot be opened',
     type: 'registry:example',
     registryDependencies: ['color-picker'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -114,6 +124,8 @@ export const colorPickerRegistry = {
     description: 'Standalone color swatches without picker functionality',
     type: 'registry:example',
     registryDependencies: ['color-picker'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -133,6 +145,8 @@ export const colorPickerRegistry = {
     description: 'Color pickers with custom styling and layouts',
     type: 'registry:example',
     registryDependencies: ['color-picker'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -152,6 +166,8 @@ export const colorPickerRegistry = {
     description: 'Multiple color pickers arranged as a color palette',
     type: 'registry:example',
     registryDependencies: ['color-picker'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -171,6 +187,8 @@ export const colorPickerRegistry = {
     description: 'color-picker-labeled',
     type: 'registry:example',
     registryDependencies: ['color-picker'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',

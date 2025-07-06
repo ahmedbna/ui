@@ -9,6 +9,8 @@ export const actionSheetRegistry = {
       'A native-feeling action sheet component that provides a menu of options triggered from the bottom of the screen.',
     type: 'registry:ui',
     registryDependencies: ['text', 'view'],
+    hooks: ['useThemeColor'],
+    theme: ['globals'],
     files: [
       {
         type: 'registry:ui',
@@ -29,6 +31,8 @@ export const actionSheetRegistry = {
     description: 'A basic action sheet with multiple options',
     type: 'registry:example',
     registryDependencies: ['action-sheet', 'button'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -49,6 +53,8 @@ export const actionSheetRegistry = {
     description: 'An action sheet with icons next to each option',
     type: 'registry:example',
     registryDependencies: ['action-sheet', 'button', 'icon'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -70,6 +76,8 @@ export const actionSheetRegistry = {
       'An action sheet featuring destructive actions with appropriate styling',
     type: 'registry:example',
     registryDependencies: ['action-sheet', 'button', 'icon'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -90,6 +98,8 @@ export const actionSheetRegistry = {
     description: 'An action sheet with some disabled options',
     type: 'registry:example',
     registryDependencies: ['action-sheet', 'button', 'icon'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -110,6 +120,8 @@ export const actionSheetRegistry = {
     description: 'An action sheet with custom styling and branding',
     type: 'registry:example',
     registryDependencies: ['action-sheet', 'button', 'icon'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -130,6 +142,8 @@ export const actionSheetRegistry = {
     description: 'An action sheet with many options that scrolls',
     type: 'registry:example',
     registryDependencies: ['action-sheet', 'button', 'icon'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -150,6 +164,8 @@ export const actionSheetRegistry = {
     description: 'Using the useActionSheet hook for easier management',
     type: 'registry:example',
     registryDependencies: ['action-sheet', 'button', 'view', 'icon'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',

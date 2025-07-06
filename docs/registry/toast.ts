@@ -13,6 +13,8 @@ export const toastRegistry = {
       'lucide-react-native',
     ],
     registryDependencies: ['text'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:ui',
@@ -33,6 +35,8 @@ export const toastRegistry = {
     description: 'A basic toast notification with title and description',
     type: 'registry:example',
     registryDependencies: ['toast', 'button'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -54,6 +58,8 @@ export const toastRegistry = {
       'Toast notifications with different variants (success, error, warning, info)',
     type: 'registry:example',
     registryDependencies: ['toast', 'button', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -74,6 +80,8 @@ export const toastRegistry = {
     description: 'Toast notifications with action buttons',
     type: 'registry:example',
     registryDependencies: ['toast', 'button', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -94,6 +102,8 @@ export const toastRegistry = {
     description: 'Toast notifications with custom durations',
     type: 'registry:example',
     registryDependencies: ['toast', 'button', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -114,6 +124,8 @@ export const toastRegistry = {
     description: 'Multiple toast notifications stacked vertically',
     type: 'registry:example',
     registryDependencies: ['toast', 'button', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -134,6 +146,8 @@ export const toastRegistry = {
     description: 'Compact toast notifications without title or description',
     type: 'registry:example',
     registryDependencies: ['toast', 'button', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',

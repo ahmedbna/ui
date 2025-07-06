@@ -10,6 +10,8 @@ export const bottomSheetRegistry = {
     type: 'registry:ui',
     dependencies: ['react-native-gesture-handler', 'react-native-reanimated'],
     registryDependencies: ['text', 'view'],
+    hooks: ['useThemeColor'],
+    theme: ['globals'],
     files: [
       {
         type: 'registry:ui',
@@ -30,6 +32,8 @@ export const bottomSheetRegistry = {
     description: 'A basic bottom sheet with gesture support and snap points',
     type: 'registry:example',
     registryDependencies: ['bottom-sheet', 'button'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -50,6 +54,8 @@ export const bottomSheetRegistry = {
     description: 'Bottom sheet with a title header',
     type: 'registry:example',
     registryDependencies: ['bottom-sheet', 'button'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -70,6 +76,8 @@ export const bottomSheetRegistry = {
     description: 'Bottom sheet with custom snap point configurations',
     type: 'registry:example',
     registryDependencies: ['bottom-sheet', 'button'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -90,6 +98,8 @@ export const bottomSheetRegistry = {
     description: 'Bottom sheet containing form elements and inputs',
     type: 'registry:example',
     registryDependencies: ['bottom-sheet', 'button', 'input'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -110,6 +120,8 @@ export const bottomSheetRegistry = {
     description: 'Bottom sheet with scrollable list content',
     type: 'registry:example',
     registryDependencies: ['bottom-sheet', 'button'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -130,6 +142,8 @@ export const bottomSheetRegistry = {
     description: 'Bottom sheet that cannot be dismissed by tapping backdrop',
     type: 'registry:example',
     registryDependencies: ['bottom-sheet', 'button'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -150,6 +164,8 @@ export const bottomSheetRegistry = {
     description: 'Bottom sheet with custom styling and colors',
     type: 'registry:example',
     registryDependencies: ['bottom-sheet', 'button'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -169,6 +185,8 @@ export const bottomSheetRegistry = {
     description: 'Bottom sheet used as a menu with action items',
     type: 'registry:example',
     registryDependencies: ['bottom-sheet', 'button', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',

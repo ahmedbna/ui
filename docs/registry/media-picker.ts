@@ -14,6 +14,8 @@ export const mediaPickerRegistry = {
       'lucide-react-native',
     ],
     registryDependencies: ['button', 'text', 'view'],
+    hooks: ['useThemeColor'],
+    theme: ['globals'],
     files: [
       {
         type: 'registry:ui',
@@ -34,6 +36,8 @@ export const mediaPickerRegistry = {
     description: 'A basic media picker with image and video selection',
     type: 'registry:example',
     registryDependencies: ['media-picker'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -55,6 +59,8 @@ export const mediaPickerRegistry = {
     type: 'registry:example',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['media-picker'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -76,6 +82,8 @@ export const mediaPickerRegistry = {
     type: 'registry:example',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['media-picker'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -97,6 +105,8 @@ export const mediaPickerRegistry = {
     type: 'registry:example',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['media-picker', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -118,6 +128,8 @@ export const mediaPickerRegistry = {
     type: 'registry:example',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['media-picker'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -139,6 +151,8 @@ export const mediaPickerRegistry = {
     type: 'registry:example',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['media-picker', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -160,6 +174,8 @@ export const mediaPickerRegistry = {
     type: 'registry:example',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['media-picker', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',

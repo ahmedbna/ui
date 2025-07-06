@@ -9,6 +9,8 @@ export const scrollViewRegistry = {
     type: 'registry:ui',
     dependencies: [],
     registryDependencies: ['view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:ui',
@@ -29,6 +31,8 @@ export const scrollViewRegistry = {
     description: 'A basic scrollable view with content',
     type: 'registry:example',
     registryDependencies: ['scroll-view', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -49,6 +53,8 @@ export const scrollViewRegistry = {
     description: 'Vertical scrolling with multiple items',
     type: 'registry:example',
     registryDependencies: ['scroll-view', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -69,6 +75,8 @@ export const scrollViewRegistry = {
     description: 'Horizontal scrolling with cards',
     type: 'registry:example',
     registryDependencies: ['scroll-view', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -89,6 +97,8 @@ export const scrollViewRegistry = {
     description: 'ScrollViews nested within each other',
     type: 'registry:example',
     registryDependencies: ['scroll-view', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -109,6 +119,8 @@ export const scrollViewRegistry = {
     description: 'ScrollView with pull-to-refresh functionality',
     type: 'registry:example',
     registryDependencies: ['scroll-view', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -129,6 +141,8 @@ export const scrollViewRegistry = {
     description: 'ScrollView with custom styling and padding',
     type: 'registry:example',
     registryDependencies: ['scroll-view', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -149,6 +163,8 @@ export const scrollViewRegistry = {
     description: 'ScrollView with custom scroll indicators',
     type: 'registry:example',
     registryDependencies: ['scroll-view', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -169,6 +185,8 @@ export const scrollViewRegistry = {
     description: 'ScrollView with content inset adjustments',
     type: 'registry:example',
     registryDependencies: ['scroll-view', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',

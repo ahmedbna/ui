@@ -9,6 +9,8 @@ export const tableRegistry = {
     type: 'registry:ui',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['button', 'text', 'view'],
+    hooks: ['useThemeColor'],
+    theme: ['globals'],
     files: [
       {
         type: 'registry:ui',
@@ -29,6 +31,8 @@ export const tableRegistry = {
     description: 'A basic data table with sample data',
     type: 'registry:example',
     registryDependencies: ['table'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -48,6 +52,8 @@ export const tableRegistry = {
     description: 'Table with sortable columns',
     type: 'registry:example',
     registryDependencies: ['table'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -67,6 +73,8 @@ export const tableRegistry = {
     description: 'Table with custom cell renderers and formatting',
     type: 'registry:example',
     registryDependencies: ['table', 'avatar', 'badge', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -86,6 +94,8 @@ export const tableRegistry = {
     description: 'Table with pagination controls',
     type: 'registry:example',
     registryDependencies: ['table'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -105,6 +115,8 @@ export const tableRegistry = {
     description: 'Table with search functionality',
     type: 'registry:example',
     registryDependencies: ['table'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -124,6 +136,8 @@ export const tableRegistry = {
     description: 'Table showing loading state',
     type: 'registry:example',
     registryDependencies: ['table', 'button', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',

@@ -9,6 +9,8 @@ export const inputRegistry = {
     type: 'registry:ui',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['text', 'icon', 'view'],
+    hooks: ['useThemeColor'],
+    theme: ['globals'],
     files: [
       {
         type: 'registry:ui',
@@ -30,6 +32,8 @@ export const inputRegistry = {
     type: 'registry:example',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['input'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -51,6 +55,8 @@ export const inputRegistry = {
     type: 'registry:example',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['input', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -72,6 +78,8 @@ export const inputRegistry = {
     type: 'registry:example',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['input', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -93,6 +101,8 @@ export const inputRegistry = {
     type: 'registry:example',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['input', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -115,6 +125,8 @@ export const inputRegistry = {
     type: 'registry:example',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['input', 'view', 'button', 'text'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -136,6 +148,8 @@ export const inputRegistry = {
     type: 'registry:example',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['input', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -156,6 +170,8 @@ export const inputRegistry = {
     type: 'registry:example',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['input'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -177,6 +193,8 @@ export const inputRegistry = {
     type: 'registry:example',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['input', 'button', 'view', 'text'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',

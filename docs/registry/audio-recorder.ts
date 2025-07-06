@@ -6,14 +6,10 @@ export const audioRecorderRegistry = {
     description:
       'A comprehensive audio recording component with real-time waveform visualization, quality settings, and built-in playback capabilities.',
     type: 'registry:ui',
-    dependencies: ['lucide-react-native'],
-    registryDependencies: [
-      'audio-player',
-      'audio-waveform',
-      'button',
-      'text',
-      'progress',
-    ],
+    dependencies: ['expo-audio', 'lucide-react-native'],
+    registryDependencies: ['audio-player', 'audio-waveform', 'button', 'text'],
+    hooks: ['useThemeColor'],
+    theme: ['globals'],
     files: [
       {
         type: 'registry:ui',
@@ -35,6 +31,8 @@ export const audioRecorderRegistry = {
       'Full-featured audio recorder with real-time waveform and playback',
     type: 'registry:example',
     registryDependencies: ['audio-recorder', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -55,6 +53,8 @@ export const audioRecorderRegistry = {
     description: 'Optimized recorder for quick voice notes with time limit',
     type: 'registry:example',
     registryDependencies: ['audio-recorder', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -75,6 +75,8 @@ export const audioRecorderRegistry = {
     description: 'High-quality recorder for music or professional audio',
     type: 'registry:example',
     registryDependencies: ['audio-recorder', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -95,6 +97,8 @@ export const audioRecorderRegistry = {
     description: 'Minimal recorder without waveform visualization',
     type: 'registry:example',
     registryDependencies: ['audio-recorder', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -115,6 +119,8 @@ export const audioRecorderRegistry = {
     description: 'Audio recorder with custom styling and branding',
     type: 'registry:example',
     registryDependencies: ['audio-recorder', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -135,6 +141,8 @@ export const audioRecorderRegistry = {
     description: 'Recorder with comprehensive callback handling',
     type: 'registry:example',
     registryDependencies: ['audio-recorder', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -155,6 +163,8 @@ export const audioRecorderRegistry = {
     description: 'Recorder with cloud storage integration',
     type: 'registry:example',
     registryDependencies: ['audio-recorder', 'text', 'view', 'loading-spinner'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -175,6 +185,8 @@ export const audioRecorderRegistry = {
     description: 'Long-form recorder optimized for interviews and meetings',
     type: 'registry:example',
     registryDependencies: ['audio-recorder', 'text', 'view', 'badge'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',

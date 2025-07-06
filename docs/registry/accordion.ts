@@ -9,6 +9,8 @@ export const accordionRegistry = {
     type: 'registry:ui',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['text', 'view', 'icon'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:ui',
@@ -29,6 +31,8 @@ export const accordionRegistry = {
     description: 'A basic accordion with collapsible sections',
     type: 'registry:example',
     registryDependencies: ['accordion'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -49,6 +53,8 @@ export const accordionRegistry = {
     description: 'An accordion that allows only one item to be open at a time',
     type: 'registry:example',
     registryDependencies: ['accordion'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -70,6 +76,8 @@ export const accordionRegistry = {
       'An accordion that allows multiple items to be open simultaneously',
     type: 'registry:example',
     registryDependencies: ['accordion'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -90,6 +98,8 @@ export const accordionRegistry = {
     description: 'An accordion with controlled state management',
     type: 'registry:example',
     registryDependencies: ['accordion'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -111,6 +121,8 @@ export const accordionRegistry = {
       'An accordion formatted as a frequently asked questions section',
     type: 'registry:example',
     registryDependencies: ['accordion'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -131,6 +143,8 @@ export const accordionRegistry = {
     description: 'An accordion where at least one item must always remain open',
     type: 'registry:example',
     registryDependencies: ['accordion'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -151,6 +165,8 @@ export const accordionRegistry = {
     description: 'An accordion with custom styling and icons',
     type: 'registry:example',
     registryDependencies: ['accordion'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',

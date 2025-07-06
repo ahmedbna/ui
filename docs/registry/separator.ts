@@ -8,6 +8,8 @@ export const separatorRegistry = {
     type: 'registry:ui',
     dependencies: [],
     registryDependencies: ['view'],
+    hooks: ['useThemeColor'],
+    theme: [],
     files: [
       {
         type: 'registry:ui',
@@ -27,6 +29,8 @@ export const separatorRegistry = {
     description: 'A basic horizontal separator',
     type: 'registry:example',
     registryDependencies: ['separator', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -46,6 +50,8 @@ export const separatorRegistry = {
     description: 'A vertical separator for inline content',
     type: 'registry:example',
     registryDependencies: ['separator', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -65,6 +71,8 @@ export const separatorRegistry = {
     description: 'Separators with different thickness values',
     type: 'registry:example',
     registryDependencies: ['separator', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -84,6 +92,8 @@ export const separatorRegistry = {
     description: 'Separators with custom colors and opacity',
     type: 'registry:example',
     registryDependencies: ['separator', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -103,6 +113,8 @@ export const separatorRegistry = {
     description: 'Separators with different margin and padding',
     type: 'registry:example',
     registryDependencies: ['separator', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',

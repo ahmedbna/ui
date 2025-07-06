@@ -9,6 +9,8 @@ export const filePickerRegistry = {
     type: 'registry:ui',
     dependencies: ['lucide-react-native', 'expo-document-picker'],
     registryDependencies: ['button', 'text', 'view'],
+    hooks: ['useThemeColor'],
+    theme: ['globals'],
     files: [
       {
         type: 'registry:ui',
@@ -29,6 +31,8 @@ export const filePickerRegistry = {
     description: 'A basic file picker with validation and preview',
     type: 'registry:example',
     registryDependencies: ['file-picker'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -48,6 +52,8 @@ export const filePickerRegistry = {
     description: 'File picker configured for images only',
     type: 'registry:example',
     registryDependencies: ['file-picker', 'view', 'text'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -67,6 +73,8 @@ export const filePickerRegistry = {
     description: 'File picker for selecting a single file',
     type: 'registry:example',
     registryDependencies: ['file-picker', 'view', 'text'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -86,6 +94,8 @@ export const filePickerRegistry = {
     description: 'File picker with size limits and extension validation',
     type: 'registry:example',
     registryDependencies: ['file-picker', 'view', 'text'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -105,6 +115,8 @@ export const filePickerRegistry = {
     description: 'File picker with custom styling and colors',
     type: 'registry:example',
     registryDependencies: ['file-picker', 'view', 'text'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -124,6 +136,8 @@ export const filePickerRegistry = {
     description: 'Controlled file picker using the useFilePicker hook',
     type: 'registry:example',
     registryDependencies: ['file-picker', 'button', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -143,6 +157,8 @@ export const filePickerRegistry = {
     description: 'File picker displaying detailed file information',
     type: 'registry:example',
     registryDependencies: ['file-picker', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',

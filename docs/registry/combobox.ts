@@ -9,6 +9,8 @@ export const comboboxRegistry = {
     type: 'registry:ui',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['text', 'view'],
+    hooks: ['useThemeColor'],
+    theme: ['globals'],
     files: [
       {
         type: 'registry:ui',
@@ -29,6 +31,8 @@ export const comboboxRegistry = {
     description: 'A basic combobox with search functionality',
     type: 'registry:ui',
     registryDependencies: ['combobox'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:ui',
@@ -48,6 +52,8 @@ export const comboboxRegistry = {
     description: 'Combobox with grouped options',
     type: 'registry:ui',
     registryDependencies: ['combobox'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:ui',
@@ -66,6 +72,8 @@ export const comboboxRegistry = {
     description: 'Combobox that allows selecting multiple values',
     type: 'registry:ui',
     registryDependencies: ['combobox'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:ui',
@@ -84,6 +92,8 @@ export const comboboxRegistry = {
     description: 'Disabled combobox component',
     type: 'registry:ui',
     registryDependencies: ['combobox'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:ui',
@@ -102,6 +112,8 @@ export const comboboxRegistry = {
     description: 'Combobox with custom search behavior',
     type: 'registry:ui',
     registryDependencies: ['combobox'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:ui',
@@ -120,6 +132,8 @@ export const comboboxRegistry = {
     description: 'Combobox integrated with form validation',
     type: 'registry:ui',
     registryDependencies: ['combobox', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:ui',
@@ -138,6 +152,8 @@ export const comboboxRegistry = {
     description: 'Combobox handling large datasets efficiently',
     type: 'registry:ui',
     registryDependencies: ['combobox'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:ui',

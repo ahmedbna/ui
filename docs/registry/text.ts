@@ -9,6 +9,8 @@ export const textRegistry = {
     type: 'registry:ui',
     dependencies: [],
     registryDependencies: [],
+    hooks: ['useThemeColor'],
+    theme: ['globals'],
     files: [
       {
         type: 'registry:ui',
@@ -28,6 +30,8 @@ export const textRegistry = {
     description: 'Basic text component showing different variants',
     type: 'registry:example',
     registryDependencies: ['text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -46,6 +50,8 @@ export const textRegistry = {
     description: 'All text variants showing the typography hierarchy',
     type: 'registry:example',
     registryDependencies: ['text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -64,6 +70,8 @@ export const textRegistry = {
     description: 'Text with custom light and dark mode colors',
     type: 'registry:example',
     registryDependencies: ['text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',

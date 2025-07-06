@@ -9,6 +9,8 @@ export const shareRegistry = {
     type: 'registry:ui',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['button', 'text'],
+    hooks: ['useThemeColor'],
+    theme: ['globals'],
     files: [
       {
         type: 'registry:ui',
@@ -29,6 +31,8 @@ export const shareRegistry = {
     description: 'A basic share button with text and URL sharing',
     type: 'registry:example',
     registryDependencies: ['share'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -49,6 +53,8 @@ export const shareRegistry = {
     description: 'Share buttons with different visual variants',
     type: 'registry:example',
     registryDependencies: ['share', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -69,6 +75,8 @@ export const shareRegistry = {
     description: 'Share buttons in different sizes',
     type: 'registry:example',
     registryDependencies: ['share', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -89,6 +97,8 @@ export const shareRegistry = {
     description: 'Share button for sharing URLs without additional text',
     type: 'registry:example',
     registryDependencies: ['share', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -109,6 +119,8 @@ export const shareRegistry = {
     description: 'Share button with custom title, subject, and content',
     type: 'registry:example',
     registryDependencies: ['share', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -129,6 +141,8 @@ export const shareRegistry = {
     description: 'Compact share button with icon only',
     type: 'registry:example',
     registryDependencies: ['share', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -149,6 +163,8 @@ export const shareRegistry = {
     description: 'Share button with success, error, and dismiss callbacks',
     type: 'registry:example',
     registryDependencies: ['share', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         path: 'registry/demo/share/share-callbacks.tsx',
@@ -167,6 +183,8 @@ export const shareRegistry = {
     description: 'Using the useShare hook for programmatic sharing',
     type: 'registry:example',
     registryDependencies: ['share', 'text', 'view', 'button'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',

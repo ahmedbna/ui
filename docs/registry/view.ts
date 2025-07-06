@@ -8,7 +8,9 @@ export const viewRegistry = {
       'A foundational View component with transparent background and ref forwarding support.',
     type: 'registry:ui',
     dependencies: [],
-    registryDependencies: ['text'],
+    registryDependencies: [],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:ui',
@@ -27,7 +29,9 @@ export const viewRegistry = {
     name: 'view-demo',
     description: 'Basic view container with content',
     type: 'registry:example',
-    registryDependencies: ['view'],
+    registryDependencies: ['view', 'text'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',

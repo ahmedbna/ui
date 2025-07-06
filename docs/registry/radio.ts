@@ -8,7 +8,9 @@ export const radioRegistry = {
       'A set of checkable buttons—known as radio buttons—where no more than one of the buttons can be checked at a time.',
     type: 'registry:ui',
     dependencies: ['react-native'],
-    registryDependencies: ['text', 'view'],
+    registryDependencies: ['text'],
+    hooks: ['useThemeColor'],
+    theme: ['globals'],
     files: [
       {
         type: 'registry:ui',
@@ -29,6 +31,8 @@ export const radioRegistry = {
     description: 'A basic radio group with multiple options',
     type: 'registry:example',
     registryDependencies: ['radio'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -49,6 +53,8 @@ export const radioRegistry = {
     description: 'Radio buttons arranged horizontally',
     type: 'registry:example',
     registryDependencies: ['radio'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -69,6 +75,8 @@ export const radioRegistry = {
     description: 'Radio group with some disabled options',
     type: 'registry:example',
     registryDependencies: ['radio', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -89,6 +97,8 @@ export const radioRegistry = {
     description: 'Radio buttons with custom colors and styling',
     type: 'registry:example',
     registryDependencies: ['radio', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -109,6 +119,8 @@ export const radioRegistry = {
     description: 'Radio group integrated with form validation',
     type: 'registry:example',
     registryDependencies: ['radio', 'button', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -129,6 +141,8 @@ export const radioRegistry = {
     description: 'Radio buttons with larger size and spacing',
     type: 'registry:example',
     registryDependencies: ['radio'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -149,6 +163,8 @@ export const radioRegistry = {
     description: 'Individual radio button component usage',
     type: 'registry:example',
     registryDependencies: ['radio', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',

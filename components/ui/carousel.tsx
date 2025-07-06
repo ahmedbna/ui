@@ -20,6 +20,7 @@ import {
   ViewStyle,
 } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
+
 const { width: screenWidth } = Dimensions.get('window');
 
 interface CarouselProps {

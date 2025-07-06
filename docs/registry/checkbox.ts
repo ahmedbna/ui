@@ -9,6 +9,8 @@ export const checkboxRegistry = {
     type: 'registry:ui',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['text', 'view'],
+    hooks: ['useThemeColor'],
+    theme: ['globals'],
     files: [
       {
         type: 'registry:ui',
@@ -29,6 +31,8 @@ export const checkboxRegistry = {
     description: 'A basic checkbox with label',
     type: 'registry:example',
     registryDependencies: ['checkbox'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -50,6 +54,8 @@ export const checkboxRegistry = {
       'Checkboxes in different states: unchecked, checked, and disabled',
     type: 'registry:example',
     registryDependencies: ['checkbox', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -70,6 +76,8 @@ export const checkboxRegistry = {
     description: 'A checkbox without a label',
     type: 'registry:example',
     registryDependencies: ['checkbox'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -90,6 +98,8 @@ export const checkboxRegistry = {
     description: 'A checkbox with error styling and message',
     type: 'registry:example',
     registryDependencies: ['checkbox', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -110,6 +120,8 @@ export const checkboxRegistry = {
     description: 'Checkboxes with custom label styling',
     type: 'registry:example',
     registryDependencies: ['checkbox', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -130,6 +142,8 @@ export const checkboxRegistry = {
     description: 'Multiple checkboxes working together as a group',
     type: 'registry:example',
     registryDependencies: ['checkbox', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',

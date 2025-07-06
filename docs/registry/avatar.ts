@@ -8,6 +8,8 @@ export const avatarRegistry = {
     type: 'registry:ui',
     dependencies: ['expo-image'],
     registryDependencies: ['text', 'view', 'image'],
+    hooks: ['useThemeColor'],
+    theme: ['globals'],
     files: [
       {
         type: 'registry:ui',
@@ -27,6 +29,8 @@ export const avatarRegistry = {
     description: 'A basic avatar with image and fallback text',
     type: 'registry:example',
     registryDependencies: ['avatar'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -46,6 +50,8 @@ export const avatarRegistry = {
     description: 'Avatars in different sizes',
     type: 'registry:example',
     registryDependencies: ['avatar'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -65,6 +71,8 @@ export const avatarRegistry = {
     description: 'Avatars with fallback text when no image is provided',
     type: 'registry:example',
     registryDependencies: ['avatar'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -84,6 +92,8 @@ export const avatarRegistry = {
     description: 'Avatars with custom styling and colors',
     type: 'registry:example',
     registryDependencies: ['avatar'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -103,6 +113,8 @@ export const avatarRegistry = {
     description: 'Multiple avatars arranged in a group layout',
     type: 'registry:example',
     registryDependencies: ['avatar'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -122,6 +134,8 @@ export const avatarRegistry = {
     description: 'Avatars with online/offline status indicators',
     type: 'registry:example',
     registryDependencies: ['avatar'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -141,6 +155,8 @@ export const avatarRegistry = {
     description: 'Avatars with custom borders and shadows',
     type: 'registry:example',
     registryDependencies: ['avatar'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',

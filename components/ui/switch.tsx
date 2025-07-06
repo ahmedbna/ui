@@ -1,8 +1,7 @@
-import { useThemeColor } from '@/hooks/useThemeColor';
-import React from 'react';
-
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
+import { useThemeColor } from '@/hooks/useThemeColor';
+import React from 'react';
 import {
   Switch as RNSwitch,
   SwitchProps as RNSwitchProps,

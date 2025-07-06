@@ -9,6 +9,8 @@ export const modeToggleRegistry = {
     type: 'registry:ui',
     dependencies: ['lucide-react-native', 'react-native-reanimated'],
     registryDependencies: ['button', 'icon'],
+    hooks: ['useModeToggle'],
+    theme: [],
     files: [
       {
         type: 'registry:ui',
@@ -29,6 +31,8 @@ export const modeToggleRegistry = {
     description: 'Animated theme toggle button',
     type: 'registry:example',
     registryDependencies: ['mode-toggle'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',

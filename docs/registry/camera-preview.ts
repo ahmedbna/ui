@@ -10,7 +10,6 @@ export const cameraPreviewRegistry = {
     dependencies: [
       'expo-camera',
       'expo-media-library',
-      'expo-av',
       'lucide-react-native',
       'react-native-safe-area-context',
     ],
@@ -22,6 +21,8 @@ export const cameraPreviewRegistry = {
       'video',
       'camera',
     ],
+    hooks: ['useThemeColor'],
+    theme: [],
     files: [
       {
         type: 'registry:ui',
@@ -42,6 +43,8 @@ export const cameraPreviewRegistry = {
     description: 'A basic camera preview with capture and save functionality',
     type: 'registry:example',
     registryDependencies: ['camera-preview'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',

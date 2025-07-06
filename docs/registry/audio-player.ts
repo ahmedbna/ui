@@ -10,6 +10,8 @@ export const audioPlayerRegistry = {
     type: 'registry:ui',
     dependencies: ['expo-audio', 'lucide-react-native'],
     registryDependencies: ['button', 'progress', 'text', 'audio-waveform'],
+    hooks: ['useThemeColor'],
+    theme: ['globals'],
     files: [
       {
         type: 'registry:ui',
@@ -30,6 +32,8 @@ export const audioPlayerRegistry = {
     description: 'A complete audio player with all features enabled',
     type: 'registry:example',
     registryDependencies: ['audio-player', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -50,6 +54,8 @@ export const audioPlayerRegistry = {
     description: 'A minimal audio player with only essential controls',
     type: 'registry:example',
     registryDependencies: ['audio-player', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -70,6 +76,8 @@ export const audioPlayerRegistry = {
     description: 'Audio player focused on waveform visualization',
     type: 'registry:example',
     registryDependencies: ['audio-player', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -90,6 +98,8 @@ export const audioPlayerRegistry = {
     description: 'Audio player using only a progress bar for seeking',
     type: 'registry:example',
     registryDependencies: ['audio-player', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -110,6 +120,8 @@ export const audioPlayerRegistry = {
     description: 'Audio player that starts playing automatically when loaded',
     type: 'registry:example',
     registryDependencies: ['audio-player', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -130,6 +142,8 @@ export const audioPlayerRegistry = {
     description: 'An audio player with custom styling and theming',
     type: 'registry:example',
     registryDependencies: ['audio-player', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -151,6 +165,8 @@ export const audioPlayerRegistry = {
       'Audio player with music-focused UI including album art and track info',
     type: 'registry:example',
     registryDependencies: ['audio-player', 'text', 'view', 'image', 'button'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',

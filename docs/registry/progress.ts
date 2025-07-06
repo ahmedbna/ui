@@ -9,6 +9,8 @@ export const progressRegistry = {
     type: 'registry:ui',
     dependencies: ['react-native-gesture-handler', 'react-native-reanimated'],
     registryDependencies: ['view'],
+    hooks: ['useThemeColor'],
+    theme: ['globals'],
     files: [
       {
         type: 'registry:ui',
@@ -28,6 +30,8 @@ export const progressRegistry = {
     description: 'A basic progress bar showing completion status',
     type: 'registry:example',
     registryDependencies: ['progress'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -47,6 +51,8 @@ export const progressRegistry = {
     description: 'An interactive progress bar that can be dragged or tapped',
     type: 'registry:example',
     registryDependencies: ['progress', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -66,6 +72,8 @@ export const progressRegistry = {
     description: 'Progress bars with different heights',
     type: 'registry:example',
     registryDependencies: ['progress', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -84,6 +92,8 @@ export const progressRegistry = {
     description: 'Progress bars with percentage labels and descriptions',
     type: 'registry:example',
     registryDependencies: ['progress', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -102,6 +112,8 @@ export const progressRegistry = {
     description: 'Progress bars with smooth animations and transitions',
     type: 'registry:example',
     registryDependencies: ['progress', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -121,6 +133,8 @@ export const progressRegistry = {
     description: 'Progress bars styled for media player controls',
     type: 'registry:example',
     registryDependencies: ['progress', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -140,6 +154,8 @@ export const progressRegistry = {
     description: 'Multi-step progress indicators',
     type: 'registry:example',
     registryDependencies: ['progress', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',

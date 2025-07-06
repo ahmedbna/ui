@@ -7,8 +7,10 @@ export const tabsRegistry = {
     description:
       'A foundational View component with transparent background and ref forwarding support.',
     type: 'registry:ui',
-    dependencies: [],
+    dependencies: ['react-native-gesture-handler', 'react-native-reanimated'],
     registryDependencies: ['text', 'view'],
+    hooks: ['useThemeColor'],
+    theme: ['globals'],
     files: [
       {
         type: 'registry:ui',
@@ -29,6 +31,8 @@ export const tabsRegistry = {
     description: 'Basic tabs container with content',
     type: 'registry:example',
     registryDependencies: ['tabs', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -48,6 +52,8 @@ export const tabsRegistry = {
     description: 'Tabs arranged in vertical orientation',
     type: 'registry:example',
     registryDependencies: ['tabs', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -67,6 +73,8 @@ export const tabsRegistry = {
     description: 'Tabs with disabled states',
     type: 'registry:example',
     registryDependencies: ['tabs', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -86,6 +94,8 @@ export const tabsRegistry = {
     description: 'Tabs with custom colors and styling',
     type: 'registry:example',
     registryDependencies: ['tabs', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',

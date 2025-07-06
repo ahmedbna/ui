@@ -12,7 +12,9 @@ export const carouselRegistry = {
       'lucide-react-native',
       'react-native-gesture-handler',
     ],
-    registryDependencies: ['text', 'view', 'button'],
+    registryDependencies: ['text'],
+    hooks: ['useThemeColor'],
+    theme: ['globals'],
     files: [
       {
         type: 'registry:ui',
@@ -33,6 +35,8 @@ export const carouselRegistry = {
     description: 'A basic carousel with auto-play and indicators',
     type: 'registry:example',
     registryDependencies: ['carousel'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -53,6 +57,8 @@ export const carouselRegistry = {
     description: 'Carousel with navigation arrows and indicators',
     type: 'registry:example',
     registryDependencies: ['carousel'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -73,6 +79,8 @@ export const carouselRegistry = {
     description: 'Carousel with custom item width and spacing',
     type: 'registry:example',
     registryDependencies: ['carousel'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -94,6 +102,8 @@ export const carouselRegistry = {
     type: 'registry:example',
     registryDependencies: ['carousel'],
     dependencies: ['expo-image'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -114,6 +124,8 @@ export const carouselRegistry = {
     description: 'Card-based carousel with custom content',
     type: 'registry:example',
     registryDependencies: ['carousel'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -134,6 +146,8 @@ export const carouselRegistry = {
     description: 'Carousel without indicators, arrows only',
     type: 'registry:example',
     registryDependencies: ['carousel'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -154,6 +168,8 @@ export const carouselRegistry = {
     description: 'Manually controlled carousel with external buttons',
     type: 'registry:example',
     registryDependencies: ['carousel', 'button'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',

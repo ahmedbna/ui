@@ -9,10 +9,12 @@ export const cameraRegistry = {
     type: 'registry:ui',
     dependencies: [
       'expo-camera',
-      'react-native-gesture-handler',
       'lucide-react-native',
+      'react-native-gesture-handler',
     ],
     registryDependencies: ['button', 'text', 'progress'],
+    hooks: ['useThemeColor'],
+    theme: ['globals'],
     files: [
       {
         type: 'registry:ui',
@@ -33,6 +35,8 @@ export const cameraRegistry = {
     description: 'A basic camera with default settings',
     type: 'registry:example',
     registryDependencies: ['camera'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -53,6 +57,8 @@ export const cameraRegistry = {
     description: 'Camera with custom control settings',
     type: 'registry:example',
     registryDependencies: ['camera'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -73,6 +79,8 @@ export const cameraRegistry = {
     description: 'Camera configured for picture-only mode',
     type: 'registry:example',
     registryDependencies: ['camera'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -93,6 +101,8 @@ export const cameraRegistry = {
     description: 'Camera with video recording capabilities',
     type: 'registry:example',
     registryDependencies: ['camera'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -113,6 +123,8 @@ export const cameraRegistry = {
     description: 'Camera with timer functionality',
     type: 'registry:example',
     registryDependencies: ['camera'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -133,6 +145,8 @@ export const cameraRegistry = {
     description: 'Camera with zoom controls and gestures',
     type: 'registry:example',
     registryDependencies: ['camera'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -153,6 +167,8 @@ export const cameraRegistry = {
     description: 'Camera with advanced settings panel',
     type: 'registry:example',
     registryDependencies: ['camera'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',

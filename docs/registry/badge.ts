@@ -8,6 +8,8 @@ export const badgeRegistry = {
     type: 'registry:ui',
     dependencies: [],
     registryDependencies: ['text', 'view'],
+    hooks: ['useThemeColor'],
+    theme: ['globals'],
     files: [
       {
         type: 'registry:ui',
@@ -27,6 +29,8 @@ export const badgeRegistry = {
     description: 'Basic badges showing all available variants',
     type: 'registry:example',
     registryDependencies: ['badge'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -46,6 +50,8 @@ export const badgeRegistry = {
     description: 'Badges with icons and custom content',
     type: 'registry:example',
     registryDependencies: ['badge'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -65,6 +71,8 @@ export const badgeRegistry = {
     description: 'Small notification badges for counters and status',
     type: 'registry:example',
     registryDependencies: ['badge'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -84,6 +92,8 @@ export const badgeRegistry = {
     description: 'Badges with custom colors and styling',
     type: 'registry:example',
     registryDependencies: ['badge'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -103,6 +113,8 @@ export const badgeRegistry = {
     description: 'Badges that can be pressed or dismissed',
     type: 'registry:example',
     registryDependencies: ['badge'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -122,6 +134,8 @@ export const badgeRegistry = {
     description: 'Badges in different sizes',
     type: 'registry:example',
     registryDependencies: ['badge'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -141,6 +155,8 @@ export const badgeRegistry = {
     description: 'Badges used as status indicators',
     type: 'registry:example',
     registryDependencies: ['badge'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',

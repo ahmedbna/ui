@@ -8,6 +8,8 @@ export const inputOtpRegistry = {
       'A secure input component for one-time passwords and verification codes.',
     type: 'registry:ui',
     registryDependencies: ['text'],
+    hooks: ['useThemeColor'],
+    theme: ['globals'],
     files: [
       {
         type: 'registry:ui',
@@ -28,6 +30,8 @@ export const inputOtpRegistry = {
     description: 'A basic OTP input with 6 digits',
     type: 'registry:example',
     registryDependencies: ['input-otp'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -48,6 +52,8 @@ export const inputOtpRegistry = {
     description: 'OTP inputs with different digit lengths',
     type: 'registry:example',
     registryDependencies: ['input-otp', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -68,6 +74,8 @@ export const inputOtpRegistry = {
     description: 'OTP input with dash separators between digits',
     type: 'registry:example',
     registryDependencies: ['input-otp', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -87,6 +95,8 @@ export const inputOtpRegistry = {
     description: 'OTP input that masks digits with dots for security',
     type: 'registry:example',
     registryDependencies: ['input-otp', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -106,6 +116,8 @@ export const inputOtpRegistry = {
     description: 'OTP input showing error state with validation message',
     type: 'registry:example',
     registryDependencies: ['input-otp', 'text', 'view', 'button'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -125,6 +137,8 @@ export const inputOtpRegistry = {
     description: 'OTP input in disabled state',
     type: 'registry:example',
     registryDependencies: ['input-otp', 'text', 'view', 'button'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -144,6 +158,8 @@ export const inputOtpRegistry = {
     description: 'OTP input with custom colors and styling',
     type: 'registry:example',
     registryDependencies: ['input-otp', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -163,6 +179,8 @@ export const inputOtpRegistry = {
     description: 'OTP input without the blinking cursor indicator',
     type: 'registry:example',
     registryDependencies: ['input-otp', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',

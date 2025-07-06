@@ -9,6 +9,8 @@ export const parallaxScrollViewRegistry = {
     type: 'registry:ui',
     dependencies: ['react-native-reanimated'],
     registryDependencies: ['view'],
+    hooks: ['useBottomTabOverflow', 'useThemeColor'],
+    theme: [],
     files: [
       {
         type: 'registry:ui',
@@ -29,6 +31,8 @@ export const parallaxScrollViewRegistry = {
     description: 'A basic parallax scroll view with header image',
     type: 'registry:example',
     registryDependencies: ['parallax-scrollview', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -50,6 +54,8 @@ export const parallaxScrollViewRegistry = {
     description: 'Parallax scroll view with custom header height',
     type: 'registry:example',
     registryDependencies: ['parallax-scrollview', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -72,6 +78,8 @@ export const parallaxScrollViewRegistry = {
     type: 'registry:example',
     dependencies: ['expo-linear-gradient'],
     registryDependencies: ['parallax-scrollview', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -94,6 +102,8 @@ export const parallaxScrollViewRegistry = {
     type: 'registry:example',
     dependencies: ['expo-linear-gradient'],
     registryDependencies: ['parallax-scrollview', 'avatar', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -116,6 +126,8 @@ export const parallaxScrollViewRegistry = {
     type: 'registry:example',
     dependencies: ['expo-linear-gradient'],
     registryDependencies: ['parallax-scrollview', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -137,6 +149,8 @@ export const parallaxScrollViewRegistry = {
     description: 'Product detail screen with parallax image gallery',
     type: 'registry:example',
     registryDependencies: ['parallax-scrollview', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',

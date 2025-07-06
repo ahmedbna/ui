@@ -9,6 +9,8 @@ export const alertRegistry = {
       'Display important messages to users with both visual inline alerts and native system alerts.',
     type: 'registry:ui',
     registryDependencies: ['text', 'view'],
+    hooks: ['useThemeColor'],
+    theme: ['globals'],
     files: [
       {
         type: 'registry:ui',
@@ -29,6 +31,8 @@ export const alertRegistry = {
     description: 'A basic native alert with two buttons',
     type: 'registry:example',
     registryDependencies: ['alert', 'button'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -49,6 +53,8 @@ export const alertRegistry = {
     description: 'A native alert with three button options',
     type: 'registry:example',
     registryDependencies: ['alert', 'button'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -69,6 +75,8 @@ export const alertRegistry = {
     description: 'Success alert with positive messaging',
     type: 'registry:example',
     registryDependencies: ['alert', 'button'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -89,6 +97,8 @@ export const alertRegistry = {
     description: 'Error alert with destructive styling',
     type: 'registry:example',
     registryDependencies: ['alert', 'button'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -109,6 +119,8 @@ export const alertRegistry = {
     description: 'Confirmation alert for destructive actions',
     type: 'registry:example',
     registryDependencies: ['alert', 'button'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -129,6 +141,8 @@ export const alertRegistry = {
     description: 'Custom native alert with multiple options',
     type: 'registry:example',
     registryDependencies: ['alert', 'button'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -149,6 +163,8 @@ export const alertRegistry = {
     description: 'Inline visual alerts that appear within your content',
     type: 'registry:example',
     registryDependencies: ['alert', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -169,6 +185,8 @@ export const alertRegistry = {
     description: 'Destructive visual alerts for error messages',
     type: 'registry:example',
     registryDependencies: ['alert', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -189,6 +207,8 @@ export const alertRegistry = {
     description: 'Advanced alert usage patterns and combinations',
     type: 'registry:example',
     registryDependencies: ['alert', 'button', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',

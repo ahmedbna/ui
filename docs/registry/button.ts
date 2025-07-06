@@ -9,11 +9,13 @@ export const buttonRegistry = {
       'A versatile button component with multiple variants, sizes, and interactive animations.',
     type: 'registry:ui',
     dependencies: [
+      'expo-haptics',
       'lucide-react-native',
       'react-native-reanimated',
-      'react-native-gesture-handler',
     ],
     registryDependencies: ['text', 'icon', 'spinner'],
+    hooks: ['useThemeColor'],
+    theme: ['globals'],
     files: [
       {
         type: 'registry:ui',
@@ -34,6 +36,8 @@ export const buttonRegistry = {
     description: 'A basic button with default styling',
     type: 'registry:example',
     registryDependencies: ['button'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -54,6 +58,8 @@ export const buttonRegistry = {
     description: 'Buttons with different visual styles',
     type: 'registry:example',
     registryDependencies: ['button'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -74,6 +80,8 @@ export const buttonRegistry = {
     description: 'Buttons in different sizes',
     type: 'registry:example',
     registryDependencies: ['button'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -94,6 +102,8 @@ export const buttonRegistry = {
     description: 'Buttons with leading icons',
     type: 'registry:example',
     registryDependencies: ['button'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -114,6 +124,8 @@ export const buttonRegistry = {
     description: 'Icon-only buttons for compact layouts',
     type: 'registry:example',
     registryDependencies: ['button'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -134,6 +146,8 @@ export const buttonRegistry = {
     description: 'Buttons with loading spinners',
     type: 'registry:example',
     registryDependencies: ['button'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -154,6 +168,8 @@ export const buttonRegistry = {
     description: 'Buttons in disabled state',
     type: 'registry:example',
     registryDependencies: ['button'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -174,6 +190,8 @@ export const buttonRegistry = {
     description: 'Buttons with custom colors and styles',
     type: 'registry:example',
     registryDependencies: ['button'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -194,6 +212,8 @@ export const buttonRegistry = {
     description: 'Buttons with and without animations',
     type: 'registry:example',
     registryDependencies: ['button'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',

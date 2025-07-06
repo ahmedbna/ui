@@ -8,7 +8,9 @@ export const popoverRegistry = {
       'A contextual overlay that displays rich content triggered by user interaction.',
     type: 'registry:ui',
     dependencies: ['react-native-reanimated'],
-    registryDependencies: ['button', 'text', 'view'],
+    registryDependencies: ['button'],
+    hooks: ['useThemeColor'],
+    theme: ['globals'],
     files: [
       {
         type: 'registry:ui',
@@ -29,6 +31,8 @@ export const popoverRegistry = {
     description: 'A basic popover with trigger button and content',
     type: 'registry:example',
     registryDependencies: ['popover', 'button', 'text'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -49,6 +53,8 @@ export const popoverRegistry = {
     description: 'Popovers positioned on different sides of the trigger',
     type: 'registry:example',
     registryDependencies: ['popover', 'button', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -69,6 +75,8 @@ export const popoverRegistry = {
     description: 'Popovers with different alignment options',
     type: 'registry:example',
     registryDependencies: ['popover', 'button', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -89,6 +97,8 @@ export const popoverRegistry = {
     description: 'A controlled popover with external state management',
     type: 'registry:example',
     registryDependencies: ['popover', 'button', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -109,6 +119,8 @@ export const popoverRegistry = {
     description: 'Popovers with custom content and styling',
     type: 'registry:example',
     registryDependencies: ['popover', 'button', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -129,6 +141,8 @@ export const popoverRegistry = {
     description: 'A popover containing form elements',
     type: 'registry:example',
     registryDependencies: ['popover', 'button', 'text', 'view', 'input'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',
@@ -149,6 +163,8 @@ export const popoverRegistry = {
     description: 'A popover styled as a dropdown menu',
     type: 'registry:example',
     registryDependencies: ['popover', 'button', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         type: 'registry:example',

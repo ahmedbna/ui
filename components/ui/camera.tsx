@@ -40,7 +40,7 @@ import {
   ViewStyle,
 } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
-import { Progress } from './progress';
+import { Progress } from '@/components/ui/progress';
 
 const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 
