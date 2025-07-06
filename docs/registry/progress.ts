@@ -11,9 +11,9 @@ export const progressRegistry = {
     registryDependencies: ['view'],
     files: [
       {
-        path: 'registry/components/ui/progress.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/progress.tsx',
+        target: 'components/ui/progress.tsx',
       },
     ],
     preview: {
@@ -30,9 +30,9 @@ export const progressRegistry = {
     registryDependencies: ['progress'],
     files: [
       {
-        path: 'registry/demo/progress/progress-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/progress/progress-demo.tsx',
+        target: 'components/demo/progress/progress-demo.tsx',
       },
     ],
     preview: {
@@ -49,9 +49,9 @@ export const progressRegistry = {
     registryDependencies: ['progress', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/progress/progress-interactive.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/progress/progress-interactive.tsx',
+        target: 'components/demo/progress/progress-interactive.tsx',
       },
     ],
     preview: {
@@ -68,9 +68,9 @@ export const progressRegistry = {
     registryDependencies: ['progress', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/progress/progress-heights.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/progress/progress-heights.tsx',
+        target: 'components/demo/progress/progress-heights.tsx',
       },
     ],
     preview: {
@@ -86,9 +86,9 @@ export const progressRegistry = {
     registryDependencies: ['progress', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/progress/progress-labels.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/progress/progress-labels.tsx',
+        target: 'components/demo/progress/progress-labels.tsx',
       },
     ],
     preview: {
@@ -104,9 +104,9 @@ export const progressRegistry = {
     registryDependencies: ['progress', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/progress/progress-animated.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/progress/progress-animated.tsx',
+        target: 'components/demo/progress/progress-animated.tsx',
       },
     ],
     preview: {
@@ -123,9 +123,9 @@ export const progressRegistry = {
     registryDependencies: ['progress', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/progress/progress-media.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/progress/progress-media.tsx',
+        target: 'components/demo/progress/progress-media.tsx',
       },
     ],
     preview: {
@@ -142,9 +142,9 @@ export const progressRegistry = {
     registryDependencies: ['progress', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/progress/progress-steps.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/progress/progress-steps.tsx',
+        target: 'components/demo/progress/progress-steps.tsx',
       },
     ],
     preview: {

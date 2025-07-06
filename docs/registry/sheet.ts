@@ -11,9 +11,9 @@ export const sheetRegistry = {
     registryDependencies: ['button', 'text', 'view'],
     files: [
       {
-        path: 'registry/components/ui/sheet.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/sheet.tsx',
+        target: 'components/ui/sheet.tsx',
       },
     ],
     preview: {
@@ -31,9 +31,9 @@ export const sheetRegistry = {
     registryDependencies: ['sheet', 'button', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/sheet/sheet-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/sheet/sheet-demo.tsx',
+        target: 'components/demo/sheet/sheet-demo.tsx',
       },
     ],
     preview: {
@@ -50,9 +50,9 @@ export const sheetRegistry = {
     registryDependencies: ['sheet', 'button', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/sheet/sheet-left.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/sheet/sheet-left.tsx',
+        target: 'components/demo/sheet/sheet-left.tsx',
       },
     ],
     preview: {
@@ -70,9 +70,9 @@ export const sheetRegistry = {
     registryDependencies: ['sheet', 'button', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/sheet/sheet-navigation.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/sheet/sheet-navigation.tsx',
+        target: 'components/demo/sheet/sheet-navigation.tsx',
       },
     ],
     preview: {
@@ -89,9 +89,9 @@ export const sheetRegistry = {
     registryDependencies: ['sheet', 'button', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/sheet/sheet-form.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/sheet/sheet-form.tsx',
+        target: 'components/demo/sheet/sheet-form.tsx',
       },
     ],
     preview: {
@@ -109,9 +109,9 @@ export const sheetRegistry = {
     registryDependencies: ['sheet', 'button', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/sheet/sheet-filter.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/sheet/sheet-filter.tsx',
+        target: 'components/demo/sheet/sheet-filter.tsx',
       },
     ],
     preview: {

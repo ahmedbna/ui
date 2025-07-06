@@ -11,9 +11,9 @@ export const tabsRegistry = {
     registryDependencies: ['text', 'view'],
     files: [
       {
-        path: 'registry/components/ui/tabs.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/tabs.tsx',
+        target: 'components/ui/tabs.tsx',
       },
     ],
     preview: {
@@ -31,9 +31,9 @@ export const tabsRegistry = {
     registryDependencies: ['tabs', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/tabs/tabs-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/tabs/tabs-demo.tsx',
+        target: 'components/demo/tabs/tabs-demo.tsx',
       },
     ],
     preview: {
@@ -50,9 +50,9 @@ export const tabsRegistry = {
     registryDependencies: ['tabs', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/tabs/tabs-vertical.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/tabs/tabs-vertical.tsx',
+        target: 'components/demo/tabs/tabs-vertical.tsx',
       },
     ],
     preview: {
@@ -69,9 +69,9 @@ export const tabsRegistry = {
     registryDependencies: ['tabs', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/tabs/tabs-disabled.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/tabs/tabs-disabled.tsx',
+        target: 'components/demo/tabs/tabs-disabled.tsx',
       },
     ],
     preview: {
@@ -88,9 +88,9 @@ export const tabsRegistry = {
     registryDependencies: ['tabs', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/tabs/tabs-styled.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/tabs/tabs-styled.tsx',
+        target: 'components/demo/tabs/tabs-styled.tsx',
       },
     ],
     preview: {

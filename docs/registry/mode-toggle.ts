@@ -11,9 +11,9 @@ export const modeToggleRegistry = {
     registryDependencies: ['button', 'icon'],
     files: [
       {
-        path: 'registry/components/ui/mode-toggle.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/mode-toggle.tsx',
+        target: 'components/ui/mode-toggle.tsx',
       },
     ],
     preview: {
@@ -31,9 +31,9 @@ export const modeToggleRegistry = {
     registryDependencies: ['mode-toggle'],
     files: [
       {
-        path: 'registry/demo/mode-toggle/mode-toggle-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/mode-toggle/mode-toggle-demo.tsx',
+        target: 'components/demo/mode-toggle/mode-toggle-demo.tsx',
       },
     ],
     preview: {

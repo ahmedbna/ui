@@ -11,9 +11,9 @@ export const filePickerRegistry = {
     registryDependencies: ['button', 'text', 'view'],
     files: [
       {
-        path: 'registry/components/ui/file-picker.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/file-picker.tsx',
+        target: 'components/ui/file-picker.tsx',
       },
     ],
     preview: {
@@ -31,9 +31,9 @@ export const filePickerRegistry = {
     registryDependencies: ['file-picker'],
     files: [
       {
-        path: 'registry/demo/file-picker/file-picker-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/file-picker/file-picker-demo.tsx',
+        target: 'components/demo/file-picker/file-picker-demo.tsx',
       },
     ],
     preview: {
@@ -50,9 +50,9 @@ export const filePickerRegistry = {
     registryDependencies: ['file-picker', 'view', 'text'],
     files: [
       {
-        path: 'registry/demo/file-picker/file-picker-images.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/file-picker/file-picker-images.tsx',
+        target: 'components/demo/file-picker/file-picker-images.tsx',
       },
     ],
     preview: {
@@ -69,9 +69,9 @@ export const filePickerRegistry = {
     registryDependencies: ['file-picker', 'view', 'text'],
     files: [
       {
-        path: 'registry/demo/file-picker/file-picker-single.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/file-picker/file-picker-single.tsx',
+        target: 'components/demo/file-picker/file-picker-single.tsx',
       },
     ],
     preview: {
@@ -88,9 +88,9 @@ export const filePickerRegistry = {
     registryDependencies: ['file-picker', 'view', 'text'],
     files: [
       {
-        path: 'registry/demo/file-picker/file-picker-validation.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/file-picker/file-picker-validation.tsx',
+        target: 'components/demo/file-picker/file-picker-validation.tsx',
       },
     ],
     preview: {
@@ -107,9 +107,9 @@ export const filePickerRegistry = {
     registryDependencies: ['file-picker', 'view', 'text'],
     files: [
       {
-        path: 'registry/demo/file-picker/file-picker-styled.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/file-picker/file-picker-styled.tsx',
+        target: 'components/demo/file-picker/file-picker-styled.tsx',
       },
     ],
     preview: {
@@ -126,9 +126,9 @@ export const filePickerRegistry = {
     registryDependencies: ['file-picker', 'button', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/file-picker/file-picker-controlled.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/file-picker/file-picker-controlled.tsx',
+        target: 'components/demo/file-picker/file-picker-controlled.tsx',
       },
     ],
     preview: {
@@ -145,9 +145,9 @@ export const filePickerRegistry = {
     registryDependencies: ['file-picker', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/file-picker/file-picker-info.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/file-picker/file-picker-info.tsx',
+        target: 'components/demo/file-picker/file-picker-info.tsx',
       },
     ],
     preview: {

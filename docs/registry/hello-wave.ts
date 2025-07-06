@@ -11,9 +11,9 @@ export const helloWaveRegistry = {
     registryDependencies: ['text', 'view'],
     files: [
       {
-        path: 'registry/components/ui/hello-wave.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/hello-wave.tsx',
+        target: 'components/ui/hello-wave.tsx',
       },
     ],
     preview: {
@@ -31,9 +31,9 @@ export const helloWaveRegistry = {
     registryDependencies: ['hello-wave'],
     files: [
       {
-        path: 'registry/demo/hello-wave/hello-wave-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/hello-wave/hello-wave-demo.tsx',
+        target: 'components/demo/hello-wave/hello-wave-demo.tsx',
       },
     ],
     preview: {

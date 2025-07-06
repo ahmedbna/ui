@@ -11,9 +11,9 @@ export const galleryRegistry = {
     registryDependencies: ['button', 'text', 'view'],
     files: [
       {
-        path: 'registry/components/ui/gallery.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/gallery.tsx',
+        target: 'components/ui/gallery.tsx',
       },
     ],
     preview: {
@@ -32,9 +32,9 @@ export const galleryRegistry = {
     registryDependencies: ['gallery'],
     files: [
       {
-        path: 'registry/demo/gallery/gallery-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/gallery/gallery-demo.tsx',
+        target: 'components/demo/gallery/gallery-demo.tsx',
       },
     ],
     preview: {
@@ -51,9 +51,9 @@ export const galleryRegistry = {
     registryDependencies: ['gallery', 'view', 'text'],
     files: [
       {
-        path: 'registry/demo/gallery/gallery-grid.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/gallery/gallery-grid.tsx',
+        target: 'components/demo/gallery/gallery-grid.tsx',
       },
     ],
     preview: {
@@ -70,9 +70,9 @@ export const galleryRegistry = {
     registryDependencies: ['gallery'],
     files: [
       {
-        path: 'registry/demo/gallery/gallery-info.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/gallery/gallery-info.tsx',
+        target: 'components/demo/gallery/gallery-info.tsx',
       },
     ],
     preview: {
@@ -89,9 +89,9 @@ export const galleryRegistry = {
     registryDependencies: ['gallery', 'view', 'text'],
     files: [
       {
-        path: 'registry/demo/gallery/gallery-layouts.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/gallery/gallery-layouts.tsx',
+        target: 'components/demo/gallery/gallery-layouts.tsx',
       },
     ],
     preview: {
@@ -108,9 +108,9 @@ export const galleryRegistry = {
     registryDependencies: ['gallery', 'view', 'text'],
     files: [
       {
-        path: 'registry/demo/gallery/gallery-controls.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/gallery/gallery-controls.tsx',
+        target: 'components/demo/gallery/gallery-controls.tsx',
       },
     ],
     preview: {
@@ -127,9 +127,9 @@ export const galleryRegistry = {
     registryDependencies: ['gallery', 'view', 'text'],
     files: [
       {
-        path: 'registry/demo/gallery/gallery-overlay.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/gallery/gallery-overlay.tsx',
+        target: 'components/demo/gallery/gallery-overlay.tsx',
       },
     ],
     preview: {

@@ -11,9 +11,9 @@ export const skeletonRegistry = {
     registryDependencies: [],
     files: [
       {
-        path: 'registry/components/ui/skeleton.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/skeleton.tsx',
+        target: 'components/ui/skeleton.tsx',
       },
     ],
     preview: {
@@ -31,9 +31,9 @@ export const skeletonRegistry = {
     registryDependencies: ['skeleton'],
     files: [
       {
-        path: 'registry/demo/skeleton/skeleton-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/skeleton/skeleton-demo.tsx',
+        target: 'components/demo/skeleton/skeleton-demo.tsx',
       },
     ],
     preview: {
@@ -51,9 +51,9 @@ export const skeletonRegistry = {
     registryDependencies: ['skeleton', 'view'],
     files: [
       {
-        path: 'registry/demo/skeleton/skeleton-sizes.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/skeleton/skeleton-sizes.tsx',
+        target: 'components/demo/skeleton/skeleton-sizes.tsx',
       },
     ],
     preview: {
@@ -70,9 +70,9 @@ export const skeletonRegistry = {
     registryDependencies: ['skeleton', 'view'],
     files: [
       {
-        path: 'registry/demo/skeleton/skeleton-card.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/skeleton/skeleton-card.tsx',
+        target: 'components/demo/skeleton/skeleton-card.tsx',
       },
     ],
     preview: {
@@ -89,9 +89,9 @@ export const skeletonRegistry = {
     registryDependencies: ['skeleton', 'view'],
     files: [
       {
-        path: 'registry/demo/skeleton/skeleton-profile.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/skeleton/skeleton-profile.tsx',
+        target: 'components/demo/skeleton/skeleton-profile.tsx',
       },
     ],
     preview: {
@@ -108,9 +108,9 @@ export const skeletonRegistry = {
     registryDependencies: ['skeleton', 'view'],
     files: [
       {
-        path: 'registry/demo/skeleton/skeleton-list.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/skeleton/skeleton-list.tsx',
+        target: 'components/demo/skeleton/skeleton-list.tsx',
       },
     ],
     preview: {
@@ -127,9 +127,9 @@ export const skeletonRegistry = {
     registryDependencies: ['skeleton', 'view'],
     files: [
       {
-        path: 'registry/demo/skeleton/skeleton-shapes.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/skeleton/skeleton-shapes.tsx',
+        target: 'components/demo/skeleton/skeleton-shapes.tsx',
       },
     ],
     preview: {

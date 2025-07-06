@@ -11,9 +11,9 @@ export const comboboxRegistry = {
     registryDependencies: ['text', 'view'],
     files: [
       {
-        path: 'registry/components/ui/combobox.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/combobox.tsx',
+        target: 'components/ui/combobox.tsx',
       },
     ],
     preview: {
@@ -31,9 +31,9 @@ export const comboboxRegistry = {
     registryDependencies: ['combobox'],
     files: [
       {
-        path: 'registry/demo/combobox/combobox-demo.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/demo/combobox/combobox-demo.tsx',
+        target: 'components/demo/combobox/combobox-demo.tsx',
       },
     ],
     preview: {
@@ -50,9 +50,9 @@ export const comboboxRegistry = {
     registryDependencies: ['combobox'],
     files: [
       {
-        path: 'registry/demo/combobox/combobox-groups.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/demo/combobox/combobox-groups.tsx',
+        target: 'components/demo/combobox/combobox-groups.tsx',
       },
     ],
     preview: {
@@ -68,9 +68,9 @@ export const comboboxRegistry = {
     registryDependencies: ['combobox'],
     files: [
       {
-        path: 'registry/demo/combobox/combobox-multiple.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/demo/combobox/combobox-multiple.tsx',
+        target: 'components/demo/combobox/combobox-multiple.tsx',
       },
     ],
     preview: {
@@ -86,9 +86,9 @@ export const comboboxRegistry = {
     registryDependencies: ['combobox'],
     files: [
       {
-        path: 'registry/demo/combobox/combobox-disabled.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/demo/combobox/combobox-disabled.tsx',
+        target: 'components/demo/combobox/combobox-disabled.tsx',
       },
     ],
     preview: {
@@ -104,9 +104,9 @@ export const comboboxRegistry = {
     registryDependencies: ['combobox'],
     files: [
       {
-        path: 'registry/demo/combobox/combobox-search.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/demo/combobox/combobox-search.tsx',
+        target: 'components/demo/combobox/combobox-search.tsx',
       },
     ],
     preview: {
@@ -122,9 +122,9 @@ export const comboboxRegistry = {
     registryDependencies: ['combobox', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/combobox/combobox-form.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/demo/combobox/combobox-form.tsx',
+        target: 'components/demo/combobox/combobox-form.tsx',
       },
     ],
     preview: {
@@ -140,9 +140,9 @@ export const comboboxRegistry = {
     registryDependencies: ['combobox'],
     files: [
       {
-        path: 'registry/demo/combobox/combobox-large.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/demo/combobox/combobox-large.tsx',
+        target: 'components/demo/combobox/combobox-large.tsx',
       },
     ],
     preview: {

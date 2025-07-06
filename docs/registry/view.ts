@@ -11,9 +11,9 @@ export const viewRegistry = {
     registryDependencies: ['text'],
     files: [
       {
-        path: 'registry/components/ui/view.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/view.tsx',
+        target: 'components/ui/view.tsx',
       },
     ],
     preview: {
@@ -30,9 +30,9 @@ export const viewRegistry = {
     registryDependencies: ['view'],
     files: [
       {
-        path: 'registry/demo/view/view-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/view/view-demo.tsx',
+        target: 'components/demo/view/view-demo.tsx',
       },
     ],
     preview: {

@@ -11,9 +11,9 @@ export const inputRegistry = {
     registryDependencies: ['text', 'icon', 'view'],
     files: [
       {
-        path: 'registry/components/ui/input.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/input.tsx',
+        target: 'components/ui/input.tsx',
       },
     ],
     preview: {
@@ -32,9 +32,9 @@ export const inputRegistry = {
     registryDependencies: ['input'],
     files: [
       {
-        path: 'registry/demo/input/input-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/input/input-demo.tsx',
+        target: 'components/demo/input/input-demo.tsx',
       },
     ],
     preview: {
@@ -53,9 +53,9 @@ export const inputRegistry = {
     registryDependencies: ['input', 'view'],
     files: [
       {
-        path: 'registry/demo/input/input-icons.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/input/input-icons.tsx',
+        target: 'components/demo/input/input-icons.tsx',
       },
     ],
     preview: {
@@ -74,9 +74,9 @@ export const inputRegistry = {
     registryDependencies: ['input', 'view'],
     files: [
       {
-        path: 'registry/demo/input/input-variants.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/input/input-variants.tsx',
+        target: 'components/demo/input/input-variants.tsx',
       },
     ],
     preview: {
@@ -95,9 +95,9 @@ export const inputRegistry = {
     registryDependencies: ['input', 'view'],
     files: [
       {
-        path: 'registry/demo/input/input-validation.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/input/input-validation.tsx',
+        target: 'components/demo/input/input-validation.tsx',
       },
     ],
     preview: {
@@ -117,9 +117,9 @@ export const inputRegistry = {
     registryDependencies: ['input', 'view', 'button', 'text'],
     files: [
       {
-        path: 'registry/demo/input/input-right-components.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/input/input-right-components.tsx',
+        target: 'components/demo/input/input-right-components.tsx',
       },
     ],
     preview: {
@@ -138,9 +138,9 @@ export const inputRegistry = {
     registryDependencies: ['input', 'view'],
     files: [
       {
-        path: 'registry/demo/input/input-disabled.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/input/input-disabled.tsx',
+        target: 'components/demo/input/input-disabled.tsx',
       },
     ],
     preview: {
@@ -158,9 +158,9 @@ export const inputRegistry = {
     registryDependencies: ['input'],
     files: [
       {
-        path: 'registry/demo/input/input-grouped.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/input/input-grouped.tsx',
+        target: 'components/demo/input/input-grouped.tsx',
       },
     ],
     preview: {
@@ -179,9 +179,9 @@ export const inputRegistry = {
     registryDependencies: ['input', 'button', 'view', 'text'],
     files: [
       {
-        path: 'registry/demo/input/input-form.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/input/input-form.tsx',
+        target: 'components/demo/input/input-form.tsx',
       },
     ],
     preview: {

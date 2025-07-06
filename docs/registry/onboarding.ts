@@ -11,9 +11,9 @@ export const onboardingRegistry = {
     registryDependencies: ['button', 'text'],
     files: [
       {
-        path: 'registry/components/ui/onboarding.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/onboarding.tsx',
+        target: 'components/ui/onboarding.tsx',
       },
     ],
     preview: {
@@ -32,9 +32,9 @@ export const onboardingRegistry = {
     registryDependencies: ['onboarding'],
     files: [
       {
-        path: 'registry/demo/onboarding/onboarding-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/onboarding/onboarding-demo.tsx',
+        target: 'components/demo/onboarding/onboarding-demo.tsx',
       },
     ],
     preview: {
@@ -52,9 +52,9 @@ export const onboardingRegistry = {
     registryDependencies: ['onboarding', 'image'],
     files: [
       {
-        path: 'registry/demo/onboarding/onboarding-images.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/onboarding/onboarding-images.tsx',
+        target: 'components/demo/onboarding/onboarding-images.tsx',
       },
     ],
     preview: {
@@ -72,9 +72,9 @@ export const onboardingRegistry = {
     registryDependencies: ['onboarding'],
     files: [
       {
-        path: 'registry/demo/onboarding/onboarding-styled.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/onboarding/onboarding-styled.tsx',
+        target: 'components/demo/onboarding/onboarding-styled.tsx',
       },
     ],
     preview: {
@@ -92,9 +92,9 @@ export const onboardingRegistry = {
     registryDependencies: ['onboarding'],
     files: [
       {
-        path: 'registry/demo/onboarding/onboarding-no-skip.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/onboarding/onboarding-no-skip.tsx',
+        target: 'components/demo/onboarding/onboarding-no-skip.tsx',
       },
     ],
     preview: {
@@ -112,9 +112,9 @@ export const onboardingRegistry = {
     registryDependencies: ['onboarding'],
     files: [
       {
-        path: 'registry/demo/onboarding/onboarding-no-swipe.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/onboarding/onboarding-no-swipe.tsx',
+        target: 'components/demo/onboarding/onboarding-no-swipe.tsx',
       },
     ],
     preview: {
@@ -132,9 +132,9 @@ export const onboardingRegistry = {
     registryDependencies: ['onboarding'],
     files: [
       {
-        path: 'registry/demo/onboarding/onboarding-custom-buttons.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/onboarding/onboarding-custom-buttons.tsx',
+        target: 'components/demo/onboarding/onboarding-custom-buttons.tsx',
       },
     ],
     preview: {
@@ -151,9 +151,9 @@ export const onboardingRegistry = {
     registryDependencies: ['onboarding', 'view', 'text', 'button'],
     files: [
       {
-        path: 'registry/demo/onboarding/onboarding-hook.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/onboarding/onboarding-hook.tsx',
+        target: 'components/demo/onboarding/onboarding-hook.tsx',
       },
     ],
     preview: {

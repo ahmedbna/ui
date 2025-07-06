@@ -11,9 +11,9 @@ export const checkboxRegistry = {
     registryDependencies: ['text', 'view'],
     files: [
       {
-        path: 'registry/components/ui/checkbox.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/checkbox.tsx',
+        target: 'components/ui/checkbox.tsx',
       },
     ],
     preview: {
@@ -31,9 +31,9 @@ export const checkboxRegistry = {
     registryDependencies: ['checkbox'],
     files: [
       {
-        path: 'registry/demo/checkbox/checkbox-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/checkbox/checkbox-demo.tsx',
+        target: 'components/demo/checkbox/checkbox-demo.tsx',
       },
     ],
     preview: {
@@ -52,9 +52,9 @@ export const checkboxRegistry = {
     registryDependencies: ['checkbox', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/checkbox/checkbox-states.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/checkbox/checkbox-states.tsx',
+        target: 'components/demo/checkbox/checkbox-states.tsx',
       },
     ],
     preview: {
@@ -72,9 +72,9 @@ export const checkboxRegistry = {
     registryDependencies: ['checkbox'],
     files: [
       {
-        path: 'registry/demo/checkbox/checkbox-without-label.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/checkbox/checkbox-without-label.tsx',
+        target: 'components/demo/checkbox/checkbox-without-label.tsx',
       },
     ],
     preview: {
@@ -92,9 +92,9 @@ export const checkboxRegistry = {
     registryDependencies: ['checkbox', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/checkbox/checkbox-with-error.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/checkbox/checkbox-with-error.tsx',
+        target: 'components/demo/checkbox/checkbox-with-error.tsx',
       },
     ],
     preview: {
@@ -112,9 +112,9 @@ export const checkboxRegistry = {
     registryDependencies: ['checkbox', 'view'],
     files: [
       {
-        path: 'registry/demo/checkbox/checkbox-custom-styling.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/checkbox/checkbox-custom-styling.tsx',
+        target: 'components/demo/checkbox/checkbox-custom-styling.tsx',
       },
     ],
     preview: {
@@ -132,9 +132,9 @@ export const checkboxRegistry = {
     registryDependencies: ['checkbox', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/checkbox/checkbox-group.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/checkbox/checkbox-group.tsx',
+        target: 'components/demo/checkbox/checkbox-group.tsx',
       },
     ],
     preview: {

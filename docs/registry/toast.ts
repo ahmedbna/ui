@@ -15,9 +15,9 @@ export const toastRegistry = {
     registryDependencies: ['text'],
     files: [
       {
-        path: 'registry/components/ui/toast.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/toast.tsx',
+        target: 'components/ui/toast.tsx',
       },
     ],
     preview: {
@@ -35,9 +35,9 @@ export const toastRegistry = {
     registryDependencies: ['toast', 'button'],
     files: [
       {
-        path: 'registry/demo/toast/toast-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/toast/toast-demo.tsx',
+        target: 'components/demo/toast/toast-demo.tsx',
       },
     ],
     preview: {
@@ -56,9 +56,9 @@ export const toastRegistry = {
     registryDependencies: ['toast', 'button', 'view'],
     files: [
       {
-        path: 'registry/demo/toast/toast-variants.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/toast/toast-variants.tsx',
+        target: 'components/demo/toast/toast-variants.tsx',
       },
     ],
     preview: {
@@ -76,9 +76,9 @@ export const toastRegistry = {
     registryDependencies: ['toast', 'button', 'view'],
     files: [
       {
-        path: 'registry/demo/toast/toast-actions.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/toast/toast-actions.tsx',
+        target: 'components/demo/toast/toast-actions.tsx',
       },
     ],
     preview: {
@@ -96,9 +96,9 @@ export const toastRegistry = {
     registryDependencies: ['toast', 'button', 'view'],
     files: [
       {
-        path: 'registry/demo/toast/toast-duration.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/toast/toast-duration.tsx',
+        target: 'components/demo/toast/toast-duration.tsx',
       },
     ],
     preview: {
@@ -116,9 +116,9 @@ export const toastRegistry = {
     registryDependencies: ['toast', 'button', 'view'],
     files: [
       {
-        path: 'registry/demo/toast/toast-multiple.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/toast/toast-multiple.tsx',
+        target: 'components/demo/toast/toast-multiple.tsx',
       },
     ],
     preview: {
@@ -136,9 +136,9 @@ export const toastRegistry = {
     registryDependencies: ['toast', 'button', 'view'],
     files: [
       {
-        path: 'registry/demo/toast/toast-compact.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/toast/toast-compact.tsx',
+        target: 'components/demo/toast/toast-compact.tsx',
       },
     ],
     preview: {

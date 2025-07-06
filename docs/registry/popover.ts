@@ -11,9 +11,9 @@ export const popoverRegistry = {
     registryDependencies: ['button', 'text', 'view'],
     files: [
       {
-        path: 'registry/components/ui/popover.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/popover.tsx',
+        target: 'components/ui/popover.tsx',
       },
     ],
     preview: {
@@ -31,9 +31,9 @@ export const popoverRegistry = {
     registryDependencies: ['popover', 'button', 'text'],
     files: [
       {
-        path: 'registry/demo/popover/popover-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/popover/popover-demo.tsx',
+        target: 'components/demo/popover/popover-demo.tsx',
       },
     ],
     preview: {
@@ -51,9 +51,9 @@ export const popoverRegistry = {
     registryDependencies: ['popover', 'button', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/popover/popover-positioning.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/popover/popover-positioning.tsx',
+        target: 'components/demo/popover/popover-positioning.tsx',
       },
     ],
     preview: {
@@ -71,9 +71,9 @@ export const popoverRegistry = {
     registryDependencies: ['popover', 'button', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/popover/popover-alignment.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/popover/popover-alignment.tsx',
+        target: 'components/demo/popover/popover-alignment.tsx',
       },
     ],
     preview: {
@@ -91,9 +91,9 @@ export const popoverRegistry = {
     registryDependencies: ['popover', 'button', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/popover/popover-controlled.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/popover/popover-controlled.tsx',
+        target: 'components/demo/popover/popover-controlled.tsx',
       },
     ],
     preview: {
@@ -111,9 +111,9 @@ export const popoverRegistry = {
     registryDependencies: ['popover', 'button', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/popover/popover-custom.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/popover/popover-custom.tsx',
+        target: 'components/demo/popover/popover-custom.tsx',
       },
     ],
     preview: {
@@ -131,9 +131,9 @@ export const popoverRegistry = {
     registryDependencies: ['popover', 'button', 'text', 'view', 'input'],
     files: [
       {
-        path: 'registry/demo/popover/popover-form.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/popover/popover-form.tsx',
+        target: 'components/demo/popover/popover-form.tsx',
       },
     ],
     preview: {
@@ -151,9 +151,9 @@ export const popoverRegistry = {
     registryDependencies: ['popover', 'button', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/popover/popover-menu.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/popover/popover-menu.tsx',
+        target: 'components/demo/popover/popover-menu.tsx',
       },
     ],
     preview: {

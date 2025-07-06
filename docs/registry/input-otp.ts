@@ -10,9 +10,9 @@ export const inputOtpRegistry = {
     registryDependencies: ['text'],
     files: [
       {
-        path: 'registry/components/ui/input-otp.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/input-otp.tsx',
+        target: 'components/ui/input-otp.tsx',
       },
     ],
     preview: {
@@ -30,9 +30,9 @@ export const inputOtpRegistry = {
     registryDependencies: ['input-otp'],
     files: [
       {
-        path: 'registry/demo/input-otp/input-otp-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/input-otp/input-otp-demo.tsx',
+        target: 'components/demo/input-otp/input-otp-demo.tsx',
       },
     ],
     preview: {
@@ -50,9 +50,9 @@ export const inputOtpRegistry = {
     registryDependencies: ['input-otp', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/input-otp/input-otp-lengths.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/input-otp/input-otp-lengths.tsx',
+        target: 'components/demo/input-otp/input-otp-lengths.tsx',
       },
     ],
     preview: {
@@ -70,9 +70,9 @@ export const inputOtpRegistry = {
     registryDependencies: ['input-otp', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/input-otp/input-otp-separator.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/input-otp/input-otp-separator.tsx',
+        target: 'components/demo/input-otp/input-otp-separator.tsx',
       },
     ],
     preview: {
@@ -89,9 +89,9 @@ export const inputOtpRegistry = {
     registryDependencies: ['input-otp', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/input-otp/input-otp-masked.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/input-otp/input-otp-masked.tsx',
+        target: 'components/demo/input-otp/input-otp-masked.tsx',
       },
     ],
     preview: {
@@ -108,9 +108,9 @@ export const inputOtpRegistry = {
     registryDependencies: ['input-otp', 'text', 'view', 'button'],
     files: [
       {
-        path: 'registry/demo/input-otp/input-otp-error.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/input-otp/input-otp-error.tsx',
+        target: 'components/demo/input-otp/input-otp-error.tsx',
       },
     ],
     preview: {
@@ -127,9 +127,9 @@ export const inputOtpRegistry = {
     registryDependencies: ['input-otp', 'text', 'view', 'button'],
     files: [
       {
-        path: 'registry/demo/input-otp/input-otp-disabled.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/input-otp/input-otp-disabled.tsx',
+        target: 'components/demo/input-otp/input-otp-disabled.tsx',
       },
     ],
     preview: {
@@ -146,9 +146,9 @@ export const inputOtpRegistry = {
     registryDependencies: ['input-otp', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/input-otp/input-otp-styled.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/input-otp/input-otp-styled.tsx',
+        target: 'components/demo/input-otp/input-otp-styled.tsx',
       },
     ],
     preview: {
@@ -165,9 +165,9 @@ export const inputOtpRegistry = {
     registryDependencies: ['input-otp', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/input-otp/input-otp-no-cursor.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/input-otp/input-otp-no-cursor.tsx',
+        target: 'components/demo/input-otp/input-otp-no-cursor.tsx',
       },
     ],
     preview: {

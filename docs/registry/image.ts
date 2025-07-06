@@ -11,9 +11,9 @@ export const imageRegistry = {
     registryDependencies: ['text', 'view'],
     files: [
       {
-        path: 'registry/components/ui/image.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/image.tsx',
+        target: 'components/ui/image.tsx',
       },
     ],
     preview: {
@@ -30,9 +30,9 @@ export const imageRegistry = {
     registryDependencies: ['image'],
     files: [
       {
-        path: 'registry/demo/image/image-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/image/image-demo.tsx',
+        target: 'components/demo/image/image-demo.tsx',
       },
     ],
     preview: {
@@ -49,9 +49,9 @@ export const imageRegistry = {
     registryDependencies: ['image'],
     files: [
       {
-        path: 'registry/demo/image/image-variants.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/image/image-variants.tsx',
+        target: 'components/demo/image/image-variants.tsx',
       },
     ],
     preview: {
@@ -68,9 +68,9 @@ export const imageRegistry = {
     registryDependencies: ['image'],
     files: [
       {
-        path: 'registry/demo/image/image-sizes.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/image/image-sizes.tsx',
+        target: 'components/demo/image/image-sizes.tsx',
       },
     ],
     preview: {
@@ -87,9 +87,9 @@ export const imageRegistry = {
     registryDependencies: ['image'],
     files: [
       {
-        path: 'registry/demo/image/image-loading.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/image/image-loading.tsx',
+        target: 'components/demo/image/image-loading.tsx',
       },
     ],
     preview: {
@@ -106,9 +106,9 @@ export const imageRegistry = {
     registryDependencies: ['image'],
     files: [
       {
-        path: 'registry/demo/image/image-error.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/image/image-error.tsx',
+        target: 'components/demo/image/image-error.tsx',
       },
     ],
     preview: {
@@ -124,9 +124,9 @@ export const imageRegistry = {
     registryDependencies: ['image'],
     files: [
       {
-        path: 'registry/demo/image/image-gallery.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/image/image-gallery.tsx',
+        target: 'components/demo/image/image-gallery.tsx',
       },
     ],
     preview: {
@@ -142,9 +142,9 @@ export const imageRegistry = {
     registryDependencies: ['image'],
     files: [
       {
-        path: 'registry/demo/image/image-responsive.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/image/image-responsive.tsx',
+        target: 'components/demo/image/image-responsive.tsx',
       },
     ],
     preview: {
@@ -160,9 +160,9 @@ export const imageRegistry = {
     registryDependencies: ['image'],
     files: [
       {
-        path: 'registry/demo/image/image-content-fit.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/image/image-content-fit.tsx',
+        target: 'components/demo/image/image-content-fit.tsx',
       },
     ],
     preview: {

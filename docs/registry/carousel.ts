@@ -15,9 +15,9 @@ export const carouselRegistry = {
     registryDependencies: ['text', 'view', 'button'],
     files: [
       {
-        path: 'registry/components/ui/carousel.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/carousel.tsx',
+        target: 'components/ui/carousel.tsx',
       },
     ],
     preview: {
@@ -35,9 +35,9 @@ export const carouselRegistry = {
     registryDependencies: ['carousel'],
     files: [
       {
-        path: 'registry/demo/carousel/carousel-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/carousel/carousel-demo.tsx',
+        target: 'components/demo/carousel/carousel-demo.tsx',
       },
     ],
     preview: {
@@ -55,9 +55,9 @@ export const carouselRegistry = {
     registryDependencies: ['carousel'],
     files: [
       {
-        path: 'registry/demo/carousel/carousel-arrows.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/carousel/carousel-arrows.tsx',
+        target: 'components/demo/carousel/carousel-arrows.tsx',
       },
     ],
     preview: {
@@ -75,9 +75,9 @@ export const carouselRegistry = {
     registryDependencies: ['carousel'],
     files: [
       {
-        path: 'registry/demo/carousel/carousel-custom-width.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/carousel/carousel-custom-width.tsx',
+        target: 'components/demo/carousel/carousel-custom-width.tsx',
       },
     ],
     preview: {
@@ -96,9 +96,9 @@ export const carouselRegistry = {
     dependencies: ['expo-image'],
     files: [
       {
-        path: 'registry/demo/carousel/carousel-images.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/carousel/carousel-images.tsx',
+        target: 'components/demo/carousel/carousel-images.tsx',
       },
     ],
     preview: {
@@ -116,9 +116,9 @@ export const carouselRegistry = {
     registryDependencies: ['carousel'],
     files: [
       {
-        path: 'registry/demo/carousel/carousel-cards.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/carousel/carousel-cards.tsx',
+        target: 'components/demo/carousel/carousel-cards.tsx',
       },
     ],
     preview: {
@@ -136,9 +136,9 @@ export const carouselRegistry = {
     registryDependencies: ['carousel'],
     files: [
       {
-        path: 'registry/demo/carousel/carousel-no-indicators.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/carousel/carousel-no-indicators.tsx',
+        target: 'components/demo/carousel/carousel-no-indicators.tsx',
       },
     ],
     preview: {
@@ -156,9 +156,9 @@ export const carouselRegistry = {
     registryDependencies: ['carousel', 'button'],
     files: [
       {
-        path: 'registry/demo/carousel/carousel-manual.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/carousel/carousel-manual.tsx',
+        target: 'components/demo/carousel/carousel-manual.tsx',
       },
     ],
     preview: {

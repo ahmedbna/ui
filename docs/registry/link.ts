@@ -11,9 +11,9 @@ export const linkRegistry = {
     registryDependencies: ['text'],
     files: [
       {
-        path: 'registry/components/ui/link.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/link.tsx',
+        target: 'components/ui/link.tsx',
       },
     ],
     preview: {
@@ -31,9 +31,9 @@ export const linkRegistry = {
     registryDependencies: ['link', 'view'],
     files: [
       {
-        path: 'registry/demo/link/link-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/link/link-demo.tsx',
+        target: 'components/demo/link/link-demo.tsx',
       },
     ],
     preview: {
@@ -51,9 +51,9 @@ export const linkRegistry = {
     registryDependencies: ['link', 'view'],
     files: [
       {
-        path: 'registry/demo/link/link-external.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/link/link-external.tsx',
+        target: 'components/demo/link/link-external.tsx',
       },
     ],
     preview: {
@@ -71,9 +71,9 @@ export const linkRegistry = {
     registryDependencies: ['link', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/link/link-browser.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/link/link-browser.tsx',
+        target: 'components/demo/link/link-browser.tsx',
       },
     ],
     preview: {
@@ -91,9 +91,9 @@ export const linkRegistry = {
     registryDependencies: ['link', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/link/link-custom.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/link/link-custom.tsx',
+        target: 'components/demo/link/link-custom.tsx',
       },
     ],
     preview: {
@@ -111,9 +111,9 @@ export const linkRegistry = {
     registryDependencies: ['link', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/link/link-types.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/link/link-types.tsx',
+        target: 'components/demo/link/link-types.tsx',
       },
     ],
     preview: {
@@ -131,9 +131,9 @@ export const linkRegistry = {
     registryDependencies: ['link', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/link/link-styled.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/link/link-styled.tsx',
+        target: 'components/demo/link/link-styled.tsx',
       },
     ],
     preview: {
@@ -151,9 +151,9 @@ export const linkRegistry = {
     registryDependencies: ['link', 'button', 'view'],
     files: [
       {
-        path: 'registry/demo/link/link-buttons.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/link/link-buttons.tsx',
+        target: 'components/demo/link/link-buttons.tsx',
       },
     ],
     preview: {

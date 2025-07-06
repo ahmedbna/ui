@@ -11,9 +11,9 @@ export const spinnerRegistry = {
     registryDependencies: ['text', 'view'],
     files: [
       {
-        path: 'registry/components/ui/spinner.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/spinner.tsx',
+        target: 'components/ui/spinner.tsx',
       },
     ],
     preview: {
@@ -31,9 +31,9 @@ export const spinnerRegistry = {
     registryDependencies: ['spinner'],
     files: [
       {
-        path: 'registry/demo/spinner/spinner-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/spinner/spinner-demo.tsx',
+        target: 'components/demo/spinner/spinner-demo.tsx',
       },
     ],
     preview: {
@@ -52,9 +52,9 @@ export const spinnerRegistry = {
     registryDependencies: ['spinner', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/spinner/spinner-variants.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/spinner/spinner-variants.tsx',
+        target: 'components/demo/spinner/spinner-variants.tsx',
       },
     ],
     preview: {
@@ -72,9 +72,9 @@ export const spinnerRegistry = {
     registryDependencies: ['spinner', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/spinner/spinner-sizes.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/spinner/spinner-sizes.tsx',
+        target: 'components/demo/spinner/spinner-sizes.tsx',
       },
     ],
     preview: {
@@ -92,9 +92,9 @@ export const spinnerRegistry = {
     registryDependencies: ['spinner', 'view'],
     files: [
       {
-        path: 'registry/demo/spinner/spinner-labels.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/spinner/spinner-labels.tsx',
+        target: 'components/demo/spinner/spinner-labels.tsx',
       },
     ],
     preview: {
@@ -113,9 +113,9 @@ export const spinnerRegistry = {
     registryDependencies: ['spinner', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/spinner/spinner-speeds.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/spinner/spinner-speeds.tsx',
+        target: 'components/demo/spinner/spinner-speeds.tsx',
       },
     ],
     preview: {
@@ -133,9 +133,9 @@ export const spinnerRegistry = {
     registryDependencies: ['spinner', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/spinner/spinner-colors.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/spinner/spinner-colors.tsx',
+        target: 'components/demo/spinner/spinner-colors.tsx',
       },
     ],
     preview: {
@@ -153,9 +153,9 @@ export const spinnerRegistry = {
     registryDependencies: ['spinner', 'button', 'view'],
     files: [
       {
-        path: 'registry/demo/spinner/spinner-overlay.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/spinner/spinner-overlay.tsx',
+        target: 'components/demo/spinner/spinner-overlay.tsx',
       },
     ],
     preview: {
@@ -173,9 +173,9 @@ export const spinnerRegistry = {
     registryDependencies: ['spinner', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/spinner/spinner-inline.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/spinner/spinner-inline.tsx',
+        target: 'components/demo/spinner/spinner-inline.tsx',
       },
     ],
     preview: {

@@ -11,9 +11,9 @@ export const parallaxScrollViewRegistry = {
     registryDependencies: ['view'],
     files: [
       {
-        path: 'registry/components/ui/parallax-scrollview.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/parallax-scrollview.tsx',
+        target: 'components/ui/parallax-scrollview.tsx',
       },
     ],
     preview: {
@@ -31,9 +31,10 @@ export const parallaxScrollViewRegistry = {
     registryDependencies: ['parallax-scrollview', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/parallax-scrollview/parallax-scrollview-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/parallax-scrollview/parallax-scrollview-demo.tsx',
+        target:
+          'components/demo/parallax-scrollview/parallax-scrollview-demo.tsx',
       },
     ],
     preview: {
@@ -51,9 +52,10 @@ export const parallaxScrollViewRegistry = {
     registryDependencies: ['parallax-scrollview', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/parallax-scrollview/parallax-scrollview-custom-height.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/parallax-scrollview/parallax-scrollview-custom-height.tsx',
+        target:
+          'components/demo/parallax-scrollview/parallax-scrollview-custom-height.tsx',
       },
     ],
     preview: {
@@ -72,9 +74,10 @@ export const parallaxScrollViewRegistry = {
     registryDependencies: ['parallax-scrollview', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/parallax-scrollview/parallax-scrollview-gradient.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/parallax-scrollview/parallax-scrollview-gradient.tsx',
+        target:
+          'components/demo/parallax-scrollview/parallax-scrollview-gradient.tsx',
       },
     ],
     preview: {
@@ -93,9 +96,10 @@ export const parallaxScrollViewRegistry = {
     registryDependencies: ['parallax-scrollview', 'avatar', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/parallax-scrollview/parallax-scrollview-profile.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/parallax-scrollview/parallax-scrollview-profile.tsx',
+        target:
+          'components/demo/parallax-scrollview/parallax-scrollview-profile.tsx',
       },
     ],
     preview: {
@@ -114,9 +118,10 @@ export const parallaxScrollViewRegistry = {
     registryDependencies: ['parallax-scrollview', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/parallax-scrollview/parallax-scrollview-article.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/parallax-scrollview/parallax-scrollview-article.tsx',
+        target:
+          'components/demo/parallax-scrollview/parallax-scrollview-article.tsx',
       },
     ],
     preview: {
@@ -134,9 +139,10 @@ export const parallaxScrollViewRegistry = {
     registryDependencies: ['parallax-scrollview', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/parallax-scrollview/parallax-scrollview-product.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/parallax-scrollview/parallax-scrollview-product.tsx',
+        target:
+          'components/demo/parallax-scrollview/parallax-scrollview-product.tsx',
       },
     ],
     preview: {

@@ -11,9 +11,9 @@ export const tableRegistry = {
     registryDependencies: ['button', 'text', 'view'],
     files: [
       {
-        path: 'registry/components/ui/table.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/table.tsx',
+        target: 'components/ui/table.tsx',
       },
     ],
     preview: {
@@ -31,9 +31,9 @@ export const tableRegistry = {
     registryDependencies: ['table'],
     files: [
       {
-        path: 'registry/demo/table/table-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/table/table-demo.tsx',
+        target: 'components/demo/table/table-demo.tsx',
       },
     ],
     preview: {
@@ -50,9 +50,9 @@ export const tableRegistry = {
     registryDependencies: ['table'],
     files: [
       {
-        path: 'registry/demo/table/table-sortable.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/table/table-sortable.tsx',
+        target: 'components/demo/table/table-sortable.tsx',
       },
     ],
     preview: {
@@ -69,9 +69,9 @@ export const tableRegistry = {
     registryDependencies: ['table', 'avatar', 'badge', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/table/table-custom-cells.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/table/table-custom-cells.tsx',
+        target: 'components/demo/table/table-custom-cells.tsx',
       },
     ],
     preview: {
@@ -88,9 +88,9 @@ export const tableRegistry = {
     registryDependencies: ['table'],
     files: [
       {
-        path: 'registry/demo/table/table-pagination.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/table/table-pagination.tsx',
+        target: 'components/demo/table/table-pagination.tsx',
       },
     ],
     preview: {
@@ -107,9 +107,9 @@ export const tableRegistry = {
     registryDependencies: ['table'],
     files: [
       {
-        path: 'registry/demo/table/table-search.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/table/table-search.tsx',
+        target: 'components/demo/table/table-search.tsx',
       },
     ],
     preview: {
@@ -126,9 +126,9 @@ export const tableRegistry = {
     registryDependencies: ['table', 'button', 'view'],
     files: [
       {
-        path: 'registry/demo/table/table-loading.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/table/table-loading.tsx',
+        target: 'components/demo/table/table-loading.tsx',
       },
     ],
     preview: {

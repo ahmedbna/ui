@@ -11,9 +11,9 @@ export const collapsibleRegistry = {
     registryDependencies: ['text', 'view'],
     files: [
       {
-        path: 'registry/components/ui/collapsible.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/collapsible.tsx',
+        target: 'components/ui/collapsible.tsx',
       },
     ],
     preview: {
@@ -31,9 +31,9 @@ export const collapsibleRegistry = {
     registryDependencies: ['collapsible', 'text'],
     files: [
       {
-        path: 'registry/demo/collapsible/collapsible-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/collapsible/collapsible-demo.tsx',
+        target: 'components/demo/collapsible/collapsible-demo.tsx',
       },
     ],
     preview: {
@@ -51,9 +51,9 @@ export const collapsibleRegistry = {
     registryDependencies: ['collapsible', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/collapsible/collapsible-multiple.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/collapsible/collapsible-multiple.tsx',
+        target: 'components/demo/collapsible/collapsible-multiple.tsx',
       },
     ],
     preview: {
@@ -71,9 +71,9 @@ export const collapsibleRegistry = {
     registryDependencies: ['collapsible', 'text'],
     files: [
       {
-        path: 'registry/demo/collapsible/collapsible-nested.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/collapsible/collapsible-nested.tsx',
+        target: 'components/demo/collapsible/collapsible-nested.tsx',
       },
     ],
     preview: {
@@ -91,9 +91,9 @@ export const collapsibleRegistry = {
     registryDependencies: ['collapsible', 'checkbox', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/collapsible/collapsible-with-content.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/collapsible/collapsible-with-content.tsx',
+        target: 'components/demo/collapsible/collapsible-with-content.tsx',
       },
     ],
     preview: {
@@ -111,9 +111,9 @@ export const collapsibleRegistry = {
     registryDependencies: ['collapsible', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/collapsible/collapsible-faq.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/collapsible/collapsible-faq.tsx',
+        target: 'components/demo/collapsible/collapsible-faq.tsx',
       },
     ],
     preview: {

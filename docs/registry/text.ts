@@ -11,9 +11,9 @@ export const textRegistry = {
     registryDependencies: [],
     files: [
       {
-        path: 'registry/components/ui/text.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/text.tsx',
+        target: 'components/ui/text.tsx',
       },
     ],
     preview: {
@@ -30,9 +30,9 @@ export const textRegistry = {
     registryDependencies: ['text', 'view'],
     files: [
       {
-        path: 'registry/demo/text/text-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/text/text-demo.tsx',
+        target: 'components/demo/text/text-demo.tsx',
       },
     ],
     preview: {
@@ -48,9 +48,9 @@ export const textRegistry = {
     registryDependencies: ['text', 'view'],
     files: [
       {
-        path: 'registry/demo/text/text-variants.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/text/text-variants.tsx',
+        target: 'components/demo/text/text-variants.tsx',
       },
     ],
     preview: {
@@ -66,9 +66,9 @@ export const textRegistry = {
     registryDependencies: ['text', 'view'],
     files: [
       {
-        path: 'registry/demo/text/text-colors.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/text/text-colors.tsx',
+        target: 'components/demo/text/text-colors.tsx',
       },
     ],
     preview: {

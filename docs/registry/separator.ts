@@ -10,9 +10,9 @@ export const separatorRegistry = {
     registryDependencies: ['view'],
     files: [
       {
-        path: 'registry/components/ui/separator.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/separator.tsx',
+        target: 'components/ui/separator.tsx',
       },
     ],
     preview: {
@@ -29,9 +29,9 @@ export const separatorRegistry = {
     registryDependencies: ['separator', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/separator/separator-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/separator/separator-demo.tsx',
+        target: 'components/demo/separator/separator-demo.tsx',
       },
     ],
     preview: {
@@ -48,9 +48,9 @@ export const separatorRegistry = {
     registryDependencies: ['separator', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/separator/separator-vertical.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/separator/separator-vertical.tsx',
+        target: 'components/demo/separator/separator-vertical.tsx',
       },
     ],
     preview: {
@@ -67,9 +67,9 @@ export const separatorRegistry = {
     registryDependencies: ['separator', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/separator/separator-thickness.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/separator/separator-thickness.tsx',
+        target: 'components/demo/separator/separator-thickness.tsx',
       },
     ],
     preview: {
@@ -86,9 +86,9 @@ export const separatorRegistry = {
     registryDependencies: ['separator', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/separator/separator-colors.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/separator/separator-colors.tsx',
+        target: 'components/demo/separator/separator-colors.tsx',
       },
     ],
     preview: {
@@ -105,9 +105,9 @@ export const separatorRegistry = {
     registryDependencies: ['separator', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/separator/separator-spacing.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/separator/separator-spacing.tsx',
+        target: 'components/demo/separator/separator-spacing.tsx',
       },
     ],
     preview: {

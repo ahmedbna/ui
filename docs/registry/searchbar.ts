@@ -11,9 +11,9 @@ export const searchbarRegistry = {
     registryDependencies: ['icon', 'text', 'view'],
     files: [
       {
-        path: 'registry/components/ui/searchbar.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/searchbar.tsx',
+        target: 'components/ui/searchbar.tsx',
       },
     ],
     preview: {
@@ -31,9 +31,9 @@ export const searchbarRegistry = {
     registryDependencies: ['searchbar'],
     files: [
       {
-        path: 'registry/demo/searchbar/searchbar-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/searchbar/searchbar-demo.tsx',
+        target: 'components/demo/searchbar/searchbar-demo.tsx',
       },
     ],
     preview: {
@@ -51,9 +51,9 @@ export const searchbarRegistry = {
     registryDependencies: ['searchbar'],
     files: [
       {
-        path: 'registry/demo/searchbar/searchbar-loading.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/searchbar/searchbar-loading.tsx',
+        target: 'components/demo/searchbar/searchbar-loading.tsx',
       },
     ],
     preview: {
@@ -71,9 +71,9 @@ export const searchbarRegistry = {
     registryDependencies: ['searchbar', 'icon'],
     files: [
       {
-        path: 'registry/demo/searchbar/searchbar-icons.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/searchbar/searchbar-icons.tsx',
+        target: 'components/demo/searchbar/searchbar-icons.tsx',
       },
     ],
     preview: {
@@ -91,9 +91,9 @@ export const searchbarRegistry = {
     registryDependencies: ['searchbar'],
     files: [
       {
-        path: 'registry/demo/searchbar/searchbar-suggestions.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/searchbar/searchbar-suggestions.tsx',
+        target: 'components/demo/searchbar/searchbar-suggestions.tsx',
       },
     ],
     preview: {
@@ -111,9 +111,9 @@ export const searchbarRegistry = {
     registryDependencies: ['searchbar'],
     files: [
       {
-        path: 'registry/demo/searchbar/searchbar-styled.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/searchbar/searchbar-styled.tsx',
+        target: 'components/demo/searchbar/searchbar-styled.tsx',
       },
     ],
     preview: {
@@ -131,9 +131,9 @@ export const searchbarRegistry = {
     registryDependencies: ['searchbar'],
     files: [
       {
-        path: 'registry/demo/searchbar/searchbar-no-clear.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/searchbar/searchbar-no-clear.tsx',
+        target: 'components/demo/searchbar/searchbar-no-clear.tsx',
       },
     ],
     preview: {
@@ -151,9 +151,9 @@ export const searchbarRegistry = {
     registryDependencies: ['searchbar', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/searchbar/searchbar-instant.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/searchbar/searchbar-instant.tsx',
+        target: 'components/demo/searchbar/searchbar-instant.tsx',
       },
     ],
     preview: {

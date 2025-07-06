@@ -11,9 +11,9 @@ export const videoRegistry = {
     registryDependencies: ['progress', 'text', 'view'],
     files: [
       {
-        path: 'registry/components/ui/video.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/video.tsx',
+        target: 'components/ui/video.tsx',
       },
     ],
     preview: {
@@ -31,9 +31,9 @@ export const videoRegistry = {
     registryDependencies: ['video'],
     files: [
       {
-        path: 'registry/demo/video/video-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/video/video-demo.tsx',
+        target: 'components/demo/video/video-demo.tsx',
       },
     ],
     preview: {
@@ -51,9 +51,9 @@ export const videoRegistry = {
     registryDependencies: ['video'],
     files: [
       {
-        path: 'registry/demo/video/video-native-controls.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/video/video-native-controls.tsx',
+        target: 'components/demo/video/video-native-controls.tsx',
       },
     ],
     preview: {
@@ -71,9 +71,9 @@ export const videoRegistry = {
     registryDependencies: ['video'],
     files: [
       {
-        path: 'registry/demo/video/video-custom-controls.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/video/video-custom-controls.tsx',
+        target: 'components/demo/video/video-custom-controls.tsx',
       },
     ],
     preview: {
@@ -91,9 +91,9 @@ export const videoRegistry = {
     registryDependencies: ['video'],
     files: [
       {
-        path: 'registry/demo/video/video-subtitles.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/video/video-subtitles.tsx',
+        target: 'components/demo/video/video-subtitles.tsx',
       },
     ],
     preview: {
@@ -111,9 +111,9 @@ export const videoRegistry = {
     registryDependencies: ['video'],
     files: [
       {
-        path: 'registry/demo/video/video-autoplay-loop.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/video/video-autoplay-loop.tsx',
+        target: 'components/demo/video/video-autoplay-loop.tsx',
       },
     ],
     preview: {
@@ -131,9 +131,9 @@ export const videoRegistry = {
     registryDependencies: ['video', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/video/video-sources.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/video/video-sources.tsx',
+        target: 'components/demo/video/video-sources.tsx',
       },
     ],
     preview: {
@@ -151,9 +151,9 @@ export const videoRegistry = {
     registryDependencies: ['video', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/video/video-gestures.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/video/video-gestures.tsx',
+        target: 'components/demo/video/video-gestures.tsx',
       },
     ],
     preview: {
@@ -171,9 +171,9 @@ export const videoRegistry = {
     registryDependencies: ['video', 'text', 'view'],
     files: [
       {
-        path: 'registry/demo/video/video-content-fit.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/video/video-content-fit.tsx',
+        target: 'components/demo/video/video-content-fit.tsx',
       },
     ],
     preview: {

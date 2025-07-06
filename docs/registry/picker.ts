@@ -11,9 +11,9 @@ export const pickerRegistry = {
     registryDependencies: ['icon', 'scroll-view', 'text', 'view'],
     files: [
       {
-        path: 'registry/components/ui/picker.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/picker.tsx',
+        target: 'components/ui/picker.tsx',
       },
     ],
     preview: {
@@ -31,9 +31,9 @@ export const pickerRegistry = {
     registryDependencies: ['picker'],
     files: [
       {
-        path: 'registry/demo/picker/picker-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/picker/picker-demo.tsx',
+        target: 'components/demo/picker/picker-demo.tsx',
       },
     ],
     preview: {
@@ -50,9 +50,9 @@ export const pickerRegistry = {
     registryDependencies: ['picker'],
     files: [
       {
-        path: 'registry/demo/picker/picker-sections.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/picker/picker-sections.tsx',
+        target: 'components/demo/picker/picker-sections.tsx',
       },
     ],
     preview: {
@@ -69,9 +69,9 @@ export const pickerRegistry = {
     registryDependencies: ['picker'],
     files: [
       {
-        path: 'registry/demo/picker/picker-multiple.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/picker/picker-multiple.tsx',
+        target: 'components/demo/picker/picker-multiple.tsx',
       },
     ],
     preview: {
@@ -88,9 +88,9 @@ export const pickerRegistry = {
     registryDependencies: ['picker'],
     files: [
       {
-        path: 'registry/demo/picker/picker-searchable.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/picker/picker-searchable.tsx',
+        target: 'components/demo/picker/picker-searchable.tsx',
       },
     ],
     preview: {
@@ -107,9 +107,9 @@ export const pickerRegistry = {
     registryDependencies: ['picker', 'view', 'text'],
     files: [
       {
-        path: 'registry/demo/picker/picker-variants.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/picker/picker-variants.tsx',
+        target: 'components/demo/picker/picker-variants.tsx',
       },
     ],
     preview: {
@@ -127,9 +127,9 @@ export const pickerRegistry = {
     registryDependencies: ['picker'],
     files: [
       {
-        path: 'registry/demo/picker/picker-styled.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/picker/picker-styled.tsx',
+        target: 'components/demo/picker/picker-styled.tsx',
       },
     ],
     preview: {
@@ -146,9 +146,9 @@ export const pickerRegistry = {
     registryDependencies: ['picker', 'view', 'text', 'button'],
     files: [
       {
-        path: 'registry/demo/picker/picker-form.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/picker/picker-form.tsx',
+        target: 'components/demo/picker/picker-form.tsx',
       },
     ],
     preview: {
@@ -166,9 +166,9 @@ export const pickerRegistry = {
     registryDependencies: ['picker', 'view', 'text'],
     files: [
       {
-        path: 'registry/demo/picker/picker-advanced.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/picker/picker-advanced.tsx',
+        target: 'components/demo/picker/picker-advanced.tsx',
       },
     ],
     preview: {

@@ -15,9 +15,9 @@ export const cameraRegistry = {
     registryDependencies: ['button', 'text', 'progress'],
     files: [
       {
-        path: 'registry/components/ui/camera.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/camera.tsx',
+        target: 'components/ui/camera.tsx',
       },
     ],
     preview: {
@@ -35,9 +35,9 @@ export const cameraRegistry = {
     registryDependencies: ['camera'],
     files: [
       {
-        path: 'registry/demo/camera/camera-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/camera/camera-demo.tsx',
+        target: 'components/demo/camera/camera-demo.tsx',
       },
     ],
     preview: {
@@ -55,9 +55,9 @@ export const cameraRegistry = {
     registryDependencies: ['camera'],
     files: [
       {
-        path: 'registry/demo/camera/camera-custom-controls.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/camera/camera-custom-controls.tsx',
+        target: 'components/demo/camera/camera-custom-controls.tsx',
       },
     ],
     preview: {
@@ -75,9 +75,9 @@ export const cameraRegistry = {
     registryDependencies: ['camera'],
     files: [
       {
-        path: 'registry/demo/camera/camera-picture-only.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/camera/camera-picture-only.tsx',
+        target: 'components/demo/camera/camera-picture-only.tsx',
       },
     ],
     preview: {
@@ -95,9 +95,9 @@ export const cameraRegistry = {
     registryDependencies: ['camera'],
     files: [
       {
-        path: 'registry/demo/camera/camera-video.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/camera/camera-video.tsx',
+        target: 'components/demo/camera/camera-video.tsx',
       },
     ],
     preview: {
@@ -115,9 +115,9 @@ export const cameraRegistry = {
     registryDependencies: ['camera'],
     files: [
       {
-        path: 'registry/demo/camera/camera-timer.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/camera/camera-timer.tsx',
+        target: 'components/demo/camera/camera-timer.tsx',
       },
     ],
     preview: {
@@ -135,9 +135,9 @@ export const cameraRegistry = {
     registryDependencies: ['camera'],
     files: [
       {
-        path: 'registry/demo/camera/camera-zoom.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/camera/camera-zoom.tsx',
+        target: 'components/demo/camera/camera-zoom.tsx',
       },
     ],
     preview: {
@@ -155,9 +155,9 @@ export const cameraRegistry = {
     registryDependencies: ['camera'],
     files: [
       {
-        path: 'registry/demo/camera/camera-settings.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/camera/camera-settings.tsx',
+        target: 'components/demo/camera/camera-settings.tsx',
       },
     ],
     preview: {

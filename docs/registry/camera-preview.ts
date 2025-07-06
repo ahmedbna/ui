@@ -24,9 +24,9 @@ export const cameraPreviewRegistry = {
     ],
     files: [
       {
-        path: 'registry/components/ui/camera-preview.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/camera-preview.tsx',
+        target: 'components/ui/camera-preview.tsx',
       },
     ],
     preview: {
@@ -44,9 +44,9 @@ export const cameraPreviewRegistry = {
     registryDependencies: ['camera-preview'],
     files: [
       {
-        path: 'registry/demo/camera-preview/camera-preview-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/camera-preview/camera-preview-demo.tsx',
+        target: 'components/demo/camera-preview/camera-preview-demo.tsx',
       },
     ],
     preview: {

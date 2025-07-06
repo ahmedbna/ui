@@ -11,9 +11,9 @@ export const iconRegistry = {
     registryDependencies: ['text', 'view'],
     files: [
       {
-        path: 'registry/components/ui/icon.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/icon.tsx',
+        target: 'components/ui/icon.tsx',
       },
     ],
     preview: {
@@ -30,9 +30,9 @@ export const iconRegistry = {
     registryDependencies: ['icon'],
     files: [
       {
-        path: 'registry/demo/icon/icon-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/icon/icon-demo.tsx',
+        target: 'components/demo/icon/icon-demo.tsx',
       },
     ],
     preview: {
@@ -49,9 +49,9 @@ export const iconRegistry = {
     registryDependencies: ['icon'],
     files: [
       {
-        path: 'registry/demo/icon/icon-sizes.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/icon/icon-sizes.tsx',
+        target: 'components/demo/icon/icon-sizes.tsx',
       },
     ],
     preview: {
@@ -68,9 +68,9 @@ export const iconRegistry = {
     registryDependencies: ['icon'],
     files: [
       {
-        path: 'registry/demo/icon/icon-colors.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/icon/icon-colors.tsx',
+        target: 'components/demo/icon/icon-colors.tsx',
       },
     ],
     preview: {
@@ -87,9 +87,9 @@ export const iconRegistry = {
     registryDependencies: ['icon'],
     files: [
       {
-        path: 'registry/demo/icon/icon-stroke.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/icon/icon-stroke.tsx',
+        target: 'components/demo/icon/icon-stroke.tsx',
       },
     ],
     preview: {
@@ -106,9 +106,9 @@ export const iconRegistry = {
     registryDependencies: ['icon'],
     files: [
       {
-        path: 'registry/demo/icon/icon-interactive.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/icon/icon-interactive.tsx',
+        target: 'components/demo/icon/icon-interactive.tsx',
       },
     ],
     preview: {
@@ -125,9 +125,9 @@ export const iconRegistry = {
     registryDependencies: ['icon'],
     files: [
       {
-        path: 'registry/demo/icon/icon-grid.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/icon/icon-grid.tsx',
+        target: 'components/demo/icon/icon-grid.tsx',
       },
     ],
     preview: {
@@ -144,9 +144,9 @@ export const iconRegistry = {
     registryDependencies: ['icon'],
     files: [
       {
-        path: 'registry/demo/icon/icon-themed.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/icon/icon-themed.tsx',
+        target: 'components/demo/icon/icon-themed.tsx',
       },
     ],
     preview: {
