@@ -10,15 +10,15 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Previews } from '@/components/previews';
 
-const title = 'Build your Component Library';
+const title = 'Expo, React Native UI Component Library';
 const description =
-  'Beautifully-designed, accessible React Native components. Built for Expo and React Native. Open Source. Open Code.';
+  'Beautiful, accessible Expo, React Native components that work seamlessly across iOS and Android. Open Source. Open Code.';
 export const dynamic = 'force-static';
 export const revalidate = false;
 
 export const metadata: Metadata = {
-  title,
-  description,
+  title: 'BNA UI',
+  description: title,
 };
 
 export default function Home() {
