@@ -29,13 +29,13 @@ export const shareRegistry = {
   'share-demo': {
     name: 'share-demo',
     description: 'A basic share button with text and URL sharing',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['share'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/share/share-demo.tsx',
         target: 'components/demo/share/share-demo.tsx',
       },
@@ -51,13 +51,13 @@ export const shareRegistry = {
   'share-variants': {
     name: 'share-variants',
     description: 'Share buttons with different visual variants',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['share', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/share/share-variants.tsx',
         target: 'components/demo/share/share-variants.tsx',
       },
@@ -73,13 +73,13 @@ export const shareRegistry = {
   'share-sizes': {
     name: 'share-sizes',
     description: 'Share buttons in different sizes',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['share', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/share/share-sizes.tsx',
         target: 'components/demo/share/share-sizes.tsx',
       },
@@ -95,13 +95,13 @@ export const shareRegistry = {
   'share-url-only': {
     name: 'share-url-only',
     description: 'Share button for sharing URLs without additional text',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['share', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/share/share-url-only.tsx',
         target: 'components/demo/share/share-url-only.tsx',
       },
@@ -117,13 +117,13 @@ export const shareRegistry = {
   'share-custom-content': {
     name: 'share-custom-content',
     description: 'Share button with custom title, subject, and content',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['share', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/share/share-custom-content.tsx',
         target: 'components/demo/share/share-custom-content.tsx',
       },
@@ -139,13 +139,13 @@ export const shareRegistry = {
   'share-icon-only': {
     name: 'share-icon-only',
     description: 'Compact share button with icon only',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['share', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/share/share-icon-only.tsx',
         target: 'components/demo/share/share-icon-only.tsx',
       },
@@ -161,7 +161,7 @@ export const shareRegistry = {
   'share-callbacks': {
     name: 'share-callbacks',
     description: 'Share button with success, error, and dismiss callbacks',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['share', 'text', 'view'],
     hooks: [],
     theme: [],
@@ -181,13 +181,13 @@ export const shareRegistry = {
   'share-hook': {
     name: 'share-hook',
     description: 'Using the useShare hook for programmatic sharing',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['share', 'text', 'view', 'button'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/share/share-hook.tsx',
         target: 'components/demo/share/share-hook.tsx',
       },

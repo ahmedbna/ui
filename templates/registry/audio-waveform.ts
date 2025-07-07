@@ -30,13 +30,13 @@ export const audioWaveformRegistry = {
     name: 'audio-waveform-demo',
     description:
       'A basic audio waveform with playback controls and progress tracking',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['audio-waveform', 'button', 'text', 'view'],
     hooks: [],
     theme: ['useThemeColor'],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/audio-waveform/audio-waveform-demo.tsx',
         target: 'components/demo/audio-waveform/audio-waveform-demo.tsx',
       },
@@ -53,13 +53,13 @@ export const audioWaveformRegistry = {
     name: 'audio-waveform-recording',
     description:
       'An animated waveform for recording visualization with real-time audio levels',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['audio-waveform', 'button', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/audio-waveform/audio-waveform-recording.tsx',
         target: 'components/demo/audio-waveform/audio-waveform-recording.tsx',
       },
@@ -76,13 +76,13 @@ export const audioWaveformRegistry = {
     name: 'audio-waveform-interactive',
     description:
       'A waveform with touch-based seeking functionality and custom audio data',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['audio-waveform', 'button', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/audio-waveform/audio-waveform-interactive.tsx',
         target: 'components/demo/audio-waveform/audio-waveform-interactive.tsx',
       },
@@ -99,13 +99,13 @@ export const audioWaveformRegistry = {
     name: 'audio-waveform-styled',
     description:
       'Multiple themed waveforms with custom colors, dimensions, and styles',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['audio-waveform', 'button', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/audio-waveform/audio-waveform-styled.tsx',
         target: 'components/demo/audio-waveform/audio-waveform-styled.tsx',
       },
@@ -122,13 +122,13 @@ export const audioWaveformRegistry = {
     name: 'audio-waveform-realtime',
     description:
       'A waveform that updates with real-time audio data and configurable patterns',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['audio-waveform', 'button', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/audio-waveform/audio-waveform-realtime.tsx',
         target: 'components/demo/audio-waveform/audio-waveform-realtime.tsx',
       },
@@ -145,13 +145,13 @@ export const audioWaveformRegistry = {
     name: 'audio-waveform-compact',
     description:
       'Compact waveforms suitable for chat messages and minimal interfaces',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['audio-waveform', 'button', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/audio-waveform/audio-waveform-compact.tsx',
         target: 'components/demo/audio-waveform/audio-waveform-compact.tsx',
       },

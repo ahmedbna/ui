@@ -29,13 +29,13 @@ export const actionSheetRegistry = {
   'action-sheet-demo': {
     name: 'action-sheet-demo',
     description: 'A basic action sheet with multiple options',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['action-sheet', 'button'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/action-sheet/action-sheet-demo.tsx',
         target: 'components/demo/action-sheet/action-sheet-demo.tsx',
       },
@@ -51,13 +51,13 @@ export const actionSheetRegistry = {
   'action-sheet-icons': {
     name: 'action-sheet-icons',
     description: 'An action sheet with icons next to each option',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['action-sheet', 'button', 'icon'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/action-sheet/action-sheet-icons.tsx',
         target: 'components/demo/action-sheet/action-sheet-icons.tsx',
       },
@@ -74,13 +74,13 @@ export const actionSheetRegistry = {
     name: 'action-sheet-destructive',
     description:
       'An action sheet featuring destructive actions with appropriate styling',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['action-sheet', 'button', 'icon'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/action-sheet/action-sheet-destructive.tsx',
         target: 'components/demo/action-sheet/action-sheet-destructive.tsx',
       },
@@ -96,13 +96,13 @@ export const actionSheetRegistry = {
   'action-sheet-disabled': {
     name: 'action-sheet-disabled',
     description: 'An action sheet with some disabled options',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['action-sheet', 'button', 'icon'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/action-sheet/action-sheet-disabled.tsx',
         target: 'components/demo/action-sheet/action-sheet-disabled.tsx',
       },
@@ -118,13 +118,13 @@ export const actionSheetRegistry = {
   'action-sheet-styled': {
     name: 'action-sheet-styled',
     description: 'An action sheet with custom styling and branding',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['action-sheet', 'button', 'icon'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/action-sheet/action-sheet-styled.tsx',
         target: 'components/demo/action-sheet/action-sheet-styled.tsx',
       },
@@ -140,13 +140,13 @@ export const actionSheetRegistry = {
   'action-sheet-long': {
     name: 'action-sheet-long',
     description: 'An action sheet with many options that scrolls',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['action-sheet', 'button', 'icon'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/action-sheet/action-sheet-long.tsx',
         target: 'components/demo/action-sheet/action-sheet-long.tsx',
       },
@@ -162,13 +162,13 @@ export const actionSheetRegistry = {
   'action-sheet-hook': {
     name: 'action-sheet-hook',
     description: 'Using the useActionSheet hook for easier management',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['action-sheet', 'button', 'view', 'icon'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/action-sheet/action-sheet-hook.tsx',
         target: 'components/demo/action-sheet/action-sheet-hook.tsx',
       },

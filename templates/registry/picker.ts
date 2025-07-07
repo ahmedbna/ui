@@ -29,13 +29,13 @@ export const pickerRegistry = {
   'picker-demo': {
     name: 'picker-demo',
     description: 'A basic picker with simple options',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['picker'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/picker/picker-demo.tsx',
         target: 'components/demo/picker/picker-demo.tsx',
       },
@@ -50,13 +50,13 @@ export const pickerRegistry = {
   'picker-sections': {
     name: 'picker-sections',
     description: 'Picker with grouped options in sections',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['picker'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/picker/picker-sections.tsx',
         target: 'components/demo/picker/picker-sections.tsx',
       },
@@ -71,13 +71,13 @@ export const pickerRegistry = {
   'picker-multiple': {
     name: 'picker-multiple',
     description: 'Picker allowing multiple selections',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['picker'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/picker/picker-multiple.tsx',
         target: 'components/demo/picker/picker-multiple.tsx',
       },
@@ -92,13 +92,13 @@ export const pickerRegistry = {
   'picker-searchable': {
     name: 'picker-searchable',
     description: 'Picker with search functionality',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['picker'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/picker/picker-searchable.tsx',
         target: 'components/demo/picker/picker-searchable.tsx',
       },
@@ -113,13 +113,13 @@ export const pickerRegistry = {
   'picker-variants': {
     name: 'picker-variants',
     description: 'Different picker variants: outline, filled, and group',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['picker', 'view', 'text'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/picker/picker-variants.tsx',
         target: 'components/demo/picker/picker-variants.tsx',
       },
@@ -134,14 +134,14 @@ export const pickerRegistry = {
   'picker-styled': {
     name: 'picker-styled',
     description: 'Picker with custom styling, icons, and labels',
-    type: 'registry:example',
+    type: 'registry:demo',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['picker'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/picker/picker-styled.tsx',
         target: 'components/demo/picker/picker-styled.tsx',
       },
@@ -156,13 +156,13 @@ export const pickerRegistry = {
   'picker-form': {
     name: 'picker-form',
     description: 'Picker integrated with form validation and error handling',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['picker', 'view', 'text', 'button'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/picker/picker-form.tsx',
         target: 'components/demo/picker/picker-form.tsx',
       },
@@ -178,13 +178,13 @@ export const pickerRegistry = {
     name: 'picker-advanced',
     description:
       'Picker with descriptions, disabled options, and custom modal title',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['picker', 'view', 'text'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/picker/picker-advanced.tsx',
         target: 'components/demo/picker/picker-advanced.tsx',
       },

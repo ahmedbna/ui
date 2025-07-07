@@ -29,13 +29,13 @@ export const radioRegistry = {
   'radio-demo': {
     name: 'radio-demo',
     description: 'A basic radio group with multiple options',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['radio'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/radio/radio-demo.tsx',
         target: 'components/demo/radio/radio-demo.tsx',
       },
@@ -51,13 +51,13 @@ export const radioRegistry = {
   'radio-horizontal': {
     name: 'radio-horizontal',
     description: 'Radio buttons arranged horizontally',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['radio'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/radio/radio-horizontal.tsx',
         target: 'components/demo/radio/radio-horizontal.tsx',
       },
@@ -73,13 +73,13 @@ export const radioRegistry = {
   'radio-disabled': {
     name: 'radio-disabled',
     description: 'Radio group with some disabled options',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['radio', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/radio/radio-disabled.tsx',
         target: 'components/demo/radio/radio-disabled.tsx',
       },
@@ -95,13 +95,13 @@ export const radioRegistry = {
   'radio-styled': {
     name: 'radio-styled',
     description: 'Radio buttons with custom colors and styling',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['radio', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/radio/radio-styled.tsx',
         target: 'components/demo/radio/radio-styled.tsx',
       },
@@ -117,13 +117,13 @@ export const radioRegistry = {
   'radio-form': {
     name: 'radio-form',
     description: 'Radio group integrated with form validation',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['radio', 'button', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/radio/radio-form.tsx',
         target: 'components/demo/radio/radio-form.tsx',
       },
@@ -139,13 +139,13 @@ export const radioRegistry = {
   'radio-large': {
     name: 'radio-large',
     description: 'Radio buttons with larger size and spacing',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['radio'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/radio/radio-large.tsx',
         target: 'components/demo/radio/radio-large.tsx',
       },
@@ -161,13 +161,13 @@ export const radioRegistry = {
   'radio-single': {
     name: 'radio-single',
     description: 'Individual radio button component usage',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['radio', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/radio/radio-single.tsx',
         target: 'components/demo/radio/radio-single.tsx',
       },

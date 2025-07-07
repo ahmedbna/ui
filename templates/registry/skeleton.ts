@@ -29,13 +29,13 @@ export const skeletonRegistry = {
   'skeleton-demo': {
     name: 'skeleton-demo',
     description: 'A basic skeleton loader with pulsing animation',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['skeleton'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/skeleton/skeleton-demo.tsx',
         target: 'components/demo/skeleton/skeleton-demo.tsx',
       },
@@ -51,13 +51,13 @@ export const skeletonRegistry = {
   'skeleton-sizes': {
     name: 'skeleton-sizes',
     description: 'Skeletons in various sizes and dimensions',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['skeleton', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/skeleton/skeleton-sizes.tsx',
         target: 'components/demo/skeleton/skeleton-sizes.tsx',
       },
@@ -72,13 +72,13 @@ export const skeletonRegistry = {
   'skeleton-card': {
     name: 'skeleton-card',
     description: 'Skeleton placeholders arranged in a card layout',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['skeleton', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/skeleton/skeleton-card.tsx',
         target: 'components/demo/skeleton/skeleton-card.tsx',
       },
@@ -93,13 +93,13 @@ export const skeletonRegistry = {
   'skeleton-profile': {
     name: 'skeleton-profile',
     description: 'Skeleton layout mimicking a user profile',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['skeleton', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/skeleton/skeleton-profile.tsx',
         target: 'components/demo/skeleton/skeleton-profile.tsx',
       },
@@ -114,13 +114,13 @@ export const skeletonRegistry = {
   'skeleton-list': {
     name: 'skeleton-list',
     description: 'Multiple skeleton items arranged in a list',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['skeleton', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/skeleton/skeleton-list.tsx',
         target: 'components/demo/skeleton/skeleton-list.tsx',
       },
@@ -135,13 +135,13 @@ export const skeletonRegistry = {
   'skeleton-shapes': {
     name: 'skeleton-shapes',
     description: 'Skeletons with custom shapes and styling',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['skeleton', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/skeleton/skeleton-shapes.tsx',
         target: 'components/demo/skeleton/skeleton-shapes.tsx',
       },

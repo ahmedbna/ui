@@ -30,13 +30,13 @@ export const audioPlayerRegistry = {
   'audio-player-demo': {
     name: 'audio-player-demo',
     description: 'A complete audio player with all features enabled',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['audio-player', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/audio-player/audio-player-demo.tsx',
         target: 'components/demo/audio-player/audio-player-demo.tsx',
       },
@@ -52,13 +52,13 @@ export const audioPlayerRegistry = {
   'audio-player-minimal': {
     name: 'audio-player-minimal',
     description: 'A minimal audio player with only essential controls',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['audio-player', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/audio-player/audio-player-minimal.tsx',
         target: 'components/demo/audio-player/audio-player-minimal.tsx',
       },
@@ -74,13 +74,13 @@ export const audioPlayerRegistry = {
   'audio-player-waveform': {
     name: 'audio-player-waveform',
     description: 'Audio player focused on waveform visualization',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['audio-player', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/audio-player/audio-player-waveform.tsx',
         target: 'components/demo/audio-player/audio-player-waveform.tsx',
       },
@@ -96,13 +96,13 @@ export const audioPlayerRegistry = {
   'audio-player-progress': {
     name: 'audio-player-progress',
     description: 'Audio player using only a progress bar for seeking',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['audio-player', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/audio-player/audio-player-progress.tsx',
         target: 'components/demo/audio-player/audio-player-progress.tsx',
       },
@@ -118,13 +118,13 @@ export const audioPlayerRegistry = {
   'audio-player-autoplay': {
     name: 'audio-player-autoplay',
     description: 'Audio player that starts playing automatically when loaded',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['audio-player', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/audio-player/audio-player-autoplay.tsx',
         target: 'components/demo/audio-player/audio-player-autoplay.tsx',
       },
@@ -140,13 +140,13 @@ export const audioPlayerRegistry = {
   'audio-player-styled': {
     name: 'audio-player-styled',
     description: 'An audio player with custom styling and theming',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['audio-player', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/audio-player/audio-player-styled.tsx',
         target: 'components/demo/audio-player/audio-player-styled.tsx',
       },
@@ -163,13 +163,13 @@ export const audioPlayerRegistry = {
     name: 'audio-player-music',
     description:
       'Audio player with music-focused UI including album art and track info',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['audio-player', 'text', 'view', 'image', 'button'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/audio-player/audio-player-music.tsx',
         target: 'components/demo/audio-player/audio-player-music.tsx',
       },

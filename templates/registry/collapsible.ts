@@ -29,13 +29,13 @@ export const collapsibleRegistry = {
   'collapsible-demo': {
     name: 'collapsible-demo',
     description: 'A basic collapsible component with title and content',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['collapsible', 'text'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/collapsible/collapsible-demo.tsx',
         target: 'components/demo/collapsible/collapsible-demo.tsx',
       },
@@ -51,13 +51,13 @@ export const collapsibleRegistry = {
   'collapsible-multiple': {
     name: 'collapsible-multiple',
     description: 'Multiple collapsible components working independently',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['collapsible', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/collapsible/collapsible-multiple.tsx',
         target: 'components/demo/collapsible/collapsible-multiple.tsx',
       },
@@ -73,13 +73,13 @@ export const collapsibleRegistry = {
   'collapsible-nested': {
     name: 'collapsible-nested',
     description: 'Collapsible components nested within each other',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['collapsible', 'text'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/collapsible/collapsible-nested.tsx',
         target: 'components/demo/collapsible/collapsible-nested.tsx',
       },
@@ -95,13 +95,13 @@ export const collapsibleRegistry = {
   'collapsible-with-content': {
     name: 'collapsible-with-content',
     description: 'Collapsible containing interactive elements like checkboxes',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['collapsible', 'checkbox', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/collapsible/collapsible-with-content.tsx',
         target: 'components/demo/collapsible/collapsible-with-content.tsx',
       },
@@ -117,13 +117,13 @@ export const collapsibleRegistry = {
   'collapsible-faq': {
     name: 'collapsible-faq',
     description: 'Collapsible components styled as frequently asked questions',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['collapsible', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/collapsible/collapsible-faq.tsx',
         target: 'components/demo/collapsible/collapsible-faq.tsx',
       },

@@ -34,13 +34,13 @@ export const buttonRegistry = {
   'button-demo': {
     name: 'button-demo',
     description: 'A basic button with default styling',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['button'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/button/button-demo.tsx',
         target: 'components/demo/button/button-demo.tsx',
       },
@@ -56,13 +56,13 @@ export const buttonRegistry = {
   'button-variants': {
     name: 'button-variants',
     description: 'Buttons with different visual styles',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['button'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/button/button-variants.tsx',
         target: 'components/demo/button/button-variants.tsx',
       },
@@ -78,13 +78,13 @@ export const buttonRegistry = {
   'button-sizes': {
     name: 'button-sizes',
     description: 'Buttons in different sizes',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['button'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/button/button-sizes.tsx',
         target: 'components/demo/button/button-sizes.tsx',
       },
@@ -100,13 +100,13 @@ export const buttonRegistry = {
   'button-with-icons': {
     name: 'button-with-icons',
     description: 'Buttons with leading icons',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['button'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/button/button-with-icons.tsx',
         target: 'components/demo/button/button-with-icons.tsx',
       },
@@ -122,13 +122,13 @@ export const buttonRegistry = {
   'button-icon-only': {
     name: 'button-icon-only',
     description: 'Icon-only buttons for compact layouts',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['button'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/button/button-icon-only.tsx',
         target: 'components/demo/button/button-icon-only.tsx',
       },
@@ -144,13 +144,13 @@ export const buttonRegistry = {
   'button-loading': {
     name: 'button-loading',
     description: 'Buttons with loading spinners',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['button'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/button/button-loading.tsx',
         target: 'components/demo/button/button-loading.tsx',
       },
@@ -166,13 +166,13 @@ export const buttonRegistry = {
   'button-disabled': {
     name: 'button-disabled',
     description: 'Buttons in disabled state',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['button'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/button/button-disabled.tsx',
         target: 'components/demo/button/button-disabled.tsx',
       },
@@ -188,13 +188,13 @@ export const buttonRegistry = {
   'button-custom': {
     name: 'button-custom',
     description: 'Buttons with custom colors and styles',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['button'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/button/button-custom.tsx',
         target: 'components/demo/button/button-custom.tsx',
       },
@@ -210,13 +210,13 @@ export const buttonRegistry = {
   'button-animation': {
     name: 'button-animation',
     description: 'Buttons with and without animations',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['button'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/button/button-animation.tsx',
         target: 'components/demo/button/button-animation.tsx',
       },

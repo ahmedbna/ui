@@ -29,13 +29,13 @@ export const alertRegistry = {
   'alert-demo': {
     name: 'alert-demo',
     description: 'A basic native alert with two buttons',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['alert', 'button'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/alert/alert-demo.tsx',
         target: 'components/demo/alert/alert-demo.tsx',
       },
@@ -51,13 +51,13 @@ export const alertRegistry = {
   'alert-three-button-demo': {
     name: 'alert-three-button-demo',
     description: 'A native alert with three button options',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['alert', 'button'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/alert/alert-three-button-demo.tsx',
         target: 'components/demo/alert/alert-three-button-demo.tsx',
       },
@@ -73,13 +73,13 @@ export const alertRegistry = {
   'alert-success-demo': {
     name: 'alert-success-demo',
     description: 'Success alert with positive messaging',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['alert', 'button'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/alert/alert-success-demo.tsx',
         target: 'components/demo/alert/alert-success-demo.tsx',
       },
@@ -95,13 +95,13 @@ export const alertRegistry = {
   'alert-error-demo': {
     name: 'alert-error-demo',
     description: 'Error alert with destructive styling',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['alert', 'button'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/alert/alert-error-demo.tsx',
         target: 'components/demo/alert/alert-error-demo.tsx',
       },
@@ -117,13 +117,13 @@ export const alertRegistry = {
   'alert-confirm-demo': {
     name: 'alert-confirm-demo',
     description: 'Confirmation alert for destructive actions',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['alert', 'button'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/alert/alert-confirm-demo.tsx',
         target: 'components/demo/alert/alert-confirm-demo.tsx',
       },
@@ -139,13 +139,13 @@ export const alertRegistry = {
   'alert-custom-demo': {
     name: 'alert-custom-demo',
     description: 'Custom native alert with multiple options',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['alert', 'button'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/alert/alert-custom-demo.tsx',
         target: 'components/demo/alert/alert-custom-demo.tsx',
       },
@@ -161,13 +161,13 @@ export const alertRegistry = {
   'alert-visual-demo': {
     name: 'alert-visual-demo',
     description: 'Inline visual alerts that appear within your content',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['alert', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/alert/alert-visual-demo.tsx',
         target: 'components/demo/alert/alert-visual-demo.tsx',
       },
@@ -183,13 +183,13 @@ export const alertRegistry = {
   'alert-visual-destructive-demo': {
     name: 'alert-visual-destructive-demo',
     description: 'Destructive visual alerts for error messages',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['alert', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/alert/alert-visual-destructive-demo.tsx',
         target: 'components/demo/alert/alert-visual-destructive-demo.tsx',
       },
@@ -205,13 +205,13 @@ export const alertRegistry = {
   'alert-advanced-demo': {
     name: 'alert-advanced-demo',
     description: 'Advanced alert usage patterns and combinations',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['alert', 'button', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/alert/alert-advanced-demo.tsx',
         target: 'components/demo/alert/alert-advanced-demo.tsx',
       },

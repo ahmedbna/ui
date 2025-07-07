@@ -33,13 +33,13 @@ export const cameraRegistry = {
   'camera-demo': {
     name: 'camera-demo',
     description: 'A basic camera with default settings',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['camera'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/camera/camera-demo.tsx',
         target: 'components/demo/camera/camera-demo.tsx',
       },
@@ -55,13 +55,13 @@ export const cameraRegistry = {
   'camera-custom-controls': {
     name: 'camera-custom-controls',
     description: 'Camera with custom control settings',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['camera'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/camera/camera-custom-controls.tsx',
         target: 'components/demo/camera/camera-custom-controls.tsx',
       },
@@ -77,13 +77,13 @@ export const cameraRegistry = {
   'camera-picture-only': {
     name: 'camera-picture-only',
     description: 'Camera configured for picture-only mode',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['camera'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/camera/camera-picture-only.tsx',
         target: 'components/demo/camera/camera-picture-only.tsx',
       },
@@ -99,13 +99,13 @@ export const cameraRegistry = {
   'camera-video': {
     name: 'camera-video',
     description: 'Camera with video recording capabilities',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['camera'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/camera/camera-video.tsx',
         target: 'components/demo/camera/camera-video.tsx',
       },
@@ -121,13 +121,13 @@ export const cameraRegistry = {
   'camera-timer': {
     name: 'camera-timer',
     description: 'Camera with timer functionality',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['camera'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/camera/camera-timer.tsx',
         target: 'components/demo/camera/camera-timer.tsx',
       },
@@ -143,13 +143,13 @@ export const cameraRegistry = {
   'camera-zoom': {
     name: 'camera-zoom',
     description: 'Camera with zoom controls and gestures',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['camera'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/camera/camera-zoom.tsx',
         target: 'components/demo/camera/camera-zoom.tsx',
       },
@@ -165,13 +165,13 @@ export const cameraRegistry = {
   'camera-settings': {
     name: 'camera-settings',
     description: 'Camera with advanced settings panel',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['camera'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/camera/camera-settings.tsx',
         target: 'components/demo/camera/camera-settings.tsx',
       },
