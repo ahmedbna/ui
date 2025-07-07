@@ -51,7 +51,7 @@ export const IPhoneVideoPreview = ({
             <div className='absolute top-1 left-1/2 transform -translate-x-1/2 w-28 h-6.5 bg-black rounded-full z-10' />
 
             {/* Media Container - Fixed proportions for iPhone 14 Pro (393x852) */}
-            <div className='relative w-[260px] h-[560px] overflow-hidden rounded-[2rem]'>
+            <div className='relative w-[254px] h-[556px] overflow-hidden rounded-[2rem]'>
               {isImage ? (
                 <img
                   key={mediaUrl}

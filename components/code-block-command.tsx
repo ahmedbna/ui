@@ -12,17 +12,20 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
+import { cn } from '@/lib/utils';
 
 export function CodeBlockCommand({
   __npm__,
   __yarn__,
   __pnpm__,
   __bun__,
+  className,
 }: React.ComponentProps<'pre'> & {
   __npm__?: string;
   __yarn__?: string;
   __pnpm__?: string;
   __bun__?: string;
+  className?: string;
 }) {
   const [config, setConfig] = useConfig();
   const [hasCopied, setHasCopied] = React.useState(false);
@@ -62,7 +65,7 @@ export function CodeBlockCommand({
   }, [packageManager, tabs]);
 
   return (
-    <div className='overflow-x-auto'>
+    <div className={cn('overflow-x-auto', className)}>
       <Tabs
         value={packageManager}
         className='gap-0'
