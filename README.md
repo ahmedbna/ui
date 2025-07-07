@@ -4,7 +4,6 @@ Expo React Native CLI UI Library
 
 ## TODO
 
-pass ref for scrollview like view component
 use reanimated for toast instead of react native animated
 
 - Chat
