@@ -30,7 +30,7 @@ export function ImageSizes() {
       </View>
 
       <View style={{ gap: 8 }}>
-        <Text variant='caption'>Aspect Ratio demo</Text>
+        <Text variant='caption'>Aspect Ratio Examples</Text>
         <View style={{ flexDirection: 'row', gap: 12 }}>
           <Image
             source={{ uri: 'https://picsum.photos/400/300' }}

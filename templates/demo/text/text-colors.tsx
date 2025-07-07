@@ -6,7 +6,7 @@ export function TextColors() {
   return (
     <View style={{ gap: 16 }}>
       <Text variant='subtitle' style={{ marginBottom: 8 }}>
-        Custom Color demo
+        Custom Color Examples
       </Text>
 
       <Text variant='body' lightColor='#3b82f6' darkColor='#60a5fa'>

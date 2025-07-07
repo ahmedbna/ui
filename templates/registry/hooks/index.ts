@@ -7,7 +7,7 @@ export const hooksRegistry = {
     files: [
       {
         type: 'registry:hook',
-        path: 'registry/hooks/useBottomTabOverflow.ts',
+        path: 'templates/hooks/useBottomTabOverflow.ts',
         target: 'hooks/useBottomTabOverflow.ts',
       },
     ],
@@ -21,12 +21,12 @@ export const hooksRegistry = {
     files: [
       {
         type: 'registry:hook',
-        path: 'registry/hooks/useColorScheme.ts',
+        path: 'templates/hooks/useColorScheme.ts',
         target: 'hooks/useColorScheme.ts',
       },
       {
         type: 'registry:hook',
-        path: 'registry/hooks/useColorScheme.web.ts',
+        path: 'templates/hooks/useColorScheme.web.ts',
         target: 'hooks/useColorScheme.web.ts',
       },
     ],
@@ -41,7 +41,7 @@ export const hooksRegistry = {
     files: [
       {
         type: 'registry:hook',
-        path: 'registry/hooks/useModeToggle.tsx',
+        path: 'templates/hooks/useModeToggle.tsx',
         target: 'hooks/useModeToggle.tsx',
       },
     ],
@@ -57,7 +57,7 @@ export const hooksRegistry = {
     files: [
       {
         type: 'registry:hook',
-        path: 'registry/hooks/useThemeColor.ts',
+        path: 'templates/hooks/useThemeColor.ts',
         target: 'hooks/useThemeColor.ts',
       },
     ],

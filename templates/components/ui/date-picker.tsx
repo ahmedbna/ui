@@ -1,0 +1,876 @@
+import { BottomSheet, useBottomSheet } from '@/components/ui/bottom-sheet';
+import { Button } from '@/components/ui/button';
+import { Icon } from '@/components/ui/icon';
+import { ScrollView } from '@/components/ui/scroll-view';
+import { Text } from '@/components/ui/text';
+import { View } from '@/components/ui/view';
+import { useThemeColor } from '@/hooks/useThemeColor';
+import { CORNERS, FONT_SIZE, HEIGHT } from '@/theme/globals';
+import {
+  Calendar,
+  CalendarClock,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  Clock,
+} from 'lucide-react-native';
+import React, { useCallback, useMemo, useState } from 'react';
+import { TextStyle, TouchableOpacity, ViewStyle } from 'react-native';
+
+interface DatePickerProps {
+  label?: string;
+  error?: string;
+  value?: Date;
+  onChange?: (date: Date) => void;
+  mode?: 'date' | 'time' | 'datetime';
+  placeholder?: string;
+  disabled?: boolean;
+  style?: ViewStyle;
+  minimumDate?: Date;
+  maximumDate?: Date;
+  timeFormat?: '12' | '24';
+  variant?: 'filled' | 'outline' | 'group';
+  labelStyle?: TextStyle;
+  errorStyle?: TextStyle;
+}
+
+const MONTHS = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];
+
+const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+// Generate year range (current year ± 50 years)
+const currentYear = new Date().getFullYear();
+const YEARS = Array.from({ length: 101 }, (_, i) => currentYear - 50 + i);
+
+export function DatePicker({
+  label,
+  value,
+  error,
+  onChange,
+  mode = 'date',
+  placeholder = 'Select date',
+  disabled = false,
+  style,
+  minimumDate,
+  maximumDate,
+  timeFormat = '24', // Default to 24-hour format
+  variant = 'filled',
+  labelStyle,
+  errorStyle,
+}: DatePickerProps) {
+  const { isVisible, open, close } = useBottomSheet();
+  const [currentDate, setCurrentDate] = useState(() => value || new Date());
+  const [viewMode, setViewMode] = useState<'date' | 'time' | 'month' | 'year'>(
+    'date'
+  );
+  const [showMonthPicker, setShowMonthPicker] = useState(false);
+  const [showYearPicker, setShowYearPicker] = useState(false);
+
+  // Theme colors
+  const cardColor = useThemeColor({}, 'card');
+  const borderColor = useThemeColor({}, 'border');
+  const primaryColor = useThemeColor({}, 'primary');
+  const primaryForegroundColor = useThemeColor({}, 'primaryForeground');
+  const mutedColor = useThemeColor({}, 'muted');
+  const textMutedColor = useThemeColor({}, 'textMuted');
+  const mutedForegroundColor = useThemeColor({}, 'mutedForeground');
+  const textColor = useThemeColor({}, 'text');
+  const errorColor = useThemeColor({}, 'red');
+
+  const formatDisplayValue = useCallback(() => {
+    if (!value) return placeholder;
+
+    switch (mode) {
+      case 'time':
+        if (timeFormat === '12') {
+          return value.toLocaleTimeString([], {
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: true,
+          });
+        }
+        return value.toLocaleTimeString([], {
+          hour: '2-digit',
+          minute: '2-digit',
+          hour12: false,
+        });
+      case 'datetime':
+        const timeStr =
+          timeFormat === '12'
+            ? value.toLocaleTimeString([], {
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: true,
+              })
+            : value.toLocaleTimeString([], {
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: false,
+              });
+        return `${value.toLocaleDateString()} ${timeStr}`;
+      default:
+        return value.toLocaleDateString();
+    }
+  }, [value, mode, placeholder, timeFormat]);
+
+  // Helper function to check if a date is disabled
+  const isDateDisabled = useCallback(
+    (date: Date) => {
+      if (minimumDate && date < minimumDate) return true;
+      if (maximumDate && date > maximumDate) return true;
+      return false;
+    },
+    [minimumDate, maximumDate]
+  );
+
+  // Memoized calendar calculations
+  const calendarData = useMemo(() => {
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth();
+
+    // Get first day of month and number of days
+    const firstDay = new Date(year, month, 1).getDay();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+    // Create calendar grid with proper positioning
+    const weeks: (number | null)[][] = [];
+    let currentWeek: (number | null)[] = [];
+
+    // Fill empty cells for days before month starts
+    for (let i = 0; i < firstDay; i++) {
+      currentWeek.push(null);
+    }
+
+    // Add days of the month
+    for (let day = 1; day <= daysInMonth; day++) {
+      currentWeek.push(day);
+
+      // If week is complete (7 days) or it's the last day, start a new week
+      if (currentWeek.length === 7) {
+        weeks.push([...currentWeek]);
+        currentWeek = [];
+      }
+    }
+
+    // Add the last incomplete week if it exists
+    if (currentWeek.length > 0) {
+      // Fill remaining cells with null
+      while (currentWeek.length < 7) {
+        currentWeek.push(null);
+      }
+      weeks.push(currentWeek);
+    }
+
+    return { weeks, year, month, daysInMonth };
+  }, [currentDate]);
+
+  const handleDateSelect = (day: number) => {
+    const newDate = new Date(
+      currentDate.getFullYear(),
+      currentDate.getMonth(),
+      day
+    );
+
+    // Check if date is disabled
+    if (isDateDisabled(newDate)) return;
+
+    setCurrentDate(newDate);
+
+    if (mode === 'date') {
+      onChange?.(newDate);
+      close();
+    } else if (mode === 'datetime') {
+      setViewMode('time');
+    }
+  };
+
+  const handleTimeChange = (hours: number, minutes: number) => {
+    const newDate = new Date(currentDate);
+    newDate.setHours(hours, minutes, 0, 0);
+    setCurrentDate(newDate);
+
+    // Don't auto-close when selecting hours/minutes - let user confirm
+    if (mode === 'time') {
+      // Don't auto-close, let user press Done
+    }
+  };
+
+  const navigateMonth = (direction: 'prev' | 'next') => {
+    const newDate = new Date(currentDate);
+    if (direction === 'prev') {
+      newDate.setMonth(newDate.getMonth() - 1);
+    } else {
+      newDate.setMonth(newDate.getMonth() + 1);
+    }
+    setCurrentDate(newDate);
+  };
+
+  const handleMonthSelect = (monthIndex: number) => {
+    const newDate = new Date(currentDate);
+    newDate.setMonth(monthIndex);
+    setCurrentDate(newDate);
+    setShowMonthPicker(false);
+  };
+
+  const handleYearSelect = (year: number) => {
+    const newDate = new Date(currentDate);
+    newDate.setFullYear(year);
+    setCurrentDate(newDate);
+    setShowYearPicker(false);
+  };
+
+  const handleConfirm = () => {
+    onChange?.(currentDate);
+    close();
+  };
+
+  const resetToToday = () => {
+    const today = new Date();
+    setCurrentDate(today);
+    if (mode === 'date') {
+      onChange?.(today);
+      close();
+    }
+  };
+
+  const renderMonthYearHeader = () => (
+    <View
+      style={{
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginBottom: 24,
+        paddingHorizontal: 8,
+      }}
+    >
+      <TouchableOpacity
+        onPress={() => navigateMonth('prev')}
+        style={{
+          padding: 10,
+          borderRadius: CORNERS,
+          backgroundColor: mutedColor,
+        }}
+      >
+        <ChevronLeft size={20} color={textColor} />
+      </TouchableOpacity>
+
+      {/* Header styling - fills space between arrows */}
+      <View
+        style={{
+          flex: 1,
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: 12,
+          marginHorizontal: 12,
+        }}
+      >
+        <TouchableOpacity
+          onPress={() => setShowMonthPicker(true)}
+          style={{
+            flex: 1,
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
+            paddingHorizontal: 16,
+            paddingVertical: 10,
+            borderRadius: CORNERS,
+            backgroundColor: mutedColor,
+          }}
+        >
+          <Text variant='subtitle' style={{ marginRight: 4 }}>
+            {MONTHS[calendarData.month]}
+          </Text>
+          <ChevronDown size={16} color={textColor} />
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          onPress={() => setShowYearPicker(true)}
+          style={{
+            flex: 1,
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
+            paddingHorizontal: 16,
+            paddingVertical: 10,
+            borderRadius: CORNERS,
+            backgroundColor: mutedColor,
+          }}
+        >
+          <Text variant='subtitle' style={{ marginRight: 4 }}>
+            {calendarData.year}
+          </Text>
+          <ChevronDown size={16} color={textColor} />
+        </TouchableOpacity>
+      </View>
+
+      <TouchableOpacity
+        onPress={() => navigateMonth('next')}
+        style={{
+          padding: 10,
+          borderRadius: CORNERS,
+          backgroundColor: mutedColor,
+        }}
+      >
+        <ChevronRight size={20} color={textColor} />
+      </TouchableOpacity>
+    </View>
+  );
+
+  const renderCalendar = () => (
+    <View>
+      {renderMonthYearHeader()}
+
+      {/* Day headers */}
+      <View
+        style={{
+          flexDirection: 'row',
+          marginBottom: 12,
+          paddingHorizontal: 4,
+        }}
+      >
+        {DAYS.map((day) => (
+          <View
+            key={day}
+            style={{
+              flex: 1,
+              alignItems: 'center',
+            }}
+          >
+            <Text variant='caption' style={{ fontSize: 12, fontWeight: '600' }}>
+              {day}
+            </Text>
+          </View>
+        ))}
+      </View>
+
+      {/* Calendar grid */}
+      <View style={{ paddingHorizontal: 4 }}>
+        {calendarData.weeks.map((week, weekIndex) => (
+          <View
+            key={weekIndex}
+            style={{
+              flexDirection: 'row',
+              marginBottom: 4,
+            }}
+          >
+            {week.map((day, dayIndex) => {
+              const isSelected =
+                day &&
+                value &&
+                value.getDate() === day &&
+                value.getMonth() === calendarData.month &&
+                value.getFullYear() === calendarData.year;
+
+              const isToday =
+                day &&
+                new Date().getDate() === day &&
+                new Date().getMonth() === calendarData.month &&
+                new Date().getFullYear() === calendarData.year;
+
+              const dayDate = day
+                ? new Date(calendarData.year, calendarData.month, day)
+                : null;
+              const disabled = dayDate ? isDateDisabled(dayDate) : false;
+
+              return (
+                <View
+                  key={dayIndex}
+                  style={{
+                    flex: 1,
+                    alignItems: 'center',
+                  }}
+                >
+                  {day ? (
+                    <TouchableOpacity
+                      onPress={() => !disabled && handleDateSelect(day)}
+                      disabled={disabled}
+                      style={{
+                        width: 40,
+                        height: 40,
+                        borderRadius: 999,
+                        backgroundColor: isSelected
+                          ? primaryColor
+                          : 'transparent',
+                        borderWidth: isToday && !isSelected ? 1 : 0,
+                        borderColor: primaryColor,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        opacity: disabled ? 0.3 : 1,
+                      }}
+                    >
+                      <Text
+                        style={{
+                          color: isSelected
+                            ? primaryForegroundColor
+                            : disabled
+                            ? mutedForegroundColor
+                            : textColor,
+                          fontWeight: isSelected || isToday ? '600' : '400',
+                          fontSize: FONT_SIZE,
+                        }}
+                      >
+                        {day}
+                      </Text>
+                    </TouchableOpacity>
+                  ) : (
+                    <View style={{ width: 40, height: 40 }} />
+                  )}
+                </View>
+              );
+            })}
+          </View>
+        ))}
+      </View>
+    </View>
+  );
+
+  const renderTimePicker = () => {
+    const selectedHours = currentDate.getHours();
+    const selectedMinutes = currentDate.getMinutes();
+
+    const isPM = selectedHours >= 12;
+
+    return (
+      <View style={{ height: 300 }}>
+        <View
+          style={{
+            flexDirection: 'row',
+            flex: 1,
+            gap: 16,
+          }}
+        >
+          {/* Hours */}
+          <View style={{ flex: 1 }}>
+            <Text
+              variant='caption'
+              style={{ textAlign: 'center', marginBottom: 12 }}
+            >
+              Hours
+            </Text>
+            <ScrollView
+              showsVerticalScrollIndicator={false}
+              contentContainerStyle={{
+                paddingVertical: 20,
+              }}
+            >
+              {Array.from({ length: timeFormat === '12' ? 12 : 24 }, (_, i) =>
+                timeFormat === '12' ? (i === 0 ? 12 : i) : i
+              ).map((hour) => {
+                const actualHour =
+                  timeFormat === '12'
+                    ? hour === 12
+                      ? isPM
+                        ? 12
+                        : 0
+                      : isPM
+                      ? hour + 12
+                      : hour
+                    : hour;
+
+                const isSelected = actualHour === selectedHours;
+
+                return (
+                  <TouchableOpacity
+                    key={hour}
+                    onPress={() =>
+                      handleTimeChange(actualHour, selectedMinutes)
+                    }
+                    style={{
+                      paddingVertical: 12,
+                      paddingHorizontal: 16,
+                      borderRadius: CORNERS,
+                      backgroundColor: isSelected
+                        ? primaryColor
+                        : 'transparent',
+                      marginVertical: 2,
+                      alignItems: 'center',
+                    }}
+                  >
+                    <Text
+                      style={{
+                        color: isSelected ? primaryForegroundColor : textColor,
+                        fontWeight: isSelected ? '600' : '400',
+                        fontSize: FONT_SIZE,
+                      }}
+                    >
+                      {hour.toString().padStart(2, '0')}
+                    </Text>
+                  </TouchableOpacity>
+                );
+              })}
+            </ScrollView>
+          </View>
+
+          {/* Minutes */}
+          <View style={{ flex: 1 }}>
+            <Text
+              variant='caption'
+              style={{ textAlign: 'center', marginBottom: 12 }}
+            >
+              Minutes
+            </Text>
+            <ScrollView
+              showsVerticalScrollIndicator={false}
+              contentContainerStyle={{
+                paddingVertical: 20,
+              }}
+            >
+              {Array.from({ length: 12 }, (_, i) => i * 5).map((minute) => (
+                <TouchableOpacity
+                  key={minute}
+                  onPress={() => handleTimeChange(selectedHours, minute)}
+                  style={{
+                    paddingVertical: 12,
+                    paddingHorizontal: 16,
+                    borderRadius: CORNERS,
+                    backgroundColor:
+                      minute === selectedMinutes ? primaryColor : 'transparent',
+                    marginVertical: 2,
+                    alignItems: 'center',
+                  }}
+                >
+                  <Text
+                    style={{
+                      color:
+                        minute === selectedMinutes
+                          ? primaryForegroundColor
+                          : textColor,
+                      fontWeight: minute === selectedMinutes ? '600' : '400',
+                      fontSize: FONT_SIZE,
+                    }}
+                  >
+                    {minute.toString().padStart(2, '0')}
+                  </Text>
+                </TouchableOpacity>
+              ))}
+            </ScrollView>
+          </View>
+
+          {/* AM/PM picker for 12-hour format */}
+          {timeFormat === '12' && (
+            <View style={{ flex: 0.5 }}>
+              <Text
+                variant='caption'
+                style={{ textAlign: 'center', marginBottom: 12 }}
+              >
+                Period
+              </Text>
+              <View
+                style={{
+                  paddingVertical: 20,
+                  gap: 8,
+                }}
+              >
+                {['AM', 'PM'].map((period) => {
+                  const isAM = period === 'AM';
+                  const isSelected = isAM ? !isPM : isPM;
+
+                  return (
+                    <TouchableOpacity
+                      key={period}
+                      onPress={() => {
+                        const newHours = isAM
+                          ? selectedHours >= 12
+                            ? selectedHours - 12
+                            : selectedHours
+                          : selectedHours < 12
+                          ? selectedHours + 12
+                          : selectedHours;
+                        handleTimeChange(newHours, selectedMinutes);
+                      }}
+                      style={{
+                        paddingVertical: 12,
+                        paddingHorizontal: 16,
+                        borderRadius: CORNERS,
+                        backgroundColor: isSelected
+                          ? primaryColor
+                          : 'transparent',
+                        alignItems: 'center',
+                      }}
+                    >
+                      <Text
+                        style={{
+                          color: isSelected
+                            ? primaryForegroundColor
+                            : textColor,
+                          fontWeight: isSelected ? '600' : '400',
+                          fontSize: FONT_SIZE,
+                        }}
+                      >
+                        {period}
+                      </Text>
+                    </TouchableOpacity>
+                  );
+                })}
+              </View>
+            </View>
+          )}
+        </View>
+      </View>
+    );
+  };
+
+  const renderMonthPicker = () => (
+    <View style={{ height: 300 }}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{
+          paddingVertical: 20,
+        }}
+      >
+        {MONTHS.map((month, index) => (
+          <TouchableOpacity
+            key={month}
+            onPress={() => handleMonthSelect(index)}
+            style={{
+              paddingVertical: 16,
+              paddingHorizontal: 20,
+              borderRadius: CORNERS,
+              backgroundColor:
+                index === calendarData.month ? primaryColor : 'transparent',
+              marginVertical: 2,
+              alignItems: 'center',
+            }}
+          >
+            <Text
+              style={{
+                color:
+                  index === calendarData.month
+                    ? primaryForegroundColor
+                    : textColor,
+                fontWeight: index === calendarData.month ? '600' : '400',
+                fontSize: FONT_SIZE,
+              }}
+            >
+              {month}
+            </Text>
+          </TouchableOpacity>
+        ))}
+      </ScrollView>
+    </View>
+  );
+
+  const renderYearPicker = () => (
+    <View style={{ height: 300 }}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{
+          paddingVertical: 20,
+        }}
+      >
+        {YEARS.map((year) => (
+          <TouchableOpacity
+            key={year}
+            onPress={() => handleYearSelect(year)}
+            style={{
+              paddingVertical: 16,
+              paddingHorizontal: 20,
+              borderRadius: CORNERS,
+              backgroundColor:
+                year === calendarData.year ? primaryColor : 'transparent',
+              marginVertical: 2,
+              alignItems: 'center',
+            }}
+          >
+            <Text
+              style={{
+                color:
+                  year === calendarData.year
+                    ? primaryForegroundColor
+                    : textColor,
+                fontWeight: year === calendarData.year ? '600' : '400',
+                fontSize: FONT_SIZE,
+              }}
+            >
+              {year}
+            </Text>
+          </TouchableOpacity>
+        ))}
+      </ScrollView>
+    </View>
+  );
+
+  const getBottomSheetContent = () => {
+    if (showMonthPicker) return renderMonthPicker();
+    if (showYearPicker) return renderYearPicker();
+
+    if (mode === 'datetime') {
+      return viewMode === 'date' ? renderCalendar() : renderTimePicker();
+    }
+
+    if (mode === 'time') return renderTimePicker();
+    return renderCalendar();
+  };
+
+  const getBottomSheetTitle = () => {
+    if (showMonthPicker) return 'Select Month';
+    if (showYearPicker) return 'Select Year';
+
+    if (mode === 'datetime') {
+      return viewMode === 'date' ? 'Select Date' : 'Select Time';
+    }
+
+    if (mode === 'time') return 'Select Time';
+    return 'Select Date';
+  };
+
+  const handleOpenPicker = () => {
+    setCurrentDate(value || new Date());
+    setViewMode('date');
+    setShowMonthPicker(false);
+    setShowYearPicker(false);
+    open();
+  };
+
+  const triggerStyle: ViewStyle = {
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: variant === 'group' ? 0 : 16,
+    borderWidth: variant === 'group' ? 0 : 1,
+    borderColor: variant === 'outline' ? borderColor : cardColor,
+    borderRadius: CORNERS,
+    backgroundColor: variant === 'filled' ? cardColor : 'transparent',
+    minHeight: variant === 'group' ? 'auto' : HEIGHT,
+  };
+
+  return (
+    <>
+      <TouchableOpacity
+        style={[triggerStyle, disabled && { opacity: 0.5 }, style]}
+        onPress={handleOpenPicker}
+        disabled={disabled}
+      >
+        <View
+          style={{
+            flex: 1,
+            flexDirection: 'row',
+            alignItems: 'center',
+            gap: 8,
+          }}
+        >
+          <View
+            style={{
+              width: label ? 120 : 'auto',
+              flexDirection: 'row',
+              alignItems: 'center',
+              gap: 8,
+            }}
+          >
+            {mode === 'time' ? (
+              <Icon name={Clock} size={20} strokeWidth={1} />
+            ) : mode === 'datetime' ? (
+              <Icon name={CalendarClock} size={20} strokeWidth={1} />
+            ) : (
+              <Icon name={Calendar} size={20} strokeWidth={1} />
+            )}
+
+            {/* Label takes 1/3 of available width when present */}
+            {label && (
+              <View style={{ flex: 1 }}>
+                <Text
+                  variant='caption'
+                  numberOfLines={1}
+                  ellipsizeMode='tail'
+                  style={[
+                    {
+                      color: error ? errorColor : textMutedColor,
+                    },
+                    labelStyle,
+                  ]}
+                >
+                  {label}
+                </Text>
+              </View>
+            )}
+          </View>
+
+          {/* Text takes 2/3 of available width when label is present, or full width when no label */}
+          <View style={{ flex: 1 }}>
+            <Text
+              numberOfLines={1}
+              ellipsizeMode='tail'
+              style={{
+                color: value ? textColor : textMutedColor,
+                fontSize: FONT_SIZE,
+              }}
+            >
+              {formatDisplayValue()}
+            </Text>
+          </View>
+        </View>
+      </TouchableOpacity>
+
+      <BottomSheet
+        isVisible={isVisible}
+        onClose={() => {
+          close();
+          setShowMonthPicker(false);
+          setShowYearPicker(false);
+        }}
+        title={getBottomSheetTitle()}
+        snapPoints={[0.7]}
+      >
+        <View style={{ flex: 1 }}>
+          {getBottomSheetContent()}
+
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              paddingTop: 20,
+              gap: 12,
+            }}
+          >
+            <View
+              style={{
+                flexDirection: 'row',
+                gap: 8,
+              }}
+            >
+              <Button variant='outline' onPress={resetToToday}>
+                Today
+              </Button>
+
+              <Button
+                variant='outline'
+                onPress={() => {
+                  close();
+                  setShowMonthPicker(false);
+                  setShowYearPicker(false);
+                }}
+              >
+                Cancel
+              </Button>
+            </View>
+
+            {mode === 'datetime' && viewMode === 'date' ? (
+              <Button onPress={() => setViewMode('time')} style={{ flex: 1 }}>
+                Next
+              </Button>
+            ) : (
+              <Button onPress={handleConfirm} style={{ flex: 1 }}>
+                Done
+              </Button>
+            )}
+          </View>
+        </View>
+      </BottomSheet>
+    </>
+  );
+}

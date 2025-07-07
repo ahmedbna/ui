@@ -1,6 +1,7 @@
 import { Gallery, GalleryItem } from '@/components/ui/gallery';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
+import React from 'react';
 
 const sampleImages: GalleryItem[] = [
   {
