@@ -1,0 +1,145 @@
+---
+title: Progress
+description: A progress bar component to show completion status with optional interactivity.
+---
+
+<ComponentPreview
+  name='progress-demo'
+  description='A basic progress bar showing completion status'
+/>
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx bna-ui add progress
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install react-native-gesture-handler react-native-reanimated
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name='progress' title='components/ui/progress.tsx' />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { Progress } from '@/components/ui/progress';
+```
+
+```tsx
+<Progress value={65} />
+```
+
+## Examples
+
+### Default
+
+<ComponentPreview
+  name='progress-demo'
+  description='A basic progress bar showing completion status'
+/>
+
+### Interactive
+
+<ComponentPreview
+  name='progress-interactive'
+  description='An interactive progress bar that can be dragged or tapped'
+/>
+
+### Custom Heights
+
+<ComponentPreview
+  name='progress-heights'
+  description='Progress bars with different heights'
+/>
+
+### With Labels
+
+<ComponentPreview
+  name='progress-labels'
+  description='Progress bars with percentage labels and descriptions'
+/>
+
+### Animated
+
+<ComponentPreview
+  name='progress-animated'
+  description='Progress bars with smooth animations and transitions'
+/>
+
+### Media Player Style
+
+<ComponentPreview
+  name='progress-media'
+  description='Progress bars styled for media player controls'
+/>
+
+### Step Progress
+
+<ComponentPreview
+  name='progress-steps'
+  description='Multi-step progress indicators'
+/>
+
+## API Reference
+
+### Progress
+
+The main progress bar component.
+
+| Prop            | Type                      | Default | Description                                                   |
+| --------------- | ------------------------- | ------- | ------------------------------------------------------------- |
+| `value`         | `number`                  | -       | The progress value between 0-100.                             |
+| `style`         | `ViewStyle`               | -       | Additional styles to apply to the progress container.         |
+| `height`        | `number`                  | `4`     | The height of the progress bar in pixels.                     |
+| `onValueChange` | `(value: number) => void` | -       | Callback fired when the progress value changes (interactive). |
+| `onSeekStart`   | `() => void`              | -       | Callback fired when seeking starts (interactive).             |
+| `onSeekEnd`     | `() => void`              | -       | Callback fired when seeking ends (interactive).               |
+| `interactive`   | `boolean`                 | `false` | Whether the progress bar can be interacted with (tap/drag).   |
+
+## Accessibility
+
+The Progress component is built with accessibility in mind:
+
+- Uses semantic structure for screen readers
+- Supports gesture-based interaction when interactive
+- Proper touch targets for interactive elements
+- Smooth animations with reduced motion support
+- Clear visual feedback for progress states
+
+## Interactive Features
+
+When `interactive` is set to `true`, the Progress component supports:
+
+- **Tap to seek**: Tap anywhere on the progress bar to jump to that position
+- **Drag to scrub**: Drag the progress indicator to scrub through values
+- **Smooth animations**: Animated transitions between values
+- **Callbacks**: Get notified when seeking starts, changes, or ends
+
+This makes it perfect for media players, volume controls, or any scenario where users need to adjust a value by interacting with the progress bar.

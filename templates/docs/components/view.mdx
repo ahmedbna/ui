@@ -1,0 +1,84 @@
+---
+title: View
+description: A foundational View component with transparent background and ref forwarding support.
+---
+
+<ComponentPreview
+  name='view-demo'
+  description='Basic view container with content'
+/>
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx bna-ui add view
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>This component uses React Native's built-in View.</Step>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name='view' title='components/ui/view.tsx' />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { View } from '@/components/ui/view';
+```
+
+```tsx
+<View style={{ padding: 16 }}>
+  <Text>Content inside view</Text>
+</View>
+```
+
+## Examples
+
+### Default
+
+<ComponentPreview
+  name='view-demo'
+  description='Basic view container with content'
+/>
+
+## API Reference
+
+### View
+
+A wrapper around React Native's View with consistent styling defaults and ref forwarding.
+
+| Prop       | Type                | Default                              | Description                              |
+| ---------- | ------------------- | ------------------------------------ | ---------------------------------------- |
+| `style`    | `ViewStyle`         | `{ backgroundColor: 'transparent' }` | Styles for the view container.           |
+| `children` | `ReactNode`         | -                                    | Content to display inside the view.      |
+| `ref`      | `React.Ref<RNView>` | -                                    | Ref to the underlying React Native View. |
+
+### Additional Props
+
+The View component accepts all props from React Native's `View` component.
+
+## Ref Forwarding
+
+The component uses `forwardRef` to provide access to the underlying View:

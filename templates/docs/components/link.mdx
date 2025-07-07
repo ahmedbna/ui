@@ -1,0 +1,185 @@
+---
+title: Link
+description: A navigation component that handles both internal and external links with customizable browser behavior.
+---
+
+<ComponentPreview
+  name='link-demo'
+  description='A basic link component with internal and external navigation'
+/>
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx bna-ui add link
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install expo-router expo-web-browser
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name='link' title='components/ui/link.tsx' />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { Link } from '@/components/ui/link';
+```
+
+```tsx
+<Link href='/profile'>Go to Profile</Link>
+```
+
+```tsx
+<Link href='https://example.com' browser='external'>
+  Open in Browser
+</Link>
+```
+
+## Examples
+
+### Default Internal Navigation
+
+<ComponentPreview
+  name='link-demo'
+  description='Basic internal navigation links'
+/>
+
+### External Links
+
+<ComponentPreview
+  name='link-external'
+  description='Links that open external URLs'
+/>
+
+### Browser Options
+
+<ComponentPreview
+  name='link-browser'
+  description='Links with different browser opening behaviors'
+/>
+
+### With Custom Children
+
+<ComponentPreview
+  name='link-custom'
+  description='Links with custom child components instead of text'
+/>
+
+### Different Link Types
+
+<ComponentPreview
+  name='link-types'
+  description='Various types of links including mailto and tel'
+/>
+
+### Styled Links
+
+<ComponentPreview
+  name='link-styled'
+  description='Links with custom styling and variants'
+/>
+
+### Button-Style Links
+
+<ComponentPreview
+  name='link-buttons'
+  description='Links styled as buttons for navigation'
+/>
+
+## API Reference
+
+### Link
+
+The main link component that handles navigation and external URL opening.
+
+| Prop       | Type                     | Default    | Description                                                        |
+| ---------- | ------------------------ | ---------- | ------------------------------------------------------------------ |
+| `href`     | `Href`                   | -          | The destination URL or route. Can be string or route object.       |
+| `browser`  | `'in-app' \| 'external'` | `'in-app'` | How external links should open (in-app browser vs system browser). |
+| `children` | `ReactNode`              | -          | The content of the link. Can be text or custom components.         |
+
+All other props from `expo-router`'s `Link` component are also supported.
+
+### Href Types
+
+The `href` prop accepts the following formats:
+
+- **Internal routes**: `"/profile"`, `"/settings"`, `{ pathname: "/user", params: { id: "123" } }`
+- **External URLs**: `"https://example.com"`, `"http://example.com"`
+- **Email links**: `"mailto:user@example.com"`
+- **Phone links**: `"tel:+1234567890"`
+
+## Browser Behavior
+
+### In-App Browser (Default)
+
+When `browser="in-app"` (default), external links open in an in-app browser:
+
+- **Mobile**: Uses `expo-web-browser` for a seamless in-app experience
+- **Web**: Opens in a new tab
+
+### External Browser
+
+When `browser="external"`, external links open in the system browser:
+
+- **Mobile**: Uses the device's default browser app
+- **Web**: Opens in a new tab
+
+## Accessibility
+
+The Link component maintains accessibility features:
+
+- Proper semantic link structure for screen readers
+- Keyboard navigation support
+- Focus management
+- ARIA attributes when using custom children
+- Text decoration for visual link indication
+
+## Platform Considerations
+
+### React Native
+
+- Internal navigation uses Expo Router's navigation system
+- External links use either `expo-web-browser` or `Linking` API
+- Haptic feedback can be added through custom styling
+
+### Web
+
+- Internal navigation uses client-side routing
+- External links open in new tabs
+- Standard web link behavior and styling apply
+
+## Best Practices
+
+1. **Use descriptive link text** that clearly indicates the destination
+2. **Choose appropriate browser behavior** based on user context
+3. **Test on both platforms** to ensure consistent behavior
+4. **Consider loading states** for external links that might take time to open
+5. **Use custom children sparingly** - text links are more accessible

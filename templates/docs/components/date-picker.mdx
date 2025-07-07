@@ -1,0 +1,205 @@
+---
+title: Date Picker
+description: A customizable date and time picker component with bottom sheet UI.
+---
+
+<ComponentPreview
+  name='date-picker-demo'
+  description='A basic date picker with calendar view'
+/>
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx bna-ui add date-picker
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install lucide-react-native
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name='date-picker' title='components/ui/date-picker.tsx' />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { DatePicker } from '@/components/ui/date-picker';
+```
+
+```tsx
+const [selectedDate, setSelectedDate] = useState<Date | undefined>();
+
+<DatePicker
+  label='Select Date'
+  value={selectedDate}
+  onChange={setSelectedDate}
+  placeholder='Choose a date'
+/>;
+```
+
+## Examples
+
+### Default
+
+<ComponentPreview
+  name='date-picker-demo'
+  description='A basic date picker with calendar view'
+/>
+
+### Time Picker
+
+<ComponentPreview
+  name='date-picker-time'
+  description='A time picker with hour and minute selection'
+/>
+
+### Date Time Picker
+
+<ComponentPreview
+  name='date-picker-datetime'
+  description='A combined date and time picker'
+/>
+
+### With Constraints
+
+<ComponentPreview
+  name='date-picker-constraints'
+  description='Date picker with minimum and maximum date limits'
+/>
+
+### Different Variants
+
+<ComponentPreview
+  name='date-picker-variants'
+  description='Date pickers with different styling variants'
+/>
+
+### Time Formats
+
+<ComponentPreview
+  name='date-picker-formats'
+  description='Time picker with 12-hour and 24-hour formats'
+/>
+
+### Form Integration
+
+<ComponentPreview
+  name='date-picker-form'
+  description='Date picker integrated within a form with validation'
+/>
+
+## API Reference
+
+### DatePicker
+
+The main date picker component that handles date and time selection.
+
+| Prop          | Type                               | Default         | Description                                      |
+| ------------- | ---------------------------------- | --------------- | ------------------------------------------------ |
+| `label`       | `string`                           | -               | Label text displayed above the picker.           |
+| `value`       | `Date`                             | -               | The currently selected date.                     |
+| `onChange`    | `(date: Date) => void`             | -               | Callback fired when the date changes.            |
+| `mode`        | `'date' \| 'time' \| 'datetime'`   | `'date'`        | The picker mode - date only, time only, or both. |
+| `placeholder` | `string`                           | `'Select date'` | Placeholder text when no date is selected.       |
+| `disabled`    | `boolean`                          | `false`         | Whether the picker is disabled.                  |
+| `error`       | `string`                           | -               | Error message to display.                        |
+| `minimumDate` | `Date`                             | -               | The minimum selectable date.                     |
+| `maximumDate` | `Date`                             | -               | The maximum selectable date.                     |
+| `timeFormat`  | `'12' \| '24'`                     | `'24'`          | Time format for time and datetime modes.         |
+| `variant`     | `'filled' \| 'outline' \| 'group'` | `'filled'`      | Visual variant of the picker trigger.            |
+| `style`       | `ViewStyle`                        | -               | Additional styles for the trigger container.     |
+| `labelStyle`  | `TextStyle`                        | -               | Additional styles for the label text.            |
+| `errorStyle`  | `TextStyle`                        | -               | Additional styles for the error text.            |
+
+## Features
+
+### Multiple Modes
+
+- **Date Mode**: Calendar-based date selection
+- **Time Mode**: Hour and minute selection with scrollable lists
+- **DateTime Mode**: Combined date and time selection with step-by-step flow
+
+### Flexible Time Formats
+
+- **24-hour format**: Standard 24-hour time display (00:00 - 23:59)
+- **12-hour format**: AM/PM time display with period selector
+
+### Date Constraints
+
+- Set minimum and maximum selectable dates
+- Automatic disabling of invalid dates
+- Visual feedback for disabled dates
+
+### Customizable Variants
+
+- **Filled**: Default filled background style
+- **Outline**: Border-only style with transparent background
+- **Group**: Minimal style for use within form groups
+
+### Accessibility Features
+
+- Full screen reader support
+- Keyboard navigation compatibility
+- High contrast mode support
+- Proper focus management
+
+### Navigation
+
+- Month/year quick selection
+- Smooth navigation between months
+- Today button for quick access to current date
+- Intuitive calendar grid layout
+
+## Accessibility
+
+The DatePicker component follows accessibility best practices:
+
+- Uses semantic markup for screen readers
+- Provides proper ARIA labels and descriptions
+- Supports keyboard navigation
+- Maintains focus management in the bottom sheet
+- Offers high contrast support for visually impaired users
+- Includes proper error announcement
+
+## Customization
+
+The component uses your theme colors and can be customized through:
+
+- Theme color overrides
+- Custom styling props
+- Variant selection
+- Label and error styling
+- Container styling
+
+## Performance
+
+- Optimized calendar calculations with useMemo
+- Efficient date validation
+- Minimal re-renders with proper callback optimization
+- Smooth scrolling in time pickers

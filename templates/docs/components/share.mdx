@@ -1,0 +1,224 @@
+---
+title: Share
+description: A button component for sharing content across platforms with native share functionality.
+---
+
+<ComponentPreview
+  name='share-demo'
+  description='A basic share button with text and URL sharing'
+/>
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx bna-ui add share
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install lucide-react-native
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name='share' title='components/ui/share.tsx' />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { ShareButton, useShare } from '@/components/ui/share';
+```
+
+```tsx
+<ShareButton
+  content={{
+    message: 'Check out this amazing app!',
+    url: 'https://example.com',
+  }}
+>
+  Share
+</ShareButton>
+```
+
+## Examples
+
+### Default
+
+<ComponentPreview
+  name='share-demo'
+  description='A basic share button with text and URL sharing'
+/>
+
+### Share Variants
+
+<ComponentPreview
+  name='share-variants'
+  description='Share buttons with different visual variants'
+/>
+
+### Share Sizes
+
+<ComponentPreview
+  name='share-sizes'
+  description='Share buttons in different sizes'
+/>
+
+### URL Only
+
+<ComponentPreview
+  name='share-url-only'
+  description='Share button for sharing URLs without additional text'
+/>
+
+### Custom Content
+
+<ComponentPreview
+  name='share-custom-content'
+  description='Share button with custom title, subject, and content'
+/>
+
+### Icon Only
+
+<ComponentPreview
+  name='share-icon-only'
+  description='Compact share button with icon only'
+/>
+
+### With Callbacks
+
+<ComponentPreview
+  name='share-callbacks'
+  description='Share button with success, error, and dismiss callbacks'
+/>
+
+### Hook Usage
+
+<ComponentPreview
+  name='share-hook'
+  description='Using the useShare hook for programmatic sharing'
+/>
+
+## API Reference
+
+### ShareButton
+
+The main share button component that handles native sharing functionality.
+
+| Prop              | Type                                  | Default     | Description                                       |
+| ----------------- | ------------------------------------- | ----------- | ------------------------------------------------- |
+| `content`         | `ShareContent`                        | -           | **Required.** The content to be shared.           |
+| `options`         | `ShareButtonOptions`                  | -           | Platform-specific sharing options.                |
+| `children`        | `ReactNode`                           | -           | Button content. Shows share icon if not provided. |
+| `variant`         | `ButtonVariant`                       | `'default'` | Button visual variant.                            |
+| `size`            | `'default' \| 'sm' \| 'lg' \| 'icon'` | `'default'` | Button size.                                      |
+| `disabled`        | `boolean`                             | `false`     | Whether the button is disabled.                   |
+| `loading`         | `boolean`                             | `false`     | Whether the button is in loading state.           |
+| `onShareStart`    | `() => void`                          | -           | Callback when sharing starts.                     |
+| `onShareSuccess`  | `(activityType?: string) => void`     | -           | Callback when sharing succeeds.                   |
+| `onShareError`    | `(error: Error) => void`              | -           | Callback when sharing fails.                      |
+| `onShareDismiss`  | `() => void`                          | -           | Callback when share dialog is dismissed.          |
+| `showIcon`        | `boolean`                             | `true`      | Whether to show the share icon.                   |
+| `iconSize`        | `number`                              | `18`        | Size of the share icon.                           |
+| `validateContent` | `boolean`                             | `true`      | Whether to validate content before sharing.       |
+| `testID`          | `string`                              | -           | Test identifier for testing.                      |
+
+### ShareContent
+
+The content object that defines what will be shared.
+
+| Property  | Type     | Description                                    |
+| --------- | -------- | ---------------------------------------------- |
+| `message` | `string` | The text message to share.                     |
+| `url`     | `string` | The URL to share.                              |
+| `title`   | `string` | The title for the shared content (iOS only).   |
+| `subject` | `string` | The subject line for email sharing (iOS only). |
+
+### ShareButtonOptions
+
+Platform-specific options for customizing the share dialog.
+
+| Property                | Type       | Description                                        |
+| ----------------------- | ---------- | -------------------------------------------------- |
+| `dialogTitle`           | `string`   | Title for the share dialog (Android only).         |
+| `excludedActivityTypes` | `string[]` | Activity types to exclude from sharing (iOS only). |
+| `tintColor`             | `string`   | Tint color for the share sheet (iOS only).         |
+| `anchor`                | `number`   | Anchor point for iPad popover (iOS only).          |
+
+### useShare Hook
+
+A hook that provides programmatic sharing functions without UI components.
+
+#### Returns
+
+| Function       | Type                                                                            | Description                        |
+| -------------- | ------------------------------------------------------------------------------- | ---------------------------------- |
+| `shareText`    | `(text: string, options?: ShareButtonOptions) => Promise<any>`                  | Share plain text.                  |
+| `shareUrl`     | `(url: string, message?: string, options?: ShareButtonOptions) => Promise<any>` | Share a URL with optional message. |
+| `shareContent` | `(content: ShareContent, options?: ShareButtonOptions) => Promise<any>`         | Share complex content object.      |
+
+## Platform Differences
+
+### iOS
+
+- Supports `title` and `subject` properties in share content
+- Supports `excludedActivityTypes`, `tintColor`, and `anchor` options
+- Share sheet appears as a modal from the bottom
+- On iPad, can be anchored to a specific point
+
+### Android
+
+- Only supports `message` and `url` in share content
+- Supports `dialogTitle` option for customizing dialog title
+- Share dialog appears as a bottom sheet with available apps
+
+## Error Handling
+
+The ShareButton component includes comprehensive error handling:
+
+- **Invalid Content**: Validates that either `message` or `url` is provided
+- **Network Errors**: Handles network-related sharing failures
+- **Permission Errors**: Handles cases where sharing permissions are denied
+- **Unsupported Platform**: Handles devices that don't support sharing
+
+Error messages are user-friendly and provide actionable feedback.
+
+## Accessibility
+
+The Share component is built with accessibility in mind:
+
+- Uses semantic button structure for screen readers
+- Provides appropriate ARIA labels and roles
+- Supports dynamic text sizing
+- Maintains proper focus management
+- Includes loading states for better user feedback
+
+## Best Practices
+
+1. **Content Validation**: Always provide either a `message` or `url` in your share content
+2. **Error Handling**: Implement `onShareError` callback to handle sharing failures gracefully
+3. **Loading States**: Use the `loading` prop during async operations before sharing
+4. **Platform Testing**: Test sharing functionality on both iOS and Android devices
+5. **Fallback Options**: Consider providing alternative sharing methods if native sharing fails

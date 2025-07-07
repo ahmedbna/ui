@@ -1,0 +1,216 @@
+---
+title: Video
+description: A video player component with custom controls, gestures, and subtitle support.
+---
+
+<ComponentPreview
+  name='video-demo'
+  description='A basic video player with custom controls'
+/>
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx bna-ui add video
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install expo-video lucide-react-native
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name='video' title='components/ui/video.tsx' />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { Video } from '@/components/ui/video';
+```
+
+```tsx
+<Video
+  source={{ uri: 'https://example.com/video.mp4' }}
+  autoPlay={true}
+  showControls={true}
+/>
+```
+
+## Examples
+
+### Default
+
+<ComponentPreview
+  name='video-demo'
+  description='A basic video player with custom controls'
+/>
+
+### Native Controls
+
+<ComponentPreview
+  name='video-native-controls'
+  description='Video player using native system controls'
+/>
+
+### Custom Controls
+
+<ComponentPreview
+  name='video-custom-controls'
+  description='Video player with custom control interface'
+/>
+
+### With Subtitles
+
+<ComponentPreview
+  name='video-subtitles'
+  description='Video player with subtitle support'
+/>
+
+### Autoplay & Loop
+
+<ComponentPreview
+  name='video-autoplay-loop'
+  description='Video that automatically plays and loops'
+/>
+
+### Different Sources
+
+<ComponentPreview
+  name='video-sources'
+  description='Video players with different source types'
+/>
+
+### Gesture Controls
+
+<ComponentPreview
+  name='video-gestures'
+  description='Video player with tap-to-play and seek gestures'
+/>
+
+### Content Fit Options
+
+<ComponentPreview
+  name='video-content-fit'
+  description='Videos with different content fitting options'
+/>
+
+## API Reference
+
+### Video
+
+The main video player component with customizable controls and features.
+
+| Prop                     | Type                              | Default   | Description                                       |
+| ------------------------ | --------------------------------- | --------- | ------------------------------------------------- |
+| `source`                 | `VideoSource`                     | -         | The video source (required).                      |
+| `style`                  | `ViewStyle`                       | -         | Additional styles for the video container.        |
+| `seekBy`                 | `number`                          | `2`       | Seconds to seek by on double tap.                 |
+| `autoPlay`               | `boolean`                         | `false`   | Whether to auto-play the video.                   |
+| `loop`                   | `boolean`                         | `false`   | Whether to loop the video.                        |
+| `muted`                  | `boolean`                         | `false`   | Whether to start muted.                           |
+| `nativeControls`         | `boolean`                         | `false`   | Use native video controls instead of custom ones. |
+| `showControls`           | `boolean`                         | `true`    | Whether to show custom controls.                  |
+| `allowsFullscreen`       | `boolean`                         | `true`    | Allow fullscreen mode.                            |
+| `allowsPictureInPicture` | `boolean`                         | `true`    | Allow picture-in-picture mode.                    |
+| `contentFit`             | `'contain' \| 'cover' \| 'fill'`  | `'cover'` | How the video should fit within its container.    |
+| `onLoad`                 | `() => void`                      | -         | Callback when video is loaded.                    |
+| `onError`                | `(error: any) => void`            | -         | Callback when an error occurs.                    |
+| `onPlaybackStatusUpdate` | `(status: any) => void`           | -         | Callback for playback status updates.             |
+| `onFullscreenUpdate`     | `(isFullscreen: boolean) => void` | -         | Callback when fullscreen state changes.           |
+| `subtitles`              | `Array<Subtitle>`                 | `[]`      | Array of subtitle objects.                        |
+
+### VideoRef
+
+Reference methods available on the Video component.
+
+| Method           | Type                        | Description                              |
+| ---------------- | --------------------------- | ---------------------------------------- |
+| `play`           | `() => void`                | Start playing the video.                 |
+| `pause`          | `() => void`                | Pause the video.                         |
+| `seekTo`         | `(seconds: number) => void` | Seek to a specific time in seconds.      |
+| `setVolume`      | `(volume: number) => void`  | Set the volume (0-1).                    |
+| `getCurrentTime` | `() => number`              | Get the current playback time.           |
+| `getDuration`    | `() => number`              | Get the total duration of the video.     |
+| `isPlaying`      | `() => boolean`             | Check if the video is currently playing. |
+| `isMuted`        | `() => boolean`             | Check if the video is muted.             |
+
+### Subtitle
+
+Subtitle object structure for the subtitles prop.
+
+| Property | Type     | Description                             |
+| -------- | -------- | --------------------------------------- |
+| `start`  | `number` | Start time in seconds for the subtitle. |
+| `end`    | `number` | End time in seconds for the subtitle.   |
+| `text`   | `string` | The subtitle text to display.           |
+
+## Gestures
+
+The Video component supports several gesture interactions:
+
+- **Single tap (center)**: Play/pause toggle
+- **Single tap (left side)**: Seek backward by `seekBy` seconds
+- **Single tap (right side)**: Seek forward by `seekBy` seconds
+- **Progress bar tap**: Seek to specific position
+
+## Features
+
+### Custom Controls
+
+- Play/pause button with visual feedback
+- Progress bar with seek functionality
+- Time display (current/total)
+- Mute/unmute toggle
+- Auto-hide controls after 3 seconds
+
+### Subtitle Support
+
+- Display subtitles based on current playback time
+- Customizable subtitle styling
+- Automatic subtitle timing
+
+### Error Handling
+
+- Graceful error handling with fallbacks
+- Console logging for debugging
+- Error callbacks for custom handling
+
+### Accessibility
+
+The Video component is built with accessibility in mind:
+
+- Touch targets meet minimum size requirements
+- Clear visual feedback for interactions
+- Subtitle support for hearing accessibility
+- Proper semantic structure for screen readers
+
+## Performance Considerations
+
+- Efficient playback status updates (100ms intervals)
+- Optimized gesture handling
+- Memory cleanup on component unmount
+- Smooth animations with native driver when possible

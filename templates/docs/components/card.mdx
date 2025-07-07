@@ -1,0 +1,221 @@
+---
+title: Card
+description: Displays a card with header, content, and footer.
+---
+
+<ComponentPreview
+  name='card-demo'
+  description='A complete card with header, content, and footer sections'
+/>
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx bna-ui add card
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name='card' title='components/ui/card.tsx' />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+```
+
+```tsx
+<Card>
+  <CardHeader>
+    <CardTitle>Card Title</CardTitle>
+    <CardDescription>Card Description</CardDescription>
+  </CardHeader>
+  <CardContent>
+    <p>Card Content</p>
+  </CardContent>
+  <CardFooter>
+    <p>Card Footer</p>
+  </CardFooter>
+</Card>
+```
+
+## Examples
+
+### Default
+
+<ComponentPreview
+  name='card-demo'
+  description='A complete card with header, content, and footer sections'
+/>
+
+### Simple
+
+<ComponentPreview
+  name='card-simple'
+  description='A minimal card with just content'
+/>
+
+### With Image
+
+<ComponentPreview
+  name='card-with-image'
+  description='Card featuring an image with content below'
+/>
+
+### With Form
+
+<ComponentPreview
+  name='card-with-form'
+  description='Interactive card containing a login form'
+/>
+
+### Statistics
+
+<ComponentPreview
+  name='card-stats'
+  description='Grid of cards displaying key metrics and statistics'
+/>
+
+### Notification
+
+<ComponentPreview
+  name='card-notification'
+  description='Card designed for displaying notifications with actions'
+/>
+
+### Pricing
+
+<ComponentPreview
+  name='card-pricing'
+  description='Professional pricing cards with feature lists and CTAs'
+/>
+
+## API Reference
+
+### Card
+
+The main container component that wraps all card content.
+
+| Prop       | Type        | Default | Description                                         |
+| ---------- | ----------- | ------- | --------------------------------------------------- |
+| `children` | `ReactNode` | -       | The card content (typically header/content/footer). |
+| `style`    | `ViewStyle` | -       | Additional styles to apply to the card container.   |
+
+### CardHeader
+
+Container for the card's header content, typically containing title and description.
+
+| Prop       | Type        | Default | Description                                               |
+| ---------- | ----------- | ------- | --------------------------------------------------------- |
+| `children` | `ReactNode` | -       | The header content (typically CardTitle/CardDescription). |
+| `style`    | `ViewStyle` | -       | Additional styles to apply to the header container.       |
+
+### CardTitle
+
+The main title text of the card.
+
+| Prop       | Type        | Default | Description                                   |
+| ---------- | ----------- | ------- | --------------------------------------------- |
+| `children` | `ReactNode` | -       | The title text content.                       |
+| `style`    | `TextStyle` | -       | Additional styles to apply to the title text. |
+
+### CardDescription
+
+Subtitle or description text for the card.
+
+| Prop       | Type        | Default | Description                                         |
+| ---------- | ----------- | ------- | --------------------------------------------------- |
+| `children` | `ReactNode` | -       | The description text content.                       |
+| `style`    | `TextStyle` | -       | Additional styles to apply to the description text. |
+
+### CardContent
+
+Container for the main content of the card.
+
+| Prop       | Type        | Default | Description                                          |
+| ---------- | ----------- | ------- | ---------------------------------------------------- |
+| `children` | `ReactNode` | -       | The main content of the card.                        |
+| `style`    | `ViewStyle` | -       | Additional styles to apply to the content container. |
+
+### CardFooter
+
+Container for the card's footer content, typically containing actions or additional info.
+
+| Prop       | Type        | Default | Description                                         |
+| ---------- | ----------- | ------- | --------------------------------------------------- |
+| `children` | `ReactNode` | -       | The footer content (typically buttons or actions).  |
+| `style`    | `ViewStyle` | -       | Additional styles to apply to the footer container. |
+
+## Design Guidelines
+
+### Visual Hierarchy
+
+Cards help establish clear visual hierarchy in your interface:
+
+- Use **CardTitle** for the primary heading (larger, bolder text)
+- Use **CardDescription** for supporting information (smaller, muted text)
+- Organize content logically from header to content to footer
+
+### Layout Patterns
+
+Cards work well in various layout patterns:
+
+- **Single cards** for focused content or forms
+- **Card grids** for displaying multiple related items
+- **Card lists** for sequential content like notifications
+- **Dashboard cards** for metrics and statistics
+
+### Content Guidelines
+
+- Keep titles concise and descriptive
+- Use descriptions to provide context without overwhelming
+- Place primary actions in the footer
+- Ensure adequate spacing between sections
+
+### Accessibility
+
+The Card component follows accessibility best practices:
+
+- Semantic structure for screen readers
+- Proper text hierarchy with heading roles
+- Adequate contrast ratios for all text
+- Touch-friendly interactive elements
+- Keyboard navigation support
+
+### Responsive Design
+
+Cards automatically adapt to different screen sizes:
+
+- Flexible width that responds to container constraints
+- Proper text scaling on different devices
+- Consistent spacing across all screen sizes
+- Touch-optimized interactive elements

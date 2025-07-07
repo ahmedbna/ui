@@ -1,0 +1,193 @@
+---
+title: MediaPicker
+description: A versatile component for selecting images and videos from device gallery or camera with preview capabilities.
+---
+
+<ComponentPreview
+  name='media-picker-demo'
+  description='A basic media picker with image and video selection'
+/>
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx bna-ui add media-picker
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install expo-image expo-image-picker expo-media-library lucide-react-native
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name='media-picker' title='components/ui/media-picker.tsx' />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { MediaPicker } from '@/components/ui/media-picker';
+```
+
+```tsx
+<MediaPicker
+  mediaType='all'
+  multiple={true}
+  maxSelection={5}
+  onSelectionChange={(assets) => console.log(assets)}
+/>
+```
+
+## Examples
+
+### Default
+
+<ComponentPreview
+  name='media-picker-demo'
+  description='A basic media picker with image and video selection'
+/>
+
+### Image Only
+
+<ComponentPreview
+  name='media-picker-images'
+  description='Media picker configured for images only'
+/>
+
+### Video Only
+
+<ComponentPreview
+  name='media-picker-videos'
+  description='Media picker configured for videos only'
+/>
+
+### Multiple Selection
+
+<ComponentPreview
+  name='media-picker-multiple'
+  description='Media picker with multiple selection enabled'
+/>
+
+### Custom Gallery
+
+<ComponentPreview
+  name='media-picker-gallery'
+  description='Media picker with custom gallery modal'
+/>
+
+### With Preview
+
+<ComponentPreview
+  name='media-picker-preview'
+  description='Media picker showing selected media previews'
+/>
+
+### Quality Settings
+
+<ComponentPreview
+  name='media-picker-quality'
+  description='Media picker with different quality settings'
+/>
+
+## API Reference
+
+### MediaPicker
+
+The main component for selecting media from device gallery or camera.
+
+| Prop                | Type                             | Default  | Description                                                   |
+| ------------------- | -------------------------------- | -------- | ------------------------------------------------------------- |
+| `children`          | `ReactNode`                      | -        | Custom trigger element. If not provided, uses default button. |
+| `style`             | `ViewStyle`                      | -        | Additional styles to apply to the container.                  |
+| `size`              | `ButtonSize`                     | -        | Size of the default button trigger.                           |
+| `variant`           | `ButtonVariant`                  | -        | Variant of the default button trigger.                        |
+| `icon`              | `ComponentType<LucideProps>`     | -        | Icon for the default button trigger.                          |
+| `disabled`          | `boolean`                        | `false`  | Whether the media picker is disabled.                         |
+| `mediaType`         | `'image' \| 'video' \| 'all'`    | `'all'`  | Type of media to allow selection.                             |
+| `multiple`          | `boolean`                        | `false`  | Whether to allow multiple selection.                          |
+| `maxSelection`      | `number`                         | `10`     | Maximum number of items that can be selected.                 |
+| `quality`           | `'low' \| 'medium' \| 'high'`    | `'high'` | Quality of selected media.                                    |
+| `buttonText`        | `string`                         | -        | Text for the default button trigger.                          |
+| `placeholder`       | `string`                         | -        | Placeholder text (currently unused).                          |
+| `gallery`           | `boolean`                        | `false`  | Whether to show custom gallery modal.                         |
+| `showPreview`       | `boolean`                        | `true`   | Whether to show preview of selected media.                    |
+| `previewSize`       | `number`                         | `80`     | Size of preview thumbnails in pixels.                         |
+| `selectedAssets`    | `MediaAsset[]`                   | `[]`     | Controlled selected assets.                                   |
+| `onSelectionChange` | `(assets: MediaAsset[]) => void` | -        | Callback when selection changes.                              |
+| `onError`           | `(error: string) => void`        | -        | Callback when an error occurs.                                |
+
+### MediaAsset
+
+The interface for media assets returned by the picker.
+
+| Property   | Type                 | Description                      |
+| ---------- | -------------------- | -------------------------------- |
+| `id`       | `string`             | Unique identifier for the asset. |
+| `uri`      | `string`             | Local URI of the selected media. |
+| `type`     | `'image' \| 'video'` | Type of the media asset.         |
+| `width`    | `number?`            | Width of the media in pixels.    |
+| `height`   | `number?`            | Height of the media in pixels.   |
+| `duration` | `number?`            | Duration in seconds for videos.  |
+| `filename` | `string?`            | Original filename of the media.  |
+| `fileSize` | `number?`            | File size in bytes.              |
+
+## Permissions
+
+The MediaPicker component requires the following permissions:
+
+- **iOS**: `NSPhotoLibraryUsageDescription` in Info.plist
+- **Android**: `READ_EXTERNAL_STORAGE` permission
+
+The component automatically requests these permissions when first used.
+
+## Features
+
+- **Multiple Media Types**: Support for images, videos, or both
+- **Gallery Integration**: Custom gallery modal or system picker
+- **Preview Support**: Show thumbnails of selected media
+- **Quality Control**: Adjustable media quality settings
+- **Batch Selection**: Select multiple items with configurable limits
+- **Error Handling**: Comprehensive error handling and callbacks
+- **Accessibility**: Built-in accessibility features
+- **Theme Integration**: Respects your app's theme colors
+
+## Accessibility
+
+The MediaPicker component is built with accessibility in mind:
+
+- Proper labeling for screen readers
+- Keyboard navigation support
+- High contrast support for buttons and indicators
+- Semantic structure for better navigation
+- Error announcements for screen readers
+
+## Notes
+
+- The component uses `expo-image-picker` and `expo-media-library` for media selection
+- Permissions are automatically requested when needed
+- Selected assets are stored in memory during the session
+- Preview thumbnails are generated automatically
+- Video duration and file size information is included when available

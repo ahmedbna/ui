@@ -1,0 +1,220 @@
+---
+title: Gallery
+description: A responsive image gallery component with fullscreen viewing, zoom, and gesture support.
+---
+
+<ComponentPreview
+  name='gallery-demo'
+  description='A basic image gallery with grid layout and fullscreen viewing'
+/>
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx bna-ui add gallery
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install expo-image react-native-gesture-handler react-native-reanimated lucide-react-native
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name='gallery' title='components/ui/gallery.tsx' />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+<Step>
+  Make sure to configure react-native-gesture-handler and
+  react-native-reanimated in your app according to their installation guides.
+</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { Gallery } from '@/components/ui/gallery';
+```
+
+```tsx
+const galleryItems = [
+  {
+    id: '1',
+    uri: 'https://picsum.photos/400/400?random=1',
+    title: 'Beautiful Landscape',
+    description: 'A stunning view of mountains and valleys',
+  },
+  {
+    id: '2',
+    uri: 'https://picsum.photos/400/400?random=2',
+    title: 'City Skyline',
+    description: 'Urban architecture at its finest',
+  },
+  // ... more items
+];
+
+<Gallery items={galleryItems} />;
+```
+
+## Examples
+
+### Default
+
+<ComponentPreview
+  name='gallery-demo'
+  description='A basic image gallery with grid layout and fullscreen viewing'
+/>
+
+### Custom Grid
+
+<ComponentPreview
+  name='gallery-grid'
+  description='Gallery with custom columns, spacing, and aspect ratio'
+/>
+
+### With Titles and Descriptions
+
+<ComponentPreview
+  name='gallery-info'
+  description='Gallery displaying image titles and descriptions'
+/>
+
+### Different Layouts
+
+<ComponentPreview
+  name='gallery-layouts'
+  description='Various gallery layouts and configurations'
+/>
+
+### With Controls
+
+<ComponentPreview name='gallery-controls' description='Images with controls' />
+
+### With Overlays
+
+<ComponentPreview name='gallery-overlay' description='Images with overlay' />
+
+## API Reference
+
+### Gallery
+
+The main gallery component that displays images in a grid layout with fullscreen viewing capabilities.
+
+| Prop                  | Type                                                    | Default | Description                                    |
+| --------------------- | ------------------------------------------------------- | ------- | ---------------------------------------------- |
+| `items`               | `GalleryItem[]`                                         | -       | Array of gallery items to display.             |
+| `columns`             | `number`                                                | `4`     | Number of columns in the grid layout.          |
+| `spacing`             | `number`                                                | `0`     | Spacing between grid items in pixels.          |
+| `borderRadius`        | `number`                                                | `0`     | Border radius for gallery items.               |
+| `aspectRatio`         | `number`                                                | `1`     | Aspect ratio for gallery items (width/height). |
+| `showPages`           | `boolean`                                               | `false` | Show page indicator in fullscreen mode.        |
+| `showTitles`          | `boolean`                                               | `false` | Show image titles in grid view.                |
+| `showDescriptions`    | `boolean`                                               | `false` | Show image descriptions in grid view.          |
+| `enableFullscreen`    | `boolean`                                               | `true`  | Enable fullscreen viewing mode.                |
+| `enableZoom`          | `boolean`                                               | `true`  | Enable zoom functionality in fullscreen mode.  |
+| `enableDownload`      | `boolean`                                               | `false` | Show download button in fullscreen mode.       |
+| `enableShare`         | `boolean`                                               | `false` | Show share button in fullscreen mode.          |
+| `onItemPress`         | `(item: GalleryItem, index: number) => void`            | -       | Custom handler for item press events.          |
+| `onDownload`          | `(item: GalleryItem) => void`                           | -       | Handler for download button press.             |
+| `onShare`             | `(item: GalleryItem) => void`                           | -       | Handler for share button press.                |
+| `renderCustomOverlay` | `(item: GalleryItem, index: number) => React.ReactNode` | -       | Custom overlay renderer for grid items.        |
+
+### GalleryItem
+
+Interface for gallery items.
+
+| Property      | Type     | Required | Description                                   |
+| ------------- | -------- | -------- | --------------------------------------------- |
+| `id`          | `string` | Yes      | Unique identifier for the gallery item.       |
+| `uri`         | `string` | Yes      | Image URI for the full-size image.            |
+| `title`       | `string` | No       | Optional title for the image.                 |
+| `description` | `string` | No       | Optional description for the image.           |
+| `thumbnail`   | `string` | No       | Optional thumbnail URI (falls back to `uri`). |
+
+## Features
+
+### Gesture Support
+
+- **Pinch to zoom**: Zoom in and out on images in fullscreen mode
+- **Double tap to zoom**: Quick zoom to 2.5x scale or reset to original size
+- **Pan when zoomed**: Drag zoomed images to view different areas
+- **Swipe navigation**: Horizontal swipe to navigate between images
+
+### Fullscreen Mode
+
+- Immersive fullscreen viewing experience
+- Thumbnail navigation bar at the bottom
+- Top controls for sharing, downloading, and closing
+- Page indicators showing current position
+
+### Responsive Design
+
+- Automatically adjusts to screen size
+- Configurable grid columns and spacing
+- Maintains aspect ratios across different devices
+- Smooth animations and transitions
+
+### Performance Optimizations
+
+- Lazy loading of off-screen images
+- Efficient gesture handling with React Native Reanimated
+- Optimized FlatList rendering for large galleries
+- Thumbnail support for faster grid loading
+
+## Accessibility
+
+The Gallery component includes accessibility features:
+
+- Proper keyboard navigation support
+- Screen reader compatibility
+- High contrast support for UI elements
+- Semantic structure for assistive technologies
+- Touch target sizes meet accessibility guidelines
+
+## Troubleshooting
+
+### Common Issues
+
+**Gestures not working:**
+
+- Ensure `react-native-gesture-handler` is properly installed and configured
+- Make sure the component is wrapped in `GestureHandlerRootView`
+
+**Images not loading:**
+
+- Verify image URIs are accessible
+- Check network connectivity
+- Ensure proper CORS configuration for web images
+
+**Performance issues with large galleries:**
+
+- Consider implementing pagination
+- Use thumbnail images for grid view
+- Optimize image sizes and formats
+
+**Zoom not working properly:**
+
+- Verify `react-native-reanimated` is correctly set up
+- Check that `enableZoom` prop is set to `true`
+- Ensure proper gesture handler configuration

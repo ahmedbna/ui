@@ -1,0 +1,142 @@
+---
+title: Text
+description: A themed text component with multiple variants for consistent typography across your app.
+---
+
+<ComponentPreview
+  name='text-demo'
+  description='Basic text component showing different variants'
+/>
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx bna-ui add text
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install react-native
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name='text' title='components/ui/text.tsx' />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { Text } from '@/components/ui/text';
+```
+
+```tsx
+<Text variant="body">This is body text</Text>
+<Text variant="heading">This is a heading</Text>
+<Text variant="caption">This is caption text</Text>
+```
+
+## Examples
+
+### Default
+
+<ComponentPreview
+  name='text-demo'
+  description='Basic text component showing different variants'
+/>
+
+### Typography Scale
+
+<ComponentPreview
+  name='text-variants'
+  description='All text variants showing the typography hierarchy'
+/>
+
+### Custom Colors
+
+<ComponentPreview
+  name='text-colors'
+  description='Text with custom light and dark mode colors'
+/>
+
+## API Reference
+
+### Text
+
+A flexible text component that supports multiple variants and theming.
+
+| Prop         | Type                                                                  | Default  | Description                                      |
+| ------------ | --------------------------------------------------------------------- | -------- | ------------------------------------------------ |
+| `variant`    | `'body' \| 'title' \| 'subtitle' \| 'caption' \| 'heading' \| 'link'` | `'body'` | The text variant that determines styling.        |
+| `lightColor` | `string`                                                              | -        | Custom color for light theme.                    |
+| `darkColor`  | `string`                                                              | -        | Custom color for dark theme.                     |
+| `children`   | `ReactNode`                                                           | -        | The text content to display.                     |
+| `style`      | `TextStyle`                                                           | -        | Additional styles to apply to the text.          |
+| `...props`   | `TextProps`                                                           | -        | All other React Native Text props are supported. |
+
+## Variants
+
+### Heading
+
+Large, bold text for main headings (28px, weight 700).
+
+### Title
+
+Medium-large text for section titles (24px, weight 700).
+
+### Subtitle
+
+Medium text for subsections (19px, weight 600).
+
+### Body
+
+Standard text for content (default size, weight 400).
+
+### Caption
+
+Small, muted text for captions and secondary info (default size, weight 400, muted color).
+
+### Link
+
+Text styled as a clickable link (default size, weight 500, underlined).
+
+## Theming
+
+The Text component automatically adapts to your app's theme:
+
+- Uses theme colors for text and muted text
+- Supports light and dark mode variants
+- Allows custom color overrides via `lightColor` and `darkColor` props
+- Integrates with the `useThemeColor` hook
+
+## Accessibility
+
+The Text component is built with accessibility in mind:
+
+- Inherits all React Native Text accessibility features
+- Supports dynamic text sizing for users with vision impairments
+- Maintains proper contrast ratios with theme colors
+- Works with screen readers and other assistive technologies
+- Supports semantic roles via standard React Native Text props

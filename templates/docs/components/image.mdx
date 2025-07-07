@@ -1,0 +1,175 @@
+---
+title: Image
+description: A responsive image component with loading states, error handling, and flexible styling options.
+---
+
+<ComponentPreview
+  name='image-demo'
+  description='A basic image with loading indicator and error fallback'
+/>
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx bna-ui add image
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install expo-image
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name='image' title='components/ui/image.tsx' />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { Image } from '@/components/ui/image';
+```
+
+```tsx
+<Image
+  source={{ uri: 'https://picsum.photos/400/300' }}
+  width={400}
+  height={300}
+/>
+```
+
+## Examples
+
+### Default
+
+<ComponentPreview
+  name='image-demo'
+  description='A basic image with loading indicator and error fallback'
+/>
+
+### Variants
+
+<ComponentPreview
+  name='image-variants'
+  description='Images with different border radius variants'
+/>
+
+### Sizes
+
+<ComponentPreview
+  name='image-sizes'
+  description='Images in different sizes and aspect ratios'
+/>
+
+### Loading States
+
+<ComponentPreview
+  name='image-loading'
+  description='Images with different loading indicator configurations'
+/>
+
+### Error Handling
+
+<ComponentPreview
+  name='image-error'
+  description='Images with custom error fallback messages'
+/>
+
+### Gallery
+
+<ComponentPreview
+  name='image-gallery'
+  description='Multiple images arranged in a gallery layout'
+/>
+
+### Responsive
+
+<ComponentPreview
+  name='image-responsive'
+  description='Responsive images that adapt to container size'
+/>
+
+### Content Fit
+
+<ComponentPreview
+  name='image-content-fit'
+  description='Images with different content fit modes'
+/>
+
+## API Reference
+
+### Image
+
+A responsive image component with loading states and error handling.
+
+| Prop                    | Type                    | Default                  | Description                                  |
+| ----------------------- | ----------------------- | ------------------------ | -------------------------------------------- |
+| `source`                | `ImageSource`           | -                        | The image source (required).                 |
+| `full`                  | `boolean`               | `true`                   | Whether the image should fill its container. |
+| `variant`               | `'rounded' \| 'circle'` | `'rounded'`              | The border radius variant.                   |
+| `width`                 | `number \| string`      | -                        | The width of the image.                      |
+| `height`                | `number \| string`      | -                        | The height of the image.                     |
+| `aspectRatio`           | `number`                | -                        | The aspect ratio of the image.               |
+| `contentFit`            | `ContentFit`            | `'cover'`                | How the image should fit within its bounds.  |
+| `showLoadingIndicator`  | `boolean`               | `true`                   | Whether to show loading indicator.           |
+| `showErrorFallback`     | `boolean`               | `true`                   | Whether to show error fallback.              |
+| `errorFallbackText`     | `string`                | `'Failed to load image'` | The error fallback text.                     |
+| `loadingIndicatorSize`  | `'small' \| 'large'`    | `'small'`                | The size of the loading indicator.           |
+| `loadingIndicatorColor` | `string`                | -                        | The color of the loading indicator.          |
+| `transition`            | `number`                | `200`                    | The transition duration in milliseconds.     |
+| `style`                 | `ImageProps['style']`   | -                        | Additional styles to apply to the image.     |
+| `containerStyle`        | `ViewStyle`             | -                        | Additional styles to apply to the container. |
+| `onLoadStart`           | `() => void`            | -                        | Callback when image starts loading.          |
+| `onLoadEnd`             | `() => void`            | -                        | Callback when image finishes loading.        |
+| `onError`               | `() => void`            | -                        | Callback when image fails to load.           |
+
+### Content Fit Options
+
+The `contentFit` prop accepts the following values:
+
+- `'cover'` - Scale the image to cover the entire container
+- `'contain'` - Scale the image to fit within the container
+- `'fill'` - Stretch the image to fill the container
+- `'none'` - Display the image at its natural size
+- `'scale-down'` - Scale down the image if it's larger than the container
+
+## Accessibility
+
+The Image component is built with accessibility in mind:
+
+- Supports `accessibilityLabel` for screen readers
+- Error fallback provides alternative content when images fail to load
+- Loading indicators communicate loading state to assistive technologies
+- Proper semantic structure for better navigation
+
+## Performance
+
+The Image component uses Expo Image under the hood, which provides:
+
+- Automatic image caching
+- Optimized memory usage
+- Support for various image formats
+- Smooth transitions and loading states
+- Network-aware loading strategies

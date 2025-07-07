@@ -1,0 +1,153 @@
+---
+title: Avatar
+description: An image element with a fallback for representing the user.
+---
+
+<ComponentPreview
+  name='avatar-demo'
+  description='A basic avatar with image and fallback text'
+/>
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx bna-ui add avatar
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install expo-image
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name='avatar' title='components/ui/avatar.tsx' />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+```
+
+```tsx
+<Avatar>
+  <AvatarImage
+    source={{ uri: 'https://avatars.githubusercontent.com/u/99088394?v=4' }}
+  />
+  <AvatarFallback>AB</AvatarFallback>
+</Avatar>
+```
+
+## Examples
+
+### Default
+
+<ComponentPreview
+  name='avatar-demo'
+  description='A basic avatar with image and fallback text'
+/>
+
+### Sizes
+
+<ComponentPreview
+  name='avatar-sizes'
+  description='Avatars in different sizes'
+/>
+
+### Fallback Only
+
+<ComponentPreview
+  name='avatar-fallback'
+  description='Avatars with fallback text when no image is provided'
+/>
+
+### Custom Styling
+
+<ComponentPreview
+  name='avatar-styled'
+  description='Avatars with custom styling and colors'
+/>
+
+### Group
+
+<ComponentPreview
+  name='avatar-group'
+  description='Multiple avatars arranged in a group layout'
+/>
+
+### With Status
+
+<ComponentPreview
+  name='avatar-status'
+  description='Avatars with online/offline status indicators'
+/>
+
+### Bordered
+
+<ComponentPreview
+  name='avatar-bordered'
+  description='Avatars with custom borders and shadows'
+/>
+
+## API Reference
+
+### Avatar
+
+The container component that wraps the avatar image and fallback.
+
+| Prop       | Type        | Default | Description                                         |
+| ---------- | ----------- | ------- | --------------------------------------------------- |
+| `children` | `ReactNode` | -       | The avatar image and fallback components.           |
+| `size`     | `number`    | `40`    | The size of the avatar in pixels.                   |
+| `style`    | `ViewStyle` | -       | Additional styles to apply to the avatar container. |
+
+### AvatarImage
+
+The image component that displays the user's avatar.
+
+| Prop     | Type               | Default | Description                              |
+| -------- | ------------------ | ------- | ---------------------------------------- |
+| `source` | `ImageSource`      | -       | The image source for the avatar.         |
+| `style`  | `ImageProps.style` | -       | Additional styles to apply to the image. |
+
+### AvatarFallback
+
+The fallback component that displays when the image fails to load or is not provided.
+
+| Prop        | Type        | Default | Description                                           |
+| ----------- | ----------- | ------- | ----------------------------------------------------- |
+| `children`  | `ReactNode` | -       | The fallback content (usually initials or text).      |
+| `style`     | `ViewStyle` | -       | Additional styles to apply to the fallback container. |
+| `textStyle` | `TextStyle` | -       | Additional styles to apply to the fallback text.      |
+
+## Accessibility
+
+The Avatar component is built with accessibility in mind:
+
+- Uses semantic structure for screen readers
+- Fallback text provides alternative content when images fail to load
+- Proper contrast ratios for text fallbacks
+- Supports dynamic text sizing
