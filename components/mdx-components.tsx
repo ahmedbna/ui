@@ -10,6 +10,9 @@ import { CodeTabs } from '@/components/code-tabs';
 import { ComponentPreview } from '@/components/component-preview';
 import { ComponentSource } from '@/components/component-source';
 import { ComponentsList } from '@/components/components-list';
+import { ChartsList } from '@/components/charts-list';
+import { ThemeList } from '@/components/theme-list';
+import { HooksList } from '@/components/hooks-list';
 import { CopyButton } from '@/components/copy-button';
 import { getIconForLanguageExtension } from '@/components/icons';
 import {
@@ -339,6 +342,9 @@ export const mdxComponents = {
   ComponentSource,
   CodeCollapsibleWrapper,
   ComponentsList,
+  ChartsList,
+  HooksList,
+  ThemeList,
   Link: ({ className, ...props }: React.ComponentProps<typeof Link>) => (
     <Link
       className={cn('font-medium underline underline-offset-4', className)}

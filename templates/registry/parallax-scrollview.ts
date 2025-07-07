@@ -29,13 +29,13 @@ export const parallaxScrollViewRegistry = {
   'parallax-scrollview-demo': {
     name: 'parallax-scrollview-demo',
     description: 'A basic parallax scroll view with header image',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['parallax-scrollview', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/parallax-scrollview/parallax-scrollview-demo.tsx',
         target:
           'components/demo/parallax-scrollview/parallax-scrollview-demo.tsx',
@@ -52,13 +52,13 @@ export const parallaxScrollViewRegistry = {
   'parallax-scrollview-custom-height': {
     name: 'parallax-scrollview-custom-height',
     description: 'Parallax scroll view with custom header height',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['parallax-scrollview', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/parallax-scrollview/parallax-scrollview-custom-height.tsx',
         target:
           'components/demo/parallax-scrollview/parallax-scrollview-custom-height.tsx',
@@ -75,14 +75,14 @@ export const parallaxScrollViewRegistry = {
   'parallax-scrollview-gradient': {
     name: 'parallax-scrollview-gradient',
     description: 'Parallax scroll view with gradient overlay header',
-    type: 'registry:demo',
+    type: 'registry:example',
     dependencies: ['expo-linear-gradient'],
     registryDependencies: ['parallax-scrollview', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/parallax-scrollview/parallax-scrollview-gradient.tsx',
         target:
           'components/demo/parallax-scrollview/parallax-scrollview-gradient.tsx',
@@ -99,14 +99,14 @@ export const parallaxScrollViewRegistry = {
   'parallax-scrollview-profile': {
     name: 'parallax-scrollview-profile',
     description: 'Complete profile screen using parallax scroll view',
-    type: 'registry:demo',
+    type: 'registry:example',
     dependencies: ['expo-linear-gradient'],
     registryDependencies: ['parallax-scrollview', 'avatar', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/parallax-scrollview/parallax-scrollview-profile.tsx',
         target:
           'components/demo/parallax-scrollview/parallax-scrollview-profile.tsx',
@@ -123,14 +123,14 @@ export const parallaxScrollViewRegistry = {
   'parallax-scrollview-article': {
     name: 'parallax-scrollview-article',
     description: 'Article layout with parallax hero image',
-    type: 'registry:demo',
+    type: 'registry:example',
     dependencies: ['expo-linear-gradient'],
     registryDependencies: ['parallax-scrollview', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/parallax-scrollview/parallax-scrollview-article.tsx',
         target:
           'components/demo/parallax-scrollview/parallax-scrollview-article.tsx',
@@ -147,13 +147,13 @@ export const parallaxScrollViewRegistry = {
   'parallax-scrollview-product': {
     name: 'parallax-scrollview-product',
     description: 'Product detail screen with parallax image gallery',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['parallax-scrollview', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/parallax-scrollview/parallax-scrollview-product.tsx',
         target:
           'components/demo/parallax-scrollview/parallax-scrollview-product.tsx',

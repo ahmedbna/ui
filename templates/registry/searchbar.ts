@@ -29,13 +29,13 @@ export const searchbarRegistry = {
   'searchbar-demo': {
     name: 'searchbar-demo',
     description: 'A basic search bar with search functionality',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['searchbar'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/searchbar/searchbar-demo.tsx',
         target: 'components/demo/searchbar/searchbar-demo.tsx',
       },
@@ -51,13 +51,13 @@ export const searchbarRegistry = {
   'searchbar-loading': {
     name: 'searchbar-loading',
     description: 'Search bar with loading indicator',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['searchbar'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/searchbar/searchbar-loading.tsx',
         target: 'components/demo/searchbar/searchbar-loading.tsx',
       },
@@ -73,13 +73,13 @@ export const searchbarRegistry = {
   'searchbar-icons': {
     name: 'searchbar-icons',
     description: 'Search bar with custom left and right icons',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['searchbar', 'icon'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/searchbar/searchbar-icons.tsx',
         target: 'components/demo/searchbar/searchbar-icons.tsx',
       },
@@ -95,13 +95,13 @@ export const searchbarRegistry = {
   'searchbar-suggestions': {
     name: 'searchbar-suggestions',
     description: 'Search bar with dropdown suggestions',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['searchbar'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/searchbar/searchbar-suggestions.tsx',
         target: 'components/demo/searchbar/searchbar-suggestions.tsx',
       },
@@ -117,13 +117,13 @@ export const searchbarRegistry = {
   'searchbar-styled': {
     name: 'searchbar-styled',
     description: 'Search bar with custom styling and colors',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['searchbar'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/searchbar/searchbar-styled.tsx',
         target: 'components/demo/searchbar/searchbar-styled.tsx',
       },
@@ -139,13 +139,13 @@ export const searchbarRegistry = {
   'searchbar-no-clear': {
     name: 'searchbar-no-clear',
     description: 'Search bar without the clear button',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['searchbar'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/searchbar/searchbar-no-clear.tsx',
         target: 'components/demo/searchbar/searchbar-no-clear.tsx',
       },
@@ -161,13 +161,13 @@ export const searchbarRegistry = {
   'searchbar-instant': {
     name: 'searchbar-instant',
     description: 'Search bar with no debounce for instant search',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['searchbar', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/searchbar/searchbar-instant.tsx',
         target: 'components/demo/searchbar/searchbar-instant.tsx',
       },

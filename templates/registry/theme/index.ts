@@ -7,7 +7,7 @@ export const themeRegistry = {
     files: [
       {
         type: 'registry:theme',
-        path: 'registry/theme/colors.ts',
+        path: 'templates/theme/colors.ts',
         target: 'theme/colors.ts',
       },
     ],
@@ -21,7 +21,7 @@ export const themeRegistry = {
     files: [
       {
         type: 'registry:theme',
-        path: 'registry/theme/globals.ts',
+        path: 'templates/theme/globals.ts',
         target: 'theme/globals.ts',
       },
     ],
@@ -35,7 +35,7 @@ export const themeRegistry = {
     files: [
       {
         type: 'registry:theme',
-        path: 'registry/theme/theme-provider.tsx',
+        path: 'templates/theme/theme-provider.tsx',
         target: 'theme/theme-provider.tsx',
       },
     ],

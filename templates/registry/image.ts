@@ -28,13 +28,13 @@ export const imageRegistry = {
   'image-demo': {
     name: 'image-demo',
     description: 'A basic image with loading indicator and error fallback',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['image'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/image/image-demo.tsx',
         target: 'components/demo/image/image-demo.tsx',
       },
@@ -49,13 +49,13 @@ export const imageRegistry = {
   'image-variants': {
     name: 'image-variants',
     description: 'Images with different border radius variants',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['image'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/image/image-variants.tsx',
         target: 'components/demo/image/image-variants.tsx',
       },
@@ -70,13 +70,13 @@ export const imageRegistry = {
   'image-sizes': {
     name: 'image-sizes',
     description: 'Images in different sizes and aspect ratios',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['image'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/image/image-sizes.tsx',
         target: 'components/demo/image/image-sizes.tsx',
       },
@@ -91,13 +91,13 @@ export const imageRegistry = {
   'image-loading': {
     name: 'image-loading',
     description: 'Images with different loading indicator configurations',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['image'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/image/image-loading.tsx',
         target: 'components/demo/image/image-loading.tsx',
       },
@@ -112,13 +112,13 @@ export const imageRegistry = {
   'image-error': {
     name: 'image-error',
     description: 'Images with custom error fallback messages',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['image'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/image/image-error.tsx',
         target: 'components/demo/image/image-error.tsx',
       },
@@ -132,13 +132,13 @@ export const imageRegistry = {
   'image-gallery': {
     name: 'image-gallery',
     description: 'Multiple images arranged in a gallery layout',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['image'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/image/image-gallery.tsx',
         target: 'components/demo/image/image-gallery.tsx',
       },
@@ -152,13 +152,13 @@ export const imageRegistry = {
   'image-responsive': {
     name: 'image-responsive',
     description: 'Responsive images that adapt to container size',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['image'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/image/image-responsive.tsx',
         target: 'components/demo/image/image-responsive.tsx',
       },
@@ -172,13 +172,13 @@ export const imageRegistry = {
   'image-content-fit': {
     name: 'image-content-fit',
     description: 'Images with different content fit modes',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['image'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/image/image-content-fit.tsx',
         target: 'components/demo/image/image-content-fit.tsx',
       },

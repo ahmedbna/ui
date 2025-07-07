@@ -1,0 +1,182 @@
+---
+title: useBottomTabOverflow
+description: A hook that returns the appropriate bottom tab bar height for iOS devices to handle safe area insets and overflow scenarios.
+---
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx bna-ui add useBottomTabOverflow
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install @react-navigation/bottom-tabs
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource
+  name='useBottomTabOverflow'
+  title='hooks/useBottomTabOverflow.ts'
+/>
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { useBottomTabOverflow } from '@/hooks/useBottomTabOverflow';
+```
+
+```tsx
+export function MyScreen() {
+  const tabOverflow = useBottomTabOverflow();
+
+  return (
+    <View style={{ paddingBottom: tabOverflow }}>{/* Your content */}</View>
+  );
+}
+```
+
+## API Reference
+
+### useBottomTabOverflow
+
+Returns the appropriate bottom tab bar height for handling overflow scenarios.
+
+#### Returns
+
+| Type     | Description                                                                                   |
+| -------- | --------------------------------------------------------------------------------------------- |
+| `number` | The bottom tab bar height on iOS, or 0 on Android. Uses `useBottomTabBarHeight()` internally. |
+
+## Platform Behavior
+
+### iOS
+
+- Returns the actual bottom tab bar height using `@react-navigation/bottom-tabs`
+- Automatically accounts for safe area insets and device-specific measurements
+- Updates dynamically if the tab bar height changes
+
+### Android
+
+- Returns 0 as Android handles bottom tabs differently
+- Android's bottom navigation typically doesn't overlap with content
+
+## Use Cases
+
+This hook is particularly useful when you need to:
+
+- Prevent content from being hidden behind bottom tab bars on iOS
+- Add appropriate padding to scrollable content
+- Handle safe area insets in screens with bottom navigation
+- Position floating action buttons or other fixed elements above the tab bar
+- Ensure modal content doesn't overlap with navigation elements
+
+## Best Practices
+
+### Performance
+
+- The hook is lightweight and safe to use in multiple components
+- Values are cached by React Navigation, so multiple calls don't impact performance
+- Consider memoizing dependent calculations to avoid unnecessary re-renders
+
+### Usage Patterns
+
+- Use this hook in screens that have scrollable content or fixed positioned elements
+- Combine with `useSafeAreaInsets` for complete safe area handling
+- Consider using it in modal screens that might overlap with tab bars
+
+### Example: Complete Safe Area Handling
+
+```tsx
+import { useBottomTabOverflow } from '@/hooks/useBottomTabOverflow';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
+export function CompleteScreen() {
+  const tabOverflow = useBottomTabOverflow();
+  const insets = useSafeAreaInsets();
+
+  return (
+    <ScrollView
+      style={{ flex: 1 }}
+      contentContainerStyle={{
+        paddingTop: insets.top,
+        paddingBottom: Math.max(insets.bottom, tabOverflow),
+        paddingHorizontal: 16,
+      }}
+    >
+      {/* Your content */}
+    </ScrollView>
+  );
+}
+```
+
+### Example: Fixed Position Element
+
+```tsx
+import { useBottomTabOverflow } from '@/hooks/useBottomTabOverflow';
+
+export function ScreenWithFAB() {
+  const tabOverflow = useBottomTabOverflow();
+
+  return (
+    <View style={{ flex: 1 }}>
+      {/* Main content */}
+      <View style={{ flex: 1 }}>{/* Content */}</View>
+
+      {/* Fixed position FAB */}
+      <TouchableOpacity
+        style={{
+          position: 'absolute',
+          bottom: 16 + tabOverflow,
+          right: 16,
+          width: 56,
+          height: 56,
+          borderRadius: 28,
+          backgroundColor: '#007AFF',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <Text style={{ color: 'white', fontSize: 24 }}>+</Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
+```
+
+## Dependencies
+
+- `@react-navigation/bottom-tabs` - Required for `useBottomTabBarHeight`
+- `react-native` - Required for Platform detection
+
+## Accessibility
+
+The hook helps maintain proper accessibility by:
+
+- Ensuring content is not hidden behind navigation elements
+- Maintaining proper touch targets for interactive elements
+- Supporting screen readers by keeping content visible and accessible

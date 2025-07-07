@@ -99,8 +99,7 @@ function getFileTarget(file: z.infer<typeof registryItemFileSchema>) {
       target = `components/${fileName}`;
     }
 
-    // @ts-ignore
-    if (file.type === 'registry:demo') {
+    if (file.type === 'registry:example') {
       const baseName = fileName?.replace(/\.tsx$/, '');
       target = `components/demo/${baseName}/${fileName}`;
     }

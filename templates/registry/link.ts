@@ -29,13 +29,13 @@ export const linkRegistry = {
   'link-demo': {
     name: 'link-demo',
     description: 'Basic internal navigation links',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['link', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/link/link-demo.tsx',
         target: 'components/demo/link/link-demo.tsx',
       },
@@ -51,13 +51,13 @@ export const linkRegistry = {
   'link-external': {
     name: 'link-external',
     description: 'Links that open external URLs',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['link', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/link/link-external.tsx',
         target: 'components/demo/link/link-external.tsx',
       },
@@ -73,13 +73,13 @@ export const linkRegistry = {
   'link-browser': {
     name: 'link-browser',
     description: 'Links with different browser opening behaviors',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['link', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/link/link-browser.tsx',
         target: 'components/demo/link/link-browser.tsx',
       },
@@ -95,13 +95,13 @@ export const linkRegistry = {
   'link-custom': {
     name: 'link-custom',
     description: 'Links with custom child components instead of text',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['link', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/link/link-custom.tsx',
         target: 'components/demo/link/link-custom.tsx',
       },
@@ -117,13 +117,13 @@ export const linkRegistry = {
   'link-types': {
     name: 'link-types',
     description: 'Various types of links including mailto and tel',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['link', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/link/link-types.tsx',
         target: 'components/demo/link/link-types.tsx',
       },
@@ -139,13 +139,13 @@ export const linkRegistry = {
   'link-styled': {
     name: 'link-styled',
     description: 'Links with custom styling and variants',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['link', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/link/link-styled.tsx',
         target: 'components/demo/link/link-styled.tsx',
       },
@@ -161,13 +161,13 @@ export const linkRegistry = {
   'link-buttons': {
     name: 'link-buttons',
     description: 'Links styled as buttons for navigation',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['link', 'button', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/link/link-buttons.tsx',
         target: 'components/demo/link/link-buttons.tsx',
       },

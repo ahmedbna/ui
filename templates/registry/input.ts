@@ -29,14 +29,14 @@ export const inputRegistry = {
   'input-demo': {
     name: 'input-demo',
     description: 'A basic input with label and placeholder',
-    type: 'registry:demo',
+    type: 'registry:example',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['input'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/input/input-demo.tsx',
         target: 'components/demo/input/input-demo.tsx',
       },
@@ -52,14 +52,14 @@ export const inputRegistry = {
   'input-icons': {
     name: 'input-icons',
     description: 'Inputs with left-side icons',
-    type: 'registry:demo',
+    type: 'registry:example',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['input', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/input/input-icons.tsx',
         target: 'components/demo/input/input-icons.tsx',
       },
@@ -75,14 +75,14 @@ export const inputRegistry = {
   'input-variants': {
     name: 'input-variants',
     description: 'Different input variants - filled and outline',
-    type: 'registry:demo',
+    type: 'registry:example',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['input', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/input/input-variants.tsx',
         target: 'components/demo/input/input-variants.tsx',
       },
@@ -98,14 +98,14 @@ export const inputRegistry = {
   'input-validation': {
     name: 'input-validation',
     description: 'Inputs with error states and validation messages',
-    type: 'registry:demo',
+    type: 'registry:example',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['input', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/input/input-validation.tsx',
         target: 'components/demo/input/input-validation.tsx',
       },
@@ -122,14 +122,14 @@ export const inputRegistry = {
     name: 'input-right-components',
     description:
       'Inputs with buttons, icons, or custom components on the right',
-    type: 'registry:demo',
+    type: 'registry:example',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['input', 'view', 'button', 'text'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/input/input-right-components.tsx',
         target: 'components/demo/input/input-right-components.tsx',
       },
@@ -145,14 +145,14 @@ export const inputRegistry = {
   'input-disabled': {
     name: 'input-disabled',
     description: 'Disabled inputs with reduced opacity',
-    type: 'registry:demo',
+    type: 'registry:example',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['input', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/input/input-disabled.tsx',
         target: 'components/demo/input/input-disabled.tsx',
       },
@@ -167,14 +167,14 @@ export const inputRegistry = {
   'input-grouped': {
     name: 'input-grouped',
     description: 'Multiple inputs grouped together in a card-like container',
-    type: 'registry:demo',
+    type: 'registry:example',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['input'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/input/input-grouped.tsx',
         target: 'components/demo/input/input-grouped.tsx',
       },
@@ -190,14 +190,14 @@ export const inputRegistry = {
   'input-form': {
     name: 'input-form',
     description: 'Complete form example with various input types',
-    type: 'registry:demo',
+    type: 'registry:example',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['input', 'button', 'view', 'text'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/input/input-form.tsx',
         target: 'components/demo/input/input-form.tsx',
       },

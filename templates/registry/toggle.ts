@@ -29,13 +29,13 @@ export const toggleRegistry = {
   'toggle-demo': {
     name: 'toggle-demo',
     description: 'A basic toggle button with icon',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['toggle'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/toggle/toggle-demo.tsx',
         target: 'components/demo/toggle/toggle-demo.tsx',
       },
@@ -51,13 +51,13 @@ export const toggleRegistry = {
   'toggle-variants': {
     name: 'toggle-variants',
     description: 'Toggle buttons in different variants',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['toggle'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/toggle/toggle-variants.tsx',
         target: 'components/demo/toggle/toggle-variants.tsx',
       },
@@ -73,13 +73,13 @@ export const toggleRegistry = {
   'toggle-sizes': {
     name: 'toggle-sizes',
     description: 'Toggle buttons in different sizes',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['toggle'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/toggle/toggle-sizes.tsx',
         target: 'components/demo/toggle/toggle-sizes.tsx',
       },
@@ -95,13 +95,13 @@ export const toggleRegistry = {
   'toggle-text': {
     name: 'toggle-text',
     description: 'Toggle buttons with text labels',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['toggle'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/toggle/toggle-text.tsx',
         target: 'components/demo/toggle/toggle-text.tsx',
       },
@@ -117,13 +117,13 @@ export const toggleRegistry = {
   'toggle-disabled': {
     name: 'toggle-disabled',
     description: 'Disabled toggle buttons',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['toggle'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/toggle/toggle-disabled.tsx',
         target: 'components/demo/toggle/toggle-disabled.tsx',
       },
@@ -139,13 +139,13 @@ export const toggleRegistry = {
   'toggle-group-single': {
     name: 'toggle-group-single',
     description: 'Single selection toggle group',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['toggle'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/toggle/toggle-group-single.tsx',
         target: 'components/demo/toggle/toggle-group-single.tsx',
       },
@@ -161,13 +161,13 @@ export const toggleRegistry = {
   'toggle-group-multiple': {
     name: 'toggle-group-multiple',
     description: 'Multiple selection toggle group',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['toggle'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/toggle/toggle-group-multiple.tsx',
         target: 'components/demo/toggle/toggle-group-multiple.tsx',
       },
@@ -183,13 +183,13 @@ export const toggleRegistry = {
   'toggle-group-vertical': {
     name: 'toggle-group-vertical',
     description: 'Vertical toggle group layout',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['toggle'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/toggle/toggle-group-vertical.tsx',
         target: 'components/demo/toggle/toggle-group-vertical.tsx',
       },
@@ -205,13 +205,13 @@ export const toggleRegistry = {
   'toggle-group-outline': {
     name: 'toggle-group-outline',
     description: 'Toggle group with outline variant',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['toggle'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/toggle/toggle-group-outline.tsx',
         target: 'components/demo/toggle/toggle-group-outline.tsx',
       },

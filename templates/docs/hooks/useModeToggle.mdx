@@ -1,0 +1,412 @@
+---
+title: useModeToggle
+description: A hook that provides complete control over theme mode switching with support for light, dark, and system modes.
+---
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx bna-ui add useModeToggle
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>
+  This hook requires the useColorScheme hook. Install dependencies first:
+</Step>
+
+```bash
+npx bna-ui add useColorScheme
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name='useModeToggle' title='hooks/useModeToggle.ts' />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { useModeToggle } from '@/hooks/useModeToggle';
+```
+
+```tsx
+export function ThemeToggle() {
+  const { isDark, mode, setMode, toggleMode } = useModeToggle();
+
+  return (
+    <View>
+      <Text>Current mode: {mode}</Text>
+      <Text>Is dark: {isDark ? 'Yes' : 'No'}</Text>
+      <TouchableOpacity onPress={toggleMode}>
+        <Text>Toggle Theme</Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
+```
+
+## API Reference
+
+### useModeToggle
+
+A hook that provides complete control over theme mode switching with support for light, dark, and system modes.
+
+#### Returns
+
+| Property      | Type                            | Description                                                    |
+| ------------- | ------------------------------- | -------------------------------------------------------------- |
+| `isDark`      | `boolean`                       | Whether the current effective theme is dark                    |
+| `mode`        | `'light' \| 'dark' \| 'system'` | The currently selected mode setting                            |
+| `setMode`     | `(mode: Mode) => void`          | Function to set a specific mode                                |
+| `currentMode` | `ColorSchemeName`               | The actual color scheme being used (from system or override)   |
+| `toggleMode`  | `() => void`                    | Function to cycle through modes: light → dark → system → light |
+
+#### Type Definitions
+
+```tsx
+type Mode = 'light' | 'dark' | 'system';
+
+interface UseModeToggleReturn {
+  isDark: boolean;
+  mode: Mode;
+  setMode: (mode: Mode) => void;
+  currentMode: ColorSchemeName;
+  toggleMode: () => void;
+}
+```
+
+## Mode Behavior
+
+### Light Mode
+
+- Forces the app to use light theme regardless of system preference
+- Calls `Appearance.setColorScheme('light')`
+- `isDark` returns `false`
+- `currentMode` returns `'light'`
+
+### Dark Mode
+
+- Forces the app to use dark theme regardless of system preference
+- Calls `Appearance.setColorScheme('dark')`
+- `isDark` returns `true`
+- `currentMode` returns `'dark'`
+
+### System Mode
+
+- Follows the system's color scheme preference
+- Calls `Appearance.setColorScheme(null)` to reset to system default
+- `isDark` reflects the actual system preference
+- `currentMode` returns the system's current preference
+
+## Toggle Cycle
+
+The `toggleMode` function cycles through modes in this order:
+
+```
+light → dark → system → light → ...
+```
+
+This provides an intuitive way for users to quickly switch between all available options.
+
+## Use Cases
+
+This hook is perfect for:
+
+- Creating theme toggle buttons in settings screens
+- Building comprehensive theme selection interfaces
+- Implementing persistent theme preferences
+- Providing users with granular control over app appearance
+- Creating theme-aware components that need to know the current mode
+- Building accessibility-compliant theme switching
+
+## Best Practices
+
+### Settings Screen Implementation
+
+Create a comprehensive settings screen with theme options:
+
+```tsx
+export function ThemeSettings() {
+  const { mode, setMode, isDark, currentMode } = useModeToggle();
+
+  const options = [
+    { key: 'light', label: 'Light', icon: '☀️' },
+    { key: 'dark', label: 'Dark', icon: '🌙' },
+    { key: 'system', label: 'System', icon: '⚙️' },
+  ];
+
+  return (
+    <View style={{ padding: 20 }}>
+      <Text style={{ fontSize: 18, marginBottom: 16 }}>Theme</Text>
+      {options.map((option) => (
+        <TouchableOpacity
+          key={option.key}
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            paddingVertical: 12,
+            backgroundColor: mode === option.key ? '#007AFF20' : 'transparent',
+            borderRadius: 8,
+            paddingHorizontal: 12,
+          }}
+          onPress={() => setMode(option.key as Mode)}
+        >
+          <Text style={{ marginRight: 12 }}>{option.icon}</Text>
+          <Text style={{ flex: 1 }}>{option.label}</Text>
+          {mode === option.key && <Text>✓</Text>}
+        </TouchableOpacity>
+      ))}
+      <Text style={{ marginTop: 16, opacity: 0.6 }}>
+        Current: {currentMode} (Effective: {isDark ? 'dark' : 'light'})
+      </Text>
+    </View>
+  );
+}
+```
+
+### Persistent Theme Storage
+
+Combine with AsyncStorage for persistent theme preferences:
+
+```tsx
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useEffect } from 'react';
+
+export function usePersistentModeToggle() {
+  const { mode, setMode, ...rest } = useModeToggle();
+
+  // Load saved preference on mount
+  useEffect(() => {
+    AsyncStorage.getItem('theme_mode').then((savedMode) => {
+      if (savedMode && ['light', 'dark', 'system'].includes(savedMode)) {
+        setMode(savedMode as Mode);
+      }
+    });
+  }, []);
+
+  // Save preference when mode changes
+  useEffect(() => {
+    AsyncStorage.setItem('theme_mode', mode);
+  }, [mode]);
+
+  return { mode, setMode, ...rest };
+}
+```
+
+### Animated Theme Toggle
+
+Create smooth transitions between theme modes:
+
+```tsx
+import { useEffect, useRef } from 'react';
+import { Animated } from 'react-native';
+
+export function AnimatedThemeToggle() {
+  const { isDark, toggleMode } = useModeToggle();
+  const animatedValue = useRef(new Animated.Value(isDark ? 1 : 0)).current;
+
+  useEffect(() => {
+    Animated.timing(animatedValue, {
+      toValue: isDark ? 1 : 0,
+      duration: 300,
+      useNativeDriver: false,
+    }).start();
+  }, [isDark]);
+
+  const backgroundColor = animatedValue.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['#ffffff', '#000000'],
+  });
+
+  return (
+    <Animated.View style={{ backgroundColor, flex: 1 }}>
+      <TouchableOpacity onPress={toggleMode}>
+        <Text>Toggle Theme</Text>
+      </TouchableOpacity>
+    </Animated.View>
+  );
+}
+```
+
+### Header Integration
+
+Integrate theme toggle into your app header:
+
+```tsx
+export function AppHeader() {
+  const { mode, toggleMode } = useModeToggle();
+
+  const getToggleIcon = () => {
+    switch (mode) {
+      case 'light':
+        return '☀️';
+      case 'dark':
+        return '🌙';
+      case 'system':
+        return '⚙️';
+    }
+  };
+
+  return (
+    <View
+      style={{
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        padding: 16,
+      }}
+    >
+      <Text style={{ fontSize: 18, fontWeight: 'bold' }}>My App</Text>
+      <TouchableOpacity onPress={toggleMode}>
+        <Text style={{ fontSize: 20 }}>{getToggleIcon()}</Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
+```
+
+## Performance Considerations
+
+### Memoization
+
+The hook uses internal state management and is already optimized, but you can memoize dependent calculations:
+
+```tsx
+const themeStyles = useMemo(
+  () => ({
+    container: {
+      backgroundColor: isDark ? '#000' : '#fff',
+      color: isDark ? '#fff' : '#000',
+    },
+  }),
+  [isDark]
+);
+```
+
+### Avoiding Unnecessary Re-renders
+
+Only destructure the values you actually need:
+
+```tsx
+// Good: Only get what you need
+const { isDark, toggleMode } = useModeToggle();
+
+// Less optimal: Getting all values when you only need some
+const modeToggle = useModeToggle();
+```
+
+## Advanced Usage
+
+### Custom Mode Validation
+
+Add validation for supported modes:
+
+```tsx
+export function useValidatedModeToggle() {
+  const modeToggle = useModeToggle();
+
+  const setModeWithValidation = (mode: string) => {
+    if (['light', 'dark', 'system'].includes(mode)) {
+      modeToggle.setMode(mode as Mode);
+    } else {
+      console.warn(`Invalid mode: ${mode}`);
+    }
+  };
+
+  return {
+    ...modeToggle,
+    setMode: setModeWithValidation,
+  };
+}
+```
+
+### Theme Mode Context
+
+Create a context for app-wide theme mode management:
+
+```tsx
+import { createContext, useContext, ReactNode } from 'react';
+
+const ModeToggleContext = createContext<UseModeToggleReturn | null>(null);
+
+export function ModeToggleProvider({ children }: { children: ReactNode }) {
+  const modeToggle = useModeToggle();
+
+  return (
+    <ModeToggleContext.Provider value={modeToggle}>
+      {children}
+    </ModeToggleContext.Provider>
+  );
+}
+
+export function useModeToggleContext() {
+  const context = useContext(ModeToggleContext);
+  if (!context) {
+    throw new Error(
+      'useModeToggleContext must be used within ModeToggleProvider'
+    );
+  }
+  return context;
+}
+```
+
+## Dependencies
+
+- `@/hooks/useColorScheme` - Required for color scheme detection
+- `react-native` - Required for Appearance API
+- `react` - Required for useState hook
+
+## Accessibility
+
+The hook supports accessibility by:
+
+- Providing programmatic access to theme state for screen readers
+- Enabling proper contrast ratios through theme mode control
+- Supporting system-level accessibility preferences in system mode
+- Allowing users to override system preferences when needed
+
+## Platform Support
+
+### iOS
+
+- Full support for all three modes
+- Appearance.setColorScheme works reliably
+- System mode respects iOS system preferences
+
+### Android
+
+- Full support for all three modes
+- Appearance.setColorScheme works reliably
+- System mode respects Android system preferences
+
+### Web
+
+- Limited support - setColorScheme may not work
+- Consider using CSS media queries for web-specific implementations
+- System mode detection works through useColorScheme
+
+## Related Hooks
+
+- [`useColorScheme`](/docs/hooks/useColorScheme) - Base hook for theme detection
+- [`useThemeColor`](/docs/hooks/use-theme-color) - For color resolution based on theme
+- [`useTheme`](/docs/hooks/use-theme) - More comprehensive theme management

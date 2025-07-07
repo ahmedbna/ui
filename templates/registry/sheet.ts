@@ -29,13 +29,13 @@ export const sheetRegistry = {
   'sheet-demo': {
     name: 'sheet-demo',
     description: 'A basic sheet that slides in from the right side',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['sheet', 'button', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/sheet/sheet-demo.tsx',
         target: 'components/demo/sheet/sheet-demo.tsx',
       },
@@ -50,13 +50,13 @@ export const sheetRegistry = {
   'sheet-left': {
     name: 'sheet-left',
     description: 'A sheet that slides in from the left side',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['sheet', 'button', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/sheet/sheet-left.tsx',
         target: 'components/demo/sheet/sheet-left.tsx',
       },
@@ -71,14 +71,14 @@ export const sheetRegistry = {
   'sheet-navigation': {
     name: 'sheet-navigation',
     description: 'A sheet that slides in from the navigation side',
-    type: 'registry:demo',
+    type: 'registry:example',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['sheet', 'button', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/sheet/sheet-navigation.tsx',
         target: 'components/demo/sheet/sheet-navigation.tsx',
       },
@@ -93,13 +93,13 @@ export const sheetRegistry = {
   'sheet-form': {
     name: 'sheet-form',
     description: 'A sheet that slides in from the form side',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['sheet', 'button', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/sheet/sheet-form.tsx',
         target: 'components/demo/sheet/sheet-form.tsx',
       },
@@ -114,14 +114,14 @@ export const sheetRegistry = {
   'sheet-filter': {
     name: 'sheet-filter',
     description: 'A sheet that slides in from the filter side',
-    type: 'registry:demo',
+    type: 'registry:example',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['sheet', 'button', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/sheet/sheet-filter.tsx',
         target: 'components/demo/sheet/sheet-filter.tsx',
       },

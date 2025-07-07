@@ -29,13 +29,13 @@ export const tableRegistry = {
   'table-demo': {
     name: 'table-demo',
     description: 'A basic data table with sample data',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['table'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/table/table-demo.tsx',
         target: 'components/demo/table/table-demo.tsx',
       },
@@ -50,13 +50,13 @@ export const tableRegistry = {
   'table-sortable': {
     name: 'table-sortable',
     description: 'Table with sortable columns',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['table'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/table/table-sortable.tsx',
         target: 'components/demo/table/table-sortable.tsx',
       },
@@ -71,13 +71,13 @@ export const tableRegistry = {
   'table-custom-cells': {
     name: 'table-custom-cells',
     description: 'Table with custom cell renderers and formatting',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['table', 'avatar', 'badge', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/table/table-custom-cells.tsx',
         target: 'components/demo/table/table-custom-cells.tsx',
       },
@@ -92,13 +92,13 @@ export const tableRegistry = {
   'table-pagination': {
     name: 'table-pagination',
     description: 'Table with pagination controls',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['table'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/table/table-pagination.tsx',
         target: 'components/demo/table/table-pagination.tsx',
       },
@@ -113,13 +113,13 @@ export const tableRegistry = {
   'table-search': {
     name: 'table-search',
     description: 'Table with search functionality',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['table'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/table/table-search.tsx',
         target: 'components/demo/table/table-search.tsx',
       },
@@ -134,13 +134,13 @@ export const tableRegistry = {
   'table-loading': {
     name: 'table-loading',
     description: 'Table showing loading state',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['table', 'button', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/table/table-loading.tsx',
         target: 'components/demo/table/table-loading.tsx',
       },

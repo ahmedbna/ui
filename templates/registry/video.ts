@@ -29,13 +29,13 @@ export const videoRegistry = {
   'video-demo': {
     name: 'video-demo',
     description: 'A basic video player with custom controls',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['video'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/video/video-demo.tsx',
         target: 'components/demo/video/video-demo.tsx',
       },
@@ -51,13 +51,13 @@ export const videoRegistry = {
   'video-native-controls': {
     name: 'video-native-controls',
     description: 'Video player using native system controls',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['video'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/video/video-native-controls.tsx',
         target: 'components/demo/video/video-native-controls.tsx',
       },
@@ -73,13 +73,13 @@ export const videoRegistry = {
   'video-custom-controls': {
     name: 'video-custom-controls',
     description: 'Video player with custom control interface',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['video'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/video/video-custom-controls.tsx',
         target: 'components/demo/video/video-custom-controls.tsx',
       },
@@ -95,13 +95,13 @@ export const videoRegistry = {
   'video-subtitles': {
     name: 'video-subtitles',
     description: 'Video player with subtitle support',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['video'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/video/video-subtitles.tsx',
         target: 'components/demo/video/video-subtitles.tsx',
       },
@@ -117,13 +117,13 @@ export const videoRegistry = {
   'video-autoplay-loop': {
     name: 'video-autoplay-loop',
     description: 'Video that automatically plays and loops',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['video'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/video/video-autoplay-loop.tsx',
         target: 'components/demo/video/video-autoplay-loop.tsx',
       },
@@ -139,13 +139,13 @@ export const videoRegistry = {
   'video-sources': {
     name: 'video-sources',
     description: 'Video players with different source types',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['video', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/video/video-sources.tsx',
         target: 'components/demo/video/video-sources.tsx',
       },
@@ -161,13 +161,13 @@ export const videoRegistry = {
   'video-gestures': {
     name: 'video-gestures',
     description: 'Video player with tap-to-play and seek gestures',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['video', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/video/video-gestures.tsx',
         target: 'components/demo/video/video-gestures.tsx',
       },
@@ -183,13 +183,13 @@ export const videoRegistry = {
   'video-content-fit': {
     name: 'video-content-fit',
     description: 'Videos with different content fitting options',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['video', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/video/video-content-fit.tsx',
         target: 'components/demo/video/video-content-fit.tsx',
       },
