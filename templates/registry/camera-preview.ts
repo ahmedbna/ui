@@ -41,13 +41,13 @@ export const cameraPreviewRegistry = {
   'camera-preview-demo': {
     name: 'camera-preview-demo',
     description: 'A basic camera preview with capture and save functionality',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['camera-preview'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/camera-preview/camera-preview-demo.tsx',
         target: 'components/demo/camera-preview/camera-preview-demo.tsx',
       },

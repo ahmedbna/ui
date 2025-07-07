@@ -27,13 +27,13 @@ export const badgeRegistry = {
   'badge-demo': {
     name: 'badge-demo',
     description: 'Basic badges showing all available variants',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['badge'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/badge/badge-demo.tsx',
         target: 'components/demo/badge/badge-demo.tsx',
       },
@@ -48,13 +48,13 @@ export const badgeRegistry = {
   'badge-icons': {
     name: 'badge-icons',
     description: 'Badges with icons and custom content',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['badge'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/badge/badge-icons.tsx',
         target: 'components/demo/badge/badge-icons.tsx',
       },
@@ -69,13 +69,13 @@ export const badgeRegistry = {
   'badge-notifications': {
     name: 'badge-notifications',
     description: 'Small notification badges for counters and status',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['badge'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/badge/badge-notifications.tsx',
         target: 'components/demo/badge/badge-notifications.tsx',
       },
@@ -90,13 +90,13 @@ export const badgeRegistry = {
   'badge-styled': {
     name: 'badge-styled',
     description: 'Badges with custom colors and styling',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['badge'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/badge/badge-styled.tsx',
         target: 'components/demo/badge/badge-styled.tsx',
       },
@@ -111,13 +111,13 @@ export const badgeRegistry = {
   'badge-interactive': {
     name: 'badge-interactive',
     description: 'Badges that can be pressed or dismissed',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['badge'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/badge/badge-interactive.tsx',
         target: 'components/demo/badge/badge-interactive.tsx',
       },
@@ -132,13 +132,13 @@ export const badgeRegistry = {
   'badge-sizes': {
     name: 'badge-sizes',
     description: 'Badges in different sizes',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['badge'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/badge/badge-sizes.tsx',
         target: 'components/demo/badge/badge-sizes.tsx',
       },
@@ -153,13 +153,13 @@ export const badgeRegistry = {
   'badge-status': {
     name: 'badge-status',
     description: 'Badges used as status indicators',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['badge'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/badge/badge-status.tsx',
         target: 'components/demo/badge/badge-status.tsx',
       },

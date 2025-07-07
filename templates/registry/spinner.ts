@@ -29,13 +29,13 @@ export const spinnerRegistry = {
   'spinner-demo': {
     name: 'spinner-demo',
     description: 'A basic spinner with default styling',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['spinner'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/spinner/spinner-demo.tsx',
         target: 'components/demo/spinner/spinner-demo.tsx',
       },
@@ -52,13 +52,13 @@ export const spinnerRegistry = {
     name: 'spinner-variants',
     description:
       'Different spinner variants: default, circle, dots, pulse, and bars',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['spinner', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/spinner/spinner-variants.tsx',
         target: 'components/demo/spinner/spinner-variants.tsx',
       },
@@ -74,13 +74,13 @@ export const spinnerRegistry = {
   'spinner-sizes': {
     name: 'spinner-sizes',
     description: 'Spinners in different sizes: sm, default, lg, and icon',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['spinner', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/spinner/spinner-sizes.tsx',
         target: 'components/demo/spinner/spinner-sizes.tsx',
       },
@@ -96,13 +96,13 @@ export const spinnerRegistry = {
   'spinner-labels': {
     name: 'spinner-labels',
     description: 'Spinners with custom loading labels',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['spinner', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/spinner/spinner-labels.tsx',
         target: 'components/demo/spinner/spinner-labels.tsx',
       },
@@ -119,13 +119,13 @@ export const spinnerRegistry = {
     name: 'spinner-speeds',
     description:
       'Spinners with different animation speeds: slow, normal, and fast',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['spinner', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/spinner/spinner-speeds.tsx',
         target: 'components/demo/spinner/spinner-speeds.tsx',
       },
@@ -141,13 +141,13 @@ export const spinnerRegistry = {
   'spinner-colors': {
     name: 'spinner-colors',
     description: 'Spinners with custom colors and styling',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['spinner', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/spinner/spinner-colors.tsx',
         target: 'components/demo/spinner/spinner-colors.tsx',
       },
@@ -163,13 +163,13 @@ export const spinnerRegistry = {
   'spinner-overlay': {
     name: 'spinner-overlay',
     description: 'Full-screen loading overlay with backdrop',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['spinner', 'button', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/spinner/spinner-overlay.tsx',
         target: 'components/demo/spinner/spinner-overlay.tsx',
       },
@@ -185,13 +185,13 @@ export const spinnerRegistry = {
   'spinner-inline': {
     name: 'spinner-inline',
     description: 'Small spinners for inline usage in buttons or text',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['spinner', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/spinner/spinner-inline.tsx',
         target: 'components/demo/spinner/spinner-inline.tsx',
       },

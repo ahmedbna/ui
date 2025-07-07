@@ -33,13 +33,13 @@ export const carouselRegistry = {
   'carousel-demo': {
     name: 'carousel-demo',
     description: 'A basic carousel with auto-play and indicators',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['carousel'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/carousel/carousel-demo.tsx',
         target: 'components/demo/carousel/carousel-demo.tsx',
       },
@@ -55,13 +55,13 @@ export const carouselRegistry = {
   'carousel-arrows': {
     name: 'carousel-arrows',
     description: 'Carousel with navigation arrows and indicators',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['carousel'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/carousel/carousel-arrows.tsx',
         target: 'components/demo/carousel/carousel-arrows.tsx',
       },
@@ -77,13 +77,13 @@ export const carouselRegistry = {
   'carousel-custom-width': {
     name: 'carousel-custom-width',
     description: 'Carousel with custom item width and spacing',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['carousel'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/carousel/carousel-custom-width.tsx',
         target: 'components/demo/carousel/carousel-custom-width.tsx',
       },
@@ -99,14 +99,14 @@ export const carouselRegistry = {
   'carousel-images': {
     name: 'carousel-images',
     description: 'Image carousel with auto-play and loop',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['carousel'],
     dependencies: ['expo-image'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/carousel/carousel-images.tsx',
         target: 'components/demo/carousel/carousel-images.tsx',
       },
@@ -122,13 +122,13 @@ export const carouselRegistry = {
   'carousel-cards': {
     name: 'carousel-cards',
     description: 'Card-based carousel with custom content',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['carousel'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/carousel/carousel-cards.tsx',
         target: 'components/demo/carousel/carousel-cards.tsx',
       },
@@ -144,13 +144,13 @@ export const carouselRegistry = {
   'carousel-no-indicators': {
     name: 'carousel-no-indicators',
     description: 'Carousel without indicators, arrows only',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['carousel'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/carousel/carousel-no-indicators.tsx',
         target: 'components/demo/carousel/carousel-no-indicators.tsx',
       },
@@ -166,13 +166,13 @@ export const carouselRegistry = {
   'carousel-manual': {
     name: 'carousel-manual',
     description: 'Manually controlled carousel with external buttons',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['carousel', 'button'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/carousel/carousel-manual.tsx',
         target: 'components/demo/carousel/carousel-manual.tsx',
       },

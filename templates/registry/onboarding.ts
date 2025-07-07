@@ -29,14 +29,14 @@ export const onboardingRegistry = {
   'onboarding-demo': {
     name: 'onboarding-demo',
     description: 'A basic onboarding flow with multiple steps',
-    type: 'registry:demo',
+    type: 'registry:example',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['onboarding'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/onboarding/onboarding-demo.tsx',
         target: 'components/demo/onboarding/onboarding-demo.tsx',
       },
@@ -52,13 +52,13 @@ export const onboardingRegistry = {
   'onboarding-images': {
     name: 'onboarding-images',
     description: 'Onboarding flow with custom images for each step',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['onboarding', 'image'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/onboarding/onboarding-images.tsx',
         target: 'components/demo/onboarding/onboarding-images.tsx',
       },
@@ -73,14 +73,14 @@ export const onboardingRegistry = {
   'onboarding-styled': {
     name: 'onboarding-styled',
     description: 'Onboarding with custom colors and styling',
-    type: 'registry:demo',
+    type: 'registry:example',
     dependencies: ['lucide-react-native', 'expo-linear-gradient'],
     registryDependencies: ['onboarding'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/onboarding/onboarding-styled.tsx',
         target: 'components/demo/onboarding/onboarding-styled.tsx',
       },
@@ -95,14 +95,14 @@ export const onboardingRegistry = {
   'onboarding-no-skip': {
     name: 'onboarding-no-skip',
     description: 'Onboarding flow without skip functionality',
-    type: 'registry:demo',
+    type: 'registry:example',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['onboarding'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/onboarding/onboarding-no-skip.tsx',
         target: 'components/demo/onboarding/onboarding-no-skip.tsx',
       },
@@ -117,14 +117,14 @@ export const onboardingRegistry = {
   'onboarding-no-swipe': {
     name: 'onboarding-no-swipe',
     description: 'Onboarding with swipe gestures disabled',
-    type: 'registry:demo',
+    type: 'registry:example',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['onboarding'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/onboarding/onboarding-no-swipe.tsx',
         target: 'components/demo/onboarding/onboarding-no-swipe.tsx',
       },
@@ -139,14 +139,14 @@ export const onboardingRegistry = {
   'onboarding-custom-buttons': {
     name: 'onboarding-custom-buttons',
     description: 'Onboarding with custom button text',
-    type: 'registry:demo',
+    type: 'registry:example',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['onboarding'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/onboarding/onboarding-custom-buttons.tsx',
         target: 'components/demo/onboarding/onboarding-custom-buttons.tsx',
       },
@@ -161,13 +161,13 @@ export const onboardingRegistry = {
   'onboarding-hook': {
     name: 'onboarding-hook',
     description: 'Media picker showing selected media previews',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['onboarding', 'view', 'text', 'button'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/onboarding/onboarding-hook.tsx',
         target: 'components/demo/onboarding/onboarding-hook.tsx',
       },

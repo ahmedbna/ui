@@ -29,13 +29,13 @@ export const checkboxRegistry = {
   'checkbox-demo': {
     name: 'checkbox-demo',
     description: 'A basic checkbox with label',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['checkbox'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/checkbox/checkbox-demo.tsx',
         target: 'components/demo/checkbox/checkbox-demo.tsx',
       },
@@ -52,13 +52,13 @@ export const checkboxRegistry = {
     name: 'checkbox-states',
     description:
       'Checkboxes in different states: unchecked, checked, and disabled',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['checkbox', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/checkbox/checkbox-states.tsx',
         target: 'components/demo/checkbox/checkbox-states.tsx',
       },
@@ -74,13 +74,13 @@ export const checkboxRegistry = {
   'checkbox-without-label': {
     name: 'checkbox-without-label',
     description: 'A checkbox without a label',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['checkbox'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/checkbox/checkbox-without-label.tsx',
         target: 'components/demo/checkbox/checkbox-without-label.tsx',
       },
@@ -96,13 +96,13 @@ export const checkboxRegistry = {
   'checkbox-with-error': {
     name: 'checkbox-with-error',
     description: 'A checkbox with error styling and message',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['checkbox', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/checkbox/checkbox-with-error.tsx',
         target: 'components/demo/checkbox/checkbox-with-error.tsx',
       },
@@ -118,13 +118,13 @@ export const checkboxRegistry = {
   'checkbox-custom-styling': {
     name: 'checkbox-custom-styling',
     description: 'Checkboxes with custom label styling',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['checkbox', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/checkbox/checkbox-custom-styling.tsx',
         target: 'components/demo/checkbox/checkbox-custom-styling.tsx',
       },
@@ -140,13 +140,13 @@ export const checkboxRegistry = {
   'checkbox-group': {
     name: 'checkbox-group',
     description: 'Multiple checkboxes working together as a group',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['checkbox', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/checkbox/checkbox-group.tsx',
         target: 'components/demo/checkbox/checkbox-group.tsx',
       },

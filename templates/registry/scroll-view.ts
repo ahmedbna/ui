@@ -29,13 +29,13 @@ export const scrollViewRegistry = {
   'scroll-view-demo': {
     name: 'scroll-view-demo',
     description: 'A basic scrollable view with content',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['scroll-view', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/scroll-view/scroll-view-demo.tsx',
         target: 'components/demo/scroll-view/scroll-view-demo.tsx',
       },
@@ -51,13 +51,13 @@ export const scrollViewRegistry = {
   'scroll-view-vertical': {
     name: 'scroll-view-vertical',
     description: 'Vertical scrolling with multiple items',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['scroll-view', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/scroll-view/scroll-view-vertical.tsx',
         target: 'components/demo/scroll-view/scroll-view-vertical.tsx',
       },
@@ -73,13 +73,13 @@ export const scrollViewRegistry = {
   'scroll-view-horizontal': {
     name: 'scroll-view-horizontal',
     description: 'Horizontal scrolling with cards',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['scroll-view', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/scroll-view/scroll-view-horizontal.tsx',
         target: 'components/demo/scroll-view/scroll-view-horizontal.tsx',
       },
@@ -95,13 +95,13 @@ export const scrollViewRegistry = {
   'scroll-view-nested': {
     name: 'scroll-view-nested',
     description: 'ScrollViews nested within each other',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['scroll-view', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/scroll-view/scroll-view-nested.tsx',
         target: 'components/demo/scroll-view/scroll-view-nested.tsx',
       },
@@ -117,13 +117,13 @@ export const scrollViewRegistry = {
   'scroll-view-refresh': {
     name: 'scroll-view-refresh',
     description: 'ScrollView with pull-to-refresh functionality',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['scroll-view', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/scroll-view/scroll-view-refresh.tsx',
         target: 'components/demo/scroll-view/scroll-view-refresh.tsx',
       },
@@ -139,13 +139,13 @@ export const scrollViewRegistry = {
   'scroll-view-styled': {
     name: 'scroll-view-styled',
     description: 'ScrollView with custom styling and padding',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['scroll-view', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/scroll-view/scroll-view-styled.tsx',
         target: 'components/demo/scroll-view/scroll-view-styled.tsx',
       },
@@ -161,13 +161,13 @@ export const scrollViewRegistry = {
   'scroll-view-indicators': {
     name: 'scroll-view-indicators',
     description: 'ScrollView with custom scroll indicators',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['scroll-view', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/scroll-view/scroll-view-indicators.tsx',
         target: 'components/demo/scroll-view/scroll-view-indicators.tsx',
       },
@@ -183,13 +183,13 @@ export const scrollViewRegistry = {
   'scroll-view-inset': {
     name: 'scroll-view-inset',
     description: 'ScrollView with content inset adjustments',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['scroll-view', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/scroll-view/scroll-view-inset.tsx',
         target: 'components/demo/scroll-view/scroll-view-inset.tsx',
       },

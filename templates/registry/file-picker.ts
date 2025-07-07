@@ -29,13 +29,13 @@ export const filePickerRegistry = {
   'file-picker-demo': {
     name: 'file-picker-demo',
     description: 'A basic file picker with validation and preview',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['file-picker'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/file-picker/file-picker-demo.tsx',
         target: 'components/demo/file-picker/file-picker-demo.tsx',
       },
@@ -50,13 +50,13 @@ export const filePickerRegistry = {
   'file-picker-images': {
     name: 'file-picker-images',
     description: 'File picker configured for images only',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['file-picker', 'view', 'text'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/file-picker/file-picker-images.tsx',
         target: 'components/demo/file-picker/file-picker-images.tsx',
       },
@@ -71,13 +71,13 @@ export const filePickerRegistry = {
   'file-picker-single': {
     name: 'file-picker-single',
     description: 'File picker for selecting a single file',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['file-picker', 'view', 'text'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/file-picker/file-picker-single.tsx',
         target: 'components/demo/file-picker/file-picker-single.tsx',
       },
@@ -92,13 +92,13 @@ export const filePickerRegistry = {
   'file-picker-validation': {
     name: 'file-picker-validation',
     description: 'File picker with size limits and extension validation',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['file-picker', 'view', 'text'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/file-picker/file-picker-validation.tsx',
         target: 'components/demo/file-picker/file-picker-validation.tsx',
       },
@@ -113,13 +113,13 @@ export const filePickerRegistry = {
   'file-picker-styled': {
     name: 'file-picker-styled',
     description: 'File picker with custom styling and colors',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['file-picker', 'view', 'text'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/file-picker/file-picker-styled.tsx',
         target: 'components/demo/file-picker/file-picker-styled.tsx',
       },
@@ -134,13 +134,13 @@ export const filePickerRegistry = {
   'file-picker-controlled': {
     name: 'file-picker-controlled',
     description: 'Controlled file picker using the useFilePicker hook',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['file-picker', 'button', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/file-picker/file-picker-controlled.tsx',
         target: 'components/demo/file-picker/file-picker-controlled.tsx',
       },
@@ -155,13 +155,13 @@ export const filePickerRegistry = {
   'file-picker-info': {
     name: 'file-picker-info',
     description: 'File picker displaying detailed file information',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['file-picker', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/file-picker/file-picker-info.tsx',
         target: 'components/demo/file-picker/file-picker-info.tsx',
       },

@@ -27,13 +27,13 @@ export const avatarRegistry = {
   'avatar-demo': {
     name: 'avatar-demo',
     description: 'A basic avatar with image and fallback text',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['avatar'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/avatar/avatar-demo.tsx',
         target: 'components/demo/avatar/avatar-demo.tsx',
       },
@@ -48,13 +48,13 @@ export const avatarRegistry = {
   'avatar-sizes': {
     name: 'avatar-sizes',
     description: 'Avatars in different sizes',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['avatar'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/avatar/avatar-sizes.tsx',
         target: 'components/demo/avatar/avatar-sizes.tsx',
       },
@@ -69,13 +69,13 @@ export const avatarRegistry = {
   'avatar-fallback': {
     name: 'avatar-fallback',
     description: 'Avatars with fallback text when no image is provided',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['avatar'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/avatar/avatar-fallback.tsx',
         target: 'components/demo/avatar/avatar-fallback.tsx',
       },
@@ -90,13 +90,13 @@ export const avatarRegistry = {
   'avatar-styled': {
     name: 'avatar-styled',
     description: 'Avatars with custom styling and colors',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['avatar'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/avatar/avatar-styled.tsx',
         target: 'components/demo/avatar/avatar-styled.tsx',
       },
@@ -111,13 +111,13 @@ export const avatarRegistry = {
   'avatar-group': {
     name: 'avatar-group',
     description: 'Multiple avatars arranged in a group layout',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['avatar'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/avatar/avatar-group.tsx',
         target: 'components/demo/avatar/avatar-group.tsx',
       },
@@ -132,13 +132,13 @@ export const avatarRegistry = {
   'avatar-status': {
     name: 'avatar-status',
     description: 'Avatars with online/offline status indicators',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['avatar'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/avatar/avatar-status.tsx',
         target: 'components/demo/avatar/avatar-status.tsx',
       },
@@ -153,13 +153,13 @@ export const avatarRegistry = {
   'avatar-bordered': {
     name: 'avatar-bordered',
     description: 'Avatars with custom borders and shadows',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['avatar'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/avatar/avatar-bordered.tsx',
         target: 'components/demo/avatar/avatar-bordered.tsx',
       },

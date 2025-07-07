@@ -34,13 +34,13 @@ export const mediaPickerRegistry = {
   'media-picker-demo': {
     name: 'media-picker-demo',
     description: 'A basic media picker with image and video selection',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['media-picker'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/media-picker/media-picker-demo.tsx',
         target: 'components/demo/media-picker/media-picker-demo.tsx',
       },
@@ -56,14 +56,14 @@ export const mediaPickerRegistry = {
   'media-picker-images': {
     name: 'media-picker-images',
     description: 'Media picker configured for images only',
-    type: 'registry:demo',
+    type: 'registry:example',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['media-picker'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/media-picker/media-picker-images.tsx',
         target: 'components/demo/media-picker/media-picker-images.tsx',
       },
@@ -79,14 +79,14 @@ export const mediaPickerRegistry = {
   'media-picker-videos': {
     name: 'media-picker-videos',
     description: 'Media picker configured for videos only',
-    type: 'registry:demo',
+    type: 'registry:example',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['media-picker'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/media-picker/media-picker-videos.tsx',
         target: 'components/demo/media-picker/media-picker-videos.tsx',
       },
@@ -102,14 +102,14 @@ export const mediaPickerRegistry = {
   'media-picker-multiple': {
     name: 'media-picker-multiple',
     description: 'Media picker with multiple selection enabled',
-    type: 'registry:demo',
+    type: 'registry:example',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['media-picker', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/media-picker/media-picker-multiple.tsx',
         target: 'components/demo/media-picker/media-picker-multiple.tsx',
       },
@@ -125,14 +125,14 @@ export const mediaPickerRegistry = {
   'media-picker-gallery': {
     name: 'media-picker-gallery',
     description: 'Media picker with custom gallery modal',
-    type: 'registry:demo',
+    type: 'registry:example',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['media-picker'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/media-picker/media-picker-gallery.tsx',
         target: 'components/demo/media-picker/media-picker-gallery.tsx',
       },
@@ -148,14 +148,14 @@ export const mediaPickerRegistry = {
   'media-picker-preview': {
     name: 'media-picker-preview',
     description: 'Media picker showing selected media previews',
-    type: 'registry:demo',
+    type: 'registry:example',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['media-picker', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/media-picker/media-picker-preview.tsx',
         target: 'components/demo/media-picker/media-picker-preview.tsx',
       },
@@ -171,14 +171,14 @@ export const mediaPickerRegistry = {
   'media-picker-quality': {
     name: 'media-picker-quality',
     description: 'Media picker with different quality settings',
-    type: 'registry:demo',
+    type: 'registry:example',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['media-picker', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/media-picker/media-picker-quality.tsx',
         target: 'components/demo/media-picker/media-picker-quality.tsx',
       },

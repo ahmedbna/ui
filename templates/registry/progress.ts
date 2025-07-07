@@ -28,13 +28,13 @@ export const progressRegistry = {
   'progress-demo': {
     name: 'progress-demo',
     description: 'A basic progress bar showing completion status',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['progress'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/progress/progress-demo.tsx',
         target: 'components/demo/progress/progress-demo.tsx',
       },
@@ -49,13 +49,13 @@ export const progressRegistry = {
   'progress-interactive': {
     name: 'progress-interactive',
     description: 'An interactive progress bar that can be dragged or tapped',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['progress', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/progress/progress-interactive.tsx',
         target: 'components/demo/progress/progress-interactive.tsx',
       },
@@ -70,13 +70,13 @@ export const progressRegistry = {
   'progress-heights': {
     name: 'progress-heights',
     description: 'Progress bars with different heights',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['progress', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/progress/progress-heights.tsx',
         target: 'components/demo/progress/progress-heights.tsx',
       },
@@ -90,13 +90,13 @@ export const progressRegistry = {
   'progress-labels': {
     name: 'progress-labels',
     description: 'Progress bars with percentage labels and descriptions',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['progress', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/progress/progress-labels.tsx',
         target: 'components/demo/progress/progress-labels.tsx',
       },
@@ -110,13 +110,13 @@ export const progressRegistry = {
   'progress-animated': {
     name: 'progress-animated',
     description: 'Progress bars with smooth animations and transitions',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['progress', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/progress/progress-animated.tsx',
         target: 'components/demo/progress/progress-animated.tsx',
       },
@@ -131,13 +131,13 @@ export const progressRegistry = {
   'progress-media': {
     name: 'progress-media',
     description: 'Progress bars styled for media player controls',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['progress', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/progress/progress-media.tsx',
         target: 'components/demo/progress/progress-media.tsx',
       },
@@ -152,13 +152,13 @@ export const progressRegistry = {
   'progress-steps': {
     name: 'progress-steps',
     description: 'Multi-step progress indicators',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['progress', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/progress/progress-steps.tsx',
         target: 'components/demo/progress/progress-steps.tsx',
       },

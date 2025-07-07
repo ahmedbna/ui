@@ -29,13 +29,13 @@ export const tabsRegistry = {
   'tabs-demo': {
     name: 'tabs-demo',
     description: 'Basic tabs container with content',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['tabs', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/tabs/tabs-demo.tsx',
         target: 'components/demo/tabs/tabs-demo.tsx',
       },
@@ -50,13 +50,13 @@ export const tabsRegistry = {
   'tabs-vertical': {
     name: 'tabs-vertical',
     description: 'Tabs arranged in vertical orientation',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['tabs', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/tabs/tabs-vertical.tsx',
         target: 'components/demo/tabs/tabs-vertical.tsx',
       },
@@ -71,13 +71,13 @@ export const tabsRegistry = {
   'tabs-disabled': {
     name: 'tabs-disabled',
     description: 'Tabs with disabled states',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['tabs', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/tabs/tabs-disabled.tsx',
         target: 'components/demo/tabs/tabs-disabled.tsx',
       },
@@ -92,13 +92,13 @@ export const tabsRegistry = {
   'tabs-styled': {
     name: 'tabs-styled',
     description: 'Tabs with custom colors and styling',
-    type: 'registry:demo',
+    type: 'registry:example',
     registryDependencies: ['tabs', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:demo',
+        type: 'registry:example',
         path: 'templates/demo/tabs/tabs-styled.tsx',
         target: 'components/demo/tabs/tabs-styled.tsx',
       },
