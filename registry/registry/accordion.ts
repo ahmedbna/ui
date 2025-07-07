@@ -9,11 +9,13 @@ export const accordionRegistry = {
     type: 'registry:ui',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['text', 'view', 'icon'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/components/ui/accordion.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/accordion.tsx',
+        target: 'components/ui/accordion.tsx',
       },
     ],
     preview: {
@@ -29,11 +31,13 @@ export const accordionRegistry = {
     description: 'A basic accordion with collapsible sections',
     type: 'registry:example',
     registryDependencies: ['accordion'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/accordion/accordion-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/accordion/accordion-demo.tsx',
+        target: 'components/demo/accordion/accordion-demo.tsx',
       },
     ],
     preview: {
@@ -49,11 +53,13 @@ export const accordionRegistry = {
     description: 'An accordion that allows only one item to be open at a time',
     type: 'registry:example',
     registryDependencies: ['accordion'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/accordion/accordion-single.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/accordion/accordion-single.tsx',
+        target: 'components/demo/accordion/accordion-single.tsx',
       },
     ],
     preview: {
@@ -70,11 +76,13 @@ export const accordionRegistry = {
       'An accordion that allows multiple items to be open simultaneously',
     type: 'registry:example',
     registryDependencies: ['accordion'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/accordion/accordion-multiple.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/accordion/accordion-multiple.tsx',
+        target: 'components/demo/accordion/accordion-multiple.tsx',
       },
     ],
     preview: {
@@ -90,11 +98,13 @@ export const accordionRegistry = {
     description: 'An accordion with controlled state management',
     type: 'registry:example',
     registryDependencies: ['accordion'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/accordion/accordion-controlled.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/accordion/accordion-controlled.tsx',
+        target: 'components/demo/accordion/accordion-controlled.tsx',
       },
     ],
     preview: {
@@ -111,11 +121,13 @@ export const accordionRegistry = {
       'An accordion formatted as a frequently asked questions section',
     type: 'registry:example',
     registryDependencies: ['accordion'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/accordion/accordion-faq.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/accordion/accordion-faq.tsx',
+        target: 'components/demo/accordion/accordion-faq.tsx',
       },
     ],
     preview: {
@@ -131,11 +143,13 @@ export const accordionRegistry = {
     description: 'An accordion where at least one item must always remain open',
     type: 'registry:example',
     registryDependencies: ['accordion'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/accordion/accordion-non-collapsible.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/accordion/accordion-non-collapsible.tsx',
+        target: 'components/demo/accordion/accordion-non-collapsible.tsx',
       },
     ],
     preview: {
@@ -151,11 +165,13 @@ export const accordionRegistry = {
     description: 'An accordion with custom styling and icons',
     type: 'registry:example',
     registryDependencies: ['accordion'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/accordion/accordion-styled.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/accordion/accordion-styled.tsx',
+        target: 'components/demo/accordion/accordion-styled.tsx',
       },
     ],
     preview: {

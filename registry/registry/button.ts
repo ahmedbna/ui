@@ -9,16 +9,18 @@ export const buttonRegistry = {
       'A versatile button component with multiple variants, sizes, and interactive animations.',
     type: 'registry:ui',
     dependencies: [
-      'react-native-reanimated',
-      'react-native-gesture-handler',
+      'expo-haptics',
       'lucide-react-native',
+      'react-native-reanimated',
     ],
     registryDependencies: ['text', 'icon', 'spinner'],
+    hooks: ['useThemeColor'],
+    theme: ['globals'],
     files: [
       {
-        path: 'registry/components/ui/button.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/button.tsx',
+        target: 'components/ui/button.tsx',
       },
     ],
     preview: {
@@ -34,11 +36,13 @@ export const buttonRegistry = {
     description: 'A basic button with default styling',
     type: 'registry:example',
     registryDependencies: ['button'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/button/button-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/button/button-demo.tsx',
+        target: 'components/demo/button/button-demo.tsx',
       },
     ],
     preview: {
@@ -54,11 +58,13 @@ export const buttonRegistry = {
     description: 'Buttons with different visual styles',
     type: 'registry:example',
     registryDependencies: ['button'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/button/button-variants.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/button/button-variants.tsx',
+        target: 'components/demo/button/button-variants.tsx',
       },
     ],
     preview: {
@@ -74,11 +80,13 @@ export const buttonRegistry = {
     description: 'Buttons in different sizes',
     type: 'registry:example',
     registryDependencies: ['button'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/button/button-sizes.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/button/button-sizes.tsx',
+        target: 'components/demo/button/button-sizes.tsx',
       },
     ],
     preview: {
@@ -94,11 +102,13 @@ export const buttonRegistry = {
     description: 'Buttons with leading icons',
     type: 'registry:example',
     registryDependencies: ['button'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/button/button-with-icons.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/button/button-with-icons.tsx',
+        target: 'components/demo/button/button-with-icons.tsx',
       },
     ],
     preview: {
@@ -114,11 +124,13 @@ export const buttonRegistry = {
     description: 'Icon-only buttons for compact layouts',
     type: 'registry:example',
     registryDependencies: ['button'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/button/button-icon-only.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/button/button-icon-only.tsx',
+        target: 'components/demo/button/button-icon-only.tsx',
       },
     ],
     preview: {
@@ -134,11 +146,13 @@ export const buttonRegistry = {
     description: 'Buttons with loading spinners',
     type: 'registry:example',
     registryDependencies: ['button'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/button/button-loading.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/button/button-loading.tsx',
+        target: 'components/demo/button/button-loading.tsx',
       },
     ],
     preview: {
@@ -154,11 +168,13 @@ export const buttonRegistry = {
     description: 'Buttons in disabled state',
     type: 'registry:example',
     registryDependencies: ['button'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/button/button-disabled.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/button/button-disabled.tsx',
+        target: 'components/demo/button/button-disabled.tsx',
       },
     ],
     preview: {
@@ -174,11 +190,13 @@ export const buttonRegistry = {
     description: 'Buttons with custom colors and styles',
     type: 'registry:example',
     registryDependencies: ['button'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/button/button-custom.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/button/button-custom.tsx',
+        target: 'components/demo/button/button-custom.tsx',
       },
     ],
     preview: {
@@ -194,11 +212,13 @@ export const buttonRegistry = {
     description: 'Buttons with and without animations',
     type: 'registry:example',
     registryDependencies: ['button'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/button/button-animation.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/button/button-animation.tsx',
+        target: 'components/demo/button/button-animation.tsx',
       },
     ],
     preview: {

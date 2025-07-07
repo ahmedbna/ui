@@ -47,6 +47,8 @@ import { toggleRegistry } from '@/registry/registry/toggle';
 import { videoRegistry } from '@/registry/registry/video';
 import { viewRegistry } from '@/registry/registry/view';
 import { separatorRegistry } from '@/registry/registry/separator';
+import { hooksRegistry } from '@/registry/registry/hooks';
+import { themeRegistry } from '@/registry/registry/theme';
 
 export const Index: Record<string, any> = {
   ...accordionRegistry,
@@ -98,4 +100,6 @@ export const Index: Record<string, any> = {
   ...videoRegistry,
   ...viewRegistry,
   ...separatorRegistry,
+  ...hooksRegistry,
+  ...themeRegistry,
 };

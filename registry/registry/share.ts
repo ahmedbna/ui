@@ -9,11 +9,13 @@ export const shareRegistry = {
     type: 'registry:ui',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['button', 'text'],
+    hooks: ['useThemeColor'],
+    theme: ['globals'],
     files: [
       {
-        path: 'registry/components/ui/share.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/share.tsx',
+        target: 'components/ui/share.tsx',
       },
     ],
     preview: {
@@ -29,11 +31,13 @@ export const shareRegistry = {
     description: 'A basic share button with text and URL sharing',
     type: 'registry:example',
     registryDependencies: ['share'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/share/share-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/share/share-demo.tsx',
+        target: 'components/demo/share/share-demo.tsx',
       },
     ],
     preview: {
@@ -49,11 +53,13 @@ export const shareRegistry = {
     description: 'Share buttons with different visual variants',
     type: 'registry:example',
     registryDependencies: ['share', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/share/share-variants.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/share/share-variants.tsx',
+        target: 'components/demo/share/share-variants.tsx',
       },
     ],
     preview: {
@@ -69,11 +75,13 @@ export const shareRegistry = {
     description: 'Share buttons in different sizes',
     type: 'registry:example',
     registryDependencies: ['share', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/share/share-sizes.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/share/share-sizes.tsx',
+        target: 'components/demo/share/share-sizes.tsx',
       },
     ],
     preview: {
@@ -89,11 +97,13 @@ export const shareRegistry = {
     description: 'Share button for sharing URLs without additional text',
     type: 'registry:example',
     registryDependencies: ['share', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/share/share-url-only.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/share/share-url-only.tsx',
+        target: 'components/demo/share/share-url-only.tsx',
       },
     ],
     preview: {
@@ -109,11 +119,13 @@ export const shareRegistry = {
     description: 'Share button with custom title, subject, and content',
     type: 'registry:example',
     registryDependencies: ['share', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/share/share-custom-content.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/share/share-custom-content.tsx',
+        target: 'components/demo/share/share-custom-content.tsx',
       },
     ],
     preview: {
@@ -129,11 +141,13 @@ export const shareRegistry = {
     description: 'Compact share button with icon only',
     type: 'registry:example',
     registryDependencies: ['share', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/share/share-icon-only.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/share/share-icon-only.tsx',
+        target: 'components/demo/share/share-icon-only.tsx',
       },
     ],
     preview: {
@@ -149,11 +163,12 @@ export const shareRegistry = {
     description: 'Share button with success, error, and dismiss callbacks',
     type: 'registry:example',
     registryDependencies: ['share', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
         path: 'registry/demo/share/share-callbacks.tsx',
-        type: 'registry:example',
-        target: '',
+        target: 'components:example',
       },
     ],
     preview: {
@@ -168,11 +183,13 @@ export const shareRegistry = {
     description: 'Using the useShare hook for programmatic sharing',
     type: 'registry:example',
     registryDependencies: ['share', 'text', 'view', 'button'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/share/share-hook.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/share/share-hook.tsx',
+        target: 'components/demo/share/share-hook.tsx',
       },
     ],
     preview: {

@@ -10,7 +10,6 @@ export const cameraPreviewRegistry = {
     dependencies: [
       'expo-camera',
       'expo-media-library',
-      'expo-av',
       'lucide-react-native',
       'react-native-safe-area-context',
     ],
@@ -22,11 +21,13 @@ export const cameraPreviewRegistry = {
       'video',
       'camera',
     ],
+    hooks: ['useThemeColor'],
+    theme: [],
     files: [
       {
-        path: 'registry/components/ui/camera-preview.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/camera-preview.tsx',
+        target: 'components/ui/camera-preview.tsx',
       },
     ],
     preview: {
@@ -42,11 +43,13 @@ export const cameraPreviewRegistry = {
     description: 'A basic camera preview with capture and save functionality',
     type: 'registry:example',
     registryDependencies: ['camera-preview'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/camera-preview/camera-preview-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/camera-preview/camera-preview-demo.tsx',
+        target: 'components/demo/camera-preview/camera-preview-demo.tsx',
       },
     ],
     preview: {

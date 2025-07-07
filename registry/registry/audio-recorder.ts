@@ -6,19 +6,15 @@ export const audioRecorderRegistry = {
     description:
       'A comprehensive audio recording component with real-time waveform visualization, quality settings, and built-in playback capabilities.',
     type: 'registry:ui',
-    dependencies: ['lucide-react-native'],
-    registryDependencies: [
-      'audio-player',
-      'audio-waveform',
-      'button',
-      'text',
-      'progress',
-    ],
+    dependencies: ['expo-audio', 'lucide-react-native'],
+    registryDependencies: ['audio-player', 'audio-waveform', 'button', 'text'],
+    hooks: ['useThemeColor'],
+    theme: ['globals'],
     files: [
       {
-        path: 'registry/components/ui/audio-recorder.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/audio-recorder.tsx',
+        target: 'components/ui/audio-recorder.tsx',
       },
     ],
     preview: {
@@ -35,11 +31,13 @@ export const audioRecorderRegistry = {
       'Full-featured audio recorder with real-time waveform and playback',
     type: 'registry:example',
     registryDependencies: ['audio-recorder', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/audio-recorder/audio-recorder-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/audio-recorder/audio-recorder-demo.tsx',
+        target: 'components/demo/audio-recorder/audio-recorder-demo.tsx',
       },
     ],
     preview: {
@@ -55,11 +53,13 @@ export const audioRecorderRegistry = {
     description: 'Optimized recorder for quick voice notes with time limit',
     type: 'registry:example',
     registryDependencies: ['audio-recorder', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/audio-recorder/audio-recorder-voice.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/audio-recorder/audio-recorder-voice.tsx',
+        target: 'components/demo/audio-recorder/audio-recorder-voice.tsx',
       },
     ],
     preview: {
@@ -75,11 +75,13 @@ export const audioRecorderRegistry = {
     description: 'High-quality recorder for music or professional audio',
     type: 'registry:example',
     registryDependencies: ['audio-recorder', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/audio-recorder/audio-recorder-hq.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/audio-recorder/audio-recorder-hq.tsx',
+        target: 'components/demo/audio-recorder/audio-recorder-hq.tsx',
       },
     ],
     preview: {
@@ -95,11 +97,13 @@ export const audioRecorderRegistry = {
     description: 'Minimal recorder without waveform visualization',
     type: 'registry:example',
     registryDependencies: ['audio-recorder', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/audio-recorder/audio-recorder-minimal.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/audio-recorder/audio-recorder-minimal.tsx',
+        target: 'components/demo/audio-recorder/audio-recorder-minimal.tsx',
       },
     ],
     preview: {
@@ -115,11 +119,13 @@ export const audioRecorderRegistry = {
     description: 'Audio recorder with custom styling and branding',
     type: 'registry:example',
     registryDependencies: ['audio-recorder', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/audio-recorder/audio-recorder-styled.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/audio-recorder/audio-recorder-styled.tsx',
+        target: 'components/demo/audio-recorder/audio-recorder-styled.tsx',
       },
     ],
     preview: {
@@ -135,11 +141,13 @@ export const audioRecorderRegistry = {
     description: 'Recorder with comprehensive callback handling',
     type: 'registry:example',
     registryDependencies: ['audio-recorder', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/audio-recorder/audio-recorder-callbacks.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/audio-recorder/audio-recorder-callbacks.tsx',
+        target: 'components/demo/audio-recorder/audio-recorder-callbacks.tsx',
       },
     ],
     preview: {
@@ -155,11 +163,13 @@ export const audioRecorderRegistry = {
     description: 'Recorder with cloud storage integration',
     type: 'registry:example',
     registryDependencies: ['audio-recorder', 'text', 'view', 'loading-spinner'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/audio-recorder/audio-recorder-cloud.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/audio-recorder/audio-recorder-cloud.tsx',
+        target: 'components/demo/audio-recorder/audio-recorder-cloud.tsx',
       },
     ],
     preview: {
@@ -175,11 +185,13 @@ export const audioRecorderRegistry = {
     description: 'Long-form recorder optimized for interviews and meetings',
     type: 'registry:example',
     registryDependencies: ['audio-recorder', 'text', 'view', 'badge'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/audio-recorder/audio-recorder-interview.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/audio-recorder/audio-recorder-interview.tsx',
+        target: 'components/demo/audio-recorder/audio-recorder-interview.tsx',
       },
     ],
     preview: {

@@ -9,15 +9,17 @@ export const cameraRegistry = {
     type: 'registry:ui',
     dependencies: [
       'expo-camera',
-      'react-native-gesture-handler',
       'lucide-react-native',
+      'react-native-gesture-handler',
     ],
     registryDependencies: ['button', 'text', 'progress'],
+    hooks: ['useThemeColor'],
+    theme: ['globals'],
     files: [
       {
-        path: 'registry/components/ui/camera.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/camera.tsx',
+        target: 'components/ui/camera.tsx',
       },
     ],
     preview: {
@@ -33,11 +35,13 @@ export const cameraRegistry = {
     description: 'A basic camera with default settings',
     type: 'registry:example',
     registryDependencies: ['camera'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/camera/camera-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/camera/camera-demo.tsx',
+        target: 'components/demo/camera/camera-demo.tsx',
       },
     ],
     preview: {
@@ -53,11 +57,13 @@ export const cameraRegistry = {
     description: 'Camera with custom control settings',
     type: 'registry:example',
     registryDependencies: ['camera'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/camera/camera-custom-controls.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/camera/camera-custom-controls.tsx',
+        target: 'components/demo/camera/camera-custom-controls.tsx',
       },
     ],
     preview: {
@@ -73,11 +79,13 @@ export const cameraRegistry = {
     description: 'Camera configured for picture-only mode',
     type: 'registry:example',
     registryDependencies: ['camera'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/camera/camera-picture-only.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/camera/camera-picture-only.tsx',
+        target: 'components/demo/camera/camera-picture-only.tsx',
       },
     ],
     preview: {
@@ -93,11 +101,13 @@ export const cameraRegistry = {
     description: 'Camera with video recording capabilities',
     type: 'registry:example',
     registryDependencies: ['camera'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/camera/camera-video.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/camera/camera-video.tsx',
+        target: 'components/demo/camera/camera-video.tsx',
       },
     ],
     preview: {
@@ -113,11 +123,13 @@ export const cameraRegistry = {
     description: 'Camera with timer functionality',
     type: 'registry:example',
     registryDependencies: ['camera'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/camera/camera-timer.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/camera/camera-timer.tsx',
+        target: 'components/demo/camera/camera-timer.tsx',
       },
     ],
     preview: {
@@ -133,11 +145,13 @@ export const cameraRegistry = {
     description: 'Camera with zoom controls and gestures',
     type: 'registry:example',
     registryDependencies: ['camera'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/camera/camera-zoom.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/camera/camera-zoom.tsx',
+        target: 'components/demo/camera/camera-zoom.tsx',
       },
     ],
     preview: {
@@ -153,11 +167,13 @@ export const cameraRegistry = {
     description: 'Camera with advanced settings panel',
     type: 'registry:example',
     registryDependencies: ['camera'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/camera/camera-settings.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/camera/camera-settings.tsx',
+        target: 'components/demo/camera/camera-settings.tsx',
       },
     ],
     preview: {

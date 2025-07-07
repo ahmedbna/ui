@@ -9,11 +9,13 @@ export const helloWaveRegistry = {
     type: 'registry:ui',
     dependencies: ['react-native-reanimated'],
     registryDependencies: ['text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/components/ui/hello-wave.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/hello-wave.tsx',
+        target: 'components/ui/hello-wave.tsx',
       },
     ],
     preview: {
@@ -29,11 +31,13 @@ export const helloWaveRegistry = {
     description: 'An animated waving hand emoji',
     type: 'registry:example',
     registryDependencies: ['hello-wave'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/hello-wave/hello-wave-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/hello-wave/hello-wave-demo.tsx',
+        target: 'components/demo/hello-wave/hello-wave-demo.tsx',
       },
     ],
     preview: {

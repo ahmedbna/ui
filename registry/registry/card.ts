@@ -9,11 +9,13 @@ export const cardRegistry = {
     type: 'registry:ui',
     dependencies: [],
     registryDependencies: ['text', 'view'],
+    hooks: ['useThemeColor'],
+    theme: ['globals'],
     files: [
       {
-        path: 'registry/components/ui/card.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/card.tsx',
+        target: 'components/ui/card.tsx',
       },
     ],
     preview: {
@@ -28,11 +30,13 @@ export const cardRegistry = {
     description: 'A complete card with header, content, and footer sections',
     type: 'registry:example',
     registryDependencies: ['card', 'button'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/card/card-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/card/card-demo.tsx',
+        target: 'components/demo/card/card-demo.tsx',
       },
     ],
     preview: {
@@ -47,11 +51,13 @@ export const cardRegistry = {
     description: 'A minimal card with just content',
     type: 'registry:example',
     registryDependencies: ['card'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/card/card-simple.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/card/card-simple.tsx',
+        target: 'components/demo/card/card-simple.tsx',
       },
     ],
     preview: {
@@ -66,11 +72,13 @@ export const cardRegistry = {
     description: 'Card featuring an image with content below',
     type: 'registry:example',
     registryDependencies: ['card', 'button'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/card/card-with-image.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/card/card-with-image.tsx',
+        target: 'components/demo/card/card-with-image.tsx',
       },
     ],
     preview: {
@@ -85,11 +93,13 @@ export const cardRegistry = {
     description: 'Interactive card containing a login form',
     type: 'registry:example',
     registryDependencies: ['card', 'button'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/card/card-with-form.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/card/card-with-form.tsx',
+        target: 'components/demo/card/card-with-form.tsx',
       },
     ],
     preview: {
@@ -104,11 +114,13 @@ export const cardRegistry = {
     description: 'Grid of cards displaying key metrics and statistics',
     type: 'registry:example',
     registryDependencies: ['card'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/card/card-stats.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/card/card-stats.tsx',
+        target: 'components/demo/card/card-stats.tsx',
       },
     ],
     preview: {
@@ -123,11 +135,13 @@ export const cardRegistry = {
     description: 'Card designed for displaying notifications with actions',
     type: 'registry:example',
     registryDependencies: ['card', 'button', 'icon'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/card/card-notification.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/card/card-notification.tsx',
+        target: 'components/demo/card/card-notification.tsx',
       },
     ],
     preview: {
@@ -142,11 +156,13 @@ export const cardRegistry = {
     description: 'Professional pricing cards with feature lists and CTAs',
     type: 'registry:example',
     registryDependencies: ['card', 'button', 'icon'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/card/card-pricing.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/card/card-pricing.tsx',
+        target: 'components/demo/card/card-pricing.tsx',
       },
     ],
     preview: {

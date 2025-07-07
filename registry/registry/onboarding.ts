@@ -9,11 +9,13 @@ export const onboardingRegistry = {
     type: 'registry:ui',
     dependencies: ['react-native-gesture-handler', 'react-native-reanimated'],
     registryDependencies: ['button', 'text'],
+    hooks: ['useThemeColor'],
+    theme: [],
     files: [
       {
-        path: 'registry/components/ui/onboarding.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/onboarding.tsx',
+        target: 'components/ui/onboarding.tsx',
       },
     ],
     preview: {
@@ -30,11 +32,13 @@ export const onboardingRegistry = {
     type: 'registry:example',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['onboarding'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/onboarding/onboarding-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/onboarding/onboarding-demo.tsx',
+        target: 'components/demo/onboarding/onboarding-demo.tsx',
       },
     ],
     preview: {
@@ -50,11 +54,13 @@ export const onboardingRegistry = {
     description: 'Onboarding flow with custom images for each step',
     type: 'registry:example',
     registryDependencies: ['onboarding', 'image'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/onboarding/onboarding-images.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/onboarding/onboarding-images.tsx',
+        target: 'components/demo/onboarding/onboarding-images.tsx',
       },
     ],
     preview: {
@@ -70,11 +76,13 @@ export const onboardingRegistry = {
     type: 'registry:example',
     dependencies: ['lucide-react-native', 'expo-linear-gradient'],
     registryDependencies: ['onboarding'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/onboarding/onboarding-styled.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/onboarding/onboarding-styled.tsx',
+        target: 'components/demo/onboarding/onboarding-styled.tsx',
       },
     ],
     preview: {
@@ -90,11 +98,13 @@ export const onboardingRegistry = {
     type: 'registry:example',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['onboarding'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/onboarding/onboarding-no-skip.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/onboarding/onboarding-no-skip.tsx',
+        target: 'components/demo/onboarding/onboarding-no-skip.tsx',
       },
     ],
     preview: {
@@ -110,11 +120,13 @@ export const onboardingRegistry = {
     type: 'registry:example',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['onboarding'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/onboarding/onboarding-no-swipe.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/onboarding/onboarding-no-swipe.tsx',
+        target: 'components/demo/onboarding/onboarding-no-swipe.tsx',
       },
     ],
     preview: {
@@ -130,11 +142,13 @@ export const onboardingRegistry = {
     type: 'registry:example',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['onboarding'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/onboarding/onboarding-custom-buttons.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/onboarding/onboarding-custom-buttons.tsx',
+        target: 'components/demo/onboarding/onboarding-custom-buttons.tsx',
       },
     ],
     preview: {
@@ -149,11 +163,13 @@ export const onboardingRegistry = {
     description: 'Media picker showing selected media previews',
     type: 'registry:example',
     registryDependencies: ['onboarding', 'view', 'text', 'button'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/onboarding/onboarding-hook.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/onboarding/onboarding-hook.tsx',
+        target: 'components/demo/onboarding/onboarding-hook.tsx',
       },
     ],
     preview: {

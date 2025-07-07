@@ -9,11 +9,13 @@ export const videoRegistry = {
     type: 'registry:ui',
     dependencies: ['expo-video', 'lucide-react-native'],
     registryDependencies: ['progress', 'text', 'view'],
+    hooks: ['useThemeColor'],
+    theme: ['globals'],
     files: [
       {
-        path: 'registry/components/ui/video.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/video.tsx',
+        target: 'components/ui/video.tsx',
       },
     ],
     preview: {
@@ -29,11 +31,13 @@ export const videoRegistry = {
     description: 'A basic video player with custom controls',
     type: 'registry:example',
     registryDependencies: ['video'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/video/video-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/video/video-demo.tsx',
+        target: 'components/demo/video/video-demo.tsx',
       },
     ],
     preview: {
@@ -49,11 +53,13 @@ export const videoRegistry = {
     description: 'Video player using native system controls',
     type: 'registry:example',
     registryDependencies: ['video'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/video/video-native-controls.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/video/video-native-controls.tsx',
+        target: 'components/demo/video/video-native-controls.tsx',
       },
     ],
     preview: {
@@ -69,11 +75,13 @@ export const videoRegistry = {
     description: 'Video player with custom control interface',
     type: 'registry:example',
     registryDependencies: ['video'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/video/video-custom-controls.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/video/video-custom-controls.tsx',
+        target: 'components/demo/video/video-custom-controls.tsx',
       },
     ],
     preview: {
@@ -89,11 +97,13 @@ export const videoRegistry = {
     description: 'Video player with subtitle support',
     type: 'registry:example',
     registryDependencies: ['video'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/video/video-subtitles.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/video/video-subtitles.tsx',
+        target: 'components/demo/video/video-subtitles.tsx',
       },
     ],
     preview: {
@@ -109,11 +119,13 @@ export const videoRegistry = {
     description: 'Video that automatically plays and loops',
     type: 'registry:example',
     registryDependencies: ['video'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/video/video-autoplay-loop.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/video/video-autoplay-loop.tsx',
+        target: 'components/demo/video/video-autoplay-loop.tsx',
       },
     ],
     preview: {
@@ -129,11 +141,13 @@ export const videoRegistry = {
     description: 'Video players with different source types',
     type: 'registry:example',
     registryDependencies: ['video', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/video/video-sources.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/video/video-sources.tsx',
+        target: 'components/demo/video/video-sources.tsx',
       },
     ],
     preview: {
@@ -149,11 +163,13 @@ export const videoRegistry = {
     description: 'Video player with tap-to-play and seek gestures',
     type: 'registry:example',
     registryDependencies: ['video', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/video/video-gestures.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/video/video-gestures.tsx',
+        target: 'components/demo/video/video-gestures.tsx',
       },
     ],
     preview: {
@@ -169,11 +185,13 @@ export const videoRegistry = {
     description: 'Videos with different content fitting options',
     type: 'registry:example',
     registryDependencies: ['video', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/video/video-content-fit.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/video/video-content-fit.tsx',
+        target: 'components/demo/video/video-content-fit.tsx',
       },
     ],
     preview: {

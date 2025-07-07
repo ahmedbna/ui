@@ -9,11 +9,13 @@ export const tableRegistry = {
     type: 'registry:ui',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['button', 'text', 'view'],
+    hooks: ['useThemeColor'],
+    theme: ['globals'],
     files: [
       {
-        path: 'registry/components/ui/table.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/table.tsx',
+        target: 'components/ui/table.tsx',
       },
     ],
     preview: {
@@ -29,11 +31,13 @@ export const tableRegistry = {
     description: 'A basic data table with sample data',
     type: 'registry:example',
     registryDependencies: ['table'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/table/table-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/table/table-demo.tsx',
+        target: 'components/demo/table/table-demo.tsx',
       },
     ],
     preview: {
@@ -48,11 +52,13 @@ export const tableRegistry = {
     description: 'Table with sortable columns',
     type: 'registry:example',
     registryDependencies: ['table'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/table/table-sortable.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/table/table-sortable.tsx',
+        target: 'components/demo/table/table-sortable.tsx',
       },
     ],
     preview: {
@@ -67,11 +73,13 @@ export const tableRegistry = {
     description: 'Table with custom cell renderers and formatting',
     type: 'registry:example',
     registryDependencies: ['table', 'avatar', 'badge', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/table/table-custom-cells.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/table/table-custom-cells.tsx',
+        target: 'components/demo/table/table-custom-cells.tsx',
       },
     ],
     preview: {
@@ -86,11 +94,13 @@ export const tableRegistry = {
     description: 'Table with pagination controls',
     type: 'registry:example',
     registryDependencies: ['table'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/table/table-pagination.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/table/table-pagination.tsx',
+        target: 'components/demo/table/table-pagination.tsx',
       },
     ],
     preview: {
@@ -105,11 +115,13 @@ export const tableRegistry = {
     description: 'Table with search functionality',
     type: 'registry:example',
     registryDependencies: ['table'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/table/table-search.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/table/table-search.tsx',
+        target: 'components/demo/table/table-search.tsx',
       },
     ],
     preview: {
@@ -124,11 +136,13 @@ export const tableRegistry = {
     description: 'Table showing loading state',
     type: 'registry:example',
     registryDependencies: ['table', 'button', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/table/table-loading.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/table/table-loading.tsx',
+        target: 'components/demo/table/table-loading.tsx',
       },
     ],
     preview: {

@@ -9,11 +9,13 @@ export const imageRegistry = {
     type: 'registry:ui',
     dependencies: ['expo-image'],
     registryDependencies: ['text', 'view'],
+    hooks: ['useThemeColor'],
+    theme: ['globals'],
     files: [
       {
-        path: 'registry/components/ui/image.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/image.tsx',
+        target: 'components/ui/image.tsx',
       },
     ],
     preview: {
@@ -28,11 +30,13 @@ export const imageRegistry = {
     description: 'A basic image with loading indicator and error fallback',
     type: 'registry:example',
     registryDependencies: ['image'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/image/image-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/image/image-demo.tsx',
+        target: 'components/demo/image/image-demo.tsx',
       },
     ],
     preview: {
@@ -47,11 +51,13 @@ export const imageRegistry = {
     description: 'Images with different border radius variants',
     type: 'registry:example',
     registryDependencies: ['image'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/image/image-variants.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/image/image-variants.tsx',
+        target: 'components/demo/image/image-variants.tsx',
       },
     ],
     preview: {
@@ -66,11 +72,13 @@ export const imageRegistry = {
     description: 'Images in different sizes and aspect ratios',
     type: 'registry:example',
     registryDependencies: ['image'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/image/image-sizes.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/image/image-sizes.tsx',
+        target: 'components/demo/image/image-sizes.tsx',
       },
     ],
     preview: {
@@ -85,11 +93,13 @@ export const imageRegistry = {
     description: 'Images with different loading indicator configurations',
     type: 'registry:example',
     registryDependencies: ['image'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/image/image-loading.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/image/image-loading.tsx',
+        target: 'components/demo/image/image-loading.tsx',
       },
     ],
     preview: {
@@ -104,11 +114,13 @@ export const imageRegistry = {
     description: 'Images with custom error fallback messages',
     type: 'registry:example',
     registryDependencies: ['image'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/image/image-error.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/image/image-error.tsx',
+        target: 'components/demo/image/image-error.tsx',
       },
     ],
     preview: {
@@ -122,11 +134,13 @@ export const imageRegistry = {
     description: 'Multiple images arranged in a gallery layout',
     type: 'registry:example',
     registryDependencies: ['image'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/image/image-gallery.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/image/image-gallery.tsx',
+        target: 'components/demo/image/image-gallery.tsx',
       },
     ],
     preview: {
@@ -140,11 +154,13 @@ export const imageRegistry = {
     description: 'Responsive images that adapt to container size',
     type: 'registry:example',
     registryDependencies: ['image'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/image/image-responsive.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/image/image-responsive.tsx',
+        target: 'components/demo/image/image-responsive.tsx',
       },
     ],
     preview: {
@@ -158,11 +174,13 @@ export const imageRegistry = {
     description: 'Images with different content fit modes',
     type: 'registry:example',
     registryDependencies: ['image'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/image/image-content-fit.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/image/image-content-fit.tsx',
+        target: 'components/demo/image/image-content-fit.tsx',
       },
     ],
     preview: {

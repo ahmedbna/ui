@@ -7,7 +7,6 @@ export function ComponentPreview({
   className,
   asset,
   align = 'center',
-  hideCode = false,
   ...props
 }: React.ComponentProps<'div'> & {
   name: string;
@@ -34,7 +33,6 @@ export function ComponentPreview({
     <ComponentPreviewTabs
       className={className}
       align={align}
-      hideCode={hideCode}
       preview={preview}
       source={<ComponentSource name={name} collapsible={false} />}
       {...props}

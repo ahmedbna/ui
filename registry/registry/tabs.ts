@@ -7,13 +7,15 @@ export const tabsRegistry = {
     description:
       'A foundational View component with transparent background and ref forwarding support.',
     type: 'registry:ui',
-    dependencies: [],
+    dependencies: ['react-native-gesture-handler', 'react-native-reanimated'],
     registryDependencies: ['text', 'view'],
+    hooks: ['useThemeColor'],
+    theme: ['globals'],
     files: [
       {
-        path: 'registry/components/ui/tabs.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/tabs.tsx',
+        target: 'components/ui/tabs.tsx',
       },
     ],
     preview: {
@@ -29,11 +31,13 @@ export const tabsRegistry = {
     description: 'Basic tabs container with content',
     type: 'registry:example',
     registryDependencies: ['tabs', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/tabs/tabs-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/tabs/tabs-demo.tsx',
+        target: 'components/demo/tabs/tabs-demo.tsx',
       },
     ],
     preview: {
@@ -48,11 +52,13 @@ export const tabsRegistry = {
     description: 'Tabs arranged in vertical orientation',
     type: 'registry:example',
     registryDependencies: ['tabs', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/tabs/tabs-vertical.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/tabs/tabs-vertical.tsx',
+        target: 'components/demo/tabs/tabs-vertical.tsx',
       },
     ],
     preview: {
@@ -67,11 +73,13 @@ export const tabsRegistry = {
     description: 'Tabs with disabled states',
     type: 'registry:example',
     registryDependencies: ['tabs', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/tabs/tabs-disabled.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/tabs/tabs-disabled.tsx',
+        target: 'components/demo/tabs/tabs-disabled.tsx',
       },
     ],
     preview: {
@@ -86,11 +94,13 @@ export const tabsRegistry = {
     description: 'Tabs with custom colors and styling',
     type: 'registry:example',
     registryDependencies: ['tabs', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/tabs/tabs-styled.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/tabs/tabs-styled.tsx',
+        target: 'components/demo/tabs/tabs-styled.tsx',
       },
     ],
     preview: {

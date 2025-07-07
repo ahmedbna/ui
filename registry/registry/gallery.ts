@@ -7,13 +7,20 @@ export const galleryRegistry = {
     description:
       'A responsive image gallery component with fullscreen viewing, zoom, and gesture support.',
     type: 'registry:ui',
-    dependencies: ['lucide-react-native', 'expo-document-picker'],
-    registryDependencies: ['button', 'text', 'view'],
+    dependencies: [
+      'expo-image',
+      'lucide-react-native',
+      'react-native-gesture-handler',
+      'react-native-reanimated',
+    ],
+    registryDependencies: ['button', 'text'],
+    hooks: ['useThemeColor'],
+    theme: ['globals'],
     files: [
       {
-        path: 'registry/components/ui/gallery.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/gallery.tsx',
+        target: 'components/ui/gallery.tsx',
       },
     ],
     preview: {
@@ -30,11 +37,13 @@ export const galleryRegistry = {
       'A basic image gallery with grid layout and fullscreen viewing',
     type: 'registry:example',
     registryDependencies: ['gallery'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/gallery/gallery-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/gallery/gallery-demo.tsx',
+        target: 'components/demo/gallery/gallery-demo.tsx',
       },
     ],
     preview: {
@@ -49,11 +58,13 @@ export const galleryRegistry = {
     description: 'Gallery with custom columns, spacing, and aspect ratio',
     type: 'registry:example',
     registryDependencies: ['gallery', 'view', 'text'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/gallery/gallery-grid.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/gallery/gallery-grid.tsx',
+        target: 'components/demo/gallery/gallery-grid.tsx',
       },
     ],
     preview: {
@@ -68,11 +79,13 @@ export const galleryRegistry = {
     description: 'Gallery displaying image titles and descriptions',
     type: 'registry:example',
     registryDependencies: ['gallery'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/gallery/gallery-info.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/gallery/gallery-info.tsx',
+        target: 'components/demo/gallery/gallery-info.tsx',
       },
     ],
     preview: {
@@ -87,11 +100,13 @@ export const galleryRegistry = {
     description: 'Various gallery layouts and configurations',
     type: 'registry:example',
     registryDependencies: ['gallery', 'view', 'text'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/gallery/gallery-layouts.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/gallery/gallery-layouts.tsx',
+        target: 'components/demo/gallery/gallery-layouts.tsx',
       },
     ],
     preview: {
@@ -106,11 +121,13 @@ export const galleryRegistry = {
     description: 'Images with controls',
     type: 'registry:example',
     registryDependencies: ['gallery', 'view', 'text'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/gallery/gallery-controls.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/gallery/gallery-controls.tsx',
+        target: 'components/demo/gallery/gallery-controls.tsx',
       },
     ],
     preview: {
@@ -125,11 +142,13 @@ export const galleryRegistry = {
     description: 'Images with overlay',
     type: 'registry:example',
     registryDependencies: ['gallery', 'view', 'text'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/gallery/gallery-overlay.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/gallery/gallery-overlay.tsx',
+        target: 'components/demo/gallery/gallery-overlay.tsx',
       },
     ],
     preview: {

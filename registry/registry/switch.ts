@@ -9,11 +9,13 @@ export const switchRegistry = {
     type: 'registry:ui',
     dependencies: [],
     registryDependencies: ['text', 'view'],
+    hooks: ['useThemeColor'],
+    theme: [],
     files: [
       {
-        path: 'registry/components/ui/switch.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/switch.tsx',
+        target: 'components/ui/switch.tsx',
       },
     ],
     preview: {
@@ -29,11 +31,13 @@ export const switchRegistry = {
     description: 'A basic switch with label',
     type: 'registry:example',
     registryDependencies: ['switch'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/switch/switch-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/switch/switch-demo.tsx',
+        target: 'components/demo/switch/switch-demo.tsx',
       },
     ],
     preview: {
@@ -48,11 +52,13 @@ export const switchRegistry = {
     description: 'A switch without label text',
     type: 'registry:example',
     registryDependencies: ['switch', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/switch/switch-simple.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/switch/switch-simple.tsx',
+        target: 'components/demo/switch/switch-simple.tsx',
       },
     ],
     preview: {
@@ -67,11 +73,13 @@ export const switchRegistry = {
     description: 'Switch with error message and styling',
     type: 'registry:example',
     registryDependencies: ['switch', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/switch/switch-error.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/switch/switch-error.tsx',
+        target: 'components/demo/switch/switch-error.tsx',
       },
     ],
     preview: {
@@ -86,11 +94,13 @@ export const switchRegistry = {
     description: 'Switches in disabled state',
     type: 'registry:example',
     registryDependencies: ['switch', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/switch/switch-disabled.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/switch/switch-disabled.tsx',
+        target: 'components/demo/switch/switch-disabled.tsx',
       },
     ],
     preview: {
@@ -105,11 +115,13 @@ export const switchRegistry = {
     description: 'Multiple switches arranged in a settings list',
     type: 'registry:example',
     registryDependencies: ['switch', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/switch/switch-settings.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/switch/switch-settings.tsx',
+        target: 'components/demo/switch/switch-settings.tsx',
       },
     ],
     preview: {
@@ -124,11 +136,13 @@ export const switchRegistry = {
     description: 'Switches with custom colors and styling',
     type: 'registry:example',
     registryDependencies: ['switch', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/switch/switch-colors.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/switch/switch-colors.tsx',
+        target: 'components/demo/switch/switch-colors.tsx',
       },
     ],
     preview: {

@@ -9,11 +9,13 @@ export const filePickerRegistry = {
     type: 'registry:ui',
     dependencies: ['lucide-react-native', 'expo-document-picker'],
     registryDependencies: ['button', 'text', 'view'],
+    hooks: ['useThemeColor'],
+    theme: ['globals'],
     files: [
       {
-        path: 'registry/components/ui/file-picker.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/file-picker.tsx',
+        target: 'components/ui/file-picker.tsx',
       },
     ],
     preview: {
@@ -29,11 +31,13 @@ export const filePickerRegistry = {
     description: 'A basic file picker with validation and preview',
     type: 'registry:example',
     registryDependencies: ['file-picker'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/file-picker/file-picker-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/file-picker/file-picker-demo.tsx',
+        target: 'components/demo/file-picker/file-picker-demo.tsx',
       },
     ],
     preview: {
@@ -48,11 +52,13 @@ export const filePickerRegistry = {
     description: 'File picker configured for images only',
     type: 'registry:example',
     registryDependencies: ['file-picker', 'view', 'text'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/file-picker/file-picker-images.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/file-picker/file-picker-images.tsx',
+        target: 'components/demo/file-picker/file-picker-images.tsx',
       },
     ],
     preview: {
@@ -67,11 +73,13 @@ export const filePickerRegistry = {
     description: 'File picker for selecting a single file',
     type: 'registry:example',
     registryDependencies: ['file-picker', 'view', 'text'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/file-picker/file-picker-single.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/file-picker/file-picker-single.tsx',
+        target: 'components/demo/file-picker/file-picker-single.tsx',
       },
     ],
     preview: {
@@ -86,11 +94,13 @@ export const filePickerRegistry = {
     description: 'File picker with size limits and extension validation',
     type: 'registry:example',
     registryDependencies: ['file-picker', 'view', 'text'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/file-picker/file-picker-validation.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/file-picker/file-picker-validation.tsx',
+        target: 'components/demo/file-picker/file-picker-validation.tsx',
       },
     ],
     preview: {
@@ -105,11 +115,13 @@ export const filePickerRegistry = {
     description: 'File picker with custom styling and colors',
     type: 'registry:example',
     registryDependencies: ['file-picker', 'view', 'text'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/file-picker/file-picker-styled.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/file-picker/file-picker-styled.tsx',
+        target: 'components/demo/file-picker/file-picker-styled.tsx',
       },
     ],
     preview: {
@@ -124,11 +136,13 @@ export const filePickerRegistry = {
     description: 'Controlled file picker using the useFilePicker hook',
     type: 'registry:example',
     registryDependencies: ['file-picker', 'button', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/file-picker/file-picker-controlled.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/file-picker/file-picker-controlled.tsx',
+        target: 'components/demo/file-picker/file-picker-controlled.tsx',
       },
     ],
     preview: {
@@ -143,11 +157,13 @@ export const filePickerRegistry = {
     description: 'File picker displaying detailed file information',
     type: 'registry:example',
     registryDependencies: ['file-picker', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/file-picker/file-picker-info.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/file-picker/file-picker-info.tsx',
+        target: 'components/demo/file-picker/file-picker-info.tsx',
       },
     ],
     preview: {

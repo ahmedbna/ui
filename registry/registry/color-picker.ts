@@ -14,11 +14,13 @@ export const colorPickerRegistry = {
       'react-native-svg',
     ],
     registryDependencies: ['text', 'view'],
+    hooks: ['useThemeColor'],
+    theme: ['globals'],
     files: [
       {
-        path: 'registry/components/ui/color-picker.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/color-picker.tsx',
+        target: 'components/ui/color-picker.tsx',
       },
     ],
     preview: {
@@ -34,11 +36,13 @@ export const colorPickerRegistry = {
     description: 'A basic color picker with swatch and modal selection',
     type: 'registry:example',
     registryDependencies: ['color-picker'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/color-picker/color-picker-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/color-picker/color-picker-demo.tsx',
+        target: 'components/demo/color-picker/color-picker-demo.tsx',
       },
     ],
     preview: {
@@ -54,11 +58,13 @@ export const colorPickerRegistry = {
     description: 'Color pickers with different swatch sizes',
     type: 'registry:example',
     registryDependencies: ['color-picker'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/color-picker/color-picker-sizes.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/color-picker/color-picker-sizes.tsx',
+        target: 'components/demo/color-picker/color-picker-sizes.tsx',
       },
     ],
     preview: {
@@ -74,11 +80,13 @@ export const colorPickerRegistry = {
     description: 'Color pickers with different initial colors',
     type: 'registry:example',
     registryDependencies: ['color-picker'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/color-picker/color-picker-colors.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/color-picker/color-picker-colors.tsx',
+        target: 'components/demo/color-picker/color-picker-colors.tsx',
       },
     ],
     preview: {
@@ -94,11 +102,13 @@ export const colorPickerRegistry = {
     description: 'Disabled color picker that cannot be opened',
     type: 'registry:example',
     registryDependencies: ['color-picker'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/color-picker/color-picker-disabled.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/color-picker/color-picker-disabled.tsx',
+        target: 'components/demo/color-picker/color-picker-disabled.tsx',
       },
     ],
     preview: {
@@ -114,11 +124,13 @@ export const colorPickerRegistry = {
     description: 'Standalone color swatches without picker functionality',
     type: 'registry:example',
     registryDependencies: ['color-picker'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/color-picker/color-swatch-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/color-picker/color-swatch-demo.tsx',
+        target: 'components/demo/color-picker/color-swatch-demo.tsx',
       },
     ],
     preview: {
@@ -133,11 +145,13 @@ export const colorPickerRegistry = {
     description: 'Color pickers with custom styling and layouts',
     type: 'registry:example',
     registryDependencies: ['color-picker'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/color-picker/color-picker-styled.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/color-picker/color-picker-styled.tsx',
+        target: 'components/demo/color-picker/color-picker-styled.tsx',
       },
     ],
     preview: {
@@ -152,11 +166,13 @@ export const colorPickerRegistry = {
     description: 'Multiple color pickers arranged as a color palette',
     type: 'registry:example',
     registryDependencies: ['color-picker'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/color-picker/color-picker-palette.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/color-picker/color-picker-palette.tsx',
+        target: 'components/demo/color-picker/color-picker-palette.tsx',
       },
     ],
     preview: {
@@ -171,11 +187,13 @@ export const colorPickerRegistry = {
     description: 'color-picker-labeled',
     type: 'registry:example',
     registryDependencies: ['color-picker'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/color-picker/color-picker-labeled.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/color-picker/color-picker-labeled.tsx',
+        target: 'components/demo/color-picker/color-picker-labeled.tsx',
       },
     ],
     preview: {

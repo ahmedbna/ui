@@ -9,11 +9,13 @@ export const actionSheetRegistry = {
       'A native-feeling action sheet component that provides a menu of options triggered from the bottom of the screen.',
     type: 'registry:ui',
     registryDependencies: ['text', 'view'],
+    hooks: ['useThemeColor'],
+    theme: ['globals'],
     files: [
       {
-        path: 'registry/components/ui/action-sheet.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/action-sheet.tsx',
+        target: 'components/ui/action-sheet.tsx',
       },
     ],
     preview: {
@@ -29,11 +31,13 @@ export const actionSheetRegistry = {
     description: 'A basic action sheet with multiple options',
     type: 'registry:example',
     registryDependencies: ['action-sheet', 'button'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/action-sheet/action-sheet-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/action-sheet/action-sheet-demo.tsx',
+        target: 'components/demo/action-sheet/action-sheet-demo.tsx',
       },
     ],
     preview: {
@@ -49,11 +53,13 @@ export const actionSheetRegistry = {
     description: 'An action sheet with icons next to each option',
     type: 'registry:example',
     registryDependencies: ['action-sheet', 'button', 'icon'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/action-sheet/action-sheet-icons.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/action-sheet/action-sheet-icons.tsx',
+        target: 'components/demo/action-sheet/action-sheet-icons.tsx',
       },
     ],
     preview: {
@@ -70,11 +76,13 @@ export const actionSheetRegistry = {
       'An action sheet featuring destructive actions with appropriate styling',
     type: 'registry:example',
     registryDependencies: ['action-sheet', 'button', 'icon'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/action-sheet/action-sheet-destructive.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/action-sheet/action-sheet-destructive.tsx',
+        target: 'components/demo/action-sheet/action-sheet-destructive.tsx',
       },
     ],
     preview: {
@@ -90,11 +98,13 @@ export const actionSheetRegistry = {
     description: 'An action sheet with some disabled options',
     type: 'registry:example',
     registryDependencies: ['action-sheet', 'button', 'icon'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/action-sheet/action-sheet-disabled.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/action-sheet/action-sheet-disabled.tsx',
+        target: 'components/demo/action-sheet/action-sheet-disabled.tsx',
       },
     ],
     preview: {
@@ -110,11 +120,13 @@ export const actionSheetRegistry = {
     description: 'An action sheet with custom styling and branding',
     type: 'registry:example',
     registryDependencies: ['action-sheet', 'button', 'icon'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/action-sheet/action-sheet-styled.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/action-sheet/action-sheet-styled.tsx',
+        target: 'components/demo/action-sheet/action-sheet-styled.tsx',
       },
     ],
     preview: {
@@ -130,11 +142,13 @@ export const actionSheetRegistry = {
     description: 'An action sheet with many options that scrolls',
     type: 'registry:example',
     registryDependencies: ['action-sheet', 'button', 'icon'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/action-sheet/action-sheet-long.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/action-sheet/action-sheet-long.tsx',
+        target: 'components/demo/action-sheet/action-sheet-long.tsx',
       },
     ],
     preview: {
@@ -150,11 +164,13 @@ export const actionSheetRegistry = {
     description: 'Using the useActionSheet hook for easier management',
     type: 'registry:example',
     registryDependencies: ['action-sheet', 'button', 'view', 'icon'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/action-sheet/action-sheet-hook.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/action-sheet/action-sheet-hook.tsx',
+        target: 'components/demo/action-sheet/action-sheet-hook.tsx',
       },
     ],
     preview: {

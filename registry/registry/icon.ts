@@ -9,11 +9,13 @@ export const iconRegistry = {
     type: 'registry:ui',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['text', 'view'],
+    hooks: ['useThemeColor'],
+    theme: [],
     files: [
       {
-        path: 'registry/components/ui/icon.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/icon.tsx',
+        target: 'components/ui/icon.tsx',
       },
     ],
     preview: {
@@ -28,11 +30,13 @@ export const iconRegistry = {
     description: 'A basic icon with default styling',
     type: 'registry:example',
     registryDependencies: ['icon'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/icon/icon-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/icon/icon-demo.tsx',
+        target: 'components/demo/icon/icon-demo.tsx',
       },
     ],
     preview: {
@@ -47,11 +51,13 @@ export const iconRegistry = {
     description: 'Icons in different sizes',
     type: 'registry:example',
     registryDependencies: ['icon'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/icon/icon-sizes.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/icon/icon-sizes.tsx',
+        target: 'components/demo/icon/icon-sizes.tsx',
       },
     ],
     preview: {
@@ -66,11 +72,13 @@ export const iconRegistry = {
     description: 'Icons with custom colors and themed colors',
     type: 'registry:example',
     registryDependencies: ['icon'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/icon/icon-colors.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/icon/icon-colors.tsx',
+        target: 'components/demo/icon/icon-colors.tsx',
       },
     ],
     preview: {
@@ -85,11 +93,13 @@ export const iconRegistry = {
     description: 'Icons with different stroke weights',
     type: 'registry:example',
     registryDependencies: ['icon'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/icon/icon-stroke.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/icon/icon-stroke.tsx',
+        target: 'components/demo/icon/icon-stroke.tsx',
       },
     ],
     preview: {
@@ -104,11 +114,13 @@ export const iconRegistry = {
     description: 'Icons with press and hover interactions',
     type: 'registry:example',
     registryDependencies: ['icon'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/icon/icon-interactive.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/icon/icon-interactive.tsx',
+        target: 'components/demo/icon/icon-interactive.tsx',
       },
     ],
     preview: {
@@ -123,11 +135,13 @@ export const iconRegistry = {
     description: 'A grid of commonly used icons',
     type: 'registry:example',
     registryDependencies: ['icon'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/icon/icon-grid.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/icon/icon-grid.tsx',
+        target: 'components/demo/icon/icon-grid.tsx',
       },
     ],
     preview: {
@@ -142,11 +156,13 @@ export const iconRegistry = {
     description: 'Icons that adapt to light and dark themes',
     type: 'registry:example',
     registryDependencies: ['icon'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/icon/icon-themed.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/icon/icon-themed.tsx',
+        target: 'components/demo/icon/icon-themed.tsx',
       },
     ],
     preview: {

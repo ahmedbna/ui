@@ -12,12 +12,14 @@ export const carouselRegistry = {
       'lucide-react-native',
       'react-native-gesture-handler',
     ],
-    registryDependencies: ['text', 'view', 'button'],
+    registryDependencies: ['text'],
+    hooks: ['useThemeColor'],
+    theme: ['globals'],
     files: [
       {
-        path: 'registry/components/ui/carousel.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/carousel.tsx',
+        target: 'components/ui/carousel.tsx',
       },
     ],
     preview: {
@@ -33,11 +35,13 @@ export const carouselRegistry = {
     description: 'A basic carousel with auto-play and indicators',
     type: 'registry:example',
     registryDependencies: ['carousel'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/carousel/carousel-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/carousel/carousel-demo.tsx',
+        target: 'components/demo/carousel/carousel-demo.tsx',
       },
     ],
     preview: {
@@ -53,11 +57,13 @@ export const carouselRegistry = {
     description: 'Carousel with navigation arrows and indicators',
     type: 'registry:example',
     registryDependencies: ['carousel'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/carousel/carousel-arrows.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/carousel/carousel-arrows.tsx',
+        target: 'components/demo/carousel/carousel-arrows.tsx',
       },
     ],
     preview: {
@@ -73,11 +79,13 @@ export const carouselRegistry = {
     description: 'Carousel with custom item width and spacing',
     type: 'registry:example',
     registryDependencies: ['carousel'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/carousel/carousel-custom-width.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/carousel/carousel-custom-width.tsx',
+        target: 'components/demo/carousel/carousel-custom-width.tsx',
       },
     ],
     preview: {
@@ -94,11 +102,13 @@ export const carouselRegistry = {
     type: 'registry:example',
     registryDependencies: ['carousel'],
     dependencies: ['expo-image'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/carousel/carousel-images.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/carousel/carousel-images.tsx',
+        target: 'components/demo/carousel/carousel-images.tsx',
       },
     ],
     preview: {
@@ -114,11 +124,13 @@ export const carouselRegistry = {
     description: 'Card-based carousel with custom content',
     type: 'registry:example',
     registryDependencies: ['carousel'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/carousel/carousel-cards.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/carousel/carousel-cards.tsx',
+        target: 'components/demo/carousel/carousel-cards.tsx',
       },
     ],
     preview: {
@@ -134,11 +146,13 @@ export const carouselRegistry = {
     description: 'Carousel without indicators, arrows only',
     type: 'registry:example',
     registryDependencies: ['carousel'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/carousel/carousel-no-indicators.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/carousel/carousel-no-indicators.tsx',
+        target: 'components/demo/carousel/carousel-no-indicators.tsx',
       },
     ],
     preview: {
@@ -154,11 +168,13 @@ export const carouselRegistry = {
     description: 'Manually controlled carousel with external buttons',
     type: 'registry:example',
     registryDependencies: ['carousel', 'button'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/carousel/carousel-manual.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/carousel/carousel-manual.tsx',
+        target: 'components/demo/carousel/carousel-manual.tsx',
       },
     ],
     preview: {

@@ -9,11 +9,13 @@ export const skeletonRegistry = {
     type: 'registry:ui',
     dependencies: [],
     registryDependencies: [],
+    hooks: ['useThemeColor'],
+    theme: ['globals'],
     files: [
       {
-        path: 'registry/components/ui/skeleton.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/skeleton.tsx',
+        target: 'components/ui/skeleton.tsx',
       },
     ],
     preview: {
@@ -29,11 +31,13 @@ export const skeletonRegistry = {
     description: 'A basic skeleton loader with pulsing animation',
     type: 'registry:example',
     registryDependencies: ['skeleton'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/skeleton/skeleton-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/skeleton/skeleton-demo.tsx',
+        target: 'components/demo/skeleton/skeleton-demo.tsx',
       },
     ],
     preview: {
@@ -49,11 +53,13 @@ export const skeletonRegistry = {
     description: 'Skeletons in various sizes and dimensions',
     type: 'registry:example',
     registryDependencies: ['skeleton', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/skeleton/skeleton-sizes.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/skeleton/skeleton-sizes.tsx',
+        target: 'components/demo/skeleton/skeleton-sizes.tsx',
       },
     ],
     preview: {
@@ -68,11 +74,13 @@ export const skeletonRegistry = {
     description: 'Skeleton placeholders arranged in a card layout',
     type: 'registry:example',
     registryDependencies: ['skeleton', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/skeleton/skeleton-card.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/skeleton/skeleton-card.tsx',
+        target: 'components/demo/skeleton/skeleton-card.tsx',
       },
     ],
     preview: {
@@ -87,11 +95,13 @@ export const skeletonRegistry = {
     description: 'Skeleton layout mimicking a user profile',
     type: 'registry:example',
     registryDependencies: ['skeleton', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/skeleton/skeleton-profile.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/skeleton/skeleton-profile.tsx',
+        target: 'components/demo/skeleton/skeleton-profile.tsx',
       },
     ],
     preview: {
@@ -106,11 +116,13 @@ export const skeletonRegistry = {
     description: 'Multiple skeleton items arranged in a list',
     type: 'registry:example',
     registryDependencies: ['skeleton', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/skeleton/skeleton-list.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/skeleton/skeleton-list.tsx',
+        target: 'components/demo/skeleton/skeleton-list.tsx',
       },
     ],
     preview: {
@@ -125,11 +137,13 @@ export const skeletonRegistry = {
     description: 'Skeletons with custom shapes and styling',
     type: 'registry:example',
     registryDependencies: ['skeleton', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/skeleton/skeleton-shapes.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/skeleton/skeleton-shapes.tsx',
+        target: 'components/demo/skeleton/skeleton-shapes.tsx',
       },
     ],
     preview: {

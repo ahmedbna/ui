@@ -9,11 +9,13 @@ export const parallaxScrollViewRegistry = {
     type: 'registry:ui',
     dependencies: ['react-native-reanimated'],
     registryDependencies: ['view'],
+    hooks: ['useBottomTabOverflow', 'useThemeColor'],
+    theme: [],
     files: [
       {
-        path: 'registry/components/ui/parallax-scrollview.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/parallax-scrollview.tsx',
+        target: 'components/ui/parallax-scrollview.tsx',
       },
     ],
     preview: {
@@ -29,11 +31,14 @@ export const parallaxScrollViewRegistry = {
     description: 'A basic parallax scroll view with header image',
     type: 'registry:example',
     registryDependencies: ['parallax-scrollview', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/parallax-scrollview/parallax-scrollview-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/parallax-scrollview/parallax-scrollview-demo.tsx',
+        target:
+          'components/demo/parallax-scrollview/parallax-scrollview-demo.tsx',
       },
     ],
     preview: {
@@ -49,11 +54,14 @@ export const parallaxScrollViewRegistry = {
     description: 'Parallax scroll view with custom header height',
     type: 'registry:example',
     registryDependencies: ['parallax-scrollview', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/parallax-scrollview/parallax-scrollview-custom-height.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/parallax-scrollview/parallax-scrollview-custom-height.tsx',
+        target:
+          'components/demo/parallax-scrollview/parallax-scrollview-custom-height.tsx',
       },
     ],
     preview: {
@@ -70,11 +78,14 @@ export const parallaxScrollViewRegistry = {
     type: 'registry:example',
     dependencies: ['expo-linear-gradient'],
     registryDependencies: ['parallax-scrollview', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/parallax-scrollview/parallax-scrollview-gradient.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/parallax-scrollview/parallax-scrollview-gradient.tsx',
+        target:
+          'components/demo/parallax-scrollview/parallax-scrollview-gradient.tsx',
       },
     ],
     preview: {
@@ -91,11 +102,14 @@ export const parallaxScrollViewRegistry = {
     type: 'registry:example',
     dependencies: ['expo-linear-gradient'],
     registryDependencies: ['parallax-scrollview', 'avatar', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/parallax-scrollview/parallax-scrollview-profile.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/parallax-scrollview/parallax-scrollview-profile.tsx',
+        target:
+          'components/demo/parallax-scrollview/parallax-scrollview-profile.tsx',
       },
     ],
     preview: {
@@ -112,11 +126,14 @@ export const parallaxScrollViewRegistry = {
     type: 'registry:example',
     dependencies: ['expo-linear-gradient'],
     registryDependencies: ['parallax-scrollview', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/parallax-scrollview/parallax-scrollview-article.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/parallax-scrollview/parallax-scrollview-article.tsx',
+        target:
+          'components/demo/parallax-scrollview/parallax-scrollview-article.tsx',
       },
     ],
     preview: {
@@ -132,11 +149,14 @@ export const parallaxScrollViewRegistry = {
     description: 'Product detail screen with parallax image gallery',
     type: 'registry:example',
     registryDependencies: ['parallax-scrollview', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/parallax-scrollview/parallax-scrollview-product.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/parallax-scrollview/parallax-scrollview-product.tsx',
+        target:
+          'components/demo/parallax-scrollview/parallax-scrollview-product.tsx',
       },
     ],
     preview: {

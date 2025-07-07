@@ -9,11 +9,13 @@ export const textRegistry = {
     type: 'registry:ui',
     dependencies: [],
     registryDependencies: [],
+    hooks: ['useThemeColor'],
+    theme: ['globals'],
     files: [
       {
-        path: 'registry/components/ui/text.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/text.tsx',
+        target: 'components/ui/text.tsx',
       },
     ],
     preview: {
@@ -28,11 +30,13 @@ export const textRegistry = {
     description: 'Basic text component showing different variants',
     type: 'registry:example',
     registryDependencies: ['text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/text/text-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/text/text-demo.tsx',
+        target: 'components/demo/text/text-demo.tsx',
       },
     ],
     preview: {
@@ -46,11 +50,13 @@ export const textRegistry = {
     description: 'All text variants showing the typography hierarchy',
     type: 'registry:example',
     registryDependencies: ['text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/text/text-variants.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/text/text-variants.tsx',
+        target: 'components/demo/text/text-variants.tsx',
       },
     ],
     preview: {
@@ -64,11 +70,13 @@ export const textRegistry = {
     description: 'Text with custom light and dark mode colors',
     type: 'registry:example',
     registryDependencies: ['text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/text/text-colors.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/text/text-colors.tsx',
+        target: 'components/demo/text/text-colors.tsx',
       },
     ],
     preview: {

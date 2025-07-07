@@ -8,12 +8,14 @@ export const radioRegistry = {
       'A set of checkable buttons—known as radio buttons—where no more than one of the buttons can be checked at a time.',
     type: 'registry:ui',
     dependencies: ['react-native'],
-    registryDependencies: ['text', 'view'],
+    registryDependencies: ['text'],
+    hooks: ['useThemeColor'],
+    theme: ['globals'],
     files: [
       {
-        path: 'registry/components/ui/radio.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/radio.tsx',
+        target: 'components/ui/radio.tsx',
       },
     ],
     preview: {
@@ -29,11 +31,13 @@ export const radioRegistry = {
     description: 'A basic radio group with multiple options',
     type: 'registry:example',
     registryDependencies: ['radio'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/radio/radio-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/radio/radio-demo.tsx',
+        target: 'components/demo/radio/radio-demo.tsx',
       },
     ],
     preview: {
@@ -49,11 +53,13 @@ export const radioRegistry = {
     description: 'Radio buttons arranged horizontally',
     type: 'registry:example',
     registryDependencies: ['radio'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/radio/radio-horizontal.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/radio/radio-horizontal.tsx',
+        target: 'components/demo/radio/radio-horizontal.tsx',
       },
     ],
     preview: {
@@ -69,11 +75,13 @@ export const radioRegistry = {
     description: 'Radio group with some disabled options',
     type: 'registry:example',
     registryDependencies: ['radio', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/radio/radio-disabled.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/radio/radio-disabled.tsx',
+        target: 'components/demo/radio/radio-disabled.tsx',
       },
     ],
     preview: {
@@ -89,11 +97,13 @@ export const radioRegistry = {
     description: 'Radio buttons with custom colors and styling',
     type: 'registry:example',
     registryDependencies: ['radio', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/radio/radio-styled.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/radio/radio-styled.tsx',
+        target: 'components/demo/radio/radio-styled.tsx',
       },
     ],
     preview: {
@@ -109,11 +119,13 @@ export const radioRegistry = {
     description: 'Radio group integrated with form validation',
     type: 'registry:example',
     registryDependencies: ['radio', 'button', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/radio/radio-form.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/radio/radio-form.tsx',
+        target: 'components/demo/radio/radio-form.tsx',
       },
     ],
     preview: {
@@ -129,11 +141,13 @@ export const radioRegistry = {
     description: 'Radio buttons with larger size and spacing',
     type: 'registry:example',
     registryDependencies: ['radio'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/radio/radio-large.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/radio/radio-large.tsx',
+        target: 'components/demo/radio/radio-large.tsx',
       },
     ],
     preview: {
@@ -149,11 +163,13 @@ export const radioRegistry = {
     description: 'Individual radio button component usage',
     type: 'registry:example',
     registryDependencies: ['radio', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/radio/radio-single.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/radio/radio-single.tsx',
+        target: 'components/demo/radio/radio-single.tsx',
       },
     ],
     preview: {

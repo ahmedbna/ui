@@ -8,12 +8,14 @@ export const popoverRegistry = {
       'A contextual overlay that displays rich content triggered by user interaction.',
     type: 'registry:ui',
     dependencies: ['react-native-reanimated'],
-    registryDependencies: ['button', 'text', 'view'],
+    registryDependencies: ['button'],
+    hooks: ['useThemeColor'],
+    theme: ['globals'],
     files: [
       {
-        path: 'registry/components/ui/popover.tsx',
         type: 'registry:ui',
-        target: '',
+        path: 'registry/components/ui/popover.tsx',
+        target: 'components/ui/popover.tsx',
       },
     ],
     preview: {
@@ -29,11 +31,13 @@ export const popoverRegistry = {
     description: 'A basic popover with trigger button and content',
     type: 'registry:example',
     registryDependencies: ['popover', 'button', 'text'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/popover/popover-demo.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/popover/popover-demo.tsx',
+        target: 'components/demo/popover/popover-demo.tsx',
       },
     ],
     preview: {
@@ -49,11 +53,13 @@ export const popoverRegistry = {
     description: 'Popovers positioned on different sides of the trigger',
     type: 'registry:example',
     registryDependencies: ['popover', 'button', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/popover/popover-positioning.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/popover/popover-positioning.tsx',
+        target: 'components/demo/popover/popover-positioning.tsx',
       },
     ],
     preview: {
@@ -69,11 +75,13 @@ export const popoverRegistry = {
     description: 'Popovers with different alignment options',
     type: 'registry:example',
     registryDependencies: ['popover', 'button', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/popover/popover-alignment.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/popover/popover-alignment.tsx',
+        target: 'components/demo/popover/popover-alignment.tsx',
       },
     ],
     preview: {
@@ -89,11 +97,13 @@ export const popoverRegistry = {
     description: 'A controlled popover with external state management',
     type: 'registry:example',
     registryDependencies: ['popover', 'button', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/popover/popover-controlled.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/popover/popover-controlled.tsx',
+        target: 'components/demo/popover/popover-controlled.tsx',
       },
     ],
     preview: {
@@ -109,11 +119,13 @@ export const popoverRegistry = {
     description: 'Popovers with custom content and styling',
     type: 'registry:example',
     registryDependencies: ['popover', 'button', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/popover/popover-custom.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/popover/popover-custom.tsx',
+        target: 'components/demo/popover/popover-custom.tsx',
       },
     ],
     preview: {
@@ -129,11 +141,13 @@ export const popoverRegistry = {
     description: 'A popover containing form elements',
     type: 'registry:example',
     registryDependencies: ['popover', 'button', 'text', 'view', 'input'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/popover/popover-form.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/popover/popover-form.tsx',
+        target: 'components/demo/popover/popover-form.tsx',
       },
     ],
     preview: {
@@ -149,11 +163,13 @@ export const popoverRegistry = {
     description: 'A popover styled as a dropdown menu',
     type: 'registry:example',
     registryDependencies: ['popover', 'button', 'text', 'view'],
+    hooks: [],
+    theme: [],
     files: [
       {
-        path: 'registry/demo/popover/popover-menu.tsx',
         type: 'registry:example',
-        target: '',
+        path: 'registry/demo/popover/popover-menu.tsx',
+        target: 'components/demo/popover/popover-menu.tsx',
       },
     ],
     preview: {
