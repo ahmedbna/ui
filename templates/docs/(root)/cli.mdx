@@ -10,7 +10,7 @@ Use the `init` command to initialize configuration and dependencies for a new Re
 The `init` command installs dependencies, adds utils, hooks, themes and sets up the component structure for your mobile project.
 
 ```bash
-npx bna-ui@latest init
+npx bna-ui init
 ```
 
 ### Options
@@ -44,7 +44,7 @@ Options:
 Use the `add` command to add components and dependencies to your React Native or Expo project.
 
 ```bash
-npx bna-ui@latest add [component]
+npx bna-ui add [component]
 ```
 
 ### Options
@@ -81,31 +81,31 @@ Options:
 ### Initialize a new Expo project
 
 ```bash
-npx bna-ui@latest init --template expo --typescript
+npx bna-ui init --template expo --typescript
 ```
 
 ### Add a button component
 
 ```bash
-npx bna-ui@latest add button
+npx bna-ui add button
 ```
 
 ### Add multiple components
 
 ```bash
-npx bna-ui@latest add button input card
+npx bna-ui add button input card
 ```
 
 ### Add all components
 
 ```bash
-npx bna-ui@latest add --all
+npx bna-ui add --all
 ```
 
 ### Add component with platform-specific implementations
 
 ```bash
-npx bna-ui@latest add button --ios --android
+npx bna-ui add button --ios --android
 ```
 
 ## build
@@ -113,7 +113,7 @@ npx bna-ui@latest add button --ios --android
 Use the `build` command to generate the registry JSON files for the mobile component registry.
 
 ```bash
-npx bna-ui@latest build
+npx bna-ui build
 ```
 
 This command reads the `registry.json` file and generates the registry JSON files optimized for React Native and Expo projects.
@@ -140,13 +140,13 @@ Options:
 To customize the output directory, use the `--output` option.
 
 ```bash
-npx bna-ui@latest build --output ./public/registry
+npx bna-ui build --output ./public/registry
 ```
 
 ### Build for specific platforms
 
 ```bash
-npx bna-ui@latest build --platforms ios,android
+npx bna-ui build --platforms ios,android
 ```
 
 ## update
@@ -154,7 +154,7 @@ npx bna-ui@latest build --platforms ios,android
 Use the `update` command to update components in your project to the latest versions.
 
 ```bash
-npx bna-ui@latest update
+npx bna-ui update
 ```
 
 ### Options
@@ -181,7 +181,7 @@ Options:
 Use the `diff` command to check for differences between your local components and the registry.
 
 ```bash
-npx bna-ui@latest diff [component]
+npx bna-ui diff [component]
 ```
 
 ### Options
