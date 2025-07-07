@@ -29,13 +29,13 @@ export const accordionRegistry = {
   'accordion-demo': {
     name: 'accordion-demo',
     description: 'A basic accordion with collapsible sections',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['accordion'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/accordion/accordion-demo.tsx',
         target: 'components/demo/accordion/accordion-demo.tsx',
       },
@@ -51,13 +51,13 @@ export const accordionRegistry = {
   'accordion-single': {
     name: 'accordion-single',
     description: 'An accordion that allows only one item to be open at a time',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['accordion'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/accordion/accordion-single.tsx',
         target: 'components/demo/accordion/accordion-single.tsx',
       },
@@ -74,13 +74,13 @@ export const accordionRegistry = {
     name: 'accordion-multiple',
     description:
       'An accordion that allows multiple items to be open simultaneously',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['accordion'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/accordion/accordion-multiple.tsx',
         target: 'components/demo/accordion/accordion-multiple.tsx',
       },
@@ -96,13 +96,13 @@ export const accordionRegistry = {
   'accordion-controlled': {
     name: 'accordion-controlled',
     description: 'An accordion with controlled state management',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['accordion'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/accordion/accordion-controlled.tsx',
         target: 'components/demo/accordion/accordion-controlled.tsx',
       },
@@ -119,13 +119,13 @@ export const accordionRegistry = {
     name: 'accordion-faq',
     description:
       'An accordion formatted as a frequently asked questions section',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['accordion'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/accordion/accordion-faq.tsx',
         target: 'components/demo/accordion/accordion-faq.tsx',
       },
@@ -141,13 +141,13 @@ export const accordionRegistry = {
   'accordion-non-collapsible': {
     name: 'accordion-non-collapsible',
     description: 'An accordion where at least one item must always remain open',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['accordion'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/accordion/accordion-non-collapsible.tsx',
         target: 'components/demo/accordion/accordion-non-collapsible.tsx',
       },
@@ -163,13 +163,13 @@ export const accordionRegistry = {
   'accordion-styled': {
     name: 'accordion-styled',
     description: 'An accordion with custom styling and icons',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['accordion'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/accordion/accordion-styled.tsx',
         target: 'components/demo/accordion/accordion-styled.tsx',
       },

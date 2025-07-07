@@ -1,8 +1,7 @@
 export const siteConfig = {
   name: 'BNA UI',
   url: 'https://ui.ahmedbna.com',
-  description:
-    'BNA UI is a set of beautifully-designed, accessible React Native components. Built for Expo and React Native. Open Source. Open Code.',
+  description: 'Expo, React Native UI Components Library',
   links: {
     twitter: 'https://x.com/ahmedbnaa',
     github: 'https://github.com/ahmedbna/ui',

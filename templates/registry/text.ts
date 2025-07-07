@@ -28,13 +28,13 @@ export const textRegistry = {
   'text-demo': {
     name: 'text-demo',
     description: 'Basic text component showing different variants',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/text/text-demo.tsx',
         target: 'components/demo/text/text-demo.tsx',
       },
@@ -48,13 +48,13 @@ export const textRegistry = {
   'text-variants': {
     name: 'text-variants',
     description: 'All text variants showing the typography hierarchy',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/text/text-variants.tsx',
         target: 'components/demo/text/text-variants.tsx',
       },
@@ -68,13 +68,13 @@ export const textRegistry = {
   'text-colors': {
     name: 'text-colors',
     description: 'Text with custom light and dark mode colors',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/text/text-colors.tsx',
         target: 'components/demo/text/text-colors.tsx',
       },

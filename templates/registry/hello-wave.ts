@@ -29,13 +29,13 @@ export const helloWaveRegistry = {
   'hello-wave-demo': {
     name: 'hello-wave-demo',
     description: 'An animated waving hand emoji',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['hello-wave'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/hello-wave/hello-wave-demo.tsx',
         target: 'components/demo/hello-wave/hello-wave-demo.tsx',
       },

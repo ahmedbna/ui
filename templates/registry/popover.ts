@@ -29,13 +29,13 @@ export const popoverRegistry = {
   'popover-demo': {
     name: 'popover-demo',
     description: 'A basic popover with trigger button and content',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['popover', 'button', 'text'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/popover/popover-demo.tsx',
         target: 'components/demo/popover/popover-demo.tsx',
       },
@@ -51,13 +51,13 @@ export const popoverRegistry = {
   'popover-positioning': {
     name: 'popover-positioning',
     description: 'Popovers positioned on different sides of the trigger',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['popover', 'button', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/popover/popover-positioning.tsx',
         target: 'components/demo/popover/popover-positioning.tsx',
       },
@@ -73,13 +73,13 @@ export const popoverRegistry = {
   'popover-alignment': {
     name: 'popover-alignment',
     description: 'Popovers with different alignment options',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['popover', 'button', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/popover/popover-alignment.tsx',
         target: 'components/demo/popover/popover-alignment.tsx',
       },
@@ -95,13 +95,13 @@ export const popoverRegistry = {
   'popover-controlled': {
     name: 'popover-controlled',
     description: 'A controlled popover with external state management',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['popover', 'button', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/popover/popover-controlled.tsx',
         target: 'components/demo/popover/popover-controlled.tsx',
       },
@@ -117,13 +117,13 @@ export const popoverRegistry = {
   'popover-custom': {
     name: 'popover-custom',
     description: 'Popovers with custom content and styling',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['popover', 'button', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/popover/popover-custom.tsx',
         target: 'components/demo/popover/popover-custom.tsx',
       },
@@ -139,13 +139,13 @@ export const popoverRegistry = {
   'popover-form': {
     name: 'popover-form',
     description: 'A popover containing form elements',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['popover', 'button', 'text', 'view', 'input'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/popover/popover-form.tsx',
         target: 'components/demo/popover/popover-form.tsx',
       },
@@ -161,13 +161,13 @@ export const popoverRegistry = {
   'popover-menu': {
     name: 'popover-menu',
     description: 'A popover styled as a dropdown menu',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['popover', 'button', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/popover/popover-menu.tsx',
         target: 'components/demo/popover/popover-menu.tsx',
       },

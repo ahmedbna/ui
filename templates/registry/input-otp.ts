@@ -28,13 +28,13 @@ export const inputOtpRegistry = {
   'input-otp-demo': {
     name: 'input-otp-demo',
     description: 'A basic OTP input with 6 digits',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['input-otp'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/input-otp/input-otp-demo.tsx',
         target: 'components/demo/input-otp/input-otp-demo.tsx',
       },
@@ -50,13 +50,13 @@ export const inputOtpRegistry = {
   'input-otp-lengths': {
     name: 'input-otp-lengths',
     description: 'OTP inputs with different digit lengths',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['input-otp', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/input-otp/input-otp-lengths.tsx',
         target: 'components/demo/input-otp/input-otp-lengths.tsx',
       },
@@ -72,13 +72,13 @@ export const inputOtpRegistry = {
   'input-otp-separator': {
     name: 'input-otp-separator',
     description: 'OTP input with dash separators between digits',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['input-otp', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/input-otp/input-otp-separator.tsx',
         target: 'components/demo/input-otp/input-otp-separator.tsx',
       },
@@ -93,13 +93,13 @@ export const inputOtpRegistry = {
   'input-otp-masked': {
     name: 'input-otp-masked',
     description: 'OTP input that masks digits with dots for security',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['input-otp', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/input-otp/input-otp-masked.tsx',
         target: 'components/demo/input-otp/input-otp-masked.tsx',
       },
@@ -114,13 +114,13 @@ export const inputOtpRegistry = {
   'input-otp-error': {
     name: 'input-otp-error',
     description: 'OTP input showing error state with validation message',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['input-otp', 'text', 'view', 'button'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/input-otp/input-otp-error.tsx',
         target: 'components/demo/input-otp/input-otp-error.tsx',
       },
@@ -135,13 +135,13 @@ export const inputOtpRegistry = {
   'input-otp-disabled': {
     name: 'input-otp-disabled',
     description: 'OTP input in disabled state',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['input-otp', 'text', 'view', 'button'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/input-otp/input-otp-disabled.tsx',
         target: 'components/demo/input-otp/input-otp-disabled.tsx',
       },
@@ -156,13 +156,13 @@ export const inputOtpRegistry = {
   'input-otp-styled': {
     name: 'input-otp-styled',
     description: 'OTP input with custom colors and styling',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['input-otp', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/input-otp/input-otp-styled.tsx',
         target: 'components/demo/input-otp/input-otp-styled.tsx',
       },
@@ -177,13 +177,13 @@ export const inputOtpRegistry = {
   'input-otp-no-cursor': {
     name: 'input-otp-no-cursor',
     description: 'OTP input without the blinking cursor indicator',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['input-otp', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/input-otp/input-otp-no-cursor.tsx',
         target: 'components/demo/input-otp/input-otp-no-cursor.tsx',
       },

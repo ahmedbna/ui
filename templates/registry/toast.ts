@@ -33,13 +33,13 @@ export const toastRegistry = {
   'toast-demo': {
     name: 'toast-demo',
     description: 'A basic toast notification with title and description',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['toast', 'button'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/toast/toast-demo.tsx',
         target: 'components/demo/toast/toast-demo.tsx',
       },
@@ -56,13 +56,13 @@ export const toastRegistry = {
     name: 'toast-variants',
     description:
       'Toast notifications with different variants (success, error, warning, info)',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['toast', 'button', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/toast/toast-variants.tsx',
         target: 'components/demo/toast/toast-variants.tsx',
       },
@@ -78,13 +78,13 @@ export const toastRegistry = {
   'toast-actions': {
     name: 'toast-actions',
     description: 'Toast notifications with action buttons',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['toast', 'button', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/toast/toast-actions.tsx',
         target: 'components/demo/toast/toast-actions.tsx',
       },
@@ -100,13 +100,13 @@ export const toastRegistry = {
   'toast-duration': {
     name: 'toast-duration',
     description: 'Toast notifications with custom durations',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['toast', 'button', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/toast/toast-duration.tsx',
         target: 'components/demo/toast/toast-duration.tsx',
       },
@@ -122,13 +122,13 @@ export const toastRegistry = {
   'toast-multiple': {
     name: 'toast-multiple',
     description: 'Multiple toast notifications stacked vertically',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['toast', 'button', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/toast/toast-multiple.tsx',
         target: 'components/demo/toast/toast-multiple.tsx',
       },
@@ -144,13 +144,13 @@ export const toastRegistry = {
   'toast-compact': {
     name: 'toast-compact',
     description: 'Compact toast notifications without title or description',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['toast', 'button', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/toast/toast-compact.tsx',
         target: 'components/demo/toast/toast-compact.tsx',
       },

@@ -29,13 +29,13 @@ export const modeToggleRegistry = {
   'mode-toggle-demo': {
     name: 'mode-toggle-demo',
     description: 'Animated theme toggle button',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['mode-toggle'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/mode-toggle/mode-toggle-demo.tsx',
         target: 'components/demo/mode-toggle/mode-toggle-demo.tsx',
       },

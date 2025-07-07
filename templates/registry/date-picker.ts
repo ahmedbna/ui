@@ -36,13 +36,13 @@ export const datePickerRegistry = {
   'date-picker-demo': {
     name: 'date-picker-demo',
     description: 'A basic date picker with calendar view',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['date-picker'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/date-picker/date-picker-demo.tsx',
         target: 'components/demo/date-picker/date-picker-demo.tsx',
       },
@@ -58,13 +58,13 @@ export const datePickerRegistry = {
   'date-picker-time': {
     name: 'date-picker-time',
     description: 'A time picker with hour and minute selection',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['date-picker', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/date-picker/date-picker-time.tsx',
         target: 'components/demo/date-picker/date-picker-time.tsx',
       },
@@ -80,13 +80,13 @@ export const datePickerRegistry = {
   'date-picker-datetime': {
     name: 'date-picker-datetime',
     description: 'A combined date and time picker',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['date-picker'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/date-picker/date-picker-datetime.tsx',
         target: 'components/demo/date-picker/date-picker-datetime.tsx',
       },
@@ -102,13 +102,13 @@ export const datePickerRegistry = {
   'date-picker-constraints': {
     name: 'date-picker-constraints',
     description: 'Date picker with minimum and maximum date limits',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['date-picker', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/date-picker/date-picker-constraints.tsx',
         target: 'components/demo/date-picker/date-picker-constraints.tsx',
       },
@@ -124,13 +124,13 @@ export const datePickerRegistry = {
   'date-picker-variants': {
     name: 'date-picker-variants',
     description: 'Date pickers with different styling variants',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['date-picker', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/date-picker/date-picker-variants.tsx',
         target: 'components/demo/date-picker/date-picker-variants.tsx',
       },
@@ -146,13 +146,13 @@ export const datePickerRegistry = {
   'date-picker-formats': {
     name: 'date-picker-formats',
     description: 'Time picker with 12-hour and 24-hour formats',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['date-picker', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/date-picker/date-picker-formats.tsx',
         target: 'components/demo/date-picker/date-picker-formats.tsx',
       },
@@ -168,13 +168,13 @@ export const datePickerRegistry = {
   'date-picker-form': {
     name: 'date-picker-form',
     description: 'Date picker integrated within a form with validation',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['date-picker', 'button', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/date-picker/date-picker-form.tsx',
         target: 'components/demo/date-picker/date-picker-form.tsx',
       },

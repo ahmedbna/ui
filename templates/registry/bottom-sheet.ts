@@ -30,13 +30,13 @@ export const bottomSheetRegistry = {
   'bottom-sheet-demo': {
     name: 'bottom-sheet-demo',
     description: 'A basic bottom sheet with gesture support and snap points',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['bottom-sheet', 'button'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/bottom-sheet/bottom-sheet-demo.tsx',
         target: 'components/demo/bottom-sheet/bottom-sheet-demo.tsx',
       },
@@ -52,13 +52,13 @@ export const bottomSheetRegistry = {
   'bottom-sheet-title': {
     name: 'bottom-sheet-title',
     description: 'Bottom sheet with a title header',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['bottom-sheet', 'button'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/bottom-sheet/bottom-sheet-title.tsx',
         target: 'components/demo/bottom-sheet/bottom-sheet-title.tsx',
       },
@@ -74,13 +74,13 @@ export const bottomSheetRegistry = {
   'bottom-sheet-snap-points': {
     name: 'bottom-sheet-snap-points',
     description: 'Bottom sheet with custom snap point configurations',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['bottom-sheet', 'button'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/bottom-sheet/bottom-sheet-snap-points.tsx',
         target: 'components/demo/bottom-sheet/bottom-sheet-snap-points.tsx',
       },
@@ -96,13 +96,13 @@ export const bottomSheetRegistry = {
   'bottom-sheet-form': {
     name: 'bottom-sheet-form',
     description: 'Bottom sheet containing form elements and inputs',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['bottom-sheet', 'button', 'input'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/bottom-sheet/bottom-sheet-form.tsx',
         target: 'components/demo/bottom-sheet/bottom-sheet-form.tsx',
       },
@@ -118,13 +118,13 @@ export const bottomSheetRegistry = {
   'bottom-sheet-list': {
     name: 'bottom-sheet-list',
     description: 'Bottom sheet with scrollable list content',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['bottom-sheet', 'button'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/bottom-sheet/bottom-sheet-list.tsx',
         target: 'components/demo/bottom-sheet/bottom-sheet-list.tsx',
       },
@@ -140,13 +140,13 @@ export const bottomSheetRegistry = {
   'bottom-sheet-no-dismiss': {
     name: 'bottom-sheet-no-dismiss',
     description: 'Bottom sheet that cannot be dismissed by tapping backdrop',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['bottom-sheet', 'button'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/bottom-sheet/bottom-sheet-no-dismiss.tsx',
         target: 'components/demo/bottom-sheet/bottom-sheet-no-dismiss.tsx',
       },
@@ -162,13 +162,13 @@ export const bottomSheetRegistry = {
   'bottom-sheet-styled': {
     name: 'bottom-sheet-styled',
     description: 'Bottom sheet with custom styling and colors',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['bottom-sheet', 'button'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/bottom-sheet/bottom-sheet-styled.tsx',
         target: 'components/demo/bottom-sheet/bottom-sheet-styled.tsx',
       },
@@ -183,13 +183,13 @@ export const bottomSheetRegistry = {
   'bottom-sheet-menu': {
     name: 'bottom-sheet-menu',
     description: 'Bottom sheet used as a menu with action items',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['bottom-sheet', 'button', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/bottom-sheet/bottom-sheet-menu.tsx',
         target: 'components/demo/bottom-sheet/bottom-sheet-menu.tsx',
       },

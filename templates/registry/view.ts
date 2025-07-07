@@ -28,13 +28,13 @@ export const viewRegistry = {
   'view-demo': {
     name: 'view-demo',
     description: 'Basic view container with content',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['view', 'text'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/view/view-demo.tsx',
         target: 'components/demo/view/view-demo.tsx',
       },

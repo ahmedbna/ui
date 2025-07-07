@@ -35,13 +35,13 @@ export const galleryRegistry = {
     name: 'gallery-demo',
     description:
       'A basic image gallery with grid layout and fullscreen viewing',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['gallery'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/gallery/gallery-demo.tsx',
         target: 'components/demo/gallery/gallery-demo.tsx',
       },
@@ -56,13 +56,13 @@ export const galleryRegistry = {
   'gallery-grid': {
     name: 'gallery-grid',
     description: 'Gallery with custom columns, spacing, and aspect ratio',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['gallery', 'view', 'text'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/gallery/gallery-grid.tsx',
         target: 'components/demo/gallery/gallery-grid.tsx',
       },
@@ -77,13 +77,13 @@ export const galleryRegistry = {
   'gallery-info': {
     name: 'gallery-info',
     description: 'Gallery displaying image titles and descriptions',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['gallery'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/gallery/gallery-info.tsx',
         target: 'components/demo/gallery/gallery-info.tsx',
       },
@@ -98,13 +98,13 @@ export const galleryRegistry = {
   'gallery-layouts': {
     name: 'gallery-layouts',
     description: 'Various gallery layouts and configurations',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['gallery', 'view', 'text'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/gallery/gallery-layouts.tsx',
         target: 'components/demo/gallery/gallery-layouts.tsx',
       },
@@ -119,13 +119,13 @@ export const galleryRegistry = {
   'gallery-controls': {
     name: 'gallery-controls',
     description: 'Images with controls',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['gallery', 'view', 'text'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/gallery/gallery-controls.tsx',
         target: 'components/demo/gallery/gallery-controls.tsx',
       },
@@ -140,13 +140,13 @@ export const galleryRegistry = {
   'gallery-overlay': {
     name: 'gallery-overlay',
     description: 'Images with overlay',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['gallery', 'view', 'text'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/gallery/gallery-overlay.tsx',
         target: 'components/demo/gallery/gallery-overlay.tsx',
       },

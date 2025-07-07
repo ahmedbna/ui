@@ -95,12 +95,14 @@ function getFileTarget(file: z.infer<typeof registryItemFileSchema>) {
 
   if (!target || target === '') {
     const fileName = file.path.split('/').pop();
-    if (
-      file.type === 'registry:block' ||
-      file.type === 'registry:component' ||
-      file.type === 'registry:example'
-    ) {
+    if (file.type === 'registry:component') {
       target = `components/${fileName}`;
+    }
+
+    // @ts-ignore
+    if (file.type === 'registry:demo') {
+      const baseName = fileName?.replace(/\.tsx$/, '');
+      target = `components/demo/${baseName}/${fileName}`;
     }
 
     if (file.type === 'registry:ui') {
@@ -109,6 +111,10 @@ function getFileTarget(file: z.infer<typeof registryItemFileSchema>) {
 
     if (file.type === 'registry:hook') {
       target = `hooks/${fileName}`;
+    }
+
+    if (file.type === 'registry:theme') {
+      target = `theme/${fileName}`;
     }
 
     if (file.type === 'registry:lib') {

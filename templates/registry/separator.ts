@@ -27,13 +27,13 @@ export const separatorRegistry = {
   'separator-demo': {
     name: 'separator-demo',
     description: 'A basic horizontal separator',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['separator', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/separator/separator-demo.tsx',
         target: 'components/demo/separator/separator-demo.tsx',
       },
@@ -48,13 +48,13 @@ export const separatorRegistry = {
   'separator-vertical': {
     name: 'separator-vertical',
     description: 'A vertical separator for inline content',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['separator', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/separator/separator-vertical.tsx',
         target: 'components/demo/separator/separator-vertical.tsx',
       },
@@ -69,13 +69,13 @@ export const separatorRegistry = {
   'separator-thickness': {
     name: 'separator-thickness',
     description: 'Separators with different thickness values',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['separator', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/separator/separator-thickness.tsx',
         target: 'components/demo/separator/separator-thickness.tsx',
       },
@@ -90,13 +90,13 @@ export const separatorRegistry = {
   'separator-colors': {
     name: 'separator-colors',
     description: 'Separators with custom colors and opacity',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['separator', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/separator/separator-colors.tsx',
         target: 'components/demo/separator/separator-colors.tsx',
       },
@@ -111,13 +111,13 @@ export const separatorRegistry = {
   'separator-spacing': {
     name: 'separator-spacing',
     description: 'Separators with different margin and padding',
-    type: 'registry:example',
+    type: 'registry:demo',
     registryDependencies: ['separator', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:example',
+        type: 'registry:demo',
         path: 'templates/demo/separator/separator-spacing.tsx',
         target: 'components/demo/separator/separator-spacing.tsx',
       },
