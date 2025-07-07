@@ -8,17 +8,24 @@ export const siteConfig = {
   },
   navItems: [
     {
-      href: '/docs/installation',
       label: 'Docs',
+      href: '/docs/installation',
     },
     {
-      href: '/docs/components',
       label: 'Components',
+      href: '/docs/components',
     },
-
     {
-      href: '/docs/charts',
       label: 'Charts',
+      href: '/docs/charts',
+    },
+    {
+      label: 'Hooks',
+      href: '/docs/hooks',
+    },
+    {
+      label: 'Theme',
+      href: '/docs/theme',
     },
   ],
 };
