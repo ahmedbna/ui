@@ -5,7 +5,7 @@ import { registryItemFileSchema, registryItemSchema } from 'shadcn/registry';
 import { Project, ScriptKind } from 'ts-morph';
 import { z } from 'zod';
 
-import { Index } from '@/registry/__index__';
+import { Index } from '@/templates/__index__';
 
 export function getRegistryComponent(name: string) {
   return Index[name]?.component;

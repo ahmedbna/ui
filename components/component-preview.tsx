@@ -1,6 +1,6 @@
 import { ComponentPreviewTabs } from '@/components/component-preview-tabs';
 import { ComponentSource } from '@/components/component-source';
-import { Index } from '@/registry/__index__';
+import { Index } from '@/templates/__index__';
 
 export function ComponentPreview({
   name,
