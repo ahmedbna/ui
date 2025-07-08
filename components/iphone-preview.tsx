@@ -8,10 +8,12 @@ import { Code } from 'lucide-react';
 // iPhone Video/Image Component
 export const IPhonePreview = ({
   preview,
+  width = 280,
   showCode = true,
   className,
 }: {
   preview: { dark: string; light: string };
+  width?: number;
   showCode?: boolean;
   className?: string;
 }) => {
@@ -39,6 +41,8 @@ export const IPhonePreview = ({
     );
   }
 
+  const notchwidth = width * 0.45;
+
   return (
     <div
       className={cn(
@@ -52,10 +56,18 @@ export const IPhonePreview = ({
           {/* <div className='relative bg-secondary group-hover:bg-primary rounded-[2.5rem] p-1 shadow-2xl transition-colors duration-200'> */}
           <div className='bg-white dark:bg-gray-900 rounded-[2.5rem] overflow-hidden relative'>
             {/* iPhone Notch */}
-            <div className='absolute top-1 left-1/2 transform -translate-x-1/2 w-28 h-6.5 bg-black rounded-full z-10' />
+            <div
+              className='absolute top-1 transform -translate-x-1/2 aspect-[4.2] bg-black rounded-full z-10'
+              style={{
+                width: `${notchwidth}px`,
+                left: 'calc(50% - 3px)',
+              }}
+            />
 
             {/* Media Container - Fixed proportions for iPhone 14 Pro (393x852) */}
-            <div className='relative w-[254px] h-[556px] overflow-hidden rounded-[2rem]'>
+            <div
+              className={`relative w-[${width.toString()}px] aspect-[0.46] overflow-hidden rounded-[2rem]`}
+            >
               {isImage ? (
                 <img
                   key={mediaUrl}

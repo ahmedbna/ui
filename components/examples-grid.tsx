@@ -5,7 +5,5 @@ interface ExampleGridProps {
 }
 
 export function ExamplesGrid({ children }: ExampleGridProps) {
-  return (
-    <div className='grid grid-cols-2 lg:grid-cols-3 gap-8 mt-8'>{children}</div>
-  );
+  return <div className='grid grid-cols-2  mt-8'>{children}</div>;
 }
