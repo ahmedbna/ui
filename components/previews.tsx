@@ -1,4 +1,6 @@
-import { IPhoneVideoPreview } from './iphone-preview';
+'use client';
+
+import { IPhonePreview } from '@/components/iphone-preview';
 
 const items = [
   {
@@ -107,7 +109,7 @@ export const Previews = () => {
       {/* <div className='mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4'> */}
       {items.map((item) => (
         <div key={item.dark}>
-          <IPhoneVideoPreview preview={item} />
+          <IPhonePreview preview={item} />
         </div>
       ))}
     </div>

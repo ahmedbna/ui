@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import { cn } from '@/lib/utils';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { IPhoneVideoPreview } from './iphone-preview';
+import { IPhonePreview } from '@/components/iphone-preview';
 
 export function ComponentPreviewTabs({
   className,
@@ -61,7 +61,7 @@ export function ComponentPreviewTabs({
               'preview flex h-[450px] w-full justify-center p-10 data-[align=center]:items-center data-[align=end]:items-end data-[align=start]:items-start'
             )}
           >
-            <IPhoneVideoPreview preview={preview} />
+            <IPhonePreview preview={preview} />
           </div>
         </div>
         <div

@@ -1,9 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { Code2, Code } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
@@ -12,7 +10,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import { IPhoneVideoPreview } from '@/components/iphone-preview';
+import { IPhonePreview } from '@/components/iphone-preview';
 import { CodeBlockCommand } from '@/components/code-block-command';
 
 export function ComponentDialog({
@@ -35,20 +33,10 @@ export function ComponentDialog({
       className={cn('mt-2.5 flex flex-col items-center w-fit gap-2', className)}
       {...props}
     >
-      {/* <Button
-        variant='outline'
-        size='sm'
-        className='z-10 bg-background/80 backdrop-blur-sm hover:bg-background/90'
-        onClick={() => setOpen(true)}
-      >
-        <Code className='w-4 h-4 mr-2' />
-        Show Code
-      </Button> */}
-
       {/* Code Dialog */}
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger className='cursor-pointer transition-transform hover:scale-101'>
-          <IPhoneVideoPreview preview={preview} />
+          <IPhonePreview preview={preview} />
         </DialogTrigger>
         <DialogContent className='max-w-4xl max-h-[80vh] overflow-hidden'>
           <DialogHeader>
