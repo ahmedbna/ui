@@ -31,7 +31,7 @@ npx bna-ui add file-picker
 <Step>Install the following dependencies:</Step>
 
 ```bash
-npm install expo-document-picker lucide-react-native
+npx expo install expo-document-picker lucide-react-native
 ```
 
 <Step>Copy and paste the following code into your project.</Step>
@@ -65,54 +65,78 @@ import { FilePicker } from '@/components/ui/file-picker';
 
 ## Examples
 
-### Default
+<ExamplesGrid>
+
+<div>
+#### Default
 
 <ComponentPreview
   name='file-picker-demo'
   description='A basic file picker with validation and preview'
 />
 
-### Image Only
+</div>
+
+<div>
+#### Image Only
 
 <ComponentPreview
   name='file-picker-images'
   description='File picker configured for images only'
 />
 
-### Single File
+</div>
+
+<div>
+#### Single File
 
 <ComponentPreview
   name='file-picker-single'
   description='File picker for selecting a single file'
 />
 
-### With Validation
+</div>
+
+<div>
+#### With Validation
 
 <ComponentPreview
   name='file-picker-validation'
   description='File picker with size limits and extension validation'
 />
 
-### Custom Styling
+</div>
+
+<div>
+#### Custom Styling
 
 <ComponentPreview
   name='file-picker-styled'
   description='File picker with custom styling and colors'
 />
 
-### Controlled
+</div>
+
+<div>
+#### Controlled
 
 <ComponentPreview
   name='file-picker-controlled'
   description='Controlled file picker using the useFilePicker hook'
 />
 
-### With File Info
+</div>
+
+<div>
+#### With File Info
 
 <ComponentPreview
   name='file-picker-info'
   description='File picker displaying detailed file information'
 />
+</div>
+
+</ExamplesGrid>
 
 ## API Reference
 

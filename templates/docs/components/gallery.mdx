@@ -31,7 +31,7 @@ npx bna-ui add gallery
 <Step>Install the following dependencies:</Step>
 
 ```bash
-npm install expo-image react-native-gesture-handler react-native-reanimated lucide-react-native
+npx expo install expo-image react-native-gesture-handler react-native-reanimated lucide-react-native
 ```
 
 <Step>Copy and paste the following code into your project.</Step>
@@ -79,41 +79,62 @@ const galleryItems = [
 
 ## Examples
 
-### Default
+<ExamplesGrid>
+
+<div>
+#### Default
 
 <ComponentPreview
   name='gallery-demo'
   description='A basic image gallery with grid layout and fullscreen viewing'
 />
 
-### Custom Grid
+</div>
+
+<div>
+#### Custom Grid
 
 <ComponentPreview
   name='gallery-grid'
   description='Gallery with custom columns, spacing, and aspect ratio'
 />
 
-### With Titles and Descriptions
+</div>
+
+<div>
+#### With Titles and Descriptions
 
 <ComponentPreview
   name='gallery-info'
   description='Gallery displaying image titles and descriptions'
 />
 
-### Different Layouts
+</div>
+
+<div>
+#### Different Layouts
 
 <ComponentPreview
   name='gallery-layouts'
   description='Various gallery layouts and configurations'
 />
 
-### With Controls
+</div>
+
+<div>
+#### With Controls
 
 <ComponentPreview name='gallery-controls' description='Images with controls' />
 
-### With Overlays
+</div>
+
+<div>
+#### With Overlays
 
 <ComponentPreview name='gallery-overlay' description='Images with overlay' />
+</div>
+
+</ExamplesGrid>
 
 ## API Reference
 

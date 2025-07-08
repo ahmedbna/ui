@@ -31,7 +31,7 @@ npx bna-ui add checkbox
 <Step>Install the following dependencies:</Step>
 
 ```bash
-npm install lucide-react-native
+npx expo install lucide-react-native
 ```
 
 <Step>Copy and paste the following code into your project.</Step>
@@ -64,47 +64,68 @@ const [checked, setChecked] = useState(false);
 
 ## Examples
 
-### Default
+<ExamplesGrid>
+
+<div>
+#### Default
 
 <ComponentPreview
   name='checkbox-demo'
   description='A basic checkbox with label'
 />
 
-### Different States
+</div>
+
+<div>
+#### Different States
 
 <ComponentPreview
   name='checkbox-states'
   description='Checkboxes in different states: unchecked, checked, and disabled'
 />
 
-### Without Label
+</div>
+
+<div>
+#### Without Label
 
 <ComponentPreview
   name='checkbox-without-label'
   description='A checkbox without a label'
 />
 
-### With Error State
+</div>
+
+<div>
+#### With Error State
 
 <ComponentPreview
   name='checkbox-with-error'
   description='A checkbox with error styling and message'
 />
 
-### Custom Styling
+</div>
+
+<div>
+#### Custom Styling
 
 <ComponentPreview
   name='checkbox-custom-styling'
   description='Checkboxes with custom label styling'
 />
 
-### Checkbox Group
+</div>
+
+<div>
+#### Checkbox Group
 
 <ComponentPreview
   name='checkbox-group'
   description='Multiple checkboxes working together as a group'
 />
+</div>
+
+</ExamplesGrid>
 
 ## API Reference
 

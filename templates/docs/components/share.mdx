@@ -31,7 +31,7 @@ npx bna-ui add share
 <Step>Install the following dependencies:</Step>
 
 ```bash
-npm install lucide-react-native
+npx expo install lucide-react-native
 ```
 
 <Step>Copy and paste the following code into your project.</Step>
@@ -65,61 +65,88 @@ import { ShareButton, useShare } from '@/components/ui/share';
 
 ## Examples
 
-### Default
+<ExamplesGrid>
+
+<div>
+#### Default
 
 <ComponentPreview
   name='share-demo'
   description='A basic share button with text and URL sharing'
 />
 
-### Share Variants
+</div>
+
+<div>
+#### Share Variants
 
 <ComponentPreview
   name='share-variants'
   description='Share buttons with different visual variants'
 />
 
-### Share Sizes
+</div>
+
+<div>
+#### Share Sizes
 
 <ComponentPreview
   name='share-sizes'
   description='Share buttons in different sizes'
 />
 
-### URL Only
+</div>
+
+<div>
+#### URL Only
 
 <ComponentPreview
   name='share-url-only'
   description='Share button for sharing URLs without additional text'
 />
 
-### Custom Content
+</div>
+
+<div>
+#### Custom Content
 
 <ComponentPreview
   name='share-custom-content'
   description='Share button with custom title, subject, and content'
 />
 
-### Icon Only
+</div>
+
+<div>
+#### Icon Only
 
 <ComponentPreview
   name='share-icon-only'
   description='Compact share button with icon only'
 />
 
-### With Callbacks
+</div>
+
+<div>
+#### With Callbacks
 
 <ComponentPreview
   name='share-callbacks'
   description='Share button with success, error, and dismiss callbacks'
 />
 
-### Hook Usage
+</div>
+
+<div>
+#### Hook Usage
 
 <ComponentPreview
   name='share-hook'
   description='Using the useShare hook for programmatic sharing'
 />
+</div>
+
+</ExamplesGrid>
 
 ## API Reference
 
