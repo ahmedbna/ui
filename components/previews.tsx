@@ -109,7 +109,7 @@ export const Previews = () => {
       {/* <div className='mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4'> */}
       {items.map((item) => (
         <div key={item.dark}>
-          <IPhonePreview preview={item} />
+          <IPhonePreview preview={item} showCode={false} />
         </div>
       ))}
     </div>

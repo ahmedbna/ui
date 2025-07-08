@@ -8,9 +8,11 @@ import { Code } from 'lucide-react';
 // iPhone Video/Image Component
 export const IPhonePreview = ({
   preview,
+  showCode = true,
   className,
 }: {
   preview: { dark: string; light: string };
+  showCode?: boolean;
   className?: string;
 }) => {
   const { theme, systemTheme } = useTheme();
@@ -46,7 +48,8 @@ export const IPhonePreview = ({
     >
       <div className='relative'>
         {/* iPhone Frame */}
-        <div className='relative bg-secondary group-hover:bg-primary rounded-[2.5rem] p-1 shadow-2xl transition-colors duration-200'>
+        <div className='relative bg-secondary rounded-[2.5rem] p-1 shadow-2xl transition-colors duration-200'>
+          {/* <div className='relative bg-secondary group-hover:bg-primary rounded-[2.5rem] p-1 shadow-2xl transition-colors duration-200'> */}
           <div className='bg-white dark:bg-gray-900 rounded-[2.5rem] overflow-hidden relative'>
             {/* iPhone Notch */}
             <div className='absolute top-1 left-1/2 transform -translate-x-1/2 w-28 h-6.5 bg-black rounded-full z-10' />
@@ -76,12 +79,14 @@ export const IPhonePreview = ({
               )}
 
               {/* Hover Overlay */}
-              <div className='absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center rounded-[2rem]'>
-                <div className='text-white flex items-center gap-2'>
-                  <Code className='w-4 h-4' />
-                  Show Code
+              {showCode && (
+                <div className='absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center rounded-[2rem]'>
+                  <div className='text-white flex items-center gap-2'>
+                    <Code className='w-4 h-4' />
+                    Show Code
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           </div>
         </div>

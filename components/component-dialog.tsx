@@ -35,7 +35,7 @@ export function ComponentDialog({
     >
       {/* Code Dialog */}
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogTrigger className='cursor-pointer transition-transform hover:scale-101'>
+        <DialogTrigger className='cursor-pointer'>
           <IPhonePreview preview={preview} />
         </DialogTrigger>
         <DialogContent className='max-w-4xl max-h-[80vh] overflow-hidden'>
