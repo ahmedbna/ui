@@ -36,7 +36,7 @@ export function ComponentDialog({
       {/* Code Dialog */}
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger className='cursor-pointer'>
-          <IPhonePreview preview={preview} />
+          <IPhonePreview preview={preview} width={310} />
         </DialogTrigger>
         <DialogContent className='max-w-4xl max-h-[80vh] overflow-hidden'>
           <DialogHeader>

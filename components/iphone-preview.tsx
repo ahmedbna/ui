@@ -3,7 +3,8 @@
 import * as React from 'react';
 import { cn } from '@/lib/utils';
 import { useTheme } from 'next-themes';
-import { Code } from 'lucide-react';
+import { Code, Code2 } from 'lucide-react';
+import { Button } from './ui/button';
 
 // iPhone Video/Image Component
 export const IPhonePreview = ({
@@ -28,6 +29,9 @@ export const IPhonePreview = ({
   // Check if the URL ends with .png (case insensitive)
   const isImage = mediaUrl.toLowerCase().endsWith('.png');
 
+  const border = width * 0.15;
+  const notchwidth = width * 0.45;
+
   // Ensure component is mounted to avoid hydration mismatch
   React.useEffect(() => {
     setMounted(true);
@@ -36,12 +40,13 @@ export const IPhonePreview = ({
   if (!mounted) {
     return (
       <div className='flex items-center justify-center w-full h-full'>
-        <div className='animate-pulse bg-background rounded-[2.5rem] w-[280px] h-[560px]' />
+        <div
+          className='animate-pulse bg-background w-[280px] h-[560px]'
+          style={{ borderRadius: border }}
+        />
       </div>
     );
   }
-
-  const notchwidth = width * 0.45;
 
   return (
     <div
@@ -52,9 +57,17 @@ export const IPhonePreview = ({
     >
       <div className='relative'>
         {/* iPhone Frame */}
-        <div className='relative bg-secondary rounded-[2.5rem] p-1 shadow-2xl transition-colors duration-200'>
-          {/* <div className='relative bg-secondary group-hover:bg-primary rounded-[2.5rem] p-1 shadow-2xl transition-colors duration-200'> */}
-          <div className='bg-white dark:bg-gray-900 rounded-[2.5rem] overflow-hidden relative'>
+        <div
+          className={cn(
+            'relative bg-secondary p-1 shadow-2xl transition-colors duration-200',
+            showCode && 'group-hover:bg-muted-foreground'
+          )}
+          style={{ borderRadius: border }}
+        >
+          <div
+            className='bg-white dark:bg-gray-900 overflow-hidden relative'
+            style={{ borderRadius: border }}
+          >
             {/* iPhone Notch */}
             <div
               className='absolute top-1 transform -translate-x-1/2 aspect-[4.2] bg-black rounded-full z-10'
@@ -64,9 +77,11 @@ export const IPhonePreview = ({
               }}
             />
 
-            {/* Media Container - Fixed proportions for iPhone 14 Pro (393x852) */}
             <div
-              className={`relative w-[${width.toString()}px] aspect-[0.46] overflow-hidden rounded-[2rem]`}
+              className='relative aspect-[0.46] overflow-hidden rounded-[2rem]'
+              style={{
+                width: `${width}px`,
+              }}
             >
               {isImage ? (
                 <img
@@ -92,11 +107,17 @@ export const IPhonePreview = ({
 
               {/* Hover Overlay */}
               {showCode && (
-                <div className='absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center rounded-[2rem]'>
-                  <div className='text-white flex items-center gap-2'>
-                    <Code className='w-4 h-4' />
+                <div
+                  className='absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center'
+                  style={{ borderRadius: border }}
+                >
+                  <Button
+                    variant='outline'
+                    className='z-10 bg-background/80 backdrop-blur-sm hover:bg-background/90'
+                  >
+                    <Code className='w-4 h-4 mr-2' />
                     Show Code
-                  </div>
+                  </Button>
                 </div>
               )}
             </div>
