@@ -59,7 +59,7 @@ export const IPhonePreview = ({
         {/* iPhone Frame */}
         <div
           className={cn(
-            'relative bg-secondary p-1 shadow-2xl transition-colors duration-200',
+            'relative bg-secondary p-1 shadow-2xl transition-colors duration-100',
             showCode && 'group-hover:bg-muted-foreground'
           )}
           style={{ borderRadius: border }}

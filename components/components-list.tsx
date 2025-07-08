@@ -1,31 +1,35 @@
-import Link from "next/link"
+import Link from 'next/link';
 
-import { source } from "@/lib/source"
+import { source } from '@/lib/source';
+import { Button } from '@/components/ui/button';
 
 export function ComponentsList() {
   const components = source.pageTree.children.find(
-    (page) => page.$id === "components"
-  )
+    (page) => page.$id === 'components'
+  );
 
-  if (components?.type !== "folder") {
-    return
+  if (components?.type !== 'folder') {
+    return;
   }
 
   const list = components.children.filter(
-    (component) => component.type === "page"
-  )
+    (component) => component.type === 'page'
+  );
 
   return (
-    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 md:gap-x-8 lg:gap-x-16 lg:gap-y-6 xl:gap-x-20">
+    <div className='grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 md:gap-x-8 lg:gap-x-16 lg:gap-y-6 xl:gap-x-20'>
       {list.map((component) => (
-        <Link
+        <Button
+          asChild
+          variant='ghost'
+          className='px-3 text-lg text-start justify-start font-medium'
           key={component.$id}
-          href={component.url}
-          className="text-lg font-medium underline-offset-4 hover:underline md:text-base"
         >
-          {component.name}
-        </Link>
+          <Link key={component.$id} href={component.url}>
+            {component.name}
+          </Link>
+        </Button>
       ))}
     </div>
-  )
+  );
 }
