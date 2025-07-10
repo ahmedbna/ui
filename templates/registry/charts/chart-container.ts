@@ -1,4 +1,4 @@
-// Registry configuration for avatar component and demo
+// Registry configuration for chart-container component and demo
 
 export const chartContainerRegistry = {
   // Main avatar component
