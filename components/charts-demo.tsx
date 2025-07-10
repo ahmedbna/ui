@@ -3,10 +3,7 @@
 import { AreaChart } from '@/components/charts/area-chart';
 import { BarChart } from '@/components/charts/bar-chart';
 import { BubbleChart } from '@/components/charts/bubble-chart';
-import {
-  CandlestickChart,
-  CandlestickDataPoint,
-} from '@/components/charts/candlestick-chart';
+import { CandlestickChart } from '@/components/charts/candlestick-chart';
 import { ChartContainer } from '@/components/charts/chart-container';
 import { ColumnChart } from '@/components/charts/column-chart';
 import { DoughnutChart } from '@/components/charts/doughnut-chart';
@@ -30,20 +27,14 @@ import {
   TreeMapChart,
   TreeMapDataPoint,
 } from '@/components/charts/treemap-chart';
-import {
-  BubbleChartDataPoint,
-  ChartDataPoint,
-  HeatmapDataPoint,
-  LineChartDataPoint,
-  RadarChartDataPoint,
-} from '@/components/charts/types';
+
 import { Text } from '@/components/ui/text';
 import React from 'react';
 import { View } from 'react-native';
 
 export const ChartsDemo: React.FC = () => {
   // Sample data for different chart types
-  const lineChartData: LineChartDataPoint[] = [
+  const lineChartData = [
     { x: 1, y: 10, label: 'Jan' },
     { x: 2, y: 25, label: 'Feb' },
     { x: 3, y: 15, label: 'Mar' },
@@ -53,20 +44,20 @@ export const ChartsDemo: React.FC = () => {
     { x: 7, y: 45, label: 'Jul' },
   ];
 
-  const barChartData: ChartDataPoint[] = [
+  const barChartData = [
     { label: 'Q1', value: 4500 },
     { label: 'Q2', value: 6200 },
     { label: 'Q3', value: 5800 },
     { label: 'Q4', value: 7200 },
   ];
 
-  const pieChartData: ChartDataPoint[] = [
+  const pieChartData = [
     { label: 'Mobile', value: 45 },
     { label: 'Desktop', value: 35 },
     { label: 'Tablet', value: 20 },
   ];
 
-  const areaChartData: LineChartDataPoint[] = [
+  const areaChartData = [
     { x: 1, y: 20 },
     { x: 2, y: 35 },
     { x: 3, y: 25 },
@@ -76,7 +67,7 @@ export const ChartsDemo: React.FC = () => {
     { x: 7, y: 55 },
   ];
 
-  const columnChartData: ChartDataPoint[] = [
+  const columnChartData = [
     { label: 'Marketing', value: 85, color: '#FF6B6B' },
     { label: 'Development', value: 72, color: '#4ECDC4' },
     { label: 'Design', value: 68, color: '#45B7D1' },
@@ -84,7 +75,7 @@ export const ChartsDemo: React.FC = () => {
     { label: 'Support', value: 79, color: '#FFEAA7' },
   ];
 
-  const doughnutChartData: ChartDataPoint[] = [
+  const doughnutChartData = [
     { label: 'React', value: 40, color: '#61DAFB' },
     { label: 'Vue', value: 25, color: '#4FC08D' },
     { label: 'Angular', value: 20, color: '#DD0031' },
@@ -92,7 +83,7 @@ export const ChartsDemo: React.FC = () => {
     { label: 'Other', value: 5, color: '#8B5CF6' },
   ];
 
-  const scatterPlotData: LineChartDataPoint[] = [
+  const scatterPlotData = [
     { x: 10, y: 20 },
     { x: 15, y: 35 },
     { x: 20, y: 25 },
@@ -105,7 +96,7 @@ export const ChartsDemo: React.FC = () => {
     { x: 55, y: 80 },
   ];
 
-  const bubbleChartData: BubbleChartDataPoint[] = [
+  const bubbleChartData = [
     { x: 10, y: 20, size: 15, label: 'A', color: '#FF6B6B' },
     { x: 25, y: 35, size: 25, label: 'B', color: '#4ECDC4' },
     { x: 40, y: 25, size: 20, label: 'C', color: '#45B7D1' },
@@ -114,7 +105,7 @@ export const ChartsDemo: React.FC = () => {
     { x: 85, y: 60, size: 35, label: 'F', color: '#FDA7DF' },
   ];
 
-  const radarChartData: RadarChartDataPoint[] = [
+  const radarChartData = [
     { label: 'Speed', value: 80 },
     { label: 'Reliability', value: 90 },
     { label: 'Comfort', value: 70 },
@@ -123,7 +114,7 @@ export const ChartsDemo: React.FC = () => {
     { label: 'Design', value: 75 },
   ];
 
-  const polarAreaData: ChartDataPoint[] = [
+  const polarAreaData = [
     { label: 'JavaScript', value: 35, color: '#F7DF1E' },
     { label: 'Python', value: 25, color: '#3776AB' },
     { label: 'Java', value: 20, color: '#ED8B00' },
@@ -133,7 +124,7 @@ export const ChartsDemo: React.FC = () => {
   ];
 
   // Candlestick data for stock price visualization
-  const candlestickData: CandlestickDataPoint[] = [
+  const candlestickData = [
     { date: 'Jan 1', open: 100, high: 110, low: 95, close: 105 },
     { date: 'Jan 2', open: 105, high: 115, low: 102, close: 112 },
     { date: 'Jan 3', open: 112, high: 118, low: 108, close: 110 },
@@ -147,7 +138,7 @@ export const ChartsDemo: React.FC = () => {
   ];
 
   // Heatmap data for activity visualization
-  const heatmapData: HeatmapDataPoint[] = [
+  const heatmapData = [
     // Week 1
     { row: 'Mon', col: 'Week 1', value: 12, label: 'Monday W1' },
     { row: 'Tue', col: 'Week 1', value: 18, label: 'Tuesday W1' },
@@ -182,7 +173,7 @@ export const ChartsDemo: React.FC = () => {
     { row: 'Sun', col: 'Week 4', value: 9, label: 'Sunday W4' },
   ];
 
-  const radialBarData: ChartDataPoint[] = [
+  const radialBarData = [
     { label: 'Sales', value: 85, color: '#3b82f6' },
     { label: 'Marketing', value: 70, color: '#ef4444' },
     { label: 'Development', value: 90, color: '#10b981' },
@@ -201,7 +192,7 @@ export const ChartsDemo: React.FC = () => {
     { label: 'Analytics', value: 8, color: '#84cc16' },
   ];
 
-  const teamProductivityData: ChartDataPoint[] = [
+  const teamProductivityData = [
     { label: 'Q1 Goals', value: 78, color: '#22c55e' },
     { label: 'Q2 Goals', value: 92, color: '#3b82f6' },
     { label: 'Q3 Goals', value: 65, color: '#f59e0b' },

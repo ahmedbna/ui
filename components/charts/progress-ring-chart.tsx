@@ -1,6 +1,3 @@
-// components/ui/charts/progress-ring-chart.tsx
-
-import { ChartConfig } from '@/components/charts/types';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { useEffect } from 'react';
 import { View, ViewStyle } from 'react-native';
@@ -19,6 +16,21 @@ import Svg, {
 
 // Animated SVG Components
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
+
+interface ChartConfig {
+  width?: number;
+  height?: number;
+  padding?: number;
+  showGrid?: boolean;
+  showLabels?: boolean;
+  animated?: boolean;
+  duration?: number;
+  gradient?: boolean;
+  interactive?: boolean;
+  innerRadius?: number;
+  maxValue?: number;
+  colorScale?: string[];
+}
 
 type Props = {
   progress: number; // 0-100

@@ -1,6 +1,3 @@
-// components/ui/charts/column-chart.tsx
-
-import { ChartConfig, ChartDataPoint } from '@/components/ui/charts/types';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { useEffect, useState } from 'react';
 import { LayoutChangeEvent, View, ViewStyle } from 'react-native';
@@ -13,6 +10,27 @@ import Svg, { G, Rect, Text as SvgText } from 'react-native-svg';
 
 // Animated SVG Components
 const AnimatedRect = Animated.createAnimatedComponent(Rect);
+
+interface ChartConfig {
+  width?: number;
+  height?: number;
+  padding?: number;
+  showGrid?: boolean;
+  showLabels?: boolean;
+  animated?: boolean;
+  duration?: number;
+  gradient?: boolean;
+  interactive?: boolean;
+  innerRadius?: number;
+  maxValue?: number;
+  colorScale?: string[];
+}
+
+interface ChartDataPoint {
+  label: string;
+  value: number;
+  color?: string;
+}
 
 type Props = {
   data: ChartDataPoint[];

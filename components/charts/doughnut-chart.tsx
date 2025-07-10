@@ -1,6 +1,3 @@
-// components/ui/charts/doughnut-chart.tsx
-
-import { ChartConfig, ChartDataPoint } from '@/components/charts/types';
 import { Text } from '@/components/ui/text';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { useEffect, useState } from 'react';
@@ -14,6 +11,27 @@ import Svg, { G, Path, Text as SvgText } from 'react-native-svg';
 
 // Animated SVG Components
 const AnimatedPath = Animated.createAnimatedComponent(Path);
+
+interface ChartConfig {
+  width?: number;
+  height?: number;
+  padding?: number;
+  showGrid?: boolean;
+  showLabels?: boolean;
+  animated?: boolean;
+  duration?: number;
+  gradient?: boolean;
+  interactive?: boolean;
+  innerRadius?: number;
+  maxValue?: number;
+  colorScale?: string[];
+}
+
+interface ChartDataPoint {
+  label: string;
+  value: number;
+  color?: string;
+}
 
 type Props = {
   data: ChartDataPoint[];
