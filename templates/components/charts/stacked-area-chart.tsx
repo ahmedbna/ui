@@ -27,11 +27,6 @@ interface ChartConfig {
   showLabels?: boolean;
   animated?: boolean;
   duration?: number;
-  gradient?: boolean;
-  interactive?: boolean;
-  innerRadius?: number;
-  maxValue?: number;
-  colorScale?: string[];
 }
 
 export interface StackedAreaDataPoint {

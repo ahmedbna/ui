@@ -20,11 +20,6 @@ interface ChartConfig {
   showLabels?: boolean;
   animated?: boolean;
   duration?: number;
-  gradient?: boolean;
-  interactive?: boolean;
-  innerRadius?: number;
-  maxValue?: number;
-  colorScale?: string[];
 }
 
 interface CandlestickDataPoint {
@@ -47,10 +42,10 @@ export const CandlestickChart = ({ data, config = {}, style }: Props) => {
   const {
     height = 200,
     padding = 20,
+    showGrid = true,
     showLabels = true,
     animated = true,
     duration = 800,
-    showGrid = true,
   } = config;
 
   // Use measured width or fallback to config width or default

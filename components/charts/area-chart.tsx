@@ -11,9 +11,6 @@ interface ChartConfig {
   duration?: number;
   gradient?: boolean;
   interactive?: boolean;
-  innerRadius?: number;
-  maxValue?: number;
-  colorScale?: string[];
   showYLabels?: boolean;
   yLabelCount?: number;
   yAxisWidth?: number;

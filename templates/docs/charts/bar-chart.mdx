@@ -1,0 +1,178 @@
+---
+title: Bar Chart
+description: A customizable bar chart component with smooth animations and interactive features.
+---
+
+<ComponentPreview
+  name='bar-chart-demo'
+  description='A basic bar chart with smooth animations and rounded corners'
+/>
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx bna-ui add bar-chart
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the required dependencies.</Step>
+
+```bash
+npm install react-native-svg react-native-reanimated
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name='bar-chart' title='components/ui/charts/bar-chart.tsx' />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { BarChart } from '@/components/charts/bar-chart';
+```
+
+```tsx
+const data = [
+  { label: 'Jan', value: 100, color: '#3b82f6' },
+  { label: 'Feb', value: 120, color: '#ef4444' },
+  { label: 'Mar', value: 90, color: '#10b981' },
+  { label: 'Apr', value: 140, color: '#f59e0b' },
+];
+
+<BarChart
+  data={data}
+  config={{
+    height: 200,
+    showLabels: true,
+    animated: true,
+  }}
+/>;
+```
+
+## Examples
+
+<ExamplesGrid>
+
+<div>
+#### Basic Bar Chart
+
+<ComponentPreview
+  name='bar-chart-demo'
+  description='A basic bar chart with smooth animations and rounded corners'
+/>
+
+</div>
+
+<div>
+#### Horizontal Bar Chart
+
+<ComponentPreview
+  name='bar-chart-horizontal'
+  description='A horizontal bar chart with custom colors'
+/>
+
+</div>
+
+<div>
+#### Stacked Bar Chart
+
+<ComponentPreview
+  name='bar-chart-stacked'
+  description='A stacked bar chart showing multiple data series'
+/>
+
+</div>
+
+<div>
+#### Minimal Bar Chart
+
+<ComponentPreview
+  name='bar-chart-minimal'
+  description='A minimal bar chart without labels'
+/>
+
+</div>
+
+</ExamplesGrid>
+
+## API Reference
+
+### BarChart
+
+A customizable bar chart component with smooth animations and rounded corners.
+
+| Prop     | Type               | Default | Description                                   |
+| -------- | ------------------ | ------- | --------------------------------------------- |
+| `data`   | `ChartDataPoint[]` | -       | Array of data points to display on the chart. |
+| `config` | `ChartConfig`      | `{}`    | Configuration object for chart appearance.    |
+| `style`  | `ViewStyle`        | -       | Additional styles to apply to the chart.      |
+
+### ChartDataPoint
+
+| Property | Type     | Default | Description                        |
+| -------- | -------- | ------- | ---------------------------------- |
+| `label`  | `string` | -       | The label for the bar.             |
+| `value`  | `number` | -       | The value of the bar.              |
+| `color`  | `string` | -       | Optional custom color for the bar. |
+
+### ChartConfig
+
+| Property     | Type      | Default | Description                                       |
+| ------------ | --------- | ------- | ------------------------------------------------- |
+| `width`      | `number`  | -       | Fixed width of the chart (auto-sizes if omitted). |
+| `height`     | `number`  | `200`   | Height of the chart.                              |
+| `padding`    | `number`  | `20`    | Padding around the chart.                         |
+| `showGrid`   | `boolean` | `false` | Whether to show grid lines.                       |
+| `showLabels` | `boolean` | `true`  | Whether to show labels on bars.                   |
+| `animated`   | `boolean` | `true`  | Whether to animate the chart on load.             |
+| `duration`   | `number`  | `800`   | Animation duration in milliseconds.               |
+
+## Features
+
+- **Smooth Animations**: Built-in animations using React Native Reanimated
+- **Rounded Corners**: Customizable corner radius for modern appearance
+- **Responsive Design**: Automatically adapts to container width
+- **Custom Colors**: Individual bar colors or color scale support
+- **Value Labels**: Optional value display on top of bars
+- **Auto-scaling**: Automatic calculation of bar heights and spacing
+- **Theme Integration**: Uses theme colors for consistent styling
+
+## Accessibility
+
+The BarChart component is built with accessibility in mind:
+
+- Semantic SVG structure for screen readers
+- Proper contrast ratios for visual elements
+- Touch targets meet minimum size requirements
+- Supports dynamic text sizing
+- Clear visual hierarchy with labels and values
+
+## Performance
+
+The component is optimized for performance:
+
+- Uses React Native Reanimated for smooth 60fps animations
+- Efficient SVG rendering with minimal re-renders
+- Automatic cleanup of animation values
+- Optimized bar spacing calculations

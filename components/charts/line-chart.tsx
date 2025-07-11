@@ -31,9 +31,6 @@ interface ChartConfig {
   duration?: number;
   gradient?: boolean;
   interactive?: boolean;
-  innerRadius?: number; // For doughnut charts
-  maxValue?: number; // For radar charts
-  colorScale?: string[]; // For heatmap charts - array of hex colors for gradient
   showYLabels?: boolean;
   yLabelCount?: number;
   yAxisWidth?: number;
