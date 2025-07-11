@@ -56,7 +56,7 @@ export const bubbleChartRegistry = {
   // Interactive bubble chart demo
   'bubble-chart-sample': {
     name: 'bubble-chart-sample',
-    description: 'An interactive bubble chart with touch gestures',
+    description: 'A sample bubble chart',
     type: 'registry:example',
     registryDependencies: ['bubble-chart', 'chart-container'],
     hooks: [],

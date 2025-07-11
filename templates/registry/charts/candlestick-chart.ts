@@ -57,7 +57,7 @@ export const candlestickChartRegistry = {
   // Interactive candlestick chart demo
   'candlestick-chart-sample': {
     name: 'candlestick-chart-sample',
-    description: 'An interactive candlestick chart with touch gestures',
+    description: 'A sample candlestick chart',
     type: 'registry:example',
     registryDependencies: ['candlestick-chart', 'chart-container'],
     hooks: [],
