@@ -1,71 +1,162 @@
-# BNA UI
+# BNA UI 🚀
 
-**This is not a component library. It is how you build your mobile component library.**
+![BNA UI Header](https://bna-ui.s3.eu-north-1.amazonaws.com/bna-ui-header.png)
 
-You know how most traditional React Native component libraries work: you install a package from NPM, import the components, and use them in your app.
+**B**uild **N**ative **A**pps - A powerful CLI for creating Expo React Native applications with a beautiful UI component library.
 
-This approach works well until you need to customize a component to fit your mobile design system or require one that isn't included in the library. **Often, you end up wrapping library components, writing workarounds to override styles, or mixing components from different libraries with incompatible APIs and platform-specific quirks.**
+## ✨ Features
 
-This is what BNA UI aims to solve. It is built around the following principles:
+- 🎨 **Beautiful UI Components** - Pre-built, customizable components with modern design
+- 🌙 **Theme Support** - Built-in light/dark mode with seamless transitions
+- 📱 **Expo Router Ready** - Complete navigation setup with tab and stack navigation
+- 🎯 **TypeScript First** - Full TypeScript support with excellent IntelliSense
+- 📦 **Flexible Package Manager** - Works with npm, yarn, or pnpm
+- 🚀 **Zero Configuration** - Get started in seconds with sensible defaults
+- 🔧 **Highly Customizable** - Easily customize colors, spacing, and components
+- 📲 **Cross-Platform** - Perfect compatibility across iOS and Android
+- ⚡ **Performance Optimized** - Lightweight and fast components
+- 🎭 **Animation Ready** - Smooth animations with React Native Reanimated
 
-- **Open Code:** The top layer of your component code is open for modification.
-- **Mobile-First:** Every component is designed specifically for React Native and Expo.
-- **Cross-Platform:** Components work seamlessly across iOS, Android, and web.
-- **Composition:** Every component uses a common, composable interface, making them predictable.
-- **Distribution:** A flat-file schema and command-line tool make it easy to distribute components.
-- **Beautiful Defaults:** Carefully chosen default styles optimized for mobile interfaces.
-- **AI-Ready:** Open code for LLMs to read, understand, and improve.
+## 📦 Installation
 
-## Open Code
+```bash
+# The fastest way to set up BNA UI in your Expo project:
+npx bna-ui init
 
-BNA UI hands you the actual component code. You have full control to customize and extend the components to your mobile needs. This means:
+# Navigate to your Expo project
+cd bna-app
 
-- **Full Transparency:** You see exactly how each component is built for React Native.
-- **Easy Customization:** Modify any part of a component to fit your mobile design and functionality requirements.
-- **Platform Flexibility:** Adapt components for specific iOS or Android behaviors when needed.
-- **AI Integration:** Access to the code makes it straightforward for LLMs to read, understand, and even improve your mobile components.
+# Start adding components
+npx bna-ui add button
+npx bna-ui add card
+npx bna-ui add input
+```
 
-_In a typical React Native library, if you need to change a button's touch behavior or add haptic feedback, you have to override styles or wrap the component. With BNA UI, you simply edit the button code directly._
+## 🎯 Usage Example
 
-## Mobile-First Design
+```tsx
+import React from 'react';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { View } from '@/components/ui/view';
 
-BNA UI is built specifically for mobile interfaces and React Native development:
+export default function HomeScreen() {
+  return (
+    <View style={{ flex: 1, padding: 20 }}>
+      <Card>
+        <Input placeholder='Enter your email' keyboardType='email-address' />
+        <Button
+          variant='success'
+          onPress={() => console.log('Button pressed!')}
+        >
+          Get Started
+        </Button>
+      </Card>
+    </View>
+  );
+}
+```
 
-- **Touch Optimized:** All components are designed with touch interactions in mind, including proper touch targets and gestures.
-- **Performance Focused:** Components are optimized for mobile performance with minimal re-renders and efficient animations.
-- **Native Feel:** Components respect platform conventions and feel native on both iOS and Android.
-- **Responsive:** Components adapt to different screen sizes and orientations seamlessly.
+## 🌙 Theme Configuration
 
-## Cross-Platform Excellence
+BNA UI comes with a flexible theming system:
 
-Every component in BNA UI works consistently across platforms while respecting platform-specific conventions:
+```tsx
+// theme/colors.ts
+export const lightTheme = {
+  colors: {
+    background: '#FFFFFF',
+    foreground: '#000000',
+    card: '#F2F2F7',
+    cardForeground: '#000000',
+    popover: '#F2F2F7',
+    popoverForeground: '#000000',
+    primary: '#18181b',
+    primaryForeground: '#FFFFFF',
+    secondary: '#F2F2F7',
+    secondaryForeground: '#18181b',
+    muted: '#78788033',
+    mutedForeground: '#71717a',
+    // ... more colors
+  },
+};
 
-- **iOS & Android:** Components automatically adapt to platform design guidelines.
-- **Expo Web:** Full compatibility with Expo's web target for universal apps.
-- **Consistent API:** Write once, works everywhere with platform-appropriate styling.
+export const darkTheme = {
+  colors: {
+    background: '#000000',
+    foreground: '#FFFFFF',
+    card: '#1C1C1E',
+    cardForeground: '#FFFFFF',
+    popover: '#18181b',
+    popoverForeground: '#FFFFFF',
+    primary: '#e4e4e7',
+    primaryForeground: '#18181b',
+    secondary: '#1C1C1E',
+    secondaryForeground: '#FFFFFF',
+    muted: '#78788033',
+    mutedForeground: '#a1a1aa',
+    // ... more colors
+  },
+};
+```
 
-## Composition
+## 📱 Platform Support
 
-Every component in BNA UI shares a common, composable interface. **If a component does not exist, we bring it in, make it composable, and adjust its style to match and work with the rest of the mobile design system.**
+- ✅ **iOS** - Full native iOS support
+- ✅ **Android** - Full native Android support
+- ✅ **Web** - Responsive web support
+- ✅ **Expo Go** - Development with Expo Go
+- ✅ **EAS Build** - Production builds with EAS
 
-_A shared, composable interface means it's predictable for both your team and LLMs. You are not learning different APIs for every new component. Even for third-party React Native ones._
+## 🛠️ Development
 
-## Distribution
+```bash
+# Clone the repository
+git clone https://github.com/ahmedbna/bna-ui.git
+cd bna-ui
 
-BNA UI is also a code distribution system designed for React Native and Expo projects. It defines a schema for mobile components and a CLI to distribute them.
+# Install dependencies
+npm install
 
-- **Schema:** A flat-file structure that defines the mobile components, their dependencies, and platform-specific properties.
-- **CLI:** A command-line tool to distribute and install components across React Native projects with Expo support.
-- **Expo Integration:** Seamless integration with Expo CLI and development workflow.
+# Build for production
+npm run build
+```
 
-_You can use the schema to distribute your mobile components to other projects or have AI generate completely new React Native components based on existing schema._
+## 🤝 Contributing
 
-## Beautiful Defaults
+We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
 
-BNA UI comes with a large collection of mobile components that have carefully chosen default styles. They are designed to look good on mobile devices and to work well together as a consistent system:
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-- **Mobile-Optimized:** Your UI has a clean and modern mobile look without extra work.
-- **Platform Appropriate:** Components automatically follow iOS and Android design guidelines.
-- **Unified Design:** Components naturally fit with one another across all platforms.
-- **Touch-Friendly:** All interactive elements meet accessibility guidelines for touch targets.
-- **Easily Customizable:** If you want to change something, it's simple to override and extend the defaults.
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🔗 Links
+
+- 📚 **Documentation**: [https://ui.ahmedbna.com](https://ui.ahmedbna.com)
+- 🐛 **Bug Reports**: [GitHub Issues](https://github.com/ahmedbna/ui/issues)
+- 💬 **Linkedin**: [@ahmedbna](https://www.linkedin.com/in/ahmedbna/)
+- 𝕏 **X**: [@ahmedbnaa](https://x.com/ahmedbnaa)
+
+## ⭐ Support
+
+If you find BNA UI helpful, please consider giving it a star on GitHub! It helps us a lot.
+
+[![GitHub stars](https://img.shields.io/github/stars/ahmedbna/ui?style=social)](https://github.com/ahmedbna/ui)
+
+## 📈 Stats
+
+![GitHub package.json version](https://img.shields.io/github/package-json/v/ahmedbna/ui)
+![npm](https://img.shields.io/npm/v/bna-ui)
+![npm](https://img.shields.io/npm/dm/bna-ui)
+![GitHub](https://img.shields.io/github/license/ahmedbna/ui)
+
+---
+
+Made with ❤️ by [Ahmed BNA](https://github.com/ahmedbna)
