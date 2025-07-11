@@ -1,0 +1,241 @@
+---
+title: Radial Bar Chart
+description: A customizable radial bar chart component with smooth animations, gradient support, and center value display.
+---
+
+<ComponentPreview
+  name='radial-bar-chart-demo'
+  description='A radial bar chart with smooth animations and center totals'
+/>
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx bna-ui add radial-bar-chart
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the required dependencies.</Step>
+
+```bash
+npm install react-native-svg react-native-reanimated react-native-gesture-handler
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource
+  name='radial-bar-chart'
+  title='components/ui/charts/radial-bar-chart.tsx'
+/>
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { RadialBarChart } from '@/components/charts/radial-bar-chart';
+```
+
+```tsx
+const data = [
+  { label: 'Sales', value: 120 },
+  { label: 'Marketing', value: 98 },
+  { label: 'Support', value: 86 },
+  { label: 'Development', value: 140 },
+];
+
+<RadialBarChart
+  data={data}
+  config={{
+    animated: true,
+    gradient: true,
+    duration: 1000,
+  }}
+/>;
+```
+
+## Examples
+
+<ExamplesGrid>
+
+<div>
+#### Basic Radial Bar Chart
+
+<ComponentPreview
+  name='radial-bar-chart-demo'
+  description='A radial bar chart with smooth animations and center totals'
+/>
+
+</div>
+
+<div>
+#### Sample Radial Bar Chart
+
+<ComponentPreview
+  name='radial-bar-chart-sample'
+  description='A sample radial bar chart with custom data'
+/>
+
+</div>
+
+<div>
+#### Gradient Radial Bar Chart
+
+<ComponentPreview
+  name='radial-bar-chart-gradient'
+  description='A radial bar chart with gradient effects'
+/>
+
+</div>
+
+<div>
+#### Large Radial Bar Chart
+
+<ComponentPreview
+  name='radial-bar-chart-large'
+  description='A radial bar chart with large dataset'
+/>
+
+</div>
+
+</ExamplesGrid>
+
+## API Reference
+
+### RadialBarChart
+
+A customizable radial bar chart component with smooth animations, gradient support, and center value display. Perfect for displaying progress, completion rates, or categorical data in a circular format.
+
+| Prop     | Type               | Default | Description                                   |
+| -------- | ------------------ | ------- | --------------------------------------------- |
+| `data`   | `ChartDataPoint[]` | -       | Array of data points to display on the chart. |
+| `config` | `ChartConfig`      | `{}`    | Configuration object for chart appearance.    |
+| `style`  | `ViewStyle`        | -       | Additional styles to apply to the chart.      |
+
+### ChartDataPoint
+
+| Property | Type     | Default | Description                        |
+| -------- | -------- | ------- | ---------------------------------- |
+| `label`  | `string` | -       | The label for the data point.      |
+| `value`  | `number` | -       | The value for the data point.      |
+| `color`  | `string` | -       | Optional custom color for the arc. |
+
+### ChartConfig
+
+| Property   | Type      | Default | Description                                   |
+| ---------- | --------- | ------- | --------------------------------------------- |
+| `padding`  | `number`  | `20`    | Padding around the chart.                     |
+| `animated` | `boolean` | `true`  | Whether to animate the chart on load.         |
+| `duration` | `number`  | `1000`  | Animation duration in milliseconds.           |
+| `gradient` | `boolean` | `false` | Whether to use gradient effects for the arcs. |
+
+## Features
+
+- **Circular Layout**: Displays data as concentric circles radiating from center
+- **Smooth Animations**: Built-in animations using React Native Reanimated
+- **Responsive Design**: Automatically adapts to container size
+- **Custom Colors**: Support for individual arc colors
+- **Gradient Support**: Optional gradient effects for enhanced visual appeal
+- **Center Display**: Shows total value and label in the center
+- **Legend**: Automatic legend generation with color indicators
+- **Theme Integration**: Uses theme colors for consistent styling
+
+## Use Cases
+
+Radial bar charts are particularly effective for:
+
+- **Progress Tracking**: Displaying completion rates or goal progress
+- **Category Comparison**: Comparing values across different categories in a compact format
+- **Dashboard Widgets**: Space-efficient data visualization for dashboards
+- **Performance Metrics**: Showing KPIs, scores, or ratings in a visually appealing way
+- **Budget Allocation**: Visualizing spending distributions
+- **Survey Results**: Displaying response distributions in a circular format
+
+## Design Considerations
+
+The radial layout of the RadialBarChart makes it ideal for:
+
+- **Compact Spaces**: Efficient use of space with circular design
+- **Multiple Categories**: Clear visual separation with concentric circles
+- **Progress Visualization**: Natural representation of completion or progress
+- **Aesthetic Appeal**: Visually striking and modern appearance
+
+## Accessibility
+
+The RadialBarChart component includes several accessibility features:
+
+- Semantic SVG structure for screen readers
+- Proper contrast ratios for visual elements
+- Text labels for both categories and values
+- Legend with clear color indicators
+- Supports dynamic text sizing
+- Keyboard navigation support
+
+## Performance
+
+The component is optimized for performance:
+
+- Uses React Native Reanimated for smooth 60fps animations
+- Efficient SVG rendering with minimal re-renders
+- Automatic cleanup of animation values
+- Responsive layout calculations
+- Optimized gradient rendering
+
+## Styling
+
+The component integrates with your theme system:
+
+- Uses `primary` color from theme for default arc color
+- Uses `mutedForeground` color for labels and text
+- Supports custom colors per data point
+- Gradient effects with customizable opacity
+- Rounded stroke caps for modern appearance
+
+## Animation
+
+The chart features smooth entry animations:
+
+- Arcs animate from 0 to full progress
+- Configurable animation duration
+- Can be disabled for instant rendering
+- Uses React Native Reanimated for optimal performance
+- Synchronized animations across all arcs
+
+## Center Display
+
+The chart includes a center display feature:
+
+- Shows total sum of all values
+- Displays "Total" label
+- Uses theme colors for consistency
+- Automatically scales text size
+- Positioned perfectly in the center
+
+## Legend
+
+The automatic legend provides:
+
+- Color-coded indicators for each data point
+- Clear labels with values
+- Responsive layout
+- Consistent spacing and typography
+- Theme-integrated styling
