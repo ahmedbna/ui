@@ -1,0 +1,269 @@
+---
+title: Stacked Bar Chart
+description: A customizable stacked bar chart component with smooth animations, support for both horizontal and vertical layouts, and flexible styling.
+---
+
+<ComponentPreview
+  name='stacked-bar-chart-demo'
+  description='A stacked bar chart with smooth animations'
+/>
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx bna-ui add stacked-bar-chart
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the required dependencies.</Step>
+
+```bash
+npm install react-native-svg react-native-reanimated react-native-gesture-handler
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource
+  name='stacked-bar-chart'
+  title='components/ui/charts/stacked-bar-chart.tsx'
+/>
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { StackedBarChart } from '@/components/charts/stacked-bar-chart';
+```
+
+```tsx
+const data = [
+  { label: 'Q1', values: [120, 98, 86] },
+  { label: 'Q2', values: [140, 110, 95] },
+  { label: 'Q3', values: [160, 130, 105] },
+  { label: 'Q4', values: [180, 150, 115] },
+];
+
+const categories = ['Sales', 'Marketing', 'Support'];
+
+<StackedBarChart
+  data={data}
+  categories={categories}
+  config={{
+    height: 300,
+    showLabels: true,
+    animated: true,
+  }}
+/>;
+```
+
+## Examples
+
+<ExamplesGrid>
+
+<div>
+#### Basic Stacked Bar Chart
+
+<ComponentPreview
+  name='stacked-bar-chart-demo'
+  description='A stacked bar chart with smooth animations'
+/>
+
+</div>
+
+<div>
+#### Horizontal Stacked Bar Chart
+
+<ComponentPreview
+  name='stacked-bar-chart-horizontal'
+  description='A horizontal stacked bar chart'
+/>
+
+</div>
+
+<div>
+#### Styled Stacked Bar Chart
+
+<ComponentPreview
+  name='stacked-bar-chart-styled'
+  description='A customized stacked bar chart with custom colors and styling'
+/>
+
+</div>
+
+<div>
+#### Large Dataset Stacked Bar Chart
+
+<ComponentPreview
+  name='stacked-bar-chart-large'
+  description='A stacked bar chart with large dataset'
+/>
+
+</div>
+
+</ExamplesGrid>
+
+## API Reference
+
+### StackedBarChart
+
+A customizable stacked bar chart component with smooth animations and flexible styling. Perfect for displaying multiple data series stacked on top of each other, supporting both vertical and horizontal orientations.
+
+| Prop         | Type                    | Default | Description                                   |
+| ------------ | ----------------------- | ------- | --------------------------------------------- |
+| `data`       | `StackedBarDataPoint[]` | -       | Array of data points to display on the chart. |
+| `categories` | `string[]`              | `[]`    | Array of category names for the legend.       |
+| `colors`     | `string[]`              | `[]`    | Custom colors for each data series.           |
+| `config`     | `ChartConfig`           | `{}`    | Configuration object for chart appearance.    |
+| `style`      | `ViewStyle`             | -       | Additional styles to apply to the chart.      |
+| `horizontal` | `boolean`               | `false` | Whether to display bars horizontally.         |
+
+### StackedBarDataPoint
+
+| Property | Type       | Default | Description                                |
+| -------- | ---------- | ------- | ------------------------------------------ |
+| `label`  | `string`   | -       | The label for the data point.              |
+| `values` | `number[]` | -       | Array of values for each stack in the bar. |
+
+### ChartConfig
+
+| Property     | Type      | Default | Description                                       |
+| ------------ | --------- | ------- | ------------------------------------------------- |
+| `width`      | `number`  | -       | Fixed width of the chart (auto-sizes if omitted). |
+| `height`     | `number`  | `200`   | Height of the chart.                              |
+| `padding`    | `number`  | `20`    | Padding around the chart.                         |
+| `showLabels` | `boolean` | `true`  | Whether to show labels for bars.                  |
+| `showGrid`   | `boolean` | `true`  | Whether to show grid lines.                       |
+| `animated`   | `boolean` | `true`  | Whether to animate the chart on load.             |
+| `duration`   | `number`  | `800`   | Animation duration in milliseconds.               |
+
+## Features
+
+- **Dual Orientation**: Supports both vertical and horizontal bar layouts
+- **Smooth Animations**: Built-in animations using React Native Reanimated
+- **Responsive Design**: Automatically adapts to container width
+- **Custom Colors**: Support for custom color schemes per data series
+- **Legend Support**: Built-in legend with category labels
+- **Grid Lines**: Optional grid lines for better value reading
+- **Theme Integration**: Uses theme colors for consistent styling
+- **Rounded Corners**: Aesthetic rounded bar corners
+
+## Use Cases
+
+Stacked bar charts are particularly effective for:
+
+- **Multi-Category Comparison**: Comparing multiple data series across categories
+- **Part-to-Whole Analysis**: Showing how individual components contribute to totals
+- **Time Series Data**: Displaying data evolution over time periods
+- **Budget Breakdown**: Visualizing spending across different categories and subcategories
+- **Performance Metrics**: Showing multiple KPIs stacked for comparison
+- **Survey Results**: Displaying response distributions across multiple questions
+
+## Design Considerations
+
+The StackedBarChart component offers flexibility for different use cases:
+
+- **Vertical Layout**: Better for time series data and when you have short category labels
+- **Horizontal Layout**: Ideal for long category names and when you need more space for labels
+- **Color Coordination**: Uses a default color palette but supports custom colors
+- **Legend Positioning**: Automatically positions legend based on orientation
+
+## Accessibility
+
+The StackedBarChart component includes several accessibility features:
+
+- Semantic SVG structure for screen readers
+- Proper contrast ratios for visual elements
+- Text labels for both categories and values
+- Legend support for data series identification
+- Supports dynamic text sizing
+- Keyboard navigation support
+
+## Performance
+
+The component is optimized for performance:
+
+- Uses React Native Reanimated for smooth 60fps animations
+- Efficient SVG rendering with minimal re-renders
+- Automatic cleanup of animation values
+- Responsive layout calculations
+- Optimized for large datasets
+
+## Styling
+
+The component integrates with your theme system:
+
+- Uses `primary` color from theme for default bar colors
+- Uses `mutedForeground` color for labels and text
+- Supports custom colors per data series
+- Rounded corners with consistent border radius
+- Grid lines with subtle opacity
+
+## Animation
+
+The chart features smooth entry animations:
+
+- Bars animate from 0 size to full size
+- Stacks animate sequentially for visual appeal
+- Configurable animation duration
+- Can be disabled for instant rendering
+- Uses React Native Reanimated for optimal performance
+
+## Data Structure
+
+The component expects data in a specific format:
+
+```tsx
+// Each data point contains multiple values for stacking
+const data = [
+  { label: 'Category A', values: [10, 20, 30] }, // Stack of 3 values
+  { label: 'Category B', values: [15, 25, 35] }, // Stack of 3 values
+];
+
+// Categories define what each stack represents
+const categories = ['Series 1', 'Series 2', 'Series 3'];
+```
+
+## Layout Modes
+
+### Vertical Layout (Default)
+
+- Bars extend upward from the bottom
+- Labels positioned below bars
+- Legend positioned at the top
+- Best for timeline data and short labels
+
+### Horizontal Layout
+
+- Bars extend rightward from the left
+- Labels positioned to the left of bars
+- Legend positioned at the bottom
+- Best for long category names and mobile screens
+
+## Color Management
+
+The component provides flexible color options:
+
+- **Default Colors**: Uses a predefined palette with theme integration
+- **Custom Colors**: Pass an array of colors matching your data series
+- **Theme Colors**: Automatically uses primary theme color as the base
+- **Consistent Mapping**: Same color always represents the same data series

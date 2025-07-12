@@ -1,0 +1,254 @@
+---
+title: TreeMap Chart
+description: A customizable treemap chart component with hierarchical data visualization, smooth animations, and flexible styling.
+---
+
+<ComponentPreview
+  name='treemap-chart-demo'
+  description='A treemap chart with smooth animations'
+/>
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx bna-ui add treemap-chart
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the required dependencies.</Step>
+
+```bash
+npm install react-native-svg react-native-reanimated react-native-gesture-handler
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource
+  name='treemap-chart'
+  title='components/ui/charts/treemap-chart.tsx'
+/>
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { TreeMapChart } from '@/components/charts/treemap-chart';
+```
+
+```tsx
+const data = [
+  { label: 'Sales', value: 120 },
+  { label: 'Marketing', value: 98 },
+  { label: 'Support', value: 86 },
+  { label: 'Development', value: 140 },
+];
+
+<TreeMapChart
+  data={data}
+  config={{
+    height: 300,
+    showLabels: true,
+    animated: true,
+  }}
+/>;
+```
+
+## Examples
+
+<ExamplesGrid>
+
+<div>
+#### Basic TreeMap Chart
+
+<ComponentPreview
+  name='treemap-chart-demo'
+  description='A treemap chart with smooth animations'
+/>
+
+</div>
+
+<div>
+#### Sample TreeMap Chart
+
+<ComponentPreview
+  name='treemap-chart-sample'
+  description='A sample treemap chart with various data sizes'
+/>
+
+</div>
+
+<div>
+#### Styled TreeMap Chart
+
+<ComponentPreview
+  name='treemap-chart-styled'
+  description='A customized treemap chart with custom colors and styling'
+/>
+
+</div>
+
+<div>
+#### Large TreeMap Chart
+
+<ComponentPreview
+  name='treemap-chart-large'
+  description='A treemap chart with large dataset'
+/>
+
+</div>
+
+</ExamplesGrid>
+
+## API Reference
+
+### TreeMapChart
+
+A customizable treemap chart component that uses the squarified treemap algorithm for optimal rectangle aspect ratios. Perfect for displaying hierarchical data with emphasis on proportional relationships between categories.
+
+| Prop     | Type                 | Default | Description                                   |
+| -------- | -------------------- | ------- | --------------------------------------------- |
+| `data`   | `TreeMapDataPoint[]` | -       | Array of data points to display on the chart. |
+| `config` | `ChartConfig`        | `{}`    | Configuration object for chart appearance.    |
+| `style`  | `ViewStyle`          | -       | Additional styles to apply to the chart.      |
+
+### TreeMapDataPoint
+
+| Property   | Type                 | Default | Description                                    |
+| ---------- | -------------------- | ------- | ---------------------------------------------- |
+| `label`    | `string`             | -       | The label for the data point.                  |
+| `value`    | `number`             | -       | The value for the data point.                  |
+| `color`    | `string`             | -       | Optional custom color for the rectangle.       |
+| `children` | `TreeMapDataPoint[]` | -       | Optional nested data for hierarchical display. |
+
+### ChartConfig
+
+| Property     | Type      | Default | Description                                       |
+| ------------ | --------- | ------- | ------------------------------------------------- |
+| `width`      | `number`  | -       | Fixed width of the chart (auto-sizes if omitted). |
+| `height`     | `number`  | `200`   | Height of the chart.                              |
+| `padding`    | `number`  | `10`    | Padding around the chart.                         |
+| `showLabels` | `boolean` | `true`  | Whether to show labels for rectangles.            |
+| `animated`   | `boolean` | `true`  | Whether to animate the chart on load.             |
+| `duration`   | `number`  | `800`   | Animation duration in milliseconds.               |
+
+## Features
+
+- **Squarified Algorithm**: Uses the squarified treemap algorithm for optimal rectangle aspect ratios
+- **Smooth Animations**: Built-in animations using React Native Reanimated
+- **Responsive Design**: Automatically adapts to container width
+- **Custom Colors**: Support for individual rectangle colors with automatic color palette
+- **Label Display**: Shows both category labels and values with smart text sizing
+- **Theme Integration**: Uses theme colors for consistent styling
+- **Hierarchical Support**: Prepared for nested data structures
+- **Smart Text Rendering**: Automatically adjusts text size and color based on rectangle size
+
+## Use Cases
+
+TreeMap charts are particularly effective for:
+
+- **Proportional Data**: Visualizing data where size represents importance or value
+- **Portfolio Analysis**: Displaying asset allocation or investment distribution
+- **Budget Visualization**: Showing spending breakdown across categories
+- **Market Share**: Representing company or product market share
+- **File System**: Displaying disk usage or file sizes
+- **Organizational Data**: Showing department sizes or resource allocation
+- **Survey Results**: Displaying response distributions with visual impact
+
+## Algorithm
+
+The TreeMapChart uses the **squarified treemap algorithm**, which:
+
+- Minimizes the aspect ratio of rectangles for better readability
+- Recursively subdivides the available space
+- Optimizes for visual clarity by creating more square-like rectangles
+- Handles varying data sizes efficiently
+
+## Design Considerations
+
+The TreeMapChart is designed for:
+
+- **Proportional Visualization**: Rectangle size directly represents data values
+- **Quick Comparison**: Easy to compare relative sizes at a glance
+- **Space Efficiency**: Makes optimal use of available screen real estate
+- **Visual Hierarchy**: Larger values are immediately apparent
+- **Color Coding**: Uses distinct colors to differentiate categories
+
+## Accessibility
+
+The TreeMapChart component includes several accessibility features:
+
+- Semantic SVG structure for screen readers
+- Proper contrast ratios with automatic text color adjustment
+- Text labels for both categories and values
+- Supports dynamic text sizing based on rectangle size
+- High contrast borders for visual separation
+
+## Performance
+
+The component is optimized for performance:
+
+- Uses React Native Reanimated for smooth 60fps animations
+- Efficient SVG rendering with minimal re-renders
+- Optimized squarified algorithm implementation
+- Automatic cleanup of animation values
+- Responsive layout calculations
+
+## Styling
+
+The component integrates with your theme system:
+
+- Uses a predefined color palette for consistent styling
+- Automatic text color adjustment (light/dark) based on background
+- Uses theme background color for borders
+- Supports custom colors per data point
+- Rounded corners with consistent border radius
+
+## Animation
+
+The chart features smooth entry animations:
+
+- Rectangles animate from 0 size to full size
+- Opacity fades in during animation
+- Configurable animation duration
+- Can be disabled for instant rendering
+- Uses React Native Reanimated for optimal performance
+
+## Text Rendering
+
+Smart text rendering features:
+
+- Automatic font size calculation based on rectangle dimensions
+- Minimum font size threshold to prevent unreadable text
+- Value display only when sufficient space is available
+- Proper text centering within rectangles
+- Automatic color contrast for readability
+
+## Color System
+
+The component uses a carefully selected color palette:
+
+- 10 distinct colors for visual variety
+- Automatic color assignment based on data index
+- Support for custom colors per data point
+- Automatic text color adjustment for contrast
+- Consistent color cycling for large datasets
