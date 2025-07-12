@@ -90,13 +90,13 @@ export const StackedBarChart = ({
 
   // Default colors if not provided
   const defaultColors = [
-    primaryColor,
     '#8884d8',
     '#82ca9d',
     '#ffc658',
     '#ff7300',
     '#00ff00',
     '#0088fe',
+    primaryColor,
   ];
 
   const seriesColors =
