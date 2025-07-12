@@ -68,17 +68,29 @@ import { TreeMapChartDemo } from '@/templates/demo/charts/treemap-chart/treemap-
 import { TreeMapChartLarge } from '@/templates/demo/charts/treemap-chart/treemap-chart-large';
 import { TreeMapChartSample } from '@/templates/demo/charts/treemap-chart/treemap-chart-sample';
 import { TreeMapChartStyled } from '@/templates/demo/charts/treemap-chart/treemap-chart-styled';
+import { DatePicker, DateRange } from '@/components/ui/date-picker';
+import { useState } from 'react';
 
 export default function MapsScreen() {
+  const [selectedDates, setSelectedDates] = useState<DateRange | undefined>();
+
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <DatePicker
+        mode='range'
+        label='Select Date'
+        rangeValue={selectedDates}
+        onRangeChange={setSelectedDates}
+        placeholder='Choose a date'
+      />
+
       {/* <TreeMapChartLarge /> */}
       {/* <TreeMapChartStyled /> */}
       {/* <TreeMapChartSample /> */}
       {/* <TreeMapChartDemo /> */}
 
       {/* <StackedBarChartLarge /> */}
-      <StackedBarChartStyled />
+      {/* <StackedBarChartStyled /> */}
       {/* <StackedBarChartHorizontal /> */}
       {/* <StackedBarChartDemo /> */}
 

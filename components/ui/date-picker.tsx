@@ -5,7 +5,7 @@ import { ScrollView } from '@/components/ui/scroll-view';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
 import { useThemeColor } from '@/hooks/useThemeColor';
-import { CORNERS, FONT_SIZE, HEIGHT } from '@/theme/globals';
+import { BORDER_RADIUS, CORNERS, FONT_SIZE, HEIGHT } from '@/theme/globals';
 import {
   Calendar,
   CalendarClock,
@@ -13,16 +13,25 @@ import {
   ChevronLeft,
   ChevronRight,
   Clock,
+  CalendarRange,
+  ArrowRight,
 } from 'lucide-react-native';
 import React, { useCallback, useMemo, useState } from 'react';
 import { TextStyle, TouchableOpacity, ViewStyle } from 'react-native';
+
+export interface DateRange {
+  startDate: Date | null;
+  endDate: Date | null;
+}
 
 interface DatePickerProps {
   label?: string;
   error?: string;
   value?: Date;
   onChange?: (date: Date) => void;
-  mode?: 'date' | 'time' | 'datetime';
+  rangeValue?: DateRange;
+  onRangeChange?: (range: DateRange) => void;
+  mode?: 'date' | 'time' | 'datetime' | 'range';
   placeholder?: string;
   disabled?: boolean;
   style?: ViewStyle;
@@ -60,13 +69,15 @@ export function DatePicker({
   value,
   error,
   onChange,
+  rangeValue,
+  onRangeChange,
   mode = 'date',
   placeholder = 'Select date',
   disabled = false,
   style,
   minimumDate,
   maximumDate,
-  timeFormat = '24', // Default to 24-hour format
+  timeFormat = '24',
   variant = 'filled',
   labelStyle,
   errorStyle,
@@ -79,6 +90,11 @@ export function DatePicker({
   const [showMonthPicker, setShowMonthPicker] = useState(false);
   const [showYearPicker, setShowYearPicker] = useState(false);
 
+  // Range selection state
+  const [tempRange, setTempRange] = useState<DateRange>(
+    () => rangeValue || { startDate: null, endDate: null }
+  );
+
   // Theme colors
   const cardColor = useThemeColor({}, 'card');
   const borderColor = useThemeColor({}, 'border');
@@ -89,8 +105,32 @@ export function DatePicker({
   const mutedForegroundColor = useThemeColor({}, 'mutedForeground');
   const textColor = useThemeColor({}, 'text');
   const errorColor = useThemeColor({}, 'red');
+  const secondaryColor = useThemeColor({}, 'secondary');
+  const secondaryForegroundColor = useThemeColor({}, 'secondaryForeground');
 
   const formatDisplayValue = useCallback(() => {
+    if (mode === 'range') {
+      if (!rangeValue?.startDate && !rangeValue?.endDate) {
+        return placeholder;
+      }
+
+      const startStr = rangeValue.startDate
+        ? rangeValue.startDate.toLocaleDateString()
+        : '';
+      const endStr = rangeValue.endDate
+        ? rangeValue.endDate.toLocaleDateString()
+        : '';
+
+      if (startStr && endStr) {
+        return `${startStr} - ${endStr}`;
+      } else if (startStr) {
+        return `${startStr} - Select end date`;
+      } else if (endStr) {
+        return `Select start date - ${endStr}`;
+      }
+      return placeholder;
+    }
+
     if (!value) return placeholder;
 
     switch (mode) {
@@ -124,7 +164,7 @@ export function DatePicker({
       default:
         return value.toLocaleDateString();
     }
-  }, [value, mode, placeholder, timeFormat]);
+  }, [value, rangeValue, mode, placeholder, timeFormat]);
 
   // Helper function to check if a date is disabled
   const isDateDisabled = useCallback(
@@ -134,6 +174,52 @@ export function DatePicker({
       return false;
     },
     [minimumDate, maximumDate]
+  );
+
+  // Helper function to check if a date is in range
+  const isDateInRange = useCallback(
+    (date: Date) => {
+      if (mode !== 'range' || !tempRange.startDate || !tempRange.endDate) {
+        return false;
+      }
+
+      // Create new date objects to avoid mutation
+      const startDate = new Date(tempRange.startDate);
+      const endDate = new Date(tempRange.endDate);
+      const checkDate = new Date(date);
+
+      // Normalize dates for comparison (remove time)
+      startDate.setHours(0, 0, 0, 0);
+      endDate.setHours(0, 0, 0, 0);
+      checkDate.setHours(0, 0, 0, 0);
+
+      return checkDate >= startDate && checkDate <= endDate;
+    },
+    [mode, tempRange]
+  );
+
+  // Helper function to check if a date is a range endpoint
+  const isRangeEndpoint = useCallback(
+    (date: Date) => {
+      if (mode !== 'range') {
+        return { isStart: false, isEnd: false };
+      }
+
+      const normalizedDate = new Date(date);
+      normalizedDate.setHours(0, 0, 0, 0);
+
+      const isStart =
+        tempRange.startDate &&
+        new Date(tempRange.startDate).setHours(0, 0, 0, 0) ===
+          normalizedDate.getTime();
+      const isEnd =
+        tempRange.endDate &&
+        new Date(tempRange.endDate).setHours(0, 0, 0, 0) ===
+          normalizedDate.getTime();
+
+      return { isStart: !!isStart, isEnd: !!isEnd };
+    },
+    [mode, tempRange]
   );
 
   // Memoized calendar calculations
@@ -177,7 +263,48 @@ export function DatePicker({
     return { weeks, year, month, daysInMonth };
   }, [currentDate]);
 
+  const handleRangeSelect = (day: number) => {
+    const selectedDate = new Date(
+      currentDate.getFullYear(),
+      currentDate.getMonth(),
+      day
+    );
+
+    // Check if date is disabled
+    if (isDateDisabled(selectedDate)) return;
+
+    // If no start date or both dates are selected, start fresh
+    if (!tempRange.startDate || (tempRange.startDate && tempRange.endDate)) {
+      setTempRange({
+        startDate: selectedDate,
+        endDate: null,
+      });
+    } else {
+      // We have a start date but no end date
+      const startDate = tempRange.startDate;
+
+      if (selectedDate < startDate) {
+        // If selected date is before start date, make it the new start date
+        setTempRange({
+          startDate: selectedDate,
+          endDate: null,
+        });
+      } else {
+        // Selected date is after start date, make it the end date
+        setTempRange({
+          startDate: startDate,
+          endDate: selectedDate,
+        });
+      }
+    }
+  };
+
   const handleDateSelect = (day: number) => {
+    if (mode === 'range') {
+      handleRangeSelect(day);
+      return;
+    }
+
     const newDate = new Date(
       currentDate.getFullYear(),
       currentDate.getMonth(),
@@ -201,11 +328,6 @@ export function DatePicker({
     const newDate = new Date(currentDate);
     newDate.setHours(hours, minutes, 0, 0);
     setCurrentDate(newDate);
-
-    // Don't auto-close when selecting hours/minutes - let user confirm
-    if (mode === 'time') {
-      // Don't auto-close, let user press Done
-    }
   };
 
   const navigateMonth = (direction: 'prev' | 'next') => {
@@ -233,16 +355,29 @@ export function DatePicker({
   };
 
   const handleConfirm = () => {
-    onChange?.(currentDate);
+    if (mode === 'range') {
+      onRangeChange?.(tempRange);
+    } else {
+      onChange?.(currentDate);
+    }
     close();
   };
 
   const resetToToday = () => {
     const today = new Date();
     setCurrentDate(today);
-    if (mode === 'date') {
+
+    if (mode === 'range') {
+      setTempRange({ startDate: today, endDate: null });
+    } else if (mode === 'date') {
       onChange?.(today);
       close();
+    }
+  };
+
+  const clearSelection = () => {
+    if (mode === 'range') {
+      setTempRange({ startDate: null, endDate: null });
     }
   };
 
@@ -267,7 +402,6 @@ export function DatePicker({
         <ChevronLeft size={20} color={textColor} />
       </TouchableOpacity>
 
-      {/* Header styling - fills space between arrows */}
       <View
         style={{
           flex: 1,
@@ -368,6 +502,10 @@ export function DatePicker({
             }}
           >
             {week.map((day, dayIndex) => {
+              const dayDate = day
+                ? new Date(calendarData.year, calendarData.month, day)
+                : null;
+
               const isSelected =
                 day &&
                 value &&
@@ -381,10 +519,13 @@ export function DatePicker({
                 new Date().getMonth() === calendarData.month &&
                 new Date().getFullYear() === calendarData.year;
 
-              const dayDate = day
-                ? new Date(calendarData.year, calendarData.month, day)
-                : null;
               const disabled = dayDate ? isDateDisabled(dayDate) : false;
+
+              // Range-specific styling
+              const inRange = dayDate ? isDateInRange(dayDate) : false;
+              const rangeEndpoints = dayDate
+                ? isRangeEndpoint(dayDate)
+                : { isStart: false, isEnd: false };
 
               return (
                 <View
@@ -401,11 +542,22 @@ export function DatePicker({
                       style={{
                         width: 40,
                         height: 40,
-                        borderRadius: 999,
-                        backgroundColor: isSelected
-                          ? primaryColor
-                          : 'transparent',
-                        borderWidth: isToday && !isSelected ? 1 : 0,
+                        borderRadius:
+                          mode === 'range' &&
+                          inRange &&
+                          !rangeEndpoints.isStart &&
+                          !rangeEndpoints.isEnd
+                            ? 0
+                            : 999,
+                        backgroundColor:
+                          rangeEndpoints.isStart || rangeEndpoints.isEnd
+                            ? primaryColor
+                            : inRange
+                            ? primaryColor
+                            : isSelected
+                            ? primaryColor
+                            : 'transparent',
+                        borderWidth: isToday && !isSelected && !inRange ? 1 : 0,
                         borderColor: primaryColor,
                         justifyContent: 'center',
                         alignItems: 'center',
@@ -414,12 +566,23 @@ export function DatePicker({
                     >
                       <Text
                         style={{
-                          color: isSelected
-                            ? primaryForegroundColor
-                            : disabled
-                            ? mutedForegroundColor
-                            : textColor,
-                          fontWeight: isSelected || isToday ? '600' : '400',
+                          color:
+                            rangeEndpoints.isStart || rangeEndpoints.isEnd
+                              ? primaryForegroundColor
+                              : inRange
+                              ? primaryForegroundColor
+                              : isSelected
+                              ? primaryForegroundColor
+                              : disabled
+                              ? mutedForegroundColor
+                              : textColor,
+                          fontWeight:
+                            rangeEndpoints.isStart ||
+                            rangeEndpoints.isEnd ||
+                            isSelected ||
+                            isToday
+                              ? '600'
+                              : '400',
                           fontSize: FONT_SIZE,
                         }}
                       >
@@ -435,6 +598,40 @@ export function DatePicker({
           </View>
         ))}
       </View>
+
+      {/* Range selection info */}
+      {mode === 'range' && (
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            marginTop: 16,
+            padding: 20,
+            paddingHorizontal: 36,
+            backgroundColor: mutedColor,
+            borderRadius: BORDER_RADIUS,
+          }}
+        >
+          <Text variant='subtitle' style={{ flex: 1 }}>
+            {tempRange.startDate
+              ? `${tempRange.startDate.toLocaleDateString()}`
+              : 'Start date'}
+          </Text>
+
+          <View
+            style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
+          >
+            <ArrowRight color={textColor} strokeWidth={3} />
+          </View>
+
+          <Text variant='subtitle' style={{ flex: 1, textAlign: 'right' }}>
+            {tempRange.endDate
+              ? `${tempRange.endDate.toLocaleDateString()}`
+              : 'End date'}
+          </Text>
+        </View>
+      )}
     </View>
   );
 
