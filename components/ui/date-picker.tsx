@@ -16,7 +16,7 @@ import {
   CalendarRange,
   ArrowRight,
 } from 'lucide-react-native';
-import React, { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { TextStyle, TouchableOpacity, ViewStyle } from 'react-native';
 
 export interface DateRange {
@@ -24,14 +24,10 @@ export interface DateRange {
   endDate: Date | null;
 }
 
-interface DatePickerProps {
+// Conditional typing based on mode
+interface BaseDatePickerProps {
   label?: string;
   error?: string;
-  value?: Date;
-  onChange?: (date: Date) => void;
-  rangeValue?: DateRange;
-  onRangeChange?: (range: DateRange) => void;
-  mode?: 'date' | 'time' | 'datetime' | 'range';
   placeholder?: string;
   disabled?: boolean;
   style?: ViewStyle;
@@ -42,6 +38,20 @@ interface DatePickerProps {
   labelStyle?: TextStyle;
   errorStyle?: TextStyle;
 }
+
+interface DatePickerPropsRange extends BaseDatePickerProps {
+  mode: 'range';
+  value?: DateRange;
+  onChange?: (value: DateRange | undefined) => void;
+}
+
+interface DatePickerPropsDate extends BaseDatePickerProps {
+  mode?: 'date' | 'time' | 'datetime';
+  value?: Date;
+  onChange?: (value: Date | undefined) => void;
+}
+
+export type DatePickerProps = DatePickerPropsRange | DatePickerPropsDate;
 
 const MONTHS = [
   'January',
@@ -64,35 +74,63 @@ const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const currentYear = new Date().getFullYear();
 const YEARS = Array.from({ length: 101 }, (_, i) => currentYear - 50 + i);
 
-export function DatePicker({
-  label,
-  value,
-  error,
-  onChange,
-  rangeValue,
-  onRangeChange,
-  mode = 'date',
-  placeholder = 'Select date',
-  disabled = false,
-  style,
-  minimumDate,
-  maximumDate,
-  timeFormat = '24',
-  variant = 'filled',
-  labelStyle,
-  errorStyle,
-}: DatePickerProps) {
+// Type guard to check if value is DateRange
+const isDateRange = (
+  value: Date | DateRange | undefined
+): value is DateRange => {
+  return (
+    value !== undefined &&
+    typeof value === 'object' &&
+    value !== null &&
+    'startDate' in value &&
+    'endDate' in value
+  );
+};
+
+export function DatePicker(props: DatePickerProps) {
+  const {
+    label,
+    error,
+    placeholder = 'Select date',
+    disabled = false,
+    style,
+    minimumDate,
+    maximumDate,
+    timeFormat = '24',
+    variant = 'filled',
+    labelStyle,
+    errorStyle,
+  } = props;
+
+  const mode = props.mode || 'date';
+  const value = props.value;
+  const onChange = props.onChange;
+
   const { isVisible, open, close } = useBottomSheet();
-  const [currentDate, setCurrentDate] = useState(() => value || new Date());
+
+  // Get the current date for navigation, prioritizing single date or range start date
+  const getCurrentDate = useCallback(() => {
+    if (mode === 'range') {
+      const rangeValue = isDateRange(value)
+        ? value
+        : { startDate: null, endDate: null };
+      return rangeValue.startDate || new Date();
+    }
+    return (value as Date) || new Date();
+  }, [value, mode]);
+
+  const [currentDate, setCurrentDate] = useState(() => getCurrentDate());
   const [viewMode, setViewMode] = useState<'date' | 'time' | 'month' | 'year'>(
     'date'
   );
   const [showMonthPicker, setShowMonthPicker] = useState(false);
   const [showYearPicker, setShowYearPicker] = useState(false);
 
-  // Range selection state
-  const [tempRange, setTempRange] = useState<DateRange>(
-    () => rangeValue || { startDate: null, endDate: null }
+  // Range selection state for temporary storage during selection
+  const [tempRange, setTempRange] = useState<DateRange>(() =>
+    mode === 'range' && isDateRange(value)
+      ? value
+      : { startDate: null, endDate: null }
   );
 
   // Theme colors
@@ -105,12 +143,14 @@ export function DatePicker({
   const mutedForegroundColor = useThemeColor({}, 'mutedForeground');
   const textColor = useThemeColor({}, 'text');
   const errorColor = useThemeColor({}, 'red');
-  const secondaryColor = useThemeColor({}, 'secondary');
-  const secondaryForegroundColor = useThemeColor({}, 'secondaryForeground');
 
   const formatDisplayValue = useCallback(() => {
     if (mode === 'range') {
-      if (!rangeValue?.startDate && !rangeValue?.endDate) {
+      const rangeValue = isDateRange(value)
+        ? value
+        : { startDate: null, endDate: null };
+
+      if (!rangeValue.startDate && !rangeValue.endDate) {
         return placeholder;
       }
 
@@ -131,18 +171,19 @@ export function DatePicker({
       return placeholder;
     }
 
-    if (!value) return placeholder;
+    const dateValue = value as Date;
+    if (!dateValue) return placeholder;
 
     switch (mode) {
       case 'time':
         if (timeFormat === '12') {
-          return value.toLocaleTimeString([], {
+          return dateValue.toLocaleTimeString([], {
             hour: '2-digit',
             minute: '2-digit',
             hour12: true,
           });
         }
-        return value.toLocaleTimeString([], {
+        return dateValue.toLocaleTimeString([], {
           hour: '2-digit',
           minute: '2-digit',
           hour12: false,
@@ -150,21 +191,21 @@ export function DatePicker({
       case 'datetime':
         const timeStr =
           timeFormat === '12'
-            ? value.toLocaleTimeString([], {
+            ? dateValue.toLocaleTimeString([], {
                 hour: '2-digit',
                 minute: '2-digit',
                 hour12: true,
               })
-            : value.toLocaleTimeString([], {
+            : dateValue.toLocaleTimeString([], {
                 hour: '2-digit',
                 minute: '2-digit',
                 hour12: false,
               });
-        return `${value.toLocaleDateString()} ${timeStr}`;
+        return `${dateValue.toLocaleDateString()} ${timeStr}`;
       default:
-        return value.toLocaleDateString();
+        return dateValue.toLocaleDateString();
     }
-  }, [value, rangeValue, mode, placeholder, timeFormat]);
+  }, [value, mode, placeholder, timeFormat]);
 
   // Helper function to check if a date is disabled
   const isDateDisabled = useCallback(
@@ -317,7 +358,7 @@ export function DatePicker({
     setCurrentDate(newDate);
 
     if (mode === 'date') {
-      onChange?.(newDate);
+      (onChange as (value: Date | undefined) => void)?.(newDate);
       close();
     } else if (mode === 'datetime') {
       setViewMode('time');
@@ -356,9 +397,9 @@ export function DatePicker({
 
   const handleConfirm = () => {
     if (mode === 'range') {
-      onRangeChange?.(tempRange);
+      (onChange as (value: DateRange | undefined) => void)?.(tempRange);
     } else {
-      onChange?.(currentDate);
+      (onChange as (value: Date | undefined) => void)?.(currentDate);
     }
     close();
   };
@@ -370,7 +411,7 @@ export function DatePicker({
     if (mode === 'range') {
       setTempRange({ startDate: today, endDate: null });
     } else if (mode === 'date') {
-      onChange?.(today);
+      (onChange as (value: Date | undefined) => void)?.(today);
       close();
     }
   };
@@ -378,7 +419,9 @@ export function DatePicker({
   const clearSelection = () => {
     if (mode === 'range') {
       setTempRange({ startDate: null, endDate: null });
-      onRangeChange?.({ startDate: null, endDate: null });
+      (onChange as (value: DateRange | undefined) => void)?.(undefined);
+    } else {
+      (onChange as (value: Date | undefined) => void)?.(undefined);
     }
   };
 
@@ -509,6 +552,7 @@ export function DatePicker({
               const isSelected =
                 day &&
                 value &&
+                !isDateRange(value) &&
                 value.getDate() === day &&
                 value.getMonth() === calendarData.month &&
                 value.getFullYear() === calendarData.year;
@@ -945,11 +989,14 @@ export function DatePicker({
     }
 
     if (mode === 'time') return 'Select Time';
+
+    if (mode === 'range') return 'Select Range';
+
     return 'Select Date';
   };
 
   const handleOpenPicker = () => {
-    setCurrentDate(value || new Date());
+    setCurrentDate(new Date());
     setViewMode('date');
     setShowMonthPicker(false);
     setShowYearPicker(false);

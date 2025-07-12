@@ -70,19 +70,80 @@ import { TreeMapChartSample } from '@/templates/demo/charts/treemap-chart/treema
 import { TreeMapChartStyled } from '@/templates/demo/charts/treemap-chart/treemap-chart-styled';
 import { DatePicker, DateRange } from '@/components/ui/date-picker';
 import { useState } from 'react';
+import { Text } from '@/components/ui/text';
 
 export default function MapsScreen() {
-  const [selectedDates, setSelectedDates] = useState<DateRange | undefined>();
+  const [selectedRange, setSelectedRange] = useState<DateRange | undefined>();
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>();
+  const [selectedDateTime, setSelectedDateTime] = useState<Date | undefined>();
+  const [selectedTime, setSelectedTime] = useState<Date | undefined>();
 
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <DatePicker
-        mode='range'
-        label='Select Date'
-        rangeValue={selectedDates}
-        onRangeChange={setSelectedDates}
-        placeholder='Choose a date'
-      />
+    <View
+      style={{
+        flex: 1,
+        padding: 16,
+        justifyContent: 'center',
+      }}
+    >
+      <Text variant='heading' style={{ marginBottom: 16 }}>
+        Date Picker
+      </Text>
+
+      <View>
+        <Text variant='title' style={{ marginBottom: 12 }}>
+          Range
+        </Text>
+        <DatePicker
+          mode='range'
+          label='Select Date'
+          value={selectedRange}
+          onChange={setSelectedRange}
+          placeholder='Choose a date'
+        />
+      </View>
+
+      {/* <DatePicker
+          label='Select Date'
+          value={selectedDate}
+          onChange={setSelectedDate}
+          placeholder='Choose a date'
+        />
+
+        <DatePicker
+          mode='datetime'
+          timeFormat='12'
+          label='Select Date'
+          value={selectedDateTime}
+          onChange={setSelectedDateTime}
+          placeholder='Choose a date'
+        />
+
+        <DatePicker
+          mode='datetime'
+          timeFormat='24'
+          label='Select Date'
+          value={selectedDateTime}
+          onChange={setSelectedDateTime}
+          placeholder='Choose a date'
+        /> */}
+
+      {/* <DatePicker
+          mode='time'
+          label='Select Date'
+          value={selectedTime}
+          onChange={setSelectedTime}
+          placeholder='Choose a date'
+        />
+
+        <DatePicker
+          mode='time'
+          timeFormat='12'
+          label='Select Date'
+          value={selectedTime}
+          onChange={setSelectedTime}
+          placeholder='Choose a date'
+        /> */}
 
       {/* <TreeMapChartLarge /> */}
       {/* <TreeMapChartStyled /> */}

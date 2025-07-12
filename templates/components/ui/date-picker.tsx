@@ -5,7 +5,7 @@ import { ScrollView } from '@/components/ui/scroll-view';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
 import { useThemeColor } from '@/hooks/useThemeColor';
-import { CORNERS, FONT_SIZE, HEIGHT } from '@/theme/globals';
+import { BORDER_RADIUS, CORNERS, FONT_SIZE, HEIGHT } from '@/theme/globals';
 import {
   Calendar,
   CalendarClock,
@@ -13,16 +13,21 @@ import {
   ChevronLeft,
   ChevronRight,
   Clock,
+  CalendarRange,
+  ArrowRight,
 } from 'lucide-react-native';
-import React, { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { TextStyle, TouchableOpacity, ViewStyle } from 'react-native';
 
-interface DatePickerProps {
+export interface DateRange {
+  startDate: Date | null;
+  endDate: Date | null;
+}
+
+// Conditional typing based on mode
+interface BaseDatePickerProps {
   label?: string;
   error?: string;
-  value?: Date;
-  onChange?: (date: Date) => void;
-  mode?: 'date' | 'time' | 'datetime';
   placeholder?: string;
   disabled?: boolean;
   style?: ViewStyle;
@@ -33,6 +38,20 @@ interface DatePickerProps {
   labelStyle?: TextStyle;
   errorStyle?: TextStyle;
 }
+
+interface DatePickerPropsRange extends BaseDatePickerProps {
+  mode: 'range';
+  value?: DateRange;
+  onChange?: (value: DateRange | undefined) => void;
+}
+
+interface DatePickerPropsDate extends BaseDatePickerProps {
+  mode?: 'date' | 'time' | 'datetime';
+  value?: Date;
+  onChange?: (value: Date | undefined) => void;
+}
+
+export type DatePickerProps = DatePickerPropsRange | DatePickerPropsDate;
 
 const MONTHS = [
   'January',
@@ -55,29 +74,64 @@ const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const currentYear = new Date().getFullYear();
 const YEARS = Array.from({ length: 101 }, (_, i) => currentYear - 50 + i);
 
-export function DatePicker({
-  label,
-  value,
-  error,
-  onChange,
-  mode = 'date',
-  placeholder = 'Select date',
-  disabled = false,
-  style,
-  minimumDate,
-  maximumDate,
-  timeFormat = '24', // Default to 24-hour format
-  variant = 'filled',
-  labelStyle,
-  errorStyle,
-}: DatePickerProps) {
+// Type guard to check if value is DateRange
+const isDateRange = (
+  value: Date | DateRange | undefined
+): value is DateRange => {
+  return (
+    value !== undefined &&
+    typeof value === 'object' &&
+    value !== null &&
+    'startDate' in value &&
+    'endDate' in value
+  );
+};
+
+export function DatePicker(props: DatePickerProps) {
+  const {
+    label,
+    error,
+    placeholder = 'Select date',
+    disabled = false,
+    style,
+    minimumDate,
+    maximumDate,
+    timeFormat = '24',
+    variant = 'filled',
+    labelStyle,
+    errorStyle,
+  } = props;
+
+  const mode = props.mode || 'date';
+  const value = props.value;
+  const onChange = props.onChange;
+
   const { isVisible, open, close } = useBottomSheet();
-  const [currentDate, setCurrentDate] = useState(() => value || new Date());
+
+  // Get the current date for navigation, prioritizing single date or range start date
+  const getCurrentDate = useCallback(() => {
+    if (mode === 'range') {
+      const rangeValue = isDateRange(value)
+        ? value
+        : { startDate: null, endDate: null };
+      return rangeValue.startDate || new Date();
+    }
+    return (value as Date) || new Date();
+  }, [value, mode]);
+
+  const [currentDate, setCurrentDate] = useState(() => getCurrentDate());
   const [viewMode, setViewMode] = useState<'date' | 'time' | 'month' | 'year'>(
     'date'
   );
   const [showMonthPicker, setShowMonthPicker] = useState(false);
   const [showYearPicker, setShowYearPicker] = useState(false);
+
+  // Range selection state for temporary storage during selection
+  const [tempRange, setTempRange] = useState<DateRange>(() =>
+    mode === 'range' && isDateRange(value)
+      ? value
+      : { startDate: null, endDate: null }
+  );
 
   // Theme colors
   const cardColor = useThemeColor({}, 'card');
@@ -91,18 +145,45 @@ export function DatePicker({
   const errorColor = useThemeColor({}, 'red');
 
   const formatDisplayValue = useCallback(() => {
-    if (!value) return placeholder;
+    if (mode === 'range') {
+      const rangeValue = isDateRange(value)
+        ? value
+        : { startDate: null, endDate: null };
+
+      if (!rangeValue.startDate && !rangeValue.endDate) {
+        return placeholder;
+      }
+
+      const startStr = rangeValue.startDate
+        ? rangeValue.startDate.toLocaleDateString()
+        : '';
+      const endStr = rangeValue.endDate
+        ? rangeValue.endDate.toLocaleDateString()
+        : '';
+
+      if (startStr && endStr) {
+        return `${startStr} - ${endStr}`;
+      } else if (startStr) {
+        return `${startStr} - Select end date`;
+      } else if (endStr) {
+        return `Select start date - ${endStr}`;
+      }
+      return placeholder;
+    }
+
+    const dateValue = value as Date;
+    if (!dateValue) return placeholder;
 
     switch (mode) {
       case 'time':
         if (timeFormat === '12') {
-          return value.toLocaleTimeString([], {
+          return dateValue.toLocaleTimeString([], {
             hour: '2-digit',
             minute: '2-digit',
             hour12: true,
           });
         }
-        return value.toLocaleTimeString([], {
+        return dateValue.toLocaleTimeString([], {
           hour: '2-digit',
           minute: '2-digit',
           hour12: false,
@@ -110,19 +191,19 @@ export function DatePicker({
       case 'datetime':
         const timeStr =
           timeFormat === '12'
-            ? value.toLocaleTimeString([], {
+            ? dateValue.toLocaleTimeString([], {
                 hour: '2-digit',
                 minute: '2-digit',
                 hour12: true,
               })
-            : value.toLocaleTimeString([], {
+            : dateValue.toLocaleTimeString([], {
                 hour: '2-digit',
                 minute: '2-digit',
                 hour12: false,
               });
-        return `${value.toLocaleDateString()} ${timeStr}`;
+        return `${dateValue.toLocaleDateString()} ${timeStr}`;
       default:
-        return value.toLocaleDateString();
+        return dateValue.toLocaleDateString();
     }
   }, [value, mode, placeholder, timeFormat]);
 
@@ -134,6 +215,52 @@ export function DatePicker({
       return false;
     },
     [minimumDate, maximumDate]
+  );
+
+  // Helper function to check if a date is in range
+  const isDateInRange = useCallback(
+    (date: Date) => {
+      if (mode !== 'range' || !tempRange.startDate || !tempRange.endDate) {
+        return false;
+      }
+
+      // Create new date objects to avoid mutation
+      const startDate = new Date(tempRange.startDate);
+      const endDate = new Date(tempRange.endDate);
+      const checkDate = new Date(date);
+
+      // Normalize dates for comparison (remove time)
+      startDate.setHours(0, 0, 0, 0);
+      endDate.setHours(0, 0, 0, 0);
+      checkDate.setHours(0, 0, 0, 0);
+
+      return checkDate >= startDate && checkDate <= endDate;
+    },
+    [mode, tempRange]
+  );
+
+  // Helper function to check if a date is a range endpoint
+  const isRangeEndpoint = useCallback(
+    (date: Date) => {
+      if (mode !== 'range') {
+        return { isStart: false, isEnd: false };
+      }
+
+      const normalizedDate = new Date(date);
+      normalizedDate.setHours(0, 0, 0, 0);
+
+      const isStart =
+        tempRange.startDate &&
+        new Date(tempRange.startDate).setHours(0, 0, 0, 0) ===
+          normalizedDate.getTime();
+      const isEnd =
+        tempRange.endDate &&
+        new Date(tempRange.endDate).setHours(0, 0, 0, 0) ===
+          normalizedDate.getTime();
+
+      return { isStart: !!isStart, isEnd: !!isEnd };
+    },
+    [mode, tempRange]
   );
 
   // Memoized calendar calculations
@@ -177,7 +304,48 @@ export function DatePicker({
     return { weeks, year, month, daysInMonth };
   }, [currentDate]);
 
+  const handleRangeSelect = (day: number) => {
+    const selectedDate = new Date(
+      currentDate.getFullYear(),
+      currentDate.getMonth(),
+      day
+    );
+
+    // Check if date is disabled
+    if (isDateDisabled(selectedDate)) return;
+
+    // If no start date or both dates are selected, start fresh
+    if (!tempRange.startDate || (tempRange.startDate && tempRange.endDate)) {
+      setTempRange({
+        startDate: selectedDate,
+        endDate: null,
+      });
+    } else {
+      // We have a start date but no end date
+      const startDate = tempRange.startDate;
+
+      if (selectedDate < startDate) {
+        // If selected date is before start date, make it the new start date
+        setTempRange({
+          startDate: selectedDate,
+          endDate: null,
+        });
+      } else {
+        // Selected date is after start date, make it the end date
+        setTempRange({
+          startDate: startDate,
+          endDate: selectedDate,
+        });
+      }
+    }
+  };
+
   const handleDateSelect = (day: number) => {
+    if (mode === 'range') {
+      handleRangeSelect(day);
+      return;
+    }
+
     const newDate = new Date(
       currentDate.getFullYear(),
       currentDate.getMonth(),
@@ -190,7 +358,7 @@ export function DatePicker({
     setCurrentDate(newDate);
 
     if (mode === 'date') {
-      onChange?.(newDate);
+      (onChange as (value: Date | undefined) => void)?.(newDate);
       close();
     } else if (mode === 'datetime') {
       setViewMode('time');
@@ -201,11 +369,6 @@ export function DatePicker({
     const newDate = new Date(currentDate);
     newDate.setHours(hours, minutes, 0, 0);
     setCurrentDate(newDate);
-
-    // Don't auto-close when selecting hours/minutes - let user confirm
-    if (mode === 'time') {
-      // Don't auto-close, let user press Done
-    }
   };
 
   const navigateMonth = (direction: 'prev' | 'next') => {
@@ -233,16 +396,32 @@ export function DatePicker({
   };
 
   const handleConfirm = () => {
-    onChange?.(currentDate);
+    if (mode === 'range') {
+      (onChange as (value: DateRange | undefined) => void)?.(tempRange);
+    } else {
+      (onChange as (value: Date | undefined) => void)?.(currentDate);
+    }
     close();
   };
 
   const resetToToday = () => {
     const today = new Date();
     setCurrentDate(today);
-    if (mode === 'date') {
-      onChange?.(today);
+
+    if (mode === 'range') {
+      setTempRange({ startDate: today, endDate: null });
+    } else if (mode === 'date') {
+      (onChange as (value: Date | undefined) => void)?.(today);
       close();
+    }
+  };
+
+  const clearSelection = () => {
+    if (mode === 'range') {
+      setTempRange({ startDate: null, endDate: null });
+      (onChange as (value: DateRange | undefined) => void)?.(undefined);
+    } else {
+      (onChange as (value: Date | undefined) => void)?.(undefined);
     }
   };
 
@@ -267,7 +446,6 @@ export function DatePicker({
         <ChevronLeft size={20} color={textColor} />
       </TouchableOpacity>
 
-      {/* Header styling - fills space between arrows */}
       <View
         style={{
           flex: 1,
@@ -285,7 +463,7 @@ export function DatePicker({
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'center',
-            paddingHorizontal: 16,
+            paddingHorizontal: 12,
             paddingVertical: 10,
             borderRadius: CORNERS,
             backgroundColor: mutedColor,
@@ -333,7 +511,6 @@ export function DatePicker({
   const renderCalendar = () => (
     <View>
       {renderMonthYearHeader()}
-
       {/* Day headers */}
       <View
         style={{
@@ -368,9 +545,14 @@ export function DatePicker({
             }}
           >
             {week.map((day, dayIndex) => {
+              const dayDate = day
+                ? new Date(calendarData.year, calendarData.month, day)
+                : null;
+
               const isSelected =
                 day &&
                 value &&
+                !isDateRange(value) &&
                 value.getDate() === day &&
                 value.getMonth() === calendarData.month &&
                 value.getFullYear() === calendarData.year;
@@ -381,45 +563,93 @@ export function DatePicker({
                 new Date().getMonth() === calendarData.month &&
                 new Date().getFullYear() === calendarData.year;
 
-              const dayDate = day
-                ? new Date(calendarData.year, calendarData.month, day)
-                : null;
               const disabled = dayDate ? isDateDisabled(dayDate) : false;
+
+              // Range-specific styling
+              const inRange = dayDate ? isDateInRange(dayDate) : false;
+              const rangeEndpoints = dayDate
+                ? isRangeEndpoint(dayDate)
+                : { isStart: false, isEnd: false };
 
               return (
                 <View
                   key={dayIndex}
-                  style={{
-                    flex: 1,
-                    alignItems: 'center',
-                  }}
+                  style={[
+                    {
+                      flex: 1,
+                      alignItems: 'center',
+                      backgroundColor:
+                        mode === 'range' && inRange
+                          ? primaryColor
+                          : 'transparent',
+                      paddingHorizontal: mode === 'range' && inRange ? 0 : 0,
+                    },
+                    rangeEndpoints.isStart && {
+                      borderTopLeftRadius: CORNERS,
+                      borderBottomLeftRadius: CORNERS,
+                    },
+                    rangeEndpoints.isEnd && {
+                      borderTopRightRadius: CORNERS,
+                      borderBottomRightRadius: CORNERS,
+                    },
+                  ]}
                 >
                   {day ? (
                     <TouchableOpacity
                       onPress={() => !disabled && handleDateSelect(day)}
                       disabled={disabled}
-                      style={{
-                        width: 40,
-                        height: 40,
-                        borderRadius: 999,
-                        backgroundColor: isSelected
-                          ? primaryColor
-                          : 'transparent',
-                        borderWidth: isToday && !isSelected ? 1 : 0,
-                        borderColor: primaryColor,
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        opacity: disabled ? 0.3 : 1,
-                      }}
+                      style={[
+                        {
+                          width: 40,
+                          height: 40,
+                          borderRadius:
+                            rangeEndpoints.isStart || rangeEndpoints.isEnd
+                              ? 0
+                              : CORNERS,
+                          backgroundColor:
+                            rangeEndpoints.isStart || rangeEndpoints.isEnd
+                              ? primaryColor
+                              : inRange
+                              ? primaryColor
+                              : isSelected
+                              ? primaryColor
+                              : 'transparent',
+                          borderWidth:
+                            isToday && !isSelected && !inRange ? 1 : 0,
+                          borderColor: primaryColor,
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                          opacity: disabled ? 0.3 : 1,
+                        },
+                        rangeEndpoints.isStart && {
+                          borderTopLeftRadius: CORNERS,
+                          borderBottomLeftRadius: CORNERS,
+                        },
+                        rangeEndpoints.isEnd && {
+                          borderTopRightRadius: CORNERS,
+                          borderBottomRightRadius: CORNERS,
+                        },
+                      ]}
                     >
                       <Text
                         style={{
-                          color: isSelected
-                            ? primaryForegroundColor
-                            : disabled
-                            ? mutedForegroundColor
-                            : textColor,
-                          fontWeight: isSelected || isToday ? '600' : '400',
+                          color:
+                            rangeEndpoints.isStart || rangeEndpoints.isEnd
+                              ? primaryForegroundColor
+                              : inRange
+                              ? primaryForegroundColor
+                              : isSelected
+                              ? primaryForegroundColor
+                              : disabled
+                              ? mutedForegroundColor
+                              : textColor,
+                          fontWeight:
+                            rangeEndpoints.isStart ||
+                            rangeEndpoints.isEnd ||
+                            isSelected ||
+                            isToday
+                              ? '600'
+                              : '400',
                           fontSize: FONT_SIZE,
                         }}
                       >
@@ -435,6 +665,40 @@ export function DatePicker({
           </View>
         ))}
       </View>
+
+      {/* Range selection info */}
+      {mode === 'range' && (
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            marginTop: 16,
+            padding: 20,
+            paddingHorizontal: 36,
+            backgroundColor: mutedColor,
+            borderRadius: BORDER_RADIUS,
+          }}
+        >
+          <Text variant='subtitle' style={{ flex: 1 }}>
+            {tempRange.startDate
+              ? `${tempRange.startDate.toLocaleDateString()}`
+              : 'Start date'}
+          </Text>
+
+          <View
+            style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
+          >
+            <ArrowRight color={textColor} strokeWidth={3} />
+          </View>
+
+          <Text variant='subtitle' style={{ flex: 1, textAlign: 'right' }}>
+            {tempRange.endDate
+              ? `${tempRange.endDate.toLocaleDateString()}`
+              : 'End date'}
+          </Text>
+        </View>
+      )}
     </View>
   );
 
@@ -725,11 +989,14 @@ export function DatePicker({
     }
 
     if (mode === 'time') return 'Select Time';
+
+    if (mode === 'range') return 'Select Range';
+
     return 'Select Date';
   };
 
   const handleOpenPicker = () => {
-    setCurrentDate(value || new Date());
+    setCurrentDate(new Date());
     setViewMode('date');
     setShowMonthPicker(false);
     setShowYearPicker(false);
@@ -775,6 +1042,8 @@ export function DatePicker({
               <Icon name={Clock} size={20} strokeWidth={1} />
             ) : mode === 'datetime' ? (
               <Icon name={CalendarClock} size={20} strokeWidth={1} />
+            ) : mode === 'range' ? (
+              <Icon name={CalendarRange} size={20} strokeWidth={1} />
             ) : (
               <Icon name={Calendar} size={20} strokeWidth={1} />
             )}
@@ -853,9 +1122,10 @@ export function DatePicker({
                   close();
                   setShowMonthPicker(false);
                   setShowYearPicker(false);
+                  clearSelection();
                 }}
               >
-                Cancel
+                {mode === 'range' ? 'Clear' : 'Cancel'}
               </Button>
             </View>
 
