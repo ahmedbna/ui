@@ -15,8 +15,6 @@ const sampleData = [
 ];
 
 export function ScatterChartStyled() {
-  const destructiveColor = useThemeColor({}, 'destructive');
-
   return (
     <ChartContainer
       title='Styled Performance Analysis'

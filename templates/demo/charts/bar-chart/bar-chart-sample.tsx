@@ -10,7 +10,7 @@ const sampleData = [
   { label: 'Product E', value: 65, color: '#8b5cf6' },
 ];
 
-export function BarChartHorizontal() {
+export function BarChartSample() {
   return (
     <ChartContainer
       title='Product Performance'

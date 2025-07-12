@@ -4,9 +4,8 @@ import { AreaChartInteractive } from '@/templates/demo/charts/area-chart/area-ch
 import { AreaChartLarge } from '@/templates/demo/charts/area-chart/area-chart-large';
 import { AreaChartStyled } from '@/templates/demo/charts/area-chart/area-chart-styled';
 import { BarChartDemo } from '@/templates/demo/charts/bar-chart/bar-chart-demo';
-import { BarChartHorizontal } from '@/templates/demo/charts/bar-chart/bar-chart-horizontal';
+import { BarChartSample } from '@/templates/demo/charts/bar-chart/bar-chart-sample';
 import { BarChartMinimal } from '@/templates/demo/charts/bar-chart/bar-chart-minimal';
-import { BarChartStacked } from '@/templates/demo/charts/bar-chart/bar-chart-stacked';
 import { BubbleChartDemo } from '@/templates/demo/charts/bubble-chart/bubble-chart-demo';
 import { BubbleChartMinimal } from '@/templates/demo/charts/bubble-chart/bubble-chart-minimal';
 import { BubbleChartSample } from '@/templates/demo/charts/bubble-chart/bubble-chart-sample';
@@ -79,7 +78,7 @@ export default function MapsScreen() {
       {/* <TreeMapChartDemo /> */}
 
       {/* <StackedBarChartLarge /> */}
-      {/* <StackedBarChartStyled /> */}
+      <StackedBarChartStyled />
       {/* <StackedBarChartHorizontal /> */}
       {/* <StackedBarChartDemo /> */}
 

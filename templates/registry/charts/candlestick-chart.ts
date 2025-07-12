@@ -25,8 +25,8 @@ export const candlestickChartRegistry = {
     ],
     preview: {
       light:
-        'https://bna-ui.s3.eu-north-1.amazonaws.com/candlestick-chart-light.png',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/candlestick-chart-dark.png',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 15-42-29_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 15-42-29_1.MP4',
     },
   },
 
@@ -49,8 +49,8 @@ export const candlestickChartRegistry = {
     ],
     preview: {
       light:
-        'https://bna-ui.s3.eu-north-1.amazonaws.com/candlestick-chart-demo-light.png',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/candlestick-chart-demo-dark.png',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 15-42-29_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 15-42-29_1.MP4',
     },
   },
 
@@ -72,8 +72,8 @@ export const candlestickChartRegistry = {
     ],
     preview: {
       light:
-        'https://bna-ui.s3.eu-north-1.amazonaws.com/candlestick-chart-sample-light.png',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/candlestick-chart-sample-dark.png',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 15-42-43_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 15-42-43_1.MP4',
     },
   },
 
@@ -95,8 +95,8 @@ export const candlestickChartRegistry = {
     ],
     preview: {
       light:
-        'https://bna-ui.s3.eu-north-1.amazonaws.com/candlestick-chart-styled-light.png',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/candlestick-chart-styled-dark.png',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 15-43-00_1.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 15-43-00_1.MP4',
     },
   },
 
@@ -118,8 +118,8 @@ export const candlestickChartRegistry = {
     ],
     preview: {
       light:
-        'https://bna-ui.s3.eu-north-1.amazonaws.com/candlestick-chart-minimal-light.png',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/candlestick-chart-minimal-dark.png',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 15-45-52_1.mov',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 15-45-52_1.mov',
     },
   },
 };

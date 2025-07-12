@@ -24,8 +24,8 @@ export const treemapChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/',
+      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/treemap-demo.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/treemap-demo.MP4',
     },
   },
 
@@ -45,8 +45,8 @@ export const treemapChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/',
+      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/treemap-demo.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/treemap-demo.MP4',
     },
   },
 
@@ -65,8 +65,8 @@ export const treemapChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/',
+      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/treemap-sample.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/treemap-sample.MP4',
     },
   },
 
@@ -85,8 +85,8 @@ export const treemapChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/',
+      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/treemap-styled.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/treemap-styled.MP4',
     },
   },
 
@@ -105,8 +105,8 @@ export const treemapChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/',
+      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/treemap-large.MP4',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/treemap-large.MP4',
     },
   },
 };

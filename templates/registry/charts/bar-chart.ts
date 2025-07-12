@@ -20,8 +20,9 @@ export const barChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/bar-chart-light.png',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/bar-chart-dark.png',
+      light:
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 15-22-22_1.mov',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 15-22-22_1.mov',
     },
   },
 
@@ -42,15 +43,15 @@ export const barChartRegistry = {
     ],
     preview: {
       light:
-        'https://bna-ui.s3.eu-north-1.amazonaws.com/bar-chart-demo-light.png',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/bar-chart-demo-dark.png',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 15-22-22_1.mov',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 15-22-22_1.mov',
     },
   },
 
   // Horizontal bar chart demo
-  'bar-chart-horizontal': {
-    name: 'bar-chart-horizontal',
-    description: 'A horizontal bar chart with custom colors',
+  'bar-chart-sample': {
+    name: 'bar-chart-sample',
+    description: 'A sample bar chart with custom colors',
     type: 'registry:example',
     registryDependencies: ['bar-chart', 'chart-container'],
     hooks: [],
@@ -58,36 +59,14 @@ export const barChartRegistry = {
     files: [
       {
         type: 'registry:example',
-        path: 'templates/demo/charts/bar-chart/bar-chart-horizontal.tsx',
-        target: 'components/demo/charts/bar-chart/bar-chart-horizontal.tsx',
+        path: 'templates/demo/charts/bar-chart/bar-chart-sample.tsx',
+        target: 'components/demo/charts/bar-chart/bar-chart-sample.tsx',
       },
     ],
     preview: {
       light:
-        'https://bna-ui.s3.eu-north-1.amazonaws.com/bar-chart-horizontal-light.png',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/bar-chart-horizontal-dark.png',
-    },
-  },
-
-  // Stacked bar chart demo
-  'bar-chart-stacked': {
-    name: 'bar-chart-stacked',
-    description: 'A stacked bar chart showing multiple data series',
-    type: 'registry:example',
-    registryDependencies: ['bar-chart', 'chart-container'],
-    hooks: [],
-    theme: [],
-    files: [
-      {
-        type: 'registry:example',
-        path: 'templates/demo/charts/bar-chart/bar-chart-stacked.tsx',
-        target: 'components/demo/charts/bar-chart/bar-chart-stacked.tsx',
-      },
-    ],
-    preview: {
-      light:
-        'https://bna-ui.s3.eu-north-1.amazonaws.com/bar-chart-stacked-light.png',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/bar-chart-stacked-dark.png',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 19.mov',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 19.mov',
     },
   },
 
@@ -108,8 +87,8 @@ export const barChartRegistry = {
     ],
     preview: {
       light:
-        'https://bna-ui.s3.eu-north-1.amazonaws.com/bar-chart-minimal-light.png',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/bar-chart-minimal-dark.png',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 17.mov',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 17.mov',
     },
   },
 };

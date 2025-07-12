@@ -24,8 +24,9 @@ export const lineChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/line-chart-light.png',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/line-chart-dark.png',
+      light:
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 58.MOV',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 58.MOV',
     },
   },
 
@@ -46,8 +47,8 @@ export const lineChartRegistry = {
     ],
     preview: {
       light:
-        'https://bna-ui.s3.eu-north-1.amazonaws.com/line-chart-demo-light.png',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/line-chart-demo-dark.png',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 58.MOV',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 58.MOV',
     },
   },
 
@@ -68,8 +69,8 @@ export const lineChartRegistry = {
     ],
     preview: {
       light:
-        'https://bna-ui.s3.eu-north-1.amazonaws.com/line-chart-interactive-light.png',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/line-chart-interactive-dark.png',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 47.MOV',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 47.MOV',
     },
   },
 
@@ -90,8 +91,8 @@ export const lineChartRegistry = {
     ],
     preview: {
       light:
-        'https://bna-ui.s3.eu-north-1.amazonaws.com/line-chart-styled-light.png',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/line-chart-styled-dark.png',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 46.MOV',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 46.MOV',
     },
   },
 
@@ -112,8 +113,8 @@ export const lineChartRegistry = {
     ],
     preview: {
       light:
-        'https://bna-ui.s3.eu-north-1.amazonaws.com/line-chart-minimal-light.png',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/line-chart-minimal-dark.png',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 45.MOV',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 45.MOV',
     },
   },
 };

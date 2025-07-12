@@ -25,8 +25,8 @@ export const heatmapChartRegistry = {
     ],
     preview: {
       light:
-        'https://bna-ui.s3.eu-north-1.amazonaws.com/heatmap-chart-light.png',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/heatmap-chart-dark.png',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 52.MOV',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 52.MOV',
     },
   },
 
@@ -47,8 +47,8 @@ export const heatmapChartRegistry = {
     ],
     preview: {
       light:
-        'https://bna-ui.s3.eu-north-1.amazonaws.com/heatmap-chart-demo-light.png',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/heatmap-chart-demo-dark.png',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 52.MOV',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 52.MOV',
     },
   },
 
@@ -68,8 +68,8 @@ export const heatmapChartRegistry = {
     ],
     preview: {
       light:
-        'https://bna-ui.s3.eu-north-1.amazonaws.com/heatmap-chart-sample-light.png',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/heatmap-chart-sample-dark.png',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 51.MOV',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 51.MOV',
     },
   },
 
@@ -89,8 +89,8 @@ export const heatmapChartRegistry = {
     ],
     preview: {
       light:
-        'https://bna-ui.s3.eu-north-1.amazonaws.com/heatmap-chart-styled-light.png',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/heatmap-chart-styled-dark.png',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 50.MOV',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 50.MOV',
     },
   },
 
@@ -110,8 +110,8 @@ export const heatmapChartRegistry = {
     ],
     preview: {
       light:
-        'https://bna-ui.s3.eu-north-1.amazonaws.com/heatmap-chart-large-light.png',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/heatmap-chart-large-dark.png',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 49.MOV',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 49.MOV',
     },
   },
 };

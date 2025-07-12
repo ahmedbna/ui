@@ -25,8 +25,8 @@ export const doughnutChartRegistry = {
     ],
     preview: {
       light:
-        'https://bna-ui.s3.eu-north-1.amazonaws.com/doughnut-chart-light.png',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/doughnut-chart-dark.png',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 56.MOV',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 56.MOV',
     },
   },
 
@@ -48,8 +48,8 @@ export const doughnutChartRegistry = {
     ],
     preview: {
       light:
-        'https://bna-ui.s3.eu-north-1.amazonaws.com/doughnut-chart-demo-light.png',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/doughnut-chart-demo-dark.png',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 56.MOV',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 56.MOV',
     },
   },
 
@@ -70,8 +70,8 @@ export const doughnutChartRegistry = {
     ],
     preview: {
       light:
-        'https://bna-ui.s3.eu-north-1.amazonaws.com/doughnut-chart-sample-light.png',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/doughnut-chart-sample-dark.png',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 55.MOV',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 55.MOV',
     },
   },
 
@@ -92,8 +92,8 @@ export const doughnutChartRegistry = {
     ],
     preview: {
       light:
-        'https://bna-ui.s3.eu-north-1.amazonaws.com/doughnut-chart-styled-light.png',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/doughnut-chart-styled-dark.png',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 54.MOV',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 54.MOV',
     },
   },
 
@@ -114,8 +114,8 @@ export const doughnutChartRegistry = {
     ],
     preview: {
       light:
-        'https://bna-ui.s3.eu-north-1.amazonaws.com/doughnut-chart-large-light.png',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/doughnut-chart-large-dark.png',
+        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 53.MOV',
+      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 53.MOV',
     },
   },
 };
