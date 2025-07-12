@@ -69,8 +69,9 @@ import { TreeMapChartLarge } from '@/templates/demo/charts/treemap-chart/treemap
 import { TreeMapChartSample } from '@/templates/demo/charts/treemap-chart/treemap-chart-sample';
 import { TreeMapChartStyled } from '@/templates/demo/charts/treemap-chart/treemap-chart-styled';
 import { DatePicker, DateRange } from '@/components/ui/date-picker';
-import { useState } from 'react';
 import { Text } from '@/components/ui/text';
+import { useState } from 'react';
+import { MeshGradient } from '@/components/ui/mesh-gradient';
 
 export default function MapsScreen() {
   const [selectedRange, setSelectedRange] = useState<DateRange | undefined>();
@@ -82,26 +83,23 @@ export default function MapsScreen() {
     <View
       style={{
         flex: 1,
-        padding: 16,
         justifyContent: 'center',
       }}
     >
-      <Text variant='heading' style={{ marginBottom: 16 }}>
-        Date Picker
-      </Text>
-
-      <View>
-        <Text variant='title' style={{ marginBottom: 12 }}>
-          Range
-        </Text>
-        <DatePicker
-          mode='range'
-          label='Select Date'
-          value={selectedRange}
-          onChange={setSelectedRange}
-          placeholder='Choose a date'
-        />
-      </View>
+      <MeshGradient
+        colors={['#667eea', '#764ba2', '#f093fb', '#f5576c']}
+        density={15}
+        blur={0.9}
+        seed={42}
+        style={{ flex: 1 }}
+      />
+      {/* <DatePicker
+        mode='range'
+        label='Select Date'
+        value={selectedRange}
+        onChange={setSelectedRange}
+        placeholder='Choose a date'
+      /> */}
 
       {/* <DatePicker
           label='Select Date'
