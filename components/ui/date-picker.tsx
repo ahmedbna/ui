@@ -378,6 +378,7 @@ export function DatePicker({
   const clearSelection = () => {
     if (mode === 'range') {
       setTempRange({ startDate: null, endDate: null });
+      onRangeChange?.({ startDate: null, endDate: null });
     }
   };
 
@@ -419,7 +420,7 @@ export function DatePicker({
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'center',
-            paddingHorizontal: 16,
+            paddingHorizontal: 12,
             paddingVertical: 10,
             borderRadius: CORNERS,
             backgroundColor: mutedColor,
@@ -467,7 +468,6 @@ export function DatePicker({
   const renderCalendar = () => (
     <View>
       {renderMonthYearHeader()}
-
       {/* Day headers */}
       <View
         style={{
@@ -530,39 +530,62 @@ export function DatePicker({
               return (
                 <View
                   key={dayIndex}
-                  style={{
-                    flex: 1,
-                    alignItems: 'center',
-                  }}
+                  style={[
+                    {
+                      flex: 1,
+                      alignItems: 'center',
+                      backgroundColor:
+                        mode === 'range' && inRange
+                          ? primaryColor
+                          : 'transparent',
+                      paddingHorizontal: mode === 'range' && inRange ? 0 : 0,
+                    },
+                    rangeEndpoints.isStart && {
+                      borderTopLeftRadius: CORNERS,
+                      borderBottomLeftRadius: CORNERS,
+                    },
+                    rangeEndpoints.isEnd && {
+                      borderTopRightRadius: CORNERS,
+                      borderBottomRightRadius: CORNERS,
+                    },
+                  ]}
                 >
                   {day ? (
                     <TouchableOpacity
                       onPress={() => !disabled && handleDateSelect(day)}
                       disabled={disabled}
-                      style={{
-                        width: 40,
-                        height: 40,
-                        borderRadius:
-                          mode === 'range' &&
-                          inRange &&
-                          !rangeEndpoints.isStart &&
-                          !rangeEndpoints.isEnd
-                            ? 0
-                            : 999,
-                        backgroundColor:
-                          rangeEndpoints.isStart || rangeEndpoints.isEnd
-                            ? primaryColor
-                            : inRange
-                            ? primaryColor
-                            : isSelected
-                            ? primaryColor
-                            : 'transparent',
-                        borderWidth: isToday && !isSelected && !inRange ? 1 : 0,
-                        borderColor: primaryColor,
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        opacity: disabled ? 0.3 : 1,
-                      }}
+                      style={[
+                        {
+                          width: 40,
+                          height: 40,
+                          borderRadius:
+                            rangeEndpoints.isStart || rangeEndpoints.isEnd
+                              ? 0
+                              : CORNERS,
+                          backgroundColor:
+                            rangeEndpoints.isStart || rangeEndpoints.isEnd
+                              ? primaryColor
+                              : inRange
+                              ? primaryColor
+                              : isSelected
+                              ? primaryColor
+                              : 'transparent',
+                          borderWidth:
+                            isToday && !isSelected && !inRange ? 1 : 0,
+                          borderColor: primaryColor,
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                          opacity: disabled ? 0.3 : 1,
+                        },
+                        rangeEndpoints.isStart && {
+                          borderTopLeftRadius: CORNERS,
+                          borderBottomLeftRadius: CORNERS,
+                        },
+                        rangeEndpoints.isEnd && {
+                          borderTopRightRadius: CORNERS,
+                          borderBottomRightRadius: CORNERS,
+                        },
+                      ]}
                     >
                       <Text
                         style={{
@@ -972,6 +995,8 @@ export function DatePicker({
               <Icon name={Clock} size={20} strokeWidth={1} />
             ) : mode === 'datetime' ? (
               <Icon name={CalendarClock} size={20} strokeWidth={1} />
+            ) : mode === 'range' ? (
+              <Icon name={CalendarRange} size={20} strokeWidth={1} />
             ) : (
               <Icon name={Calendar} size={20} strokeWidth={1} />
             )}
@@ -1050,9 +1075,10 @@ export function DatePicker({
                   close();
                   setShowMonthPicker(false);
                   setShowYearPicker(false);
+                  clearSelection();
                 }}
               >
-                Cancel
+                {mode === 'range' ? 'Clear' : 'Cancel'}
               </Button>
             </View>
 
