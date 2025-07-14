@@ -111,13 +111,10 @@ export const IPhonePreview = ({
                   className='absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center'
                   style={{ borderRadius: border }}
                 >
-                  <Button
-                    variant='outline'
-                    className='z-10 bg-background/80 backdrop-blur-sm hover:bg-background/90'
-                  >
+                  <div className='h-10 px-6 has-[>svg]:px-4 inline-flex items-center cursor-pointer justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive border shadow-xs hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 z-10 bg-background/80 backdrop-blur-sm hover:bg-background/90'>
                     <Code className='w-4 h-4 mr-2' />
                     Show Code
-                  </Button>
+                  </div>
                 </div>
               )}
             </div>
