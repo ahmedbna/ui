@@ -106,7 +106,6 @@ const items = [
 export const Previews = () => {
   return (
     <div className='container justify-center flex flex-wrap items-center gap-2 text-center lg:gap-3'>
-      {/* <div className='mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4'> */}
       {items.map((item) => (
         <div key={item.dark}>
           <IPhonePreview preview={item} showCode={false} />

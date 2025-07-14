@@ -17,7 +17,7 @@ export const siteConfig = {
     },
     {
       label: 'Charts',
-      href: '/docs/charts',
+      href: '/charts',
     },
     {
       label: 'Hooks',

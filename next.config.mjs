@@ -33,11 +33,6 @@ const nextConfig = {
         destination: '/docs/components/:path*',
         permanent: true,
       },
-      {
-        source: '/charts',
-        destination: '/docs/charts',
-        permanent: true,
-      },
     ];
   },
 };
