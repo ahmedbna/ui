@@ -98,6 +98,27 @@ export const datePickerRegistry = {
     },
   },
 
+  'date-picker-range': {
+    name: 'date-picker-range',
+    description: 'A date range picker',
+    type: 'registry:example',
+    registryDependencies: ['date-picker'],
+    hooks: [],
+    theme: [],
+    files: [
+      {
+        type: 'registry:example',
+        path: 'templates/demo/date-picker/date-picker-range.tsx',
+        target: 'components/demo/date-picker/date-picker-range.tsx',
+      },
+    ],
+    preview: {
+      light:
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 21-16-09_1.MP4',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 21-16-09_1.MP4',
+    },
+  },
+
   // Constraints example
   'date-picker-constraints': {
     name: 'date-picker-constraints',
