@@ -64,8 +64,8 @@ export const chartContainerRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 16.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 16.MOV',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 16 5.41.34 PM.MOV',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 16 5.41.34 PM.MOV',
     },
   },
 };
