@@ -49,6 +49,7 @@ import { viewRegistry } from '@/templates/registry/view';
 import { separatorRegistry } from '@/templates/registry/separator';
 import { hooksRegistry } from '@/templates/registry/hooks';
 import { themeRegistry } from '@/templates/registry/theme';
+import { inputRegistry } from '@/templates/registry/input';
 
 export const Index: Record<string, any> = {
   ...accordionRegistry,
@@ -76,6 +77,7 @@ export const Index: Record<string, any> = {
   ...iconRegistry,
   ...imageRegistry,
   ...inputOtpRegistry,
+  ...inputRegistry,
   ...linkRegistry,
   ...mediaPickerRegistry,
   ...modeToggleRegistry,
