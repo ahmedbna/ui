@@ -1,6 +1,3 @@
-// components/ui/charts/treemap-chart.tsx
-
-import { ChartConfig } from '@/components/ui/charts/types';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { useEffect, useState } from 'react';
 import { LayoutChangeEvent, View, ViewStyle } from 'react-native';
@@ -13,6 +10,15 @@ import Svg, { G, Rect, Text as SvgText } from 'react-native-svg';
 
 // Animated SVG Components
 const AnimatedRect = Animated.createAnimatedComponent(Rect);
+
+interface ChartConfig {
+  width?: number;
+  height?: number;
+  padding?: number;
+  showLabels?: boolean;
+  animated?: boolean;
+  duration?: number;
+}
 
 export interface TreeMapDataPoint {
   label: string;
@@ -148,8 +154,6 @@ export const TreeMapChart = ({ data, config = {}, style }: Props) => {
   // Use measured width or fallback to config width or default
   const chartWidth = containerWidth || config.width || 300;
 
-  const primaryColor = useThemeColor({}, 'primary');
-  const mutedColor = useThemeColor({}, 'mutedForeground');
   const backgroundColor = useThemeColor({}, 'background');
 
   const animationProgress = useSharedValue(0);

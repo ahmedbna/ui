@@ -1,6 +1,3 @@
-// components/ui/charts/radar-chart.tsx
-
-import { ChartConfig, RadarChartDataPoint } from '@/components/ui/charts/types';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { useEffect, useState } from 'react';
 import { LayoutChangeEvent, View, ViewStyle } from 'react-native';
@@ -16,6 +13,20 @@ import Svg, { Circle, Line, Path, Text as SvgText } from 'react-native-svg';
 // Animated SVG Components
 const AnimatedPath = Animated.createAnimatedComponent(Path);
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
+
+interface ChartConfig {
+  width?: number;
+  height?: number;
+  showLabels?: boolean;
+  animated?: boolean;
+  duration?: number;
+  maxValue?: number;
+}
+
+interface RadarChartDataPoint {
+  label: string;
+  value: number;
+}
 
 type Props = {
   data: RadarChartDataPoint[];

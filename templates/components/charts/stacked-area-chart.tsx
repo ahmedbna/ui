@@ -1,6 +1,3 @@
-// components/ui/charts/stacked-area-chart.tsx
-
-import { ChartConfig } from '@/components/ui/charts/types';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { useEffect, useState } from 'react';
 import { LayoutChangeEvent, View, ViewStyle } from 'react-native';
@@ -21,6 +18,16 @@ import Svg, {
 
 // Animated SVG Components
 const AnimatedPath = Animated.createAnimatedComponent(Path);
+
+interface ChartConfig {
+  width?: number;
+  height?: number;
+  padding?: number;
+  showGrid?: boolean;
+  showLabels?: boolean;
+  animated?: boolean;
+  duration?: number;
+}
 
 export interface StackedAreaDataPoint {
   x: number;

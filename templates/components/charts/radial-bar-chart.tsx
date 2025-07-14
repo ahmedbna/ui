@@ -1,6 +1,3 @@
-// components/ui/charts/radial-bar-chart.tsx
-
-import { ChartConfig, ChartDataPoint } from '@/components/ui/charts/types';
 import { Text } from '@/components/ui/text';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { useEffect, useState } from 'react';
@@ -20,6 +17,19 @@ import Svg, {
 
 // Animated SVG Components
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
+
+interface ChartConfig {
+  padding?: number;
+  animated?: boolean;
+  duration?: number;
+  gradient?: boolean;
+}
+
+interface ChartDataPoint {
+  label: string;
+  value: number;
+  color?: string;
+}
 
 type Props = {
   data: ChartDataPoint[];

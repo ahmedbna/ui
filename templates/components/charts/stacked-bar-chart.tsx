@@ -1,6 +1,5 @@
 // components/ui/charts/stacked-bar-chart.tsx
 
-import { ChartConfig } from '@/components/ui/charts/types';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { useEffect, useState } from 'react';
 import { LayoutChangeEvent, View, ViewStyle } from 'react-native';
@@ -13,6 +12,16 @@ import Svg, { G, Line, Rect, Text as SvgText } from 'react-native-svg';
 
 // Animated SVG Components
 const AnimatedRect = Animated.createAnimatedComponent(Rect);
+
+interface ChartConfig {
+  width?: number;
+  height?: number;
+  padding?: number;
+  showGrid?: boolean;
+  showLabels?: boolean;
+  animated?: boolean;
+  duration?: number;
+}
 
 export interface StackedBarDataPoint {
   label: string;
@@ -81,13 +90,13 @@ export const StackedBarChart = ({
 
   // Default colors if not provided
   const defaultColors = [
-    primaryColor,
     '#8884d8',
     '#82ca9d',
     '#ffc658',
     '#ff7300',
     '#00ff00',
     '#0088fe',
+    primaryColor,
   ];
 
   const seriesColors =

@@ -1,0 +1,232 @@
+---
+title: Pie Chart
+description: A customizable pie chart component with smooth animations and flexible styling.
+---
+
+<ComponentPreview
+  name='pie-chart-demo'
+  description='A pie chart with smooth animations'
+/>
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx bna-ui add pie-chart
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the required dependencies.</Step>
+
+```bash
+npm install react-native-svg react-native-reanimated react-native-gesture-handler
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name='pie-chart' title='components/ui/charts/pie-chart.tsx' />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { PieChart } from '@/components/charts/pie-chart';
+```
+
+```tsx
+const data = [
+  { label: 'Sales', value: 120 },
+  { label: 'Marketing', value: 98 },
+  { label: 'Support', value: 86 },
+  { label: 'Development', value: 140 },
+];
+
+<PieChart
+  data={data}
+  config={{
+    height: 200,
+    showLabels: true,
+    animated: true,
+  }}
+/>;
+```
+
+## Examples
+
+<ExamplesGrid>
+
+<div>
+#### Basic Pie Chart
+
+<ComponentPreview
+  name='pie-chart-demo'
+  description='A pie chart with smooth animations'
+/>
+
+</div>
+
+<div>
+#### Sample Pie Chart
+
+<ComponentPreview name='pie-chart-sample' description='A sample pie chart' />
+
+</div>
+
+<div>
+#### Styled Pie Chart
+
+<ComponentPreview
+  name='pie-chart-styled'
+  description='A customized pie chart with custom colors and styling'
+/>
+
+</div>
+
+<div>
+#### Large Pie Chart
+
+<ComponentPreview
+  name='pie-chart-large'
+  description='A pie chart with large dataset'
+/>
+
+</div>
+
+</ExamplesGrid>
+
+## API Reference
+
+### PieChart
+
+A customizable pie chart component with smooth animations and flexible styling. Perfect for displaying proportional data with emphasis on parts of a whole.
+
+| Prop     | Type               | Default | Description                                   |
+| -------- | ------------------ | ------- | --------------------------------------------- |
+| `data`   | `ChartDataPoint[]` | -       | Array of data points to display on the chart. |
+| `config` | `ChartConfig`      | `{}`    | Configuration object for chart appearance.    |
+| `style`  | `ViewStyle`        | -       | Additional styles to apply to the chart.      |
+
+### ChartDataPoint
+
+| Property | Type     | Default | Description                          |
+| -------- | -------- | ------- | ------------------------------------ |
+| `label`  | `string` | -       | The label for the data point.        |
+| `value`  | `number` | -       | The value for the data point.        |
+| `color`  | `string` | -       | Optional custom color for the slice. |
+
+### ChartConfig
+
+| Property     | Type      | Default | Description                                       |
+| ------------ | --------- | ------- | ------------------------------------------------- |
+| `width`      | `number`  | -       | Fixed width of the chart (auto-sizes if omitted). |
+| `height`     | `number`  | `200`   | Height of the chart.                              |
+| `showLabels` | `boolean` | `true`  | Whether to show percentage labels on slices.      |
+| `animated`   | `boolean` | `true`  | Whether to animate the chart on load.             |
+| `duration`   | `number`  | `1000`  | Animation duration in milliseconds.               |
+
+## Features
+
+- **Circular Layout**: Displays data as slices of a circle for proportional visualization
+- **Smooth Animations**: Built-in animations using React Native Reanimated
+- **Responsive Design**: Automatically adapts to container width
+- **Custom Colors**: Support for individual slice colors
+- **Percentage Labels**: Shows percentage values on each slice
+- **Legend Display**: Displays legend with colors and values below the chart
+- **Theme Integration**: Uses theme colors for consistent styling
+- **Auto-sizing**: Automatically calculates optimal size based on container
+
+## Use Cases
+
+Pie charts are particularly effective for:
+
+- **Market Share**: Displaying market share distribution
+- **Budget Breakdown**: Showing expense categories as percentages
+- **Survey Results**: Visualizing response distributions
+- **Demographics**: Displaying population segments
+- **Resource Allocation**: Showing how resources are distributed
+- **Progress Tracking**: Displaying completion vs remaining work
+
+## Design Considerations
+
+The circular layout of the PieChart makes it ideal for:
+
+- **Proportional Data**: Best for showing parts of a whole
+- **Limited Categories**: Works best with 2-8 categories
+- **Percentage Focus**: Emphasizes relative proportions over absolute values
+- **Quick Comparison**: Easy to see largest and smallest segments
+
+## Accessibility
+
+The PieChart component includes several accessibility features:
+
+- Semantic SVG structure for screen readers
+- Proper contrast ratios for visual elements
+- Text labels for both percentages and categories
+- Legend with colors and values
+- Keyboard navigation support
+
+## Performance
+
+The component is optimized for performance:
+
+- Uses React Native Reanimated for smooth 60fps animations
+- Efficient SVG rendering with minimal re-renders
+- Automatic cleanup of animation values
+- Responsive layout calculations
+
+## Styling
+
+The component integrates with your theme system:
+
+- Uses theme colors (`primary`, `blue`, `green`, `orange`, `purple`, `pink`) for default slice colors
+- Uses white text for percentage labels on slices
+- Supports custom colors per data point
+- Consistent legend styling with theme colors
+
+## Animation
+
+The chart features smooth entry animations:
+
+- Slices animate with opacity fade-in effect
+- Configurable animation duration
+- Can be disabled for instant rendering
+- Uses React Native Reanimated for optimal performance
+
+## Mathematical Calculations
+
+The component automatically handles:
+
+- **Percentage Calculations**: Converts values to percentages
+- **Angle Calculations**: Converts percentages to slice angles
+- **Arc Path Generation**: Creates proper SVG arc paths
+- **Label Positioning**: Calculates optimal label positions within slices
+- **Legend Generation**: Creates legend items with colors and values
+
+## Best Practices
+
+When using pie charts:
+
+- **Limit Categories**: Keep to 2-8 categories for clarity
+- **Order by Size**: Consider ordering slices by size for better readability
+- **Use Contrasting Colors**: Ensure sufficient contrast between adjacent slices
+- **Provide Legend**: Always include a legend for color identification
+- **Consider Alternatives**: For many categories, consider using a bar chart instead

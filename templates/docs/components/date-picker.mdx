@@ -94,7 +94,15 @@ const [selectedDate, setSelectedDate] = useState<Date | undefined>();
   name='date-picker-datetime'
   description='A combined date and time picker'
 />
+</div>
 
+<div>
+#### Date Range
+
+<ComponentPreview
+  name='date-picker-range'
+  description='Date picker range'
+/>
 </div>
 
 <div>
@@ -104,7 +112,6 @@ const [selectedDate, setSelectedDate] = useState<Date | undefined>();
   name='date-picker-constraints'
   description='Date picker with minimum and maximum date limits'
 />
-
 </div>
 
 <div>
@@ -114,7 +121,6 @@ const [selectedDate, setSelectedDate] = useState<Date | undefined>();
   name='date-picker-variants'
   description='Date pickers with different styling variants'
 />
-
 </div>
 
 <div>
@@ -144,28 +150,29 @@ const [selectedDate, setSelectedDate] = useState<Date | undefined>();
 
 The main date picker component that handles date and time selection.
 
-| Prop          | Type                               | Default         | Description                                      |
-| ------------- | ---------------------------------- | --------------- | ------------------------------------------------ |
-| `label`       | `string`                           | -               | Label text displayed above the picker.           |
-| `value`       | `Date`                             | -               | The currently selected date.                     |
-| `onChange`    | `(date: Date) => void`             | -               | Callback fired when the date changes.            |
-| `mode`        | `'date' \| 'time' \| 'datetime'`   | `'date'`        | The picker mode - date only, time only, or both. |
-| `placeholder` | `string`                           | `'Select date'` | Placeholder text when no date is selected.       |
-| `disabled`    | `boolean`                          | `false`         | Whether the picker is disabled.                  |
-| `error`       | `string`                           | -               | Error message to display.                        |
-| `minimumDate` | `Date`                             | -               | The minimum selectable date.                     |
-| `maximumDate` | `Date`                             | -               | The maximum selectable date.                     |
-| `timeFormat`  | `'12' \| '24'`                     | `'24'`          | Time format for time and datetime modes.         |
-| `variant`     | `'filled' \| 'outline' \| 'group'` | `'filled'`      | Visual variant of the picker trigger.            |
-| `style`       | `ViewStyle`                        | -               | Additional styles for the trigger container.     |
-| `labelStyle`  | `TextStyle`                        | -               | Additional styles for the label text.            |
-| `errorStyle`  | `TextStyle`                        | -               | Additional styles for the error text.            |
+| Prop          | Type                                        | Default         | Description                                      |
+| ------------- | ------------------------------------------- | --------------- | ------------------------------------------------ |
+| `label`       | `string`                                    | -               | Label text displayed above the picker.           |
+| `value`       | `Date`                                      | -               | The currently selected date.                     |
+| `onChange`    | `(date: Date) => void`                      | -               | Callback fired when the date changes.            |
+| `mode`        | `'date' \| 'range' \| 'time' \| 'datetime'` | `'date'`        | The picker mode - date only, time only, or both. |
+| `placeholder` | `string`                                    | `'Select date'` | Placeholder text when no date is selected.       |
+| `disabled`    | `boolean`                                   | `false`         | Whether the picker is disabled.                  |
+| `error`       | `string`                                    | -               | Error message to display.                        |
+| `minimumDate` | `Date`                                      | -               | The minimum selectable date.                     |
+| `maximumDate` | `Date`                                      | -               | The maximum selectable date.                     |
+| `timeFormat`  | `'12' \| '24'`                              | `'24'`          | Time format for time and datetime modes.         |
+| `variant`     | `'filled' \| 'outline' \| 'group'`          | `'filled'`      | Visual variant of the picker trigger.            |
+| `style`       | `ViewStyle`                                 | -               | Additional styles for the trigger container.     |
+| `labelStyle`  | `TextStyle`                                 | -               | Additional styles for the label text.            |
+| `errorStyle`  | `TextStyle`                                 | -               | Additional styles for the error text.            |
 
 ## Features
 
 ### Multiple Modes
 
 - **Date Mode**: Calendar-based date selection
+- **Range Mode**: Calendar-based range date selection
 - **Time Mode**: Hour and minute selection with scrollable lists
 - **DateTime Mode**: Combined date and time selection with step-by-step flow
 

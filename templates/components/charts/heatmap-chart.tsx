@@ -1,6 +1,3 @@
-// components/ui/charts/heatmap-chart.tsx
-
-import { ChartConfig, HeatmapDataPoint } from '@/components/ui/charts/types';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { useEffect, useState } from 'react';
 import { LayoutChangeEvent, View, ViewStyle } from 'react-native';
@@ -65,6 +62,23 @@ const getHeatmapColor = (
     segmentProgress
   );
 };
+
+interface ChartConfig {
+  width?: number;
+  height?: number;
+  padding?: number;
+  showLabels?: boolean;
+  animated?: boolean;
+  duration?: number;
+  colorScale?: string[];
+}
+
+interface HeatmapDataPoint {
+  row: string | number;
+  col: string | number;
+  value: number;
+  label?: string;
+}
 
 type Props = {
   data: HeatmapDataPoint[];

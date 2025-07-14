@@ -1,0 +1,254 @@
+---
+title: Heatmap Chart
+description: A customizable heatmap chart component with smooth animations and flexible color scaling for visualizing matrix data.
+---
+
+<ComponentPreview
+  name='heatmap-chart-demo'
+  description='A heatmap chart with smooth animations and color scaling'
+/>
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx bna-ui add heatmap-chart
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the required dependencies.</Step>
+
+```bash
+npm install react-native-svg react-native-reanimated react-native-gesture-handler
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource
+  name='heatmap-chart'
+  title='components/ui/charts/heatmap-chart.tsx'
+/>
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { HeatmapChart } from '@/components/charts/heatmap-chart';
+```
+
+```tsx
+const data = [
+  { row: 'Mon', col: 'Morning', value: 45 },
+  { row: 'Mon', col: 'Afternoon', value: 62 },
+  { row: 'Mon', col: 'Evening', value: 38 },
+  { row: 'Tue', col: 'Morning', value: 52 },
+  { row: 'Tue', col: 'Afternoon', value: 71 },
+  { row: 'Tue', col: 'Evening', value: 43 },
+];
+
+<HeatmapChart
+  data={data}
+  config={{
+    height: 300,
+    showLabels: true,
+    animated: true,
+    colorScale: ['#e0f2fe', '#0369a1', '#1e3a8a'],
+  }}
+/>;
+```
+
+## Examples
+
+<ExamplesGrid>
+
+<div>
+#### Basic Heatmap Chart
+
+<ComponentPreview
+  name='heatmap-chart-demo'
+  description='A heatmap chart with smooth animations and color scaling'
+/>
+
+</div>
+
+<div>
+#### Sample Heatmap Chart
+
+<ComponentPreview
+  name='heatmap-chart-sample'
+  description='A sample heatmap chart with different data'
+/>
+
+</div>
+
+<div>
+#### Styled Heatmap Chart
+
+<ComponentPreview
+  name='heatmap-chart-styled'
+  description='A customized heatmap chart with custom colors and styling'
+/>
+
+</div>
+
+<div>
+#### Large Heatmap Chart
+
+<ComponentPreview
+  name='heatmap-chart-large'
+  description='A heatmap chart with large dataset'
+/>
+
+</div>
+
+</ExamplesGrid>
+
+## API Reference
+
+### HeatmapChart
+
+A customizable heatmap chart component with smooth animations and flexible color scaling. Perfect for visualizing matrix data, correlation matrices, activity patterns, and any two-dimensional data with intensity values.
+
+| Prop     | Type                 | Default | Description                                   |
+| -------- | -------------------- | ------- | --------------------------------------------- |
+| `data`   | `HeatmapDataPoint[]` | -       | Array of data points to display on the chart. |
+| `config` | `ChartConfig`        | `{}`    | Configuration object for chart appearance.    |
+| `style`  | `ViewStyle`          | -       | Additional styles to apply to the chart.      |
+
+### HeatmapDataPoint
+
+| Property | Type               | Default | Description                               |
+| -------- | ------------------ | ------- | ----------------------------------------- |
+| `row`    | `string \| number` | -       | The row identifier for the data point.    |
+| `col`    | `string \| number` | -       | The column identifier for the data point. |
+| `value`  | `number`           | -       | The intensity value for the data point.   |
+| `label`  | `string`           | -       | Optional custom label for the data point. |
+
+### ChartConfig
+
+| Property     | Type       | Default                             | Description                                       |
+| ------------ | ---------- | ----------------------------------- | ------------------------------------------------- |
+| `width`      | `number`   | -                                   | Fixed width of the chart (auto-sizes if omitted). |
+| `height`     | `number`   | `200`                               | Height of the chart.                              |
+| `padding`    | `number`   | `20`                                | Padding around the chart.                         |
+| `showLabels` | `boolean`  | `true`                              | Whether to show labels for cells and axes.        |
+| `animated`   | `boolean`  | `true`                              | Whether to animate the chart on load.             |
+| `duration`   | `number`   | `1000`                              | Animation duration in milliseconds.               |
+| `colorScale` | `string[]` | `['#e0f2fe', '#0369a1', '#1e3a8a']` | Array of hex colors for the gradient scale.       |
+
+## Features
+
+- **Matrix Visualization**: Displays data in a grid format with color-coded intensity
+- **Smooth Animations**: Built-in staggered animations using React Native Reanimated
+- **Responsive Design**: Automatically adapts to container width
+- **Custom Color Scales**: Support for multi-color gradients
+- **Value Display**: Shows actual values within cells when space permits
+- **Axis Labels**: Displays row and column labels for context
+- **Theme Integration**: Uses theme colors for consistent styling
+- **Rounded Corners**: Aesthetic rounded cell corners
+
+## Use Cases
+
+Heatmap charts are particularly effective for:
+
+- **Activity Patterns**: Visualizing user activity across time periods
+- **Correlation Analysis**: Displaying correlation matrices between variables
+- **Performance Metrics**: Showing performance across different dimensions
+- **Geographic Data**: Visualizing data intensity across regions
+- **Quality Metrics**: Displaying quality scores across products/services
+- **Risk Assessment**: Showing risk levels across different categories
+- **Resource Utilization**: Visualizing usage patterns across time and resources
+
+## Design Considerations
+
+The HeatmapChart component is designed for:
+
+- **Data Density**: Efficiently displays large amounts of matrix data
+- **Pattern Recognition**: Color coding helps identify patterns and outliers
+- **Comparative Analysis**: Easy to compare values across rows and columns
+- **Scalability**: Handles varying grid sizes automatically
+- **Accessibility**: High contrast colors and value labels for clarity
+
+## Color Scaling
+
+The heatmap uses intelligent color interpolation:
+
+- **Gradient Generation**: Smoothly interpolates between multiple colors
+- **Value Normalization**: Automatically scales colors based on data range
+- **Custom Palettes**: Supports any number of colors in the scale
+- **Contrast Optimization**: Automatically adjusts text color for readability
+
+## Animation
+
+The chart features sophisticated entry animations:
+
+- **Staggered Reveal**: Cells animate in sequence for visual appeal
+- **Opacity Transitions**: Smooth fade-in effects
+- **Configurable Timing**: Adjustable animation duration
+- **Performance Optimized**: Uses React Native Reanimated for 60fps animations
+
+## Accessibility
+
+The HeatmapChart component includes several accessibility features:
+
+- **Semantic Structure**: Proper SVG structure for screen readers
+- **Value Labels**: Numeric values displayed within cells
+- **High Contrast**: Automatic text color adjustment for readability
+- **Descriptive Labels**: Row and column labels provide context
+- **Keyboard Navigation**: Supports focus management
+
+## Performance
+
+The component is optimized for performance:
+
+- **Efficient Rendering**: Uses SVG for crisp graphics at any scale
+- **Animation Optimization**: Leverages React Native Reanimated
+- **Memory Management**: Efficient data structures and cleanup
+- **Responsive Layout**: Minimal re-renders on size changes
+
+## Styling
+
+The component integrates with your theme system:
+
+- **Theme Colors**: Uses `mutedForeground` and `foreground` from theme
+- **Custom Color Scales**: Override default colors with custom palettes
+- **Consistent Spacing**: Maintains consistent cell spacing and padding
+- **Rounded Aesthetics**: Configurable border radius for cells
+
+## Data Requirements
+
+The heatmap requires properly structured data:
+
+- **Complete Coverage**: All row/column combinations should be provided
+- **Numeric Values**: Values must be numeric for proper color scaling
+- **Consistent Types**: Row and column identifiers should be consistent
+- **Sorted Data**: Data is automatically sorted but pre-sorting improves performance
+
+## Best Practices
+
+For optimal results with HeatmapChart:
+
+- **Meaningful Labels**: Use descriptive row and column labels
+- **Appropriate Color Scales**: Choose colors that represent your data semantically
+- **Reasonable Grid Size**: Consider screen size when determining grid dimensions
+- **Value Ranges**: Ensure your data has sufficient range for meaningful color variation
+- **Loading States**: Consider showing loading indicators for large datasets

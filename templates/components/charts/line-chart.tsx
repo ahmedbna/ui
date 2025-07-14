@@ -1,6 +1,3 @@
-// components/ui/charts/line-chart.tsx
-
-import { ChartConfig, LineChartDataPoint } from '@/components/ui/charts/types';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { useEffect, useState } from 'react';
 import { LayoutChangeEvent, View, ViewStyle } from 'react-native';
@@ -23,6 +20,27 @@ import Svg, {
   Stop,
   Text as SvgText,
 } from 'react-native-svg';
+
+interface ChartConfig {
+  width?: number;
+  height?: number;
+  padding?: number;
+  showGrid?: boolean;
+  showLabels?: boolean;
+  animated?: boolean;
+  duration?: number;
+  gradient?: boolean;
+  interactive?: boolean;
+  showYLabels?: boolean;
+  yLabelCount?: number;
+  yAxisWidth?: number;
+}
+
+export type ChartDataPoint = {
+  x: string | number;
+  y: number;
+  label?: string;
+};
 
 // Utility functions
 const createPath = (points: { x: number; y: number }[]): string => {
@@ -59,12 +77,22 @@ const createAreaPath = (
   return path;
 };
 
+// Helper function to format numbers for display
+const formatNumber = (num: number): string => {
+  if (num >= 1000000) {
+    return (num / 1000000).toFixed(1) + 'M';
+  } else if (num >= 1000) {
+    return (num / 1000).toFixed(1) + 'K';
+  }
+  return num.toFixed(0);
+};
+
 // Animated SVG Components
 const AnimatedPath = Animated.createAnimatedComponent(Path);
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
 type Props = {
-  data: LineChartDataPoint[];
+  data: ChartDataPoint[];
   config?: ChartConfig;
   style?: ViewStyle;
 };
@@ -81,6 +109,9 @@ export const LineChart = ({ data, config = {}, style }: Props) => {
     duration = 1000,
     gradient = false,
     interactive = false,
+    showYLabels = true,
+    yLabelCount = 5,
+    yAxisWidth = 20,
   } = config;
 
   // Use measured width or fallback to config width or default
@@ -114,17 +145,30 @@ export const LineChart = ({ data, config = {}, style }: Props) => {
   const minValue = Math.min(...data.map((d) => d.y));
   const valueRange = maxValue - minValue || 1;
 
-  const innerChartWidth = chartWidth - padding * 2;
+  // Adjust padding to account for y-axis labels
+  const leftPadding = showYLabels ? padding + yAxisWidth : padding;
+  const innerChartWidth = chartWidth - leftPadding - padding;
   const chartHeight = height - padding * 2;
 
   // Convert data to screen coordinates
   const points = data.map((point, index) => ({
-    x: padding + (index / (data.length - 1)) * innerChartWidth,
+    x: leftPadding + (index / (data.length - 1)) * innerChartWidth,
     y: padding + ((maxValue - point.y) / valueRange) * chartHeight,
   }));
 
   const pathData = createPath(points);
   const areaPathData = gradient ? createAreaPath(points, height - padding) : '';
+
+  // Generate y-axis labels
+  const yAxisLabels = [];
+  if (showYLabels) {
+    for (let i = 0; i < yLabelCount; i++) {
+      const ratio = i / (yLabelCount - 1);
+      const value = maxValue - ratio * valueRange;
+      const y = padding + ratio * chartHeight;
+      yAxisLabels.push({ value, y });
+    }
+  }
 
   // Fixed animated props for SVG components
   const areaAnimatedProps = useAnimatedProps(() => ({
@@ -180,19 +224,52 @@ export const LineChart = ({ data, config = {}, style }: Props) => {
               )}
             </Defs>
 
+            {/* Y-axis labels */}
+            {showYLabels && (
+              <G>
+                {yAxisLabels.map((label, index) => (
+                  <SvgText
+                    key={`y-label-${index}`}
+                    x={leftPadding - 10}
+                    y={label.y + 4}
+                    textAnchor='end'
+                    fontSize={10}
+                    fill={mutedColor}
+                  >
+                    {formatNumber(label.value)}
+                  </SvgText>
+                ))}
+              </G>
+            )}
+
             {/* Grid lines */}
             {showGrid && (
               <G>
-                {[0, 0.25, 0.5, 0.75, 1].map((ratio, index) => (
+                {/* Horizontal grid lines */}
+                {yAxisLabels.map((label, index) => (
                   <Line
-                    key={`grid-${index}`}
-                    x1={padding}
-                    y1={padding + ratio * chartHeight}
+                    key={`grid-h-${index}`}
+                    x1={leftPadding}
+                    y1={label.y}
                     x2={chartWidth - padding}
-                    y2={padding + ratio * chartHeight}
+                    y2={label.y}
                     stroke={mutedColor}
                     strokeWidth={0.5}
                     opacity={0.3}
+                  />
+                ))}
+
+                {/* Vertical grid lines */}
+                {points.map((point, index) => (
+                  <Line
+                    key={`grid-v-${index}`}
+                    x1={point.x}
+                    y1={padding}
+                    x2={point.x}
+                    y2={height - padding}
+                    stroke={mutedColor}
+                    strokeWidth={0.5}
+                    opacity={0.2}
                   />
                 ))}
               </G>
@@ -247,16 +324,16 @@ export const LineChart = ({ data, config = {}, style }: Props) => {
               );
             })}
 
-            {/* Labels */}
+            {/* X-axis labels */}
             {showLabels && (
               <G>
                 {data.map((point, index) => (
                   <SvgText
-                    key={`label-${index}`}
+                    key={`x-label-${index}`}
                     x={points[index].x}
                     y={height - 5}
                     textAnchor='middle'
-                    fontSize={12}
+                    fontSize={10}
                     fill={mutedColor}
                   >
                     {point.label || point.x.toString()}

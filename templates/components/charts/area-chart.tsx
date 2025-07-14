@@ -1,11 +1,29 @@
-// components/ui/charts/area-chart.tsx
-
-import { LineChart } from '@/components/ui/charts/line-chart';
-import { ChartConfig, LineChartDataPoint } from '@/components/ui/charts/types';
+import { LineChart } from '@/components/charts/line-chart';
 import { ViewStyle } from 'react-native';
 
+interface ChartConfig {
+  width?: number;
+  height?: number;
+  padding?: number;
+  showGrid?: boolean;
+  showLabels?: boolean;
+  animated?: boolean;
+  duration?: number;
+  gradient?: boolean;
+  interactive?: boolean;
+  showYLabels?: boolean;
+  yLabelCount?: number;
+  yAxisWidth?: number;
+}
+
+interface ChartDataPoint {
+  x: string | number;
+  y: number;
+  label?: string;
+}
+
 type Props = {
-  data: LineChartDataPoint[];
+  data: ChartDataPoint[];
   config?: ChartConfig;
   style?: ViewStyle;
 };

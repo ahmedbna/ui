@@ -1,6 +1,3 @@
-// components/ui/charts/candlestick-chart.tsx
-
-import { ChartConfig } from '@/components/ui/charts/types';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { useEffect, useState } from 'react';
 import { LayoutChangeEvent, View, ViewStyle } from 'react-native';
@@ -15,7 +12,17 @@ import Svg, { G, Line, Rect, Text as SvgText } from 'react-native-svg';
 const AnimatedRect = Animated.createAnimatedComponent(Rect);
 const AnimatedLine = Animated.createAnimatedComponent(Line);
 
-export interface CandlestickDataPoint {
+interface ChartConfig {
+  width?: number;
+  height?: number;
+  padding?: number;
+  showGrid?: boolean;
+  showLabels?: boolean;
+  animated?: boolean;
+  duration?: number;
+}
+
+interface CandlestickDataPoint {
   date: string;
   open: number;
   high: number;
@@ -35,10 +42,10 @@ export const CandlestickChart = ({ data, config = {}, style }: Props) => {
   const {
     height = 200,
     padding = 20,
+    showGrid = true,
     showLabels = true,
     animated = true,
     duration = 800,
-    showGrid = true,
   } = config;
 
   // Use measured width or fallback to config width or default

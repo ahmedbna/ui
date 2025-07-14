@@ -1,0 +1,240 @@
+---
+title: Scatter Chart
+description: A customizable scatter plot component with smooth animations and flexible styling for visualizing data relationships.
+---
+
+<ComponentPreview
+  name='scatter-chart-demo'
+  description='A scatter plot with smooth animations'
+/>
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx bna-ui add scatter-chart
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the required dependencies.</Step>
+
+```bash
+npm install react-native-svg react-native-reanimated react-native-gesture-handler
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource
+  name='scatter-chart'
+  title='components/ui/charts/scatter-chart.tsx'
+/>
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { ScatterPlot } from '@/components/charts/scatter-chart';
+```
+
+```tsx
+const data = [
+  { x: 10, y: 20, label: 'Point A' },
+  { x: 25, y: 35, label: 'Point B' },
+  { x: 40, y: 15, label: 'Point C' },
+  { x: 55, y: 45, label: 'Point D' },
+];
+
+<ScatterPlot
+  data={data}
+  config={{
+    height: 300,
+    showLabels: true,
+    animated: true,
+  }}
+/>;
+```
+
+## Examples
+
+<ExamplesGrid>
+
+<div>
+#### Basic Scatter Chart
+
+<ComponentPreview
+  name='scatter-chart-demo'
+  description='A scatter plot with smooth animations'
+/>
+
+</div>
+
+<div>
+#### Sample Scatter Chart
+
+<ComponentPreview
+  name='scatter-chart-sample'
+  description='A sample scatter chart with various data points'
+/>
+
+</div>
+
+<div>
+#### Styled Scatter Chart
+
+<ComponentPreview
+  name='scatter-chart-styled'
+  description='A customized scatter chart with custom colors and styling'
+/>
+
+</div>
+
+<div>
+#### Large Scatter Chart
+
+<ComponentPreview
+  name='scatter-chart-large'
+  description='A scatter chart with large dataset'
+/>
+
+</div>
+
+</ExamplesGrid>
+
+## API Reference
+
+### ScatterPlot
+
+A customizable scatter plot component with smooth animations and flexible styling. Perfect for visualizing relationships between two numerical variables and identifying patterns, trends, or outliers in data.
+
+| Prop     | Type               | Default | Description                                   |
+| -------- | ------------------ | ------- | --------------------------------------------- |
+| `data`   | `ChartDataPoint[]` | -       | Array of data points to display on the chart. |
+| `config` | `ChartConfig`      | `{}`    | Configuration object for chart appearance.    |
+| `style`  | `ViewStyle`        | -       | Additional styles to apply to the chart.      |
+
+### ChartDataPoint
+
+| Property | Type     | Default | Description                          |
+| -------- | -------- | ------- | ------------------------------------ |
+| `x`      | `number` | -       | The x-coordinate for the data point. |
+| `y`      | `number` | -       | The y-coordinate for the data point. |
+| `label`  | `string` | -       | Optional label for the data point.   |
+
+### ChartConfig
+
+| Property     | Type      | Default | Description                                       |
+| ------------ | --------- | ------- | ------------------------------------------------- |
+| `width`      | `number`  | -       | Fixed width of the chart (auto-sizes if omitted). |
+| `height`     | `number`  | `200`   | Height of the chart.                              |
+| `padding`    | `number`  | `20`    | Padding around the chart.                         |
+| `showGrid`   | `boolean` | `true`  | Whether to show grid lines.                       |
+| `showLabels` | `boolean` | `true`  | Whether to show axis labels.                      |
+| `animated`   | `boolean` | `true`  | Whether to animate the chart on load.             |
+| `duration`   | `number`  | `800`   | Animation duration in milliseconds.               |
+
+## Features
+
+- **Correlation Analysis**: Visualizes relationships between two numerical variables
+- **Smooth Animations**: Built-in animations using React Native Reanimated
+- **Responsive Design**: Automatically adapts to container width
+- **Grid Lines**: Optional grid lines for better data reading
+- **Axis Labels**: Shows min, max, and middle values on both axes
+- **Theme Integration**: Uses theme colors for consistent styling
+- **Staggered Animation**: Points animate in sequence for visual appeal
+
+## Use Cases
+
+Scatter charts are particularly effective for:
+
+- **Correlation Analysis**: Identifying relationships between variables
+- **Trend Identification**: Spotting patterns in data distributions
+- **Outlier Detection**: Finding unusual data points
+- **Performance Metrics**: Plotting performance vs. effort, cost vs. benefit
+- **Scientific Data**: Displaying experimental results or measurements
+- **Market Analysis**: Price vs. volume, risk vs. return analysis
+
+## Design Considerations
+
+The ScatterPlot component is optimized for:
+
+- **Data Exploration**: Interactive visualization of data relationships
+- **Pattern Recognition**: Clear visual representation of data clusters
+- **Multi-dimensional Analysis**: Two-variable comparison in a single view
+- **Statistical Analysis**: Visual correlation and regression analysis
+
+## Accessibility
+
+The ScatterPlot component includes several accessibility features:
+
+- Semantic SVG structure for screen readers
+- Proper contrast ratios for visual elements
+- Clear axis labels with numerical values
+- Grid lines for better data point reference
+- Supports dynamic text sizing
+
+## Performance
+
+The component is optimized for performance:
+
+- Uses React Native Reanimated for smooth 60fps animations
+- Efficient SVG rendering with minimal re-renders
+- Automatic cleanup of animation values
+- Responsive layout calculations
+- Optimized for large datasets
+
+## Styling
+
+The component integrates with your theme system:
+
+- Uses `primary` color from theme for data points
+- Uses `mutedForeground` color for grid lines and labels
+- Consistent with overall design system
+- Customizable point sizes and colors
+
+## Animation
+
+The chart features smooth entry animations:
+
+- Points animate from 0 opacity and size to full visibility
+- Staggered animation creates a ripple effect
+- Configurable animation duration
+- Can be disabled for instant rendering
+- Uses React Native Reanimated for optimal performance
+
+## Mathematical Considerations
+
+The scatter plot automatically handles:
+
+- **Axis Scaling**: Automatically calculates appropriate scales for both axes
+- **Data Normalization**: Converts data values to screen coordinates
+- **Boundary Handling**: Ensures all points fit within the chart area
+- **Grid Positioning**: Evenly distributes grid lines across the chart
+
+## Data Interpretation
+
+Scatter plots help identify:
+
+- **Positive Correlation**: Points trending upward from left to right
+- **Negative Correlation**: Points trending downward from left to right
+- **No Correlation**: Points scattered without clear pattern
+- **Outliers**: Points significantly distant from the main cluster
+- **Clusters**: Groups of points in specific regions

@@ -1,6 +1,5 @@
 // components/ui/charts/pie-chart.tsx
 
-import { ChartConfig, ChartDataPoint } from '@/components/ui/charts/types';
 import { Text } from '@/components/ui/text';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { useEffect, useState } from 'react';
@@ -14,6 +13,20 @@ import Svg, { G, Path, Text as SvgText } from 'react-native-svg';
 
 // Animated SVG Components
 const AnimatedPath = Animated.createAnimatedComponent(Path);
+
+interface ChartConfig {
+  width?: number;
+  height?: number;
+  showLabels?: boolean;
+  animated?: boolean;
+  duration?: number;
+}
+
+interface ChartDataPoint {
+  label: string;
+  value: number;
+  color?: string;
+}
 
 type Props = {
   data: ChartDataPoint[];

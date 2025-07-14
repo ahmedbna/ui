@@ -1,6 +1,3 @@
-// components/ui/charts/scatter-chart.tsx
-
-import { ChartConfig, LineChartDataPoint } from '@/components/ui/charts/types';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { useEffect, useState } from 'react';
 import { LayoutChangeEvent, View, ViewStyle } from 'react-native';
@@ -16,11 +13,28 @@ import Svg, { Circle, G, Line, Text as SvgText } from 'react-native-svg';
 // Animated SVG Components
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
+interface ChartConfig {
+  width?: number;
+  height?: number;
+  padding?: number;
+  showGrid?: boolean;
+  showLabels?: boolean;
+  animated?: boolean;
+  duration?: number;
+}
+
+export type ChartDataPoint = {
+  x: number;
+  y: number;
+  label?: string;
+};
+
 type Props = {
-  data: LineChartDataPoint[];
+  data: ChartDataPoint[];
   config?: ChartConfig;
   style?: ViewStyle;
 };
+
 // Scatter Plot Component
 export const ScatterPlot = ({ data, config = {}, style }: Props) => {
   const [containerWidth, setContainerWidth] = useState(300);
