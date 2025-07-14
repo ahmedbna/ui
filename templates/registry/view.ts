@@ -19,8 +19,8 @@ export const viewRegistry = {
       },
     ],
     preview: {
-      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5760.PNG',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5760.PNG',
+      light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5760.PNG',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5760.PNG',
     },
   },
 
@@ -40,8 +40,8 @@ export const viewRegistry = {
       },
     ],
     preview: {
-      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5760.PNG',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5760.PNG',
+      light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5760.PNG',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5760.PNG',
     },
   },
 };

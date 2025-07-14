@@ -18,8 +18,8 @@ export const separatorRegistry = {
       },
     ],
     preview: {
-      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5781.PNG',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5781.PNG',
+      light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5781.PNG',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5781.PNG',
     },
   },
 
@@ -39,8 +39,8 @@ export const separatorRegistry = {
       },
     ],
     preview: {
-      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5781.PNG',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5781.PNG',
+      light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5781.PNG',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5781.PNG',
     },
   },
 
@@ -60,8 +60,8 @@ export const separatorRegistry = {
       },
     ],
     preview: {
-      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5782.PNG',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5782.PNG',
+      light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5782.PNG',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5782.PNG',
     },
   },
 
@@ -81,8 +81,8 @@ export const separatorRegistry = {
       },
     ],
     preview: {
-      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5783.PNG',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5783.PNG',
+      light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5783.PNG',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5783.PNG',
     },
   },
 
@@ -102,8 +102,8 @@ export const separatorRegistry = {
       },
     ],
     preview: {
-      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5784.PNG',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5784.PNG',
+      light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5784.PNG',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5784.PNG',
     },
   },
 
@@ -123,8 +123,8 @@ export const separatorRegistry = {
       },
     ],
     preview: {
-      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5785.PNG',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5785.PNG',
+      light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5785.PNG',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5785.PNG',
     },
   },
 };

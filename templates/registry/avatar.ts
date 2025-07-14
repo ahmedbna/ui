@@ -18,8 +18,8 @@ export const avatarRegistry = {
       },
     ],
     preview: {
-      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5446.PNG',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5446.PNG',
+      light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5446.PNG',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5446.PNG',
     },
   },
 
@@ -39,8 +39,8 @@ export const avatarRegistry = {
       },
     ],
     preview: {
-      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5446.PNG',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5446.PNG',
+      light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5446.PNG',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5446.PNG',
     },
   },
 
@@ -60,8 +60,8 @@ export const avatarRegistry = {
       },
     ],
     preview: {
-      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5447.PNG',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5447.PNG',
+      light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5447.PNG',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5447.PNG',
     },
   },
 
@@ -81,8 +81,8 @@ export const avatarRegistry = {
       },
     ],
     preview: {
-      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5448.PNG',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5448.PNG',
+      light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5448.PNG',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5448.PNG',
     },
   },
 
@@ -102,8 +102,8 @@ export const avatarRegistry = {
       },
     ],
     preview: {
-      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5449.PNG',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5449.PNG',
+      light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5449.PNG',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5449.PNG',
     },
   },
 
@@ -123,8 +123,8 @@ export const avatarRegistry = {
       },
     ],
     preview: {
-      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5450.PNG',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5450.PNG',
+      light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5450.PNG',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5450.PNG',
     },
   },
 
@@ -144,8 +144,8 @@ export const avatarRegistry = {
       },
     ],
     preview: {
-      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5451.PNG',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5451.PNG',
+      light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5451.PNG',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5451.PNG',
     },
   },
 
@@ -165,8 +165,8 @@ export const avatarRegistry = {
       },
     ],
     preview: {
-      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5452.PNG',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5452.PNG',
+      light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5452.PNG',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5452.PNG',
     },
   },
 };

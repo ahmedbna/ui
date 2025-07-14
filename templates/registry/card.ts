@@ -19,8 +19,8 @@ export const cardRegistry = {
       },
     ],
     preview: {
-      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5489.PNG',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5489.PNG',
+      light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5489.PNG',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5489.PNG',
     },
   },
 
@@ -40,8 +40,8 @@ export const cardRegistry = {
       },
     ],
     preview: {
-      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5489.PNG',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5489.PNG',
+      light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5489.PNG',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5489.PNG',
     },
   },
 
@@ -61,8 +61,8 @@ export const cardRegistry = {
       },
     ],
     preview: {
-      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5490.PNG',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5490.PNG',
+      light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5490.PNG',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5490.PNG',
     },
   },
 
@@ -82,8 +82,8 @@ export const cardRegistry = {
       },
     ],
     preview: {
-      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5492.PNG',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5492.PNG',
+      light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5492.PNG',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5492.PNG',
     },
   },
 
@@ -103,8 +103,8 @@ export const cardRegistry = {
       },
     ],
     preview: {
-      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5493.PNG',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5493.PNG',
+      light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5493.PNG',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5493.PNG',
     },
   },
 
@@ -124,8 +124,8 @@ export const cardRegistry = {
       },
     ],
     preview: {
-      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5494.PNG',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5494.PNG',
+      light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5494.PNG',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5494.PNG',
     },
   },
 
@@ -145,8 +145,8 @@ export const cardRegistry = {
       },
     ],
     preview: {
-      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5495.PNG',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5495.PNG',
+      light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5495.PNG',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5495.PNG',
     },
   },
 
@@ -166,8 +166,8 @@ export const cardRegistry = {
       },
     ],
     preview: {
-      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5496.PNG',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5496.PNG',
+      light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5496.PNG',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5496.PNG',
     },
   },
 };

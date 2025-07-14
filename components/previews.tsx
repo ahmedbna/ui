@@ -39,12 +39,12 @@ const items = [
     dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 09-23-30_1.MP4',
   },
   {
-    light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5449.PNG',
-    dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5449.PNG',
+    light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5449.PNG',
+    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5449.PNG',
   },
   {
-    light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5494.PNG',
-    dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5494.PNG',
+    light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5494.PNG',
+    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5494.PNG',
   },
   {
     light:
