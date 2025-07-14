@@ -25,8 +25,8 @@ export const bubbleChartRegistry = {
     ],
     preview: {
       light:
-        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 15-40-44_1.mov',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 15-40-44_1.mov',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 15-40-44_1.mov',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 15-40-44_1.mov',
     },
   },
 
@@ -48,8 +48,8 @@ export const bubbleChartRegistry = {
     ],
     preview: {
       light:
-        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 15-40-44_1.mov',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 15-40-44_1.mov',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 15-40-44_1.mov',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 15-40-44_1.mov',
     },
   },
 
@@ -70,8 +70,8 @@ export const bubbleChartRegistry = {
     ],
     preview: {
       light:
-        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 15-41-01_1.mov',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 15-41-01_1.mov',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 15-41-01_1.mov',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 15-41-01_1.mov',
     },
   },
 
@@ -92,8 +92,8 @@ export const bubbleChartRegistry = {
     ],
     preview: {
       light:
-        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 15-41-57_1.mov',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 15-41-57_1.mov',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 15-41-57_1.mov',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 15-41-57_1.mov',
     },
   },
 
@@ -114,8 +114,8 @@ export const bubbleChartRegistry = {
     ],
     preview: {
       light:
-        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 15-42-15_1.MP4',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-12-2025 15-42-15_1.MP4',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 15-42-15_1.MP4',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 15-42-15_1.MP4',
     },
   },
 };

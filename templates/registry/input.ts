@@ -20,8 +20,8 @@ export const inputRegistry = {
     ],
     preview: {
       light:
-        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 06-25-09_1.MP4',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 06-25-09_1.MP4',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-01-2025 06-25-09_1.MP4',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-01-2025 06-25-09_1.MP4',
     },
   },
 
@@ -43,8 +43,8 @@ export const inputRegistry = {
     ],
     preview: {
       light:
-        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 06-25-09_1.MP4',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 06-25-09_1.MP4',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-01-2025 06-25-09_1.MP4',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-01-2025 06-25-09_1.MP4',
     },
   },
 
@@ -66,8 +66,8 @@ export const inputRegistry = {
     ],
     preview: {
       light:
-        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 06-26-46_1.MP4',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 06-26-46_1.MP4',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-01-2025 06-26-46_1.MP4',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-01-2025 06-26-46_1.MP4',
     },
   },
 
@@ -89,8 +89,8 @@ export const inputRegistry = {
     ],
     preview: {
       light:
-        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 06-27-10_1.MP4',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 06-27-10_1.MP4',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-01-2025 06-27-10_1.MP4',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-01-2025 06-27-10_1.MP4',
     },
   },
 
@@ -112,8 +112,8 @@ export const inputRegistry = {
     ],
     preview: {
       light:
-        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 06-27-48_1.MP4',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 06-27-48_1.MP4',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-01-2025 06-27-48_1.MP4',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-01-2025 06-27-48_1.MP4',
     },
   },
 
@@ -136,8 +136,8 @@ export const inputRegistry = {
     ],
     preview: {
       light:
-        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 06-31-39_1.MP4',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 06-31-39_1.MP4',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-01-2025 06-31-39_1.MP4',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-01-2025 06-31-39_1.MP4',
     },
   },
 
@@ -158,8 +158,8 @@ export const inputRegistry = {
       },
     ],
     preview: {
-      light: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5593.PNG',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/IMG_5593.PNG',
+      light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5593.PNG',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5593.PNG',
     },
   },
 
@@ -181,8 +181,8 @@ export const inputRegistry = {
     ],
     preview: {
       light:
-        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 06-32-33_1.MP4',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 06-32-33_1.MP4',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-01-2025 06-32-33_1.MP4',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-01-2025 06-32-33_1.MP4',
     },
   },
 
@@ -204,8 +204,8 @@ export const inputRegistry = {
     ],
     preview: {
       light:
-        'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 06-33-17_1.MP4',
-      dark: 'https://bna-ui.s3.eu-north-1.amazonaws.com/ScreenRecording_07-01-2025 06-33-17_1.MP4',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-01-2025 06-33-17_1.MP4',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-01-2025 06-33-17_1.MP4',
     },
   },
 };

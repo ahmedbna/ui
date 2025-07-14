@@ -16,6 +16,13 @@ use reanimated for toast instead of react native animated
 - Toast swipe crash
 - Sortable
 
+## Keyboard Avoid
+
+- Input
+- Combobox search
+- Picker seaerch
+- Searchbar
+
 ## Registry
 
 - Separator
