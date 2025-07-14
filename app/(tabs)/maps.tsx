@@ -71,7 +71,6 @@ import { TreeMapChartStyled } from '@/templates/demo/charts/treemap-chart/treema
 import { DatePicker, DateRange } from '@/components/ui/date-picker';
 import { Text } from '@/components/ui/text';
 import { useState } from 'react';
-import { MeshGradient } from '@/components/ui/mesh-gradient';
 
 export default function MapsScreen() {
   const [selectedRange, setSelectedRange] = useState<DateRange | undefined>();
@@ -84,18 +83,16 @@ export default function MapsScreen() {
       style={{
         flex: 1,
         justifyContent: 'center',
-        padding: 10,
+        // padding: 20,
       }}
     >
-      <ColumnChartLarge />
-
-      {/* <DatePicker
+      <DatePicker
         mode='range'
         label='Select Date'
         value={selectedRange}
         onChange={setSelectedRange}
         placeholder='Choose a date'
-      /> */}
+      />
 
       {/* <DatePicker
           label='Select Date'
