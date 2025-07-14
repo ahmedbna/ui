@@ -41,8 +41,8 @@ export const lineChartRegistry = {
     files: [
       {
         type: 'registry:example',
-        path: 'templates/demo/charts/line-chart-demo/line-chart-demo.tsx',
-        target: 'components/demo/charts/line-chart-demo/line-chart-demo.tsx',
+        path: 'templates/demo/charts/line-chart/line-chart-demo.tsx',
+        target: 'components/demo/charts/line-chart/line-chart-demo.tsx',
       },
     ],
     preview: {
