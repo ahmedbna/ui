@@ -167,6 +167,7 @@ export const shareRegistry = {
     theme: [],
     files: [
       {
+        type: 'registry:example',
         path: 'templates/demo/share/share-callbacks.tsx',
         target: 'components:example',
       },
