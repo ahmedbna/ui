@@ -37,8 +37,8 @@ export const barChartRegistry = {
     files: [
       {
         type: 'registry:example',
-        path: 'templates/demo/charts/bar-chart-demo/bar-chart-demo.tsx',
-        target: 'components/demo/charts/bar-chart-demo/bar-chart-demo.tsx',
+        path: 'templates/demo/charts/bar-chart/bar-chart-demo.tsx',
+        target: 'components/demo/charts/bar-chart/bar-chart-demo.tsx',
       },
     ],
     preview: {

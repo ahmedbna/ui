@@ -28,10 +28,10 @@ import { HeatmapChartDemo } from '@/templates/demo/charts/heatmap-chart/heatmap-
 import { HeatmapChartLarge } from '@/templates/demo/charts/heatmap-chart/heatmap-chart-large';
 import { HeatmapChartSample } from '@/templates/demo/charts/heatmap-chart/heatmap-chart-sample';
 import { HeatmapChartStyled } from '@/templates/demo/charts/heatmap-chart/heatmap-chart-styled';
-import { LineChartDemo } from '@/templates/demo/charts/line-chart-demo/line-chart-demo';
-import { LineChartInteractive } from '@/templates/demo/charts/line-chart-demo/line-chart-interactive';
-import { LineChartMinimal } from '@/templates/demo/charts/line-chart-demo/line-chart-minimal';
-import { LineChartStyled } from '@/templates/demo/charts/line-chart-demo/line-chart-styled';
+import { LineChartDemo } from '@/templates/demo/charts/line-chart/line-chart-demo';
+import { LineChartInteractive } from '@/templates/demo/charts/line-chart/line-chart-interactive';
+import { LineChartMinimal } from '@/templates/demo/charts/line-chart/line-chart-minimal';
+import { LineChartStyled } from '@/templates/demo/charts/line-chart/line-chart-styled';
 import { PieChartDemo } from '@/templates/demo/charts/pie-chart/pie-chart-demo';
 import { PieChartLarge } from '@/templates/demo/charts/pie-chart/pie-chart-large';
 import { PieChartSample } from '@/templates/demo/charts/pie-chart/pie-chart-sample';
@@ -43,7 +43,7 @@ import { PolarAreaChartStyled } from '@/templates/demo/charts/polar-area-chart/p
 import { ProgressRingChartDemo } from '@/templates/demo/charts/progress-ring-chart/progress-ring-chart-demo';
 import { ProgressRingChartLarge } from '@/templates/demo/charts/progress-ring-chart/progress-ring-chart-large';
 import { ProgressRingChartStyled } from '@/templates/demo/charts/progress-ring-chart/progress-ring-chart-styled';
-import { ProgressRingChartSample } from '@/templates/demo/charts/progress-ring-chart/progress-ring-chart.sample';
+import { ProgressRingChartSample } from '@/templates/demo/charts/progress-ring-chart/progress-ring-chart-sample';
 import { RadarChartDemo } from '@/templates/demo/charts/radar-chart/radar-chart-demo';
 import { RadarChartLarge } from '@/templates/demo/charts/radar-chart/radar-chart-large';
 import { RadarChartSample } from '@/templates/demo/charts/radar-chart/radar-chart-sample';

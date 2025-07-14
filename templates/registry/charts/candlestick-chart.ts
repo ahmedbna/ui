@@ -42,9 +42,9 @@ export const candlestickChartRegistry = {
     files: [
       {
         type: 'registry:example',
-        path: 'templates/demo/charts/candlestick-chart-demo/candlestick-chart-demo.tsx',
+        path: 'templates/demo/charts/candlestick-chart/candlestick-chart-demo.tsx',
         target:
-          'components/demo/charts/candlestick-chart-demo/candlestick-chart-demo.tsx',
+          'components/demo/charts/candlestick-chart/candlestick-chart-demo.tsx',
       },
     ],
     preview: {
