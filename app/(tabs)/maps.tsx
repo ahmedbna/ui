@@ -84,15 +84,11 @@ export default function MapsScreen() {
       style={{
         flex: 1,
         justifyContent: 'center',
+        padding: 10,
       }}
     >
-      <MeshGradient
-        colors={['#667eea', '#764ba2', '#f093fb', '#f5576c']}
-        density={15}
-        blur={0.9}
-        seed={42}
-        style={{ flex: 1 }}
-      />
+      <ColumnChartLarge />
+
       {/* <DatePicker
         mode='range'
         label='Select Date'

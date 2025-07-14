@@ -50,6 +50,7 @@ import { separatorRegistry } from '@/templates/registry/separator';
 import { hooksRegistry } from '@/templates/registry/hooks';
 import { themeRegistry } from '@/templates/registry/theme';
 import { inputRegistry } from '@/templates/registry/input';
+import { chartsRegistry } from '@/templates/registry/charts';
 
 export const Index: Record<string, any> = {
   ...accordionRegistry,
@@ -104,4 +105,5 @@ export const Index: Record<string, any> = {
   ...separatorRegistry,
   ...hooksRegistry,
   ...themeRegistry,
+  ...chartsRegistry,
 };
