@@ -1,4 +1,6 @@
-import * as React from 'react';
+'use client';
+
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 
 import { siteConfig } from '@/lib/config';
@@ -19,17 +21,22 @@ export function GitHubLink() {
   );
 }
 
-export async function StarsCount() {
-  const data = await fetch('https://api.github.com/repos/ahmedbna/ui', {
-    next: { revalidate: 3600 }, // Cache for 1 hour (3600 seconds)
-  });
-  const json = await data.json();
+export function StarsCount() {
+  const [stars, setStars] = useState<number | null>(null);
+
+  useEffect(() => {
+    fetch('https://api.github.com/repos/ahmedbna/ui')
+      .then((res) => res.json())
+      .then((data) => setStars(data.stargazers_count));
+  }, []);
 
   return (
     <span className='text-muted-foreground text-xs tabular-nums'>
-      {json.stargazers_count >= 1000
-        ? `${(json.stargazers_count / 1000).toFixed(1)}k`
-        : json.stargazers_count?.toLocaleString()}
+      {stars === null
+        ? '...'
+        : stars >= 1000
+        ? `${(stars / 1000).toFixed(1)}k`
+        : stars.toLocaleString()}
     </span>
   );
 }

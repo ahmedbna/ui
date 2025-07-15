@@ -10,8 +10,9 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Previews } from '@/components/previews';
 
-export const dynamic = 'force-static';
 export const revalidate = false;
+export const dynamicParams = false;
+export const dynamic = 'force-static';
 
 export const metadata: Metadata = {
   title: 'BNA UI - Expo React Native UI Components Library',

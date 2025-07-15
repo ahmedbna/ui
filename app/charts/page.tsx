@@ -8,8 +8,9 @@ import {
 import { Button } from '@/components/ui/button';
 import { ChartsPreview } from '@/components/charts-preview';
 
-export const dynamic = 'force-static';
 export const revalidate = false;
+export const dynamicParams = false;
+export const dynamic = 'force-static';
 
 export default function Charts() {
   return (
