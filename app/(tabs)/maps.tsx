@@ -71,6 +71,11 @@ import { TreeMapChartStyled } from '@/templates/demo/charts/treemap-chart/treema
 import { DatePicker, DateRange } from '@/components/ui/date-picker';
 import { Text } from '@/components/ui/text';
 import { useState } from 'react';
+import { InputDemo } from '@/templates/demo/input/input-demo';
+import { InputForm } from '@/templates/demo/input/input-form';
+import { KeyboardAvoidingView, Platform } from 'react-native';
+import { ScrollView } from '@/components/ui/scroll-view';
+import { Input } from '@/components/ui/input';
 
 export default function MapsScreen() {
   const [selectedRange, setSelectedRange] = useState<DateRange | undefined>();
@@ -86,13 +91,29 @@ export default function MapsScreen() {
         // padding: 20,
       }}
     >
-      <DatePicker
+      <KeyboardAvoidingView
+        // style={{ flex: 1 }}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}
+      >
+        <ScrollView>
+          <Input label='Title' placeholder='Enter title' />
+          <Input
+            rows={4}
+            type='textarea'
+            label='Description'
+            placeholder='Enter description'
+          />
+        </ScrollView>
+      </KeyboardAvoidingView>
+
+      {/* <DatePicker
         mode='range'
         label='Select Date'
         value={selectedRange}
         onChange={setSelectedRange}
         placeholder='Choose a date'
-      />
+      /> */}
 
       {/* <DatePicker
           label='Select Date'
