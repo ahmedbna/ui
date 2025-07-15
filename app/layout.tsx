@@ -8,6 +8,7 @@ import { Analytics } from '@/components/analytics';
 import { SiteHeader } from '@/components/site-header';
 import { SiteFooter } from '@/components/site-footer';
 import { fontVariables } from '@/lib/fonts';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import { cn } from '@/lib/utils';
 import '@/styles/globals.css';
 
@@ -144,6 +145,7 @@ export default function RootLayout({
               <TailwindIndicator />
               <Toaster position='top-center' />
               <Analytics />
+              <SpeedInsights />
             </ActiveThemeProvider>
           </LayoutProvider>
         </ThemeProvider>
