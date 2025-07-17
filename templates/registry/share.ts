@@ -169,7 +169,7 @@ export const shareRegistry = {
       {
         type: 'registry:example',
         path: 'templates/demo/share/share-callbacks.tsx',
-        target: 'components:example',
+        target: 'components/demo/share/share-callbacks.tsx',
       },
     ],
     preview: {

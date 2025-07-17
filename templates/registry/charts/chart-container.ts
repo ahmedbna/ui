@@ -14,8 +14,8 @@ export const chartContainerRegistry = {
     files: [
       {
         type: 'registry:charts',
-        path: 'templates/components/ui/charts/chart-container.tsx',
-        target: 'components/ui/charts/chart-container.tsx',
+        path: 'templates/components/charts/chart-container.tsx',
+        target: 'components/charts/chart-container.tsx',
       },
     ],
     preview: {

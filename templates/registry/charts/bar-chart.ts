@@ -16,7 +16,7 @@ export const barChartRegistry = {
       {
         type: 'registry:charts',
         path: 'templates/components/charts/bar-chart.tsx',
-        target: 'components/ui/charts/bar-chart.tsx',
+        target: 'components/charts/bar-chart.tsx',
       },
     ],
     preview: {

@@ -20,7 +20,7 @@ export const radarChartRegistry = {
       {
         type: 'registry:charts',
         path: 'templates/components/charts/radar-chart.tsx',
-        target: 'components/ui/charts/radar-chart.tsx',
+        target: 'components/charts/radar-chart.tsx',
       },
     ],
     preview: {

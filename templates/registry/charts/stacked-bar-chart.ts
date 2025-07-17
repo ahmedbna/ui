@@ -20,7 +20,7 @@ export const stackedBarChartRegistry = {
       {
         type: 'registry:charts',
         path: 'templates/components/charts/stacked-bar-chart.tsx',
-        target: 'components/ui/charts/stacked-bar-chart.tsx',
+        target: 'components/charts/stacked-bar-chart.tsx',
       },
     ],
     preview: {

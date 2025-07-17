@@ -19,8 +19,8 @@ export const areaChartRegistry = {
     files: [
       {
         type: 'registry:charts',
-        path: 'templates/components/ui/charts/area-chart.tsx',
-        target: 'components/ui/charts/area-chart.tsx',
+        path: 'templates/components/charts/area-chart.tsx',
+        target: 'components/charts/area-chart.tsx',
       },
     ],
     preview: {

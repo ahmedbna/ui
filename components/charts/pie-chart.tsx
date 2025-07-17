@@ -1,4 +1,4 @@
-// components/ui/charts/pie-chart.tsx
+// components/charts/pie-chart.tsx
 
 import { Text } from '@/components/ui/text';
 import { useThemeColor } from '@/hooks/useThemeColor';

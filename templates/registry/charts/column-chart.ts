@@ -19,8 +19,8 @@ export const columnChartRegistry = {
     files: [
       {
         type: 'registry:charts',
-        path: 'templates/components/ui/charts/column-chart.tsx',
-        target: 'components/ui/charts/column-chart.tsx',
+        path: 'templates/components/charts/column-chart.tsx',
+        target: 'components/charts/column-chart.tsx',
       },
     ],
     preview: {
