@@ -7,7 +7,7 @@ export const doughnutChartRegistry = {
     name: 'doughnut-chart',
     description:
       'A customizable doughnut chart component with smooth animations, interactive legends, and flexible styling.',
-    type: 'registry:charts',
+    type: 'registry:ui',
     dependencies: [
       'react-native-svg',
       'react-native-reanimated',
@@ -18,7 +18,7 @@ export const doughnutChartRegistry = {
     theme: ['globals'],
     files: [
       {
-        type: 'registry:charts',
+        type: 'registry:ui',
         path: 'templates/components/charts/doughnut-chart.tsx',
         target: 'components/charts/doughnut-chart.tsx',
       },

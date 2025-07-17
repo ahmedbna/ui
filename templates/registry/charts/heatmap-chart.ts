@@ -7,7 +7,7 @@ export const heatmapChartRegistry = {
     name: 'heatmap-chart',
     description:
       'A customizable heatmap chart component with smooth animations and flexible color scaling for visualizing matrix data.',
-    type: 'registry:charts',
+    type: 'registry:ui',
     dependencies: [
       'react-native-svg',
       'react-native-reanimated',
@@ -18,7 +18,7 @@ export const heatmapChartRegistry = {
     theme: ['globals'],
     files: [
       {
-        type: 'registry:charts',
+        type: 'registry:ui',
         path: 'templates/components/charts/heatmap-chart.tsx',
         target: 'components/charts/heatmap-chart.tsx',
       },

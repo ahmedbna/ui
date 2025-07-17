@@ -7,7 +7,7 @@ export const stackedAreaChartRegistry = {
     name: 'stacked-area-chart',
     description:
       'A customizable stacked area chart component with smooth animations and gradient fills for visualizing multiple data series over time.',
-    type: 'registry:charts',
+    type: 'registry:ui',
     dependencies: [
       'react-native-svg',
       'react-native-reanimated',
@@ -18,7 +18,7 @@ export const stackedAreaChartRegistry = {
     theme: ['globals'],
     files: [
       {
-        type: 'registry:charts',
+        type: 'registry:ui',
         path: 'templates/components/charts/stacked-area-chart.tsx',
         target: 'components/charts/stacked-area-chart.tsx',
       },

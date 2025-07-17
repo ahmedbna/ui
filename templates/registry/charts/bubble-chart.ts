@@ -7,7 +7,7 @@ export const bubbleChartRegistry = {
     name: 'bubble-chart',
     description:
       'A customizable bubble chart component with animations, size mapping, and interactive features.',
-    type: 'registry:charts',
+    type: 'registry:ui',
     dependencies: [
       'react-native-svg',
       'react-native-reanimated',
@@ -18,7 +18,7 @@ export const bubbleChartRegistry = {
     theme: ['globals'],
     files: [
       {
-        type: 'registry:charts',
+        type: 'registry:ui',
         path: 'templates/components/charts/bubble-chart.tsx',
         target: 'components/charts/bubble-chart.tsx',
       },

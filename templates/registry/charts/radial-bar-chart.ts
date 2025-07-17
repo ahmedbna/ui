@@ -7,7 +7,7 @@ export const radialBarChartRegistry = {
     name: 'radial-bar-chart',
     description:
       'A customizable radial bar chart component with smooth animations, gradient support, and center value display.',
-    type: 'registry:charts',
+    type: 'registry:ui',
     dependencies: [
       'react-native-svg',
       'react-native-reanimated',
@@ -18,7 +18,7 @@ export const radialBarChartRegistry = {
     theme: ['globals'],
     files: [
       {
-        type: 'registry:charts',
+        type: 'registry:ui',
         path: 'templates/components/charts/radial-bar-chart.tsx',
         target: 'components/charts/radial-bar-chart.tsx',
       },

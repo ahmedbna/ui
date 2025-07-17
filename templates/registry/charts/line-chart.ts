@@ -7,7 +7,7 @@ export const lineChartRegistry = {
     name: 'line-chart',
     description:
       'A customizable line chart component with animations, interactions, and gradient fills.',
-    type: 'registry:charts',
+    type: 'registry:ui',
     dependencies: [
       'react-native-svg',
       'react-native-reanimated',
@@ -18,7 +18,7 @@ export const lineChartRegistry = {
     theme: ['globals'],
     files: [
       {
-        type: 'registry:charts',
+        type: 'registry:ui',
         path: 'templates/components/charts/line-chart.tsx',
         target: 'components/charts/line-chart.tsx',
       },

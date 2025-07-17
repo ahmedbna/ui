@@ -7,7 +7,7 @@ export const treemapChartRegistry = {
     name: 'treemap-chart',
     description:
       'A customizable treemap chart component with hierarchical data visualization, smooth animations, and flexible styling using the squarified treemap algorithm.',
-    type: 'registry:charts',
+    type: 'registry:ui',
     dependencies: [
       'react-native-svg',
       'react-native-reanimated',
@@ -18,7 +18,7 @@ export const treemapChartRegistry = {
     theme: ['globals'],
     files: [
       {
-        type: 'registry:charts',
+        type: 'registry:ui',
         path: 'templates/components/charts/treemap-chart.tsx',
         target: 'components/charts/treemap-chart.tsx',
       },

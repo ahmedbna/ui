@@ -7,7 +7,7 @@ export const scatterChartRegistry = {
     name: 'scatter-chart',
     description:
       'A customizable scatter plot component with smooth animations and flexible styling for visualizing data relationships.',
-    type: 'registry:charts',
+    type: 'registry:ui',
     dependencies: [
       'react-native-svg',
       'react-native-reanimated',
@@ -18,7 +18,7 @@ export const scatterChartRegistry = {
     theme: ['globals'],
     files: [
       {
-        type: 'registry:charts',
+        type: 'registry:ui',
         path: 'templates/components/charts/scatter-chart.tsx',
         target: 'components/charts/scatter-chart.tsx',
       },
