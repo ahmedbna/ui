@@ -20,7 +20,7 @@ export const treemapChartRegistry = {
       {
         type: 'registry:charts',
         path: 'templates/components/charts/treemap-chart.tsx',
-        target: 'components/ui/charts/treemap-chart.tsx',
+        target: 'components/charts/treemap-chart.tsx',
       },
     ],
     preview: {

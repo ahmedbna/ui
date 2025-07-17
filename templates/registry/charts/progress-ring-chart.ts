@@ -20,7 +20,7 @@ export const progressRingChartRegistry = {
       {
         type: 'registry:charts',
         path: 'templates/components/charts/progress-ring-chart.tsx',
-        target: 'components/ui/charts/progress-ring-chart.tsx',
+        target: 'components/charts/progress-ring-chart.tsx',
       },
     ],
     preview: {

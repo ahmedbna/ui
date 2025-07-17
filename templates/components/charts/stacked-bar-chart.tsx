@@ -1,5 +1,3 @@
-// components/ui/charts/stacked-bar-chart.tsx
-
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { useEffect, useState } from 'react';
 import { LayoutChangeEvent, View, ViewStyle } from 'react-native';

@@ -19,8 +19,8 @@ export const bubbleChartRegistry = {
     files: [
       {
         type: 'registry:charts',
-        path: 'templates/components/ui/charts/bubble-chart.tsx',
-        target: 'components/ui/charts/bubble-chart.tsx',
+        path: 'templates/components/charts/bubble-chart.tsx',
+        target: 'components/charts/bubble-chart.tsx',
       },
     ],
     preview: {

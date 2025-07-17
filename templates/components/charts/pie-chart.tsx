@@ -1,5 +1,3 @@
-// components/ui/charts/pie-chart.tsx
-
 import { Text } from '@/components/ui/text';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { useEffect, useState } from 'react';

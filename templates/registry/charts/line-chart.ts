@@ -19,8 +19,8 @@ export const lineChartRegistry = {
     files: [
       {
         type: 'registry:charts',
-        path: 'templates/components/ui/charts/line-chart.tsx',
-        target: 'components/ui/charts/line-chart.tsx',
+        path: 'templates/components/charts/line-chart.tsx',
+        target: 'components/charts/line-chart.tsx',
       },
     ],
     preview: {

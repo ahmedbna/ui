@@ -19,8 +19,8 @@ export const pieChartRegistry = {
     files: [
       {
         type: 'registry:charts',
-        path: 'templates/components/ui/charts/pie-chart.tsx',
-        target: 'components/ui/charts/pie-chart.tsx',
+        path: 'templates/components/charts/pie-chart.tsx',
+        target: 'components/charts/pie-chart.tsx',
       },
     ],
     preview: {
