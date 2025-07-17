@@ -7,7 +7,7 @@ export const columnChartRegistry = {
     name: 'column-chart',
     description:
       'A customizable horizontal bar chart component with smooth animations and flexible styling.',
-    type: 'registry:charts',
+    type: 'registry:ui',
     dependencies: [
       'react-native-svg',
       'react-native-reanimated',
@@ -18,7 +18,7 @@ export const columnChartRegistry = {
     theme: ['globals'],
     files: [
       {
-        type: 'registry:charts',
+        type: 'registry:ui',
         path: 'templates/components/charts/column-chart.tsx',
         target: 'components/charts/column-chart.tsx',
       },

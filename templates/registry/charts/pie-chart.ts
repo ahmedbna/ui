@@ -7,7 +7,7 @@ export const pieChartRegistry = {
     name: 'pie-chart',
     description:
       'A customizable pie chart component with smooth animations and flexible styling.',
-    type: 'registry:charts',
+    type: 'registry:ui',
     dependencies: [
       'react-native-svg',
       'react-native-reanimated',
@@ -18,7 +18,7 @@ export const pieChartRegistry = {
     theme: ['globals'],
     files: [
       {
-        type: 'registry:charts',
+        type: 'registry:ui',
         path: 'templates/components/charts/pie-chart.tsx',
         target: 'components/charts/pie-chart.tsx',
       },

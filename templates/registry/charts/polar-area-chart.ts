@@ -7,7 +7,7 @@ export const polarAreaChartRegistry = {
     name: 'polar-area-chart',
     description:
       'A customizable polar area chart component with smooth animations and flexible styling for displaying radial data.',
-    type: 'registry:charts',
+    type: 'registry:ui',
     dependencies: [
       'react-native-svg',
       'react-native-reanimated',
@@ -18,7 +18,7 @@ export const polarAreaChartRegistry = {
     theme: ['globals'],
     files: [
       {
-        type: 'registry:charts',
+        type: 'registry:ui',
         path: 'templates/components/charts/polar-area-chart.tsx',
         target: 'components/charts/polar-area-chart.tsx',
       },

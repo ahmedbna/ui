@@ -7,7 +7,7 @@ export const progressRingChartRegistry = {
     name: 'progress-ring-chart',
     description:
       'A customizable circular progress ring component with smooth animations and flexible styling.',
-    type: 'registry:charts',
+    type: 'registry:ui',
     dependencies: [
       'react-native-svg',
       'react-native-reanimated',
@@ -18,7 +18,7 @@ export const progressRingChartRegistry = {
     theme: ['globals'],
     files: [
       {
-        type: 'registry:charts',
+        type: 'registry:ui',
         path: 'templates/components/charts/progress-ring-chart.tsx',
         target: 'components/charts/progress-ring-chart.tsx',
       },

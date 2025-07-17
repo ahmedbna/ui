@@ -7,14 +7,14 @@ export const barChartRegistry = {
     name: 'bar-chart',
     description:
       'A customizable bar chart component with smooth animations and rounded corners.',
-    type: 'registry:charts',
+    type: 'registry:ui',
     dependencies: ['react-native-svg', 'react-native-reanimated'],
     registryDependencies: [],
     hooks: ['useThemeColor'],
     theme: ['globals'],
     files: [
       {
-        type: 'registry:charts',
+        type: 'registry:ui',
         path: 'templates/components/charts/bar-chart.tsx',
         target: 'components/charts/bar-chart.tsx',
       },

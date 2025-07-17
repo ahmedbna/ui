@@ -7,7 +7,7 @@ export const stackedBarChartRegistry = {
     name: 'stacked-bar-chart',
     description:
       'A customizable stacked bar chart component with smooth animations, support for both horizontal and vertical layouts, and flexible styling.',
-    type: 'registry:charts',
+    type: 'registry:ui',
     dependencies: [
       'react-native-svg',
       'react-native-reanimated',
@@ -18,7 +18,7 @@ export const stackedBarChartRegistry = {
     theme: ['globals'],
     files: [
       {
-        type: 'registry:charts',
+        type: 'registry:ui',
         path: 'templates/components/charts/stacked-bar-chart.tsx',
         target: 'components/charts/stacked-bar-chart.tsx',
       },

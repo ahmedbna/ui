@@ -6,14 +6,14 @@ export const chartContainerRegistry = {
     name: 'chart-container',
     description:
       'A container component for wrapping charts with title, description, and consistent styling.',
-    type: 'registry:charts',
+    type: 'registry:ui',
     dependencies: ['expo-image'],
     registryDependencies: ['text', 'view', 'image'],
     hooks: ['useThemeColor'],
     theme: ['globals'],
     files: [
       {
-        type: 'registry:charts',
+        type: 'registry:ui',
         path: 'templates/components/charts/chart-container.tsx',
         target: 'components/charts/chart-container.tsx',
       },

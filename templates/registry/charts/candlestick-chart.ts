@@ -7,7 +7,7 @@ export const candlestickChartRegistry = {
     name: 'candlestick-chart',
     description:
       'A customizable candlestick chart component with animations for financial data visualization.',
-    type: 'registry:charts',
+    type: 'registry:ui',
     dependencies: [
       'react-native-svg',
       'react-native-reanimated',
@@ -18,7 +18,7 @@ export const candlestickChartRegistry = {
     theme: ['globals'],
     files: [
       {
-        type: 'registry:charts',
+        type: 'registry:ui',
         path: 'templates/components/charts/candlestick-chart.tsx',
         target: 'components/charts/candlestick-chart.tsx',
       },
