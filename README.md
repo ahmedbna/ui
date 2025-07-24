@@ -8,6 +8,8 @@
 - Webview
 - Notifications
 - Draggable
+- Live Activities
+- Swipe to delete
 
 ## Blocks
 

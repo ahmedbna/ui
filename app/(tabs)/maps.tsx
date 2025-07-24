@@ -70,12 +70,21 @@ import { TreeMapChartSample } from '@/templates/demo/charts/treemap-chart/treema
 import { TreeMapChartStyled } from '@/templates/demo/charts/treemap-chart/treemap-chart-styled';
 import { DatePicker, DateRange } from '@/components/ui/date-picker';
 import { Text } from '@/components/ui/text';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { InputDemo } from '@/templates/demo/input/input-demo';
 import { InputForm } from '@/templates/demo/input/input-form';
-import { KeyboardAvoidingView, Platform } from 'react-native';
+import { Keyboard, KeyboardAvoidingView, Platform } from 'react-native';
 import { ScrollView } from '@/components/ui/scroll-view';
 import { Input } from '@/components/ui/input';
+import { useKeyboardHeight } from '@/hooks/useKeyboardHeight';
+import { Button } from '@/components/ui/button';
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withTiming,
+  Easing,
+} from 'react-native-reanimated';
+import { AvoidKeyboard } from '@/components/ui/avoid-keyboard';
 
 export default function MapsScreen() {
   const [selectedRange, setSelectedRange] = useState<DateRange | undefined>();
@@ -83,29 +92,44 @@ export default function MapsScreen() {
   const [selectedDateTime, setSelectedDateTime] = useState<Date | undefined>();
   const [selectedTime, setSelectedTime] = useState<Date | undefined>();
 
+  const { keyboardHeight, isKeyboardVisible, keyboardAnimationDuration } =
+    useKeyboardHeight();
+
+  const inputRef = useRef<any>(null);
+
+  const toggleKeyboard = () => {
+    if (Keyboard.isVisible()) {
+      Keyboard.dismiss();
+    } else {
+      inputRef.current?.focus();
+    }
+  };
+
   return (
     <View
       style={{
         flex: 1,
         justifyContent: 'center',
-        // padding: 20,
+        padding: 20,
       }}
     >
-      <KeyboardAvoidingView
-        // style={{ flex: 1 }}
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}
-      >
-        <ScrollView>
-          <Input label='Title' placeholder='Enter title' />
-          <Input
-            rows={4}
-            type='textarea'
-            label='Description'
-            placeholder='Enter description'
-          />
-        </ScrollView>
-      </KeyboardAvoidingView>
+      {/* 
+      <View>
+        <Text>Keyboard Height: {keyboardHeight}</Text>
+        <Text>Keyboard Visible: {isKeyboardVisible ? 'Yes' : 'No'}</Text>
+        <Text>Animation Duration: {keyboardAnimationDuration}ms</Text>
+      </View>
+
+      <View style={{ marginVertical: 20, gap: 10 }}>
+        <Input ref={inputRef} />
+        <Button variant='destructive' onPress={toggleKeyboard}>
+          Close Keyboard
+        </Button>
+      </View>
+
+      <AvoidKeyboard offset={200} /> */}
+
+      <InputForm />
 
       {/* <DatePicker
         mode='range'
