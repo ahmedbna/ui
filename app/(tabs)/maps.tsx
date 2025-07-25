@@ -85,6 +85,12 @@ import Animated, {
   Easing,
 } from 'react-native-reanimated';
 import { AvoidKeyboard } from '@/components/ui/avoid-keyboard';
+import { AvoidKeyboardDemo } from '@/templates/demo/avoid-keyboard/avoid-keyboard-demo';
+import { AvoidKeyboardOffset } from '@/templates/demo/avoid-keyboard/avoid-keyboard-offset';
+import { AvoidKeyboardDuration } from '@/templates/demo/avoid-keyboard/avoid-keyboard-duration';
+import { AvoidKeyboardChat } from '@/templates/demo/avoid-keyboard/avoid-keyboard-chat';
+import { AvoidKeyboardForm } from '@/templates/demo/avoid-keyboard/avoid-keyboard-form';
+import { AvoidKeyboardPlayground } from '@/templates/demo/avoid-keyboard/avoid-keyboard-playground';
 
 export default function MapsScreen() {
   const [selectedRange, setSelectedRange] = useState<DateRange | undefined>();
@@ -110,9 +116,21 @@ export default function MapsScreen() {
       style={{
         flex: 1,
         justifyContent: 'center',
-        padding: 20,
+        paddingTop: 80,
       }}
     >
+      <AvoidKeyboardDemo />
+
+      {/* <AvoidKeyboardOffset /> */}
+
+      {/* <AvoidKeyboardDuration /> */}
+
+      {/* <AvoidKeyboardChat /> */}
+
+      {/* <AvoidKeyboardForm /> */}
+
+      {/* <AvoidKeyboardPlayground /> */}
+
       {/* 
       <View>
         <Text>Keyboard Height: {keyboardHeight}</Text>
@@ -129,7 +147,7 @@ export default function MapsScreen() {
 
       <AvoidKeyboard offset={200} /> */}
 
-      <InputForm />
+      {/* <InputForm /> */}
 
       {/* <DatePicker
         mode='range'
