@@ -51,6 +51,7 @@ import { hooksRegistry } from '@/templates/registry/hooks';
 import { themeRegistry } from '@/templates/registry/theme';
 import { inputRegistry } from '@/templates/registry/input';
 import { chartsRegistry } from '@/templates/registry/charts';
+import { avoidKeyboardRegistry } from './registry/avoid-keyboard';
 
 export const Index: Record<string, any> = {
   ...accordionRegistry,
@@ -60,6 +61,7 @@ export const Index: Record<string, any> = {
   ...audioRecorderRegistry,
   ...audioWaveformRegistry,
   ...avatarRegistry,
+  ...avoidKeyboardRegistry,
   ...badgeRegistry,
   ...bottomSheetRegistry,
   ...buttonRegistry,
