@@ -70,14 +70,6 @@ export const lightTheme = {
     foreground: '#000000',
     card: '#F2F2F7',
     cardForeground: '#000000',
-    popover: '#F2F2F7',
-    popoverForeground: '#000000',
-    primary: '#18181b',
-    primaryForeground: '#FFFFFF',
-    secondary: '#F2F2F7',
-    secondaryForeground: '#18181b',
-    muted: '#78788033',
-    mutedForeground: '#71717a',
     // ... more colors
   },
 };
@@ -87,15 +79,6 @@ export const darkTheme = {
     background: '#000000',
     foreground: '#FFFFFF',
     card: '#1C1C1E',
-    cardForeground: '#FFFFFF',
-    popover: '#18181b',
-    popoverForeground: '#FFFFFF',
-    primary: '#e4e4e7',
-    primaryForeground: '#18181b',
-    secondary: '#1C1C1E',
-    secondaryForeground: '#FFFFFF',
-    muted: '#78788033',
-    mutedForeground: '#a1a1aa',
     // ... more colors
   },
 };
@@ -142,7 +125,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - 📚 **Documentation**: [https://ui.ahmedbna.com](https://ui.ahmedbna.com)
 - 🐛 **Bug Reports**: [GitHub Issues](https://github.com/ahmedbna/ui/issues)
 - 💬 **Linkedin**: [@ahmedbna](https://www.linkedin.com/in/ahmedbna/)
-- 𝕏 **X**: [@ahmedbnaa](https://x.com/ahmedbnaa)
+- 𝕏 : [@ahmedbnaa](https://x.com/ahmedbnaa)
 
 ## ⭐ Support
 

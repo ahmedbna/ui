@@ -32,6 +32,21 @@ export const hooksRegistry = {
     ],
   },
 
+  useKeyboardHeight: {
+    name: 'useKeyboardHeight',
+    description:
+      'A React Native hook that tracks keyboard visibility, height, and animation duration with cross-platform support and screen rotation handling',
+    type: 'registry:hook',
+    dependencies: [],
+    files: [
+      {
+        type: 'registry:hook',
+        path: 'templates/hooks/useKeyboardHeight.ts',
+        target: 'hooks/useKeyboardHeight.ts',
+      },
+    ],
+  },
+
   useModeToggle: {
     name: 'useModeToggle',
     description: 'useModeToggle',
