@@ -6,10 +6,17 @@ type Config = {
   installationType: 'cli' | 'manual';
 };
 
-const configAtom = atomWithStorage<Config>('config', {
-  packageManager: 'pnpm',
-  installationType: 'cli',
-});
+const configAtom = atomWithStorage<Config>(
+  'config',
+  {
+    packageManager: 'pnpm',
+    installationType: 'cli',
+  },
+  undefined,
+  {
+    getOnInit: true, // Prevent hydration issues
+  }
+);
 
 export function useConfig() {
   return useAtom(configAtom);

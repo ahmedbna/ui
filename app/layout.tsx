@@ -8,12 +8,14 @@ import { Analytics } from '@/components/analytics';
 import { SiteHeader } from '@/components/site-header';
 import { SiteFooter } from '@/components/site-footer';
 import { fontVariables } from '@/lib/fonts';
-import { SpeedInsights } from '@vercel/speed-insights/next';
 import { cn } from '@/lib/utils';
 import '@/styles/globals.css';
 
 export const metadata: Metadata = {
-  title: 'BNA UI - Expo, React Native UI Components Library',
+  title: {
+    default: 'BNA UI - Expo React Native UI Components Library',
+    template: '%s | BNA UI',
+  },
   description:
     'Beautiful, accessible Expo React Native UI components that work seamlessly across iOS and Android. Build stunning mobile apps faster with our comprehensive component library.',
 
@@ -26,13 +28,17 @@ export const metadata: Metadata = {
 
   // Canonical URL
   metadataBase: new URL('https://ui.ahmedbna.com'),
+
   alternates: {
     canonical: 'https://ui.ahmedbna.com',
   },
 
   // Open Graph (Facebook, LinkedIn, WhatsApp, etc.)
   openGraph: {
-    title: 'BNA UI - Expo, React Native UI Components Library',
+    title: {
+      default: 'BNA UI - Expo React Native UI Components Library',
+      template: '%s | BNA UI',
+    },
     description:
       'Beautiful, accessible Expo React Native UI components that work seamlessly across iOS and Android. Build stunning mobile apps faster with our comprehensive component library.',
     url: 'https://ui.ahmedbna.com',
@@ -53,7 +59,10 @@ export const metadata: Metadata = {
   // Twitter/X
   twitter: {
     card: 'summary_large_image',
-    title: 'BNA UI - Expo, React Native UI Components Library',
+    title: {
+      default: 'BNA UI - Expo React Native UI Components Library',
+      template: '%s | BNA UI',
+    },
     description:
       'Beautiful, accessible Expo React Native UI components that work seamlessly across iOS and Android. Build stunning mobile apps faster.',
     images: [
@@ -145,7 +154,6 @@ export default function RootLayout({
               <TailwindIndicator />
               <Toaster position='top-center' />
               <Analytics />
-              <SpeedInsights />
             </ActiveThemeProvider>
           </LayoutProvider>
         </ThemeProvider>
