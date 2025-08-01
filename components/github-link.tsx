@@ -11,7 +11,12 @@ import { Skeleton } from '@/components/ui/skeleton';
 export function GitHubLink() {
   return (
     <Button asChild size='sm' variant='ghost' className='h-8 shadow-none'>
-      <Link href={siteConfig.links.github} target='_blank' rel='noreferrer'>
+      <Link
+        href={siteConfig.links.github}
+        target='_blank'
+        rel='noreferrer'
+        className='text-muted-foreground transition-colors duration-200'
+      >
         <Icons.gitHub />
         <React.Suspense fallback={<Skeleton className='h-4 w-8' />}>
           <StarsCount />
@@ -31,7 +36,7 @@ export function StarsCount() {
   }, []);
 
   return (
-    <span className='text-muted-foreground text-xs tabular-nums'>
+    <span className='text-xs tabular-nums'>
       {stars === null
         ? '...'
         : stars >= 1000

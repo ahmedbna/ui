@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { source } from '@/lib/source';
 import EmailButton from './email-button';
+import { Icons } from './icons';
 
 export function SiteHeader() {
   const pageTree = source.pageTree;
@@ -33,6 +34,36 @@ export function SiteHeader() {
           <div className='ml-auto flex items-center gap-2 md:flex-1 md:justify-end'>
             <EmailButton />
             <Separator orientation='vertical' />
+            <Button
+              asChild
+              size='sm'
+              variant='ghost'
+              className='h-8 shadow-none'
+            >
+              <Link
+                href={siteConfig.links.linkedin}
+                target='_blank'
+                rel='noreferrer'
+                className='text-muted-foreground transition-colors duration-200'
+              >
+                <Icons.linkedin />
+              </Link>
+            </Button>
+            <Button
+              asChild
+              size='sm'
+              variant='ghost'
+              className='h-8 shadow-none'
+            >
+              <Link
+                href={siteConfig.links.x}
+                target='_blank'
+                rel='noreferrer'
+                className='text-muted-foreground transition-colors duration-200'
+              >
+                <Icons.x />
+              </Link>
+            </Button>
             <GitHubLink />
             <Separator orientation='vertical' />
             <ModeSwitcher />

@@ -3,7 +3,8 @@ export const siteConfig = {
   url: 'https://ui.ahmedbna.com',
   description: 'Expo, React Native UI Components Library',
   links: {
-    twitter: 'https://x.com/ahmedbnaa',
+    x: 'https://x.com/ahmedbnaa',
+    linkedin: 'https://www.linkedin.com/in/ahmedbna',
     github: 'https://github.com/ahmedbna/ui',
   },
   navItems: [
