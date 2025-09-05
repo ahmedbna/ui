@@ -123,7 +123,7 @@ export function SheetFilter() {
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
-      <SheetTrigger>
+      <SheetTrigger asChild>
         <Button icon={Filter}>Filter</Button>
       </SheetTrigger>
       <SheetContent>

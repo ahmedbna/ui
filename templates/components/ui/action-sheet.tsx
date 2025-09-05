@@ -2,10 +2,9 @@ import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { CORNERS, FONT_SIZE } from '@/theme/globals';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   ActionSheetIOS,
-  Animated,
   Dimensions,
   Modal,
   Platform,
@@ -15,6 +14,14 @@ import {
   TouchableOpacity,
   ViewStyle,
 } from 'react-native';
+import Animated, {
+  Easing,
+  interpolate,
+  runOnJS,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from 'react-native-reanimated';
 
 export interface ActionSheetOption {
   title: string;
@@ -100,7 +107,7 @@ export function ActionSheet({
   );
 }
 
-// Custom ActionSheet implementation for Android
+// Custom ActionSheet implementation for Android using react-native-reanimated
 function AndroidActionSheet({
   visible,
   onClose,
@@ -110,8 +117,9 @@ function AndroidActionSheet({
   cancelButtonTitle,
   style,
 }: ActionSheetProps) {
-  const slideAnim = useRef(new Animated.Value(0)).current;
-  const backgroundOpacity = useRef(new Animated.Value(0)).current;
+  const [isSheetVisible, setIsSheetVisible] = useState(visible);
+  const progress = useSharedValue(0);
+  const screenHeight = Dimensions.get('window').height;
 
   const cardColor = useThemeColor({}, 'card');
   const textColor = useThemeColor({}, 'text');
@@ -119,41 +127,38 @@ function AndroidActionSheet({
   const borderColor = useThemeColor({}, 'border');
   const destructiveColor = useThemeColor({}, 'red');
 
-  const screenHeight = Dimensions.get('window').height;
-
   useEffect(() => {
     if (visible) {
-      Animated.parallel([
-        Animated.timing(slideAnim, {
-          toValue: 1,
-          duration: 300,
-          useNativeDriver: true,
-        }),
-        Animated.timing(backgroundOpacity, {
-          toValue: 1,
-          duration: 300,
-          useNativeDriver: true,
-        }),
-      ]).start();
+      setIsSheetVisible(true);
+      progress.value = withTiming(1, {
+        duration: 300,
+        easing: Easing.out(Easing.quad),
+      });
     } else {
-      Animated.parallel([
-        Animated.timing(slideAnim, {
-          toValue: 0,
-          duration: 250,
-          useNativeDriver: true,
-        }),
-        Animated.timing(backgroundOpacity, {
-          toValue: 0,
-          duration: 250,
-          useNativeDriver: true,
-        }),
-      ]).start();
+      // Animate out, then set the modal to invisible after the animation is done
+      progress.value = withTiming(
+        0,
+        { duration: 250, easing: Easing.in(Easing.quad) },
+        (finished) => {
+          if (finished) {
+            runOnJS(setIsSheetVisible)(false);
+          }
+        }
+      );
     }
-  }, [visible, slideAnim, backgroundOpacity]);
+  }, [visible, progress]);
 
-  const translateY = slideAnim.interpolate({
-    inputRange: [0, 1],
-    outputRange: [screenHeight, 0],
+  // Animated style for the backdrop
+  const backdropAnimatedStyle = useAnimatedStyle(() => ({
+    opacity: progress.value,
+  }));
+
+  // Animated style for the sheet itself (slide up/down)
+  const sheetAnimatedStyle = useAnimatedStyle(() => {
+    const translateY = interpolate(progress.value, [0, 1], [screenHeight, 0]);
+    return {
+      transform: [{ translateY }],
+    };
   });
 
   const handleOptionPress = (option: ActionSheetOption) => {
@@ -167,25 +172,21 @@ function AndroidActionSheet({
     onClose();
   };
 
-  if (!visible) return null;
+  // Render null if the sheet is not supposed to be visible
+  if (!isSheetVisible) {
+    return null;
+  }
 
   return (
     <Modal
       transparent
-      visible={visible}
+      visible={isSheetVisible}
       animationType='none'
       statusBarTranslucent
       onRequestClose={onClose}
     >
       <View style={styles.container}>
-        <Animated.View
-          style={[
-            styles.backdrop,
-            {
-              opacity: backgroundOpacity,
-            },
-          ]}
-        >
+        <Animated.View style={[styles.backdrop, backdropAnimatedStyle]}>
           <Pressable
             style={styles.backdropPressable}
             onPress={handleBackdropPress}
@@ -195,10 +196,8 @@ function AndroidActionSheet({
         <Animated.View
           style={[
             styles.sheet,
-            {
-              backgroundColor: cardColor,
-              transform: [{ translateY }],
-            },
+            { backgroundColor: cardColor },
+            sheetAnimatedStyle,
             style,
           ]}
         >
@@ -207,12 +206,7 @@ function AndroidActionSheet({
             <View style={styles.header}>
               {title && (
                 <Text
-                  style={[
-                    styles.title,
-                    {
-                      color: textColor,
-                    },
-                  ]}
+                  style={[styles.title, { color: textColor }]}
                   numberOfLines={2}
                 >
                   {title}
@@ -220,12 +214,7 @@ function AndroidActionSheet({
               )}
               {message && (
                 <Text
-                  style={[
-                    styles.message,
-                    {
-                      color: mutedColor,
-                    },
-                  ]}
+                  style={[styles.message, { color: mutedColor }]}
                   numberOfLines={3}
                 >
                   {message}
@@ -244,9 +233,7 @@ function AndroidActionSheet({
                 key={index}
                 style={[
                   styles.option,
-                  {
-                    borderBottomColor: borderColor,
-                  },
+                  { borderBottomColor: borderColor },
                   index === options.length - 1 && styles.lastOption,
                   option.disabled && styles.disabledOption,
                 ]}
@@ -280,26 +267,14 @@ function AndroidActionSheet({
 
           {/* Cancel Button */}
           <View
-            style={[
-              styles.cancelContainer,
-              {
-                borderTopColor: borderColor,
-              },
-            ]}
+            style={[styles.cancelContainer, { borderTopColor: borderColor }]}
           >
             <TouchableOpacity
               style={styles.cancelButton}
               onPress={onClose}
               activeOpacity={0.6}
             >
-              <Text
-                style={[
-                  styles.cancelText,
-                  {
-                    color: textColor,
-                  },
-                ]}
-              >
+              <Text style={[styles.cancelText, { color: textColor }]}>
                 {cancelButtonTitle}
               </Text>
             </TouchableOpacity>
@@ -398,7 +373,7 @@ const styles = StyleSheet.create({
   },
 });
 
-// Hook for easier ActionSheet usage
+// Hook for easier ActionSheet usage (No changes needed here)
 export function useActionSheet() {
   const [isVisible, setIsVisible] = React.useState(false);
   const [config, setConfig] = React.useState<

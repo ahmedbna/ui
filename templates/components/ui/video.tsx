@@ -1,4 +1,3 @@
-import { Progress } from '@/components/ui/progress';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { BORDER_RADIUS } from '@/theme/globals';
 import { useEvent } from 'expo';
@@ -12,13 +11,24 @@ import React, {
   useState,
 } from 'react';
 import {
-  Animated,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
   ViewStyle,
 } from 'react-native';
+import {
+  Gesture,
+  GestureDetector,
+  GestureHandlerRootView,
+} from 'react-native-gesture-handler';
+import Animated, {
+  runOnJS,
+  useAnimatedStyle,
+  useDerivedValue,
+  useSharedValue,
+  withTiming,
+} from 'react-native-reanimated';
 
 interface VideoProps {
   source: VideoSource;
@@ -56,12 +66,107 @@ interface VideoRef {
 
 // Helper function to format time
 const formatTime = (seconds: number): string => {
+  if (isNaN(seconds) || seconds < 0) return '0:00';
   const mins = Math.floor(seconds / 60);
   const secs = Math.floor(seconds % 60);
   return `${mins}:${secs.toString().padStart(2, '0')}`;
 };
 
-// Main Video Component
+// --- Custom Reanimated Progress Bar ---
+const PROGRESS_HEIGHT = 8;
+const THUMB_SIZE = 16;
+
+interface ReanimatedProgressProps {
+  duration: number;
+  currentTime: number;
+  onSeek: (progress: number) => void;
+  onSeekStart?: () => void;
+  onSeekEnd?: () => void;
+}
+
+const ReanimatedProgress = ({
+  duration,
+  currentTime,
+  onSeek,
+  onSeekStart,
+  onSeekEnd,
+}: ReanimatedProgressProps) => {
+  const [barWidth, setBarWidth] = useState(0);
+  const isScrubbing = useSharedValue(false);
+  const translateX = useSharedValue(0);
+  const scale = useSharedValue(1);
+
+  useDerivedValue(() => {
+    if (!isScrubbing.value && duration > 0 && barWidth > 0) {
+      const progress = currentTime / duration;
+      translateX.value = withTiming(progress * barWidth, { duration: 100 });
+    }
+  });
+
+  const panGesture = Gesture.Pan()
+    .minDistance(1)
+    .onBegin(() => {
+      isScrubbing.value = true;
+      scale.value = withTiming(1.2);
+      if (onSeekStart) runOnJS(onSeekStart)();
+    })
+    .onChange((event) => {
+      translateX.value = Math.max(
+        0,
+        Math.min(barWidth, translateX.value + event.changeX)
+      );
+    })
+    .onEnd(() => {
+      const finalProgress = translateX.value / barWidth;
+      runOnJS(onSeek)(finalProgress);
+      isScrubbing.value = false;
+      scale.value = withTiming(1);
+      if (onSeekEnd) runOnJS(onSeekEnd)();
+    });
+
+  const tapGesture = Gesture.Tap()
+    .onBegin(() => {
+      if (onSeekStart) runOnJS(onSeekStart)();
+    })
+    .onEnd((event) => {
+      const newTranslateX = Math.max(0, Math.min(barWidth, event.x));
+      translateX.value = newTranslateX;
+      const finalProgress = newTranslateX / barWidth;
+      runOnJS(onSeek)(finalProgress);
+      if (onSeekEnd) runOnJS(onSeekEnd)();
+    });
+
+  const composedGesture = Gesture.Race(panGesture, tapGesture);
+
+  const animatedProgressStyle = useAnimatedStyle(() => ({
+    width: translateX.value,
+  }));
+
+  const animatedThumbStyle = useAnimatedStyle(() => ({
+    transform: [{ translateX: translateX.value }, { scale: scale.value }],
+  }));
+
+  return (
+    <GestureDetector gesture={composedGesture}>
+      <Animated.View
+        style={progressStyles.container}
+        onLayout={(e) => setBarWidth(e.nativeEvent.layout.width)}
+      >
+        <View style={progressStyles.track} />
+        <Animated.View
+          style={[progressStyles.progress, animatedProgressStyle]}
+        />
+        <Animated.View
+          style={[progressStyles.thumbContainer, animatedThumbStyle]}
+        >
+          <View style={progressStyles.thumb} />
+        </Animated.View>
+      </Animated.View>
+    </GestureDetector>
+  );
+};
+
+// --- Main Video Component ---
 export const Video = forwardRef<VideoView, VideoProps>(
   (
     {
@@ -84,30 +189,27 @@ export const Video = forwardRef<VideoView, VideoProps>(
     },
     ref
   ) => {
-    // Theme colors
     const textColor = useThemeColor({}, 'text');
     const cardColor = useThemeColor({}, 'card');
     const mutedColor = useThemeColor({}, 'mutedForeground');
 
-    // State
-    const [showCustomControls, setShowCustomControls] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
     const [isMuted, setIsMuted] = useState(muted);
     const [currentSubtitle, setCurrentSubtitle] = useState<string>('');
     const [isVideoEnded, setIsVideoEnded] = useState(false);
     const [showPlayIcon, setShowPlayIcon] = useState(false);
+    const [showCustomControls, setShowCustomControls] = useState(false);
+    const [isSeeking, setIsSeeking] = useState(false);
 
-    // Refs
-    const controlsOpacity = useRef(new Animated.Value(0)).current;
-    const playIconOpacity = useRef(new Animated.Value(0)).current;
     const hideControlsTimeout = useRef<number | null>(null);
     const hidePlayIconTimeout = useRef<number | null>(null);
 
-    // Create video player
+    const controlsOpacity = useSharedValue(0);
+    const playIconOpacity = useSharedValue(0);
+
     const player = useVideoPlayer(source, (player) => {
       try {
-        console.log('Initializing video player');
         if (autoPlay && player.play) player.play();
         player.loop = loop;
         player.muted = muted;
@@ -122,370 +224,220 @@ export const Video = forwardRef<VideoView, VideoProps>(
       isPlaying: player?.playing || false,
     });
 
-    // Update current time and handle subtitles
+    // --- !! EFFECT UPDATED TO RESPECT isSeeking STATE !! ---
     useEffect(() => {
       const interval = setInterval(() => {
-        try {
-          if (player) {
-            const time = player.currentTime || 0;
-            const dur = player.duration || 0;
-            setCurrentTime(time);
-            setDuration(dur);
+        // Only update time from player if the user is not actively seeking
+        if (player && !isSeeking) {
+          const time = player.currentTime || 0;
+          const dur = player.duration || 0;
+          setCurrentTime(time);
+          if (dur > 0) setDuration(dur);
 
-            // Check if video ended
-            if (dur > 0 && time >= dur && !loop) {
-              setIsVideoEnded(true);
-            } else {
-              setIsVideoEnded(false);
-            }
+          if (dur > 0 && time >= dur - 0.25 && !loop) setIsVideoEnded(true);
+          else setIsVideoEnded(false);
 
-            // Handle subtitles
-            const activeSubtitle = subtitles.find(
-              (subtitle) => time >= subtitle.start && time <= subtitle.end
-            );
-            setCurrentSubtitle(activeSubtitle?.text || '');
+          const activeSubtitle = subtitles.find(
+            (s) => time >= s.start && time <= s.end
+          );
+          setCurrentSubtitle(activeSubtitle?.text || '');
 
-            onPlaybackStatusUpdate?.({
-              currentTime: time,
-              duration: dur,
-              isPlaying: player.playing,
-            });
-          }
-        } catch (error) {
-          console.error('Video playback status update error:', error);
+          onPlaybackStatusUpdate?.({
+            currentTime: time,
+            duration: dur,
+            isPlaying: player.playing,
+          });
         }
-      }, 100);
+      }, 250);
 
       return () => clearInterval(interval);
-    }, [player, subtitles, onPlaybackStatusUpdate, loop]);
+    }, [player, subtitles, onPlaybackStatusUpdate, loop, isSeeking]);
 
-    // Show/hide controls
+    const controlsAnimatedStyle = useAnimatedStyle(() => ({
+      opacity: controlsOpacity.value,
+    }));
+
+    const playIconAnimatedStyle = useAnimatedStyle(() => ({
+      opacity: playIconOpacity.value,
+    }));
+
     const showControls = useCallback(() => {
       setShowCustomControls(true);
-      Animated.timing(controlsOpacity, {
-        toValue: 1,
-        duration: 200,
-        useNativeDriver: true,
-      }).start();
+      controlsOpacity.value = withTiming(1, { duration: 200 });
 
-      // Clear existing timeout
-      if (hideControlsTimeout.current) {
+      if (hideControlsTimeout.current)
         clearTimeout(hideControlsTimeout.current);
+      if (isPlaying) {
+        // Only hide controls if video is playing
+        hideControlsTimeout.current = setTimeout(hideControls, 3000);
       }
-
-      // Hide controls after 3 seconds
-      hideControlsTimeout.current = setTimeout(() => {
-        hideControls();
-      }, 3000);
-    }, [controlsOpacity]);
+    }, [controlsOpacity, isPlaying]);
 
     const hideControls = useCallback(() => {
-      Animated.timing(controlsOpacity, {
-        toValue: 0,
-        duration: 200,
-        useNativeDriver: true,
-      }).start(() => {
-        setShowCustomControls(false);
+      controlsOpacity.value = withTiming(0, { duration: 200 }, (isFinished) => {
+        if (isFinished) runOnJS(setShowCustomControls)(false);
       });
     }, [controlsOpacity]);
 
-    // Show play icon animation
     const showPlayIconAnimation = useCallback(() => {
       setShowPlayIcon(true);
-      Animated.timing(playIconOpacity, {
-        toValue: 1,
-        duration: 200,
-        useNativeDriver: true,
-      }).start();
+      playIconOpacity.value = withTiming(1, { duration: 200 });
 
-      // Clear existing timeout
-      if (hidePlayIconTimeout.current) {
+      if (hidePlayIconTimeout.current)
         clearTimeout(hidePlayIconTimeout.current);
-      }
-
-      // Hide play icon after 1 second
       hidePlayIconTimeout.current = setTimeout(() => {
-        Animated.timing(playIconOpacity, {
-          toValue: 0,
-          duration: 200,
-          useNativeDriver: true,
-        }).start(() => {
-          setShowPlayIcon(false);
-        });
+        playIconOpacity.value = withTiming(
+          0,
+          { duration: 200 },
+          (isFinished) => {
+            if (isFinished) runOnJS(setShowPlayIcon)(false);
+          }
+        );
       }, 1000);
     }, [playIconOpacity]);
 
-    // Handle single tap (play/pause)
     const handleSingleTap = useCallback(() => {
-      try {
-        if (!player) {
-          console.error('Player not available');
-          return;
-        }
-
-        if (isVideoEnded) {
-          // Restart video from beginning
-          player.currentTime = 0;
-          if (player.play) {
-            player.play();
-          }
-          setIsVideoEnded(false);
-        } else if (isPlaying) {
-          if (player.pause) {
-            player.pause();
-          }
-        } else {
-          if (player.play) {
-            player.play();
-          }
-        }
-        showPlayIconAnimation();
-        showControls();
-      } catch (error) {
-        console.error('Single tap handler error:', error);
+      if (!player) return;
+      if (isVideoEnded) {
+        player.currentTime = 0;
+        player.play();
+        setIsVideoEnded(false);
+      } else {
+        player.playing ? player.pause() : player.play();
       }
-    }, [isPlaying, player, showControls, showPlayIconAnimation, isVideoEnded]);
+      showPlayIconAnimation();
+      showControls();
+    }, [player, isVideoEnded, showControls, showPlayIconAnimation]);
 
-    // Handle double tap left (seek backward)
     const handleLeftDoubleTap = useCallback(() => {
-      try {
-        if (player && player.seekBy) {
-          player.seekBy(-seekBy);
-          showControls();
-        }
-      } catch (error) {
-        console.error('Left double tap handler error:', error);
-        // Fallback: try direct currentTime manipulation
-        try {
-          if (player) {
-            const newTime = Math.max(0, currentTime - seekBy);
-            player.currentTime = newTime;
-            showControls();
-          }
-        } catch (fallbackError) {
-          console.error('Fallback seek error:', fallbackError);
-        }
+      if (player) {
+        player.seekBy(-seekBy);
+        showControls();
       }
-    }, [player, showControls, currentTime]);
+    }, [player, showControls, seekBy]);
 
-    // Handle double tap right (seek forward)
     const handleRightDoubleTap = useCallback(() => {
-      try {
-        if (player && player.seekBy) {
-          player.seekBy(seekBy);
-          showControls();
-        }
-      } catch (error) {
-        console.error('Right double tap handler error:', error);
-        // Fallback: try direct currentTime manipulation
-        try {
-          if (player && duration > 0) {
-            const newTime = Math.min(duration, currentTime + seekBy);
-            player.currentTime = newTime;
-            showControls();
-          }
-        } catch (fallbackError) {
-          console.error('Fallback seek error:', fallbackError);
-        }
+      if (player) {
+        player.seekBy(seekBy);
+        showControls();
       }
-    }, [player, showControls, currentTime, duration]);
+    }, [player, showControls, seekBy]);
 
-    // Toggle mute
     const toggleMute = useCallback(() => {
-      try {
-        const newMuted = !isMuted;
-        setIsMuted(newMuted);
-        player.muted = newMuted;
-      } catch (error) {
-        console.error('Toggle mute error:', error);
-      }
+      const newMuted = !isMuted;
+      setIsMuted(newMuted);
+      player.muted = newMuted;
     }, [isMuted, player]);
 
-    // Handle progress change
     const handleProgressChange = useCallback(
-      (value: number) => {
-        try {
-          if (!player || !duration || duration <= 0) {
-            console.log('Cannot seek: player or duration not available');
-            return;
-          }
-          const newTime = (value / 100) * duration;
-          player.currentTime = newTime;
-          setCurrentTime(newTime);
-          if (isVideoEnded) {
-            setIsVideoEnded(false);
-          }
-          showControls();
-        } catch (error) {
-          console.error('Progress change error:', error);
-        }
+      (progress: number) => {
+        if (!player || !duration || duration <= 0) return;
+        const newTime = progress * duration;
+        // This is the "optimistic update" - we set the local state immediately
+        setCurrentTime(newTime);
+        player.currentTime = newTime;
+        if (isVideoEnded) setIsVideoEnded(false);
+        // Reset the hide controls timer
+        if (hideControlsTimeout.current)
+          clearTimeout(hideControlsTimeout.current);
+        hideControlsTimeout.current = setTimeout(hideControls, 3000);
       },
-      [player, duration, isVideoEnded, showControls]
+      [player, duration, isVideoEnded, hideControls]
     );
 
-    // Handle progress bar press
-    const handleProgressPress = useCallback(
-      (event: any) => {
-        try {
-          const { locationX } = event.nativeEvent;
-          const { width } = event.currentTarget.getBoundingClientRect?.() || {
-            width: 300,
-          };
-          const percentage = (locationX / width) * 100;
-          handleProgressChange(Math.max(0, Math.min(100, percentage)));
-        } catch (error) {
-          console.error('Progress press error:', error);
-        }
-      },
-      [handleProgressChange]
-    );
+    const handleSeekStart = useCallback(() => {
+      setIsSeeking(true);
+      if (hideControlsTimeout.current)
+        clearTimeout(hideControlsTimeout.current);
+    }, []);
 
-    // Create simple tap handlers without complex gestures
-    const handleTapPress = useCallback(() => {
-      handleSingleTap();
-    }, [handleSingleTap]);
+    const handleSeekEnd = useCallback(() => {
+      setIsSeeking(false);
+    }, []);
 
-    const handleLeftTapPress = useCallback(() => {
-      handleLeftDoubleTap();
-    }, [handleLeftDoubleTap]);
-
-    const handleRightTapPress = useCallback(() => {
-      handleRightDoubleTap();
-    }, [handleRightDoubleTap]);
-
-    // Cleanup
     useEffect(() => {
       return () => {
-        if (hideControlsTimeout.current) {
+        if (hideControlsTimeout.current)
           clearTimeout(hideControlsTimeout.current);
-        }
-        if (hidePlayIconTimeout.current) {
+        if (hidePlayIconTimeout.current)
           clearTimeout(hidePlayIconTimeout.current);
-        }
       };
     }, []);
 
     return (
-      <View style={[styles.container, { backgroundColor: cardColor }, style]}>
-        {nativeControls ? (
-          <VideoView
-            ref={ref}
-            player={player}
-            style={styles.video}
-            allowsFullscreen={allowsFullscreen}
-            allowsPictureInPicture={allowsPictureInPicture}
-            nativeControls={nativeControls}
-            contentFit={contentFit}
-            onFullscreenEnter={() => onFullscreenUpdate?.(true)}
-            onFullscreenExit={() => onFullscreenUpdate?.(false)}
-            {...props}
+      <GestureHandlerRootView
+        style={[styles.container, { backgroundColor: cardColor }, style]}
+      >
+        <VideoView
+          ref={ref}
+          player={player}
+          style={styles.video}
+          allowsFullscreen={allowsFullscreen}
+          allowsPictureInPicture={allowsPictureInPicture}
+          nativeControls={false}
+          contentFit={contentFit}
+          onFullscreenEnter={() => onFullscreenUpdate?.(true)}
+          onFullscreenExit={() => onFullscreenUpdate?.(false)}
+          {...props}
+        />
+        <View style={styles.gestureOverlay}>
+          <TouchableOpacity
+            style={styles.gestureArea}
+            onPress={handleLeftDoubleTap}
+            activeOpacity={0}
           />
-        ) : (
-          <>
-            <VideoView
-              ref={ref}
-              player={player}
-              style={styles.video}
-              allowsFullscreen={allowsFullscreen}
-              allowsPictureInPicture={allowsPictureInPicture}
-              nativeControls={false}
-              contentFit={contentFit}
-              onFullscreenEnter={() => onFullscreenUpdate?.(true)}
-              onFullscreenExit={() => onFullscreenUpdate?.(false)}
-              {...props}
-            />
+          <TouchableOpacity
+            style={styles.gestureAreaCenter}
+            onPress={handleSingleTap}
+            activeOpacity={0}
+          />
+          <TouchableOpacity
+            style={styles.gestureArea}
+            onPress={handleRightDoubleTap}
+            activeOpacity={0}
+          />
+        </View>
 
-            {/* Touch overlay for gestures */}
-            <View style={styles.gestureOverlay}>
-              {/* Left side - tap to seek backward */}
+        {showCustomControls && (
+          <Animated.View
+            style={[styles.controlsContainer, controlsAnimatedStyle]}
+            pointerEvents='box-none'
+          >
+            <View style={styles.topControls}>
               <TouchableOpacity
-                style={styles.gestureArea}
-                onPress={handleLeftTapPress}
-                activeOpacity={1}
-              />
-
-              {/* Center - tap to play/pause */}
-              <TouchableOpacity
-                style={styles.gestureAreaCenter}
-                onPress={handleTapPress}
-                activeOpacity={1}
-              />
-
-              {/* Right side - tap to seek forward */}
-              <TouchableOpacity
-                style={styles.gestureArea}
-                onPress={handleRightTapPress}
-                activeOpacity={1}
-              />
+                onPress={toggleMute}
+                style={styles.controlButton}
+                activeOpacity={0.7}
+              >
+                {isMuted ? (
+                  <VolumeX size={24} color={textColor} />
+                ) : (
+                  <Volume2 size={24} color={textColor} />
+                )}
+              </TouchableOpacity>
             </View>
 
-            {/* Center Play/Pause Icon */}
-            {showPlayIcon && (
-              <Animated.View
-                style={[styles.centerPlayIcon, { opacity: playIconOpacity }]}
-                pointerEvents='none'
-              >
-                <View style={styles.centerPlayIconBackground}>
-                  {isPlaying ? (
-                    <Pause size={48} color={textColor} />
-                  ) : (
-                    <Play size={48} color={textColor} />
-                  )}
-                </View>
-              </Animated.View>
-            )}
-
-            {/* Subtitles */}
-            {currentSubtitle && (
-              <View style={styles.subtitleContainer} pointerEvents='none'>
-                <Text style={[styles.subtitleText, { color: textColor }]}>
-                  {currentSubtitle}
+            <View style={styles.bottomControls}>
+              <View style={styles.timeContainer}>
+                <Text style={[styles.timeText, { color: mutedColor }]}>
+                  {formatTime(currentTime)}
+                </Text>
+                <Text style={[styles.timeText, { color: mutedColor }]}>
+                  {formatTime(duration)}
                 </Text>
               </View>
-            )}
 
-            {/* Custom Controls */}
-            {showCustomControls && (
-              <Animated.View
-                style={[styles.controlsContainer, { opacity: controlsOpacity }]}
-                pointerEvents='box-none'
-              >
-                <View style={styles.topControls}>
-                  <TouchableOpacity
-                    onPress={toggleMute}
-                    style={styles.controlButton}
-                    activeOpacity={0.7}
-                  >
-                    {isMuted ? (
-                      <VolumeX size={24} color={textColor} />
-                    ) : (
-                      <Volume2 size={24} color={textColor} />
-                    )}
-                  </TouchableOpacity>
-                </View>
-
-                <View style={styles.bottomControls}>
-                  <View style={styles.timeContainer}>
-                    <Text style={[styles.timeText, { color: mutedColor }]}>
-                      {formatTime(currentTime)}
-                    </Text>
-                    <Text style={[styles.timeText, { color: mutedColor }]}>
-                      {formatTime(duration)}
-                    </Text>
-                  </View>
-
-                  <Progress
-                    height={10}
-                    interactive={true}
-                    value={duration > 0 ? (currentTime / duration) * 100 : 0}
-                    onValueChange={handleProgressPress}
-                  />
-                </View>
-              </Animated.View>
-            )}
-          </>
+              <ReanimatedProgress
+                duration={duration}
+                currentTime={currentTime}
+                onSeek={handleProgressChange}
+                onSeekStart={handleSeekStart}
+                onSeekEnd={handleSeekEnd}
+              />
+            </View>
+          </Animated.View>
         )}
-      </View>
+      </GestureHandlerRootView>
     );
   }
 );
@@ -494,7 +446,6 @@ Video.displayName = 'Video';
 
 const styles = StyleSheet.create({
   container: {
-    position: 'relative', // Changed from flex: 1
     width: '100%',
     height: '100%',
     borderRadius: BORDER_RADIUS,
@@ -517,14 +468,8 @@ const styles = StyleSheet.create({
     bottom: 0,
     flexDirection: 'row',
   },
-  gestureArea: {
-    flex: 1,
-    backgroundColor: 'transparent',
-  },
-  gestureAreaCenter: {
-    flex: 2,
-    backgroundColor: 'transparent',
-  },
+  gestureArea: { flex: 1, backgroundColor: 'transparent' },
+  gestureAreaCenter: { flex: 2, backgroundColor: 'transparent' },
   centerPlayIcon: {
     position: 'absolute',
     top: '50%',
@@ -569,26 +514,9 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     padding: 16,
   },
-  bottomControls: {
-    padding: 16,
-    gap: 6,
-    paddingBottom: 6,
-  },
-  progressSection: {
-    marginTop: 16,
-  },
-  timeContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  timeText: {
-    fontSize: 12,
-  },
-  controlButtons: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
+  bottomControls: { padding: 16, gap: 6, paddingBottom: 6 },
+  timeContainer: { flexDirection: 'row', justifyContent: 'space-between' },
+  timeText: { fontSize: 12 },
   controlButton: {
     width: 44,
     height: 44,
@@ -597,33 +525,31 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
-  playButton: {
-    width: 56,
-    height: 56,
-    borderRadius: 28,
-    justifyContent: 'center',
-    alignItems: 'center',
+});
+const progressStyles = StyleSheet.create({
+  container: { height: THUMB_SIZE * 2, justifyContent: 'center' },
+  track: {
+    height: PROGRESS_HEIGHT,
+    backgroundColor: 'rgba(255, 255, 255, 0.3)',
+    borderRadius: PROGRESS_HEIGHT / 2,
   },
-  loadingContainer: {
+  progress: {
+    height: PROGRESS_HEIGHT,
+    backgroundColor: '#FFFFFF',
+    borderRadius: PROGRESS_HEIGHT / 2,
     position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
-  errorContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 20,
+  thumbContainer: {
+    position: 'absolute',
+    top: (THUMB_SIZE * 2 - THUMB_SIZE) / 2,
+    left: -THUMB_SIZE / 2,
   },
-  errorText: {
-    fontSize: 16,
-    textAlign: 'center',
+  thumb: {
+    width: THUMB_SIZE,
+    height: THUMB_SIZE,
+    borderRadius: THUMB_SIZE / 2,
+    backgroundColor: '#FFFFFF',
   },
 });
 
-// Export types for consumers
 export type { VideoProps, VideoRef, VideoSource };
