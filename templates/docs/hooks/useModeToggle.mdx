@@ -213,41 +213,6 @@ export function usePersistentModeToggle() {
 }
 ```
 
-### Animated Theme Toggle
-
-Create smooth transitions between theme modes:
-
-```tsx
-import { useEffect, useRef } from 'react';
-import { Animated } from 'react-native';
-
-export function AnimatedThemeToggle() {
-  const { isDark, toggleMode } = useModeToggle();
-  const animatedValue = useRef(new Animated.Value(isDark ? 1 : 0)).current;
-
-  useEffect(() => {
-    Animated.timing(animatedValue, {
-      toValue: isDark ? 1 : 0,
-      duration: 300,
-      useNativeDriver: false,
-    }).start();
-  }, [isDark]);
-
-  const backgroundColor = animatedValue.interpolate({
-    inputRange: [0, 1],
-    outputRange: ['#ffffff', '#000000'],
-  });
-
-  return (
-    <Animated.View style={{ backgroundColor, flex: 1 }}>
-      <TouchableOpacity onPress={toggleMode}>
-        <Text>Toggle Theme</Text>
-      </TouchableOpacity>
-    </Animated.View>
-  );
-}
-```
-
 ### Header Integration
 
 Integrate theme toggle into your app header:

@@ -115,6 +115,13 @@ import { ToastVariants } from '@/templates/demo/toast/toast-variants';
 import { ActionSheetDemo } from '@/templates/demo/action-sheet/action-sheet-demo';
 import { AudioRecorderDemo } from '@/templates/demo/audio-recorder/audio-recorder-demo';
 import { CameraDemo } from '@/templates/demo/camera/camera-demo';
+import { SheetDemo } from '@/templates/demo/sheet/sheet-demo';
+import { SheetFilter } from '@/templates/demo/sheet/sheet-filter';
+import { SheetNavigation } from '@/templates/demo/sheet/sheet-navigation';
+import { SkeletonDemo } from '@/templates/demo/skeleton/skeleton-demo';
+import { SkeletonCard } from '@/templates/demo/skeleton/skeleton-card';
+import { SpinnerDemo } from '@/components/spinner-demo';
+import { VideoDemo } from '@/templates/demo/video/video-demo';
 
 export default function MapsScreen() {
   const [selectedRange, setSelectedRange] = useState<DateRange | undefined>();
@@ -145,7 +152,7 @@ export default function MapsScreen() {
         gap: 20,
       }}
     >
-      <CameraDemo />
+      <VideoDemo />
 
       {/* <ToastDemo /> */}
       {/* <ToastActions /> */}

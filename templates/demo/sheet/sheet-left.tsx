@@ -16,7 +16,7 @@ export function SheetLeft() {
 
   return (
     <Sheet open={open} onOpenChange={setOpen} side='left'>
-      <SheetTrigger>
+      <SheetTrigger asChild>
         <Button>Open Left Sheet</Button>
       </SheetTrigger>
       <SheetContent>

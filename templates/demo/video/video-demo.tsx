@@ -4,7 +4,7 @@ export function VideoDemo() {
   return (
     <Video
       source={{
-        uri: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/',
+        uri: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
       }}
       style={{
         width: '100%',

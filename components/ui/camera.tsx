@@ -143,7 +143,7 @@ export const Camera = forwardRef<CameraRef, CameraProps>(
       () => zoom.value,
       (currentValue) => {
         const text =
-          currentValue === 0 ? '1×' : `${(1 + currentValue * 4).toFixed(0)}×`;
+          currentValue === 0 ? '1×' : `${(1 + currentValue * 4).toFixed(1)}×`; // Adjusted to .toFixed(1) for smoother feedback
         runOnJS(setZoomFactorText)(text);
         runOnJS(setZoomProgress)(currentValue * 100);
       },
@@ -167,19 +167,24 @@ export const Camera = forwardRef<CameraRef, CameraProps>(
     }));
     const animatedCameraProps = useAnimatedProps(() => ({ zoom: zoom.value }));
 
-    // --- FIX START: The gesture handlers are updated to run animation logic directly on the UI thread ---
     const pinchGesture = Gesture.Pinch()
+      .onStart(() => {
+        'worklet';
+        // Save the current zoom level when the pinch gesture begins
+        baseZoom.value = zoom.value;
+      })
       .onUpdate((event) => {
         'worklet';
-        zoom.value = Math.min(
-          Math.max(baseZoom.value + (event.scale - 1) * 0.5, 0),
-          1
-        );
+        // Calculate new zoom based on the starting zoom and the current scale
+        // The sensitivity factor (e.g., * 0.5) can be adjusted for feel
+        const newZoom = baseZoom.value + (event.scale - 1) * 0.5;
+        // Clamp the zoom value between 0 and 1
+        zoom.value = Math.min(Math.max(newZoom, 0), 1);
       })
       .onEnd(() => {
         'worklet';
-        baseZoom.value = zoom.value;
-        // Animate the zoom indicator directly on the UI thread instead of using runOnJS
+        // We no longer need to set baseZoom here.
+        // Just animate the indicator.
         zoomTextAnim.value = withSequence(
           withTiming(1, { duration: 200 }),
           withDelay(1000, withTiming(0, { duration: 200 }))
@@ -192,14 +197,12 @@ export const Camera = forwardRef<CameraRef, CameraProps>(
         'worklet';
         const newZoom = zoom.value > 0 ? 0 : 0.5;
         zoom.value = withTiming(newZoom);
-        baseZoom.value = newZoom;
-        // Animate the zoom indicator directly on the UI thread instead of using runOnJS
+        baseZoom.value = newZoom; // Keep this for double tap, as it's an instant change
         zoomTextAnim.value = withSequence(
           withTiming(1, { duration: 200 }),
           withDelay(1000, withTiming(0, { duration: 200 }))
         );
       });
-    // --- FIX END ---
 
     const composedGestures = Gesture.Simultaneous(
       pinchGesture,
@@ -358,14 +361,6 @@ export const Camera = forwardRef<CameraRef, CameraProps>(
       });
     };
 
-    // --- FIX: This function is no longer needed as its logic has been moved into the gesture handlers ---
-    // const showZoomIndicator = () => {
-    //   zoomTextAnim.value = withSequence(
-    //     withTiming(1, { duration: 200 }),
-    //     withDelay(1000, withTiming(0, { duration: 200 }))
-    //   );
-    // };
-
     const handleZoomSliderChange = (value: number) => {
       const newZoom = value / 100;
       zoom.value = newZoom;
@@ -389,7 +384,6 @@ export const Camera = forwardRef<CameraRef, CameraProps>(
       setCurrentZoomIndex(nextIndex);
       zoom.value = withTiming(nextZoom);
       baseZoom.value = nextZoom;
-      // Animate zoom indicator on tap as well
       zoomTextAnim.value = withSequence(
         withTiming(1, { duration: 200 }),
         withDelay(1000, withTiming(0, { duration: 200 }))
@@ -454,6 +448,7 @@ export const Camera = forwardRef<CameraRef, CameraProps>(
               ratio={aspectRatios[aspectRatioIndex]}
               animatedProps={animatedCameraProps}
             >
+              {/* Children of CameraView are rendered as an overlay */}
               {showGrid && (
                 <View style={styles.gridOverlay}>
                   <View style={styles.gridLines}>
@@ -470,35 +465,6 @@ export const Camera = forwardRef<CameraRef, CameraProps>(
               >
                 <Text style={styles.zoomText}>{zoomFactorText}</Text>
               </Animated.View>
-              {zoomControls && (
-                <Animated.View
-                  style={[
-                    styles.zoomControls,
-                    { backgroundColor: 'rgba(0, 0, 0, 0.7)' },
-                    animatedZoomControlsStyle,
-                  ]}
-                  pointerEvents={zoomControls ? 'auto' : 'none'}
-                >
-                  <View style={styles.sliderContainer}>
-                    <Text style={[styles.zoomValue, { color: 'white' }]}>
-                      1×
-                    </Text>
-                    <Progress
-                      interactive
-                      value={zoomProgress}
-                      onValueChange={handleZoomSliderChange}
-                      style={styles.zoomSlider}
-                      height={6}
-                    />
-                    <Text style={[styles.zoomValue, { color: 'white' }]}>
-                      5×
-                    </Text>
-                  </View>
-                  <Text style={[styles.currentZoomText, { color: 'white' }]}>
-                    {zoomFactorText}
-                  </Text>
-                </Animated.View>
-              )}
               {isTimerActive && (
                 <TouchableOpacity
                   style={styles.timerOverlay}

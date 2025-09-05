@@ -4,9 +4,8 @@ import { View } from '@/components/ui/view';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { BORDER_RADIUS, FONT_SIZE } from '@/theme/globals';
 import { X } from 'lucide-react-native';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import {
-  Animated,
   Dimensions,
   Modal,
   Platform,
@@ -15,6 +14,14 @@ import {
   TouchableOpacity,
   ViewStyle,
 } from 'react-native';
+import Animated, {
+  Easing,
+  interpolate,
+  runOnJS,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from 'react-native-reanimated';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
@@ -100,70 +107,66 @@ export function SheetTrigger({ children, asChild }: SheetTriggerProps) {
 export function SheetContent({ children, style }: SheetContentProps) {
   const { open, onOpenChange, side } = useSheet();
   const sheetWidth = Math.min(SCREEN_WIDTH * 0.8, 400);
-
-  // Animation values
-  const slideAnim = useRef(
-    new Animated.Value(side === 'left' ? -sheetWidth : sheetWidth)
-  ).current;
-  const overlayOpacity = useRef(new Animated.Value(0)).current;
-  const [isVisible, setIsVisible] = React.useState(false);
+  const [isVisible, setIsVisible] = React.useState(open);
 
   const backgroundColor = useThemeColor({}, 'background');
   const borderColor = useThemeColor({}, 'border');
   const iconColor = useThemeColor({}, 'text');
 
+  // Animation values using Reanimated's useSharedValue
+  const initialPosition = side === 'left' ? -sheetWidth : sheetWidth;
+  const translateX = useSharedValue(initialPosition);
+  const overlayOpacity = useSharedValue(0);
+
+  // Effect to handle the animation based on the `open` prop
   useEffect(() => {
-    if (open) {
-      // Show the modal first
-      setIsVisible(true);
-
-      // Start from off-screen position
-      slideAnim.setValue(side === 'left' ? -sheetWidth : sheetWidth);
-      overlayOpacity.setValue(0);
-
-      // Small delay to ensure modal is rendered
-      const timer = setTimeout(() => {
-        // Animate in
-        Animated.parallel([
-          Animated.timing(slideAnim, {
-            toValue: 0,
-            duration: 300,
-            useNativeDriver: true,
-          }),
-          Animated.timing(overlayOpacity, {
-            toValue: 1,
-            duration: 300,
-            useNativeDriver: true,
-          }),
-        ]).start();
-      }, 10);
-
-      return () => clearTimeout(timer);
-    } else if (!open && isVisible) {
-      // Animate out
-      Animated.parallel([
-        Animated.timing(slideAnim, {
-          toValue: side === 'left' ? -sheetWidth : sheetWidth,
-          duration: 250,
-          useNativeDriver: true,
-        }),
-        Animated.timing(overlayOpacity, {
-          toValue: 0,
-          duration: 250,
-          useNativeDriver: true,
-        }),
-      ]).start(() => {
-        // Hide the modal after animation completes
-        setIsVisible(false);
-      });
+    // Reset position if side changes while closed
+    if (open && !isVisible) {
+      translateX.value = side === 'left' ? -sheetWidth : sheetWidth;
     }
-  }, [open, side, slideAnim, overlayOpacity, sheetWidth, isVisible]);
+
+    if (open) {
+      setIsVisible(true); // Mount the modal
+      // Animate in
+      translateX.value = withTiming(0, {
+        duration: 300,
+        easing: Easing.out(Easing.quad),
+      });
+      overlayOpacity.value = withTiming(1, { duration: 300 });
+    } else if (isVisible) {
+      // Animate out, then hide modal in the callback
+      translateX.value = withTiming(
+        initialPosition,
+        { duration: 250 },
+        (finished) => {
+          if (finished) {
+            // Use runOnJS to update React state from the UI thread
+            runOnJS(setIsVisible)(false);
+          }
+        }
+      );
+      overlayOpacity.value = withTiming(0, { duration: 250 });
+    }
+  }, [open, side, sheetWidth]); // Rerun if these change
+
+  // Animated style for the sheet content
+  const animatedSheetStyle = useAnimatedStyle(() => {
+    return {
+      transform: [{ translateX: translateX.value }],
+    };
+  });
+
+  // Animated style for the overlay
+  const animatedOverlayStyle = useAnimatedStyle(() => {
+    return {
+      opacity: interpolate(overlayOpacity.value, [0, 1], [0, 0.3]),
+    };
+  });
 
   const handleClose = () => {
     onOpenChange(false);
   };
 
-  // Don't render anything if not visible
   if (!isVisible) {
     return null;
   }
@@ -178,17 +181,7 @@ export function SheetContent({ children, style }: SheetContentProps) {
     >
       <View style={styles.modalContainer}>
         {/* Semi-transparent overlay */}
-        <Animated.View
-          style={[
-            styles.overlay,
-            {
-              opacity: overlayOpacity.interpolate({
-                inputRange: [0, 1],
-                outputRange: [0, 0.3], // 30% opacity overlay
-              }),
-            },
-          ]}
-        >
+        <Animated.View style={[styles.overlay, animatedOverlayStyle]}>
           <Pressable style={styles.overlayPressable} onPress={handleClose} />
         </Animated.View>
 
@@ -201,9 +194,9 @@ export function SheetContent({ children, style }: SheetContentProps) {
               backgroundColor,
               borderColor,
               width: sheetWidth,
-              [side]: 0, // Position on correct side
-              transform: [{ translateX: slideAnim }],
+              [side]: 0,
             },
+            animatedSheetStyle, // Apply the animated style
             style,
           ]}
         >
@@ -229,6 +222,8 @@ export function SheetContent({ children, style }: SheetContentProps) {
     </Modal>
   );
 }
+
+// Unchanged components below
 
 export function SheetHeader({ children, style }: SheetHeaderProps) {
   return <View style={[styles.header, style]}>{children}</View>;
@@ -256,7 +251,7 @@ const styles = StyleSheet.create({
   },
   overlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(0, 0, 0, 1)', // Will be controlled by opacity animation
+    backgroundColor: 'rgba(0, 0, 0, 1)', // Opacity is controlled by animation
   },
   overlayPressable: {
     flex: 1,
@@ -267,14 +262,6 @@ const styles = StyleSheet.create({
     bottom: 0,
     borderLeftWidth: 1,
     borderRightWidth: 1,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 8,
-    elevation: 10,
     ...Platform.select({
       ios: {
         shadowColor: '#000',
@@ -290,9 +277,12 @@ const styles = StyleSheet.create({
   closeButton: {
     position: 'absolute',
     top: 50,
-    zIndex: 1000,
+    zIndex: 1,
+    borderRadius: 999, // Make it circular
     width: 32,
     height: 32,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   contentContainer: {
     flex: 1,

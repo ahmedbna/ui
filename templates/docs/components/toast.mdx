@@ -239,16 +239,3 @@ const getTopPosition = () => {
   );
 };
 ```
-
-### Custom Animations
-
-The component uses React Native Animated API. You can customize animation timing and easing:
-
-```tsx
-Animated.spring(translateY, {
-  toValue: 0,
-  tension: 100, // Custom tension
-  friction: 10, // Custom friction
-  useNativeDriver: true,
-});
-```
