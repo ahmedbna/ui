@@ -56,12 +56,14 @@ import { themeRegistry } from './theme/index.js';
 import { hooksRegistry } from './hooks/index.js';
 import { inputRegistry } from './input.js';
 import { chartsRegistry } from './charts/index.js';
+import {alertDialogRegistry} from "./alert-dialog";
 import { avoidKeyboardRegistry } from './avoid-keyboard.js';
 
 export const REGISTRY: Record<string, ComponentRegistry> = {
   ...accordionRegistry,
   ...actionSheetRegistry,
   ...alertRegistry,
+  ...alertDialogRegistry,
   ...audioPlayerRegistry,
   ...audioRecorderRegistry,
   ...audioWaveformRegistry,
