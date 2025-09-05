@@ -8,11 +8,12 @@ import {
   ComboboxList,
   ComboboxTrigger,
   ComboboxValue,
+  OptionType,
 } from '@/components/ui/combobox';
 import React, { useState } from 'react';
 
 export function ComboboxGroups() {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState<OptionType | null>(null);
 
   return (
     <Combobox value={value} onValueChange={setValue}>

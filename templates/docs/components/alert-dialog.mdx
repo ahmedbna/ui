@@ -1,0 +1,160 @@
+---
+title: Alert Dialog
+description: A modal dialog that interrupts the user with important content and expects a response.
+---
+
+<ComponentPreview
+  name='alert-dialog-demo'
+  description='A basic alert dialog with confirmation buttons.'
+/>
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx bna-ui add alert-dialog
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+This component uses `react-native-reanimated` for animations.
+
+```bash
+npx expo install react-native-reanimated
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name='alert-dialog' title='components/ui/alert-dialog.tsx' />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+This component depends on the `Card` and `Button` components, so make sure you have those installed as well.
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+The `useAlertDialog` hook is the recommended way to control the dialog's visibility state.
+
+```tsx
+import { View } from 'react-native';
+import { Button } from '@/components/ui/button';
+import { AlertDialog, useAlertDialog } from '@/components/ui/alert-dialog';
+
+export default function MyComponent() {
+  const { isVisible, open, close } = useAlertDialog();
+
+  const handleConfirm = () => {
+    // Handle the confirmation logic
+    console.log('Action confirmed!');
+  };
+
+  return (
+    <View>
+      <Button onPress={open}>Show Dialog</Button>
+
+      <AlertDialog
+        isVisible={isVisible}
+        onClose={close}
+        title='Are you absolutely sure?'
+        description='This action cannot be undone. This will permanently delete your account and remove your data from our servers.'
+        onConfirm={handleConfirm}
+      />
+    </View>
+  );
+}
+```
+
+## Examples
+
+<ExamplesGrid>
+
+<div>
+#### Default
+
+<ComponentPreview
+  name='alert-dialog-demo'
+  description='A basic alert dialog with confirmation buttons.'
+/>
+
+</div>
+
+<div>
+#### Destructive Action
+
+<ComponentPreview
+  name='alert-dialog-destructive'
+  description='An alert dialog for destructive actions like delete.'
+/>
+
+</div>
+
+<div>
+#### Custom Style
+
+<ComponentPreview
+  name='alert-dialog-custom'
+  description='A custom styled alert dialog with a different appearance.'
+/>
+
+</div>
+
+</ExamplesGrid>
+
+## API Reference
+
+### AlertDialog
+
+The main component that renders the modal dialog.
+
+| Prop               | Type              | Default    | Description                                                                |
+| ------------------ | ----------------- | ---------- | -------------------------------------------------------------------------- |
+| `isVisible`        | `boolean`         | -          | **Required.** Controls the visibility of the dialog.                       |
+| `onClose`          | `() => void`      | -          | **Required.** Callback function when the dialog is closed.                 |
+| `title`            | `string`          | -          | The title displayed at the top of the dialog.                              |
+| `description`      | `string`          | -          | The main content or description of the dialog.                             |
+| `children`         | `React.ReactNode` | -          | Custom React nodes to render inside the dialog's content area.             |
+| `confirmText`      | `string`          | `'OK'`     | The text for the confirmation button.                                      |
+| `cancelText`       | `string`          | `'Cancel'` | The text for the cancellation button.                                      |
+| `onConfirm`        | `() => void`      | -          | Callback function when the confirmation button is pressed.                 |
+| `onCancel`         | `() => void`      | -          | Callback function when the cancel button is pressed or backdrop is tapped. |
+| `dismissible`      | `boolean`         | `true`     | If `true`, tapping the backdrop will close the dialog.                     |
+| `showCancelButton` | `boolean`         | `true`     | If `false`, the cancel button will not be rendered.                        |
+| `style`            | `ViewStyle`       | -          | Custom styles to apply to the dialog's main container.                     |
+
+### useAlertDialog
+
+A hook to manage the state of the `AlertDialog` component.
+
+| Return      | Type         | Description                                           |
+| ----------- | ------------ | ----------------------------------------------------- |
+| `isVisible` | `boolean`    | The current visibility state of the dialog.           |
+| `open`      | `() => void` | A function to set the dialog's visibility to `true`.  |
+| `close`     | `() => void` | A function to set the dialog's visibility to `false`. |
+| `toggle`    | `() => void` | A function to toggle the dialog's visibility.         |
+
+## Accessibility
+
+The Alert Dialog component is designed with accessibility in mind to ensure a clear and interruptive user experience.
+
+- The modal nature of the component and the dark backdrop ensure that the user's attention is focused on the dialog content.
+- It uses standard, accessible components like `Button` and `Text` from the library.
+- The dialog can be dismissed by tapping the backdrop (if `dismissible` is true), providing an intuitive closing mechanism.

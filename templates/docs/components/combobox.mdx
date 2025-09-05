@@ -48,6 +48,8 @@ npx expo install lucide-react-native
 
 ## Usage
 
+When managing state for the combobox, you will work with an `OptionType` object (`{ value: string; label: string; }`) or an array of these objects for multiple selections.
+
 ```tsx
 import {
   Combobox,
@@ -59,10 +61,16 @@ import {
   ComboboxList,
   ComboboxTrigger,
   ComboboxValue,
+  OptionType, // Import the type
 } from '@/components/ui/combobox';
-```
+import { useState } from 'react';
 
-```tsx
+// ...
+
+const [value, setValue] = useState<OptionType | null>(null);
+
+// ...
+
 <Combobox value={value} onValueChange={setValue}>
   <ComboboxTrigger>
     <ComboboxValue placeholder='Select framework...' />
@@ -76,7 +84,7 @@ import {
       <ComboboxItem value='angular'>Angular</ComboboxItem>
     </ComboboxList>
   </ComboboxContent>
-</Combobox>
+</Combobox>;
 ```
 
 ## Examples
@@ -156,19 +164,21 @@ import {
 
 ## API Reference
 
+The Combobox component operates on an `OptionType` object for its state, which has the shape `{ value: string; label: string; }`. The `value` prop of `ComboboxItem` should still be a unique `string`.
+
 ### Combobox
 
 The root component that manages the state and context for all child components.
 
-| Prop             | Type                         | Default | Description                               |
-| ---------------- | ---------------------------- | ------- | ----------------------------------------- |
-| `children`       | `ReactNode`                  | -       | The combobox components.                  |
-| `value`          | `string`                     | `""`    | The selected value (single selection).    |
-| `onValueChange`  | `(value: string) => void`    | -       | Callback when single value changes.       |
-| `values`         | `string[]`                   | `[]`    | The selected values (multiple selection). |
-| `onValuesChange` | `(values: string[]) => void` | -       | Callback when multiple values change.     |
-| `disabled`       | `boolean`                    | `false` | Whether the combobox is disabled.         |
-| `multiple`       | `boolean`                    | `false` | Whether multiple selection is enabled.    |
+| Prop             | Type                                   | Default | Description                                               |
+| ---------------- | -------------------------------------- | ------- | --------------------------------------------------------- |
+| `children`       | `ReactNode`                            | -       | The combobox components.                                  |
+| `value`          | `OptionType \| null`                   | `null`  | The selected option object (for single selection).        |
+| `onValueChange`  | `(option: OptionType \| null) => void` | -       | Callback when a single option object changes.             |
+| `values`         | `OptionType[]`                         | `[]`    | An array of selected option objects (multiple selection). |
+| `onValuesChange` | `(options: OptionType[]) => void`      | -       | Callback when the array of selected options changes.      |
+| `disabled`       | `boolean`                              | `false` | If true, the combobox is disabled.                        |
+| `multiple`       | `boolean`                              | `false` | If true, allows multiple selections.                      |
 
 ### ComboboxTrigger
 
@@ -178,16 +188,16 @@ The button that triggers the combobox dropdown.
 | ---------- | ----------- | ------- | -------------------------------------------- |
 | `children` | `ReactNode` | -       | The trigger content (usually ComboboxValue). |
 | `style`    | `ViewStyle` | -       | Additional styles for the trigger.           |
-| `error`    | `boolean`   | `false` | Whether to show error styling.               |
+| `error`    | `boolean`   | `false` | If true, shows error styling on the border.  |
 
 ### ComboboxValue
 
-Displays the selected value or placeholder text.
+Displays the selected value(s) or placeholder text.
 
-| Prop          | Type        | Default       | Description                     |
-| ------------- | ----------- | ------------- | ------------------------------- |
-| `placeholder` | `string`    | `"Select..."` | Placeholder text when no value. |
-| `style`       | `TextStyle` | -             | Additional styles for the text. |
+| Prop          | Type        | Default       | Description                            |
+| ------------- | ----------- | ------------- | -------------------------------------- |
+| `placeholder` | `string`    | `"Select..."` | Placeholder text when no value is set. |
+| `style`       | `TextStyle` | -             | Additional styles for the text.        |
 
 ### ComboboxContent
 
@@ -206,11 +216,11 @@ The search input field within the dropdown.
 | ------------- | ----------- | ------------- | ------------------------------------ |
 | `placeholder` | `string`    | `"Search..."` | Placeholder text for the input.      |
 | `style`       | `ViewStyle` | -             | Additional styles for the container. |
-| `autoFocus`   | `boolean`   | `true`        | Whether to auto-focus the input.     |
+| `autoFocus`   | `boolean`   | `true`        | If true, auto-focuses the input.     |
 
 ### ComboboxList
 
-Container for the list of options with filtering capability.
+A scrollable container for the list of options with filtering capability.
 
 | Prop       | Type        | Default | Description                     |
 | ---------- | ----------- | ------- | ------------------------------- |
@@ -237,34 +247,13 @@ Groups related options with an optional heading.
 
 ### ComboboxItem
 
-Individual selectable option within the combobox.
+An individual selectable option within the combobox.
 
-| Prop          | Type                      | Default | Description                        |
-| ------------- | ------------------------- | ------- | ---------------------------------- |
-| `children`    | `ReactNode`               | -       | The item content.                  |
-| `value`       | `string`                  | -       | The value of the item.             |
-| `onSelect`    | `(value: string) => void` | -       | Callback when item is selected.    |
-| `disabled`    | `boolean`                 | `false` | Whether the item is disabled.      |
-| `searchValue` | `string`                  | -       | Custom value for search filtering. |
-| `style`       | `ViewStyle`               | -       | Additional styles for the item.    |
-
-## Accessibility
-
-The Combobox component is built with accessibility in mind:
-
-- Full keyboard navigation support
-- Screen reader compatible with proper ARIA attributes
-- Focus management between trigger and dropdown
-- Escape key closes the dropdown
-- Search functionality works with assistive technologies
-- Proper color contrast for all states
-- Supports dynamic text sizing
-
-## Keyboard Shortcuts
-
-- **Space/Enter**: Open dropdown when trigger is focused
-- **Escape**: Close dropdown
-- **Arrow Keys**: Navigate through options
-- **Enter**: Select highlighted option
-- **Tab**: Move focus to next element
-- **Type**: Search for matching options
+| Prop          | Type                          | Default | Description                                                       |
+| ------------- | ----------------------------- | ------- | ----------------------------------------------------------------- |
+| `children`    | `ReactNode`                   | -       | The item content. This is used as the `label` for the option.     |
+| `value`       | `string`                      | -       | The unique value of the item.                                     |
+| `onSelect`    | `(value: OptionType) => void` | -       | Callback when item is selected, receiving the full option object. |
+| `disabled`    | `boolean`                     | `false` | If true, the item cannot be selected.                             |
+| `searchValue` | `string`                      | -       | A custom string to use for search filtering instead of the label. |
+| `style`       | `ViewStyle`                   | -       | Additional styles for the item.                                   |

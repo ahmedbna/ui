@@ -7,10 +7,11 @@ import {
   ComboboxList,
   ComboboxTrigger,
   ComboboxValue,
+  OptionType,
 } from '@/components/ui/combobox';
 import React, { useState } from 'react';
 
-const frameworks = [
+const frameworks: OptionType[] = [
   { value: 'react', label: 'React' },
   { value: 'vue', label: 'Vue' },
   { value: 'angular', label: 'Angular' },
@@ -20,7 +21,7 @@ const frameworks = [
 ];
 
 export function ComboboxDemo() {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState<OptionType | null>(null);
 
   return (
     <Combobox value={value} onValueChange={setValue}>
