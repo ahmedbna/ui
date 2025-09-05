@@ -16,9 +16,7 @@ export function SheetDemo() {
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
-      <SheetTrigger>
-        <Button>Open Sheet</Button>
-      </SheetTrigger>
+      <SheetTrigger>Open Sheet</SheetTrigger>
       <SheetContent>
         <SheetHeader>
           <SheetTitle>Welcome to the Sheet</SheetTitle>

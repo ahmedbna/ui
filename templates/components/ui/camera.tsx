@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button';
+import { Progress } from '@/components/ui/progress';
 import { Text } from '@/components/ui/text';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { BORDER_RADIUS, FONT_SIZE } from '@/theme/globals';
@@ -32,7 +33,6 @@ import React, {
 import {
   ActivityIndicator,
   Alert,
-  Animated,
   Dimensions,
   StyleSheet,
   TouchableOpacity,
@@ -40,9 +40,21 @@ import {
   ViewStyle,
 } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
-import { Progress } from './progress';
+import Animated, {
+  interpolate,
+  runOnJS,
+  useAnimatedProps,
+  useAnimatedReaction,
+  useAnimatedStyle,
+  useSharedValue,
+  withDelay,
+  withSequence,
+  withTiming,
+} from 'react-native-reanimated';
 
-const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
+const { width: screenWidth } = Dimensions.get('window');
+
+const AnimatedCameraView = Animated.createAnimatedComponent(CameraView);
 
 export type CaptureSuccess = {
   type: CameraMode;
@@ -62,7 +74,7 @@ export interface CameraProps {
   onVideoCapture?: ({ type, uri, cameraHeight }: CaptureSuccess) => void;
 }
 
-export interface CameraRef extends CameraView {
+export interface CameraRef {
   switchCamera: () => void;
   toggleTorch: () => void;
   takePicture: () => Promise<void>;
@@ -87,14 +99,15 @@ export const Camera = forwardRef<CameraRef, CameraProps>(
     ref
   ) => {
     const cameraRef = useRef<CameraView>(null);
-    const fadeAnim = useRef(new Animated.Value(0)).current;
     const recordingInterval = useRef<number | null>(null);
     const timerInterval = useRef<number | null>(null);
-    const settingsAnim = useRef(new Animated.Value(0)).current;
-    const zoomTextAnim = useRef(new Animated.Value(0)).current;
-    const zoomControlsAnim = useRef(new Animated.Value(0)).current;
-    const baseZoom = useRef(0);
-    const lastZoom = useRef(0);
+
+    const fadeAnim = useSharedValue(0);
+    const settingsAnim = useSharedValue(0);
+    const zoomTextAnim = useSharedValue(0);
+    const zoomControlsAnim = useSharedValue(0);
+    const zoom = useSharedValue(0);
+    const baseZoom = useSharedValue(0);
 
     const aspectRatios: Array<CameraRatio> = ['16:9', '4:3', '1:1'];
 
@@ -111,89 +124,113 @@ export const Camera = forwardRef<CameraRef, CameraProps>(
     const [isTimerActive, setIsTimerActive] = useState(false);
     const [soundEnabled, setSoundEnabled] = useState(true);
     const [showSettings, setShowSettings] = useState(false);
-    const [zoom, setZoom] = useState(0);
-    const [aspectRatioIndex, setAspectRatioIndex] = useState(1); // 0: 16:9, 1: 4:3, 2: 1:1
+    const [aspectRatioIndex, setAspectRatioIndex] = useState(1);
     const [zoomControls, setZoomControls] = useState(false);
-    const [availableZoomFactors, setAvailableZoomFactors] = useState<number[]>([
-      0,
-      0.25,
-      0.5,
-      0.75,
-      1.0, // Zoom levels: 1x, 2x, 3x, 4x, 5x
+    const [availableZoomFactors] = useState<number[]>([
+      0, 0.25, 0.5, 0.75, 1.0,
     ]);
     const [currentZoomIndex, setCurrentZoomIndex] = useState(0);
+    const [zoomFactorText, setZoomFactorText] = useState('1×');
+    const [zoomProgress, setZoomProgress] = useState(0);
 
-    // Theme colors
     const backgroundColor = useThemeColor({}, 'background');
     const textColor = useThemeColor({}, 'text');
     const primaryColor = useThemeColor({}, 'primary');
     const cardColor = useThemeColor({}, 'card');
     const destructiveColor = useThemeColor({}, 'destructive');
 
-    // Modern gesture handler for pinch-to-zoom
+    useAnimatedReaction(
+      () => zoom.value,
+      (currentValue) => {
+        const text =
+          currentValue === 0 ? '1×' : `${(1 + currentValue * 4).toFixed(1)}×`; // Adjusted to .toFixed(1) for smoother feedback
+        runOnJS(setZoomFactorText)(text);
+        runOnJS(setZoomProgress)(currentValue * 100);
+      },
+      []
+    );
+
+    const animatedContainerStyle = useAnimatedStyle(() => ({
+      opacity: fadeAnim.value,
+    }));
+    const animatedSettingsStyle = useAnimatedStyle(() => ({
+      opacity: settingsAnim.value,
+      transform: [
+        { translateY: interpolate(settingsAnim.value, [0, 1], [-100, 0]) },
+      ],
+    }));
+    const animatedZoomTextStyle = useAnimatedStyle(() => ({
+      opacity: zoomTextAnim.value,
+    }));
+    const animatedZoomControlsStyle = useAnimatedStyle(() => ({
+      opacity: zoomControlsAnim.value,
+    }));
+    const animatedCameraProps = useAnimatedProps(() => ({ zoom: zoom.value }));
+
     const pinchGesture = Gesture.Pinch()
+      .onStart(() => {
+        'worklet';
+        // Save the current zoom level when the pinch gesture begins
+        baseZoom.value = zoom.value;
+      })
       .onUpdate((event) => {
-        const newZoom = Math.min(
-          Math.max(baseZoom.current + (event.scale - 1) * 0.5, 0),
-          1
-        );
-        setZoom(newZoom);
+        'worklet';
+        // Calculate new zoom based on the starting zoom and the current scale
+        // The sensitivity factor (e.g., * 0.5) can be adjusted for feel
+        const newZoom = baseZoom.value + (event.scale - 1) * 0.5;
+        // Clamp the zoom value between 0 and 1
+        zoom.value = Math.min(Math.max(newZoom, 0), 1);
       })
       .onEnd(() => {
-        baseZoom.current = zoom;
-        showZoomIndicator();
+        'worklet';
+        // We no longer need to set baseZoom here.
+        // Just animate the indicator.
+        zoomTextAnim.value = withSequence(
+          withTiming(1, { duration: 200 }),
+          withDelay(1000, withTiming(0, { duration: 200 }))
+        );
       });
 
-    // Double tap gesture for quick zoom
     const doubleTapGesture = Gesture.Tap()
       .numberOfTaps(2)
       .onEnd(() => {
-        const newZoom = zoom > 0 ? 0 : 0.5;
-        setZoom(newZoom);
-        baseZoom.current = newZoom;
-        showZoomIndicator();
+        'worklet';
+        const newZoom = zoom.value > 0 ? 0 : 0.5;
+        zoom.value = withTiming(newZoom);
+        baseZoom.value = newZoom; // Keep this for double tap, as it's an instant change
+        zoomTextAnim.value = withSequence(
+          withTiming(1, { duration: 200 }),
+          withDelay(1000, withTiming(0, { duration: 200 }))
+        );
       });
 
-    // Combined gestures
     const composedGestures = Gesture.Simultaneous(
       pinchGesture,
       doubleTapGesture
     );
 
-    // @ts-ignore
-    useImperativeHandle(ref, () => {
-      if (!cameraRef.current) {
-        return {} as CameraRef; // fallback to empty cast to satisfy types
-      }
-
-      const cam = cameraRef.current as CameraRef;
-
-      return {
-        ...cam,
-        switchCamera: toggleCameraFacing,
-        toggleTorch,
-        takePicture: handleCapture,
-        startRecording: handleStartRecording,
-        stopRecording: handleStopRecording,
-      };
-    });
+    useImperativeHandle(ref, () => ({
+      switchCamera: toggleCameraFacing,
+      toggleTorch,
+      takePicture: handleCapture,
+      startRecording: handleStartRecording,
+      stopRecording: handleStopRecording,
+    }));
 
     useEffect(() => {
-      Animated.timing(fadeAnim, {
-        toValue: 1,
-        duration: 300,
-        useNativeDriver: true,
-      }).start();
+      fadeAnim.value = withTiming(1, { duration: 300 });
     }, [fadeAnim]);
 
     useEffect(() => {
+      zoomControlsAnim.value = withTiming(zoomControls ? 1 : 0, {
+        duration: 300,
+      });
+    }, [zoomControls, zoomControlsAnim]);
+
+    useEffect(() => {
       return () => {
-        if (recordingInterval.current) {
-          clearInterval(recordingInterval.current);
-        }
-        if (timerInterval.current) {
-          clearInterval(timerInterval.current);
-        }
+        if (recordingInterval.current) clearInterval(recordingInterval.current);
+        if (timerInterval.current) clearInterval(timerInterval.current);
       };
     }, []);
 
@@ -213,22 +250,14 @@ export const Camera = forwardRef<CameraRef, CameraProps>(
     const startTimer = (seconds: number) => {
       setTimerSeconds(seconds);
       setIsTimerActive(true);
-
       timerInterval.current = setInterval(() => {
         setTimerSeconds((prev) => {
           if (prev <= 1) {
             setIsTimerActive(false);
-            if (timerInterval.current) {
-              clearInterval(timerInterval.current);
-              timerInterval.current = null;
-            }
-            // Execute the actual capture/recording
+            if (timerInterval.current) clearInterval(timerInterval.current);
             setTimeout(() => {
-              if (mode === 'picture') {
-                handleActualCapture();
-              } else {
-                handleStartRecording();
-              }
+              if (mode === 'picture') handleActualCapture();
+              else handleStartRecording();
             }, 100);
             return 0;
           }
@@ -238,37 +267,26 @@ export const Camera = forwardRef<CameraRef, CameraProps>(
     };
 
     const cancelTimer = () => {
-      if (timerInterval.current) {
-        clearInterval(timerInterval.current);
-        timerInterval.current = null;
-      }
+      if (timerInterval.current) clearInterval(timerInterval.current);
       setIsTimerActive(false);
       setTimerSeconds(0);
     };
 
     const handleActualCapture = async () => {
       if (!cameraRef.current || isCapturing || isRecording) return;
-
       try {
         setIsCapturing(true);
-
-        // if (soundEnabled) {
-        //   Vibration.vibrate(50);
-        // }
-
         const picture = await cameraRef.current.takePictureAsync({
           quality: 1,
           base64: false,
           exif: true,
         });
-
-        if (picture && onCapture) {
+        if (picture && onCapture)
           onCapture({
             type: 'picture',
             uri: picture.uri,
             cameraHeight: getCameraHeight(),
           });
-        }
       } catch (error) {
         console.error('Error taking picture:', error);
         Alert.alert('Error', 'Failed to take picture');
@@ -279,15 +297,9 @@ export const Camera = forwardRef<CameraRef, CameraProps>(
 
     const handleStartRecording = async () => {
       if (!cameraRef.current || isRecording || isCapturing) return;
-
       try {
         setIsRecording(true);
         setRecordingTime(0);
-
-        // if (soundEnabled) {
-        //   Vibration.vibrate([0, 100, 50, 100]);
-        // }
-
         recordingInterval.current = setInterval(() => {
           setRecordingTime((prev) => {
             if (prev >= maxVideoDuration) {
@@ -297,18 +309,15 @@ export const Camera = forwardRef<CameraRef, CameraProps>(
             return prev + 1;
           });
         }, 1000);
-
         const video = await cameraRef.current.recordAsync({
           maxDuration: maxVideoDuration,
         });
-
-        if (video && onVideoCapture) {
+        if (video && onVideoCapture)
           onVideoCapture({
             type: 'video',
             uri: video.uri,
             cameraHeight: getCameraHeight(),
           });
-        }
       } catch (error) {
         console.error('Error starting recording:', error);
         Alert.alert('Error', 'Failed to start recording');
@@ -318,32 +327,16 @@ export const Camera = forwardRef<CameraRef, CameraProps>(
 
     const handleCapture = async () => {
       if (isCapturing || isRecording || isTimerActive) return;
-
-      if (selectedTimer > 0) {
-        startTimer(selectedTimer);
-      } else {
-        if (mode === 'picture') {
-          handleActualCapture();
-        } else {
-          handleStartRecording();
-        }
-      }
+      if (selectedTimer > 0) startTimer(selectedTimer);
+      else if (mode === 'picture') handleActualCapture();
+      else handleStartRecording();
     };
 
     const handleStopRecording = async () => {
       if (!cameraRef.current || !isRecording) return;
-
       try {
         await cameraRef.current.stopRecording();
-
-        if (recordingInterval.current) {
-          clearInterval(recordingInterval.current);
-          recordingInterval.current = null;
-        }
-
-        // if (soundEnabled) {
-        //   Vibration.vibrate(100);
-        // }
+        if (recordingInterval.current) clearInterval(recordingInterval.current);
       } catch (error) {
         console.error('Error stopping recording:', error);
       } finally {
@@ -352,51 +345,26 @@ export const Camera = forwardRef<CameraRef, CameraProps>(
       }
     };
 
-    const toggleCameraFacing = () => {
-      setFacing((current) => (current === 'back' ? 'front' : 'back'));
-    };
-
-    const toggleTorch = () => {
-      setTorch((current) => !current);
-    };
-
+    const toggleCameraFacing = () =>
+      setFacing((c) => (c === 'back' ? 'front' : 'back'));
+    const toggleTorch = () => setTorch((c) => !c);
     const toggleMode = () => {
-      if (!isRecording && !isCapturing) {
-        setMode((current) => (current === 'picture' ? 'video' : 'picture'));
-      }
+      if (!isRecording && !isCapturing)
+        setMode((c) => (c === 'picture' ? 'video' : 'picture'));
     };
 
     const toggleSettings = () => {
       setShowSettings((prev) => {
         const newValue = !prev;
-        Animated.timing(settingsAnim, {
-          toValue: newValue ? 1 : 0,
-          duration: 300,
-          useNativeDriver: true,
-        }).start();
+        settingsAnim.value = withTiming(newValue ? 1 : 0, { duration: 300 });
         return newValue;
       });
     };
 
-    const showZoomIndicator = () => {
-      Animated.sequence([
-        Animated.timing(zoomTextAnim, {
-          toValue: 1,
-          duration: 200,
-          useNativeDriver: true,
-        }),
-        Animated.delay(1000),
-        Animated.timing(zoomTextAnim, {
-          toValue: 0,
-          duration: 200,
-          useNativeDriver: true,
-        }),
-      ]).start();
-    };
-
     const handleZoomSliderChange = (value: number) => {
-      setZoom(value / 100); // Convert from 0-100 to 0-1
-      baseZoom.current = value / 100;
+      const newZoom = value / 100;
+      zoom.value = newZoom;
+      baseZoom.value = newZoom;
     };
 
     const formatTime = (seconds: number) => {
@@ -407,29 +375,19 @@ export const Camera = forwardRef<CameraRef, CameraProps>(
         .padStart(2, '0')}`;
     };
 
-    const getTimerButtonText = () => {
-      if (selectedTimer === 0) return 'OFF';
-      return `${selectedTimer}s`;
-    };
+    const getTimerButtonText = () =>
+      selectedTimer === 0 ? 'OFF' : `${selectedTimer}s`;
 
-    const getZoomFactor = () => {
-      return zoom === 0 ? '1×' : `${(1 + zoom * 4).toFixed(0)}×`;
-    };
-
-    // New zoom button handlers
     const handleZoomButtonTap = () => {
-      // Cycle through available zoom levels
       const nextIndex = (currentZoomIndex + 1) % availableZoomFactors.length;
       const nextZoom = availableZoomFactors[nextIndex];
-
       setCurrentZoomIndex(nextIndex);
-      setZoom(nextZoom);
-      baseZoom.current = nextZoom;
-      showZoomIndicator();
-
-      // if (soundEnabled) {
-      //   Vibration.vibrate([1]); // Light haptic feedback
-      // }
+      zoom.value = withTiming(nextZoom);
+      baseZoom.value = nextZoom;
+      zoomTextAnim.value = withSequence(
+        withTiming(1, { duration: 200 }),
+        withDelay(1000, withTiming(0, { duration: 200 }))
+      );
     };
 
     if (!permission) {
@@ -443,397 +401,325 @@ export const Camera = forwardRef<CameraRef, CameraProps>(
       );
     }
 
-    return !permission.granted ? (
-      <View
-        style={[styles.permissionContainer, { backgroundColor: cardColor }]}
-      >
-        <CameraIcon size={36} color={textColor} style={styles.permissionIcon} />
-
-        <Text variant='title' style={{ textAlign: 'center' }}>
-          Camera Access Required
-        </Text>
-
-        <Text variant='body' style={{ textAlign: 'center' }}>
-          We need access to your camera to take pictures and videos
-        </Text>
-
-        <View style={{ width: '100%' }}>
-          <Button onPress={requestPermission} style={{ width: '100%' }}>
-            Grant Permission
-          </Button>
+    if (!permission.granted) {
+      return (
+        <View
+          style={[styles.permissionContainer, { backgroundColor: cardColor }]}
+        >
+          <CameraIcon
+            size={36}
+            color={textColor}
+            style={styles.permissionIcon}
+          />
+          <Text variant='title' style={{ textAlign: 'center' }}>
+            Camera Access Required
+          </Text>
+          <Text variant='body' style={{ textAlign: 'center' }}>
+            We need access to your camera to take pictures and videos
+          </Text>
+          <View style={{ width: '100%' }}>
+            <Button onPress={requestPermission} style={{ width: '100%' }}>
+              Grant Permission
+            </Button>
+          </View>
         </View>
-      </View>
-    ) : (
+      );
+    }
+
+    return (
       <Animated.View
         style={[
           styles.container,
-          { backgroundColor, opacity: fadeAnim },
+          { backgroundColor },
           style,
+          animatedContainerStyle,
         ]}
       >
         <View style={[styles.cameraContainer, { height: getCameraHeight() }]}>
           <GestureDetector gesture={composedGestures}>
-            <Animated.View style={styles.camera}>
-              <CameraView
-                ref={cameraRef}
-                mode={mode}
-                style={styles.camera}
-                facing={facing}
-                enableTorch={torch}
-                animateShutter={true}
-                zoom={zoom}
-                mirror={mode === 'picture' && facing === 'front'}
-                ratio={aspectRatios[aspectRatioIndex]}
+            <AnimatedCameraView
+              ref={cameraRef}
+              mode={mode}
+              style={styles.camera}
+              facing={facing}
+              enableTorch={torch}
+              animateShutter={true}
+              mirror={mode === 'picture' && facing === 'front'}
+              ratio={aspectRatios[aspectRatioIndex]}
+              animatedProps={animatedCameraProps}
+            >
+              {/* Children of CameraView are rendered as an overlay */}
+              {showGrid && (
+                <View style={styles.gridOverlay}>
+                  <View style={styles.gridLines}>
+                    <View style={[styles.gridLine, styles.verticalLine1]} />
+                    <View style={[styles.gridLine, styles.verticalLine2]} />
+                    <View style={[styles.gridLine, styles.horizontalLine1]} />
+                    <View style={[styles.gridLine, styles.horizontalLine2]} />
+                  </View>
+                </View>
+              )}
+              <Animated.View
+                style={[styles.zoomIndicator, animatedZoomTextStyle]}
+                pointerEvents='none'
               >
-                {/* Grid Overlay */}
-                {showGrid && (
-                  <View style={styles.gridOverlay}>
-                    <View style={styles.gridLines}>
-                      <View style={[styles.gridLine, styles.verticalLine1]} />
-                      <View style={[styles.gridLine, styles.verticalLine2]} />
-                      <View style={[styles.gridLine, styles.horizontalLine1]} />
-                      <View style={[styles.gridLine, styles.horizontalLine2]} />
-                    </View>
-                  </View>
-                )}
-
-                {/* Zoom Indicator */}
-                <Animated.View
-                  style={[styles.zoomIndicator, { opacity: zoomTextAnim }]}
-                  pointerEvents='none'
+                <Text style={styles.zoomText}>{zoomFactorText}</Text>
+              </Animated.View>
+              {isTimerActive && (
+                <TouchableOpacity
+                  style={styles.timerOverlay}
+                  onPress={cancelTimer}
+                  activeOpacity={1}
                 >
-                  <Text style={styles.zoomText}>{getZoomFactor()}</Text>
-                </Animated.View>
-
-                {/* Zoom Controls */}
-                {zoomControls && (
-                  <Animated.View
-                    style={[
-                      styles.zoomControls,
-                      {
-                        opacity: zoomControlsAnim,
-                        backgroundColor: 'rgba(0, 0, 0, 0.7)',
-                      },
-                    ]}
-                    pointerEvents={zoomControls ? 'auto' : 'none'}
-                  >
-                    <View style={styles.sliderContainer}>
-                      <Text style={[styles.zoomValue, { color: 'white' }]}>
-                        1×
-                      </Text>
-                      <Progress
-                        interactive
-                        value={zoom * 100}
-                        onValueChange={handleZoomSliderChange}
-                        style={styles.zoomSlider}
-                        height={6}
-                      />
-                      <Text style={[styles.zoomValue, { color: 'white' }]}>
-                        5×
-                      </Text>
-                    </View>
-                    <Text style={[styles.currentZoomText, { color: 'white' }]}>
-                      {getZoomFactor()}
-                    </Text>
-                  </Animated.View>
-                )}
-
-                {/* Timer Overlay */}
-                {isTimerActive && (
-                  <TouchableOpacity
-                    style={styles.timerOverlay}
-                    onPress={cancelTimer}
-                    activeOpacity={1}
-                  >
-                    <Text style={styles.timerText}>{timerSeconds}</Text>
-                    <View style={styles.cancelTimerButton}>
-                      <X size={20} color='white' />
-                    </View>
-                    <Text style={styles.tapToCancelText}>Tap to cancel</Text>
-                  </TouchableOpacity>
-                )}
-
-                {/* Recording Indicator */}
-                {isRecording && (
-                  <View style={styles.recordingIndicator}>
-                    <View style={styles.recordingDot} />
-                    <Text style={styles.recordingText}>
-                      REC {formatTime(recordingTime)}
-                    </Text>
+                  <Text style={styles.timerText}>{timerSeconds}</Text>
+                  <View style={styles.cancelTimerButton}>
+                    <X size={20} color='white' />
                   </View>
-                )}
-
-                {showControls && (
-                  <>
-                    {/* Top Controls */}
-                    <View style={styles.topControls}>
-                      <View style={styles.topLeft}>
-                        {onClose && (
-                          <TouchableOpacity
-                            style={[
-                              styles.controlButton,
-                              { backgroundColor: cardColor },
-                            ]}
-                            onPress={onClose}
-                            activeOpacity={0.7}
-                          >
-                            <X size={24} color={textColor} />
-                          </TouchableOpacity>
-                        )}
-                      </View>
-
-                      <View style={styles.topCenter}>
-                        <Text style={[styles.modeText, { color: textColor }]}>
-                          {mode.toUpperCase()}
-                        </Text>
-                      </View>
-
-                      <View style={styles.topRight}>
+                  <Text style={styles.tapToCancelText}>Tap to cancel</Text>
+                </TouchableOpacity>
+              )}
+              {isRecording && (
+                <View style={styles.recordingIndicator}>
+                  <View style={styles.recordingDot} />
+                  <Text style={styles.recordingText}>
+                    REC {formatTime(recordingTime)}
+                  </Text>
+                </View>
+              )}
+              {showControls && (
+                <>
+                  <View style={styles.topControls}>
+                    <View style={styles.topLeft}>
+                      {onClose && (
                         <TouchableOpacity
                           style={[
                             styles.controlButton,
                             { backgroundColor: cardColor },
                           ]}
-                          onPress={toggleSettings}
+                          onPress={onClose}
                           activeOpacity={0.7}
                         >
-                          <Settings size={24} color={textColor} />
-                        </TouchableOpacity>
-                      </View>
-                    </View>
-
-                    {/* Settings Panel */}
-                    <Animated.View
-                      style={[
-                        styles.settingsPanel,
-                        {
-                          backgroundColor: cardColor,
-                          opacity: settingsAnim,
-                          transform: [
-                            {
-                              translateY: settingsAnim.interpolate({
-                                inputRange: [0, 1],
-                                outputRange: [-100, 0],
-                              }),
-                            },
-                          ],
-                        },
-                      ]}
-                      pointerEvents={showSettings ? 'auto' : 'none'}
-                    >
-                      <View style={styles.settingsRow}>
-                        <TouchableOpacity
-                          style={[
-                            styles.settingButton,
-                            showGrid && { backgroundColor: primaryColor },
-                          ]}
-                          onPress={() => setShowGrid(!showGrid)}
-                        >
-                          <Grid3X3
-                            size={20}
-                            color={showGrid ? cardColor : textColor}
-                          />
-                        </TouchableOpacity>
-
-                        <TouchableOpacity
-                          style={[
-                            styles.settingButton,
-                            {
-                              backgroundColor: soundEnabled
-                                ? primaryColor
-                                : cardColor,
-                            },
-                          ]}
-                          onPress={() => setSoundEnabled(!soundEnabled)}
-                        >
-                          {soundEnabled ? (
-                            <Volume2 size={20} color={cardColor} />
-                          ) : (
-                            <VolumeX size={20} color={textColor} />
-                          )}
-                        </TouchableOpacity>
-
-                        <TouchableOpacity
-                          style={[
-                            styles.settingButton,
-                            { backgroundColor: cardColor },
-                          ]}
-                          onPress={() =>
-                            setAspectRatioIndex((prev) => (prev + 1) % 3)
-                          }
-                        >
-                          <Text
-                            style={[styles.settingText, { color: textColor }]}
-                          >
-                            {aspectRatios[aspectRatioIndex]}
-                          </Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity
-                          style={[
-                            styles.settingButton,
-                            {
-                              backgroundColor:
-                                selectedTimer > 0 ? primaryColor : cardColor,
-                            },
-                          ]}
-                          onPress={() => {
-                            const currentIndex =
-                              timerOptions.indexOf(selectedTimer);
-                            const nextIndex =
-                              (currentIndex + 1) % timerOptions.length;
-                            setSelectedTimer(timerOptions[nextIndex]);
-                          }}
-                        >
-                          <Timer
-                            size={16}
-                            color={selectedTimer > 0 ? cardColor : textColor}
-                          />
-                          <Text
-                            style={[
-                              styles.timerSettingText,
-                              {
-                                color:
-                                  selectedTimer > 0 ? cardColor : textColor,
-                              },
-                            ]}
-                          >
-                            {getTimerButtonText()}
-                          </Text>
-                        </TouchableOpacity>
-                      </View>
-                    </Animated.View>
-
-                    {/* Side Controls */}
-                    <View style={styles.sideControls}>
-                      {enableTorch && facing === 'back' && (
-                        <TouchableOpacity
-                          style={[
-                            styles.controlButton,
-                            {
-                              backgroundColor: torch ? primaryColor : cardColor,
-                            },
-                          ]}
-                          onPress={toggleTorch}
-                          activeOpacity={0.7}
-                        >
-                          {torch ? (
-                            <Zap size={24} color={cardColor} />
-                          ) : (
-                            <ZapOff size={24} color={textColor} />
-                          )}
+                          <X size={24} color={textColor} />
                         </TouchableOpacity>
                       )}
-
+                    </View>
+                    <View style={styles.topCenter}>
+                      <Text style={[styles.modeText, { color: textColor }]}>
+                        {mode.toUpperCase()}
+                      </Text>
+                    </View>
+                    <View style={styles.topRight}>
                       <TouchableOpacity
                         style={[
                           styles.controlButton,
                           { backgroundColor: cardColor },
                         ]}
-                        onPress={toggleCameraFacing}
+                        onPress={toggleSettings}
                         activeOpacity={0.7}
                       >
-                        <SwitchCamera size={24} color={textColor} />
+                        <Settings size={24} color={textColor} />
                       </TouchableOpacity>
-
-                      {/* New Zoom Control Button */}
+                    </View>
+                  </View>
+                  <Animated.View
+                    style={[
+                      styles.settingsPanel,
+                      { backgroundColor: cardColor },
+                      animatedSettingsStyle,
+                    ]}
+                    pointerEvents={showSettings ? 'auto' : 'none'}
+                  >
+                    <View style={styles.settingsRow}>
                       <TouchableOpacity
                         style={[
-                          styles.controlButton,
+                          styles.settingButton,
+                          showGrid && { backgroundColor: primaryColor },
+                        ]}
+                        onPress={() => setShowGrid(!showGrid)}
+                      >
+                        <Grid3X3
+                          size={20}
+                          color={showGrid ? cardColor : textColor}
+                        />
+                      </TouchableOpacity>
+                      <TouchableOpacity
+                        style={[
+                          styles.settingButton,
                           {
-                            backgroundColor: zoomControls
+                            backgroundColor: soundEnabled
                               ? primaryColor
                               : cardColor,
                           },
                         ]}
-                        onPress={handleZoomButtonTap}
-                        activeOpacity={0.7}
+                        onPress={() => setSoundEnabled(!soundEnabled)}
                       >
-                        <Text
-                          style={{
-                            fontWeight: 600,
-                            color: zoomControls ? cardColor : textColor,
-                          }}
-                        >
-                          {getZoomFactor()}
-                        </Text>
-                      </TouchableOpacity>
-
-                      {/* Mode Toggle Button */}
-                      {enableVideo && (
-                        <TouchableOpacity
-                          style={[
-                            styles.controlButton,
-                            { backgroundColor: cardColor },
-                          ]}
-                          onPress={toggleMode}
-                          disabled={isRecording || isCapturing}
-                          activeOpacity={0.7}
-                        >
-                          {mode === 'picture' ? (
-                            <Video size={24} color={textColor} />
-                          ) : (
-                            <CameraIcon size={24} color={textColor} />
-                          )}
-                        </TouchableOpacity>
-                      )}
-                    </View>
-
-                    {/* Bottom Controls */}
-                    <View style={styles.bottomControls}>
-                      {/* Main Capture Button */}
-                      <TouchableOpacity
-                        style={[
-                          styles.captureButton,
-                          {
-                            backgroundColor:
-                              mode === 'video' && isRecording
-                                ? destructiveColor
-                                : 'white',
-                            borderColor:
-                              mode === 'video' && isRecording
-                                ? destructiveColor
-                                : primaryColor,
-                          },
-                          (isCapturing || isTimerActive) &&
-                            styles.capturingButton,
-                        ]}
-                        onPress={
-                          mode === 'picture'
-                            ? handleCapture
-                            : isRecording
-                            ? handleStopRecording
-                            : handleCapture
-                        }
-                        disabled={isCapturing || isTimerActive}
-                        activeOpacity={0.8}
-                      >
-                        {isCapturing ? (
-                          <ActivityIndicator
-                            size='small'
-                            color={primaryColor}
-                          />
+                        {soundEnabled ? (
+                          <Volume2 size={20} color={cardColor} />
                         ) : (
-                          <View
-                            style={[
-                              styles.captureInner,
-                              {
-                                backgroundColor:
-                                  mode === 'video' && isRecording
-                                    ? 'white'
-                                    : primaryColor,
-                                borderRadius:
-                                  mode === 'video' && isRecording ? 4 : 30,
-                              },
-                            ]}
-                          />
+                          <VolumeX size={20} color={textColor} />
                         )}
                       </TouchableOpacity>
+                      <TouchableOpacity
+                        style={[
+                          styles.settingButton,
+                          { backgroundColor: cardColor },
+                        ]}
+                        onPress={() => setAspectRatioIndex((p) => (p + 1) % 3)}
+                      >
+                        <Text
+                          style={[styles.settingText, { color: textColor }]}
+                        >
+                          {aspectRatios[aspectRatioIndex]}
+                        </Text>
+                      </TouchableOpacity>
+                      <TouchableOpacity
+                        style={[
+                          styles.settingButton,
+                          {
+                            backgroundColor:
+                              selectedTimer > 0 ? primaryColor : cardColor,
+                          },
+                        ]}
+                        onPress={() => {
+                          const ci = timerOptions.indexOf(selectedTimer);
+                          const ni = (ci + 1) % timerOptions.length;
+                          setSelectedTimer(timerOptions[ni]);
+                        }}
+                      >
+                        <Timer
+                          size={16}
+                          color={selectedTimer > 0 ? cardColor : textColor}
+                        />
+                        <Text
+                          style={[
+                            styles.timerSettingText,
+                            {
+                              color: selectedTimer > 0 ? cardColor : textColor,
+                            },
+                          ]}
+                        >
+                          {getTimerButtonText()}
+                        </Text>
+                      </TouchableOpacity>
                     </View>
-                  </>
-                )}
-              </CameraView>
-            </Animated.View>
+                  </Animated.View>
+                  <View style={styles.sideControls}>
+                    {enableTorch && facing === 'back' && (
+                      <TouchableOpacity
+                        style={[
+                          styles.controlButton,
+                          {
+                            backgroundColor: torch ? primaryColor : cardColor,
+                          },
+                        ]}
+                        onPress={toggleTorch}
+                        activeOpacity={0.7}
+                      >
+                        {torch ? (
+                          <Zap size={24} color={cardColor} />
+                        ) : (
+                          <ZapOff size={24} color={textColor} />
+                        )}
+                      </TouchableOpacity>
+                    )}
+                    <TouchableOpacity
+                      style={[
+                        styles.controlButton,
+                        { backgroundColor: cardColor },
+                      ]}
+                      onPress={toggleCameraFacing}
+                      activeOpacity={0.7}
+                    >
+                      <SwitchCamera size={24} color={textColor} />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      style={[
+                        styles.controlButton,
+                        {
+                          backgroundColor: zoomControls
+                            ? primaryColor
+                            : cardColor,
+                        },
+                      ]}
+                      onPress={handleZoomButtonTap}
+                      activeOpacity={0.7}
+                    >
+                      <Text
+                        style={{
+                          fontWeight: '600',
+                          color: zoomControls ? cardColor : textColor,
+                        }}
+                      >
+                        {zoomFactorText}
+                      </Text>
+                    </TouchableOpacity>
+                    {enableVideo && (
+                      <TouchableOpacity
+                        style={[
+                          styles.controlButton,
+                          { backgroundColor: cardColor },
+                        ]}
+                        onPress={toggleMode}
+                        disabled={isRecording || isCapturing}
+                        activeOpacity={0.7}
+                      >
+                        {mode === 'picture' ? (
+                          <Video size={24} color={textColor} />
+                        ) : (
+                          <CameraIcon size={24} color={textColor} />
+                        )}
+                      </TouchableOpacity>
+                    )}
+                  </View>
+                  <View style={styles.bottomControls}>
+                    <TouchableOpacity
+                      style={[
+                        styles.captureButton,
+                        {
+                          backgroundColor:
+                            mode === 'video' && isRecording
+                              ? destructiveColor
+                              : 'white',
+                          borderColor:
+                            mode === 'video' && isRecording
+                              ? destructiveColor
+                              : primaryColor,
+                        },
+                        (isCapturing || isTimerActive) &&
+                          styles.capturingButton,
+                      ]}
+                      onPress={
+                        mode === 'picture'
+                          ? handleCapture
+                          : isRecording
+                          ? handleStopRecording
+                          : handleCapture
+                      }
+                      disabled={isCapturing || isTimerActive}
+                      activeOpacity={0.8}
+                    >
+                      {isCapturing ? (
+                        <ActivityIndicator size='small' color={primaryColor} />
+                      ) : (
+                        <View
+                          style={[
+                            styles.captureInner,
+                            {
+                              backgroundColor:
+                                mode === 'video' && isRecording
+                                  ? 'white'
+                                  : primaryColor,
+                              borderRadius:
+                                mode === 'video' && isRecording ? 4 : 30,
+                            },
+                          ]}
+                        />
+                      )}
+                    </TouchableOpacity>
+                  </View>
+                </>
+              )}
+            </AnimatedCameraView>
           </GestureDetector>
         </View>
       </Animated.View>
@@ -1083,15 +969,6 @@ const styles = StyleSheet.create({
   permissionIcon: {
     marginBottom: 16,
   },
-  permissionTitle: {
-    textAlign: 'center',
-    marginBottom: 8,
-  },
-  permissionText: {
-    textAlign: 'center',
-    marginBottom: 24,
-    fontSize: FONT_SIZE,
-  },
   loadingText: {
     marginTop: 16,
     fontSize: FONT_SIZE,
@@ -1111,10 +988,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingVertical: 10,
-    transform: [{ rotate: '-90deg' }], // rotate to make it vertical
+    transform: [{ rotate: '-90deg' }],
   },
   zoomSlider: {
-    width: 160, // becomes height visually due to rotate
+    width: 160,
     borderRadius: 999,
   },
   zoomValue: {

@@ -43,7 +43,7 @@ export function SheetForm() {
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
-      <SheetTrigger>
+      <SheetTrigger asChild>
         <Button>Open Contact Form</Button>
       </SheetTrigger>
       <SheetContent>

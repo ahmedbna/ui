@@ -12,14 +12,15 @@ import {
 } from 'expo-audio';
 import { Circle, Download, Mic, Square, Trash2 } from 'lucide-react-native';
 import React, { useEffect, useRef, useState } from 'react';
-import {
-  Alert,
-  Animated,
-  Platform,
-  StyleSheet,
-  View,
-  ViewStyle,
-} from 'react-native';
+import { Alert, Platform, StyleSheet, View, ViewStyle } from 'react-native';
+import Animated, {
+  cancelAnimation,
+  Easing,
+  useAnimatedStyle,
+  useSharedValue,
+  withRepeat,
+  withTiming,
+} from 'react-native-reanimated';
 
 export interface AudioRecorderProps {
   style?: ViewStyle;
@@ -69,8 +70,8 @@ export function AudioRecorder({
   const redColor = useThemeColor({}, 'red');
   const greenColor = useThemeColor({}, 'green');
 
-  // Animation values
-  const recordingPulse = useRef(new Animated.Value(1)).current;
+  // Animation values using react-native-reanimated
+  const recordingPulse = useSharedValue(1);
   const durationInterval = useRef<number | null>(null);
   const meteringInterval = useRef<number | null>(null);
 
@@ -95,30 +96,33 @@ export function AudioRecorder({
     })();
   }, []);
 
-  // Recording pulse animation
+  // Recording pulse animation using react-native-reanimated
   useEffect(() => {
     if (isRecording) {
-      const pulse = Animated.loop(
-        Animated.sequence([
-          Animated.timing(recordingPulse, {
-            toValue: 1.2,
-            duration: 600,
-            useNativeDriver: true,
-          }),
-          Animated.timing(recordingPulse, {
-            toValue: 1,
-            duration: 600,
-            useNativeDriver: true,
-          }),
-        ])
+      // Start the pulse animation
+      recordingPulse.value = withRepeat(
+        withTiming(1.2, { duration: 600, easing: Easing.inOut(Easing.ease) }),
+        -1, // Infinite loop
+        true // Reverse the animation (yoyo effect)
       );
-      pulse.start();
-
-      return () => pulse.stop();
     } else {
-      recordingPulse.setValue(1);
+      // Stop the animation and reset the scale
+      cancelAnimation(recordingPulse);
+      recordingPulse.value = withTiming(1, { duration: 300 });
     }
-  }, [isRecording]);
+
+    return () => {
+      // Ensure animation is cancelled on unmount
+      cancelAnimation(recordingPulse);
+    };
+  }, [isRecording, recordingPulse]);
+
+  // Create animated style for the record button
+  const animatedRecordButtonStyle = useAnimatedStyle(() => {
+    return {
+      transform: [{ scale: recordingPulse.value }],
+    };
+  });
 
   // Real-time waveform updates during recording
   useEffect(() => {
@@ -310,9 +314,6 @@ export function AudioRecorder({
             showWaveform={true}
             showTimer={true}
             autoPlay={false}
-            onPlaybackStatusUpdate={(status) => {
-              console.log('Playback status:', status);
-            }}
           />
           <View style={styles.playbackControls}>
             <Button
@@ -392,7 +393,7 @@ export function AudioRecorder({
           {/* Controls */}
           <View style={styles.controlsContainer}>
             {!isRecording && !recordingUri && (
-              <Animated.View style={{ transform: [{ scale: recordingPulse }] }}>
+              <Animated.View style={animatedRecordButtonStyle}>
                 <Button
                   variant='default'
                   size='lg'
@@ -461,6 +462,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 16,
+    marginTop: 16,
   },
   controlButton: {
     width: 48,

@@ -2,14 +2,18 @@ import { Text } from '@/components/ui/text';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { BORDER_RADIUS, CORNERS, FONT_SIZE } from '@/theme/globals';
 import { Loader2 } from 'lucide-react-native';
-import React, { useEffect, useRef } from 'react';
-import {
-  ActivityIndicator,
-  Animated,
-  StyleSheet,
-  View,
-  ViewStyle,
-} from 'react-native';
+import React, { useEffect, useMemo } from 'react';
+import { ActivityIndicator, StyleSheet, View, ViewStyle } from 'react-native';
+import Animated, {
+  Easing,
+  SharedValue,
+  useAnimatedStyle,
+  useSharedValue,
+  withDelay,
+  withRepeat,
+  withSequence,
+  withTiming,
+} from 'react-native-reanimated';
 
 // Types
 type SpinnerSize = 'default' | 'sm' | 'lg' | 'icon';
@@ -22,7 +26,7 @@ interface SpinnerProps {
   showLabel?: boolean;
   style?: ViewStyle;
   color?: string;
-  thickness?: number;
+  thickness?: number; // Note: thickness is not used in the original component logic
   speed?: 'slow' | 'normal' | 'fast';
 }
 
@@ -62,6 +66,49 @@ const speedConfig = {
   fast: 500,
 };
 
+// --- Helper Animated Components for Dots and Bars ---
+
+interface AnimatedShapeProps {
+  anim: SharedValue<number>;
+  color: string;
+  size: number;
+  style: ViewStyle;
+}
+
+const AnimatedDot = React.memo(
+  ({ anim, color, size, style }: AnimatedShapeProps) => {
+    const animatedStyle = useAnimatedStyle(() => ({
+      opacity: anim.value,
+    }));
+    return (
+      <Animated.View
+        style={[
+          style,
+          { width: size, height: size, backgroundColor: color },
+          animatedStyle,
+        ]}
+      />
+    );
+  }
+);
+
+const AnimatedBar = React.memo(
+  ({ anim, color, size, style }: AnimatedShapeProps) => {
+    const animatedStyle = useAnimatedStyle(() => ({
+      opacity: anim.value,
+    }));
+    return (
+      <Animated.View
+        style={[
+          style,
+          { width: size / 6, height: size, backgroundColor: color },
+          animatedStyle,
+        ]}
+      />
+    );
+  }
+);
+
 // Main Spinner Component
 export function Spinner({
   size = 'default',
@@ -72,19 +119,31 @@ export function Spinner({
   color,
   speed = 'normal',
 }: SpinnerProps) {
-  const rotateAnim = useRef(new Animated.Value(0)).current;
-  const pulseAnim = useRef(new Animated.Value(1)).current;
-  const dotsAnim = useRef([
-    new Animated.Value(0.3),
-    new Animated.Value(0.3),
-    new Animated.Value(0.3),
-  ]).current;
-  const barsAnim = useRef([
-    new Animated.Value(0.3),
-    new Animated.Value(0.3),
-    new Animated.Value(0.3),
-    new Animated.Value(0.3),
-  ]).current;
+  // Reanimated shared values
+  const rotate = useSharedValue(0);
+  const pulse = useSharedValue(1);
+
+  // --- FIX: Call hooks at the top level ---
+  // 1. Call useSharedValue at the top level for each dot/bar
+  const dotAnim1 = useSharedValue(0.3);
+  const dotAnim2 = useSharedValue(0.3);
+  const dotAnim3 = useSharedValue(0.3);
+
+  const barAnim1 = useSharedValue(0.3);
+  const barAnim2 = useSharedValue(0.3);
+  const barAnim3 = useSharedValue(0.3);
+  const barAnim4 = useSharedValue(0.3);
+
+  // 2. Use useMemo to create a stable array reference from the values
+  const dotsAnims = useMemo(
+    () => [dotAnim1, dotAnim2, dotAnim3],
+    [dotAnim1, dotAnim2, dotAnim3]
+  );
+  const barsAnims = useMemo(
+    () => [barAnim1, barAnim2, barAnim3, barAnim4],
+    [barAnim1, barAnim2, barAnim3, barAnim4]
+  );
+  // --- END FIX ---
 
   // Theme colors
   const primaryColor = useThemeColor({}, 'text');
@@ -97,102 +156,79 @@ export function Spinner({
   // Rotation animation
   useEffect(() => {
     if (variant === 'cirlce') {
-      const rotateAnimation = Animated.loop(
-        Animated.timing(rotateAnim, {
-          toValue: 1,
-          duration: animationDuration,
-          useNativeDriver: true,
-        })
+      rotate.value = withRepeat(
+        withTiming(360, { duration: animationDuration, easing: Easing.linear }),
+        -1
       );
-      rotateAnimation.start();
-      return () => rotateAnimation.stop();
+    } else {
+      rotate.value = 0; // Reset
     }
-  }, [rotateAnim, variant, animationDuration]);
+  }, [rotate, variant, animationDuration]);
 
   // Pulse animation
   useEffect(() => {
     if (variant === 'pulse') {
-      const pulseAnimation = Animated.loop(
-        Animated.sequence([
-          Animated.timing(pulseAnim, {
-            toValue: 1.3,
-            duration: animationDuration / 2,
-            useNativeDriver: true,
-          }),
-          Animated.timing(pulseAnim, {
-            toValue: 1,
-            duration: animationDuration / 2,
-            useNativeDriver: true,
-          }),
-        ])
+      pulse.value = withRepeat(
+        withSequence(
+          withTiming(1.3, { duration: animationDuration / 2 }),
+          withTiming(1, { duration: animationDuration / 2 })
+        ),
+        -1,
+        true
       );
-      pulseAnimation.start();
-      return () => pulseAnimation.stop();
+    } else {
+      pulse.value = 1; // Reset
     }
-  }, [pulseAnim, variant, animationDuration]);
+  }, [pulse, variant, animationDuration]);
 
   // Dots animation
   useEffect(() => {
     if (variant === 'dots') {
-      const createDotAnimation = (animValue: Animated.Value, delay: number) =>
-        Animated.loop(
-          Animated.sequence([
-            Animated.delay(delay),
-            Animated.timing(animValue, {
-              toValue: 1,
-              duration: animationDuration / 3,
-              useNativeDriver: true,
-            }),
-            Animated.timing(animValue, {
-              toValue: 0.3,
-              duration: animationDuration / 3,
-              useNativeDriver: true,
-            }),
-          ])
+      dotsAnims.forEach((anim, index) => {
+        anim.value = withRepeat(
+          withSequence(
+            withDelay(
+              index * (animationDuration / 6),
+              withTiming(1, { duration: animationDuration / 3 })
+            ),
+            withTiming(0.3, { duration: animationDuration / 3 })
+          ),
+          -1
         );
-
-      const animations = dotsAnim.map((anim, index) =>
-        createDotAnimation(anim, index * (animationDuration / 6))
-      );
-
-      animations.forEach((anim) => anim.start());
-      return () => animations.forEach((anim) => anim.stop());
+      });
+    } else {
+      dotsAnims.forEach((anim) => (anim.value = 0.3)); // Reset
     }
-  }, [dotsAnim, variant, animationDuration]);
+  }, [dotsAnims, variant, animationDuration]);
 
   // Bars animation
   useEffect(() => {
     if (variant === 'bars') {
-      const createBarAnimation = (animValue: Animated.Value, delay: number) =>
-        Animated.loop(
-          Animated.sequence([
-            Animated.delay(delay),
-            Animated.timing(animValue, {
-              toValue: 1,
-              duration: animationDuration / 4,
-              useNativeDriver: true,
-            }),
-            Animated.timing(animValue, {
-              toValue: 0.3,
-              duration: animationDuration / 4,
-              useNativeDriver: true,
-            }),
-          ])
+      barsAnims.forEach((anim, index) => {
+        anim.value = withRepeat(
+          withSequence(
+            withDelay(
+              index * (animationDuration / 8),
+              withTiming(1, { duration: animationDuration / 4 })
+            ),
+            withTiming(0.3, { duration: animationDuration / 4 })
+          ),
+          -1
         );
-
-      const animations = barsAnim.map((anim, index) =>
-        createBarAnimation(anim, index * (animationDuration / 8))
-      );
-
-      animations.forEach((anim) => anim.start());
-      return () => animations.forEach((anim) => anim.stop());
+      });
+    } else {
+      barsAnims.forEach((anim) => (anim.value = 0.3)); // Reset
     }
-  }, [barsAnim, variant, animationDuration]);
+  }, [barsAnims, variant, animationDuration]);
 
-  const spin = rotateAnim.interpolate({
-    inputRange: [0, 1],
-    outputRange: ['0deg', '360deg'],
-  });
+  // Animated styles
+  const animatedCircleStyle = useAnimatedStyle(() => ({
+    transform: [{ rotate: `${rotate.value}deg` }],
+  }));
+
+  const animatedPulseStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: pulse.value }],
+  }));
 
   const renderSpinner = () => {
     switch (variant) {
@@ -210,11 +246,8 @@ export function Spinner({
           <Animated.View
             style={[
               styles.customSpinner,
-              {
-                width: config.size,
-                height: config.size,
-                transform: [{ rotate: spin }],
-              },
+              { width: config.size, height: config.size },
+              animatedCircleStyle,
             ]}
           >
             <Loader2 size={config.iconSize} color={spinnerColor} />
@@ -230,8 +263,8 @@ export function Spinner({
                 width: config.size,
                 height: config.size,
                 backgroundColor: spinnerColor,
-                transform: [{ scale: pulseAnim }],
               },
+              animatedPulseStyle,
             ]}
           />
         );
@@ -239,18 +272,13 @@ export function Spinner({
       case 'dots':
         return (
           <View style={[styles.dotsContainer, { gap: config.size / 4 }]}>
-            {dotsAnim.map((anim, index) => (
-              <Animated.View
+            {dotsAnims.map((anim, index) => (
+              <AnimatedDot
                 key={index}
-                style={[
-                  styles.dot,
-                  {
-                    width: config.size / 3,
-                    height: config.size / 3,
-                    backgroundColor: spinnerColor,
-                    opacity: anim,
-                  },
-                ]}
+                anim={anim}
+                color={spinnerColor}
+                size={config.size / 3}
+                style={styles.dot}
               />
             ))}
           </View>
@@ -259,18 +287,13 @@ export function Spinner({
       case 'bars':
         return (
           <View style={[styles.barsContainer, { gap: config.size / 6 }]}>
-            {barsAnim.map((anim, index) => (
-              <Animated.View
+            {barsAnims.map((anim, index) => (
+              <AnimatedBar
                 key={index}
-                style={[
-                  styles.bar,
-                  {
-                    width: config.size / 6,
-                    height: config.size,
-                    backgroundColor: spinnerColor,
-                    opacity: anim,
-                  },
-                ]}
+                anim={anim}
+                color={spinnerColor}
+                size={config.size}
+                style={styles.bar}
               />
             ))}
           </View>
@@ -313,22 +336,23 @@ export function LoadingOverlay({
   backdrop = true,
   backdropColor,
   backdropOpacity = 0.5,
-  onRequestClose,
   ...spinnerProps
 }: LoadingOverlayProps) {
-  const overlayOpacity = useRef(new Animated.Value(0)).current;
+  const opacity = useSharedValue(0);
   const backgroundColor = useThemeColor({}, 'background');
   const cardColor = useThemeColor({}, 'card');
 
   useEffect(() => {
-    Animated.timing(overlayOpacity, {
-      toValue: visible ? 1 : 0,
+    opacity.value = withTiming(visible ? 1 : 0, {
       duration: 200,
-      useNativeDriver: true,
-    }).start();
-  }, [visible, overlayOpacity]);
+    });
+  }, [visible, opacity]);
 
-  if (!visible) return null;
+  const animatedOverlayStyle = useAnimatedStyle(() => ({
+    opacity: opacity.value,
+    // Conditionally render to avoid interaction issues
+    display: opacity.value === 0 ? 'none' : 'flex',
+  }));
 
   const defaultBackdropColor =
     backdropColor ||
@@ -340,10 +364,8 @@ export function LoadingOverlay({
     <Animated.View
       style={[
         styles.overlay,
-        {
-          backgroundColor: backdrop ? defaultBackdropColor : 'transparent',
-          opacity: overlayOpacity,
-        },
+        { backgroundColor: backdrop ? defaultBackdropColor : 'transparent' },
+        animatedOverlayStyle,
       ]}
       pointerEvents={visible ? 'auto' : 'none'}
     >
@@ -420,11 +442,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   overlay: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
+    ...StyleSheet.absoluteFillObject,
     alignItems: 'center',
     justifyContent: 'center',
     zIndex: 9999,

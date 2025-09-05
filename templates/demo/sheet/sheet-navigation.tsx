@@ -39,7 +39,7 @@ export function SheetNavigation() {
 
   return (
     <Sheet open={open} onOpenChange={setOpen} side='left'>
-      <SheetTrigger>
+      <SheetTrigger asChild>
         <Button>Open Navigation</Button>
       </SheetTrigger>
       <SheetContent>
