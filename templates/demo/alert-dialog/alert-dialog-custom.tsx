@@ -8,7 +8,7 @@ export function AlertDialogCustomDemo() {
   const dialog = useAlertDialog();
 
   return (
-    <View style={{ padding: 20 }}>
+    <View>
       <Button variant='outline' onPress={dialog.open}>
         Custom Dialog
       </Button>

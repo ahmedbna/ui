@@ -7,7 +7,7 @@ export function AlertDialogDestructiveDemo() {
   const dialog = useAlertDialog();
 
   return (
-    <View style={{ padding: 20 }}>
+    <View>
       <Button variant='destructive' onPress={dialog.open}>
         Delete Item
       </Button>

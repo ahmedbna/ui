@@ -7,7 +7,7 @@ export function AlertDialogDemo() {
   const dialog = useAlertDialog();
 
   return (
-    <View style={{ padding: 20 }}>
+    <View>
       <Button onPress={dialog.open}>Show Dialog</Button>
 
       <AlertDialog
