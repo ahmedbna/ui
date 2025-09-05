@@ -52,10 +52,12 @@ import { themeRegistry } from '@/templates/registry/theme';
 import { inputRegistry } from '@/templates/registry/input';
 import { chartsRegistry } from '@/templates/registry/charts';
 import { avoidKeyboardRegistry } from './registry/avoid-keyboard';
+import { alertDialogRegistry } from './registry/alert-dialog';
 
 export const Index: Record<string, any> = {
   ...accordionRegistry,
   ...actionSheetRegistry,
+  ...alertDialogRegistry,
   ...alertRegistry,
   ...audioPlayerRegistry,
   ...audioRecorderRegistry,

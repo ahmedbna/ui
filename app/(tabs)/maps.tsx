@@ -91,6 +91,14 @@ import { AvoidKeyboardDuration } from '@/templates/demo/avoid-keyboard/avoid-key
 import { AvoidKeyboardChat } from '@/templates/demo/avoid-keyboard/avoid-keyboard-chat';
 import { AvoidKeyboardForm } from '@/templates/demo/avoid-keyboard/avoid-keyboard-form';
 import { AvoidKeyboardPlayground } from '@/templates/demo/avoid-keyboard/avoid-keyboard-playground';
+import AlertDialogDemo from '@/templates/demo/alert-dialog/alert-dialog-demo';
+import AlertDialogCustomDemo from '@/templates/demo/alert-dialog/alert-dialog-custom';
+import AlertDialogDestructiveDemo from '@/templates/demo/alert-dialog/alert-dialog-destructive';
+import { BottomSheetDemo } from '@/templates/demo/bottom-sheet/bottom-sheet-demo';
+import { BottomSheetForm } from '@/templates/demo/bottom-sheet/bottom-sheet-form';
+import { BottomSheetList } from '@/templates/demo/bottom-sheet/bottom-sheet-list';
+import { DatePickerDemo } from '@/templates/demo/date-picker/date-picker-demo';
+import { DatePickerForm } from '@/templates/demo/date-picker/date-picker-form';
 
 export default function MapsScreen() {
   const [selectedRange, setSelectedRange] = useState<DateRange | undefined>();
@@ -117,9 +125,23 @@ export default function MapsScreen() {
         flex: 1,
         justifyContent: 'center',
         paddingTop: 80,
+        paddingHorizontal: 20,
+        gap: 20,
       }}
     >
-      <AvoidKeyboardDemo />
+      <DatePickerDemo />
+
+      {/* <DatePickerForm /> */}
+      {/* 
+      <BottomSheetList /> */}
+
+      {/* <AlertDialogDestructiveDemo /> */}
+
+      {/* <AlertDialogCustomDemo /> */}
+
+      {/* <AlertDialogDemo /> */}
+
+      {/* <AvoidKeyboardDemo /> */}
 
       {/* <AvoidKeyboardOffset /> */}
 
