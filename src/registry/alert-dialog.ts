@@ -4,7 +4,8 @@ export const alertDialogRegistry = {
   // Main alert-dialog component
   'alert-dialog': {
     name: 'alert-dialog',
-    description: 'A modal dialog that interrupts the user with important content and expects a response.',
+    description:
+      'A modal dialog that interrupts the user with important content and expects a response.',
     type: 'registry:ui',
     dependencies: ['react-native-reanimated'],
     registryDependencies: ['card', 'button', 'text', 'view'],
@@ -19,7 +20,8 @@ export const alertDialogRegistry = {
     ],
     preview: {
       // todo: prepare preview videos
-      light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/alert-dialog-preview.mov',
+      light:
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/alert-dialog-preview.mov',
       dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/alert-dialog-preview-dark.mov',
     },
   },
@@ -41,7 +43,8 @@ export const alertDialogRegistry = {
     ],
     preview: {
       // todo: prepare preview videos
-      light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/alert-dialog-demo.mov',
+      light:
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/alert-dialog-demo.mov',
       dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/alert-dialog-demo-dark.mov',
     },
   },
@@ -63,7 +66,8 @@ export const alertDialogRegistry = {
     ],
     preview: {
       // todo: prepare preview videos
-      light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/alert-dialog-destructive.mov',
+      light:
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/alert-dialog-destructive.mov',
       dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/alert-dialog-destructive-dark.mov',
     },
   },
@@ -85,7 +89,8 @@ export const alertDialogRegistry = {
     ],
     preview: {
       // todo: prepare preview videos
-      light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/alert-dialog-custom.mov',
+      light:
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/alert-dialog-custom.mov',
       dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/alert-dialog-custom-dark.mov',
     },
   },

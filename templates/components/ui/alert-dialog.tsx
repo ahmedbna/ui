@@ -1,9 +1,27 @@
-import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from '@/components/ui/card';
-import {Button} from '@/components/ui/button';
-import {useThemeColor} from '@/hooks/useThemeColor';
-import React, {useEffect} from 'react';
-import {Modal, StyleSheet, TouchableWithoutFeedback, View, ViewStyle} from 'react-native';
-import Animated, {runOnJS, useAnimatedStyle, useSharedValue, withTiming} from 'react-native-reanimated';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { useThemeColor } from '@/hooks/useThemeColor';
+import React, { useEffect } from 'react';
+import {
+  Modal,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  View,
+  ViewStyle,
+} from 'react-native';
+import Animated, {
+  runOnJS,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from 'react-native-reanimated';
 
 export type AlertDialogProps = {
   isVisible: boolean;
@@ -22,19 +40,19 @@ export type AlertDialogProps = {
 
 // A simple card-like dialog overlay with fade-in animation similar to BottomSheet's backdrop
 export function AlertDialog({
-                         isVisible,
-                         onClose,
-                         title,
-                         description,
-                         children,
-                         confirmText = 'OK',
-                         cancelText = 'Cancel',
-                         onConfirm,
-                         onCancel,
-                         dismissible = true,
-                         showCancelButton = true,
-                         style,
-                       }: AlertDialogProps) {
+  isVisible,
+  onClose,
+  title,
+  description,
+  children,
+  confirmText = 'OK',
+  cancelText = 'Cancel',
+  onConfirm,
+  onCancel,
+  dismissible = true,
+  showCancelButton = true,
+  style,
+}: AlertDialogProps) {
   const cardColor = useThemeColor({}, 'card');
 
   const [modalVisible, setModalVisible] = React.useState(false);
@@ -44,15 +62,15 @@ export function AlertDialog({
   useEffect(() => {
     if (isVisible) {
       setModalVisible(true);
-      backdropOpacity.value = withTiming(1, {duration: 250});
-      cardOpacity.value = withTiming(1, {duration: 200});
+      backdropOpacity.value = withTiming(1, { duration: 250 });
+      cardOpacity.value = withTiming(1, { duration: 200 });
     } else {
-      backdropOpacity.value = withTiming(0, {duration: 250}, (finished) => {
+      backdropOpacity.value = withTiming(0, { duration: 250 }, (finished) => {
         if (finished) {
           runOnJS(setModalVisible)(false);
         }
       });
-      cardOpacity.value = withTiming(0, {duration: 200});
+      cardOpacity.value = withTiming(0, { duration: 200 });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isVisible]);
@@ -67,12 +85,12 @@ export function AlertDialog({
 
   const animateClose = () => {
     'worklet';
-    backdropOpacity.value = withTiming(0, {duration: 300}, (finished) => {
+    backdropOpacity.value = withTiming(0, { duration: 300 }, (finished) => {
       if (finished) {
         runOnJS(onClose)();
       }
     });
-    cardOpacity.value = withTiming(0, {duration: 200});
+    cardOpacity.value = withTiming(0, { duration: 200 });
   };
 
   const handleBackdropPress = () => {
@@ -99,34 +117,27 @@ export function AlertDialog({
       statusBarTranslucent
       animationType='none'
     >
-      <Animated.View
-        style={[
-          styles.backdrop,
-          rBackdropStyle,
-        ]}
-      >
+      <Animated.View style={[styles.backdrop, rBackdropStyle]}>
         <TouchableWithoutFeedback onPress={handleBackdropPress}>
-          <Animated.View style={styles.backdropTouchableArea}/>
+          <Animated.View style={styles.backdropTouchableArea} />
         </TouchableWithoutFeedback>
 
         {/* Non-animated outer wrapper: handles rounded corners and clipping */}
         <View
-          style={[
-            styles.roundedWrapper,
-            {backgroundColor: cardColor},
-            style,
-          ]}
+          style={[styles.roundedWrapper, { backgroundColor: cardColor }, style]}
         >
           {/* Only fade the inner content */}
           <Animated.View style={[styles.innerContent, rCardFadeStyle]}>
             <Card
               // Card has no rounded corners, background or shadow (delegated to wrapper)
-              style={{backgroundColor: 'transparent', elevation: 0}}
+              style={{ backgroundColor: 'transparent', elevation: 0 }}
             >
               {(title || description) && (
                 <CardHeader>
                   {title ? <CardTitle>{title}</CardTitle> : null}
-                  {description ? <CardDescription>{description}</CardDescription> : null}
+                  {description ? (
+                    <CardDescription>{description}</CardDescription>
+                  ) : null}
                 </CardHeader>
               )}
               {children ? <CardContent>{children}</CardContent> : null}
@@ -136,7 +147,7 @@ export function AlertDialog({
                     {cancelText}
                   </Button>
                 )}
-                <Button style={{flex: 1}} onPress={handleConfirm}>
+                <Button style={{ flex: 1 }} onPress={handleConfirm}>
                   {confirmText}
                 </Button>
               </CardFooter>
@@ -157,7 +168,11 @@ const styles = StyleSheet.create({
     padding: 24,
   },
   backdropTouchableArea: {
-    position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
   },
   // Rounded corners and clipping consolidated here (non-animated)
   roundedWrapper: {
@@ -176,5 +191,5 @@ export function useAlertDialog() {
   const open = React.useCallback(() => setIsVisible(true), []);
   const close = React.useCallback(() => setIsVisible(false), []);
   const toggle = React.useCallback(() => setIsVisible((v) => !v), []);
-  return {isVisible, open, close, toggle};
+  return { isVisible, open, close, toggle };
 }

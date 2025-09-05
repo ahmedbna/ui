@@ -4,20 +4,20 @@ import { Button } from '@/components/ui/button';
 import { View } from '@/components/ui/view';
 import { Text } from '@/components/ui/text';
 
-export default function AlertDialogCustomDemo() {
+export function AlertDialogCustomDemo() {
   const dialog = useAlertDialog();
 
   return (
     <View style={{ padding: 20 }}>
-      <Button variant="outline" onPress={dialog.open}>
+      <Button variant='outline' onPress={dialog.open}>
         Custom Dialog
       </Button>
 
       <AlertDialog
         isVisible={dialog.isVisible}
         onClose={dialog.close}
-        confirmText="Continue"
-        cancelText="Go Back"
+        confirmText='Continue'
+        cancelText='Go Back'
         onConfirm={() => {
           console.log('Continued');
           dialog.close();
@@ -30,7 +30,8 @@ export default function AlertDialogCustomDemo() {
             Custom Content
           </Text>
           <Text style={{ textAlign: 'center', marginBottom: 16 }}>
-            This dialog contains custom content instead of using the title and description props.
+            This dialog contains custom content instead of using the title and
+            description props.
           </Text>
         </View>
       </AlertDialog>
