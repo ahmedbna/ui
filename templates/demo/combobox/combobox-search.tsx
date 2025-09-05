@@ -7,10 +7,16 @@ import {
   ComboboxList,
   ComboboxTrigger,
   ComboboxValue,
+  OptionType,
 } from '@/components/ui/combobox';
 import React, { useState } from 'react';
 
-const countries = [
+// For clarity, define a type for the country data that includes searchValue
+interface CountryOption extends OptionType {
+  searchValue: string;
+}
+
+const countries: CountryOption[] = [
   {
     value: 'us',
     label: 'United States',
@@ -34,7 +40,7 @@ const countries = [
 ];
 
 export function ComboboxSearch() {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState<OptionType | null>(null);
 
   return (
     <Combobox value={value} onValueChange={setValue}>

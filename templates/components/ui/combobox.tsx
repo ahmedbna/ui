@@ -26,20 +26,36 @@ import {
   ViewStyle,
 } from 'react-native';
 
-// Context for sharing state between components
+// --- 1. DEFINE A SHARED OPTION TYPE ---
+export interface OptionType {
+  value: string;
+  label: string;
+}
+
+// Helper to extract a simple string label from children
+const getLabelFromChildren = (children: ReactNode): string => {
+  let label = '';
+  React.Children.forEach(children, (child) => {
+    if (typeof child === 'string' || typeof child === 'number') {
+      label += child;
+    }
+  });
+  return label;
+};
+
 interface ComboboxContextType {
   isOpen: boolean;
   setIsOpen: (open: boolean) => void;
-  value: string;
-  setValue: (value: string) => void;
+  value: OptionType | null;
+  setValue: (option: OptionType) => void;
   searchQuery: string;
   setSearchQuery: (query: string) => void;
   triggerLayout: { x: number; y: number; width: number; height: number };
   setTriggerLayout: (layout: any) => void;
   disabled: boolean;
   multiple: boolean;
-  values: string[];
-  setValues: (values: string[]) => void;
+  values: OptionType[];
+  setValues: (options: OptionType[]) => void;
   filteredItemsCount: number;
   setFilteredItemsCount: (count: number) => void;
 }
@@ -56,20 +72,19 @@ const useCombobox = () => {
   return context;
 };
 
-// Main Combobox wrapper
 interface ComboboxProps {
   children: ReactNode;
-  value?: string;
-  onValueChange?: (value: string) => void;
+  value?: OptionType | null;
+  onValueChange?: (option: OptionType | null) => void;
   disabled?: boolean;
   multiple?: boolean;
-  values?: string[];
-  onValuesChange?: (values: string[]) => void;
+  values?: OptionType[];
+  onValuesChange?: (options: OptionType[]) => void;
 }
 
 export function Combobox({
   children,
-  value = '',
+  value = null,
   onValueChange,
   disabled = false,
   multiple = false,
@@ -86,19 +101,20 @@ export function Combobox({
     height: 0,
   });
 
-  const setValue = (newValue: string) => {
+  const setValue = (newOption: OptionType) => {
     if (multiple) {
-      const newValues = values.includes(newValue)
-        ? values.filter((v) => v !== newValue)
-        : [...values, newValue];
+      const isAlreadySelected = values.some((v) => v.value === newOption.value);
+      const newValues = isAlreadySelected
+        ? values.filter((v) => v.value !== newOption.value)
+        : [...values, newOption];
       onValuesChange?.(newValues);
     } else {
-      onValueChange?.(newValue);
+      onValueChange?.(newOption);
     }
   };
 
-  const setValues = (newValues: string[]) => {
-    onValuesChange?.(newValues);
+  const setValues = (newOptions: OptionType[]) => {
+    onValuesChange?.(newOptions);
   };
 
   return (
@@ -125,7 +141,6 @@ export function Combobox({
   );
 }
 
-// Combobox Trigger
 interface ComboboxTriggerProps {
   children: ReactNode;
   style?: ViewStyle;
@@ -139,25 +154,15 @@ export function ComboboxTrigger({
 }: ComboboxTriggerProps) {
   const { setIsOpen, setTriggerLayout, disabled, isOpen } = useCombobox();
   const triggerRef = useRef<React.ComponentRef<typeof TouchableOpacity>>(null);
-
   const cardColor = useThemeColor({}, 'card');
   const destructiveColor = useThemeColor({}, 'destructive');
   const mutedColor = useThemeColor({}, 'textMuted');
 
   const measureTrigger = () => {
     if (triggerRef.current) {
-      triggerRef.current.measure(
-        (
-          x: number,
-          y: number,
-          width: number,
-          height: number,
-          pageX: number,
-          pageY: number
-        ) => {
-          setTriggerLayout({ x: pageX, y: pageY, width, height });
-        }
-      );
+      triggerRef.current.measure((_x, _y, width, height, pageX, pageY) => {
+        setTriggerLayout({ x: pageX, y: pageY, width, height });
+      });
     }
   };
 
@@ -197,7 +202,6 @@ export function ComboboxTrigger({
   );
 }
 
-// Combobox Value display
 interface ComboboxValueProps {
   placeholder?: string;
   style?: TextStyle;
@@ -211,14 +215,15 @@ export function ComboboxValue({
   const textColor = useThemeColor({}, 'text');
   const mutedColor = useThemeColor({}, 'textMuted');
 
-  const hasValue = multiple ? values.length > 0 : value;
+  const hasValue = multiple ? values.length > 0 : !!value;
+
   const displayText = multiple
     ? values.length === 0
       ? placeholder
       : values.length === 1
-      ? values[0]
+      ? values[0].label
       : `${values.length} selected`
-    : value || placeholder;
+    : value?.label || placeholder;
 
   return (
     <Text
@@ -236,7 +241,6 @@ export function ComboboxValue({
   );
 }
 
-// Combobox Content (Modal overlay)
 interface ComboboxContentProps {
   children: ReactNode;
   maxHeight?: number;
@@ -259,6 +263,10 @@ export function ComboboxContent({
   const availableHeight =
     screenHeight - triggerLayout.y - triggerLayout.height - 100;
   const dropdownHeight = Math.min(maxHeight, availableHeight);
+
+  if (!isOpen) {
+    return null;
+  }
 
   return (
     <Modal
@@ -288,7 +296,6 @@ export function ComboboxContent({
   );
 }
 
-// Combobox Input for searching
 interface ComboboxInputProps {
   placeholder?: string;
   style?: ViewStyle;
@@ -325,7 +332,6 @@ export function ComboboxInput({
   );
 }
 
-// Combobox List wrapper
 interface ComboboxListProps {
   children: ReactNode;
   style?: ViewStyle;
@@ -334,25 +340,26 @@ interface ComboboxListProps {
 export function ComboboxList({ children, style }: ComboboxListProps) {
   const { searchQuery, setFilteredItemsCount } = useCombobox();
 
-  // Filter children based on search query
   const filteredChildren = Children.toArray(children).filter((child) => {
     if (!searchQuery) return true;
 
     if (isValidElement(child) && child.type === ComboboxItem) {
       const props = child.props as any;
-      const searchText = props.searchValue || props.value || '';
+      const label = getLabelFromChildren(props.children);
+      const searchText = props.searchValue || label || props.value || '';
       return searchText.toLowerCase().includes(searchQuery.toLowerCase());
     }
 
     if (isValidElement(child) && child.type === ComboboxGroup) {
-      // For groups, check if any children match
       const groupProps = child.props as any;
       const groupChildren = Children.toArray(groupProps.children);
 
       return groupChildren.some((groupChild) => {
         if (isValidElement(groupChild) && groupChild.type === ComboboxItem) {
           const itemProps = groupChild.props as any;
-          const searchText = itemProps.searchValue || itemProps.value || '';
+          const label = getLabelFromChildren(itemProps.children);
+          const searchText =
+            itemProps.searchValue || label || itemProps.value || '';
           return searchText.toLowerCase().includes(searchQuery.toLowerCase());
         }
         return false;
@@ -362,16 +369,14 @@ export function ComboboxList({ children, style }: ComboboxListProps) {
     return true;
   });
 
-  // Count filtered items (excluding empty components)
-  const countFilteredItems = (children: React.ReactNode[]): number => {
-    return children.reduce<number>((count, child) => {
-      if (isValidElement(child)) {
-        if (child.type === ComboboxItem) {
+  const countFilteredItems = (nodes: React.ReactNode[]): number => {
+    return nodes.reduce<number>((count, node) => {
+      if (isValidElement(node)) {
+        if (node.type === ComboboxItem) {
           return count + 1;
         }
-        if (child.type === ComboboxGroup) {
-          const groupProps = child.props as any;
-          const groupChildren = Children.toArray(groupProps.children);
+        if (node.type === ComboboxGroup) {
+          const groupChildren = Children.toArray((node.props as any).children);
           return count + countFilteredItems(groupChildren);
         }
       }
@@ -381,7 +386,6 @@ export function ComboboxList({ children, style }: ComboboxListProps) {
 
   const itemCount = countFilteredItems(filteredChildren);
 
-  // Update filtered items count in context
   useEffect(() => {
     setFilteredItemsCount(itemCount);
   }, [itemCount, setFilteredItemsCount]);
@@ -390,13 +394,13 @@ export function ComboboxList({ children, style }: ComboboxListProps) {
     <ScrollView
       style={[styles.optionsList, style]}
       showsVerticalScrollIndicator={false}
+      keyboardShouldPersistTaps='handled'
     >
       {filteredChildren}
     </ScrollView>
   );
 }
 
-// Combobox Empty state
 interface ComboboxEmptyProps {
   children: ReactNode;
   style?: ViewStyle;
@@ -406,8 +410,7 @@ export function ComboboxEmpty({ children, style }: ComboboxEmptyProps) {
   const { searchQuery, filteredItemsCount } = useCombobox();
   const mutedColor = useThemeColor({}, 'textMuted');
 
-  // Only show if there's a search query AND no filtered items
-  if (!searchQuery || filteredItemsCount > 0) return null;
+  if (filteredItemsCount > 0) return null;
 
   return (
     <View style={[styles.emptyContainer, style]}>
@@ -422,7 +425,6 @@ export function ComboboxEmpty({ children, style }: ComboboxEmptyProps) {
   );
 }
 
-// Combobox Group wrapper
 interface ComboboxGroupProps {
   children: ReactNode;
   heading?: string;
@@ -432,20 +434,18 @@ export function ComboboxGroup({ children, heading }: ComboboxGroupProps) {
   const { searchQuery } = useCombobox();
   const mutedColor = useThemeColor({}, 'textMuted');
 
-  // Filter children based on search query
   const filteredChildren = Children.toArray(children).filter((child) => {
     if (!searchQuery) return true;
 
     if (isValidElement(child) && child.type === ComboboxItem) {
       const props = child.props as any;
-      const searchText = props.searchValue || props.value || '';
+      const label = getLabelFromChildren(props.children);
+      const searchText = props.searchValue || label || props.value || '';
       return searchText.toLowerCase().includes(searchQuery.toLowerCase());
     }
-
     return true;
   });
 
-  // Don't render group if no children match search
   if (searchQuery && filteredChildren.length === 0) return null;
 
   return (
@@ -460,11 +460,10 @@ export function ComboboxGroup({ children, heading }: ComboboxGroupProps) {
   );
 }
 
-// Combobox Item
 interface ComboboxItemProps {
   children: ReactNode;
-  value: string;
-  onSelect?: (value: string) => void;
+  value: string; // The unique value is still a string
+  onSelect?: (value: OptionType) => void;
   disabled?: boolean;
   searchValue?: string;
   style?: ViewStyle;
@@ -472,31 +471,33 @@ interface ComboboxItemProps {
 
 export function ComboboxItem({
   children,
-  value,
+  value: itemValue,
   onSelect,
   disabled = false,
-  searchValue,
   style,
 }: ComboboxItemProps) {
   const {
     setValue,
     setIsOpen,
     multiple,
-    values,
+    values: selectedValues,
     value: selectedValue,
   } = useCombobox();
   const textColor = useThemeColor({}, 'text');
   const primaryColor = useThemeColor({}, 'primary');
 
   const isSelected = multiple
-    ? values.includes(value)
-    : selectedValue === value;
+    ? selectedValues.some((v) => v.value === itemValue)
+    : selectedValue?.value === itemValue;
 
   const handleSelect = () => {
     if (disabled) return;
 
-    onSelect?.(value);
-    setValue(value);
+    const label = getLabelFromChildren(children);
+    const selectedOption: OptionType = { value: itemValue, label };
+
+    onSelect?.(selectedOption);
+    setValue(selectedOption);
 
     if (!multiple) {
       setIsOpen(false);
@@ -530,7 +531,6 @@ export function ComboboxItem({
           {children}
         </Text>
       ) : (
-        // Clone child elements and pass isSelected prop
         Children.map(children, (child) => {
           if (isValidElement(child)) {
             return cloneElement(child, { isSelected } as any);

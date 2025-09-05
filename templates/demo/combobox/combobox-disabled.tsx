@@ -7,17 +7,21 @@ import {
   ComboboxList,
   ComboboxTrigger,
   ComboboxValue,
+  OptionType,
 } from '@/components/ui/combobox';
 import React, { useState } from 'react';
 
-const frameworks = [
+const frameworks: OptionType[] = [
   { value: 'react', label: 'React' },
   { value: 'vue', label: 'Vue' },
   { value: 'angular', label: 'Angular' },
 ];
 
 export function ComboboxDisabled() {
-  const [value, setValue] = useState('react');
+  const [value, setValue] = useState<OptionType | null>({
+    value: 'vue',
+    label: 'Vue',
+  });
 
   return (
     <Combobox value={value} onValueChange={setValue} disabled>

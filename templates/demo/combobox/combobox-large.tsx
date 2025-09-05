@@ -7,11 +7,17 @@ import {
   ComboboxList,
   ComboboxTrigger,
   ComboboxValue,
+  OptionType,
 } from '@/components/ui/combobox';
 import React, { useState } from 'react';
 
+// For clarity, define a more specific type for the dataset items
+interface LargeDatasetItem extends OptionType {
+  searchValue: string;
+}
+
 // Generate a large dataset
-const generateLargeDataset = () => {
+const generateLargeDataset = (): LargeDatasetItem[] => {
   const categories = [
     'Technology',
     'Science',
@@ -37,7 +43,7 @@ const generateLargeDataset = () => {
     'Service',
   ];
 
-  const items = [];
+  const items: LargeDatasetItem[] = [];
   for (let i = 0; i < 200; i++) {
     const category = categories[i % categories.length];
     const adjective = adjectives[Math.floor(Math.random() * adjectives.length)];
@@ -56,7 +62,7 @@ const generateLargeDataset = () => {
 const largeDataset = generateLargeDataset();
 
 export function ComboboxLarge() {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState<OptionType | null>(null);
 
   return (
     <Combobox value={value} onValueChange={setValue}>
