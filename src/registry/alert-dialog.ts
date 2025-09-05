@@ -21,8 +21,8 @@ export const alertDialogRegistry = {
     preview: {
       // todo: prepare preview videos
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/alert-dialog-preview.mov',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/alert-dialog-preview-dark.mov',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_09-05-2025 15-56-08_1.MP4',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_09-05-2025 15-56-08_1.MP4',
     },
   },
 
@@ -44,8 +44,8 @@ export const alertDialogRegistry = {
     preview: {
       // todo: prepare preview videos
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/alert-dialog-demo.mov',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/alert-dialog-demo-dark.mov',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_09-05-2025 15-56-08_1.MP4',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_09-05-2025 15-56-08_1.MP4',
     },
   },
 
@@ -67,8 +67,8 @@ export const alertDialogRegistry = {
     preview: {
       // todo: prepare preview videos
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/alert-dialog-destructive.mov',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/alert-dialog-destructive-dark.mov',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_09-05-2025 15-56-47_1.MP4',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_09-05-2025 15-56-47_1.MP4',
     },
   },
 
@@ -83,8 +83,9 @@ export const alertDialogRegistry = {
     files: [
       {
         type: 'registry:example',
-        path: 'templates/demo/alert-dialog/alert-dialog-custom.tsx',
-        target: 'components/demo/alert-dialog/alert-dialog-custom.tsx',
+        path: 'templates/demo/alert-dialog/ScreenRecording_09-05-2025 15-56-28_1.MP4',
+        target:
+          'components/demo/alert-dialog/ScreenRecording_09-05-2025 15-56-28_1.MP4',
       },
     ],
     preview: {
