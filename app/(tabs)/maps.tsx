@@ -136,6 +136,8 @@ export default function MapsScreen() {
         gap: 20,
       }}
     >
+      <BottomSheetForm />
+
       {/* <ComboboxDemo /> */}
 
       {/* <ComboboxDisabled /> */}
@@ -148,7 +150,7 @@ export default function MapsScreen() {
 
       {/* <ComboboxMultiple /> */}
 
-      <ComboboxSearch />
+      {/* <ComboboxSearch /> */}
 
       {/* <DatePickerDemo /> */}
 
