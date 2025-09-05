@@ -5,11 +5,9 @@ import React, {
   useCallback,
   useContext,
   useEffect,
-  useRef,
   useState,
 } from 'react';
 import {
-  Animated,
   Dimensions,
   Platform,
   TouchableOpacity,
@@ -21,6 +19,14 @@ import {
   GestureDetector,
   GestureHandlerRootView,
 } from 'react-native-gesture-handler';
+import Animated, {
+  runOnJS,
+  useAnimatedStyle,
+  useSharedValue,
+  withDelay,
+  withSpring,
+  withTiming,
+} from 'react-native-reanimated';
 
 export type ToastVariant = 'default' | 'success' | 'error' | 'warning' | 'info';
 
@@ -48,6 +54,12 @@ const TOAST_MARGIN = 8;
 const DYNAMIC_ISLAND_WIDTH = 126;
 const EXPANDED_WIDTH = screenWidth - 32;
 
+// Reanimated spring configuration
+const SPRING_CONFIG = {
+  stiffness: 120,
+  damping: 8,
+};
+
 export function Toast({
   id,
   title,
@@ -58,16 +70,16 @@ export function Toast({
   action,
 }: ToastProps) {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [hasContent, setHasContent] = useState(false);
 
-  const translateY = useRef(new Animated.Value(-100)).current;
-  const translateX = useRef(new Animated.Value(0)).current;
-  const opacity = useRef(new Animated.Value(0)).current;
-  const scale = useRef(new Animated.Value(0.8)).current;
-  const width = useRef(new Animated.Value(DYNAMIC_ISLAND_WIDTH)).current;
-  const height = useRef(new Animated.Value(DYNAMIC_ISLAND_HEIGHT)).current;
-  const borderRadius = useRef(new Animated.Value(18.5)).current;
-  const contentOpacity = useRef(new Animated.Value(0)).current;
+  // Reanimated shared values
+  const translateY = useSharedValue(-100);
+  const translateX = useSharedValue(0);
+  const opacity = useSharedValue(0);
+  const scale = useSharedValue(0.8);
+  const width = useSharedValue(DYNAMIC_ISLAND_WIDTH);
+  const height = useSharedValue(DYNAMIC_ISLAND_HEIGHT);
+  const borderRadius = useSharedValue(18.5);
+  const contentOpacity = useSharedValue(0);
 
   // Dynamic Island colors (dark theme optimized)
   const backgroundColor = '#1C1C1E'; // iOS Dynamic Island background
@@ -75,72 +87,30 @@ export function Toast({
 
   useEffect(() => {
     const hasContentToShow = Boolean(title || description || action);
-    setHasContent(hasContentToShow);
 
     if (hasContentToShow) {
       // If there's content, start directly with expanded state
-      width.setValue(EXPANDED_WIDTH);
-      height.setValue(EXPANDED_HEIGHT);
-      borderRadius.setValue(20);
+      width.value = EXPANDED_WIDTH;
+      height.value = EXPANDED_HEIGHT;
+      borderRadius.value = 20;
       setIsExpanded(true);
 
-      // Single smooth animation for expanded toast
-      Animated.parallel([
-        Animated.spring(translateY, {
-          toValue: 0,
-          tension: 120,
-          friction: 8,
-          useNativeDriver: true,
-        }),
-        Animated.timing(opacity, {
-          toValue: 1,
-          duration: 300,
-          useNativeDriver: true,
-        }),
-        Animated.spring(scale, {
-          toValue: 1,
-          tension: 120,
-          friction: 8,
-          useNativeDriver: true,
-        }),
-        Animated.timing(contentOpacity, {
-          toValue: 1,
-          duration: 300,
-          delay: 100, // Slight delay for content to appear after container
-          useNativeDriver: true,
-        }),
-      ]).start();
+      // Animate in expanded toast
+      translateY.value = withSpring(0, SPRING_CONFIG);
+      opacity.value = withTiming(1, { duration: 300 });
+      scale.value = withSpring(1, SPRING_CONFIG);
+      // CORRECTED LINE: Use withDelay to wrap withTiming
+      contentOpacity.value = withDelay(100, withTiming(1, { duration: 300 }));
     } else {
       // If no content, show compact Dynamic Island with icon only
       setIsExpanded(false);
 
-      Animated.parallel([
-        Animated.spring(translateY, {
-          toValue: 0,
-          tension: 120,
-          friction: 8,
-          useNativeDriver: true,
-        }),
-        Animated.timing(opacity, {
-          toValue: 1,
-          duration: 200,
-          useNativeDriver: true,
-        }),
-        Animated.spring(scale, {
-          toValue: 1,
-          tension: 120,
-          friction: 8,
-          useNativeDriver: true,
-        }),
-      ]).start();
+      // Animate in compact toast
+      translateY.value = withSpring(0, SPRING_CONFIG);
+      opacity.value = withTiming(1, { duration: 200 });
+      scale.value = withSpring(1, SPRING_CONFIG);
     }
-
-    return () => {
-      translateY.setValue(-100);
-      opacity.setValue(0);
-      scale.setValue(0.8);
-    };
-  }, [title, description, action]); // Added dependencies to handle content changes
+  }, []); // This effect should only run once when the toast mounts
 
   const getVariantColor = () => {
     switch (variant) {
@@ -174,34 +144,25 @@ export function Toast({
     }
   };
 
-  const dismiss = () => {
-    Animated.parallel([
-      Animated.spring(translateY, {
-        toValue: -100,
-        tension: 120,
-        friction: 8,
-        useNativeDriver: true,
-      }),
-      Animated.timing(opacity, {
-        toValue: 0,
-        duration: 250,
-        useNativeDriver: true,
-      }),
-      Animated.spring(scale, {
-        toValue: 0.8,
-        tension: 120,
-        friction: 8,
-        useNativeDriver: true,
-      }),
-    ]).start(() => {
-      // Defer the state update to avoid useInsertionEffect timing issues
-      setTimeout(() => onDismiss(id), 0);
+  const dismiss = useCallback(() => {
+    // This function will be called from the UI thread
+    const onDismissAction = () => {
+      'worklet';
+      runOnJS(onDismiss)(id);
+    };
+
+    translateY.value = withSpring(-100, SPRING_CONFIG);
+    opacity.value = withTiming(0, { duration: 250 }, (finished) => {
+      if (finished) {
+        onDismissAction();
+      }
     });
-  };
+    scale.value = withSpring(0.8, SPRING_CONFIG);
+  }, [id, onDismiss]);
 
   const panGesture = Gesture.Pan()
     .onUpdate((event) => {
-      translateX.setValue(event.translationX);
+      translateX.value = event.translationX;
     })
     .onEnd((event) => {
       const { translationX, velocityX } = event;
@@ -210,30 +171,25 @@ export function Toast({
         Math.abs(translationX) > screenWidth * 0.25 ||
         Math.abs(velocityX) > 800
       ) {
-        // Dismiss the toast
-        Animated.parallel([
-          Animated.timing(translateX, {
-            toValue: translationX > 0 ? screenWidth : -screenWidth,
-            duration: 250,
-            useNativeDriver: true,
-          }),
-          Animated.timing(opacity, {
-            toValue: 0,
-            duration: 250,
-            useNativeDriver: true,
-          }),
-        ]).start(() => {
-          // Defer the state update to avoid useInsertionEffect timing issues
-          setTimeout(() => onDismiss(id), 0);
+        // Dismiss action to be called from the UI thread
+        const onDismissAction = () => {
+          'worklet';
+          runOnJS(onDismiss)(id);
+        };
+
+        // Animate out horizontally
+        translateX.value = withTiming(
+          translationX > 0 ? screenWidth : -screenWidth,
+          { duration: 250 }
+        );
+        opacity.value = withTiming(0, { duration: 250 }, (finished) => {
+          if (finished) {
+            onDismissAction();
+          }
         });
       } else {
         // Snap back with spring animation
-        Animated.spring(translateX, {
-          toValue: 0,
-          tension: 120,
-          friction: 8,
-          useNativeDriver: true,
-        }).start();
+        translateX.value = withSpring(0, SPRING_CONFIG);
       }
     });
 
@@ -242,49 +198,46 @@ export function Toast({
     return statusBarHeight + index * (EXPANDED_HEIGHT + TOAST_MARGIN);
   };
 
+  // Animated styles
+  const animatedContainerStyle = useAnimatedStyle(() => ({
+    opacity: opacity.value,
+    transform: [
+      { translateY: translateY.value },
+      { translateX: translateX.value },
+      { scale: scale.value },
+    ],
+  }));
+
+  const animatedIslandStyle = useAnimatedStyle(() => ({
+    width: width.value,
+    height: height.value,
+    borderRadius: borderRadius.value,
+    backgroundColor,
+    justifyContent: 'center',
+    alignItems: 'center',
+    overflow: 'hidden',
+  }));
+
+  const animatedContentStyle = useAnimatedStyle(() => ({
+    opacity: contentOpacity.value,
+  }));
+
   const toastStyle: ViewStyle = {
     position: 'absolute',
     top: getTopPosition(),
     alignSelf: 'center',
     shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 8,
-    },
+    shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.25,
     shadowRadius: 20,
     elevation: 10,
     zIndex: 1000 + index,
   };
 
-  const dynamicIslandStyle = {
-    backgroundColor,
-    justifyContent: 'center' as const,
-    alignItems: 'center' as const,
-    overflow: 'hidden' as const,
-  };
-
   return (
     <GestureDetector gesture={panGesture}>
-      <Animated.View
-        style={[
-          toastStyle,
-          {
-            transform: [{ translateY }, { translateX }, { scale }],
-            opacity,
-          },
-        ]}
-      >
-        <Animated.View
-          style={[
-            dynamicIslandStyle,
-            {
-              width,
-              height,
-              borderRadius,
-            },
-          ]}
-        >
+      <Animated.View style={[toastStyle, animatedContainerStyle]}>
+        <Animated.View style={animatedIslandStyle}>
           {/* Compact state - just icon or indicator */}
           {!isExpanded && (
             <View style={{ justifyContent: 'center', alignItems: 'center' }}>
@@ -297,7 +250,6 @@ export function Toast({
             <Animated.View
               style={[
                 {
-                  opacity: contentOpacity,
                   position: 'absolute',
                   top: 0,
                   left: 0,
@@ -308,6 +260,7 @@ export function Toast({
                   flexDirection: 'row',
                   alignItems: 'center',
                 },
+                animatedContentStyle,
               ]}
             >
               {getIcon() && (
@@ -372,11 +325,7 @@ export function Toast({
 
               <TouchableOpacity
                 onPress={dismiss}
-                style={{
-                  marginLeft: 8,
-                  padding: 4,
-                  borderRadius: 8,
-                }}
+                style={{ marginLeft: 8, padding: 4, borderRadius: 8 }}
               >
                 <X size={14} color={mutedTextColor} />
               </TouchableOpacity>

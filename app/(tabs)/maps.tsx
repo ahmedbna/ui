@@ -106,6 +106,12 @@ import { ComboboxGroups } from '@/templates/demo/combobox/combobox-groups';
 import { ComboboxLarge } from '@/templates/demo/combobox/combobox-large';
 import { ComboboxMultiple } from '@/templates/demo/combobox/combobox-multiple';
 import { ComboboxSearch } from '@/templates/demo/combobox/combobox-search';
+import { ToastDemo } from '@/templates/demo/toast/toast-demo';
+import { ToastDuration } from '@/templates/demo/toast/toast-duration';
+import { ToastActions } from '@/templates/demo/toast/toast-actions';
+import { ToastCompact } from '@/templates/demo/toast/toast-compact';
+import { ToastMultiple } from '@/templates/demo/toast/toast-multiple';
+import { ToastVariants } from '@/templates/demo/toast/toast-variants';
 
 export default function MapsScreen() {
   const [selectedRange, setSelectedRange] = useState<DateRange | undefined>();
@@ -136,7 +142,14 @@ export default function MapsScreen() {
         gap: 20,
       }}
     >
-      <BottomSheetForm />
+      {/* <ToastDemo /> */}
+      {/* <ToastActions /> */}
+      {/* <ToastCompact /> */}
+      {/* <ToastDuration /> */}
+      {/* <ToastMultiple /> */}
+      <ToastVariants />
+
+      {/* <BottomSheetForm /> */}
 
       {/* <ComboboxDemo /> */}
 
