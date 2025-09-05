@@ -25,6 +25,83 @@ import Animated, {
 const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 const MAX_TRANSLATE_Y = -SCREEN_HEIGHT + 50;
 
+type BottomSheetContentProps = {
+  children: React.ReactNode;
+  title?: string;
+  style?: ViewStyle;
+  rBottomSheetStyle: any;
+  cardColor: string;
+  mutedColor: string;
+  onHandlePress?: () => void;
+};
+
+// Component for the bottom sheet content
+const BottomSheetContent = ({
+  children,
+  title,
+  style,
+  rBottomSheetStyle,
+  cardColor,
+  mutedColor,
+  onHandlePress,
+}: BottomSheetContentProps) => {
+  return (
+    <Animated.View
+      style={[
+        {
+          height: SCREEN_HEIGHT,
+          width: '100%',
+          position: 'absolute',
+          top: SCREEN_HEIGHT,
+          backgroundColor: cardColor,
+          borderTopLeftRadius: BORDER_RADIUS,
+          borderTopRightRadius: BORDER_RADIUS,
+        },
+        rBottomSheetStyle,
+        style,
+      ]}
+    >
+      {/* Handle - Touchable to allow snapping when pan is disabled */}
+      <TouchableWithoutFeedback onPress={onHandlePress}>
+        <View
+          style={{
+            width: '100%',
+            paddingVertical: 12,
+            alignItems: 'center',
+          }}
+        >
+          <View
+            style={{
+              width: 64,
+              height: 6,
+              backgroundColor: mutedColor,
+              borderRadius: 999,
+            }}
+          />
+        </View>
+      </TouchableWithoutFeedback>
+
+      {/* Title */}
+      {title && (
+        <View
+          style={{
+            marginHorizontal: 16,
+            marginTop: 16,
+            paddingBottom: 8,
+          }}
+        >
+          <Text variant='title' style={{ textAlign: 'center' }}>
+            {title}
+          </Text>
+        </View>
+      )}
+
+      {/* Content */}
+      <View style={{ flex: 1, padding: 16 }}>{children}</View>
+    </Animated.View>
+  );
+};
+
 type BottomSheetProps = {
   isVisible: boolean;
   onClose: () => void;
@@ -33,6 +110,7 @@ type BottomSheetProps = {
   enableBackdropDismiss?: boolean;
   title?: string;
   style?: ViewStyle;
+  disablePanGesture?: boolean;
 };
 
 export function BottomSheet({
@@ -43,6 +121,7 @@ export function BottomSheet({
   enableBackdropDismiss = true,
   title,
   style,
+  disablePanGesture = false,
 }: BottomSheetProps) {
   const cardColor = useThemeColor({}, 'card');
   const mutedColor = useThemeColor({}, 'muted');
@@ -50,6 +129,7 @@ export function BottomSheet({
   const translateY = useSharedValue(0);
   const context = useSharedValue({ y: 0 });
   const opacity = useSharedValue(0);
+  const currentSnapIndex = useSharedValue(0);
 
   // Convert snap points to actual heights
   const snapPointsHeights = snapPoints.map((point) => -SCREEN_HEIGHT * point);
@@ -66,6 +146,8 @@ export function BottomSheet({
         stiffness: 400,
       });
       opacity.value = withTiming(1, { duration: 300 });
+      // Reset to first snap point when opening
+      currentSnapIndex.value = 0;
     } else {
       // Animate slide down before closing modal
       translateY.value = withSpring(0, {
@@ -92,16 +174,29 @@ export function BottomSheet({
     'worklet';
     let closest = snapPointsHeights[0];
     let minDistance = Math.abs(currentY - closest);
+    let closestIndex = 0;
 
-    for (const snapPoint of snapPointsHeights) {
+    for (let i = 0; i < snapPointsHeights.length; i++) {
+      const snapPoint = snapPointsHeights[i];
       const distance = Math.abs(currentY - snapPoint);
       if (distance < minDistance) {
         minDistance = distance;
         closest = snapPoint;
+        closestIndex = i;
       }
     }
 
+    // Update the current snap index
+    currentSnapIndex.value = closestIndex;
     return closest;
+  };
+
+  // Function to cycle through snap points when handle is pressed
+  const handlePress = () => {
+    // Move to the next snap point (cycle back to first if at the end)
+    const nextIndex = (currentSnapIndex.value + 1) % snapPointsHeights.length;
+    currentSnapIndex.value = nextIndex;
+    scrollTo(snapPointsHeights[nextIndex]);
   };
 
   const animateClose = () => {
@@ -185,53 +280,29 @@ export function BottomSheet({
             <Animated.View style={{ flex: 1 }} />
           </TouchableWithoutFeedback>
 
-          <GestureDetector gesture={gesture}>
-            <Animated.View
-              style={[
-                {
-                  height: SCREEN_HEIGHT,
-                  width: '100%',
-                  position: 'absolute',
-                  top: SCREEN_HEIGHT,
-                  backgroundColor: cardColor,
-                  borderTopLeftRadius: BORDER_RADIUS,
-                  borderTopRightRadius: BORDER_RADIUS,
-                },
-                rBottomSheetStyle,
-                style,
-              ]}
-            >
-              {/* Handle */}
-              <View
-                style={{
-                  width: 64,
-                  height: 6,
-                  backgroundColor: mutedColor,
-                  alignSelf: 'center',
-                  marginTop: 8,
-                  borderRadius: 999,
-                }}
+          {disablePanGesture ? (
+            <BottomSheetContent
+              children={children}
+              title={title}
+              style={style}
+              rBottomSheetStyle={rBottomSheetStyle}
+              cardColor={cardColor}
+              mutedColor={mutedColor}
+              onHandlePress={() => runOnJS(handlePress)()}
+            />
+          ) : (
+            <GestureDetector gesture={gesture}>
+              <BottomSheetContent
+                children={children}
+                title={title}
+                style={style}
+                rBottomSheetStyle={rBottomSheetStyle}
+                cardColor={cardColor}
+                mutedColor={mutedColor}
+                onHandlePress={() => runOnJS(handlePress)()}
               />
-
-              {/* Title */}
-              {title && (
-                <View
-                  style={{
-                    marginHorizontal: 16,
-                    marginTop: 16,
-                    paddingBottom: 8,
-                  }}
-                >
-                  <Text variant='title' style={{ textAlign: 'center' }}>
-                    {title}
-                  </Text>
-                </View>
-              )}
-
-              {/* Content */}
-              <View style={{ flex: 1, padding: 16 }}>{children}</View>
-            </Animated.View>
-          </GestureDetector>
+            </GestureDetector>
+          )}
         </Animated.View>
       </GestureHandlerRootView>
     </Modal>
