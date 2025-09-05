@@ -83,9 +83,8 @@ export const alertDialogRegistry = {
     files: [
       {
         type: 'registry:example',
-        path: 'templates/demo/alert-dialog/ScreenRecording_09-05-2025 15-56-28_1.MP4',
-        target:
-          'components/demo/alert-dialog/ScreenRecording_09-05-2025 15-56-28_1.MP4',
+        path: 'templates/demo/alert-dialog/alert-dialog-custom.tsx',
+        target: 'components/demo/alert-dialog/alert-dialog-custom.tsx',
       },
     ],
     preview: {
