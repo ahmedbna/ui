@@ -99,6 +99,13 @@ import { BottomSheetForm } from '@/templates/demo/bottom-sheet/bottom-sheet-form
 import { BottomSheetList } from '@/templates/demo/bottom-sheet/bottom-sheet-list';
 import { DatePickerDemo } from '@/templates/demo/date-picker/date-picker-demo';
 import { DatePickerForm } from '@/templates/demo/date-picker/date-picker-form';
+import { ComboboxDemo } from '@/templates/demo/combobox/combobox-demo';
+import { ComboboxDisabled } from '@/templates/demo/combobox/combobox-disabled';
+import { ComboboxForm } from '@/templates/demo/combobox/combobox-form';
+import { ComboboxGroups } from '@/templates/demo/combobox/combobox-groups';
+import { ComboboxLarge } from '@/templates/demo/combobox/combobox-large';
+import { ComboboxMultiple } from '@/templates/demo/combobox/combobox-multiple';
+import { ComboboxSearch } from '@/templates/demo/combobox/combobox-search';
 
 export default function MapsScreen() {
   const [selectedRange, setSelectedRange] = useState<DateRange | undefined>();
@@ -129,11 +136,25 @@ export default function MapsScreen() {
         gap: 20,
       }}
     >
-      <DatePickerDemo />
+      {/* <ComboboxDemo /> */}
+
+      {/* <ComboboxDisabled /> */}
+
+      {/* <ComboboxForm /> */}
+
+      {/* <ComboboxGroups /> */}
+
+      {/* <ComboboxLarge /> */}
+
+      {/* <ComboboxMultiple /> */}
+
+      <ComboboxSearch />
+
+      {/* <DatePickerDemo /> */}
 
       {/* <DatePickerForm /> */}
-      {/* 
-      <BottomSheetList /> */}
+
+      {/* <BottomSheetList /> */}
 
       {/* <AlertDialogDestructiveDemo /> */}
 

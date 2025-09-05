@@ -8,12 +8,13 @@ import {
   ComboboxList,
   ComboboxTrigger,
   ComboboxValue,
+  OptionType,
 } from '@/components/ui/combobox';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
 import React, { useState } from 'react';
 
-const roles = [
+const roles: OptionType[] = [
   { value: 'frontend', label: 'Frontend Developer' },
   { value: 'backend', label: 'Backend Developer' },
   { value: 'fullstack', label: 'Full Stack Developer' },
@@ -24,7 +25,7 @@ const roles = [
 ];
 
 export function ComboboxForm() {
-  const [selectedRole, setSelectedRole] = useState('');
+  const [selectedRole, setSelectedRole] = useState<OptionType | null>(null);
   const [error, setError] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
@@ -36,10 +37,14 @@ export function ComboboxForm() {
     setError('');
     setSubmitted(true);
 
+    // In a real app, you would submit `selectedRole.value`
+    console.log('Submitting role:', selectedRole.value);
+
     // Reset after 2 seconds
     setTimeout(() => {
       setSubmitted(false);
-      setSelectedRole('');
+      // 4. Reset the state back to `null`, not an empty string
+      setSelectedRole(null);
     }, 2000);
   };
 
@@ -51,7 +56,9 @@ export function ComboboxForm() {
           value={selectedRole}
           onValueChange={(value) => {
             setSelectedRole(value);
-            setError('');
+            if (value) {
+              setError('');
+            }
           }}
         >
           <ComboboxTrigger error={!!error}>

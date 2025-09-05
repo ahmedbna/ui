@@ -7,10 +7,11 @@ import {
   ComboboxList,
   ComboboxTrigger,
   ComboboxValue,
+  OptionType,
 } from '@/components/ui/combobox';
 import React, { useState } from 'react';
 
-const skills = [
+const skills: OptionType[] = [
   { value: 'javascript', label: 'JavaScript' },
   { value: 'typescript', label: 'TypeScript' },
   { value: 'react', label: 'React' },
@@ -24,7 +25,7 @@ const skills = [
 ];
 
 export function ComboboxMultiple() {
-  const [values, setValues] = useState<string[]>([]);
+  const [values, setValues] = useState<OptionType[]>([]);
 
   return (
     <Combobox multiple values={values} onValuesChange={setValues}>
