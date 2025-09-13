@@ -1,0 +1,151 @@
+---
+title: Installation
+description: Complete installation guide for the BNA UI Convex Auth Starter with Google, Apple, email/password, and email OTP authentication.
+---
+
+## Quick Start with CLI (Recommended)
+
+Get up and running with a complete authentication system in under 2 minutes:
+
+```bash
+npx bna-ui convex
+```
+
+This single command will:
+
+- ✨ Create a new Expo project with BNA UI
+- 🔐 Set up Convex backend with authentication
+- 🚀 Configure Google, Apple, email/password, and OTP auth
+- 🎨 Install pre-built authentication components
+- ⚙️ Generate environment configuration templates
+- 🔧 Set up TypeScript configuration
+- 📱 Configure platform-specific authentication flows
+
+## Post-Installation Setup
+
+### 1. Configure Environment Variables
+
+After installation, you should prepare the following environment variables:
+
+```bash
+# Google OAuth
+AUTH_GOOGLE_ID=your-google-client-id
+AUTH_GOOGLE_SECRET=your-google-client-secret
+
+# Apple Sign-In
+AUTH_APPLE_ID=your-apple-service-id
+AUTH_APPLE_SECRET=your-apple-private-key
+
+# Email Provider (Resend)
+AUTH_RESEND_KEY=your-resend-api-key
+
+# App Configuration
+EXPO_PUBLIC_CONVEX_URL=https://your-deployment.convex.cloud
+EXPO_URL=your-app-schema://
+```
+
+### 2. Set Up OAuth Providers
+
+#### Google OAuth Setup
+
+1. Go to [Google Cloud Console](https://console.cloud.google.com/)
+2. Create a new project or select existing
+3. Enable Google+ API
+4. Create OAuth 2.0 credentials:
+
+#### Apple Sign-In Setup
+
+1. Go to [Apple Developer Console](https://developer.apple.com/)
+2. Create a new App ID with Sign in with Apple capability
+3. Create a Services ID for web authentication
+4. Generate a private key for server-to-server authentication
+
+### 3. Configure Email Provider
+
+Set up Resend for email OTP:
+
+1. Sign up at [Resend](https://resend.com/)
+2. Verify your domain
+3. Generate an API key
+4. Add to your environment variables
+
+### 4. Update App Configuration
+
+Update your `app.json` with proper scheme and bundle identifiers:
+
+```json
+{
+  "expo": {
+    "scheme": "your-app-scheme",
+    "ios": {
+      "bundleIdentifier": "com.yourcompany.yourapp"
+    },
+    "android": {
+      "package": "com.yourcompany.yourapp"
+    }
+  }
+}
+```
+
+## Security Features
+
+The starter includes enterprise-grade security:
+
+- 🔒 **Secure Token Storage** - Platform-native secure storage (Keychain/Keystore)
+- 🔄 **Automatic Token Refresh** - Seamless session management
+- 🛡️ **CSRF Protection** - Built-in cross-site request forgery protection
+- ⏱️ **Rate Limiting** - Authentication attempt limiting
+- ✅ **Input Validation** - Client and server-side validation
+- 🔐 **JWT Security** - Secure token handling with proper expiration
+
+## Deployment Ready
+
+Your project comes configured for production deployment:
+
+### Convex Production
+
+```bash
+# Deploy to production
+npx convex deploy --prod
+
+# Set production environment variables
+npx convex env set AUTH_GOOGLE_ID your-prod-google-id --prod
+npx convex env set AUTH_RESEND_KEY your-prod-resend-key --prod
+```
+
+### EAS Build Configuration
+
+```json
+// eas.json (automatically generated)
+{
+  "cli": {
+    "version": ">= 5.2.0"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal"
+    },
+    "preview": {
+      "distribution": "internal"
+    },
+    "production": {
+      "env": {
+        "EXPO_PUBLIC_CONVEX_URL": "https://your-prod-deployment.convex.cloud"
+      }
+    }
+  }
+}
+```
+
+## Next Steps
+
+1. **Customize your authentication flow** - Modify components and styling
+2. **Add user profile features** - Extend user data and profile management
+3. **Implement protected routes** - Secure your app's sensitive areas
+4. **Add real-time features** - Leverage Convex's real-time capabilities
+5. **Deploy to production** - Use EAS Build for app store deployment
+
+---
+
+_Start building your authenticated mobile app in minutes with BNA UI & Convex! 🚀_

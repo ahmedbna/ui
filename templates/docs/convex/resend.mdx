@@ -1,0 +1,271 @@
+---
+title: Resend
+description: Complete guide to configure Resend email service for email and password authentication and email OTP in your BNA UI Convex Auth Starter application.
+---
+
+## Overview
+
+This guide will walk you through setting up Resend email service for your BNA UI Convex Auth Starter application. By the end of this setup, your users will be able to:
+
+- Sign up and sign in using email and password
+- Receive email OTP (One-Time Password) for passwordless authentication
+- Get password reset emails
+- Receive account verification emails
+
+## Prerequisites
+
+Before starting, ensure you have:
+
+- A Resend account (create one at [Resend.com](https://resend.com/))
+- A domain you own and can verify
+- A BNA UI Convex Auth Starter project set up
+- Access to your domain's DNS settings
+
+## Step 1: Create a Resend Account
+
+1. Navigate to [Resend.com](https://resend.com/)
+2. Click **"Sign Up"** to create a new account
+3. Verify your email address through the confirmation email
+4. Complete your account setup
+
+<ImagePreview
+  alt='Resend Signup'
+  src='https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/Screenshot 2025-09-13 at 1.54.47 AM.png'
+/>
+<ImagePreview
+  alt='Resend Signup'
+  src='https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/Screenshot 2025-09-13 at 1.55.21 AM.png'
+/>
+
+## Step 2: Domain Verification
+
+### Add Your Domain
+
+1. In your Resend dashboard, navigate to **Domains** in the left sidebar
+2. Click **"Add Domain"**
+3. Enter your domain name (e.g., `yourdomain.com`)
+4. Click **"Add"**
+
+<ImagePreview
+  alt='Adding a new domain in Resend'
+  src='https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/Screenshot 2025-09-13 at 1.55.34 AM.png'
+/>
+<ImagePreview
+  alt='Domain added and awaiting verification'
+  src='https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/Screenshot 2025-09-13 at 1.56.00 AM.png'
+/>
+
+### Configure DNS Records
+
+Resend will provide you with DNS records that you need to add to your domain:
+
+#### SPF Record
+
+Add this TXT record to your domain:
+
+```
+Name: @
+Type: TXT
+Value: v=spf1 include:_spf.resend.com ~all
+```
+
+#### DKIM Records
+
+Add the DKIM records provided by Resend (you'll get specific values):
+
+```
+Name: resend._domainkey
+Type: TXT
+Value: [Provided by Resend - specific to your domain]
+```
+
+#### DMARC Record (Recommended)
+
+Add a DMARC policy for additional security:
+
+```
+Name: _dmarc
+Type: TXT
+Value: v=DMARC1; p=quarantine; rua=mailto:dmarc@yourdomain.com
+```
+
+<ImagePreview
+  alt='DNS records for domain verification'
+  src='https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/Screenshot 2025-09-13 at 1.56.52 AM.png'
+/>
+
+### Verify Domain
+
+1. After adding DNS records, return to your Resend dashboard
+2. Click **"Verify"** next to your domain
+3. Wait for verification to complete (this may take a few minutes to 24 hours)
+
+## Step 3: Create API Key
+
+### Generate API Key
+
+1. In your Resend dashboard, navigate to **API Keys**
+2. Click **"Create API Key"**
+3. Configure your API key:
+   - **Name**: Enter a descriptive name (e.g., "BNA UI Auth Production")
+   - **Permission**: Select **"Full access"** for complete functionality
+   - **Domain**: Select your verified domain (optional but recommended)
+
+<ImagePreview
+  alt='Resend API Keys page'
+  src='https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/Screenshot 2025-09-13 at 1.48.15 AM.png'
+/>
+<ImagePreview
+  alt='Configure new API Key options'
+  src='https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/Screenshot 2025-09-13 at 1.52.18 AM.png'
+/>
+<ImagePreview
+  alt='Newly created API Key'
+  src='https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/Screenshot 2025-09-13 at 1.52.56 AM.png'
+/>
+
+### Copy API Key
+
+1. Click **"Add"** to generate the key
+2. **Important**: Copy the API key immediately - you won't be able to see it again
+3. Store it securely (you'll add it to your environment variables)
+
+<ImagePreview
+  alt='API Key dashboard in Resend'
+  src='https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/Screenshot 2025-09-13 at 1.48.15 AM.png'
+/>
+
+## Step 4: Configure Environment Variables
+
+### Set Convex Environment Variables
+
+You can configure environment variables using either the Convex CLI or dashboard.
+
+#### Option 1: Using Convex CLI (Recommended)
+
+Open your terminal in your BNA UI project directory and run:
+
+```bash
+# Set Resend API Key
+npx convex env set AUTH_RESEND_KEY re_your_resend_api_key_here
+```
+
+#### Option 2: Using Convex Dashboard
+
+1. Open your Convex dashboard
+2. Navigate to **Settings > Environment Variables**
+3. Add the following variable:
+   - **Variable Name**: `AUTH_RESEND_KEY`, **Value**: Your Resend API key
+
+## Step 6: Test Email Configuration
+
+### Test Email Sending
+
+1. Deploy your Convex functions:
+
+   ```bash
+   npx convex dev
+   ```
+
+2. Test the authentication flow:
+   - Try signing up with email/password
+   - Test email OTP authentication
+   - Verify password reset functionality
+
+### Monitor Email Delivery
+
+1. In your Resend dashboard, go to **Logs**
+2. Monitor email delivery status
+3. Check for any delivery issues or bounces
+
+## Step 7: Production Configuration
+
+### Separate API Keys for Environments
+
+For production applications, create separate API keys:
+
+#### Development Environment
+
+```bash
+npx convex env set AUTH_RESEND_KEY re_dev_api_key_here
+```
+
+#### Production Environment
+
+```bash
+npx convex env set AUTH_RESEND_KEY re_prod_api_key_here --prod
+```
+
+## Common Issues and Solutions
+
+### Email Not Delivering
+
+**Issue**: Users not receiving authentication emails
+
+**Solutions**:
+
+- Verify your domain is properly configured
+- Check Resend logs for delivery status
+- Ensure your "from" address uses your verified domain
+- Check recipient's spam folder
+
+### SPF/DKIM Failures
+
+**Issue**: Emails marked as spam or rejected
+
+**Solutions**:
+
+- Verify all DNS records are correctly configured
+- Wait up to 24 hours for DNS propagation
+- Use DNS lookup tools to verify record configuration
+- Consider adding DMARC policy
+
+### API Key Issues
+
+**Issue**: Authentication failing with API errors
+
+**Solutions**:
+
+- Verify API key is correctly set in environment variables
+- Ensure API key has "Full access" permissions
+- Check that the key hasn't expired
+- Regenerate API key if necessary
+
+### Rate Limiting
+
+**Issue**: Hitting email sending limits
+
+**Solutions**:
+
+- Implement client-side rate limiting for resend requests
+- Upgrade to higher-tier Resend plan
+- Cache OTP codes server-side to reduce duplicate sends
+- Add cooldown periods between email requests
+
+## Security Best Practices
+
+### API Key Security
+
+- Store API keys in environment variables only
+- Never commit API keys to version control
+- Rotate API keys regularly
+- Use different keys for development and production
+
+### Email Security
+
+- Always use your verified domain for "from" addresses
+- Implement proper DMARC policies
+- Monitor bounce rates and spam reports
+- Use HTTPS for all authentication links
+
+## Support and Resources
+
+For additional help:
+
+- [Resend Documentation](https://resend.com/docs)
+- [Convex Auth Documentation](https://labs.convex.dev/auth/config/otps)
+- [Email Deliverability Best Practices](https://resend.com/docs/knowledge-base/email-deliverability)
+
+---
+
+_Secure email authentication made simple with Resend and BNA UI! 📧✨_

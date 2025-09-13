@@ -26,6 +26,7 @@ import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ExamplesGrid } from '@/components/examples-grid';
+import { ImagePreview } from '@/components//image-preview';
 
 export const mdxComponents = {
   h1: ({ className, ...props }: React.ComponentProps<'h1'>) => (
@@ -347,6 +348,7 @@ export const mdxComponents = {
   HooksList,
   ThemeList,
   ExamplesGrid,
+  ImagePreview,
   Link: ({ className, ...props }: React.ComponentProps<typeof Link>) => (
     <Link
       className={cn('font-medium underline underline-offset-4', className)}
