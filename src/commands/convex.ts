@@ -358,6 +358,29 @@ async function initializeConvex(
     logger.plain(`   npx convex env set EXPO_URL ${projectName}://`);
     logger.debug('Convex env set error:', error);
   }
+
+  // --- Set SITE_URL Environment Variable ---
+  try {
+    logger.info('4. Setting the SITE_URL environment variable in Convex...');
+    logger.plain('This is used for web-based authentication flows.');
+
+    const command = 'npx convex env set SITE_URL http://localhost:3000/';
+
+    execSync(command, {
+      cwd: projectPath,
+      stdio: 'inherit',
+    });
+
+    logger.success('✅ SITE_URL environment variable set!');
+    logger.newline();
+  } catch (error) {
+    logger.error('❌ Failed to set the SITE_URL environment variable.');
+    logger.warn(
+      'You can set it manually by running this command in your project directory:'
+    );
+    logger.plain('   npx convex env set SITE_URL http://localhost:3000/');
+    logger.debug('Convex env set error:', error);
+  }
 }
 
 function showSuccessMessage(
