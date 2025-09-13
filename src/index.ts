@@ -2,6 +2,7 @@
 
 import { Command } from 'commander';
 import { initCommand } from './commands/init.js';
+import { initConvexCommand } from './commands/convex.js';
 import { addCommand } from './commands/add.js';
 import { logger } from './utils/logger.js';
 
@@ -23,6 +24,19 @@ program
   .option('--bun', 'Use bun as package manager')
   .option('--skip-install', 'Skip package installation')
   .action(initCommand);
+
+program
+  .command('convex')
+  .description('Initialize a new BNA project with Convex backend')
+  .argument('[project-name]', 'Name of the project')
+  .option('-t, --template <template>', 'Template to use', 'default')
+  .option('--npm', 'Use npm as package manager')
+  .option('--yarn', 'Use yarn as package manager')
+  .option('--pnpm', 'Use pnpm as package manager')
+  .option('--bun', 'Use bun as package manager')
+  .option('--skip-install', 'Skip package installation')
+  .option('--skip-convex', 'Skip Convex initialization')
+  .action(initConvexCommand);
 
 program
   .command('add')
