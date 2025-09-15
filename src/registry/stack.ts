@@ -19,4 +19,21 @@ export const stackRegistry = {
       },
     ],
   },
+
+  // Default demo
+  'stack-demo': {
+    name: 'stack-demo',
+    description: 'Basic examples demonstrating XStack, YStack, and ZStack usage',
+    type: 'registry:example',
+    registryDependencies: ['stack', 'view', 'text'],
+    hooks: [],
+    theme: [],
+    files: [
+      {
+        type: 'registry:example',
+        path: 'templates/demo/stack/stack-demo.tsx',
+        target: 'components/demo/stack/stack-demo.tsx',
+      },
+    ],
+  },
 };
