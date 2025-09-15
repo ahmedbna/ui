@@ -2,6 +2,7 @@
 import * as React from "react";
 import {
   View,
+  StyleSheet,
   type ViewProps,
   type ViewStyle,
   type StyleProp,
@@ -225,6 +226,7 @@ const BaseStack = React.forwardRef<View, InternalProps>(function BaseStack(
 
 export type XStackProps = BaseStackProps;
 export type YStackProps = BaseStackProps;
+export type ZStackProps = BaseStackProps;
 
 export const XStack = React.forwardRef<View, XStackProps>(function XStack(
   props,
@@ -238,4 +240,40 @@ export const YStack = React.forwardRef<View, YStackProps>(function YStack(
   ref
 ) {
   return <BaseStack ref={ref} __direction="column" {...props} />;
+});
+
+export const ZStack = React.forwardRef<View, ZStackProps>(function ZStack(
+  { children, style, gap, ...rest },
+  ref
+) {
+  // Normalize children
+  const kids = React.Children.toArray(children).filter(
+    (c) => c !== null && c !== undefined && !!c
+  );
+
+  // Render: first child in normal flow, later children absolutely fill
+  return (
+    <BaseStack
+      ref={ref}
+      __direction="column"
+      // Force no gap for overlay layout to ensure perfect stacking
+      gap={0}
+      {...rest}
+      style={[{ position: "relative" }, style]}
+    >
+      {kids.map((child, idx) =>
+        idx === 0 ? (
+          child as React.ReactElement
+        ) : (
+          <View
+            key={(child as any)?.key ?? `z-${idx}`}
+            pointerEvents="box-none"
+            style={StyleSheet.absoluteFillObject}
+          >
+            {child}
+          </View>
+        )
+      )}
+    </BaseStack>
+  );
 });
