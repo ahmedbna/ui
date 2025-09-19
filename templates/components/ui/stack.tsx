@@ -1,13 +1,12 @@
 // stack.tsx
 import * as React from "react";
 import {
+  View,
   StyleSheet,
   type ViewProps,
   type ViewStyle,
   type StyleProp,
 } from "react-native";
-import { View } from '@/components/ui/view';
-
 type Direction = "row" | "column";
 
 export type BaseStackProps = Omit<ViewProps, "style"> & {
