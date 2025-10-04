@@ -14,7 +14,7 @@ export const colorPickerRegistry = {
       'react-native-svg',
     ],
     registryDependencies: ['text', 'view'],
-    hooks: ['useThemeColor'],
+    hooks: ['useColor'],
     theme: ['globals'],
     files: [
       {

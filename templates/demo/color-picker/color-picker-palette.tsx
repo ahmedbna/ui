@@ -1,11 +1,11 @@
 import { ColorPicker } from '@/components/ui/color-picker';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import React, { useState } from 'react';
 
 export function ColorPickerPalette() {
-  const cardColor = useThemeColor({}, 'card');
+  const cardColor = useColor('card');
 
   const [colors, setColors] = useState([
     '#FF6B6B',

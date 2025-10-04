@@ -1,6 +1,6 @@
 import { DoughnutChart } from '@/components/charts/doughnut-chart';
 import { ChartContainer } from '@/components/charts/chart-container';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import React from 'react';
 
 const sampleData = [
@@ -10,9 +10,9 @@ const sampleData = [
 ];
 
 export function DoughnutChartSample() {
-  const primaryColor = useThemeColor({}, 'primary');
-  const greenColor = useThemeColor({}, 'green');
-  const orangeColor = useThemeColor({}, 'orange');
+  const primaryColor = useColor('primary');
+  const greenColor = useColor('green');
+  const orangeColor = useColor('orange');
 
   const dataWithColors = [
     { ...sampleData[0], color: primaryColor },

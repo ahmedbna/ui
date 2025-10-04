@@ -9,16 +9,16 @@ import {
 } from '@/components/ui/card';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import React, { useState } from 'react';
 import { TextInput } from 'react-native';
 
 export function CardWithForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const borderColor = useThemeColor({}, 'border');
-  const backgroundColor = useThemeColor({}, 'background');
-  const textColor = useThemeColor({}, 'text');
+  const borderColor = useColor('border');
+  const backgroundColor = useColor('background');
+  const textColor = useColor('text');
 
   return (
     <Card>

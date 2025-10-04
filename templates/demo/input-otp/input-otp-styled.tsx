@@ -1,7 +1,7 @@
 import { InputOTP } from '@/components/ui/input-otp';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import React, { useState } from 'react';
 
 export function InputOTPStyled() {
@@ -9,7 +9,7 @@ export function InputOTPStyled() {
   const [otp2, setOtp2] = useState('');
   const [otp3, setOtp3] = useState('');
 
-  const primary = useThemeColor({}, 'primary');
+  const primary = useColor('primary');
   const success = '#10B981';
   const purple = '#8B5CF6';
 

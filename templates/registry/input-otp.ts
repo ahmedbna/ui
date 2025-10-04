@@ -8,7 +8,7 @@ export const inputOtpRegistry = {
       'A secure input component for one-time passwords and verification codes.',
     type: 'registry:ui',
     registryDependencies: ['text'],
-    hooks: ['useThemeColor'],
+    hooks: ['useColor'],
     theme: ['globals'],
     files: [
       {

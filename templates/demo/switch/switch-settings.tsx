@@ -1,11 +1,11 @@
 import { Switch } from '@/components/ui/switch';
 import { View } from '@/components/ui/view';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { BORDER_RADIUS } from '@/theme/globals';
 import React, { useState } from 'react';
 
 export function SwitchSettings() {
-  const card = useThemeColor({}, 'card');
+  const card = useColor('card');
 
   const [notifications, setNotifications] = useState(true);
   const [darkMode, setDarkMode] = useState(false);

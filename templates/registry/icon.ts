@@ -9,7 +9,7 @@ export const iconRegistry = {
     type: 'registry:ui',
     dependencies: ['lucide-react-native', 'react-native-svg'],
     registryDependencies: ['text', 'view'],
-    hooks: ['useThemeColor'],
+    hooks: ['useColor'],
     theme: [],
     files: [
       {

@@ -1,7 +1,7 @@
 import { InputOTP, InputOTPWithSeparator } from '@/components/ui/input-otp';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import React, { useState } from 'react';
 
 export function InputOTPSeparator() {
@@ -9,7 +9,7 @@ export function InputOTPSeparator() {
   const [otp2, setOtp2] = useState('');
   const [otp3, setOtp3] = useState('');
 
-  const muted = useThemeColor({}, 'textMuted');
+  const muted = useColor('textMuted');
 
   return (
     <View style={{ gap: 24 }}>

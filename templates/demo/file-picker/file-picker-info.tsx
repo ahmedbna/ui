@@ -1,11 +1,11 @@
 import { FilePicker, SelectedFile } from '@/components/ui/file-picker';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import React, { useState } from 'react';
 
 export function FilePickerInfo() {
-  const card = useThemeColor({}, 'card');
+  const card = useColor('card');
   const [files, setFiles] = useState<SelectedFile[]>([]);
   const [uploadProgress, setUploadProgress] = useState<any>({});
 

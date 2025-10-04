@@ -1,5 +1,5 @@
 import { View } from '@/components/ui/view';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import React from 'react';
 import { ViewStyle } from 'react-native';
 
@@ -12,7 +12,7 @@ export function Separator({
   orientation = 'horizontal',
   style,
 }: SeparatorProps) {
-  const borderColor = useThemeColor({}, 'border');
+  const borderColor = useColor('border');
 
   return (
     <View

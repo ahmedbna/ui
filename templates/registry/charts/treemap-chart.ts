@@ -14,7 +14,7 @@ export const treemapChartRegistry = {
       'react-native-gesture-handler',
     ],
     registryDependencies: [],
-    hooks: ['useThemeColor'],
+    hooks: ['useColor'],
     theme: ['globals'],
     files: [
       {
@@ -57,7 +57,7 @@ export const treemapChartRegistry = {
     description: 'A sample treemap chart with various data sizes',
     type: 'registry:example',
     registryDependencies: ['treemap-chart', 'chart-container'],
-    hooks: ['useThemeColor'],
+    hooks: ['useColor'],
     theme: [],
     files: [
       {
@@ -78,7 +78,7 @@ export const treemapChartRegistry = {
     description: 'A customized treemap chart with custom colors and styling',
     type: 'registry:example',
     registryDependencies: ['treemap-chart', 'chart-container'],
-    hooks: ['useThemeColor'],
+    hooks: ['useColor'],
     theme: [],
     files: [
       {

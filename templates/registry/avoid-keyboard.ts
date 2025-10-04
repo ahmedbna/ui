@@ -147,7 +147,7 @@ export const avoidKeyboardRegistry = {
     type: 'registry:example',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['avoid-keyboard', 'button', 'input', 'view', 'text'],
-    hooks: ['useKeyboardHeight', 'useThemeColor'],
+    hooks: ['useKeyboardHeight', 'useColor'],
     theme: [],
     files: [
       {

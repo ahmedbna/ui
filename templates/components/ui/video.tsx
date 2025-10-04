@@ -1,4 +1,4 @@
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { BORDER_RADIUS } from '@/theme/globals';
 import { useEvent } from 'expo';
 import { useVideoPlayer, VideoSource, VideoView } from 'expo-video';
@@ -189,9 +189,9 @@ export const Video = forwardRef<VideoView, VideoProps>(
     },
     ref
   ) => {
-    const textColor = useThemeColor({}, 'text');
-    const cardColor = useThemeColor({}, 'card');
-    const mutedColor = useThemeColor({}, 'mutedForeground');
+    const textColor = useColor('text');
+    const cardColor = useColor('card');
+    const mutedColor = useColor('mutedForeground');
 
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);

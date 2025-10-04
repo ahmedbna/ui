@@ -14,7 +14,7 @@ export const buttonRegistry = {
       'react-native-reanimated',
     ],
     registryDependencies: ['text', 'icon', 'spinner'],
-    hooks: ['useThemeColor'],
+    hooks: ['useColor'],
     theme: ['globals'],
     files: [
       {

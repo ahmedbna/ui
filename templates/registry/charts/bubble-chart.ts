@@ -14,7 +14,7 @@ export const bubbleChartRegistry = {
       'react-native-gesture-handler',
     ],
     registryDependencies: [],
-    hooks: ['useThemeColor'],
+    hooks: ['useColor'],
     theme: ['globals'],
     files: [
       {
@@ -80,7 +80,7 @@ export const bubbleChartRegistry = {
     description: 'A customized bubble chart with custom styling',
     type: 'registry:example',
     registryDependencies: ['bubble-chart', 'chart-container'],
-    hooks: ['useThemeColor'],
+    hooks: ['useColor'],
     theme: [],
     files: [
       {

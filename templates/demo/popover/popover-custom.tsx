@@ -7,12 +7,12 @@ import {
 } from '@/components/ui/popover';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import React from 'react';
 
 export function PopoverCustom() {
-  const primaryColor = useThemeColor({}, 'primary');
-  const mutedColor = useThemeColor({}, 'muted');
+  const primaryColor = useColor('primary');
+  const mutedColor = useColor('muted');
 
   return (
     <View style={{ gap: 16, alignItems: 'center' }}>

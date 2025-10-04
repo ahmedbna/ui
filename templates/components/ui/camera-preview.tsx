@@ -4,7 +4,7 @@ import { Image } from '@/components/ui/image';
 import { Text } from '@/components/ui/text';
 import { Video } from '@/components/ui/video';
 import { View } from '@/components/ui/view';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import * as MediaLibrary from 'expo-media-library';
 import { Download, Upload, X } from 'lucide-react-native';
 import { useState } from 'react';
@@ -24,9 +24,9 @@ export function CameraPreview() {
   const [mediaLibraryPermission, requestMediaLibraryPermission] =
     MediaLibrary.usePermissions();
 
-  const backgroundColor = useThemeColor({}, 'background');
-  const cardColor = useThemeColor({}, 'card');
-  const textColor = useThemeColor({}, 'text');
+  const backgroundColor = useColor('background');
+  const cardColor = useColor('card');
+  const textColor = useColor('text');
 
   const handleCapture = (results: CaptureSuccess) => {
     setCameraHeight(results.cameraHeight);

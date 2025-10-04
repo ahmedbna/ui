@@ -9,7 +9,7 @@ export const skeletonRegistry = {
     type: 'registry:ui',
     dependencies: [],
     registryDependencies: [],
-    hooks: ['useThemeColor'],
+    hooks: ['useColor'],
     theme: ['globals'],
     files: [
       {

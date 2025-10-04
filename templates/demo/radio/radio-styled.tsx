@@ -1,12 +1,12 @@
 import { RadioGroup } from '@/components/ui/radio';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import React, { useState } from 'react';
 
 export function RadioStyled() {
-  const green = useThemeColor({}, 'green');
-  const card = useThemeColor({}, 'card');
+  const green = useColor('green');
+  const card = useColor('card');
 
   const [value1, setValue1] = useState('red');
   const [value2, setValue2] = useState('plan1');

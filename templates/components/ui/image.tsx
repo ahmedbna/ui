@@ -1,6 +1,6 @@
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { BORDER_RADIUS, CORNERS } from '@/theme/globals';
 import {
   Image as ExpoImage,
@@ -50,9 +50,9 @@ export const Image = forwardRef<ExpoImage, ImageProps>(
     const [hasError, setHasError] = useState(false);
 
     // Theme colors
-    const backgroundColor = useThemeColor({}, 'muted');
-    const textColor = useThemeColor({}, 'mutedForeground');
-    const primaryColor = useThemeColor({}, 'primary');
+    const backgroundColor = useColor('muted');
+    const textColor = useColor('mutedForeground');
+    const primaryColor = useColor('primary');
 
     // Get border radius based on variant
     const getBorderRadius = () => {

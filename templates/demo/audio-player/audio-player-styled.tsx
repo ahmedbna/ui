@@ -1,8 +1,8 @@
 import { AudioPlayer } from '@/components/ui/audio-player';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 
 export function AudioPlayerStyled() {
-  const blue = useThemeColor({}, 'indigo');
+  const blue = useColor('indigo');
 
   const sampleAudioUrl =
     'https://www.thesoundarchive.com/ringtones/old-phone-ringing.wav';

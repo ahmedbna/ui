@@ -14,7 +14,7 @@ export const radarChartRegistry = {
       'react-native-gesture-handler',
     ],
     registryDependencies: [],
-    hooks: ['useThemeColor'],
+    hooks: ['useColor'],
     theme: ['globals'],
     files: [
       {
@@ -78,7 +78,7 @@ export const radarChartRegistry = {
     description: 'A customized radar chart with custom colors and styling',
     type: 'registry:example',
     registryDependencies: ['radar-chart', 'chart-container'],
-    hooks: ['useThemeColor'],
+    hooks: ['useColor'],
     theme: [],
     files: [
       {

@@ -14,7 +14,7 @@ export const lineChartRegistry = {
       'react-native-gesture-handler',
     ],
     registryDependencies: [],
-    hooks: ['useThemeColor'],
+    hooks: ['useColor'],
     theme: ['globals'],
     files: [
       {
@@ -80,7 +80,7 @@ export const lineChartRegistry = {
     description: 'A customized line chart with custom styling',
     type: 'registry:example',
     registryDependencies: ['line-chart', 'chart-container'],
-    hooks: ['useThemeColor'],
+    hooks: ['useColor'],
     theme: [],
     files: [
       {

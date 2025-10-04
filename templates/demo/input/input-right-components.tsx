@@ -2,13 +2,13 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { Copy, Eye, EyeOff, Search } from 'lucide-react-native';
 import React, { useState } from 'react';
 import { Pressable } from 'react-native';
 
 export function InputRightComponents() {
-  const muted = useThemeColor({}, 'mutedForeground');
+  const muted = useColor('mutedForeground');
 
   const [copied, setCopied] = useState(false);
   const [showPassword, setShowPassword] = useState(false);

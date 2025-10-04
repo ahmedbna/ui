@@ -9,7 +9,7 @@ export const filePickerRegistry = {
     type: 'registry:ui',
     dependencies: ['lucide-react-native', 'expo-document-picker'],
     registryDependencies: ['button', 'text', 'view'],
-    hooks: ['useThemeColor'],
+    hooks: ['useColor'],
     theme: ['globals'],
     files: [
       {

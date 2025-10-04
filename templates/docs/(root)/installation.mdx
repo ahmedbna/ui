@@ -381,7 +381,7 @@ export function useModeToggle(): UseModeToggleReturn {
 }
 ```
 
-##### hooks/useThemeColor.ts
+##### hooks/useColor.ts
 
 ```typescript
 /**
@@ -392,7 +392,7 @@ export function useModeToggle(): UseModeToggleReturn {
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { Colors } from '@/theme/colors';
 
-export function useThemeColor(
+export function useColor(
   props: { light?: string; dark?: string },
   colorName: keyof typeof Colors.light & keyof typeof Colors.dark
 ) {

@@ -1,14 +1,14 @@
 import { Carousel, CarouselItem } from '@/components/ui/carousel';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { Calendar, MapPin, User } from 'lucide-react-native';
 import React from 'react';
 
 export function CarouselCards() {
-  const cardColor = useThemeColor({}, 'card');
-  const textColor = useThemeColor({}, 'text');
-  const primaryColor = useThemeColor({}, 'primary');
+  const cardColor = useColor('card');
+  const textColor = useColor('text');
+  const primaryColor = useColor('primary');
 
   const events = [
     {
