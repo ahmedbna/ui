@@ -1,14 +1,14 @@
 import { Icon } from '@/components/ui/icon';
 import { SearchBar } from '@/components/ui/searchbar';
 import { View } from '@/components/ui/view';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { Filter, MapPin, User } from 'lucide-react-native';
 import React, { useState } from 'react';
 
 export function SearchBarIcons() {
   const [locationQuery, setLocationQuery] = useState('');
   const [userQuery, setUserQuery] = useState('');
-  const icon = useThemeColor({}, 'icon');
+  const icon = useColor('icon');
 
   return (
     <View style={{ gap: 16 }}>

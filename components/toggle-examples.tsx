@@ -4,14 +4,14 @@ import {
   ToggleGroupMultiple,
   ToggleGroupSingle,
 } from '@/components/ui/toggle';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { BoldIcon, Home, Italic, Underline } from 'lucide-react-native';
 import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 export default function ToggleExamples() {
-  const primary = useThemeColor({}, 'primary');
-  const primaryForeground = useThemeColor({}, 'primaryForeground');
+  const primary = useColor('primary');
+  const primaryForeground = useColor('primaryForeground');
 
   const [toggle, setToggle] = useState(true);
   const [home, sethome] = useState(true);

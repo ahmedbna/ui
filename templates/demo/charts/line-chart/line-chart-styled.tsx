@@ -1,6 +1,6 @@
 import { ChartContainer } from '@/components/charts/chart-container';
 import { LineChart } from '@/components/charts/line-chart';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import React from 'react';
 
 const sampleData = [
@@ -14,8 +14,8 @@ const sampleData = [
 ];
 
 export function LineChartStyled() {
-  const borderColor = useThemeColor({}, 'border');
-  const backgroundColor = useThemeColor({}, 'card');
+  const borderColor = useColor('border');
+  const backgroundColor = useColor('card');
 
   return (
     <ChartContainer

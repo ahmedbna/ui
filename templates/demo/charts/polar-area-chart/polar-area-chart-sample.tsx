@@ -1,6 +1,6 @@
 import { PolarAreaChart } from '@/components/charts/polar-area-chart';
 import { ChartContainer } from '@/components/charts/chart-container';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import React from 'react';
 
 const skillsData = [
@@ -12,11 +12,11 @@ const skillsData = [
 ];
 
 export function PolarAreaChartSample() {
-  const primaryColor = useThemeColor({}, 'primary');
-  const blueColor = useThemeColor({}, 'blue');
-  const greenColor = useThemeColor({}, 'green');
-  const orangeColor = useThemeColor({}, 'orange');
-  const purpleColor = useThemeColor({}, 'purple');
+  const primaryColor = useColor('primary');
+  const blueColor = useColor('blue');
+  const greenColor = useColor('green');
+  const orangeColor = useColor('orange');
+  const purpleColor = useColor('purple');
 
   const dataWithColors = skillsData.map((item, index) => ({
     ...item,

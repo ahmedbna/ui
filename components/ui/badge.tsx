@@ -1,6 +1,6 @@
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { CORNERS } from '@/theme/globals';
 import { TextStyle, ViewStyle } from 'react-native';
 
@@ -24,14 +24,14 @@ export function Badge({
   style,
   textStyle,
 }: BadgeProps) {
-  const primaryColor = useThemeColor({}, 'primary');
-  const primaryForegroundColor = useThemeColor({}, 'primaryForeground');
-  const secondaryColor = useThemeColor({}, 'secondary');
-  const secondaryForegroundColor = useThemeColor({}, 'secondaryForeground');
-  const destructiveColor = useThemeColor({}, 'destructive');
-  const destructiveForegroundColor = useThemeColor({}, 'destructiveForeground');
-  const borderColor = useThemeColor({}, 'border');
-  const successColor = useThemeColor({}, 'green');
+  const primaryColor = useColor('primary');
+  const primaryForegroundColor = useColor('primaryForeground');
+  const secondaryColor = useColor('secondary');
+  const secondaryForegroundColor = useColor('secondaryForeground');
+  const destructiveColor = useColor('destructive');
+  const destructiveForegroundColor = useColor('destructiveForeground');
+  const borderColor = useColor('border');
+  const successColor = useColor('green');
 
   const getBadgeStyle = (): ViewStyle => {
     const baseStyle: ViewStyle = {

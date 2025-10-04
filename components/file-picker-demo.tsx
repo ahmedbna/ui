@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { FilePicker, SelectedFile } from '@/components/ui/file-picker';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import React, { useRef, useState } from 'react';
 import { Alert, ScrollView, StyleSheet } from 'react-native';
 
@@ -16,8 +16,8 @@ export function FilePickerDemo() {
   const documentPickerRef = useRef<any>(null);
   const allFilesPickerRef = useRef<any>(null);
 
-  const backgroundColor = useThemeColor({}, 'background');
-  const textColor = useThemeColor({}, 'text');
+  const backgroundColor = useColor('background');
+  const textColor = useColor('text');
 
   const handleError = (error: string) => {
     Alert.alert('File Picker Error', error);

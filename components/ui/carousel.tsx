@@ -1,5 +1,5 @@
 import { View } from '@/components/ui/view';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { BORDER_RADIUS } from '@/theme/globals';
 import { BlurView } from 'expo-blur';
 import { ChevronLeft, ChevronRight } from 'lucide-react-native';
@@ -441,8 +441,8 @@ export function CarouselContent({ children, style }: CarouselContentProps) {
 
 // Carousel Item Component - Auto height to fit content
 export function CarouselItem({ children, style }: CarouselItemProps) {
-  const backgroundColor = useThemeColor({}, 'card');
-  const borderColor = useThemeColor({}, 'border');
+  const backgroundColor = useColor('card');
+  const borderColor = useColor('border');
 
   return (
     <View
@@ -470,8 +470,8 @@ export function CarouselIndicators({
   onPress,
   style,
 }: CarouselIndicatorsProps) {
-  const primaryColor = useThemeColor({}, 'primary');
-  const secondaryColor = useThemeColor({}, 'secondary');
+  const primaryColor = useColor('primary');
+  const secondaryColor = useColor('secondary');
 
   return (
     <View
@@ -508,7 +508,7 @@ export function CarouselArrow({
   disabled = false,
   style,
 }: CarouselArrowProps) {
-  const primaryColor = useThemeColor({}, 'primary');
+  const primaryColor = useColor('primary');
 
   return (
     <TouchableOpacity

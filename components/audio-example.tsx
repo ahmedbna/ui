@@ -4,7 +4,7 @@ import { AudioRecorder } from '@/components/ui/audio-recorder';
 import { AudioWaveform } from '@/components/ui/audio-waveform';
 import { Button } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { BORDER_RADIUS } from '@/theme/globals';
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
@@ -23,11 +23,11 @@ export function AudioExample() {
   const [waveformPlaying, setWaveformPlaying] = useState(false);
 
   // Theme colors
-  const backgroundColor = useThemeColor({}, 'background');
-  const textColor = useThemeColor({}, 'text');
-  const mutedColor = useThemeColor({}, 'textMuted');
-  const primaryColor = useThemeColor({}, 'primary');
-  const secondaryColor = useThemeColor({}, 'secondary');
+  const backgroundColor = useColor('background');
+  const textColor = useColor('text');
+  const mutedColor = useColor('textMuted');
+  const primaryColor = useColor('primary');
+  const secondaryColor = useColor('secondary');
 
   // Sample audio data for waveform
   const sampleWaveformData = [

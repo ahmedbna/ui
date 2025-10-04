@@ -1,7 +1,7 @@
 import { Image } from '@/components/ui/image';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { FONT_SIZE } from '@/theme/globals';
 import { ImageProps, ImageSource } from 'expo-image';
 import { TextStyle, ViewStyle } from 'react-native';
@@ -51,8 +51,8 @@ export function AvatarFallback({
   style,
   textStyle,
 }: AvatarFallbackProps) {
-  const mutedColor = useThemeColor({}, 'muted');
-  const mutedForegroundColor = useThemeColor({}, 'mutedForeground');
+  const mutedColor = useColor('muted');
+  const mutedForegroundColor = useColor('mutedForeground');
 
   return (
     <View

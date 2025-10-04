@@ -2,7 +2,7 @@ import { AudioPlayer } from '@/components/ui/audio-player';
 import { AudioWaveform } from '@/components/ui/audio-waveform';
 import { Button } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { BORDER_RADIUS } from '@/theme/globals';
 import {
   AudioModule,
@@ -63,12 +63,12 @@ export function AudioRecorder({
   );
 
   // Theme colors
-  const primaryColor = useThemeColor({}, 'primary');
-  const secondaryColor = useThemeColor({}, 'secondary');
-  const textColor = useThemeColor({}, 'text');
-  const mutedColor = useThemeColor({}, 'textMuted');
-  const redColor = useThemeColor({}, 'red');
-  const greenColor = useThemeColor({}, 'green');
+  const primaryColor = useColor('primary');
+  const secondaryColor = useColor('secondary');
+  const textColor = useColor('text');
+  const mutedColor = useColor('textMuted');
+  const redColor = useColor('red');
+  const greenColor = useColor('green');
 
   // Animation values using react-native-reanimated
   const recordingPulse = useSharedValue(1);

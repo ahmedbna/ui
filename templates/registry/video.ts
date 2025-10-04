@@ -9,7 +9,7 @@ export const videoRegistry = {
     type: 'registry:ui',
     dependencies: ['expo-video', 'lucide-react-native'],
     registryDependencies: ['progress', 'text', 'view'],
-    hooks: ['useThemeColor'],
+    hooks: ['useColor'],
     theme: ['globals'],
     files: [
       {

@@ -1,4 +1,4 @@
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { CORNERS, HEIGHT } from '@/theme/globals';
 import * as DocumentPicker from 'expo-document-picker';
 import { Trash2 } from 'lucide-react-native';
@@ -21,8 +21,8 @@ export function FilePickerHook({
   maxSizeBytes = 5 * 1024 * 1024, // 5MB
   allowedExtensions = ['pdf', 'doc', 'docx', 'jpg', 'jpeg', 'png'],
 }: FilePickerProps) {
-  const card = useThemeColor({}, 'card');
-  const muted = useThemeColor({}, 'muted');
+  const card = useColor('card');
+  const muted = useColor('muted');
 
   const {
     files,

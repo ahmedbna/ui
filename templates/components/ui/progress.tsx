@@ -1,5 +1,5 @@
 import { View } from '@/components/ui/view';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { HEIGHT } from '@/theme/globals';
 import React, { useEffect } from 'react';
 import { ViewStyle } from 'react-native';
@@ -30,8 +30,8 @@ export function Progress({
   onSeekEnd,
   interactive = false,
 }: ProgressProps) {
-  const primaryColor = useThemeColor({}, 'primary');
-  const mutedColor = useThemeColor({}, 'muted');
+  const primaryColor = useColor('primary');
+  const mutedColor = useColor('muted');
 
   const clampedValue = Math.max(0, Math.min(100, value));
   const progressWidth = useSharedValue(clampedValue);

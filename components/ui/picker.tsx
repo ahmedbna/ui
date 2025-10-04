@@ -2,7 +2,7 @@ import { Icon } from '@/components/ui/icon';
 import { ScrollView } from '@/components/ui/scroll-view';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { BORDER_RADIUS, CORNERS, FONT_SIZE, HEIGHT } from '@/theme/globals';
 import { ChevronDown, LucideProps } from 'lucide-react-native';
 import React, { useState } from 'react';
@@ -82,17 +82,17 @@ export function Picker({
   const [searchQuery, setSearchQuery] = useState('');
 
   // Move ALL theme color hooks to the top level
-  const borderColor = useThemeColor({}, 'border');
-  const text = useThemeColor({}, 'text');
-  const muted = useThemeColor({}, 'mutedForeground');
-  const cardColor = useThemeColor({}, 'card');
-  const danger = useThemeColor({}, 'red');
-  const accent = useThemeColor({}, 'accent');
-  const primary = useThemeColor({}, 'primary');
-  const primaryForeground = useThemeColor({}, 'primaryForeground');
-  const input = useThemeColor({}, 'input');
-  const mutedBg = useThemeColor({}, 'muted');
-  const textMutedColor = useThemeColor({}, 'textMuted');
+  const borderColor = useColor('border');
+  const text = useColor('text');
+  const muted = useColor('mutedForeground');
+  const cardColor = useColor('card');
+  const danger = useColor('red');
+  const accent = useColor('accent');
+  const primary = useColor('primary');
+  const primaryForeground = useColor('primaryForeground');
+  const input = useColor('input');
+  const mutedBg = useColor('muted');
+  const textMutedColor = useColor('textMuted');
 
   // Normalize data structure - convert options to sections format
   const normalizedSections: PickerSection[] =

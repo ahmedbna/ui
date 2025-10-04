@@ -14,7 +14,7 @@ export const galleryRegistry = {
       'react-native-reanimated',
     ],
     registryDependencies: ['button', 'text'],
-    hooks: ['useThemeColor'],
+    hooks: ['useColor'],
     theme: ['globals'],
     files: [
       {

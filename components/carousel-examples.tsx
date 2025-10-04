@@ -2,7 +2,7 @@
 import { Carousel, CarouselItem } from '@/components/ui/carousel';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { FONT_SIZE } from '@/theme/globals';
 import React from 'react';
 import { Dimensions, StyleSheet } from 'react-native';
@@ -10,7 +10,7 @@ import { Dimensions, StyleSheet } from 'react-native';
 const { width: screenWidth } = Dimensions.get('window');
 
 export function CarouselTestComponent() {
-  const cardColor = useThemeColor({}, 'card');
+  const cardColor = useColor('card');
 
   const handleIndexChange = (index: number) => {
     // console.log('Current slide index:', index);

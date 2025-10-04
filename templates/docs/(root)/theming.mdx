@@ -196,7 +196,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
 
 ```typescript
 const Button = ({ children, variant = 'primary' }: ButtonProps) => {
-  const color = useThemeColor({}, variant);
+  const color = useColor(variant);
 
   const buttonStyle = {
     height: HEIGHT,
@@ -226,7 +226,7 @@ const Button = ({ children, variant = 'primary' }: ButtonProps) => {
 
 ```typescript
 const Card = ({ children }: { children: React.ReactNode }) => {
-  const color = useThemeColor({}, 'card');
+  const color = useColor('card');
 
   return (
     <View

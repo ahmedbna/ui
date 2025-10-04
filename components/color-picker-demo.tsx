@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { ColorPicker, ColorSwatch } from '@/components/ui/color-picker';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import React, { useState } from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 
@@ -12,8 +12,8 @@ export function ColorPickerDemo() {
   const [backgroundColor, setBackgroundColor] = useState('#ffffff');
   const [textColor, setTextColor] = useState('#333333');
 
-  const cardColor = useThemeColor({}, 'card');
-  const borderColor = useThemeColor({}, 'border');
+  const cardColor = useColor('card');
+  const borderColor = useColor('border');
 
   const predefinedColors = [
     '#ff6b6b',

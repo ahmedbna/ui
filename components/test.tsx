@@ -26,7 +26,7 @@ import { Switch } from '@/components/ui/switch';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { CORNERS } from '@/theme/globals';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import { Camera, Eye, EyeOff, Lock, Pen, Search } from 'lucide-react-native';
@@ -78,7 +78,7 @@ export const Demos = () => {
   const bottomSheet = useBottomSheet();
   const settingsSheet = useBottomSheet();
   const bottom = useBottomTabBarHeight();
-  const cardColor = useThemeColor({}, 'card');
+  const cardColor = useColor('card');
 
   const { toast, success, error, warning, info } = useToast();
 

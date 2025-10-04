@@ -7,7 +7,7 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import React, { useEffect } from 'react';
 import {
   Modal,
@@ -53,7 +53,7 @@ export function AlertDialog({
   showCancelButton = true,
   style,
 }: AlertDialogProps) {
-  const cardColor = useThemeColor({}, 'card');
+  const cardColor = useColor('card');
 
   const [modalVisible, setModalVisible] = React.useState(false);
   const backdropOpacity = useSharedValue(0);

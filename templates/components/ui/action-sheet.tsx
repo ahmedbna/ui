@@ -1,6 +1,6 @@
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { CORNERS, FONT_SIZE } from '@/theme/globals';
 import React, { useEffect, useState } from 'react';
 import {
@@ -121,11 +121,11 @@ function AndroidActionSheet({
   const progress = useSharedValue(0);
   const screenHeight = Dimensions.get('window').height;
 
-  const cardColor = useThemeColor({}, 'card');
-  const textColor = useThemeColor({}, 'text');
-  const mutedColor = useThemeColor({}, 'textMuted');
-  const borderColor = useThemeColor({}, 'border');
-  const destructiveColor = useThemeColor({}, 'red');
+  const cardColor = useColor('card');
+  const textColor = useColor('text');
+  const mutedColor = useColor('textMuted');
+  const borderColor = useColor('border');
+  const destructiveColor = useColor('red');
 
   useEffect(() => {
     if (visible) {

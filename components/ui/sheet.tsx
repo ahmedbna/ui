@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { BORDER_RADIUS, FONT_SIZE } from '@/theme/globals';
 import { X } from 'lucide-react-native';
 import React, { useEffect } from 'react';
@@ -109,9 +109,9 @@ export function SheetContent({ children, style }: SheetContentProps) {
   const sheetWidth = Math.min(SCREEN_WIDTH * 0.8, 400);
   const [isVisible, setIsVisible] = React.useState(open);
 
-  const backgroundColor = useThemeColor({}, 'background');
-  const borderColor = useThemeColor({}, 'border');
-  const iconColor = useThemeColor({}, 'text');
+  const backgroundColor = useColor('background');
+  const borderColor = useColor('border');
+  const iconColor = useColor('text');
 
   // Animation values using Reanimated's useSharedValue
   const initialPosition = side === 'left' ? -sheetWidth : sheetWidth;
@@ -238,7 +238,7 @@ export function SheetTitle({ children }: SheetTitleProps) {
 }
 
 export function SheetDescription({ children }: SheetDescriptionProps) {
-  const mutedColor = useThemeColor({}, 'textMuted');
+  const mutedColor = useColor('textMuted');
 
   return (
     <Text style={[styles.description, { color: mutedColor }]}>{children}</Text>

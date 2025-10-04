@@ -1,6 +1,6 @@
 // components/charts/stacked-bar-chart.tsx
 
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { useEffect, useState } from 'react';
 import { LayoutChangeEvent, View, ViewStyle } from 'react-native';
 import Animated, {
@@ -58,8 +58,8 @@ export const StackedBarChart = ({
 
   const chartWidth = containerWidth || config.width || 300;
 
-  const primaryColor = useThemeColor({}, 'primary');
-  const mutedColor = useThemeColor({}, 'mutedForeground');
+  const primaryColor = useColor('primary');
+  const mutedColor = useColor('mutedForeground');
 
   const animationProgress = useSharedValue(0);
 

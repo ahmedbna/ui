@@ -1,4 +1,4 @@
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { useEffect } from 'react';
 import { View, ViewStyle } from 'react-native';
 import Animated, {
@@ -46,8 +46,8 @@ export const ProgressRingChart = ({
 }: Props) => {
   const { animated = true, duration = 1000, gradient = false } = config;
 
-  const primaryColor = useThemeColor({}, 'primary');
-  const mutedColor = useThemeColor({}, 'mutedForeground');
+  const primaryColor = useColor('primary');
+  const mutedColor = useColor('mutedForeground');
 
   const animationProgress = useSharedValue(0);
 

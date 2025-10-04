@@ -9,7 +9,7 @@ export const actionSheetRegistry = {
       'A native-feeling action sheet component that provides a menu of options triggered from the bottom of the screen.',
     type: 'registry:ui',
     registryDependencies: ['text', 'view'],
-    hooks: ['useThemeColor'],
+    hooks: ['useColor'],
     theme: ['globals'],
     files: [
       {

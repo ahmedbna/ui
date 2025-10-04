@@ -1,6 +1,6 @@
 import { AreaChart } from '@/components/charts/area-chart';
 import { ChartContainer } from '@/components/charts/chart-container';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import React from 'react';
 
 const sampleData = [
@@ -13,8 +13,8 @@ const sampleData = [
 ];
 
 export function AreaChartStyled() {
-  const borderColor = useThemeColor({}, 'border');
-  const backgroundColor = useThemeColor({}, 'card');
+  const borderColor = useColor('border');
+  const backgroundColor = useColor('card');
 
   return (
     <ChartContainer

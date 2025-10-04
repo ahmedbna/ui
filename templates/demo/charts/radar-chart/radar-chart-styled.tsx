@@ -1,6 +1,6 @@
 import { RadarChart } from '@/components/charts/radar-chart';
 import { ChartContainer } from '@/components/charts/chart-container';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import React from 'react';
 
 const performanceData = [
@@ -14,7 +14,7 @@ const performanceData = [
 ];
 
 export function RadarChartStyled() {
-  const accentColor = useThemeColor({}, 'accent');
+  const accentColor = useColor('accent');
 
   return (
     <ChartContainer

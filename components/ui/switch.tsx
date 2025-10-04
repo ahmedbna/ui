@@ -1,6 +1,6 @@
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import React from 'react';
 import {
   Switch as RNSwitch,
@@ -15,9 +15,9 @@ interface SwitchProps extends RNSwitchProps {
 }
 
 export function Switch({ label, error, labelStyle, ...props }: SwitchProps) {
-  const mutedColor = useThemeColor({}, 'muted');
-  const primary = useThemeColor({}, 'primary');
-  const danger = useThemeColor({}, 'red');
+  const mutedColor = useColor('muted');
+  const primary = useColor('primary');
+  const danger = useColor('red');
 
   return (
     <View style={{ marginBottom: 8 }}>

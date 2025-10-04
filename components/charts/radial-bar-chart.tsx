@@ -1,5 +1,5 @@
 import { Text } from '@/components/ui/text';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { useEffect, useState } from 'react';
 import { LayoutChangeEvent, View, ViewStyle } from 'react-native';
 import Animated, {
@@ -47,8 +47,8 @@ export const RadialBarChart = ({ data, config = {}, style }: Props) => {
     gradient = false,
   } = config;
 
-  const primaryColor = useThemeColor({}, 'primary');
-  const mutedColor = useThemeColor({}, 'mutedForeground');
+  const primaryColor = useColor('primary');
+  const mutedColor = useColor('mutedForeground');
 
   const animationProgress = useSharedValue(0);
 
@@ -78,11 +78,11 @@ export const RadialBarChart = ({ data, config = {}, style }: Props) => {
 
   const colors = [
     primaryColor,
-    useThemeColor({}, 'blue'),
-    useThemeColor({}, 'green'),
-    useThemeColor({}, 'orange'),
-    useThemeColor({}, 'purple'),
-    useThemeColor({}, 'pink'),
+    useColor('blue'),
+    useColor('green'),
+    useColor('orange'),
+    useColor('purple'),
+    useColor('pink'),
   ];
 
   return (

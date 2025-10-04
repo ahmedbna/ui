@@ -1,15 +1,15 @@
 import { Carousel, CarouselItem } from '@/components/ui/carousel';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import React from 'react';
 import { Dimensions } from 'react-native';
 
 const { width: screenWidth } = Dimensions.get('window');
 
 export function CarouselCustomWidth() {
-  const cardColor = useThemeColor({}, 'card');
-  const textColor = useThemeColor({}, 'text');
+  const cardColor = useColor('card');
+  const textColor = useColor('text');
 
   const products = [
     { id: 1, name: 'Wireless Headphones', price: '$99.99', rating: '4.8' },

@@ -1,12 +1,12 @@
 import { ScrollView } from '@/components/ui/scroll-view';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { BORDER_RADIUS } from '@/theme/globals';
 import React from 'react';
 
 export function ScrollViewIndicators() {
-  const card = useThemeColor({}, 'card');
+  const card = useColor('card');
 
   return (
     <View style={{ gap: 16 }}>

@@ -1,14 +1,14 @@
 import { ScrollView } from '@/components/ui/scroll-view';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { BORDER_RADIUS } from '@/theme/globals';
 import React, { useCallback, useState } from 'react';
 import { RefreshControl } from 'react-native';
 
 export function ScrollViewRefresh() {
-  const card = useThemeColor({}, 'card');
-  const green = useThemeColor({}, 'green');
+  const card = useColor('card');
+  const green = useColor('green');
 
   const [refreshing, setRefreshing] = useState(false);
   const [lastRefresh, setLastRefresh] = useState(

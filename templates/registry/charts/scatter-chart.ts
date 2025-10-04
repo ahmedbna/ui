@@ -14,7 +14,7 @@ export const scatterChartRegistry = {
       'react-native-gesture-handler',
     ],
     registryDependencies: [],
-    hooks: ['useThemeColor'],
+    hooks: ['useColor'],
     theme: ['globals'],
     files: [
       {
@@ -78,7 +78,7 @@ export const scatterChartRegistry = {
     description: 'A customized scatter chart with custom colors and styling',
     type: 'registry:example',
     registryDependencies: ['scatter-chart', 'chart-container'],
-    hooks: ['useThemeColor'],
+    hooks: ['useColor'],
     theme: [],
     files: [
       {

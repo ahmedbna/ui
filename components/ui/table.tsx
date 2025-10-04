@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { BORDER_RADIUS, FONT_SIZE, HEIGHT } from '@/theme/globals';
 import {
   ChevronDown,
@@ -78,11 +78,11 @@ export function Table<T = any>({
   filterable = true,
 }: TableProps<T>) {
   // Theme colors
-  const borderColor = useThemeColor({}, 'border');
-  const textColor = useThemeColor({}, 'text');
-  const mutedColor = useThemeColor({}, 'textMuted');
-  const cardColor = useThemeColor({}, 'card');
-  const primaryColor = useThemeColor({}, 'primary');
+  const borderColor = useColor('border');
+  const textColor = useColor('text');
+  const mutedColor = useColor('textMuted');
+  const cardColor = useColor('card');
+  const primaryColor = useColor('primary');
 
   // State
   const [currentPage, setCurrentPage] = useState(1);

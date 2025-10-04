@@ -8,7 +8,7 @@ import {
   MapType,
 } from '@/components/ui/maps'; // Adjust import path as needed
 import { Text } from '@/components/ui/text';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { BORDER_RADIUS } from '@/theme/globals';
 import { Building, Coffee, MapPin, Plane, Star } from 'lucide-react-native';
 import React, { useState } from 'react';
@@ -26,13 +26,13 @@ export function MapsDemo() {
   const [currentScenario, setCurrentScenario] = useState<string>('basic');
 
   // Theme colors
-  const backgroundColor = useThemeColor({}, 'background');
-  const cardColor = useThemeColor({}, 'card');
-  const primaryColor = useThemeColor({}, 'primary');
-  const secondary = useThemeColor({}, 'secondary');
-  const textColor = useThemeColor({}, 'text');
-  const mutedColor = useThemeColor({}, 'textMuted');
-  const borderColor = useThemeColor({}, 'border');
+  const backgroundColor = useColor('background');
+  const cardColor = useColor('card');
+  const primaryColor = useColor('primary');
+  const secondary = useColor('secondary');
+  const textColor = useColor('text');
+  const mutedColor = useColor('textMuted');
+  const borderColor = useColor('border');
 
   // Demo data
   const cairoRegion = {

@@ -7,7 +7,7 @@ import {
 } from '@/components/ui/popover';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
 
@@ -24,11 +24,8 @@ function MenuItem({
   onPress,
   destructive = false,
 }: MenuItemProps) {
-  const textColor = useThemeColor(
-    {},
-    destructive ? 'destructive' : 'foreground'
-  );
-  const mutedColor = useThemeColor({}, 'muted');
+  const textColor = useColor({}, destructive ? 'destructive' : 'foreground');
+  const mutedColor = useColor('muted');
 
   return (
     <PopoverClose asChild>
@@ -59,7 +56,7 @@ function MenuItem({
 }
 
 export function PopoverMenu() {
-  const borderColor = useThemeColor({}, 'border');
+  const borderColor = useColor('border');
 
   const handleMenuAction = (action: string) => {
     console.log(`Menu action: ${action}`);

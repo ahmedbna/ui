@@ -9,7 +9,7 @@ import {
 } from '@/components/ui/sheet';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import React, { useState } from 'react';
 import { Alert, StyleSheet, TextInput } from 'react-native';
 
@@ -21,10 +21,10 @@ export function SheetForm() {
     message: '',
   });
 
-  const textColor = useThemeColor({}, 'text');
-  const backgroundColor = useThemeColor({}, 'background');
-  const borderColor = useThemeColor({}, 'border');
-  const mutedColor = useThemeColor({}, 'textMuted');
+  const textColor = useColor('text');
+  const backgroundColor = useColor('background');
+  const borderColor = useColor('border');
+  const mutedColor = useColor('textMuted');
 
   const handleSubmit = () => {
     if (!formData.name || !formData.email || !formData.message) {

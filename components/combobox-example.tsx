@@ -10,7 +10,7 @@ import {
   ComboboxTrigger,
 } from '@/components/ui/combobox';
 import { Text } from '@/components/ui/text';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { Building, Check, Star } from 'lucide-react-native';
 import React, { useState } from 'react';
 import { Image, StyleSheet, View } from 'react-native';
@@ -73,9 +73,9 @@ export function ComboboxExamples() {
   const [user, setUser] = useState('');
   const [multipleFrameworks, setMultipleFrameworks] = useState<string[]>([]);
 
-  const primaryColor = useThemeColor({}, 'primary');
-  const textColor = useThemeColor({}, 'text');
-  const mutedColor = useThemeColor({}, 'textMuted');
+  const primaryColor = useColor('primary');
+  const textColor = useColor('text');
+  const mutedColor = useColor('textMuted');
 
   // Helper function to get framework label by value
   const getFrameworkLabel = (value: string) => {
@@ -277,9 +277,9 @@ interface UserItemProps {
 }
 
 function UserItem({ user, isSelected }: UserItemProps) {
-  const textColor = useThemeColor({}, 'text');
-  const mutedColor = useThemeColor({}, 'textMuted');
-  const primaryColor = useThemeColor({}, 'primary');
+  const textColor = useColor('text');
+  const mutedColor = useColor('textMuted');
+  const primaryColor = useColor('primary');
 
   return (
     <View style={styles.userItem}>
@@ -312,9 +312,9 @@ interface FrameworkItemProps {
 }
 
 function FrameworkItem({ framework, isSelected }: FrameworkItemProps) {
-  const textColor = useThemeColor({}, 'text');
-  const mutedColor = useThemeColor({}, 'textMuted');
-  const primaryColor = useThemeColor({}, 'primary');
+  const textColor = useColor('text');
+  const mutedColor = useColor('textMuted');
+  const primaryColor = useColor('primary');
 
   return (
     <View style={styles.frameworkItem}>

@@ -1,4 +1,4 @@
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { useEffect, useState } from 'react';
 import { LayoutChangeEvent, View, ViewStyle } from 'react-native';
 import Animated, {
@@ -101,8 +101,8 @@ export const HeatmapChart = ({ data, config = {}, style }: Props) => {
   // Use measured width or fallback to config width or default
   const chartWidth = containerWidth || config.width || 300;
 
-  const mutedColor = useThemeColor({}, 'mutedForeground');
-  const textColor = useThemeColor({}, 'foreground');
+  const mutedColor = useColor('mutedForeground');
+  const textColor = useColor('foreground');
 
   const animationProgress = useSharedValue(0);
 

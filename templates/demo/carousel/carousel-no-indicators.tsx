@@ -1,12 +1,12 @@
 import { Carousel, CarouselItem } from '@/components/ui/carousel';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { Minus, TrendingDown, TrendingUp } from 'lucide-react-native';
 import React from 'react';
 
 export function CarouselNoIndicators() {
-  const textColor = useThemeColor({}, 'text');
+  const textColor = useColor('text');
 
   const stats = [
     {

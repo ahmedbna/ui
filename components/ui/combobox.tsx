@@ -1,4 +1,4 @@
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { BORDER_RADIUS, CORNERS, FONT_SIZE, HEIGHT } from '@/theme/globals';
 import { ChevronDown } from 'lucide-react-native';
 import React, {
@@ -154,9 +154,9 @@ export function ComboboxTrigger({
 }: ComboboxTriggerProps) {
   const { setIsOpen, setTriggerLayout, disabled, isOpen } = useCombobox();
   const triggerRef = useRef<React.ComponentRef<typeof TouchableOpacity>>(null);
-  const cardColor = useThemeColor({}, 'card');
-  const destructiveColor = useThemeColor({}, 'destructive');
-  const mutedColor = useThemeColor({}, 'textMuted');
+  const cardColor = useColor('card');
+  const destructiveColor = useColor('destructive');
+  const mutedColor = useColor('textMuted');
 
   const measureTrigger = () => {
     if (triggerRef.current) {
@@ -212,8 +212,8 @@ export function ComboboxValue({
   style,
 }: ComboboxValueProps) {
   const { value, values, multiple } = useCombobox();
-  const textColor = useThemeColor({}, 'text');
-  const mutedColor = useThemeColor({}, 'textMuted');
+  const textColor = useColor('text');
+  const mutedColor = useColor('textMuted');
 
   const hasValue = multiple ? values.length > 0 : !!value;
 
@@ -251,8 +251,8 @@ export function ComboboxContent({
   maxHeight = 400,
 }: ComboboxContentProps) {
   const { isOpen, setIsOpen, setSearchQuery, triggerLayout } = useCombobox();
-  const cardColor = useThemeColor({}, 'card');
-  const borderColor = useThemeColor({}, 'border');
+  const cardColor = useColor('card');
+  const borderColor = useColor('border');
 
   const handleClose = () => {
     setIsOpen(false);
@@ -308,9 +308,9 @@ export function ComboboxInput({
   autoFocus = true,
 }: ComboboxInputProps) {
   const { searchQuery, setSearchQuery } = useCombobox();
-  const textColor = useThemeColor({}, 'text');
-  const mutedColor = useThemeColor({}, 'textMuted');
-  const borderColor = useThemeColor({}, 'border');
+  const textColor = useColor('text');
+  const mutedColor = useColor('textMuted');
+  const borderColor = useColor('border');
 
   return (
     <View
@@ -408,7 +408,7 @@ interface ComboboxEmptyProps {
 
 export function ComboboxEmpty({ children, style }: ComboboxEmptyProps) {
   const { searchQuery, filteredItemsCount } = useCombobox();
-  const mutedColor = useThemeColor({}, 'textMuted');
+  const mutedColor = useColor('textMuted');
 
   if (filteredItemsCount > 0) return null;
 
@@ -432,7 +432,7 @@ interface ComboboxGroupProps {
 
 export function ComboboxGroup({ children, heading }: ComboboxGroupProps) {
   const { searchQuery } = useCombobox();
-  const mutedColor = useThemeColor({}, 'textMuted');
+  const mutedColor = useColor('textMuted');
 
   const filteredChildren = Children.toArray(children).filter((child) => {
     if (!searchQuery) return true;
@@ -483,8 +483,8 @@ export function ComboboxItem({
     values: selectedValues,
     value: selectedValue,
   } = useCombobox();
-  const textColor = useThemeColor({}, 'text');
-  const primaryColor = useThemeColor({}, 'primary');
+  const textColor = useColor('text');
+  const primaryColor = useColor('primary');
 
   const isSelected = multiple
     ? selectedValues.some((v) => v.value === itemValue)

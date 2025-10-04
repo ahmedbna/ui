@@ -1,6 +1,6 @@
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { BORDER_RADIUS } from '@/theme/globals';
 import React from 'react';
 import { Alert as RNAlert, TextStyle, ViewStyle } from 'react-native';
@@ -15,9 +15,9 @@ interface AlertProps {
 
 // Visual Alert Component (existing functionality)
 export function Alert({ children, variant = 'default', style }: AlertProps) {
-  const borderColor = useThemeColor({}, 'border');
-  const destructiveColor = useThemeColor({}, 'destructive');
-  const backgroundColor = useThemeColor({}, 'card');
+  const borderColor = useColor('border');
+  const destructiveColor = useColor('destructive');
+  const backgroundColor = useColor('card');
 
   return (
     <View

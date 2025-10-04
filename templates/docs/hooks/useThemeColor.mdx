@@ -1,5 +1,5 @@
 ---
-title: useThemeColor
+title: useColor
 description: A hook that returns the appropriate color based on the current theme, with support for prop overrides and fallback to predefined color palettes.
 ---
 
@@ -14,7 +14,7 @@ description: A hook that returns the appropriate color based on the current them
 <TabsContent value="cli">
 
 ```bash
-npx bna-ui add useThemeColor
+npx bna-ui add useColor
 ```
 
 </TabsContent>
@@ -34,7 +34,7 @@ npx bna-ui add useColorScheme
 
 <Step>Copy and paste the following code into your project.</Step>
 
-<ComponentSource name='useThemeColor' title='hooks/useThemeColor.ts' />
+<ComponentSource name='useColor' title='hooks/useColor.ts' />
 
 <Step>Ensure you have a Colors theme file with light and dark variants.</Step>
 
@@ -51,12 +51,12 @@ npx bna-ui add useColorScheme
 ## Usage
 
 ```tsx
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 ```
 
 ```tsx
 export function ThemedText({ style, ...props }) {
-  const color = useThemeColor({ light: '#000', dark: '#fff' }, 'text');
+  const color = useColor({ light: '#000', dark: '#fff' }, 'text');
 
   return <Text style={[{ color }, style]} {...props} />;
 }
@@ -64,7 +64,7 @@ export function ThemedText({ style, ...props }) {
 
 ## API Reference
 
-### useThemeColor
+### useColor
 
 Returns the appropriate color based on the current theme, with support for prop overrides.
 
@@ -91,7 +91,7 @@ The hook resolves colors in the following order:
 
 ```tsx
 // Example resolution flow
-const color = useThemeColor(
+const color = useColor(
   { light: '#custom-light', dark: '#custom-dark' },
   'primary'
 );
@@ -158,12 +158,12 @@ export function ThemedButton({
   colors,
   variant = 'primary',
 }: ThemedButtonProps) {
-  const backgroundColor = useThemeColor(
+  const backgroundColor = useColor(
     colors || {},
     variant === 'primary' ? 'primary' : 'secondary'
   );
 
-  const textColor = useThemeColor({}, 'background');
+  const textColor = useColor('background');
 
   return (
     <TouchableOpacity
@@ -211,9 +211,9 @@ Memoize complex color calculations:
 import { useMemo } from 'react';
 
 export function useThemedStyles() {
-  const backgroundColor = useThemeColor({}, 'background');
-  const textColor = useThemeColor({}, 'text');
-  const borderColor = useThemeColor({}, 'border');
+  const backgroundColor = useColor('background');
+  const textColor = useColor('text');
+  const borderColor = useColor('border');
 
   return useMemo(
     () => ({
@@ -301,7 +301,7 @@ export function useAnimatedThemeColor(
   props: { light?: string; dark?: string },
   colorName: keyof typeof Colors.light & keyof typeof Colors.dark
 ) {
-  const color = useThemeColor(props, colorName);
+  const color = useColor(props, colorName);
   const animatedColor = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {

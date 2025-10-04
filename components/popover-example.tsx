@@ -9,14 +9,14 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 import { Text } from '@/components/ui/text';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import React, { useState } from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 
 export function PopoverExamples() {
   const [isControlledOpen, setIsControlledOpen] = useState(false);
-  const primaryColor = useThemeColor({}, 'primary');
-  const cardColor = useThemeColor({}, 'card');
+  const primaryColor = useColor('primary');
+  const cardColor = useColor('card');
 
   return (
     <View style={styles.container}>
