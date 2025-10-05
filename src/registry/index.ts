@@ -58,6 +58,7 @@ import { inputRegistry } from './input.js';
 import { chartsRegistry } from './charts/index.js';
 import { alertDialogRegistry } from './alert-dialog.js';
 import { avoidKeyboardRegistry } from './avoid-keyboard.js';
+import { stackRegistry } from './stack.js';
 
 export const REGISTRY: Record<string, ComponentRegistry> = {
   ...accordionRegistry,
@@ -115,6 +116,7 @@ export const REGISTRY: Record<string, ComponentRegistry> = {
   ...hooksRegistry,
   ...themeRegistry,
   ...chartsRegistry,
+  ...stackRegistry,
 };
 
 /// Helper functions for component registry
