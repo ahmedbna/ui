@@ -1,6 +1,6 @@
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { BORDER_RADIUS, CORNERS, FONT_SIZE, HEIGHT } from '@/theme/globals';
 import React, {
   createContext,
@@ -368,7 +368,7 @@ function CarouselContainer({
 
 export function TabsList({ children, style }: TabsListProps) {
   const { orientation } = useTabsContext();
-  const backgroundColor = useThemeColor({}, 'muted');
+  const backgroundColor = useColor('muted');
 
   return (
     <View
@@ -413,9 +413,9 @@ export function TabsTrigger({
     return () => unregisterTab(value);
   }, [value, registerTab, unregisterTab]);
 
-  const primaryColor = useThemeColor({}, 'primary');
-  const mutedForegroundColor = useThemeColor({}, 'mutedForeground');
-  const backgroundColor = useThemeColor({}, 'background');
+  const primaryColor = useColor('primary');
+  const mutedForegroundColor = useColor('mutedForeground');
+  const backgroundColor = useColor('background');
 
   const handlePress = () => {
     if (!disabled) {

@@ -8,7 +8,7 @@ export const avatarRegistry = {
     type: 'registry:ui',
     dependencies: ['expo-image'],
     registryDependencies: ['text', 'view', 'image'],
-    hooks: ['useThemeColor'],
+    hooks: ['useColor'],
     theme: ['globals'],
     files: [
       {

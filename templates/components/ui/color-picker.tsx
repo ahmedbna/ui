@@ -1,6 +1,6 @@
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { BORDER_RADIUS, CORNERS, HEIGHT } from '@/theme/globals';
 import { LinearGradient as ExpoLinearGradient } from 'expo-linear-gradient';
 import React, { useCallback, useEffect, useState } from 'react';
@@ -124,7 +124,7 @@ export const ColorSwatch: React.FC<ColorSwatchProps> = ({
   style,
   onPress,
 }) => {
-  const borderColor = useThemeColor({}, 'border');
+  const borderColor = useColor('border');
 
   return (
     <TouchableOpacity
@@ -166,10 +166,10 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({
   const [currentColor, setCurrentColor] = useState(value);
   const [pureHueColor, setPureHueColor] = useState('#ff0000');
 
-  const backgroundColor = useThemeColor({}, 'background');
-  const card = useThemeColor({}, 'card');
-  const borderColor = useThemeColor({}, 'border');
-  const textColor = useThemeColor({}, 'text');
+  const backgroundColor = useColor('background');
+  const card = useColor('card');
+  const borderColor = useColor('border');
+  const textColor = useColor('text');
 
   // Initialize HSV values from the current color
   const rgb = hexToRgb(currentColor);

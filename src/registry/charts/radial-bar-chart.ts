@@ -14,7 +14,7 @@ export const radialBarChartRegistry = {
       'react-native-gesture-handler',
     ],
     registryDependencies: [],
-    hooks: ['useThemeColor'],
+    hooks: ['useColor'],
     theme: ['globals'],
     files: [
       {
@@ -58,7 +58,7 @@ export const radialBarChartRegistry = {
     description: 'A sample radial bar chart with custom data',
     type: 'registry:example',
     registryDependencies: ['radial-bar-chart', 'chart-container'],
-    hooks: ['useThemeColor'],
+    hooks: ['useColor'],
     theme: [],
     files: [
       {
@@ -80,7 +80,7 @@ export const radialBarChartRegistry = {
     description: 'A radial bar chart with gradient effects',
     type: 'registry:example',
     registryDependencies: ['radial-bar-chart', 'chart-container'],
-    hooks: ['useThemeColor'],
+    hooks: ['useColor'],
     theme: [],
     files: [
       {

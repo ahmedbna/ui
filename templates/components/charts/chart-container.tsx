@@ -1,6 +1,6 @@
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { BORDER_RADIUS } from '@/theme/globals';
 import { ViewStyle } from 'react-native';
 
@@ -17,7 +17,7 @@ export const ChartContainer = ({
   children,
   style,
 }: Props) => {
-  const cardColor = useThemeColor({}, 'card');
+  const cardColor = useColor('card');
 
   return (
     <View

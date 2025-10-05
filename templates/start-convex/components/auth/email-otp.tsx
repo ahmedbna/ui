@@ -12,13 +12,13 @@ import { View } from '@/components/ui/view';
 import { Text } from '@/components/ui/text';
 import { Input } from '@/components/ui/input';
 import { InputOTP } from '@/components/ui/input-otp';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 
 type AuthStep = 'signIn' | 'verifyEmail';
 
 export const EmailOTP = () => {
   const { signIn } = useAuthActions();
-  const green = useThemeColor({}, 'green');
+  const green = useColor('green');
 
   // --- STATE MANAGEMENT ---
   const [step, setStep] = useState<AuthStep>('signIn');

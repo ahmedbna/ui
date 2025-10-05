@@ -1,5 +1,5 @@
 import { Text } from '@/components/ui/text';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { useEffect, useState } from 'react';
 import { LayoutChangeEvent, View, ViewStyle } from 'react-native';
 import Animated, {
@@ -46,7 +46,7 @@ export const DoughnutChart = ({ data, config = {}, style }: Props) => {
 
   const chartWidth = containerWidth || config.width || 300;
 
-  const primaryColor = useThemeColor({}, 'primary');
+  const primaryColor = useColor('primary');
 
   const animationProgress = useSharedValue(0);
 
@@ -77,11 +77,11 @@ export const DoughnutChart = ({ data, config = {}, style }: Props) => {
 
   const colors = [
     primaryColor,
-    useThemeColor({}, 'blue'),
-    useThemeColor({}, 'green'),
-    useThemeColor({}, 'orange'),
-    useThemeColor({}, 'purple'),
-    useThemeColor({}, 'pink'),
+    useColor('blue'),
+    useColor('green'),
+    useColor('orange'),
+    useColor('purple'),
+    useColor('pink'),
   ];
 
   return (

@@ -9,7 +9,7 @@ export const progressRegistry = {
     type: 'registry:ui',
     dependencies: ['react-native-gesture-handler', 'react-native-reanimated'],
     registryDependencies: ['view'],
-    hooks: ['useThemeColor'],
+    hooks: ['useColor'],
     theme: ['globals'],
     files: [
       {

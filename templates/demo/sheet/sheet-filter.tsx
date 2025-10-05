@@ -9,7 +9,7 @@ import {
 } from '@/components/ui/sheet';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { Filter } from 'lucide-react-native';
 import React, { useState } from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
@@ -23,9 +23,9 @@ export function SheetFilter() {
     brand: 'all',
   });
 
-  const textColor = useThemeColor({}, 'text');
-  const mutedColor = useThemeColor({}, 'textMuted');
-  const borderColor = useThemeColor({}, 'border');
+  const textColor = useColor('text');
+  const mutedColor = useColor('textMuted');
+  const borderColor = useColor('border');
 
   const filterOptions = {
     category: [

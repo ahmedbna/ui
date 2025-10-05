@@ -1,5 +1,5 @@
 import { Text } from '@/components/ui/text';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { BORDER_RADIUS, CORNERS, FONT_SIZE } from '@/theme/globals';
 import React from 'react';
 import { TextStyle, TouchableOpacity, View, ViewStyle } from 'react-native';
@@ -38,10 +38,10 @@ export function RadioButton({
   style,
   labelStyle,
 }: RadioButtonProps) {
-  const primaryColor = useThemeColor({}, 'primary');
-  const borderColor = useThemeColor({}, 'border');
-  const textColor = useThemeColor({}, 'text');
-  const mutedColor = useThemeColor({}, 'textMuted');
+  const primaryColor = useColor('primary');
+  const borderColor = useColor('border');
+  const textColor = useColor('text');
+  const mutedColor = useColor('textMuted');
 
   const isDisabled = disabled || option.disabled;
 

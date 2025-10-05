@@ -14,7 +14,7 @@ export const doughnutChartRegistry = {
       'react-native-gesture-handler',
     ],
     registryDependencies: ['text'],
-    hooks: ['useThemeColor'],
+    hooks: ['useColor'],
     theme: ['globals'],
     files: [
       {
@@ -58,7 +58,7 @@ export const doughnutChartRegistry = {
     description: 'A sample doughnut chart with custom theme colors',
     type: 'registry:example',
     registryDependencies: ['doughnut-chart', 'chart-container'],
-    hooks: ['useThemeColor'],
+    hooks: ['useColor'],
     theme: [],
     files: [
       {

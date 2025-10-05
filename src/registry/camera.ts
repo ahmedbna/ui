@@ -13,7 +13,7 @@ export const cameraRegistry = {
       'react-native-gesture-handler',
     ],
     registryDependencies: ['button', 'text', 'progress'],
-    hooks: ['useThemeColor'],
+    hooks: ['useColor'],
     theme: ['globals'],
     files: [
       {

@@ -1,6 +1,6 @@
 import { HeatmapChart } from '@/components/charts/heatmap-chart';
 import { ChartContainer } from '@/components/charts/chart-container';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import React from 'react';
 
 const sampleData = [
@@ -16,7 +16,7 @@ const sampleData = [
 ];
 
 export function HeatmapChartStyled() {
-  const isDark = useThemeColor({}, 'background') === '#000000';
+  const isDark = useColor('background') === '#000000';
 
   const colorScale = isDark
     ? ['#0f172a', '#1e293b', '#334155', '#64748b', '#94a3b8']

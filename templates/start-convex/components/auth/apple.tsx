@@ -7,13 +7,13 @@ import { Ionicons } from '@expo/vector-icons';
 import { View } from '@/components/ui/view';
 import { Text } from '@/components/ui/text';
 import { Button } from '@/components/ui/button';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 
 const redirectTo = makeRedirectUri();
 
 export const SignInWithApple = () => {
   const { signIn } = useAuthActions();
-  const secondary = useThemeColor({}, 'secondary');
+  const secondary = useColor('secondary');
 
   const [loading, setLoading] = useState(false);
 

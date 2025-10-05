@@ -4,7 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
 import { useKeyboardHeight } from '@/hooks/useKeyboardHeight';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { Settings, Keyboard, Smartphone } from 'lucide-react-native';
 import React, { useState } from 'react';
 import { ScrollView, Switch } from 'react-native';
@@ -15,7 +15,7 @@ export function AvoidKeyboardPlayground() {
   const [duration, setDuration] = useState(0);
   const [showStats, setShowStats] = useState(false);
 
-  const card = useThemeColor({}, 'card');
+  const card = useColor('card');
 
   // Get keyboard stats for debugging
   const { keyboardHeight, isKeyboardVisible, keyboardAnimationDuration } =

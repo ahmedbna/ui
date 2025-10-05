@@ -62,9 +62,9 @@ export const hooksRegistry = {
     ],
   },
 
-  useThemeColor: {
-    name: 'useThemeColor',
-    description: 'useThemeColor',
+  useColor: {
+    name: 'useColor',
+    description: 'useColor',
     type: 'registry:hook',
     dependencies: [],
     hooks: ['useColorScheme'],
@@ -72,8 +72,8 @@ export const hooksRegistry = {
     files: [
       {
         type: 'registry:hook',
-        path: 'templates/hooks/useThemeColor.ts',
-        target: 'hooks/useThemeColor.ts',
+        path: 'templates/hooks/useColor.ts',
+        target: 'hooks/useColor.ts',
       },
     ],
   },

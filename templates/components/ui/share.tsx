@@ -1,6 +1,6 @@
 import { Button, ButtonVariant } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { FONT_SIZE } from '@/theme/globals';
 import { Share as ShareIcon } from 'lucide-react-native';
 import React, { useCallback, useMemo } from 'react';
@@ -62,10 +62,10 @@ export function ShareButton({
   iconSize = 18,
   validateContent = true,
 }: ShareButtonProps) {
-  const primaryColor = useThemeColor({}, 'primary');
-  const primaryForegroundColor = useThemeColor({}, 'primaryForeground');
-  const secondaryForegroundColor = useThemeColor({}, 'secondaryForeground');
-  const destructiveForegroundColor = useThemeColor({}, 'destructiveForeground');
+  const primaryColor = useColor('primary');
+  const primaryForegroundColor = useColor('primaryForeground');
+  const secondaryForegroundColor = useColor('secondaryForeground');
+  const destructiveForegroundColor = useColor('destructiveForeground');
 
   // Validate content requirements
   const isContentValid = useMemo(() => {

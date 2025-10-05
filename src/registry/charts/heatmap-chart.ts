@@ -14,7 +14,7 @@ export const heatmapChartRegistry = {
       'react-native-gesture-handler',
     ],
     registryDependencies: [],
-    hooks: ['useThemeColor'],
+    hooks: ['useColor'],
     theme: ['globals'],
     files: [
       {
@@ -78,7 +78,7 @@ export const heatmapChartRegistry = {
     description: 'A customized heatmap chart with custom colors and styling',
     type: 'registry:example',
     registryDependencies: ['heatmap-chart', 'chart-container'],
-    hooks: ['useThemeColor'],
+    hooks: ['useColor'],
     theme: [],
     files: [
       {

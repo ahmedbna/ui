@@ -1,7 +1,7 @@
 import { Icon } from '@/components/ui/icon';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { CORNERS, FONT_SIZE, HEIGHT } from '@/theme/globals';
 import { Search, X } from 'lucide-react-native';
 import React, { useCallback, useRef, useState } from 'react';
@@ -46,10 +46,10 @@ export function SearchBar({
   const inputRef = useRef<TextInput>(null);
 
   // Theme colors
-  const cardColor = useThemeColor({}, 'card');
-  const textColor = useThemeColor({}, 'text');
-  const muted = useThemeColor({}, 'textMuted');
-  const icon = useThemeColor({}, 'icon');
+  const cardColor = useColor('card');
+  const textColor = useColor('text');
+  const muted = useColor('textMuted');
+  const icon = useColor('icon');
 
   // Handle text change with debouncing
   const handleTextChange = useCallback(
@@ -166,8 +166,8 @@ export function SearchBarWithSuggestions({
   ...searchBarProps
 }: SearchBarWithSuggestionsProps) {
   const [isExpanded, setIsExpanded] = useState(false);
-  const cardColor = useThemeColor({}, 'card');
-  const borderColor = useThemeColor({}, 'border');
+  const cardColor = useColor('card');
+  const borderColor = useColor('border');
 
   const filteredSuggestions = suggestions
     .filter((suggestion) =>

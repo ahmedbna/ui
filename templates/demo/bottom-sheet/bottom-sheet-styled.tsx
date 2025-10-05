@@ -2,12 +2,12 @@ import { BottomSheet, useBottomSheet } from '@/components/ui/bottom-sheet';
 import { Button } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import React from 'react';
 
 export function BottomSheetStyled() {
   const { isVisible, open, close } = useBottomSheet();
-  const accentColor = useThemeColor({}, 'blue');
+  const accentColor = useColor('blue');
 
   return (
     <View>

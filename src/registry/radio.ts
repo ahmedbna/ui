@@ -9,7 +9,7 @@ export const radioRegistry = {
     type: 'registry:ui',
     dependencies: ['react-native'],
     registryDependencies: ['text'],
-    hooks: ['useThemeColor'],
+    hooks: ['useColor'],
     theme: ['globals'],
     files: [
       {

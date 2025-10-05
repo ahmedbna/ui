@@ -33,7 +33,7 @@ export const audioWaveformRegistry = {
     type: 'registry:example',
     registryDependencies: ['audio-waveform', 'button', 'text', 'view'],
     hooks: [],
-    theme: ['useThemeColor'],
+    theme: ['useColor'],
     files: [
       {
         type: 'registry:example',

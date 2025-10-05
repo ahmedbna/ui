@@ -1,6 +1,6 @@
 import { RadialBarChart } from '@/components/charts/radial-bar-chart';
 import { ChartContainer } from '@/components/charts/chart-container';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import React from 'react';
 
 const sampleData = [
@@ -10,9 +10,9 @@ const sampleData = [
 ];
 
 export function RadialBarChartSample() {
-  const blue = useThemeColor({}, 'blue');
-  const green = useThemeColor({}, 'green');
-  const orange = useThemeColor({}, 'orange');
+  const blue = useColor('blue');
+  const green = useColor('green');
+  const orange = useColor('orange');
 
   const dataWithColors = sampleData.map((item, index) => ({
     ...item,

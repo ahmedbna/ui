@@ -1,5 +1,5 @@
 import { Icon } from '@/components/ui/icon';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { PlatformPressable } from '@react-navigation/elements';
 import { BlurView } from 'expo-blur';
 import * as Haptics from 'expo-haptics';
@@ -9,7 +9,7 @@ import React from 'react';
 import { Platform, StyleSheet } from 'react-native';
 
 export default function TabLayout() {
-  const primary = useThemeColor({}, 'primary');
+  const primary = useColor('primary');
 
   return (
     <Tabs

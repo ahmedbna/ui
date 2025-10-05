@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import React, { useRef, useState } from 'react';
 import {
   Dimensions,
@@ -68,9 +68,9 @@ export function Onboarding({
   const scrollViewRef = useRef<ScrollView>(null);
   const translateX = useSharedValue(0);
 
-  const backgroundColor = useThemeColor({}, 'background');
-  const primaryColor = useThemeColor({}, 'primary');
-  const mutedColor = useThemeColor({}, 'mutedForeground');
+  const backgroundColor = useColor('background');
+  const primaryColor = useColor('primary');
+  const mutedColor = useColor('mutedForeground');
 
   const isLastStep = currentStep === steps.length - 1;
   const isFirstStep = currentStep === 0;

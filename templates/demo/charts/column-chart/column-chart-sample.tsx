@@ -1,6 +1,6 @@
 import { ColumnChart } from '@/components/charts/column-chart';
 import { ChartContainer } from '@/components/charts/chart-container';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import React, { useState } from 'react';
 import { Pressable, Text, View } from 'react-native';
 
@@ -13,8 +13,8 @@ const sampleData = [
 
 export function ColumnChartSample() {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
-  const primaryColor = useThemeColor({}, 'primary');
-  const mutedColor = useThemeColor({}, 'muted');
+  const primaryColor = useColor('primary');
+  const mutedColor = useColor('muted');
 
   const enhancedData = sampleData.map((item, index) => ({
     ...item,

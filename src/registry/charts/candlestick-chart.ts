@@ -14,7 +14,7 @@ export const candlestickChartRegistry = {
       'react-native-gesture-handler',
     ],
     registryDependencies: [],
-    hooks: ['useThemeColor'],
+    hooks: ['useColor'],
     theme: ['globals'],
     files: [
       {

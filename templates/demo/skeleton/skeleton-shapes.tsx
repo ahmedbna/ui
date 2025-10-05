@@ -1,11 +1,11 @@
 import { Skeleton } from '@/components/ui/skeleton';
 import { View } from '@/components/ui/view';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { BORDER_RADIUS } from '@/theme/globals';
 import React from 'react';
 
 export function SkeletonShapes() {
-  const card = useThemeColor({}, 'card');
+  const card = useColor('card');
 
   return (
     <View

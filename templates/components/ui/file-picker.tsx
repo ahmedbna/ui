@@ -1,7 +1,7 @@
 import { Button, ButtonVariant } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { CORNERS, FONT_SIZE } from '@/theme/globals';
 import * as DocumentPicker from 'expo-document-picker';
 import { File, Image, X } from 'lucide-react-native';
@@ -77,11 +77,11 @@ export const FilePicker = forwardRef<FilePickerMethods, FilePickerProps>(
     const [selectedFiles, setSelectedFiles] = useState<SelectedFile[]>([]);
 
     // Theme colors
-    const backgroundColor = useThemeColor({}, 'card');
-    const borderColor = useThemeColor({}, 'border');
-    const textColor = useThemeColor({}, 'text');
-    const mutedTextColor = useThemeColor({}, 'textMuted');
-    const primaryColor = useThemeColor({}, 'primary');
+    const backgroundColor = useColor('card');
+    const borderColor = useColor('border');
+    const textColor = useColor('text');
+    const mutedTextColor = useColor('textMuted');
+    const primaryColor = useColor('primary');
 
     // Expose methods via ref
     React.useImperativeHandle(ref, () => ({

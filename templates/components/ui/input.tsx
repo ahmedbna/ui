@@ -1,6 +1,6 @@
 import { Icon } from '@/components/ui/icon';
 import { Text } from '@/components/ui/text';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { BORDER_RADIUS, CORNERS, FONT_SIZE, HEIGHT } from '@/theme/globals';
 import { LucideProps } from 'lucide-react-native';
 import React, { forwardRef, ReactElement, useState } from 'react';
@@ -54,12 +54,12 @@ export const Input = forwardRef<TextInput, InputProps>(
     const [isFocused, setIsFocused] = useState(false);
 
     // Theme colors
-    const cardColor = useThemeColor({}, 'card');
-    const textColor = useThemeColor({}, 'text');
-    const muted = useThemeColor({}, 'textMuted');
-    const borderColor = useThemeColor({}, 'border');
-    const primary = useThemeColor({}, 'primary');
-    const danger = useThemeColor({}, 'red');
+    const cardColor = useColor('card');
+    const textColor = useColor('text');
+    const muted = useColor('textMuted');
+    const borderColor = useColor('border');
+    const primary = useColor('primary');
+    const danger = useColor('red');
 
     const isTextarea = type === 'textarea';
 
@@ -307,9 +307,9 @@ export const GroupedInput = ({
   title,
   titleStyle,
 }: GroupedInputProps) => {
-  const border = useThemeColor({}, 'border');
-  const background = useThemeColor({}, 'card');
-  const danger = useThemeColor({}, 'red');
+  const border = useColor('border');
+  const background = useColor('card');
+  const danger = useColor('red');
 
   const childrenArray = React.Children.toArray(children);
 
@@ -415,10 +415,10 @@ export const GroupedInputItem = forwardRef<TextInput, GroupedInputItemProps>(
   ) => {
     const [isFocused, setIsFocused] = useState(false);
 
-    const text = useThemeColor({}, 'text');
-    const muted = useThemeColor({}, 'textMuted');
-    const primary = useThemeColor({}, 'primary');
-    const danger = useThemeColor({}, 'red');
+    const text = useColor('text');
+    const muted = useColor('textMuted');
+    const primary = useColor('primary');
+    const danger = useColor('red');
 
     const isTextarea = type === 'textarea';
 

@@ -9,7 +9,7 @@ export const tabsRegistry = {
     type: 'registry:ui',
     dependencies: ['react-native-gesture-handler', 'react-native-reanimated'],
     registryDependencies: ['text', 'view'],
-    hooks: ['useThemeColor'],
+    hooks: ['useColor'],
     theme: ['globals'],
     files: [
       {

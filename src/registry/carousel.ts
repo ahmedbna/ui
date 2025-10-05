@@ -13,7 +13,7 @@ export const carouselRegistry = {
       'react-native-gesture-handler',
     ],
     registryDependencies: ['text'],
-    hooks: ['useThemeColor'],
+    hooks: ['useColor'],
     theme: ['globals'],
     files: [
       {

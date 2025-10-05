@@ -90,7 +90,7 @@ interface ComponentProps {
 }
 
 // 2. Use theme colors
-const backgroundColor = useThemeColor({}, 'primary');
+const backgroundColor = useColor('primary');
 
 // 3. Export from index file
 export { Component } from './component';

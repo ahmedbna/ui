@@ -9,7 +9,7 @@ export const parallaxScrollViewRegistry = {
     type: 'registry:ui',
     dependencies: ['react-native-reanimated'],
     registryDependencies: ['view'],
-    hooks: ['useBottomTabOverflow', 'useThemeColor'],
+    hooks: ['useBottomTabOverflow', 'useColor'],
     theme: [],
     files: [
       {

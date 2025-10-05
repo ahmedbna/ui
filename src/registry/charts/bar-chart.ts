@@ -10,7 +10,7 @@ export const barChartRegistry = {
     type: 'registry:ui',
     dependencies: ['react-native-svg', 'react-native-reanimated'],
     registryDependencies: [],
-    hooks: ['useThemeColor'],
+    hooks: ['useColor'],
     theme: ['globals'],
     files: [
       {

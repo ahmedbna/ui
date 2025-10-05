@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { Text } from '@/components/ui/text';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { BORDER_RADIUS, FONT_SIZE } from '@/theme/globals';
 import {
   CameraMode,
@@ -133,11 +133,11 @@ export const Camera = forwardRef<CameraRef, CameraProps>(
     const [zoomFactorText, setZoomFactorText] = useState('1×');
     const [zoomProgress, setZoomProgress] = useState(0);
 
-    const backgroundColor = useThemeColor({}, 'background');
-    const textColor = useThemeColor({}, 'text');
-    const primaryColor = useThemeColor({}, 'primary');
-    const cardColor = useThemeColor({}, 'card');
-    const destructiveColor = useThemeColor({}, 'destructive');
+    const backgroundColor = useColor('background');
+    const textColor = useColor('text');
+    const primaryColor = useColor('primary');
+    const cardColor = useColor('card');
+    const destructiveColor = useColor('destructive');
 
     useAnimatedReaction(
       () => zoom.value,

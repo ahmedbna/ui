@@ -14,7 +14,7 @@ export const pieChartRegistry = {
       'react-native-gesture-handler',
     ],
     registryDependencies: [],
-    hooks: ['useThemeColor'],
+    hooks: ['useColor'],
     theme: ['globals'],
     files: [
       {
@@ -78,7 +78,7 @@ export const pieChartRegistry = {
     description: 'A customized pie chart with custom colors and styling',
     type: 'registry:example',
     registryDependencies: ['pie-chart', 'chart-container'],
-    hooks: ['useThemeColor'],
+    hooks: ['useColor'],
     theme: [],
     files: [
       {

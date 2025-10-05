@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { BORDER_RADIUS } from '@/theme/globals';
 import React, {
   createContext,
@@ -158,8 +158,8 @@ export function PopoverContent({
 }: PopoverContentProps) {
   const { isOpen, setIsOpen, triggerLayout } = usePopover();
   const [contentSize, setContentSize] = useState({ width: 0, height: 0 });
-  const popoverColor = useThemeColor({}, 'popover');
-  const borderColor = useThemeColor({}, 'border');
+  const popoverColor = useColor('popover');
+  const borderColor = useColor('border');
 
   const handleClose = () => {
     setIsOpen(false);
@@ -345,7 +345,7 @@ interface PopoverHeaderProps {
 }
 
 export function PopoverHeader({ children, style }: PopoverHeaderProps) {
-  const borderColor = useThemeColor({}, 'border');
+  const borderColor = useColor('border');
 
   return (
     <View style={[styles.header, { borderBottomColor: borderColor }, style]}>
@@ -371,7 +371,7 @@ interface PopoverFooterProps {
 }
 
 export function PopoverFooter({ children, style }: PopoverFooterProps) {
-  const borderColor = useThemeColor({}, 'border');
+  const borderColor = useColor('border');
 
   return (
     <View style={[styles.footer, { borderTopColor: borderColor }, style]}>

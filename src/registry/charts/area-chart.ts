@@ -14,7 +14,7 @@ export const areaChartRegistry = {
       'react-native-gesture-handler',
     ],
     registryDependencies: ['line-chart'],
-    hooks: ['useThemeColor'],
+    hooks: ['useColor'],
     theme: ['globals'],
     files: [
       {
@@ -78,7 +78,7 @@ export const areaChartRegistry = {
     description: 'A customized area chart with custom styling',
     type: 'registry:example',
     registryDependencies: ['area-chart', 'chart-container'],
-    hooks: ['useThemeColor'],
+    hooks: ['useColor'],
     theme: [],
     files: [
       {

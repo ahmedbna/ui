@@ -1,6 +1,6 @@
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { BORDER_RADIUS } from '@/theme/globals';
 import { TextStyle, ViewStyle } from 'react-native';
 
@@ -10,8 +10,8 @@ interface CardProps {
 }
 
 export function Card({ children, style }: CardProps) {
-  const cardColor = useThemeColor({}, 'card');
-  const foregroundColor = useThemeColor({}, 'foreground');
+  const cardColor = useColor('card');
+  const foregroundColor = useColor('foreground');
 
   return (
     <View

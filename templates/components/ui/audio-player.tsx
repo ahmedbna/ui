@@ -2,7 +2,7 @@ import { AudioWaveform } from '@/components/ui/audio-waveform';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { Text } from '@/components/ui/text';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { BORDER_RADIUS } from '@/theme/globals';
 import { AudioSource, useAudioPlayer } from 'expo-audio';
 import { Pause, Play, RotateCcw, Square } from 'lucide-react-native';
@@ -48,10 +48,10 @@ export function AudioPlayer({
   );
 
   // Theme colors
-  const redColor = useThemeColor({}, 'destructive');
-  const secondaryColor = useThemeColor({}, 'secondary');
-  const textColor = useThemeColor({}, 'text');
-  const mutedColor = useThemeColor({}, 'textMuted');
+  const redColor = useColor('destructive');
+  const secondaryColor = useColor('secondary');
+  const textColor = useColor('text');
+  const mutedColor = useColor('textMuted');
 
   useEffect(() => {
     if (autoPlay && player.isLoaded && !player.playing) {

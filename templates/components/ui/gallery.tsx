@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { BORDER_RADIUS } from '@/theme/globals';
 import { Image } from 'expo-image';
 import { Download, Share, X } from 'lucide-react-native';
@@ -344,7 +344,7 @@ const FullscreenImage = memo(
   }: FullscreenImageProps) => {
     // Determine if this image is the currently selected one to trigger zoom reset
     const shouldReset = index === selectedIndex;
-    const backgroundColor = useThemeColor({}, 'background');
+    const backgroundColor = useColor('background');
     const { animatedImageStyle, composedGesture } = useImageZoom({
       enableZoom,
       onSetCanSwipe, // Pass the callback to the hook
@@ -419,11 +419,11 @@ export function Gallery({
   const thumbnailFlatListRef = useRef<FlatList>(null);
 
   // Theme colors using custom hook
-  const textColor = useThemeColor({}, 'text');
-  const primary = useThemeColor({}, 'primary');
-  const mutedColor = useThemeColor({}, 'textMuted');
-  const backgroundColor = useThemeColor({}, 'background');
-  const secondary = useThemeColor({}, 'secondary');
+  const textColor = useColor('text');
+  const primary = useColor('primary');
+  const mutedColor = useColor('textMuted');
+  const backgroundColor = useColor('background');
+  const secondary = useColor('secondary');
 
   // Calculate item width for the grid based on container width, columns, and spacing
   const itemWidth = (containerWidth - spacing * (columns - 1)) / columns;

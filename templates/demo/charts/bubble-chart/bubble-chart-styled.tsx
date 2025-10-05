@@ -1,6 +1,6 @@
 import { ChartContainer } from '@/components/charts/chart-container';
 import { BubbleChart } from '@/components/charts/bubble-chart';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import React from 'react';
 
 const styledData = [
@@ -12,7 +12,7 @@ const styledData = [
 ];
 
 export function BubbleChartStyled() {
-  const backgroundColor = useThemeColor({}, 'card');
+  const backgroundColor = useColor('card');
 
   return (
     <ChartContainer

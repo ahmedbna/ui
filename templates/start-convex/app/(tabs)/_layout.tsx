@@ -5,7 +5,7 @@ import { Home, Stars, UserCircle2 } from 'lucide-react-native';
 import { Platform, StyleSheet } from 'react-native';
 import { PlatformPressable } from '@react-navigation/elements';
 import { Authenticated, Unauthenticated, AuthLoading } from 'convex/react';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { Icon } from '@/components/ui/icon';
 import { View } from '@/components/ui/view';
 import { Auth } from '@/components/auth/auth';
@@ -13,7 +13,7 @@ import { Spinner } from '@/components/ui/spinner';
 import * as Haptics from 'expo-haptics';
 
 export default function TabLayout() {
-  const primary = useThemeColor({}, 'primary');
+  const primary = useColor('primary');
 
   return (
     <View style={{ flex: 1 }}>

@@ -1,5 +1,5 @@
 import { Text } from '@/components/ui/text';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { BORDER_RADIUS, CORNERS, FONT_SIZE } from '@/theme/globals';
 import { Loader2 } from 'lucide-react-native';
 import React, { useEffect, useRef } from 'react';
@@ -87,8 +87,8 @@ export function Spinner({
   ]).current;
 
   // Theme colors
-  const primaryColor = useThemeColor({}, 'text');
-  const textColor = useThemeColor({}, 'text');
+  const primaryColor = useColor('text');
+  const textColor = useColor('text');
 
   const config = sizeConfig[size];
   const spinnerColor = color || primaryColor;
@@ -317,8 +317,8 @@ export function LoadingOverlay({
   ...spinnerProps
 }: LoadingOverlayProps) {
   const overlayOpacity = useRef(new Animated.Value(0)).current;
-  const backgroundColor = useThemeColor({}, 'background');
-  const cardColor = useThemeColor({}, 'card');
+  const backgroundColor = useColor('background');
+  const cardColor = useColor('card');
 
   useEffect(() => {
     Animated.timing(overlayOpacity, {
@@ -376,7 +376,7 @@ export function ButtonSpinner({
   variant = 'default',
   color,
 }: Omit<SpinnerProps, 'label' | 'showLabel'>) {
-  const primaryForegroundColor = useThemeColor({}, 'primaryForeground');
+  const primaryForegroundColor = useColor('primaryForeground');
 
   return (
     <Spinner

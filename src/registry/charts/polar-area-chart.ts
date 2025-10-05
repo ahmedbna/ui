@@ -14,7 +14,7 @@ export const polarAreaChartRegistry = {
       'react-native-gesture-handler',
     ],
     registryDependencies: [],
-    hooks: ['useThemeColor'],
+    hooks: ['useColor'],
     theme: ['globals'],
     files: [
       {
@@ -58,7 +58,7 @@ export const polarAreaChartRegistry = {
     description: 'A sample polar area chart',
     type: 'registry:example',
     registryDependencies: ['polar-area-chart', 'chart-container'],
-    hooks: ['useThemeColor'],
+    hooks: ['useColor'],
     theme: [],
     files: [
       {
@@ -80,7 +80,7 @@ export const polarAreaChartRegistry = {
     description: 'A customized polar area chart with custom colors and styling',
     type: 'registry:example',
     registryDependencies: ['polar-area-chart', 'chart-container'],
-    hooks: ['useThemeColor'],
+    hooks: ['useColor'],
     theme: [],
     files: [
       {

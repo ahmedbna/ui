@@ -1,6 +1,6 @@
 import { View } from '@/components/ui/view';
 import { useBottomTabOverflow } from '@/hooks/useBottomTabOverflow';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import type { PropsWithChildren, ReactElement } from 'react';
 import Animated, {
   interpolate,
@@ -19,7 +19,7 @@ export function ParallaxScrollView({
   headerHeight = 250,
   headerImage,
 }: Props) {
-  const backgroundColor = useThemeColor({}, 'background');
+  const backgroundColor = useColor('background');
   const scrollRef = useAnimatedRef<Animated.ScrollView>();
   const scrollOffset = useScrollViewOffset(scrollRef);
   const bottom = useBottomTabOverflow();

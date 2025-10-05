@@ -1,4 +1,4 @@
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { BORDER_RADIUS, CORNERS } from '@/theme/globals';
 import React, { useEffect } from 'react';
 import { ViewStyle } from 'react-native';
@@ -23,7 +23,7 @@ export function Skeleton({
   style,
   variant = 'default',
 }: SkeletonProps) {
-  const mutedColor = useThemeColor({}, 'muted');
+  const mutedColor = useColor('muted');
   // Start the opacity at its lowest point
   const opacity = useSharedValue(0.5);
 

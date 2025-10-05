@@ -14,7 +14,7 @@ export const mediaPickerRegistry = {
       'lucide-react-native',
     ],
     registryDependencies: ['button', 'text', 'view'],
-    hooks: ['useThemeColor'],
+    hooks: ['useColor'],
     theme: ['globals'],
     files: [
       {

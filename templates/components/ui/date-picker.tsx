@@ -4,7 +4,7 @@ import { Icon } from '@/components/ui/icon';
 import { ScrollView } from '@/components/ui/scroll-view';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { BORDER_RADIUS, CORNERS, FONT_SIZE, HEIGHT } from '@/theme/globals';
 import {
   Calendar,
@@ -134,15 +134,15 @@ export function DatePicker(props: DatePickerProps) {
   );
 
   // Theme colors
-  const cardColor = useThemeColor({}, 'card');
-  const borderColor = useThemeColor({}, 'border');
-  const primaryColor = useThemeColor({}, 'primary');
-  const primaryForegroundColor = useThemeColor({}, 'primaryForeground');
-  const mutedColor = useThemeColor({}, 'muted');
-  const textMutedColor = useThemeColor({}, 'textMuted');
-  const mutedForegroundColor = useThemeColor({}, 'mutedForeground');
-  const textColor = useThemeColor({}, 'text');
-  const errorColor = useThemeColor({}, 'red');
+  const cardColor = useColor('card');
+  const borderColor = useColor('border');
+  const primaryColor = useColor('primary');
+  const primaryForegroundColor = useColor('primaryForeground');
+  const mutedColor = useColor('muted');
+  const textMutedColor = useColor('textMuted');
+  const mutedForegroundColor = useColor('mutedForeground');
+  const textColor = useColor('text');
+  const errorColor = useColor('red');
 
   const formatDisplayValue = useCallback(() => {
     if (mode === 'range') {

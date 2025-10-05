@@ -1,6 +1,6 @@
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { BORDER_RADIUS } from '@/theme/globals';
 import { Check } from 'lucide-react-native';
 import React from 'react';
@@ -23,10 +23,10 @@ export function Checkbox({
   labelStyle,
   onCheckedChange,
 }: CheckboxProps) {
-  const primary = useThemeColor({}, 'primary');
-  const primaryForegroundColor = useThemeColor({}, 'primaryForeground');
-  const danger = useThemeColor({}, 'red');
-  const borderColor = useThemeColor({}, 'border');
+  const primary = useColor('primary');
+  const primaryForegroundColor = useColor('primaryForeground');
+  const danger = useColor('red');
+  const borderColor = useColor('border');
 
   return (
     <TouchableOpacity

@@ -9,7 +9,7 @@ export const pickerRegistry = {
     type: 'registry:ui',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['icon', 'scroll-view', 'text', 'view'],
-    hooks: ['useThemeColor'],
+    hooks: ['useColor'],
     theme: ['globals'],
     files: [
       {

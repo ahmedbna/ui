@@ -8,7 +8,7 @@ export const audioRecorderRegistry = {
     type: 'registry:ui',
     dependencies: ['expo-audio', 'lucide-react-native'],
     registryDependencies: ['audio-player', 'audio-waveform', 'button', 'text'],
-    hooks: ['useThemeColor'],
+    hooks: ['useColor'],
     theme: ['globals'],
     files: [
       {

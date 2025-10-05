@@ -2,7 +2,7 @@ import { BottomSheet, useBottomSheet } from '@/components/ui/bottom-sheet';
 import { Button } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { TouchableOpacity } from 'react-native';
 
 const menuItems = [
@@ -16,8 +16,8 @@ const menuItems = [
 export function BottomSheetMenu() {
   const { isVisible, open, close } = useBottomSheet();
 
-  const textColor = useThemeColor({}, 'text');
-  const destructiveColor = useThemeColor({}, 'destructive');
+  const textColor = useColor('text');
+  const destructiveColor = useColor('destructive');
 
   const handleMenuAction = (action: string) => {
     console.log('Menu action:', action);

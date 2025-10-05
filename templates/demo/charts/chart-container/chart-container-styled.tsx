@@ -1,6 +1,6 @@
 import { ChartContainer } from '@/components/charts/chart-container';
 import { LineChart } from '@/components/charts/line-chart';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import React from 'react';
 
 const sampleData = [
@@ -11,7 +11,7 @@ const sampleData = [
 ];
 
 export function ChartContainerStyled() {
-  const backgroundColor = useThemeColor({}, 'indigo');
+  const backgroundColor = useColor('indigo');
 
   return (
     <ChartContainer

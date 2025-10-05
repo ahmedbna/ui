@@ -1,7 +1,7 @@
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
 import { useKeyboardHeight } from '@/hooks/useKeyboardHeight'; // Make sure this path is correct
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { BORDER_RADIUS } from '@/theme/globals';
 import React, { useEffect } from 'react';
 import {
@@ -133,8 +133,8 @@ export function BottomSheet({
   style,
   disablePanGesture = false,
 }: BottomSheetProps) {
-  const cardColor = useThemeColor({}, 'card');
-  const mutedColor = useThemeColor({}, 'muted');
+  const cardColor = useColor('card');
+  const mutedColor = useColor('muted');
   const { keyboardHeight, isKeyboardVisible } = useKeyboardHeight();
 
   const translateY = useSharedValue(0);

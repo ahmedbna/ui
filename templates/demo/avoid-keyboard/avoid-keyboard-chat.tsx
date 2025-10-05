@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { Send, SendHorizonal } from 'lucide-react-native';
 import React, { useState } from 'react';
 import { FlatList, Pressable } from 'react-native';
@@ -16,8 +16,8 @@ interface Message {
 }
 
 export function AvoidKeyboardChat() {
-  const card = useThemeColor({}, 'card');
-  const blue = useThemeColor({}, 'blue');
+  const card = useColor('card');
+  const blue = useColor('blue');
 
   const [messages, setMessages] = useState<Message[]>([
     {

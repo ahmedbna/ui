@@ -14,7 +14,7 @@ export const columnChartRegistry = {
       'react-native-gesture-handler',
     ],
     registryDependencies: [],
-    hooks: ['useThemeColor'],
+    hooks: ['useColor'],
     theme: ['globals'],
     files: [
       {
@@ -57,7 +57,7 @@ export const columnChartRegistry = {
     description: 'An sample column chart',
     type: 'registry:example',
     registryDependencies: ['column-chart', 'chart-container'],
-    hooks: ['useThemeColor'],
+    hooks: ['useColor'],
     theme: [],
     files: [
       {
@@ -78,7 +78,7 @@ export const columnChartRegistry = {
     description: 'A customized column chart with custom colors and styling',
     type: 'registry:example',
     registryDependencies: ['column-chart', 'chart-container'],
-    hooks: ['useThemeColor'],
+    hooks: ['useColor'],
     theme: [],
     files: [
       {

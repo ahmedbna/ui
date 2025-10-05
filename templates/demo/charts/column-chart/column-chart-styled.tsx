@@ -1,6 +1,6 @@
 import { ColumnChart } from '@/components/charts/column-chart';
 import { ChartContainer } from '@/components/charts/chart-container';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import React from 'react';
 
 const sampleData = [

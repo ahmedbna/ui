@@ -1,13 +1,13 @@
 import { PieChart } from '@/components/charts/pie-chart';
 import { ChartContainer } from '@/components/charts/chart-container';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import React from 'react';
 
 export function PieChartStyled() {
-  const primaryColor = useThemeColor({}, 'primary');
-  const successColor = useThemeColor({}, 'green');
-  const warningColor = useThemeColor({}, 'orange');
-  const errorColor = useThemeColor({}, 'red');
+  const primaryColor = useColor('primary');
+  const successColor = useColor('green');
+  const warningColor = useColor('orange');
+  const errorColor = useColor('red');
 
   const styledData = [
     { label: 'Completed', value: 65, color: successColor },

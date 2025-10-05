@@ -9,7 +9,7 @@ export const alertRegistry = {
       'Display important messages to users with both visual inline alerts and native system alerts.',
     type: 'registry:ui',
     registryDependencies: ['text', 'view'],
-    hooks: ['useThemeColor'],
+    hooks: ['useColor'],
     theme: ['globals'],
     files: [
       {

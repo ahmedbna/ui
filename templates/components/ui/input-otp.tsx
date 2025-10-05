@@ -1,5 +1,5 @@
 import { Text } from '@/components/ui/text';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { CORNERS, FONT_SIZE } from '@/theme/globals';
 import React, {
   forwardRef,
@@ -80,13 +80,13 @@ export const InputOTP = forwardRef<InputOTPRef, InputOTPProps>(
     const inputRef = useRef<TextInput>(null);
 
     // Theme colors
-    const cardColor = useThemeColor({}, 'card');
-    const textColor = useThemeColor({}, 'text');
-    const muted = useThemeColor({}, 'textMuted');
-    const borderColor = useThemeColor({}, 'border');
-    const primary = useThemeColor({}, 'primary');
-    const danger = useThemeColor({}, 'red');
-    const background = useThemeColor({}, 'background');
+    const cardColor = useColor('card');
+    const textColor = useColor('text');
+    const muted = useColor('textMuted');
+    const borderColor = useColor('border');
+    const primary = useColor('primary');
+    const danger = useColor('red');
+    const background = useColor('background');
 
     // Normalize value to ensure it doesn't exceed length
     const normalizedValue = value.slice(0, length);
@@ -293,9 +293,7 @@ export const InputOTPWithSeparator = forwardRef<
   <InputOTP
     ref={ref}
     separator={
-      <Text style={{ fontSize: 18, color: useThemeColor({}, 'textMuted') }}>
-        -
-      </Text>
+      <Text style={{ fontSize: 18, color: useColor('textMuted') }}>-</Text>
     }
     {...props}
   />

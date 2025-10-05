@@ -1,7 +1,7 @@
 import { Icon } from '@/components/ui/icon';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useColor } from '@/hooks/useColor';
 import { CORNERS, FONT_SIZE, HEIGHT } from '@/theme/globals';
 import { LucideProps } from 'lucide-react-native';
 import React from 'react';
@@ -31,11 +31,11 @@ export function Toggle({
   style,
   textStyle,
 }: ToggleProps) {
-  const primaryColor = useThemeColor({}, 'primary');
-  const primaryForegroundColor = useThemeColor({}, 'primaryForeground');
-  const secondaryColor = useThemeColor({}, 'secondary');
-  const secondaryForegroundColor = useThemeColor({}, 'secondaryForeground');
-  const borderColor = useThemeColor({}, 'border');
+  const primaryColor = useColor('primary');
+  const primaryForegroundColor = useColor('primaryForeground');
+  const secondaryColor = useColor('secondary');
+  const secondaryForegroundColor = useColor('secondaryForeground');
+  const borderColor = useColor('border');
 
   const handlePress = () => {
     if (!disabled) {
@@ -173,10 +173,10 @@ export function ToggleGroup({
   style,
   orientation = 'horizontal',
 }: ToggleGroupProps) {
-  const borderColor = useThemeColor({}, 'border');
-  const primaryColor = useThemeColor({}, 'primary');
-  const primaryForegroundColor = useThemeColor({}, 'primaryForeground');
-  const secondaryForegroundColor = useThemeColor({}, 'secondaryForeground');
+  const borderColor = useColor('border');
+  const primaryColor = useColor('primary');
+  const primaryForegroundColor = useColor('primaryForeground');
+  const secondaryForegroundColor = useColor('secondaryForeground');
 
   const handleItemPress = (itemValue: string) => {
     if (disabled) return;
