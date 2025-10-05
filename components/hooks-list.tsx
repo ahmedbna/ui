@@ -22,7 +22,7 @@ export function HooksList() {
         <Button
           asChild
           variant='ghost'
-          className='px-3 text-lg text-start justify-start font-medium'
+          className='px-3 text-start justify-start font-medium'
           key={component.$id}
         >
           <Link key={component.$id} href={component.url}>
