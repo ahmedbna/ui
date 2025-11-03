@@ -56,7 +56,7 @@ import { useColor } from '@/hooks/useColor';
 
 ```tsx
 export function ThemedText({ style, ...props }) {
-  const color = useColor({ light: '#000', dark: '#fff' }, 'text');
+  const color = useColor('text', { light: '#000', dark: '#fff' });
 
   return <Text style={[{ color }, style]} {...props} />;
 }
@@ -72,8 +72,8 @@ Returns the appropriate color based on the current theme, with support for prop 
 
 | Parameter   | Type                                | Description                                        |
 | ----------- | ----------------------------------- | -------------------------------------------------- |
-| `props`     | `{ light?: string; dark?: string }` | Optional color overrides for light and dark themes |
 | `colorName` | `keyof Colors.light & Colors.dark`  | The color key from your Colors theme object        |
+| `props`     | `{ light?: string; dark?: string }` | Optional color overrides for light and dark themes |
 
 #### Returns
 
