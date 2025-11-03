@@ -24,7 +24,7 @@ function MenuItem({
   onPress,
   destructive = false,
 }: MenuItemProps) {
-  const textColor = useColor({}, destructive ? 'destructive' : 'foreground');
+  const textColor = useColor(destructive ? 'destructive' : 'foreground');
   const mutedColor = useColor('muted');
 
   return (

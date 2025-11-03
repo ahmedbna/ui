@@ -17,7 +17,7 @@ export function Icon({
   strokeWidth = 1.8,
   ...rest
 }: Props) {
-  const themedColor = useColor({ light: lightColor, dark: darkColor }, 'icon');
+  const themedColor = useColor('icon', { light: lightColor, dark: darkColor });
 
   // Use provided color prop if available, otherwise use themed color
   const iconColor = color || themedColor;
