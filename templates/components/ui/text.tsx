@@ -27,7 +27,7 @@ export const Text = forwardRef<RNText, TextProps>(
     { variant = 'body', lightColor, darkColor, style, children, ...props },
     ref
   ) => {
-    const textColor = useColor({ light: lightColor, dark: darkColor }, 'text');
+    const textColor = useColor('text', { light: lightColor, dark: darkColor });
     const mutedColor = useColor('textMuted');
 
     const getTextStyle = (): TextStyle => {
