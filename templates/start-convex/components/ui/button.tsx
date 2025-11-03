@@ -71,7 +71,7 @@ export const Button = forwardRef<View, ButtonProps>(
     const secondaryColor = useColor('secondary');
     const secondaryForegroundColor = useColor('secondaryForeground');
     const destructiveColor = useColor('red');
-    const destructiveForegroundColor = useColor({}, 'destructiveForeground');
+    const destructiveForegroundColor = useColor('destructiveForeground');
     const greenColor = useColor('green');
     const borderColor = useColor('border');
 
