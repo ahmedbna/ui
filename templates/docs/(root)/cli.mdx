@@ -5,37 +5,60 @@ description: Use the BNA UI CLI to add components to your React Native and Expo 
 
 ## init
 
-Use the `init` command to initialize configuration and dependencies for a new React Native or Expo project.
+Use the `init` command to initialize a new BNA project with configuration and dependencies.
 
-The `init` command installs dependencies, adds utils, hooks, themes and sets up the component structure for your mobile project.
+The `init` command creates a new project, installs dependencies, adds utils, hooks, themes and sets up the component structure for your mobile project.
 
 ```bash
-npx bna-ui init
+npx bna-ui init [project-name]
 ```
 
 ### Options
 
 ```bash
-Usage: bna-ui init [options] [components...]
+Usage: bna-ui init [options] [project-name]
 
-initialize your React Native/Expo project and install dependencies
+initialize a new BNA project
 
 Arguments:
-  components         the components to add or a url to the component.
+  project-name                   name of the project (optional)
 
 Options:
-  -t, --template <template>      the template to use. (expo, expo-router, react-native, react-native-cli)
-  -b, --base-color <base-color>  the base color to use. (neutral, gray, zinc, stone, slate)
-  -y, --yes                      skip confirmation prompt. (default: true)
-  -f, --force                    force overwrite of existing configuration. (default: false)
-  -c, --cwd <cwd>                the working directory. defaults to the current directory.
-  -s, --silent                   mute output. (default: false)
-  --expo                         configure for Expo projects. (default: auto-detect)
-  --rn-cli                       configure for React Native CLI projects.
-  --nativewind                   use NativeWind for styling. (default: true)
-  --no-nativewind                do not use NativeWind for styling.
-  --typescript                   use TypeScript configuration. (default: auto-detect)
-  --no-typescript                force JavaScript configuration.
+  --npm                          use npm as package manager
+  --yarn                         use yarn as package manager
+  --pnpm                         use pnpm as package manager
+  --bun                          use bun as package manager
+  --skip-install                 skip package installation
+  -h, --help                     display help for command
+```
+
+## convex
+
+Use the `convex` command to initialize a new BNA project with Convex backend integration.
+
+The `convex` command creates a new project with Convex configured, installs dependencies, and sets up the backend structure.
+
+```bash
+npx bna-ui convex [project-name]
+```
+
+### Options
+
+```bash
+Usage: bna-ui convex [options] [project-name]
+
+initialize a new BNA project with Convex backend
+
+Arguments:
+  project-name                   name of the project (optional)
+
+Options:
+  --npm                          use npm as package manager
+  --yarn                         use yarn as package manager
+  --pnpm                         use pnpm as package manager
+  --bun                          use bun as package manager
+  --skip-install                 skip package installation
+  --skip-convex                  skip Convex initialization
   -h, --help                     display help for command
 ```
 
@@ -52,36 +75,46 @@ npx bna-ui add [component]
 ```bash
 Usage: bna-ui add [options] [components...]
 
-add a component to your React Native/Expo project
+add components to your project
 
 Arguments:
-  components         the components to add or a url to the component.
+  components                     component names to add (optional, multiple)
 
 Options:
-  -y, --yes           skip confirmation prompt. (default: false)
-  -o, --overwrite     overwrite existing files. (default: false)
-  -c, --cwd <cwd>     the working directory. defaults to the current directory.
-  -a, --all           add all available components (default: false)
-  -p, --path <path>   the path to add the component to.
-  -s, --silent        mute output. (default: false)
-  --expo              configure for Expo projects. (default: auto-detect)
-  --rn-cli            configure for React Native CLI projects.
-  --nativewind        use NativeWind for styling. (default: true)
-  --no-nativewind     do not use NativeWind for styling.
-  --typescript        use TypeScript configuration. (default: auto-detect)
-  --no-typescript     force JavaScript configuration.
-  --ios               include iOS-specific implementations.
-  --android           include Android-specific implementations.
-  --web               include web-specific implementations for Expo.
-  -h, --help          display help for command
+  --overwrite                    overwrite existing files
+  --dry-run                      show what would be installed without installing
+  -y, --yes                      skip confirmation prompts
+  --npm                          use npm as package manager
+  --yarn                         use yarn as package manager
+  --pnpm                         use pnpm as package manager
+  --bun                          use bun as package manager
+  -h, --help                     display help for command
 ```
 
 ## Examples
 
-### Initialize a new Expo project
+### Initialize a new project
 
 ```bash
-npx bna-ui init --template expo --typescript
+npx bna-ui init my-app
+```
+
+### Initialize with Convex backend
+
+```bash
+npx bna-ui convex my-convex-app
+```
+
+### Initialize using specific package manager
+
+```bash
+npx bna-ui init my-app --pnpm
+```
+
+### Skip package installation
+
+```bash
+npx bna-ui init my-app --skip-install
 ```
 
 ### Add a button component
@@ -96,115 +129,31 @@ npx bna-ui add button
 npx bna-ui add button input card
 ```
 
-### Add all components
+### Add component with overwrite
 
 ```bash
-npx bna-ui add --all
+npx bna-ui add button --overwrite
 ```
 
-### Add component with platform-specific implementations
+### Preview what would be installed
 
 ```bash
-npx bna-ui add button --ios --android
+npx bna-ui add button --dry-run
 ```
 
-## build
-
-Use the `build` command to generate the registry JSON files for the mobile component registry.
+### Add components without confirmation
 
 ```bash
-npx bna-ui build
+npx bna-ui add button input --yes
 ```
 
-This command reads the `registry.json` file and generates the registry JSON files optimized for React Native and Expo projects.
+## Package Managers
 
-### Options
+The CLI supports multiple package managers. You can specify which one to use with the following flags:
 
-```bash
-Usage: bna-ui build [options] [registry]
+- `--npm`: Use npm (default)
+- `--yarn`: Use yarn
+- `--pnpm`: Use pnpm
+- `--bun`: Use bun
 
-build components for a BNA UI registry
-
-Arguments:
-  registry             path to registry.json file (default: "./registry.json")
-
-Options:
-  -o, --output <path>  destination directory for json files (default: "./public/r")
-  -c, --cwd <cwd>      the working directory. defaults to the current directory.
-  --expo               build for Expo projects.
-  --rn-cli             build for React Native CLI projects.
-  --platforms <platforms>  specify target platforms (ios,android,web) (default: "ios,android,web")
-  -h, --help           display help for command
-```
-
-To customize the output directory, use the `--output` option.
-
-```bash
-npx bna-ui build --output ./public/registry
-```
-
-### Build for specific platforms
-
-```bash
-npx bna-ui build --platforms ios,android
-```
-
-## update
-
-Use the `update` command to update components in your project to the latest versions.
-
-```bash
-npx bna-ui update
-```
-
-### Options
-
-```bash
-Usage: bna-ui update [options] [components...]
-
-update components in your project
-
-Arguments:
-  components         the components to update or a url to the component.
-
-Options:
-  -y, --yes           skip confirmation prompt. (default: false)
-  -c, --cwd <cwd>     the working directory. defaults to the current directory.
-  -a, --all           update all components (default: false)
-  -s, --silent        mute output. (default: false)
-  --check             check for updates without installing. (default: false)
-  -h, --help          display help for command
-```
-
-## diff
-
-Use the `diff` command to check for differences between your local components and the registry.
-
-```bash
-npx bna-ui diff [component]
-```
-
-### Options
-
-```bash
-Usage: bna-ui diff [options] [component]
-
-check for differences between local and registry components
-
-Arguments:
-  component           the component to check
-
-Options:
-  -c, --cwd <cwd>     the working directory. defaults to the current directory.
-  -h, --help          display help for command
-```
-
-## Configuration
-
-The CLI automatically detects your project type (Expo or React Native CLI) and configures components accordingly. You can override this behavior using the `--expo` or `--rn-cli` flags.
-
-### Project Detection
-
-- **Expo projects**: Detected by the presence of `expo` in dependencies or `app.json`/`app.config.js`
-- **React Native CLI projects**: Detected by the presence of `react-native` without `expo`
-- **TypeScript projects**: Detected by the presence of `tsconfig.json`
+If no package manager flag is specified, the CLI will use the default package manager for your system.
