@@ -17,7 +17,7 @@ import Animated, {
 
 // Types
 type SpinnerSize = 'default' | 'sm' | 'lg' | 'icon';
-export type SpinnerVariant = 'default' | 'cirlce' | 'dots' | 'pulse' | 'bars';
+export type SpinnerVariant = 'default' | 'circle' | 'dots' | 'pulse' | 'bars';
 
 interface SpinnerProps {
   size?: SpinnerSize;
@@ -155,7 +155,7 @@ export function Spinner({
 
   // Rotation animation
   useEffect(() => {
-    if (variant === 'cirlce') {
+    if (variant === 'circle') {
       rotate.value = withRepeat(
         withTiming(360, { duration: animationDuration, easing: Easing.linear }),
         -1
@@ -241,7 +241,7 @@ export function Spinner({
           />
         );
 
-      case 'cirlce':
+      case 'circle':
         return (
           <Animated.View
             style={[

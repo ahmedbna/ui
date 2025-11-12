@@ -6,7 +6,7 @@ import React from 'react';
 export function SpinnerVariants() {
   const variants = [
     { variant: 'default' as const, label: 'Default' },
-    { variant: 'cirlce' as const, label: 'Circle' },
+    { variant: 'circle' as const, label: 'Circle' },
     { variant: 'dots' as const, label: 'Dots' },
     { variant: 'pulse' as const, label: 'Pulse' },
     { variant: 'bars' as const, label: 'Bars' },

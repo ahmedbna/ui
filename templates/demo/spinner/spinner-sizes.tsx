@@ -15,7 +15,7 @@ export function SpinnerSizes() {
     <View style={{ flexDirection: 'row', alignItems: 'center', gap: 32 }}>
       {sizes.map(({ size, label }) => (
         <View key={size} style={{ alignItems: 'center', gap: 8 }}>
-          <Spinner size={size} variant='cirlce' />
+          <Spinner size={size} variant='circle' />
           <Text variant='caption' style={{ textAlign: 'center' }}>
             {label}
           </Text>

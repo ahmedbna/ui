@@ -8,7 +8,7 @@ export function SpinnerLabels() {
       <Spinner size='default' variant='default' showLabel />
       <Spinner size='default' variant='dots' label='Processing...' />
       <Spinner size='default' variant='pulse' label='Uploading files...' />
-      <Spinner size='lg' variant='cirlce' label='Please wait' />
+      <Spinner size='lg' variant='circle' label='Please wait' />
     </View>
   );
 }
