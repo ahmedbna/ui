@@ -14,7 +14,7 @@ export function SpinnerSpeeds() {
     <View style={{ flexDirection: 'row', gap: 32 }}>
       {speeds.map(({ speed, label }) => (
         <View key={speed} style={{ alignItems: 'center', gap: 8 }}>
-          <Spinner variant='cirlce' size='default' speed={speed} />
+          <Spinner variant='circle' size='default' speed={speed} />
           <Text variant='caption' style={{ textAlign: 'center' }}>
             {label}
           </Text>
