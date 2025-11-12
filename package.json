@@ -3,7 +3,7 @@
   "name": "bna-ui",
   "version": "2.0.4",
   "type": "module",
-  "description": "BNA - Expo React Native CLI, UI Components Library",
+  "description": "BNA UI - Expo React Native CLI, UI Components Library",
   "main": "dist/index.js",
   "bin": {
     "bna-ui": "bin/bna-ui.js"

@@ -10,7 +10,7 @@ const program = new Command();
 
 program
   .name('bna-ui')
-  .description('BNA - Expo React Native UI, CLI Library')
+  .description('BNA UI - Expo React Native CLI, UI Components Library')
   .version('1.0.0');
 
 program

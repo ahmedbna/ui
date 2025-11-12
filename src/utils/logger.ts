@@ -9,7 +9,7 @@ ${chalk.cyan('██╔══██╗██║╚██╗██║██╔═
 ${chalk.cyan('██████╔╝██║ ╚████║██║  ██║')}
 ${chalk.cyan('╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═╝')}
 
-${chalk.gray('Expo React Native UI, CLI Library')}
+${chalk.gray('Expo React Native CLI, UI Components Library')}
 `;
 
 export const logger = {
