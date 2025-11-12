@@ -26,11 +26,46 @@ npx bna-ui init
 # Navigate to your Expo project
 cd bna-app
 
+# Start the Convex backend
+npx convex dev
+
+# In a new terminal, start your Expo app
+npx expo start
+
 # Start adding components
 npx bna-ui add button
 npx bna-ui add card
 npx bna-ui add input
 ```
+
+## 🚀 Quick Start
+
+### Starting Your Project
+
+1. **Initialize your project** (if you haven't already):
+
+   ```bash
+   npx bna-ui init
+   cd bna-app
+   ```
+
+2. **Start the Convex backend**:
+
+   ```bash
+   npx convex dev
+   ```
+
+   This will start the Convex development server and sync your backend functions.
+
+3. **Start your Expo app** (in a new terminal):
+
+   ```bash
+   npx expo start
+   ```
+
+### Backend Development
+
+The Convex backend runs alongside your Expo app and provides real-time data synchronization. Keep `npx convex dev` running in a terminal window while developing.
 
 ## 🎨 Available Components
 

@@ -8,41 +8,44 @@
     "icon": "./assets/images/icon.png",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
-    "splash": {
-      "image": "./assets/images/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#0A0A0A"
-    },
     "ios": {
       "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/icon.png",
-        "backgroundColor": "#0A0A0A"
+        "backgroundColor": "#E6F4FE",
+        "foregroundImage": "./assets/images/splash.png",
+        "backgroundImage": "./assets/images/splash.png",
+        "monochromeImage": "./assets/images/splash.png"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "predictiveBackGestureEnabled": true
     },
     "web": {
-      "bundler": "metro",
       "output": "static",
       "favicon": "./assets/images/icon.png"
     },
     "plugins": [
+      "expo-asset",
       "expo-router",
+      "expo-web-browser",
+      "expo-secure-store",
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/splash.png",
+          "image": "./assets/images/icon.png",
           "imageWidth": 200,
           "resizeMode": "contain",
-          "backgroundColor": "#0A0A0A"
+          "backgroundColor": "#FFFFFF",
+          "dark": {
+            "backgroundColor": "#000000"
+          }
         }
-      ],
-      "expo-secure-store"
+      ]
     ],
     "experiments": {
-      "typedRoutes": true
+      "typedRoutes": true,
+      "reactCompiler": true
     }
   }
 }
