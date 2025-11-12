@@ -9,7 +9,7 @@ export function SpinnerColors() {
     { color: '#10b981', label: 'Green', variant: 'dots' as const },
     { color: '#f59e0b', label: 'Orange', variant: 'pulse' as const },
     { color: '#ef4444', label: 'Red', variant: 'bars' as const },
-    { color: '#8b5cf6', label: 'Purple', variant: 'cirlce' as const },
+    { color: '#8b5cf6', label: 'Purple', variant: 'circle' as const },
   ];
 
   return (

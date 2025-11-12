@@ -20,7 +20,7 @@ export function SpinnerDemo() {
           <Spinner variant='pulse' color='#FF6B6B' />
           <Spinner variant='bars' />
 
-          <Spinner variant='cirlce' color={Colors.light.blue} speed='fast' />
+          <Spinner variant='circle' color={Colors.light.blue} speed='fast' />
 
           <Button loading loadingVariant='default'>
             Save
@@ -38,7 +38,7 @@ export function SpinnerDemo() {
             Delete
           </Button>
 
-          <Button loading loadingVariant='cirlce' variant='success'>
+          <Button loading loadingVariant='circle' variant='success'>
             Done
           </Button>
 

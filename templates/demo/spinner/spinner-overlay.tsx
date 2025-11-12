@@ -21,7 +21,7 @@ export function SpinnerOverlay() {
       <LoadingOverlay
         visible={showOverlay}
         size='lg'
-        variant='cirlce'
+        variant='circle'
         label='Loading content...'
         backdrop={true}
         backdropOpacity={0.7}
