@@ -1,5 +1,5 @@
 import { Text } from '@/components/ui/text';
-import { Link as ERLink, Href } from 'expo-router';
+import { Link as ERLink, Href, useRouter } from 'expo-router';
 import { openBrowserAsync } from 'expo-web-browser';
 import { type ComponentProps } from 'react';
 import { Linking, Platform } from 'react-native';

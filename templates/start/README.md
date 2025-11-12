@@ -26,11 +26,31 @@ npx bna-ui init
 # Navigate to your Expo project
 cd bna-app
 
+# Start your Expo app
+npx expo start
+
 # Start adding components
 npx bna-ui add button
 npx bna-ui add card
 npx bna-ui add input
 ```
+
+## 🚀 Quick Start
+
+### Starting Your Project
+
+1. **Initialize your project** (if you haven't already):
+
+   ```bash
+   npx bna-ui init
+   cd bna-app
+   ```
+
+2. **Start your Expo app**:
+
+   ```bash
+   npx expo start
+   ```
 
 ## 🎨 Available Components
 

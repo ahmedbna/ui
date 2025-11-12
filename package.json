@@ -1,9 +1,9 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
   "name": "bna-ui",
-  "version": "2.0.2",
+  "version": "2.0",
   "type": "module",
-  "description": "BNA - Expo React Native UI, CLI Library",
+  "description": "BNA - Expo React Native CLI, UI Components Library",
   "main": "dist/index.js",
   "bin": {
     "bna-ui": "bin/bna-ui.js"
