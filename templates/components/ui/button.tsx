@@ -4,9 +4,11 @@ import { Text } from '@/components/ui/text';
 import { useColor } from '@/hooks/useColor';
 import { CORNERS, FONT_SIZE, HEIGHT } from '@/theme/globals';
 import * as Haptics from 'expo-haptics';
+import { AndroidHaptics } from 'expo-haptics';
 import { LucideProps } from 'lucide-react-native';
 import { forwardRef } from 'react';
 import {
+  Platform,
   Pressable,
   TextStyle,
   TouchableOpacity,
@@ -199,9 +201,11 @@ export const Button = forwardRef<View, ButtonProps>(
     // Trigger haptic feedback
     const triggerHapticFeedback = () => {
       if (haptic && !disabled && !loading) {
-        if (process.env.EXPO_OS === 'ios') {
-          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-        }
+        Platform.select({
+          ios: () => Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light),
+          android: () => Haptics.performAndroidHapticsAsync(AndroidHaptics.Context_Click),
+          default: () => {}
+        })();
       }
     };
 
