@@ -118,7 +118,7 @@ export function Link({
     return (
       <ERLink asChild={asChild} href={href} onPress={handlePress} {...rest}>
         {typeof children === 'string' ? (
-          <Text variant='link'>{children}</Text>
+          <Text type='link'>{children}</Text>
         ) : (
           children
         )}
@@ -134,7 +134,7 @@ export function Link({
       {...rest}
     >
       {typeof children === 'string' ? (
-        <Text variant='link'>{children}</Text>
+        <Text type='link'>{children}</Text>
       ) : (
         children
       )}

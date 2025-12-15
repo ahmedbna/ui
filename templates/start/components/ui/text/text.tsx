@@ -17,6 +17,7 @@ type TextVariant =
 
 interface TextProps extends RNTextProps {
   variant?: TextVariant;
+  type?: TextVariant; // Legacy support
   lightColor?: string;
   darkColor?: string;
   children: React.ReactNode;
@@ -24,9 +25,11 @@ interface TextProps extends RNTextProps {
 
 export const Text = forwardRef<RNText, TextProps>(
   (
-    { variant = 'body', lightColor, darkColor, style, children, ...props },
+    { variant = 'body', type, lightColor, darkColor, style, children, ...props },
     ref
   ) => {
+    // Legacy support: use 'type' if provided, otherwise 'variant'
+    const activeVariant = type || variant;
     const textColor = useColor('text', { light: lightColor, dark: darkColor });
     const mutedColor = useColor('textMuted');
 
@@ -35,7 +38,7 @@ export const Text = forwardRef<RNText, TextProps>(
         color: textColor,
       };
 
-      switch (variant) {
+      switch (activeVariant) {
         case 'heading':
           return {
             ...baseStyle,

@@ -3,8 +3,9 @@ import {
   DefaultTheme,
   ThemeProvider as RNThemeProvider,
 } from '@react-navigation/native';
-import { Colors } from '@/theme/colors';
+import { AppTheme } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/useColorScheme';
+import React from 'react';
 
 type Props = {
   children: React.ReactNode;
@@ -13,22 +14,16 @@ type Props = {
 export const ThemeProvider = ({ children }: Props) => {
   const colorScheme = useColorScheme();
 
-  // Create custom themes that use your Colors
   const customLightTheme = {
     ...DefaultTheme,
     colors: {
       ...DefaultTheme.colors,
-      primary: Colors.light.primary,
-      background: Colors.light.background,
-      card: Colors.light.card,
-      text: Colors.light.text,
-      border: Colors.light.border,
-      notification: Colors.light.red,
-
-      tint: Colors.light.background,
-      icon: '#9BA1A6',
-      tabIconDefault: '#9BA1A6',
-      tabIconSelected: Colors.light.background,
+      primary: AppTheme.light.primary,
+      background: AppTheme.light.background,
+      card: AppTheme.light.card,
+      text: AppTheme.light.text,
+      border: AppTheme.light.border,
+      notification: AppTheme.light.error,
     },
   };
 
@@ -36,16 +31,12 @@ export const ThemeProvider = ({ children }: Props) => {
     ...DarkTheme,
     colors: {
       ...DarkTheme.colors,
-      primary: Colors.dark.primary,
-      background: Colors.dark.background,
-      card: Colors.dark.card,
-      text: Colors.dark.text,
-      border: Colors.dark.border,
-      notification: Colors.dark.red,
-      tint: Colors.dark.background,
-      tabIconSelected: Colors.dark.background,
-      icon: '#9BA1A6',
-      tabIconDefault: '#9BA1A6',
+      primary: AppTheme.dark.primary,
+      background: AppTheme.dark.background,
+      card: AppTheme.dark.card,
+      text: AppTheme.dark.text,
+      border: AppTheme.dark.border,
+      notification: AppTheme.dark.error,
     },
   };
 

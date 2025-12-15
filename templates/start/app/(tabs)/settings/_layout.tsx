@@ -33,7 +33,7 @@ export default function SettingsLayout() {
           title: 'Settings',
           headerTitle: () =>
             Platform.OS === 'android' ? (
-              <Text variant='heading'>Settings</Text>
+              <Text type='subtitle'>Settings</Text>
             ) : undefined,
         }}
       />

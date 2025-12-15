@@ -15,7 +15,7 @@ export default function SearchScreen() {
     >
       <View style={{ gap: 16 }}>
         <Text
-          variant='heading'
+          type='title'
           style={{
             textAlign: 'center',
           }}
@@ -25,14 +25,14 @@ export default function SearchScreen() {
 
         {searchText ? (
           <View style={{ marginTop: 20 }}>
-            <Text variant='title' style={{ marginBottom: 8 }}>
+            <Text type='subtitle' style={{ marginBottom: 8 }}>
               Search Query:
             </Text>
-            <Text variant='body'>{searchText}</Text>
+            <Text type='body'>{searchText}</Text>
           </View>
         ) : (
           <Text
-            variant='caption'
+            type='caption'
             style={{ textAlign: 'center', marginTop: 20 }}
           >
             Start typing in the search bar...

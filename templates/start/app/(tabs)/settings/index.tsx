@@ -5,7 +5,7 @@ import { ScrollView } from '@/components/ui/scroll-view';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
 import { useColor } from '@/hooks/useColor';
-import { Code, Eye, Palette, Settings } from 'lucide-react-native';
+import { Eye, Code, Palette, Settings } from 'lucide-react-native';
 
 export default function SettingsScreen() {
   const card = useColor('card');
@@ -31,7 +31,7 @@ export default function SettingsScreen() {
         }}
       >
         <Text
-          variant='title'
+          type='title'
           style={{
             textAlign: 'center',
             marginBottom: 24,
@@ -63,7 +63,7 @@ export default function SettingsScreen() {
                 }}
               >
                 <Text
-                  variant='body'
+                  type='body'
                   style={{
                     fontWeight: '600',
                     marginBottom: 4,
@@ -71,7 +71,7 @@ export default function SettingsScreen() {
                 >
                   {feature.title}
                 </Text>
-                <Text variant='caption'>{feature.description}</Text>
+                <Text type='caption'>{feature.description}</Text>
               </View>
             </Card>
           ))}
