@@ -34,7 +34,7 @@ export default function HomeLayout() {
           title: 'Home',
           headerTitle: () =>
             Platform.OS === 'android' ? (
-              <Text variant='heading'>Home</Text>
+              <Text type='subtitle'>Home</Text>
             ) : undefined,
         }}
       />

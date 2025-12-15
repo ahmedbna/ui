@@ -10,6 +10,7 @@ import React, {
 } from 'react';
 import {
   NativeSyntheticEvent,
+  Platform,
   Pressable,
   TextInput,
   TextInputKeyPressEventData,
@@ -175,10 +176,10 @@ export const InputOTP = forwardRef<InputOTPRef, InputOTPProps>(
             disabled={disabled}
             style={[
               {
-                width: 58,
-                height: 58,
-                borderRadius: CORNERS,
-                borderWidth: 1,
+                width: 45,
+                height: 45,
+                borderRadius: 22.5, // Perfect circle
+                borderWidth: 2,
                 borderColor: error
                   ? danger
                   : isActive
@@ -190,15 +191,21 @@ export const InputOTP = forwardRef<InputOTPRef, InputOTPProps>(
                 justifyContent: 'center',
                 alignItems: 'center',
                 opacity: disabled ? 0.6 : 1,
+                overflow: 'hidden', // Prevents content from leaking outside border on Android
+                ...(Platform.OS === 'android' && {
+                  elevation: isActive ? 2 : 0,
+                  borderWidth: 2, // Stronger border on Android
+                }),
               },
               slotStyle,
             ]}
           >
             <Text
               style={{
-                fontSize: FONT_SIZE + 2,
+                fontSize: FONT_SIZE + 4,
                 fontWeight: '600',
                 color: error ? danger : hasValue ? textColor : muted,
+                textAlign: 'center',
               }}
             >
               {displayValue}
@@ -210,7 +217,7 @@ export const InputOTP = forwardRef<InputOTPRef, InputOTPProps>(
                 style={{
                   position: 'absolute',
                   width: 2,
-                  height: 20,
+                  height: 24,
                   backgroundColor: primary,
                   opacity: isFocused ? 1 : 0,
                 }}

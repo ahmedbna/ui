@@ -21,7 +21,7 @@ export default function HomeScreen() {
       }}
     >
       <Text
-        variant='heading'
+        type='title'
         style={{
           textAlign: 'center',
         }}
@@ -46,7 +46,7 @@ export default function HomeScreen() {
             <Icon name={Terminal} />
 
             <Text
-              variant='body'
+              type='body'
               style={{
                 fontWeight: '600',
               }}
@@ -65,7 +65,7 @@ export default function HomeScreen() {
             }}
           >
             <Text
-              variant='caption'
+              type='caption'
               style={{
                 color: green,
                 fontFamily: 'monospace',
@@ -77,7 +77,7 @@ export default function HomeScreen() {
             </Text>
           </View>
           <Text
-            variant='caption'
+            type='caption'
             style={{
               textAlign: 'center',
               opacity: 0.7,
@@ -90,6 +90,10 @@ export default function HomeScreen() {
 
       <Link asChild href='/sheet'>
         <Button>Open Components Sheet</Button>
+      </Link>
+
+      <Link asChild href='/components-showcase'>
+        <Button variant="outline">Open UI Showcase</Button>
       </Link>
     </View>
   );

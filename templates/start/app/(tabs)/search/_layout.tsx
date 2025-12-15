@@ -36,7 +36,7 @@ function SearchLayoutContent() {
           title: 'Search',
           headerTitle: () =>
             Platform.OS === 'android' ? (
-              <Text variant='heading'>Search</Text>
+              <Text type='subtitle'>Search</Text>
             ) : undefined,
           headerSearchBarOptions: {
             placement: 'automatic',

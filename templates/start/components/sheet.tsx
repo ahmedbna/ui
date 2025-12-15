@@ -11,11 +11,11 @@ export default function SheetScreen() {
         paddingBottom: 100,
       }}
     >
-      <Text variant='heading' style={{ marginBottom: 16 }}>
+      <Text type='title' style={{ marginBottom: 16 }}>
         BNA UI
       </Text>
       {bnaComponents.map((item, index) => (
-        <Text key={index} variant='title' style={{ marginVertical: 8 }}>
+        <Text key={index} type='subtitle' style={{ marginVertical: 8 }}>
           {item}
         </Text>
       ))}

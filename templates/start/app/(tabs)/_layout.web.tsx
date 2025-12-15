@@ -2,7 +2,7 @@ import React from 'react';
 import { Icon } from '@/components/ui/icon';
 import { useColor } from '@/hooks/useColor';
 import { Tabs } from 'expo-router';
-import { Home, Search, Settings } from 'lucide-react-native';
+import { Home, Settings, Search } from 'lucide-react-native';
 
 export default function WebTabsLayout() {
   const primary = useColor('primary');
