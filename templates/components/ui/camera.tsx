@@ -403,24 +403,26 @@ export const Camera = forwardRef<CameraRef, CameraProps>(
 
     if (!permission.granted) {
       return (
-        <View
-          style={[styles.permissionContainer, { backgroundColor: cardColor }]}
-        >
-          <CameraIcon
-            size={36}
-            color={textColor}
-            style={styles.permissionIcon}
-          />
-          <Text variant='title' style={{ textAlign: 'center' }}>
-            Camera Access Required
-          </Text>
-          <Text variant='body' style={{ textAlign: 'center' }}>
-            We need access to your camera to take pictures and videos
-          </Text>
-          <View style={{ width: '100%' }}>
-            <Button onPress={requestPermission} style={{ width: '100%' }}>
-              Grant Permission
-            </Button>
+        <View style={{flex: 1,justifyContent: "center",alignItems: "center",paddingHorizontal: 8,}}>
+          <View
+            style={[styles.permissionContainer, { backgroundColor: cardColor }]}
+          >
+            <CameraIcon
+              size={36}
+              color={textColor}
+              style={styles.permissionIcon}
+            />
+            <Text variant='title' style={{ textAlign: 'center' }}>
+              Camera Access Required
+            </Text>
+            <Text variant='body' style={{ textAlign: 'center' }}>
+              We need access to your camera to take pictures and videos
+            </Text>
+            <View style={{ width: '100%' }}>
+              <Button onPress={requestPermission} style={{ width: '100%' }}>
+                Grant Permission
+              </Button>
+            </View>
           </View>
         </View>
       );
