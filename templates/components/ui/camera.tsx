@@ -403,7 +403,7 @@ export const Camera = forwardRef<CameraRef, CameraProps>(
 
     if (!permission.granted) {
       return (
-        <View style={{flex: 1,justifyContent: "center",alignItems: "center",paddingHorizontal: 8,}}>
+        <View style={[styles.container, { paddingHorizontal: 8 }]}>
           <View
             style={[styles.permissionContainer, { backgroundColor: cardColor }]}
           >
