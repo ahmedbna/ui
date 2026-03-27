@@ -138,6 +138,22 @@ export default function Home() {
         <PageHeaderHeading>{title}</PageHeaderHeading>
         <PageHeaderDescription>{description}</PageHeaderDescription>
         <PageActions>
+          <Button
+            asChild
+            size='sm'
+            className='h-8 bg-[#FAD40B] text-black shadow-none font-semibold'
+          >
+            <Link
+              href={'https://ai.ahmedbna.com'}
+              target='_blank'
+              rel='noreferrer'
+              className='text-black transition-colors duration-200 font-semibold'
+            >
+              <img src='/bricks.png' alt='AI' className='h-4 w-4' />
+              BNA AI
+            </Link>
+          </Button>
+
           <Button asChild size='sm'>
             <Link href='/docs/installation'>Get Started</Link>
           </Button>
