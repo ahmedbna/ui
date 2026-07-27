@@ -1,0 +1,186 @@
+---
+title: Bubble Chart
+description: A customizable bubble chart component with animations, size mapping, and interactive features.
+---
+
+<ComponentPreview
+  name='bubble-chart-demo'
+  description='A basic bubble chart with animated bubbles and grid lines'
+/>
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx bna-ui add bubble-chart
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the required dependencies.</Step>
+
+```bash
+npm install react-native-svg react-native-reanimated react-native-gesture-handler
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource
+  name='bubble-chart'
+  title='components/charts/bubble-chart.tsx'
+/>
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { BubbleChart } from '@/components/charts/bubble-chart';
+```
+
+```tsx
+const data = [
+  { x: 10, y: 20, size: 15, label: 'A', color: '#FF6B6B' },
+  { x: 25, y: 30, size: 25, label: 'B', color: '#4ECDC4' },
+  { x: 40, y: 15, size: 30, label: 'C', color: '#45B7D1' },
+  { x: 35, y: 45, size: 20, label: 'D', color: '#96CEB4' },
+];
+
+<BubbleChart
+  data={data}
+  config={{
+    height: 300,
+    showGrid: true,
+    showLabels: true,
+    animated: true,
+  }}
+/>;
+```
+
+## Examples
+
+<ExamplesGrid>
+
+<div>
+#### Basic Bubble Chart
+
+<ComponentPreview
+  name='bubble-chart-demo'
+  description='A basic bubble chart with animated bubbles and grid lines'
+/>
+
+</div>
+
+<div>
+#### Sample Bubble Chart
+
+<ComponentPreview
+  name='bubble-chart-sample'
+  description='A sample bubble chart'
+/>
+
+</div>
+
+<div>
+#### Styled Bubble Chart
+
+<ComponentPreview
+  name='bubble-chart-styled'
+  description='A customized bubble chart with custom styling'
+/>
+
+</div>
+
+<div>
+#### Minimal Bubble Chart
+
+<ComponentPreview
+  name='bubble-chart-minimal'
+  description='A minimal bubble chart without labels or grid'
+/>
+
+</div>
+
+</ExamplesGrid>
+
+## API Reference
+
+### BubbleChart
+
+A customizable bubble chart component with smooth animations and interactive features.
+
+| Prop     | Type                     | Default | Description                                   |
+| -------- | ------------------------ | ------- | --------------------------------------------- |
+| `data`   | `BubbleChartDataPoint[]` | -       | Array of data points to display on the chart. |
+| `config` | `ChartConfig`            | `{}`    | Configuration object for chart appearance.    |
+| `style`  | `ViewStyle`              | -       | Additional styles to apply to the chart.      |
+
+### BubbleChartDataPoint
+
+| Property | Type     | Default | Description                          |
+| -------- | -------- | ------- | ------------------------------------ |
+| `x`      | `number` | -       | The x-axis value for the data point. |
+| `y`      | `number` | -       | The y-axis value for the data point. |
+| `size`   | `number` | -       | The size value for the bubble.       |
+| `label`  | `string` | -       | Optional label for the data point.   |
+| `color`  | `string` | -       | Optional color for the bubble.       |
+
+### ChartConfig
+
+| Property     | Type      | Default | Description                                       |
+| ------------ | --------- | ------- | ------------------------------------------------- |
+| `width`      | `number`  | -       | Fixed width of the chart (auto-sizes if omitted). |
+| `height`     | `number`  | `200`   | Height of the chart.                              |
+| `padding`    | `number`  | `20`    | Padding around the chart.                         |
+| `showGrid`   | `boolean` | `true`  | Whether to show grid lines.                       |
+| `showLabels` | `boolean` | `true`  | Whether to show bubble labels.                    |
+| `animated`   | `boolean` | `true`  | Whether to animate the chart on load.             |
+| `duration`   | `number`  | `800`   | Animation duration in milliseconds.               |
+
+## Features
+
+- **Smooth Animations**: Built-in animations using React Native Reanimated
+- **Size Mapping**: Bubble sizes automatically scaled based on data values
+- **Interactive Touch**: Optional touch gestures for data exploration
+- **Responsive Design**: Automatically adapts to container width
+- **Customizable Grid**: Optional grid lines for better readability
+- **Color Customization**: Support for custom colors or automatic color assignment
+- **Staggered Animation**: Bubbles animate in sequence for visual appeal
+- **Theme Integration**: Uses theme colors for consistent styling
+
+## Accessibility
+
+The BubbleChart component is built with accessibility in mind:
+
+- Semantic SVG structure for screen readers
+- Proper contrast ratios for visual elements
+- Touch targets meet minimum size requirements
+- Supports dynamic text sizing
+- Keyboard navigation support (when interactive)
+
+## Performance
+
+The component is optimized for performance:
+
+- Uses React Native Reanimated for smooth 60fps animations
+- Efficient SVG rendering with minimal re-renders
+- Gesture handling optimized for touch interactions
+- Automatic cleanup of animation values
+- Staggered animations to prevent performance bottlenecks

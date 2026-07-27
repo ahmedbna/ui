@@ -1,0 +1,141 @@
+---
+title: Switch
+description: A control that allows the user to toggle between checked and not checked states.
+---
+
+<ComponentPreview name='switch-demo' description='A basic switch with label' />
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx bna-ui add switch
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name='switch' title='components/ui/switch.tsx' />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { Switch } from '@/components/ui/switch';
+```
+
+```tsx
+<Switch
+  label='Enable notifications'
+  value={isEnabled}
+  onValueChange={setIsEnabled}
+/>
+```
+
+## Examples
+
+<ExamplesGrid>
+
+<div>
+#### Default
+
+<ComponentPreview name='switch-demo' description='A basic switch with label' />
+
+</div>
+
+<div>
+#### Without Label
+
+<ComponentPreview
+  name='switch-simple'
+  description='A switch without label text'
+/>
+
+</div>
+
+<div>
+#### With Error State
+
+<ComponentPreview
+  name='switch-error'
+  description='Switch with error message and styling'
+/>
+
+</div>
+
+<div>
+#### Disabled State
+
+<ComponentPreview
+  name='switch-disabled'
+  description='Switches in disabled state'
+/>
+
+</div>
+
+<div>
+#### Settings List
+
+<ComponentPreview
+  name='switch-settings'
+  description='Multiple switches arranged in a settings list'
+/>
+
+</div>
+
+<div>
+#### Custom Colors
+
+<ComponentPreview
+  name='switch-colors'
+  description='Switches with custom colors and styling'
+/>
+</div>
+
+</ExamplesGrid>
+
+## API Reference
+
+### Switch
+
+A toggle switch component with optional label and error states.
+
+| Prop            | Type                              | Default | Description                                        |
+| --------------- | --------------------------------- | ------- | -------------------------------------------------- |
+| `label`         | `string`                          | -       | Optional label text for the switch.                |
+| `error`         | `string`                          | -       | Error message to display (changes label color).    |
+| `labelStyle`    | `TextStyle`                       | -       | Additional styles to apply to the label text.      |
+| `value`         | `boolean`                         | -       | The current state of the switch.                   |
+| `onValueChange` | `(value: boolean) => void`        | -       | Callback fired when the switch state changes.      |
+| `disabled`      | `boolean`                         | `false` | Whether the switch is disabled.                    |
+| `...props`      | `SwitchProps` (from React Native) | -       | All other React Native Switch props are supported. |
+
+## Accessibility
+
+The Switch component is built with accessibility in mind:
+
+- Uses native React Native Switch for optimal platform behavior
+- Supports screen reader announcements for state changes
+- Proper focus management and keyboard navigation
+- Color contrast meets accessibility standards
+- Label text is properly associated with the switch control
+- Error states provide clear feedback to assistive technologies

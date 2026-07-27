@@ -1,0 +1,107 @@
+---
+title: Chart Container
+description: A container component for wrapping charts with title, description, and consistent styling.
+---
+
+<ComponentPreview
+  name='chart-container-demo'
+  description='A basic chart container with title and description'
+/>
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx bna-ui add chart-container
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource
+  name='chart-container'
+  title='components/charts/chart-container.tsx'
+/>
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { ChartContainer } from '@/components/charts/chart-container';
+```
+
+```tsx
+<ChartContainer
+  title='Monthly Revenue'
+  description='Revenue data for the last 6 months'
+>
+  {/* Your chart component goes here */}
+</ChartContainer>
+```
+
+## Examples
+
+<ExamplesGrid>
+
+<div>
+#### Default
+
+<ComponentPreview
+  name='chart-container-demo'
+  description='A basic chart container with title and description'
+/>
+
+</div>
+
+<div>
+#### Custom Styling
+
+<ComponentPreview
+  name='chart-container-styled'
+  description='Chart container with custom styling'
+/>
+
+</div>
+
+</ExamplesGrid>
+
+## API Reference
+
+### ChartContainer
+
+A container component that provides consistent styling and layout for charts.
+
+| Prop          | Type        | Default | Description                                     |
+| ------------- | ----------- | ------- | ----------------------------------------------- |
+| `title`       | `string`    | -       | The title displayed above the chart.            |
+| `description` | `string`    | -       | The description text displayed below the title. |
+| `children`    | `ReactNode` | -       | The chart component to be wrapped.              |
+| `style`       | `ViewStyle` | -       | Additional styles to apply to the container.    |
+
+## Accessibility
+
+The ChartContainer component is built with accessibility in mind:
+
+- Uses semantic structure for screen readers
+- Proper heading hierarchy with title and description
+- Consistent spacing and layout
+- Supports dynamic text sizing

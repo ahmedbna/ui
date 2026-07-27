@@ -1,0 +1,217 @@
+---
+title: Progress Ring Chart
+description: A customizable circular progress ring component with smooth animations and flexible styling.
+---
+
+<ComponentPreview
+  name='progress-ring-chart-demo'
+  description='A circular progress ring with smooth animations'
+/>
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx bna-ui add progress-ring-chart
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the required dependencies.</Step>
+
+```bash
+npm install react-native-svg react-native-reanimated react-native-gesture-handler
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource
+  name='progress-ring-chart'
+  title='components/charts/progress-ring-chart.tsx'
+/>
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { ProgressRingChart } from '@/components/charts/progress-ring-chart';
+```
+
+```tsx
+<ProgressRingChart
+  progress={75}
+  size={120}
+  strokeWidth={8}
+  config={{
+    animated: true,
+    duration: 1000,
+    gradient: true,
+  }}
+/>
+```
+
+## Examples
+
+<ExamplesGrid>
+
+<div>
+#### Basic Progress Ring
+
+<ComponentPreview
+  name='progress-ring-chart-demo'
+  description='A circular progress ring with smooth animations'
+/>
+
+</div>
+
+<div>
+#### Sample Progress Ring
+
+<ComponentPreview
+  name='progress-ring-chart-sample'
+  description='A sample progress ring chart'
+/>
+
+</div>
+
+<div>
+#### Styled Progress Ring
+
+<ComponentPreview
+  name='progress-ring-chart-styled'
+  description='A customized progress ring with gradient and custom styling'
+/>
+
+</div>
+
+<div>
+#### Large Progress Ring
+
+<ComponentPreview
+  name='progress-ring-chart-large'
+  description='A large progress ring with center text'
+/>
+
+</div>
+
+</ExamplesGrid>
+
+## API Reference
+
+### ProgressRingChart
+
+A customizable circular progress ring component with smooth animations and flexible styling. Perfect for displaying progress, completion rates, or any percentage-based data.
+
+| Prop          | Type          | Default | Description                                |
+| ------------- | ------------- | ------- | ------------------------------------------ |
+| `progress`    | `number`      | -       | Progress value from 0 to 100.              |
+| `size`        | `number`      | `120`   | Size of the progress ring in pixels.       |
+| `strokeWidth` | `number`      | `8`     | Width of the progress ring stroke.         |
+| `config`      | `ChartConfig` | `{}`    | Configuration object for chart appearance. |
+| `style`       | `ViewStyle`   | -       | Additional styles to apply to the chart.   |
+| `showLabel`   | `boolean`     | `true`  | Whether to show the label above the ring.  |
+| `label`       | `string`      | -       | Label text to display above the ring.      |
+| `centerText`  | `string`      | -       | Custom text to display in the center.      |
+
+### ChartConfig
+
+| Property   | Type      | Default | Description                                  |
+| ---------- | --------- | ------- | -------------------------------------------- |
+| `animated` | `boolean` | `true`  | Whether to animate the chart on load.        |
+| `duration` | `number`  | `1000`  | Animation duration in milliseconds.          |
+| `gradient` | `boolean` | `false` | Whether to use gradient colors for the ring. |
+
+## Features
+
+- **Circular Design**: Clean circular progress indicator
+- **Smooth Animations**: Built-in animations using React Native Reanimated
+- **Gradient Support**: Optional gradient colors for enhanced visual appeal
+- **Center Text**: Display custom text or percentage in the center
+- **Label Support**: Optional label above the progress ring
+- **Theme Integration**: Uses theme colors for consistent styling
+- **Responsive**: Automatically adapts to different sizes
+
+## Use Cases
+
+Progress ring charts are particularly effective for:
+
+- **Progress Tracking**: Displaying completion rates, loading progress
+- **Performance Metrics**: Showing KPIs, scores, or achievements
+- **Goal Tracking**: Visualizing progress towards targets
+- **Health Metrics**: Displaying fitness goals, step counters
+- **Dashboard Widgets**: Compact progress indicators for dashboards
+
+## Design Considerations
+
+The circular design of the ProgressRingChart makes it ideal for:
+
+- **Compact Displays**: Efficient use of space with circular design
+- **Dashboard Widgets**: Perfect for small dashboard components
+- **Mobile Interfaces**: Works well on small screens
+- **Visual Hierarchy**: Draws attention to important metrics
+- **Progress Visualization**: Intuitive representation of completion
+
+## Accessibility
+
+The ProgressRingChart component includes several accessibility features:
+
+- Semantic SVG structure for screen readers
+- Proper contrast ratios for visual elements
+- Text labels for progress values
+- Supports dynamic text sizing
+- Keyboard navigation support
+
+## Performance
+
+The component is optimized for performance:
+
+- Uses React Native Reanimated for smooth 60fps animations
+- Efficient SVG rendering with minimal re-renders
+- Automatic cleanup of animation values
+- Lightweight circular path calculations
+
+## Styling
+
+The component integrates with your theme system:
+
+- Uses `primary` color from theme for default ring color
+- Uses `mutedForeground` color for labels and text
+- Supports gradient colors for enhanced visual appeal
+- Rounded stroke caps for modern appearance
+
+## Animation
+
+The chart features smooth entry animations:
+
+- Ring animates from 0% to target progress
+- Configurable animation duration
+- Can be disabled for instant rendering
+- Uses React Native Reanimated for optimal performance
+
+## Customization
+
+The progress ring can be customized in various ways:
+
+- **Size**: Adjust the overall size of the ring
+- **Stroke Width**: Control the thickness of the ring
+- **Colors**: Use theme colors or custom gradient
+- **Center Content**: Display percentage or custom text
+- **Labels**: Add descriptive labels above the ring

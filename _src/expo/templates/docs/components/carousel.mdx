@@ -1,0 +1,265 @@
+---
+title: Carousel
+description: A flexible carousel component with support for auto-play, indicators, arrows, and custom layouts.
+---
+
+<ComponentPreview
+  name='carousel-demo'
+  description='A basic carousel with auto-play and indicators'
+/>
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx bna-ui add carousel
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npx expo install expo-blur lucide-react-native react-native-gesture-handler
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name='carousel' title='components/ui/carousel.tsx' />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from '@/components/ui/carousel';
+```
+
+```tsx
+<Carousel autoPlay showIndicators>
+  <CarouselItem>
+    <Text>Slide 1</Text>
+  </CarouselItem>
+  <CarouselItem>
+    <Text>Slide 2</Text>
+  </CarouselItem>
+  <CarouselItem>
+    <Text>Slide 3</Text>
+  </CarouselItem>
+</Carousel>
+```
+
+## Examples
+
+<ExamplesGrid>
+
+<div>
+#### Default
+
+<ComponentPreview
+  name='carousel-demo'
+  description='A basic carousel with auto-play and indicators'
+/>
+
+</div>
+
+<div>
+#### With Arrows
+
+<ComponentPreview
+  name='carousel-arrows'
+  description='Carousel with navigation arrows and indicators'
+/>
+
+</div>
+
+<div>
+#### Custom Item Width
+
+<ComponentPreview
+  name='carousel-custom-width'
+  description='Carousel with custom item width and spacing'
+/>
+
+</div>
+
+<div>
+#### Image Carousel
+
+<ComponentPreview
+  name='carousel-images'
+  description='Image carousel with auto-play and loop'
+/>
+
+</div>
+
+<div>
+#### Card Carousel
+
+<ComponentPreview
+  name='carousel-cards'
+  description='Card-based carousel with custom content'
+/>
+
+</div>
+
+<div>
+#### No Indicators
+
+<ComponentPreview
+  name='carousel-no-indicators'
+  description='Carousel without indicators, arrows only'
+/>
+
+</div>
+
+<div>
+#### Manual Control
+
+<ComponentPreview
+  name='carousel-manual'
+  description='Manually controlled carousel with external buttons'
+/>
+</div>
+
+</ExamplesGrid>
+
+## API Reference
+
+### Carousel
+
+The main carousel container component.
+
+| Prop               | Type                      | Default | Description                                                |
+| ------------------ | ------------------------- | ------- | ---------------------------------------------------------- |
+| `children`         | `ReactNode[]`             | -       | Array of carousel items to display.                        |
+| `autoPlay`         | `boolean`                 | `false` | Enable automatic slide progression.                        |
+| `autoPlayInterval` | `number`                  | `3000`  | Interval between auto-play slides in milliseconds.         |
+| `showIndicators`   | `boolean`                 | `true`  | Show dot indicators at the bottom.                         |
+| `showArrows`       | `boolean`                 | `false` | Show navigation arrows on the sides.                       |
+| `loop`             | `boolean`                 | `false` | Enable infinite loop mode.                                 |
+| `itemWidth`        | `number`                  | -       | Custom width for carousel items (enables multi-item view). |
+| `spacing`          | `number`                  | `0`     | Spacing between carousel items.                            |
+| `style`            | `ViewStyle`               | -       | Additional styles for the carousel container.              |
+| `onIndexChange`    | `(index: number) => void` | -       | Callback fired when the active slide changes.              |
+
+### CarouselContent
+
+A wrapper component for organizing carousel content.
+
+| Prop       | Type        | Default | Description                                  |
+| ---------- | ----------- | ------- | -------------------------------------------- |
+| `children` | `ReactNode` | -       | The content to display inside the carousel.  |
+| `style`    | `ViewStyle` | -       | Additional styles for the content container. |
+
+### CarouselItem
+
+Individual carousel slide component with default styling.
+
+| Prop       | Type                       | Default | Description                               |
+| ---------- | -------------------------- | ------- | ----------------------------------------- |
+| `children` | `ReactNode`                | -       | The content to display in the slide.      |
+| `style`    | `ViewStyle \| ViewStyle[]` | -       | Additional styles for the item container. |
+
+### CarouselIndicators
+
+Dot indicators component for showing current slide position.
+
+| Prop      | Type                      | Default | Description                                     |
+| --------- | ------------------------- | ------- | ----------------------------------------------- |
+| `total`   | `number`                  | -       | Total number of slides.                         |
+| `current` | `number`                  | -       | Current active slide index.                     |
+| `onPress` | `(index: number) => void` | -       | Callback when an indicator is pressed.          |
+| `style`   | `ViewStyle`               | -       | Additional styles for the indicators container. |
+
+### CarouselArrow
+
+Navigation arrow component for manual slide control.
+
+| Prop        | Type                | Default | Description                                |
+| ----------- | ------------------- | ------- | ------------------------------------------ |
+| `direction` | `'left' \| 'right'` | -       | Arrow direction.                           |
+| `onPress`   | `() => void`        | -       | Callback when the arrow is pressed.        |
+| `disabled`  | `boolean`           | `false` | Whether the arrow is disabled.             |
+| `style`     | `ViewStyle`         | -       | Additional styles for the arrow container. |
+
+### Custom Styling
+
+```tsx
+<Carousel
+  style={{
+    backgroundColor: '#f8f9fa',
+    borderRadius: 12,
+    overflow: 'hidden',
+  }}
+  showIndicators
+  showArrows
+>
+  <CarouselItem
+    style={{
+      backgroundColor: 'white',
+      margin: 8,
+      borderRadius: 8,
+      shadowColor: '#000',
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.1,
+      shadowRadius: 4,
+      elevation: 3,
+    }}
+  >
+    {/* Your content */}
+  </CarouselItem>
+</Carousel>
+```
+
+## Features
+
+- **Auto-play**: Automatic slide progression with customizable intervals
+- **Touch Gestures**: Swipe to navigate between slides using react-native-gesture-handler
+- **Indicators**: Dot indicators showing current position with tap-to-navigate
+- **Navigation Arrows**: Optional left/right arrow controls with blur effects
+- **Loop Mode**: Infinite scrolling capability for seamless navigation
+- **Custom Layouts**: Support for custom item widths and spacing for multi-item views
+- **Responsive**: Adapts to container width automatically
+- **Smooth Animations**: Hardware-accelerated scrolling with momentum and spring physics
+- **Accessibility**: Built-in accessibility support with proper ARIA labels
+
+## Accessibility
+
+The Carousel component includes comprehensive accessibility features:
+
+- **Screen Reader Support**: Proper announcements for navigation controls and slide changes
+- **Keyboard Navigation**: Full keyboard support for focus management and navigation
+- **Semantic Roles**: Appropriate ARIA roles for carousel structure and components
+- **Accessible Indicators**: Dot indicators with descriptive labels and touch targets
+- **Motion Preferences**: Respects user's reduced motion preferences
+- **Focus Management**: Logical focus order and visible focus indicators
+- **Alternative Text**: Support for image descriptions and content labels
+
+## Performance Tips
+
+- Use `itemWidth` prop for multi-item carousels to optimize rendering
+- Implement lazy loading for image carousels with many slides
+- Consider disabling auto-play for carousels with heavy content
+- Use `onIndexChange` callback to preload adjacent slides for smoother navigation

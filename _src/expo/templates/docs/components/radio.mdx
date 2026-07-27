@@ -1,0 +1,187 @@
+---
+title: Radio
+description: A set of checkable buttons—known as radio buttons—where no more than one of the buttons can be checked at a time.
+---
+
+<ComponentPreview
+  name='radio-demo'
+  description='A basic radio group with multiple options'
+/>
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx bna-ui add radio
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name='radio' title='components/ui/radio.tsx' />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { RadioGroup, RadioButton } from '@/components/ui/radio';
+```
+
+```tsx
+const [value, setValue] = useState('option1');
+
+<RadioGroup
+  options={[
+    { label: 'Option 1', value: 'option1' },
+    { label: 'Option 2', value: 'option2' },
+    { label: 'Option 3', value: 'option3' },
+  ]}
+  value={value}
+  onValueChange={setValue}
+/>;
+```
+
+## Examples
+
+<ExamplesGrid>
+
+<div>
+#### Default
+
+<ComponentPreview
+  name='radio-demo'
+  description='A basic radio group with multiple options'
+/>
+
+</div>
+
+<div>
+#### Horizontal Layout
+
+<ComponentPreview
+  name='radio-horizontal'
+  description='Radio buttons arranged horizontally'
+/>
+
+</div>
+
+<div>
+#### Disabled Options
+
+<ComponentPreview
+  name='radio-disabled'
+  description='Radio group with some disabled options'
+/>
+
+</div>
+
+<div>
+#### Custom Styling
+
+<ComponentPreview
+  name='radio-styled'
+  description='Radio buttons with custom colors and styling'
+/>
+
+</div>
+
+<div>
+#### Form Integration
+
+<ComponentPreview
+  name='radio-form'
+  description='Radio group integrated with form validation'
+/>
+
+</div>
+
+<div>
+#### Large Size
+
+<ComponentPreview
+  name='radio-large'
+  description='Radio buttons with larger size and spacing'
+/>
+
+</div>
+
+<div>
+#### Single Radio Button
+
+<ComponentPreview
+  name='radio-single'
+  description='Individual radio button component usage'
+/>
+</div>
+
+</ExamplesGrid>
+
+## API Reference
+
+### RadioGroup
+
+The main container component that manages a group of radio buttons.
+
+| Prop            | Type                         | Default      | Description                                |
+| --------------- | ---------------------------- | ------------ | ------------------------------------------ |
+| `options`       | `RadioOption[]`              | -            | Array of radio button options.             |
+| `value`         | `string`                     | -            | The currently selected value.              |
+| `onValueChange` | `(value: string) => void`    | -            | Callback fired when the selection changes. |
+| `disabled`      | `boolean`                    | `false`      | Whether the entire group is disabled.      |
+| `orientation`   | `'vertical' \| 'horizontal'` | `'vertical'` | Layout orientation of the radio buttons.   |
+| `style`         | `ViewStyle`                  | -            | Additional styles for the group container. |
+| `optionStyle`   | `ViewStyle`                  | -            | Additional styles for each radio button.   |
+| `labelStyle`    | `TextStyle`                  | -            | Additional styles for radio button labels. |
+
+### RadioButton
+
+Individual radio button component for custom layouts.
+
+| Prop         | Type          | Default | Description                                 |
+| ------------ | ------------- | ------- | ------------------------------------------- |
+| `option`     | `RadioOption` | -       | The radio option data.                      |
+| `selected`   | `boolean`     | -       | Whether this radio button is selected.      |
+| `onPress`    | `() => void`  | -       | Callback fired when the button is pressed.  |
+| `disabled`   | `boolean`     | `false` | Whether this radio button is disabled.      |
+| `style`      | `ViewStyle`   | -       | Additional styles for the button container. |
+| `labelStyle` | `TextStyle`   | -       | Additional styles for the button label.     |
+
+### RadioOption
+
+The shape of each radio option object.
+
+| Property   | Type      | Description                               |
+| ---------- | --------- | ----------------------------------------- |
+| `label`    | `string`  | The display text for the radio button.    |
+| `value`    | `string`  | The value associated with this option.    |
+| `disabled` | `boolean` | Whether this specific option is disabled. |
+
+## Accessibility
+
+The Radio component is built with accessibility in mind:
+
+- Uses TouchableOpacity for proper touch feedback
+- Supports disabled states with appropriate visual feedback
+- Proper opacity changes for disabled options
+- Screen reader friendly with semantic structure
+- Supports keyboard navigation patterns
+- Clear visual indicators for selected state

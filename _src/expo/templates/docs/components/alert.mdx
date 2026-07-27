@@ -1,0 +1,371 @@
+---
+title: Alert
+description: Display important messages to users with both visual inline alerts and native system alerts.
+---
+
+<ComponentPreview
+  name='alert-demo'
+  description='A basic native alert with two buttons'
+/>
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx bna-ui add alert
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name='alert' title='components/ui/alert.tsx' />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import {
+  Alert,
+  AlertTitle,
+  AlertDescription,
+  showSuccessAlert,
+  showErrorAlert,
+  showConfirmAlert,
+  showNativeAlert,
+} from '@/components/ui/alert';
+```
+
+### Visual Alert (Inline)
+
+```tsx
+function MyComponent() {
+  return (
+    <Alert>
+      <AlertTitle>Attention</AlertTitle>
+      <AlertDescription>
+        This is an important message that appears inline with your content.
+      </AlertDescription>
+    </Alert>
+  );
+}
+```
+
+### Native Alerts (System Dialogs)
+
+```tsx
+function MyComponent() {
+  const handleSuccess = () => {
+    showSuccessAlert(
+      'Success!',
+      'Your action was completed successfully.',
+      () => console.log('Success acknowledged')
+    );
+  };
+
+  const handleConfirm = () => {
+    showConfirmAlert(
+      'Confirm Action',
+      'Are you sure you want to proceed?',
+      () => console.log('Confirmed'),
+      () => console.log('Cancelled')
+    );
+  };
+
+  return (
+    <>
+      <Button onPress={handleSuccess}>Show Success</Button>
+      <Button onPress={handleConfirm}>Show Confirmation</Button>
+    </>
+  );
+}
+```
+
+#### Visual Alerts
+
+<ExamplesGrid>
+
+<div>
+  #### Default
+  <ComponentPreview
+    name='alert-visual-demo'
+    description='Inline visual alerts that appear within your content'
+  />
+</div>
+
+<div>
+#### Destructive
+<ComponentPreview
+  name='alert-visual-destructive-demo'
+  description='Destructive visual alerts for error messages'
+/>
+</div>
+</ExamplesGrid>
+
+### Native Alerts
+
+<ExamplesGrid>
+
+<div>
+  #### Default
+  <ComponentPreview
+    name='alert-demo'
+    description='Basic two-button native alert'
+  />
+</div>
+
+<div>
+  #### Three Button
+  <ComponentPreview
+    name='alert-three-button-demo'
+    description='Native alert with three button options'
+  />
+</div>
+
+<div>
+  #### Success
+  <ComponentPreview
+    name='alert-success-demo'
+    description='Success alert with positive messaging'
+  />
+</div>
+
+<div>
+  #### Error
+  <ComponentPreview
+    name='alert-error-demo'
+    description='Error alert with destructive styling'
+  />
+</div>
+
+<div>
+  #### Confirm
+  <ComponentPreview
+    name='alert-confirm-demo'
+    description='Confirmation alert for destructive actions'
+  />
+</div>
+
+<div>
+  #### Custom
+  <ComponentPreview
+    name='alert-custom-demo'
+    description='Custom native alert with multiple options'
+  />
+</div>
+
+</ExamplesGrid>
+
+## API Reference
+
+### Visual Alert Components
+
+#### Alert
+
+The main visual alert container component.
+
+| Prop       | Type                         | Default     | Description                                |
+| ---------- | ---------------------------- | ----------- | ------------------------------------------ |
+| `children` | `React.ReactNode`            | -           | The content to display inside the alert.   |
+| `variant`  | `'default' \| 'destructive'` | `'default'` | The visual style variant of the alert.     |
+| `style`    | `ViewStyle`                  | -           | Additional styles for the alert container. |
+
+#### AlertTitle
+
+Component for displaying the alert title.
+
+| Prop       | Type              | Default | Description                           |
+| ---------- | ----------------- | ------- | ------------------------------------- |
+| `children` | `React.ReactNode` | -       | The title text to display.            |
+| `style`    | `TextStyle`       | -       | Additional styles for the title text. |
+
+#### AlertDescription
+
+Component for displaying the alert description.
+
+| Prop       | Type              | Default | Description                                 |
+| ---------- | ----------------- | ------- | ------------------------------------------- |
+| `children` | `React.ReactNode` | -       | The description text to display.            |
+| `style`    | `TextStyle`       | -       | Additional styles for the description text. |
+
+### Native Alert Functions
+
+#### showSuccessAlert
+
+Display a success alert with positive messaging.
+
+```tsx
+showSuccessAlert(
+  title: string,
+  message?: string,
+  onOk?: () => void
+)
+```
+
+#### showErrorAlert
+
+Display an error alert with destructive styling.
+
+```tsx
+showErrorAlert(
+  title: string,
+  message?: string,
+  onOk?: () => void
+)
+```
+
+#### showConfirmAlert
+
+Display a confirmation alert for important actions.
+
+```tsx
+showConfirmAlert(
+  title: string,
+  message?: string,
+  onConfirm?: () => void,
+  onCancel?: () => void
+)
+```
+
+#### showNativeAlert
+
+Generic native alert function with full customization.
+
+```tsx
+showNativeAlert({
+  title: string;
+  message?: string;
+  buttons?: AlertButton[];
+  cancelable?: boolean;
+})
+```
+
+#### createTwoButtonAlert / createThreeButtonAlert
+
+Predefined alert functions for common use cases.
+
+```tsx
+createTwoButtonAlert(options: NativeAlertOptions)
+createThreeButtonAlert(options: NativeAlertOptions)
+```
+
+### AlertButton
+
+Configuration for individual alert buttons.
+
+| Prop      | Type                                     | Default     | Description                                |
+| --------- | ---------------------------------------- | ----------- | ------------------------------------------ |
+| `text`    | `string`                                 | -           | The text to display on the button.         |
+| `onPress` | `() => void`                             | -           | Callback fired when the button is pressed. |
+| `style`   | `'default' \| 'cancel' \| 'destructive'` | `'default'` | The visual style of the button.            |
+
+## Platform Behavior
+
+### Visual Alerts
+
+Visual alerts work consistently across all platforms and appear inline with your content. They're perfect for:
+
+- Form validation messages
+- Status updates
+- Non-critical notifications
+- Persistent information display
+
+### Native Alerts
+
+Native alerts use the platform's built-in alert system:
+
+#### iOS
+
+- Uses `Alert.alert()` from React Native
+- Follows iOS Human Interface Guidelines
+- Integrates with system UI and accessibility features
+
+#### Android
+
+- Uses `Alert.alert()` from React Native
+- Follows Material Design principles
+- Adapts to device theme and user preferences
+
+## Accessibility
+
+Both visual and native alerts follow accessibility best practices:
+
+### Visual Alerts
+
+- Proper color contrast ratios
+- Semantic markup with appropriate roles
+- Screen reader friendly content structure
+- Respects system font size preferences
+
+### Native Alerts
+
+- Automatic focus management
+- Screen reader announcements
+- Keyboard navigation support
+- System accessibility integration
+
+## Best Practices
+
+### When to Use Visual vs Native Alerts
+
+**Use Visual Alerts for:**
+
+- Form validation feedback
+- Status messages that don't require immediate action
+- Information that should remain visible while user continues working
+- Non-critical notifications
+
+**Use Native Alerts for:**
+
+- Critical actions that require user confirmation
+- Error messages that prevent continued use
+- Success confirmations for important actions
+- When you need to interrupt the user's workflow
+
+### Button Configuration
+
+- **Cancel buttons**: Use `style: 'cancel'` - typically appears on the left (iOS) or as the negative action
+- **Destructive buttons**: Use `style: 'destructive'` - appears in red to indicate dangerous actions
+- **Default buttons**: Use `style: 'default'` or omit - for primary positive actions
+
+### Message Guidelines
+
+- Keep titles short and descriptive
+- Use clear, actionable language
+- Provide enough context in the message
+- Make button text specific to the action ("Delete Photo" vs "OK")
+
+## Theming
+
+The Alert components automatically adapt to your app's theme:
+
+### Visual Alerts
+
+- Background colors from theme's card color
+- Border colors from theme's border color
+- Text colors from theme's text colors
+- Destructive variant uses theme's destructive color
+
+### Native Alerts
+
+- Follow system theme automatically
+- Button colors adapt to platform conventions
+- Text rendering follows system preferences

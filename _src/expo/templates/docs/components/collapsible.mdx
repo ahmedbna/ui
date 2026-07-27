@@ -1,0 +1,176 @@
+---
+title: Collapsible
+description: An interactive component which can be expanded/collapsed to show and hide content.
+---
+
+<ComponentPreview
+  name='collapsible-demo'
+  description='A basic collapsible component with title and content'
+/>
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx bna-ui add collapsible
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npx expo install lucide-react-native
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name='collapsible' title='components/ui/collapsible.tsx' />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { Collapsible } from '@/components/ui/collapsible';
+```
+
+```tsx
+<Collapsible title='What is React Native?'>
+  <Text>
+    React Native is an open-source UI software framework created by Meta. It is
+    used to develop applications for multiple platforms.
+  </Text>
+</Collapsible>
+```
+
+## Examples
+
+<ExamplesGrid>
+
+<div>
+#### Default
+
+<ComponentPreview
+  name='collapsible-demo'
+  description='A basic collapsible component with title and content'
+/>
+
+</div>
+
+<div>
+#### Multiple Collapsibles
+
+<ComponentPreview
+  name='collapsible-multiple'
+  description='Multiple collapsible components working independently'
+/>
+
+</div>
+
+<div>
+#### Nested Collapsibles
+
+<ComponentPreview
+  name='collapsible-nested'
+  description='Collapsible components nested within each other'
+/>
+
+</div>
+
+<div>
+#### With Interactive Content
+
+<ComponentPreview
+  name='collapsible-with-content'
+  description='Collapsible containing interactive elements like checkboxes'
+/>
+
+</div>
+
+<div>
+#### FAQ Style
+
+<ComponentPreview
+  name='collapsible-faq'
+  description='Collapsible components styled as frequently asked questions'
+/>
+</div>
+
+</ExamplesGrid>
+
+## API Reference
+
+### Collapsible
+
+An expandable/collapsible container component that shows or hides its content.
+
+| Prop       | Type        | Default | Description                             |
+| ---------- | ----------- | ------- | --------------------------------------- |
+| `title`    | `string`    | -       | The title text displayed in the header. |
+| `children` | `ReactNode` | -       | The content to show/hide when toggled.  |
+
+## Component Structure
+
+The Collapsible component consists of:
+
+1. **Header**: A touchable area containing the title and chevron icon
+2. **Content**: The collapsible content that shows/hides based on state
+3. **Icon**: A chevron that rotates to indicate open/closed state
+
+## Behavior
+
+- Initially collapsed by default
+- Clicking the header toggles the collapsed/expanded state
+- Smooth rotation animation for the chevron icon
+- Content appears with proper indentation when expanded
+- Each collapsible manages its own state independently
+
+## Accessibility
+
+The Collapsible component is built with accessibility in mind:
+
+- Uses TouchableOpacity for proper touch handling
+- Visual indicator (chevron) shows current state
+- Proper spacing and indentation for content hierarchy
+- Supports nested content and interactive elements
+- Clear visual feedback with activeOpacity on touch
+
+## Styling
+
+The component uses:
+
+- Flexible layout with proper spacing
+- Icon rotation animation for visual feedback
+- Consistent indentation for nested content
+- Theme-aware text styling through the Text component
+- Responsive touch areas for better usability
+
+## Use Cases
+
+Perfect for:
+
+- FAQ sections
+- Settings panels
+- Navigation menus
+- Content organization
+- Progressive disclosure
+- Help documentation
+- Feature explanations

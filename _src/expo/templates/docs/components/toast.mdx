@@ -1,0 +1,241 @@
+---
+title: Toast
+description: A succinct message that is displayed temporarily with Dynamic Island animation inspired by iOS.
+---
+
+<ComponentPreview
+  name='toast-demo'
+  description='A basic toast notification with title and description'
+/>
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx bna-ui add toast
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npx expo install react-native-gesture-handler react-native-reanimated lucide-react-native
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name='toast' title='components/ui/toast.tsx' />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+<Step>Wrap your app with the ToastProvider.</Step>
+
+```tsx
+import { ToastProvider } from '@/components/ui/toast';
+
+export default function App() {
+  return <ToastProvider>{/* Your app content */}</ToastProvider>;
+}
+```
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { useToast } from '@/components/ui/toast';
+```
+
+```tsx
+function MyComponent() {
+  const { toast } = useToast();
+
+  const showToast = () => {
+    toast({
+      title: 'Success!',
+      description: 'Your changes have been saved.',
+      variant: 'success',
+    });
+  };
+
+  return <Button onPress={showToast}>Show Toast</Button>;
+}
+```
+
+## Examples
+
+<ExamplesGrid>
+
+<div>
+#### Default
+
+<ComponentPreview
+  name='toast-demo'
+  description='A basic toast notification with title and description'
+/>
+
+</div>
+
+<div>
+#### Variants
+
+<ComponentPreview
+  name='toast-variants'
+  description='Toast notifications with different variants (success, error, warning, info)'
+/>
+
+</div>
+
+<div>
+#### With Actions
+
+<ComponentPreview
+  name='toast-actions'
+  description='Toast notifications with action buttons'
+/>
+
+</div>
+
+<div>
+#### Custom Duration
+
+<ComponentPreview
+  name='toast-duration'
+  description='Toast notifications with custom durations'
+/>
+
+</div>
+
+<div>
+#### Multiple Toasts
+
+<ComponentPreview
+  name='toast-multiple'
+  description='Multiple toast notifications stacked vertically'
+/>
+
+</div>
+
+<div>
+#### Compact Mode
+
+<ComponentPreview
+  name='toast-compact'
+  description='Compact toast notifications without title or description'
+/>
+</div>
+
+</ExamplesGrid>
+
+## API Reference
+
+### ToastProvider
+
+The provider component that manages toast state and renders toasts.
+
+| Prop        | Type        | Default | Description                                  |
+| ----------- | ----------- | ------- | -------------------------------------------- |
+| `children`  | `ReactNode` | -       | The app content to wrap with toast provider. |
+| `maxToasts` | `number`    | `3`     | Maximum number of toasts to display at once. |
+
+### useToast
+
+Hook that provides methods to show and manage toasts.
+
+```tsx
+const { toast, success, error, warning, info, dismiss, dismissAll } =
+  useToast();
+```
+
+#### Methods
+
+| Method       | Type                                            | Description                     |
+| ------------ | ----------------------------------------------- | ------------------------------- |
+| `toast`      | `(data: ToastData) => void`                     | Show a toast with custom data.  |
+| `success`    | `(title: string, description?: string) => void` | Show a success toast.           |
+| `error`      | `(title: string, description?: string) => void` | Show an error toast.            |
+| `warning`    | `(title: string, description?: string) => void` | Show a warning toast.           |
+| `info`       | `(title: string, description?: string) => void` | Show an info toast.             |
+| `dismiss`    | `(id: string) => void`                          | Dismiss a specific toast by ID. |
+| `dismissAll` | `() => void`                                    | Dismiss all active toasts.      |
+
+### ToastData
+
+Configuration object for toast notifications.
+
+| Prop          | Type                                                       | Default     | Description                                                                     |
+| ------------- | ---------------------------------------------------------- | ----------- | ------------------------------------------------------------------------------- |
+| `title`       | `string`                                                   | -           | The title of the toast.                                                         |
+| `description` | `string`                                                   | -           | The description text of the toast.                                              |
+| `variant`     | `'default' \| 'success' \| 'error' \| 'warning' \| 'info'` | `'default'` | The visual variant of the toast.                                                |
+| `duration`    | `number`                                                   | `4000`      | Duration in milliseconds before auto-dismiss. Set to 0 to disable auto-dismiss. |
+| `action`      | `{ label: string; onPress: () => void }`                   | -           | Optional action button configuration.                                           |
+
+## Animation
+
+The toast component features iOS Dynamic Island-inspired animations:
+
+- **Entrance**: Smooth slide-in from top with scale and opacity transitions
+- **Expansion**: Automatic expansion when content is present
+- **Gestures**: Swipe-to-dismiss with spring animations
+- **Stacking**: Multiple toasts stack vertically with proper spacing
+- **Exit**: Fade out with scale transition
+
+## Accessibility
+
+The Toast component is built with accessibility in mind:
+
+- Proper color contrast for all variants
+- Clear visual hierarchy with title and description
+- Icon indicators for different toast types
+- Dismissible with both gesture and button interactions
+- Supports dynamic text sizing
+- Screen reader friendly content structure
+
+## Customization
+
+### Custom Colors
+
+You can customize the colors by modifying the `getVariantColor()` function in the component:
+
+```tsx
+const getVariantColor = () => {
+  switch (variant) {
+    case 'success':
+      return '#34D399'; // Custom green
+    case 'error':
+      return '#F87171'; // Custom red
+    // ... other variants
+  }
+};
+```
+
+### Custom Positioning
+
+Modify the `getTopPosition()` function to change toast positioning:
+
+```tsx
+const getTopPosition = () => {
+  const statusBarHeight = Platform.OS === 'ios' ? 59 : 20;
+  const customOffset = 20; // Add custom offset
+  return (
+    statusBarHeight + customOffset + index * (EXPANDED_HEIGHT + TOAST_MARGIN)
+  );
+};
+```
