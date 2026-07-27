@@ -113,6 +113,18 @@ async function validate(registry: Registry) {
         fail(`"${key}": registryDependencies references unknown entry "${dep}"`);
       }
     }
+    // `hooks` and `theme` name registry entries too — they are just declared in
+    // separate fields. Validate them the same way so a typo can't slip through.
+    for (const hook of entry.hooks ?? []) {
+      if (!registry[hook]) {
+        fail(`"${key}": hooks references unknown entry "${hook}"`);
+      }
+    }
+    for (const theme of entry.theme ?? []) {
+      if (!registry[theme]) {
+        fail(`"${key}": theme references unknown entry "${theme}"`);
+      }
+    }
     for (const file of entry.files) {
       try {
         await fs.access(path.join(ROOT, file.path));
@@ -124,6 +136,33 @@ async function validate(registry: Registry) {
 
   const cycle = findDependencyCycle(registry);
   if (cycle) fail(`dependency cycle: ${cycle.join(' -> ')}`);
+}
+
+/**
+ * The full set of entries a consumer needs for `name`: its registryDependencies
+ * closure, plus the hook and theme entries those declare. Hooks and theme live
+ * in their own fields rather than in registryDependencies, but the consumer
+ * needs their files just the same — folding them in here is what lets
+ * `bna-ui add <name>` be a single request.
+ */
+function expandClosure(registry: Registry, name: string): string[] {
+  const out: string[] = [];
+  const seen = new Set<string>();
+
+  const push = (n: string) => {
+    if (seen.has(n) || !registry[n]) return;
+    seen.add(n);
+    out.push(n);
+  };
+
+  for (const dep of resolveAllDependencies(registry, name)) {
+    // Hooks and theme first: a component's source imports them.
+    for (const hook of registry[dep]?.hooks ?? []) push(hook);
+    for (const theme of registry[dep]?.theme ?? []) push(theme);
+    push(dep);
+  }
+
+  return out;
 }
 
 async function readFiles(
@@ -194,7 +233,7 @@ async function main() {
   let bytes = 0;
   for (const key of keys) {
     const entry = sorted[key];
-    const chain = resolveAllDependencies(sorted, key);
+    const chain = expandClosure(sorted, key);
     const payload = {
       $schemaVersion: REGISTRY_SCHEMA_VERSION,
       name: entry.name,

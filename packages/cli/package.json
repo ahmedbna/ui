@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json.schemastore.org/package.json",
+  "name": "bna-ui",
+  "version": "2.0.4",
+  "type": "module",
+  "description": "BNA UI - Expo React Native CLI, UI Components Library",
+  "main": "dist/index.js",
+  "bin": {
+    "bna-ui": "bin/bna-ui.js"
+  },
+  "scripts": {
+    "build": "pnpm clean && tsc && pnpm copy-starters",
+    "copy-starters": "node scripts/copy-starters.mjs",
+    "dev": "tsc --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint src/**/*.ts",
+    "clean": "rm -rf dist .turbo",
+    "prepublishOnly": "pnpm build"
+  },
+  "keywords": [
+    "react-native",
+    "expo",
+    "ui",
+    "cli",
+    "starter",
+    "template",
+    "typescript"
+  ],
+  "author": "Ahmed BNA <hi@ahmedbna.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ahmedbna/ui",
+    "directory": "packages/cli"
+  },
+  "bugs": {
+    "url": "https://github.com/ahmedbna/ui/issues"
+  },
+  "homepage": "https://ui.ahmedbna.com/",
+  "files": ["dist/**/*", "bin/**/*", "README.md", "LICENSE"],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^11.1.0",
+    "fs-extra": "^11.1.1",
+    "inquirer": "^9.2.12",
+    "ora": "^7.0.1",
+    "validate-npm-package-name": "^5.0.0"
+  },
+  "devDependencies": {
+    "@bna-ui/eslint-config": "workspace:*",
+    "@bna-ui/typescript-config": "workspace:*",
+    "@types/fs-extra": "^11.0.4",
+    "@types/inquirer": "^9.0.7",
+    "@types/node": "^22.10.2",
+    "@types/validate-npm-package-name": "^4.0.2",
+    "eslint": "^9.17.0",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}
