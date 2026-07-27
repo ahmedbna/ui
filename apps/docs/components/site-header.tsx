@@ -32,23 +32,7 @@ export function SiteHeader() {
           </Button>
           <MainNav items={siteConfig.navItems} className='hidden lg:flex' />
           <div className='ml-auto flex items-center gap-2 md:flex-1 md:justify-end'>
-            <Button
-              asChild
-              size='sm'
-              className='h-8 bg-[#FAD40B] text-black shadow-none font-semibold'
-            >
-              <Link
-                href={'https://ai.ahmedbna.com'}
-                target='_blank'
-                rel='noreferrer'
-                className='text-black transition-colors duration-200 font-semibold'
-              >
-                <img src='/bricks.png' alt='AI' className='h-4 w-4' />
-                BNA AI
-              </Link>
-            </Button>
             {/* <EmailButton /> */}
-            <Separator orientation='vertical' />
             <Button
               asChild
               size='sm'
