@@ -1,4 +1,0 @@
-{
-  "root": true,
-  "pages": ["(root)", "changelog", "components", "charts", "hooks", "theme"]
-}

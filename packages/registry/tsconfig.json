@@ -1,0 +1,15 @@
+{
+  "extends": "@bna-ui/typescript-config/node.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "allowImportingTsExtensions": false,
+    "types": ["node"],
+    "paths": {
+      "@/components/*": ["./src/components/*"],
+      "@/hooks/*": ["./src/hooks/*"],
+      "@/theme/*": ["./src/theme/*"]
+    }
+  },
+  "include": ["index.ts", "schema.ts", "resolve.ts", "server.ts", "definitions", "scripts", "tests"],
+  "exclude": ["node_modules", "generated", "src"]
+}

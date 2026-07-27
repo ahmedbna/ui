@@ -54,3 +54,6 @@ lerna-debug.log*
 .idea/
 *.swp
 *.swo
+
+# generated registry payloads
+packages/registry/generated/

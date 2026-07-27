@@ -1,0 +1,33 @@
+{
+  "name": "@bna-ui/registry",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "description": "Single source of truth for every BNA UI component, hook, theme file and demo.",
+  "exports": {
+    ".": "./index.ts",
+    "./schema": "./schema.ts",
+    "./resolve": "./resolve.ts",
+    "./server": "./server.ts",
+    "./generated/*": "./generated/*"
+  },
+  "files": ["index.ts", "schema.ts", "resolve.ts", "server.ts", "src", "generated"],
+  "scripts": {
+    "build": "tsx scripts/build.ts",
+    "dev": "tsx watch scripts/build.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "clean": "rm -rf generated .turbo"
+  },
+  "dependencies": {
+    "zod": "^3.25.56"
+  },
+  "devDependencies": {
+    "@bna-ui/typescript-config": "workspace:*",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}
