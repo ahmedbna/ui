@@ -6,7 +6,7 @@
     "build": {
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", "!**/*.md"],
-      "outputs": ["dist/**", ".next/**", "!.next/cache/**", "public/r/**"]
+      "outputs": ["dist/**", "generated/**", ".next/**", "!.next/cache/**", "public/r/**"]
     },
     "dev": {
       "cache": false,

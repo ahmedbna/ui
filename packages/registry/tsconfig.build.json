@@ -1,0 +1,19 @@
+{
+  "extends": "@bna-ui/typescript-config/node.json",
+  "compilerOptions": {
+    "rootDir": ".",
+    "outDir": "dist",
+    "declaration": true,
+    "declarationMap": true,
+    "noEmit": false,
+    "types": ["node"]
+  },
+  "include": [
+    "index.ts",
+    "schema.ts",
+    "resolve.ts",
+    "server.ts",
+    "generated/registry.ts"
+  ],
+  "exclude": ["node_modules", "dist", "src", "definitions", "scripts", "tests"]
+}

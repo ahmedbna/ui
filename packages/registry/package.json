@@ -5,27 +5,46 @@
   "license": "MIT",
   "type": "module",
   "description": "Single source of truth for every BNA UI component, hook, theme file and demo.",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
-    ".": "./index.ts",
-    "./schema": "./schema.ts",
-    "./resolve": "./resolve.ts",
-    "./server": "./server.ts",
-    "./generated/*": "./generated/*"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./schema": {
+      "types": "./dist/schema.d.ts",
+      "default": "./dist/schema.js"
+    },
+    "./resolve": {
+      "types": "./dist/resolve.d.ts",
+      "default": "./dist/resolve.js"
+    },
+    "./server": {
+      "types": "./dist/server.d.ts",
+      "default": "./dist/server.js"
+    },
+    "./src/*": "./src/*",
+    "./package.json": "./package.json"
   },
-  "files": ["index.ts", "schema.ts", "resolve.ts", "server.ts", "src", "generated"],
+  "files": [
+    "dist",
+    "src"
+  ],
   "scripts": {
-    "build": "tsx scripts/build.ts",
-    "dev": "tsx watch scripts/build.ts",
+    "build": "tsx scripts/build.ts && tsc -p tsconfig.build.json && rm -rf dist/generated/r && cp -R generated/r dist/generated/r",
+    "dev": "tsx scripts/build.ts",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
-    "clean": "rm -rf generated .turbo"
+    "clean": "rm -rf generated dist .turbo"
   },
   "dependencies": {
-    "zod": "^3.25.56"
+    "zod": "3.25.56"
   },
   "devDependencies": {
     "@bna-ui/typescript-config": "workspace:*",
+    "@types/node": "^22.10.2",
     "tsx": "^4.19.2",
     "typescript": "^5.7.2",
     "vitest": "^2.1.8"

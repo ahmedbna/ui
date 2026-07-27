@@ -5,18 +5,18 @@
  * is deliberately not bundled here — it lives in `generated/r/*.json` and is
  * read lazily via `./server` (Node only) so it never reaches a client bundle.
  */
-import registryIndex from './generated/registry.json' with { type: 'json' };
-import type { ComponentRegistry, Registry } from './schema.js';
+import { generatedAt, items } from './generated/registry.js';
+import type { Registry } from './schema.js';
 import * as resolvers from './resolve.js';
 
 export * from './schema.js';
 
 /** Every registry entry, keyed by name. Generated — do not hand-edit. */
 export const REGISTRY: Registry = Object.fromEntries(
-  (registryIndex.items as ComponentRegistry[]).map((item) => [item.name, item])
+  items.map((item) => [item.name, item])
 );
 
-export const GENERATED_AT: string = registryIndex.generatedAt;
+export const GENERATED_AT = generatedAt;
 
 export const getComponent = (name: string) =>
   resolvers.getComponent(REGISTRY, name);
