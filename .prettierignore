@@ -1,0 +1,10 @@
+node_modules
+dist
+.next
+.expo
+.source
+.turbo
+coverage
+pnpm-lock.yaml
+apps/docs/public/r
+packages/cli/dist

@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Node (CLI / build scripts)",
+  "extends": "./base.json",
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "declaration": true,
+    "noEmit": false,
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
+  }
+}

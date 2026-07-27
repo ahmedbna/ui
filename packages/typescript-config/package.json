@@ -1,0 +1,7 @@
+{
+  "name": "@bna-ui/typescript-config",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "files": ["base.json", "expo.json", "next.json", "node.json"]
+}
