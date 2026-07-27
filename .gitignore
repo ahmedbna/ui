@@ -28,7 +28,8 @@ packages/cli/dist/
 *.mobileprovision
 *.orig.*
 web-build/
-expo-env.d.ts
+# generated per-app; the starter templates ship their own copy on purpose
+apps/*/expo-env.d.ts
 
 # testing
 coverage/
@@ -57,3 +58,4 @@ lerna-debug.log*
 
 # generated registry payloads
 packages/registry/generated/
+packages/starters/dist/

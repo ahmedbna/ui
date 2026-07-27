@@ -39,7 +39,12 @@
     "url": "https://github.com/ahmedbna/ui/issues"
   },
   "homepage": "https://ui.ahmedbna.com/",
-  "files": ["dist/**/*", "bin/**/*", "README.md", "LICENSE"],
+  "files": [
+    "dist/**/*",
+    "bin/**/*",
+    "README.md",
+    "LICENSE"
+  ],
   "engines": {
     "node": ">=18.0.0"
   },
@@ -60,6 +65,7 @@
     "@types/validate-npm-package-name": "^4.0.2",
     "eslint": "^9.17.0",
     "typescript": "^5.7.2",
-    "vitest": "^2.1.8"
+    "vitest": "^2.1.8",
+    "@bna-ui/starters": "workspace:*"
   }
 }

@@ -1,0 +1,15 @@
+{
+  "name": "@bna-ui/starters",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "description": "Project scaffolds for `bna-ui init` and `bna-ui convex`.",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "clean": "rm -rf dist .turbo"
+  },
+  "devDependencies": {
+    "@bna-ui/registry": "workspace:*"
+  }
+}

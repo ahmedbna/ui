@@ -329,6 +329,9 @@ importers:
       '@bna-ui/eslint-config':
         specifier: workspace:*
         version: link:../eslint-config
+      '@bna-ui/starters':
+        specifier: workspace:*
+        version: link:../starters
       '@bna-ui/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
@@ -400,6 +403,12 @@ importers:
       vitest:
         specifier: ^2.1.8
         version: 2.1.9(@types/node@22.20.1)(lightningcss@1.32.0)(terser@5.49.0)
+
+  packages/starters:
+    devDependencies:
+      '@bna-ui/registry':
+        specifier: workspace:*
+        version: link:../registry
 
   packages/typescript-config: {}
 

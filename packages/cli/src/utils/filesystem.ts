@@ -2,6 +2,18 @@ import fs from 'fs-extra';
 import path from 'path';
 import { logger } from './logger.js';
 
+/**
+ * Files stored under a dot-less name in the package because npm refuses to
+ * publish them verbatim, and restored to their real name on scaffold.
+ *
+ * npm strips `.gitignore` from tarballs entirely, so shipping one as-is meant
+ * every `bna-ui init` produced a project with no `.gitignore` at all.
+ */
+const RENAME_ON_SCAFFOLD: Record<string, string> = {
+  gitignore: '.gitignore',
+  npmrc: '.npmrc',
+};
+
 export async function copyTemplate(
   templatePath: string,
   targetPath: string
@@ -16,6 +28,13 @@ export async function copyTemplate(
         return !shouldSkip;
       },
     });
+
+    for (const [from, to] of Object.entries(RENAME_ON_SCAFFOLD)) {
+      const src = path.join(targetPath, from);
+      if (await fs.pathExists(src)) {
+        await fs.move(src, path.join(targetPath, to), { overwrite: true });
+      }
+    }
   } catch (error) {
     logger.error('Failed to copy template:', error);
     throw error;

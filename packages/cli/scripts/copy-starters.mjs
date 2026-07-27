@@ -10,7 +10,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 
 const CLI_ROOT = path.resolve(import.meta.dirname, '..');
-const STARTERS = path.resolve(CLI_ROOT, '..', 'starters');
+const STARTERS = path.resolve(CLI_ROOT, '..', 'starters', 'dist');
 const DEST = path.join(CLI_ROOT, 'dist', 'templates');
 
 async function dirSize(dir) {
@@ -33,7 +33,10 @@ async function main() {
     try {
       await fs.access(src);
     } catch {
-      console.error(`✖ starter not found: ${src}`);
+      console.error(
+        `✖ starter not found: ${src}\n` +
+          `  Run \`pnpm --filter @bna-ui/starters build\` first.`
+      );
       process.exit(1);
     }
     await fs.cp(src, path.join(DEST, name), { recursive: true });
