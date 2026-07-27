@@ -1,0 +1,205 @@
+---
+title: Accordion
+description: A vertically stacked set of interactive headings that each reveal a section of content.
+---
+
+<ComponentPreview
+  name='accordion-demo'
+  description='A basic accordion with collapsible sections'
+/>
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx bna-ui add accordion
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npx expo install lucide-react-native
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name='accordion' title='components/ui/accordion.tsx' />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
+```
+
+```tsx
+<Accordion type='single' collapsible>
+  <AccordionItem value='item-1'>
+    <AccordionTrigger>Is it accessible?</AccordionTrigger>
+    <AccordionContent>
+      Yes. It adheres to the WAI-ARIA design pattern.
+    </AccordionContent>
+  </AccordionItem>
+</Accordion>
+```
+
+## Examples
+
+<ExamplesGrid>
+
+<div>
+#### Default
+
+<ComponentPreview
+  name='accordion-demo'
+  description='A basic accordion with single selection and collapsible behavior'
+/>
+
+</div>
+
+<div>
+#### Single Selection
+
+<ComponentPreview
+  name='accordion-single'
+  description='An accordion that allows only one item to be open at a time'
+/>
+
+</div>
+
+<div>
+#### Multiple Selection
+
+<ComponentPreview
+  name='accordion-multiple'
+  description='An accordion that allows multiple items to be open simultaneously'
+/>
+
+</div>
+
+<div>
+#### Controlled
+
+<ComponentPreview
+  name='accordion-controlled'
+  description='An accordion with controlled state management'
+/>
+
+</div>
+
+<div>
+#### FAQ Style
+
+<ComponentPreview
+  name='accordion-faq'
+  description='An accordion formatted as a frequently asked questions section'
+/>
+
+</div>
+
+<div>
+#### Non-Collapsible
+
+<ComponentPreview
+  name='accordion-non-collapsible'
+  description='An accordion where at least one item must always remain open'
+/>
+
+</div>
+
+<div>
+#### Custom Styled
+
+<ComponentPreview
+  name='accordion-styled'
+  description='An accordion with custom styling and icons'
+/>
+</div>
+
+</ExamplesGrid>
+
+## API Reference
+
+### Accordion
+
+Contains all the parts of a collapsible accordion.
+
+| Prop            | Type                                  | Default | Description                                                                                                                                                                 |
+| --------------- | ------------------------------------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `type`          | `'single' \| 'multiple'`              | -       | Determines whether one or multiple items can be opened at the same time.                                                                                                    |
+| `value`         | `string \| string[]`                  | -       | The controlled value of the item to expand when `type` is `"single"` or the controlled values of the items to expand when `type` is `"multiple"`.                           |
+| `defaultValue`  | `string \| string[]`                  | -       | The value of the item to expand when initially rendered when `type` is `"single"` or the values of the items to expand when initially rendered when `type` is `"multiple"`. |
+| `onValueChange` | `(value: string \| string[]) => void` | -       | Event handler called when the expanded state of an item changes.                                                                                                            |
+| `collapsible`   | `boolean`                             | `false` | When `type` is `"single"`, allows closing content when clicking trigger for an open item.                                                                                   |
+| `disabled`      | `boolean`                             | `false` | When `true`, prevents the user from interacting with the accordion.                                                                                                         |
+
+### AccordionItem
+
+Contains all the parts of a collapsible item.
+
+| Prop       | Type      | Default | Description                                                    |
+| ---------- | --------- | ------- | -------------------------------------------------------------- |
+| `value`    | `string`  | -       | A unique value for the item.                                   |
+| `disabled` | `boolean` | `false` | When `true`, prevents the user from interacting with the item. |
+
+### AccordionTrigger
+
+Toggles the collapsed state of its associated item.
+
+| Prop       | Type              | Default | Description                            |
+| ---------- | ----------------- | ------- | -------------------------------------- |
+| `children` | `React.ReactNode` | -       | The content to display in the trigger. |
+
+### AccordionContent
+
+Contains the collapsible content for an item.
+
+| Prop       | Type              | Default | Description                                          |
+| ---------- | ----------------- | ------- | ---------------------------------------------------- |
+| `children` | `React.ReactNode` | -       | The content to display when the item is expanded.    |
+| `style`    | `object`          | -       | Additional styles to apply to the content container. |
+
+## Data Attributes
+
+### AccordionItem
+
+- `data-state` - "open" when expanded
+- `data-disabled` - Present when disabled
+
+### AccordionTrigger
+
+- `data-state` - "open" when expanded
+- `data-disabled` - Present when disabled
+
+### AccordionContent
+
+- `data-state` - "open" when expanded
+
+## Accessibility
+
+Adheres to the [Accordion WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/).

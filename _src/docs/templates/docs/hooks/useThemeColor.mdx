@@ -1,0 +1,344 @@
+---
+title: useColor
+description: A hook that returns the appropriate color based on the current theme, with support for prop overrides and fallback to predefined color palettes.
+---
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx bna-ui add useColor
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>
+  This hook requires the useColorScheme hook and Colors theme. Install
+  dependencies first:
+</Step>
+
+```bash
+npx bna-ui add useColorScheme
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name='useColor' title='hooks/useColor.ts' />
+
+<Step>Ensure you have a Colors theme file with light and dark variants.</Step>
+
+<ComponentSource name='colors-theme' title='theme/colors.ts' />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { useColor } from '@/hooks/useColor';
+```
+
+```tsx
+export function ThemedText({ style, ...props }) {
+  const color = useColor('text', { light: '#000', dark: '#fff' });
+
+  return <Text style={[{ color }, style]} {...props} />;
+}
+```
+
+## API Reference
+
+### useColor
+
+Returns the appropriate color based on the current theme, with support for prop overrides.
+
+#### Parameters
+
+| Parameter   | Type                                | Description                                        |
+| ----------- | ----------------------------------- | -------------------------------------------------- |
+| `props`     | `{ light?: string; dark?: string }` | Optional color overrides for light and dark themes |
+| `colorName` | `keyof Colors.light & Colors.dark`  | The color key from your Colors theme object        |
+
+#### Returns
+
+| Type     | Description                                                                                     |
+| -------- | ----------------------------------------------------------------------------------------------- |
+| `string` | The resolved color value - either from props override or from the Colors theme for current mode |
+
+## Color Resolution Priority
+
+The hook resolves colors in the following order:
+
+1. **Prop Override**: If a color is provided in props for the current theme
+2. **Theme Fallback**: The color from the Colors theme object for the current theme
+3. **Light Default**: Falls back to light theme if current theme is null
+
+```tsx
+// Example resolution flow
+const color = useColor(
+  { light: '#custom-light', dark: '#custom-dark' },
+  'primary'
+);
+
+// If current theme is 'dark':
+// 1. Returns '#custom-dark' (prop override)
+// 2. If no dark prop, returns Colors.dark.primary
+// 3. If no Colors.dark, falls back to Colors.light.primary
+```
+
+## Theme Structure
+
+Your Colors theme should follow this structure:
+
+```tsx
+// theme/colors.ts
+export const Colors = {
+  light: {
+    text: '#000000',
+    background: '#ffffff',
+    primary: '#007AFF',
+    secondary: '#8E8E93',
+    border: '#E5E5E7',
+    // ... other colors
+  },
+  dark: {
+    text: '#ffffff',
+    background: '#000000',
+    primary: '#0A84FF',
+    secondary: '#636366',
+    border: '#38383A',
+    // ... other colors
+  },
+};
+```
+
+## Use Cases
+
+This hook is perfect for:
+
+- Creating theme-aware components that respect system preferences
+- Building consistent color systems across your application
+- Allowing component-level color customization while maintaining theme consistency
+- Creating reusable UI components with proper dark mode support
+- Implementing accessible color schemes with proper contrast ratios
+
+## Best Practices
+
+### Component Design Patterns
+
+Create themed components that accept color overrides:
+
+```tsx
+interface ThemedButtonProps {
+  title: string;
+  onPress: () => void;
+  colors?: { light?: string; dark?: string };
+  variant?: 'primary' | 'secondary';
+}
+
+export function ThemedButton({
+  title,
+  onPress,
+  colors,
+  variant = 'primary',
+}: ThemedButtonProps) {
+  const backgroundColor = useColor(
+    colors || {},
+    variant === 'primary' ? 'primary' : 'secondary'
+  );
+
+  const textColor = useColor('background');
+
+  return (
+    <TouchableOpacity
+      style={{
+        backgroundColor,
+        padding: 16,
+        borderRadius: 8,
+        alignItems: 'center',
+      }}
+      onPress={onPress}
+    >
+      <Text style={{ color: textColor, fontWeight: 'bold' }}>{title}</Text>
+    </TouchableOpacity>
+  );
+}
+```
+
+### Consistent Color Naming
+
+Use consistent color names across your theme:
+
+```tsx
+// Good: Semantic color names
+const Colors = {
+  light: {
+    text: '#000000',
+    textSecondary: '#666666',
+    background: '#ffffff',
+    backgroundSecondary: '#f8f8f8',
+    primary: '#007AFF',
+    primaryLight: '#5AC8FA',
+    danger: '#FF3B30',
+    success: '#34C759',
+    warning: '#FF9500',
+  },
+  // ... dark theme
+};
+```
+
+### Performance Optimization
+
+Memoize complex color calculations:
+
+```tsx
+import { useMemo } from 'react';
+
+export function useThemedStyles() {
+  const backgroundColor = useColor('background');
+  const textColor = useColor('text');
+  const borderColor = useColor('border');
+
+  return useMemo(
+    () => ({
+      container: {
+        backgroundColor,
+        borderColor,
+        borderWidth: 1,
+        borderRadius: 8,
+        padding: 16,
+      },
+      text: {
+        color: textColor,
+        fontSize: 16,
+      },
+    }),
+    [backgroundColor, textColor, borderColor]
+  );
+}
+```
+
+### Type Safety
+
+Ensure type safety with proper TypeScript definitions:
+
+```tsx
+// theme/colors.ts
+export const Colors = {
+  light: {
+    text: '#000000',
+    background: '#ffffff',
+    primary: '#007AFF',
+    // ... other colors
+  },
+  dark: {
+    text: '#ffffff',
+    background: '#000000',
+    primary: '#0A84FF',
+    // ... other colors
+  },
+} as const;
+
+// This ensures colorName parameter is properly typed
+export type ColorName = keyof typeof Colors.light & keyof typeof Colors.dark;
+```
+
+## Advanced Usage
+
+### Contextual Color Variations
+
+Create variations of colors based on context:
+
+```tsx
+export function useContextualColor(
+  baseColor: keyof typeof Colors.light & keyof typeof Colors.dark,
+  variant: 'default' | 'muted' | 'emphasis' = 'default'
+) {
+  const theme = useColorScheme() ?? 'light';
+  const baseColorValue = Colors[theme][baseColor];
+
+  // Apply contextual modifications
+  switch (variant) {
+    case 'muted':
+      return theme === 'dark'
+        ? `${baseColorValue}80` // Add opacity
+        : `${baseColorValue}60`;
+    case 'emphasis':
+      return theme === 'dark'
+        ? lighten(baseColorValue, 0.2)
+        : darken(baseColorValue, 0.1);
+    default:
+      return baseColorValue;
+  }
+}
+```
+
+### Animated Color Transitions
+
+Combine with animations for smooth theme transitions:
+
+```tsx
+import { useEffect, useRef } from 'react';
+import { Animated } from 'react-native';
+
+export function useAnimatedThemeColor(
+  props: { light?: string; dark?: string },
+  colorName: keyof typeof Colors.light & keyof typeof Colors.dark
+) {
+  const color = useColor(props, colorName);
+  const animatedColor = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    Animated.timing(animatedColor, {
+      toValue: 1,
+      duration: 300,
+      useNativeDriver: false,
+    }).start();
+  }, [color]);
+
+  return color; // In practice, you'd interpolate the animated value
+}
+```
+
+## Dependencies
+
+- `@/hooks/useColorScheme` - Required for theme detection
+- `@/theme/colors` - Required for color palette definitions
+
+## Accessibility
+
+The hook supports accessibility by:
+
+- Respecting system-level dark mode preferences
+- Enabling proper color contrast ratios through theme definitions
+- Supporting high contrast modes when defined in your color palette
+- Maintaining consistent color relationships across themes
+
+## Related Hooks
+
+- [`useColorScheme`](/docs/hooks/useColorScheme) - Base hook for theme detection
+
+## References
+
+Learn more about implementing color schemes in Expo:
+
+- [Expo Color Schemes Guide](https://docs.expo.dev/guides/color-schemes/)
+- [React Native Appearance API](https://reactnative.dev/docs/appearance)
+- [iOS Human Interface Guidelines - Dark Mode](https://developer.apple.com/design/human-interface-guidelines/dark-mode)
+- [Material Design - Dark Theme](https://material.io/design/color/dark-theme.html)

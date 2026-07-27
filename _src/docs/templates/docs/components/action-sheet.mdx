@@ -1,0 +1,255 @@
+---
+title: Action Sheet
+description: A native-feeling action sheet component that provides a menu of options triggered from the bottom of the screen.
+---
+
+<ComponentPreview
+  name='action-sheet-demo'
+  description='A basic action sheet with multiple options'
+/>
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx bna-ui add action-sheet
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npx expo install react-native-reanimated
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name='action-sheet' title='components/ui/action-sheet.tsx' />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { ActionSheet, useActionSheet } from '@/components/ui/action-sheet';
+```
+
+### Basic Usage with Hook
+
+```tsx
+function MyComponent() {
+  const { show, ActionSheet } = useActionSheet();
+
+  const handleShowActionSheet = () => {
+    show({
+      title: 'Choose an option',
+      options: [
+        {
+          title: 'Edit',
+          onPress: () => console.log('Edit pressed'),
+        },
+        {
+          title: 'Delete',
+          onPress: () => console.log('Delete pressed'),
+          destructive: true,
+        },
+      ],
+    });
+  };
+
+  return (
+    <>
+      <Button onPress={handleShowActionSheet}>Show Action Sheet</Button>
+      {ActionSheet}
+    </>
+  );
+}
+```
+
+### Direct Component Usage
+
+```tsx
+<ActionSheet
+  visible={isVisible}
+  onClose={() => setIsVisible(false)}
+  title='Choose an action'
+  message='Select one of the options below'
+  options={[
+    {
+      title: 'Share',
+      onPress: handleShare,
+      icon: <ShareIcon />,
+    },
+    {
+      title: 'Delete',
+      onPress: handleDelete,
+      destructive: true,
+    },
+  ]}
+/>
+```
+
+## Examples
+
+<ExamplesGrid>
+
+<div>
+#### Default
+
+<ComponentPreview
+  name='action-sheet-demo'
+  description='A basic action sheet with multiple options and different styles'
+/>
+</div>
+
+<div>
+#### With Icons
+
+<ComponentPreview
+  name='action-sheet-icons'
+  description='An action sheet with icons next to each option'
+/>
+</div>
+
+<div>
+#### Destructive Actions
+
+<ComponentPreview
+  name='action-sheet-destructive'
+  description='An action sheet featuring destructive actions with appropriate styling'
+/>
+</div>
+
+<div>
+#### Disabled Options
+
+<ComponentPreview
+  name='action-sheet-disabled'
+  description='An action sheet with some disabled options'
+/>
+</div>
+
+<div>
+#### Custom Styling
+
+<ComponentPreview
+  name='action-sheet-styled'
+  description='An action sheet with custom styling and branding'
+/>
+</div>
+
+<div>
+#### Long Options List
+
+<ComponentPreview
+  name='action-sheet-long'
+  description='An action sheet with many options that scrolls'
+/>
+</div>
+
+<div>
+#### With Hook
+
+<ComponentPreview
+  name='action-sheet-hook'
+  description='Using the useActionSheet hook for easier management'
+/>
+</div>
+
+</ExamplesGrid>
+
+## API Reference
+
+### ActionSheet
+
+The main ActionSheet component.
+
+| Prop                | Type                  | Default    | Description                                        |
+| ------------------- | --------------------- | ---------- | -------------------------------------------------- |
+| `visible`           | `boolean`             | -          | Controls the visibility of the action sheet.       |
+| `onClose`           | `() => void`          | -          | Callback fired when the action sheet should close. |
+| `title`             | `string`              | -          | Optional title displayed at the top.               |
+| `message`           | `string`              | -          | Optional message displayed below the title.        |
+| `options`           | `ActionSheetOption[]` | -          | Array of options to display in the action sheet.   |
+| `cancelButtonTitle` | `string`              | `'Cancel'` | Text for the cancel button.                        |
+| `style`             | `ViewStyle`           | -          | Additional styles for the action sheet container.  |
+
+### ActionSheetOption
+
+Configuration for individual action sheet options.
+
+| Prop          | Type              | Default | Description                                         |
+| ------------- | ----------------- | ------- | --------------------------------------------------- |
+| `title`       | `string`          | -       | The text to display for this option.                |
+| `onPress`     | `() => void`      | -       | Callback fired when this option is pressed.         |
+| `destructive` | `boolean`         | `false` | Whether this option should use destructive styling. |
+| `disabled`    | `boolean`         | `false` | Whether this option should be disabled.             |
+| `icon`        | `React.ReactNode` | -       | Optional icon to display next to the title.         |
+
+### useActionSheet Hook
+
+A convenient hook for managing action sheet state.
+
+#### Returns
+
+| Property      | Type                                                               | Description                          |
+| ------------- | ------------------------------------------------------------------ | ------------------------------------ |
+| `show`        | `(config: Omit<ActionSheetProps, 'visible' \| 'onClose'>) => void` | Function to show the action sheet.   |
+| `hide`        | `() => void`                                                       | Function to hide the action sheet.   |
+| `ActionSheet` | `React.ReactElement`                                               | The ActionSheet component to render. |
+| `isVisible`   | `boolean`                                                          | Current visibility state.            |
+
+## Platform Behavior
+
+### iOS
+
+On iOS, the ActionSheet automatically uses the native `ActionSheetIOS` API, providing the familiar iOS action sheet experience with proper integration into the system UI.
+
+### Android & Other Platforms
+
+On Android and other platforms, a custom implementation is used that mimics the native behavior with smooth animations and proper theming support.
+
+## Accessibility
+
+The ActionSheet component follows accessibility best practices:
+
+- Proper focus management when opened/closed
+- Screen reader announcements for destructive actions
+- Keyboard navigation support where applicable
+- Respects system accessibility settings
+
+## Animation
+
+The ActionSheet includes smooth animations:
+
+- Slide-up animation from bottom of screen
+- Backdrop fade-in/out
+- Spring-based animations for natural feel
+- Respects reduced motion preferences
+
+## Theming
+
+The ActionSheet automatically adapts to your app's theme:
+
+- Uses theme colors for background, text, and borders
+- Supports both light and dark modes
+- Destructive actions use theme's destructive color
+- Disabled states respect theme opacity values

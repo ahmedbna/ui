@@ -1,0 +1,189 @@
+---
+title: ParallaxScrollView
+description: A scroll view with parallax header effect that transforms as the user scrolls.
+---
+
+<ComponentPreview
+  name='parallax-scrollview-demo'
+  description='A basic parallax scroll view with header image'
+/>
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx bna-ui add parallax-scrollview
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npx expo install react-native-reanimated
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource
+  name='parallax-scrollview'
+  title='components/ui/parallax-scrollview.tsx'
+/>
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { ParallaxScrollView } from '@/components/ui/parallax-scrollview';
+import { Image } from 'expo-image';
+```
+
+```tsx
+<ParallaxScrollView
+  headerHeight={300}
+  headerImage={
+    <Image
+      source={{ uri: 'https://example.com/header-image.jpg' }}
+      style={{ width: '100%', height: '100%' }}
+      contentFit='cover'
+    />
+  }
+>
+  <Text>Your scrollable content goes here...</Text>
+</ParallaxScrollView>
+```
+
+## Examples
+
+<ExamplesGrid>
+
+<div>
+#### Default
+
+<ComponentPreview
+  name='parallax-scrollview-demo'
+  description='A basic parallax scroll view with header image'
+/>
+
+</div>
+
+<div>
+#### Custom Header Height
+
+<ComponentPreview
+  name='parallax-scrollview-custom-height'
+  description='Parallax scroll view with custom header height'
+/>
+
+</div>
+
+<div>
+#### Gradient Header
+
+<ComponentPreview
+  name='parallax-scrollview-gradient'
+  description='Parallax scroll view with gradient overlay header'
+/>
+
+</div>
+
+<div>
+#### Profile Screen
+
+<ComponentPreview
+  name='parallax-scrollview-profile'
+  description='Complete profile screen using parallax scroll view'
+/>
+
+</div>
+
+<div>
+#### Article View
+
+<ComponentPreview
+  name='parallax-scrollview-article'
+  description='Article layout with parallax hero image'
+/>
+
+</div>
+
+<div>
+#### Product Gallery
+
+<ComponentPreview
+  name='parallax-scrollview-product'
+  description='Product detail screen with parallax image gallery'
+/>
+</div>
+
+</ExamplesGrid>
+
+## API Reference
+
+### ParallaxScrollView
+
+The main component that provides parallax scrolling functionality.
+
+| Prop           | Type           | Default | Description                                           |
+| -------------- | -------------- | ------- | ----------------------------------------------------- |
+| `children`     | `ReactNode`    | -       | The scrollable content below the header.              |
+| `headerHeight` | `number`       | `250`   | The height of the parallax header in pixels.          |
+| `headerImage`  | `ReactElement` | -       | The header content (image, video, or custom element). |
+
+### Animation Behavior
+
+The ParallaxScrollView component provides smooth parallax animations:
+
+- **Transform**: Header moves at different speeds during scroll
+- **Scale**: Header scales up when pulled down (over-scroll)
+- **Performance**: Uses native driver for 60fps animations
+- **Responsive**: Adapts to different screen sizes and orientations
+
+### Scroll Effects
+
+- **Pull Down**: Header scales up to 2x when over-scrolling
+- **Scroll Up**: Header translates upward at 0.5x scroll speed
+- **Scale Down**: Header maintains aspect ratio during transformations
+
+## Accessibility
+
+The ParallaxScrollView component follows accessibility best practices:
+
+- Maintains scroll accessibility for screen readers
+- Preserves focus management during animations
+- Supports reduced motion preferences
+- Compatible with VoiceOver and TalkBack
+
+## Performance Tips
+
+- Use optimized images with appropriate resolutions
+- Consider lazy loading for heavy content
+- Use `scrollEventThrottle={16}` for smooth animations
+- Implement proper image caching strategies
+
+## Common Use Cases
+
+- Profile screens with hero images
+- Article headers with featured images
+- Product detail pages
+- Landing pages with hero sections
+- Photo gallery headers
+- Settings pages with branded headers

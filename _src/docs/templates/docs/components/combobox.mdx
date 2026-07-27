@@ -1,0 +1,259 @@
+---
+title: Combobox
+description: A searchable dropdown component that combines an input with a list of options.
+---
+
+<ComponentPreview
+  name='combobox-demo'
+  description='A basic combobox with search functionality'
+/>
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx bna-ui add combobox
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npx expo install lucide-react-native
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name='combobox' title='components/ui/combobox.tsx' />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+When managing state for the combobox, you will work with an `OptionType` object (`{ value: string; label: string; }`) or an array of these objects for multiple selections.
+
+```tsx
+import {
+  Combobox,
+  ComboboxContent,
+  ComboboxEmpty,
+  ComboboxGroup,
+  ComboboxInput,
+  ComboboxItem,
+  ComboboxList,
+  ComboboxTrigger,
+  ComboboxValue,
+  OptionType, // Import the type
+} from '@/components/ui/combobox';
+import { useState } from 'react';
+
+// ...
+
+const [value, setValue] = useState<OptionType | null>(null);
+
+// ...
+
+<Combobox value={value} onValueChange={setValue}>
+  <ComboboxTrigger>
+    <ComboboxValue placeholder='Select framework...' />
+  </ComboboxTrigger>
+  <ComboboxContent>
+    <ComboboxInput placeholder='Search frameworks...' />
+    <ComboboxList>
+      <ComboboxEmpty>No framework found.</ComboboxEmpty>
+      <ComboboxItem value='react'>React</ComboboxItem>
+      <ComboboxItem value='vue'>Vue</ComboboxItem>
+      <ComboboxItem value='angular'>Angular</ComboboxItem>
+    </ComboboxList>
+  </ComboboxContent>
+</Combobox>;
+```
+
+## Examples
+
+<ExamplesGrid>
+
+<div>
+#### Default
+
+<ComponentPreview
+  name='combobox-demo'
+  description='A basic combobox with search functionality'
+/>
+
+</div>
+
+<div>
+#### With Groups
+
+<ComponentPreview
+  name='combobox-groups'
+  description='Combobox with grouped options'
+/>
+
+</div>
+
+<div>
+#### Multiple Selection
+
+<ComponentPreview
+  name='combobox-multiple'
+  description='Combobox that allows selecting multiple values'
+/>
+
+</div>
+
+<div>
+#### Disabled
+
+<ComponentPreview
+  name='combobox-disabled'
+  description='Disabled combobox component'
+/>
+
+</div>
+
+<div>
+#### With Custom Search
+
+<ComponentPreview
+  name='combobox-search'
+  description='Combobox with custom search behavior'
+/>
+
+</div>
+
+<div>
+#### Form Integration
+
+<ComponentPreview
+  name='combobox-form'
+  description='Combobox integrated with form validation'
+/>
+
+</div>
+
+<div>
+#### Large Dataset
+
+<ComponentPreview
+  name='combobox-large'
+  description='Combobox handling large datasets efficiently'
+/>
+</div>
+
+</ExamplesGrid>
+
+## API Reference
+
+The Combobox component operates on an `OptionType` object for its state, which has the shape `{ value: string; label: string; }`. The `value` prop of `ComboboxItem` should still be a unique `string`.
+
+### Combobox
+
+The root component that manages the state and context for all child components.
+
+| Prop             | Type                                   | Default | Description                                               |
+| ---------------- | -------------------------------------- | ------- | --------------------------------------------------------- |
+| `children`       | `ReactNode`                            | -       | The combobox components.                                  |
+| `value`          | `OptionType \| null`                   | `null`  | The selected option object (for single selection).        |
+| `onValueChange`  | `(option: OptionType \| null) => void` | -       | Callback when a single option object changes.             |
+| `values`         | `OptionType[]`                         | `[]`    | An array of selected option objects (multiple selection). |
+| `onValuesChange` | `(options: OptionType[]) => void`      | -       | Callback when the array of selected options changes.      |
+| `disabled`       | `boolean`                              | `false` | If true, the combobox is disabled.                        |
+| `multiple`       | `boolean`                              | `false` | If true, allows multiple selections.                      |
+
+### ComboboxTrigger
+
+The button that triggers the combobox dropdown.
+
+| Prop       | Type        | Default | Description                                  |
+| ---------- | ----------- | ------- | -------------------------------------------- |
+| `children` | `ReactNode` | -       | The trigger content (usually ComboboxValue). |
+| `style`    | `ViewStyle` | -       | Additional styles for the trigger.           |
+| `error`    | `boolean`   | `false` | If true, shows error styling on the border.  |
+
+### ComboboxValue
+
+Displays the selected value(s) or placeholder text.
+
+| Prop          | Type        | Default       | Description                            |
+| ------------- | ----------- | ------------- | -------------------------------------- |
+| `placeholder` | `string`    | `"Select..."` | Placeholder text when no value is set. |
+| `style`       | `TextStyle` | -             | Additional styles for the text.        |
+
+### ComboboxContent
+
+The modal container for the dropdown content.
+
+| Prop        | Type        | Default | Description                     |
+| ----------- | ----------- | ------- | ------------------------------- |
+| `children`  | `ReactNode` | -       | The dropdown content.           |
+| `maxHeight` | `number`    | `400`   | Maximum height of the dropdown. |
+
+### ComboboxInput
+
+The search input field within the dropdown.
+
+| Prop          | Type        | Default       | Description                          |
+| ------------- | ----------- | ------------- | ------------------------------------ |
+| `placeholder` | `string`    | `"Search..."` | Placeholder text for the input.      |
+| `style`       | `ViewStyle` | -             | Additional styles for the container. |
+| `autoFocus`   | `boolean`   | `true`        | If true, auto-focuses the input.     |
+
+### ComboboxList
+
+A scrollable container for the list of options with filtering capability.
+
+| Prop       | Type        | Default | Description                     |
+| ---------- | ----------- | ------- | ------------------------------- |
+| `children` | `ReactNode` | -       | The list items and groups.      |
+| `style`    | `ViewStyle` | -       | Additional styles for the list. |
+
+### ComboboxEmpty
+
+Displays when no items match the search query.
+
+| Prop       | Type        | Default | Description                          |
+| ---------- | ----------- | ------- | ------------------------------------ |
+| `children` | `ReactNode` | -       | The empty state content.             |
+| `style`    | `ViewStyle` | -       | Additional styles for the container. |
+
+### ComboboxGroup
+
+Groups related options with an optional heading.
+
+| Prop       | Type        | Default | Description                     |
+| ---------- | ----------- | ------- | ------------------------------- |
+| `children` | `ReactNode` | -       | The group items.                |
+| `heading`  | `string`    | -       | Optional heading for the group. |
+
+### ComboboxItem
+
+An individual selectable option within the combobox.
+
+| Prop          | Type                          | Default | Description                                                       |
+| ------------- | ----------------------------- | ------- | ----------------------------------------------------------------- |
+| `children`    | `ReactNode`                   | -       | The item content. This is used as the `label` for the option.     |
+| `value`       | `string`                      | -       | The unique value of the item.                                     |
+| `onSelect`    | `(value: OptionType) => void` | -       | Callback when item is selected, receiving the full option object. |
+| `disabled`    | `boolean`                     | `false` | If true, the item cannot be selected.                             |
+| `searchValue` | `string`                      | -       | A custom string to use for search filtering instead of the label. |
+| `style`       | `ViewStyle`                   | -       | Additional styles for the item.                                   |

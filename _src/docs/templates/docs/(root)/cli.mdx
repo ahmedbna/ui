@@ -1,0 +1,159 @@
+---
+title: CLI
+description: Use the BNA UI CLI to add components to your React Native and Expo projects.
+---
+
+## init
+
+Use the `init` command to initialize a new BNA project with configuration and dependencies.
+
+The `init` command creates a new project, installs dependencies, adds utils, hooks, themes and sets up the component structure for your mobile project.
+
+```bash
+npx bna-ui init [project-name]
+```
+
+### Options
+
+```bash
+Usage: bna-ui init [options] [project-name]
+
+initialize a new BNA project
+
+Arguments:
+  project-name                   name of the project (optional)
+
+Options:
+  --npm                          use npm as package manager
+  --yarn                         use yarn as package manager
+  --pnpm                         use pnpm as package manager
+  --bun                          use bun as package manager
+  --skip-install                 skip package installation
+  -h, --help                     display help for command
+```
+
+## convex
+
+Use the `convex` command to initialize a new BNA project with Convex backend integration.
+
+The `convex` command creates a new project with Convex configured, installs dependencies, and sets up the backend structure.
+
+```bash
+npx bna-ui convex [project-name]
+```
+
+### Options
+
+```bash
+Usage: bna-ui convex [options] [project-name]
+
+initialize a new BNA project with Convex backend
+
+Arguments:
+  project-name                   name of the project (optional)
+
+Options:
+  --npm                          use npm as package manager
+  --yarn                         use yarn as package manager
+  --pnpm                         use pnpm as package manager
+  --bun                          use bun as package manager
+  --skip-install                 skip package installation
+  --skip-convex                  skip Convex initialization
+  -h, --help                     display help for command
+```
+
+## add
+
+Use the `add` command to add components and dependencies to your React Native or Expo project.
+
+```bash
+npx bna-ui add [component]
+```
+
+### Options
+
+```bash
+Usage: bna-ui add [options] [components...]
+
+add components to your project
+
+Arguments:
+  components                     component names to add (optional, multiple)
+
+Options:
+  --overwrite                    overwrite existing files
+  --dry-run                      show what would be installed without installing
+  -y, --yes                      skip confirmation prompts
+  --npm                          use npm as package manager
+  --yarn                         use yarn as package manager
+  --pnpm                         use pnpm as package manager
+  --bun                          use bun as package manager
+  -h, --help                     display help for command
+```
+
+## Examples
+
+### Initialize a new project
+
+```bash
+npx bna-ui init my-app
+```
+
+### Initialize with Convex backend
+
+```bash
+npx bna-ui convex my-convex-app
+```
+
+### Initialize using specific package manager
+
+```bash
+npx bna-ui init my-app --pnpm
+```
+
+### Skip package installation
+
+```bash
+npx bna-ui init my-app --skip-install
+```
+
+### Add a button component
+
+```bash
+npx bna-ui add button
+```
+
+### Add multiple components
+
+```bash
+npx bna-ui add button input card
+```
+
+### Add component with overwrite
+
+```bash
+npx bna-ui add button --overwrite
+```
+
+### Preview what would be installed
+
+```bash
+npx bna-ui add button --dry-run
+```
+
+### Add components without confirmation
+
+```bash
+npx bna-ui add button input --yes
+```
+
+## Package Managers
+
+The CLI supports multiple package managers. You can specify which one to use with the following flags:
+
+- `--npm`: Use npm (default)
+- `--yarn`: Use yarn
+- `--pnpm`: Use pnpm
+- `--bun`: Use bun
+
+If no package manager flag is specified, the CLI will use the default package manager for your system.

@@ -1,0 +1,204 @@
+---
+title: Icon
+description: A themed icon component with support for Lucide React Native icons.
+---
+
+<ComponentPreview
+  name='icon-demo'
+  description='A basic icon with default styling'
+/>
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx bna-ui add icon
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npx expo install lucide-react-native
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name='icon' title='components/ui/icon.tsx' />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { Icon } from '@/components/ui/icon';
+import { Heart, Star, Home } from 'lucide-react-native';
+```
+
+```tsx
+<Icon name={Heart} size={24} />
+<Icon name={Star} color="#FFD700" />
+<Icon name={Home} lightColor="#000" darkColor="#fff" />
+```
+
+## Examples
+
+<ExamplesGrid>
+
+<div>
+#### Default
+
+<ComponentPreview
+  name='icon-demo'
+  description='A basic icon with default styling'
+/>
+
+</div>
+
+<div>
+#### Sizes
+
+<ComponentPreview name='icon-sizes' description='Icons in different sizes' />
+
+</div>
+
+<div>
+#### Colors
+
+<ComponentPreview
+  name='icon-colors'
+  description='Icons with custom colors and themed colors'
+/>
+
+</div>
+
+<div>
+#### Stroke Weights
+
+<ComponentPreview
+  name='icon-stroke'
+  description='Icons with different stroke weights'
+/>
+
+</div>
+
+<div>
+#### Interactive Icons
+
+<ComponentPreview
+  name='icon-interactive'
+  description='Icons with press and hover interactions'
+/>
+
+</div>
+
+<div>
+#### Icon Grid
+
+<ComponentPreview
+  name='icon-grid'
+  description='A grid of commonly used icons'
+/>
+
+</div>
+
+<div>
+#### Themed Icons
+
+<ComponentPreview
+  name='icon-themed'
+  description='Icons that adapt to light and dark themes'
+/>
+</div>
+
+</ExamplesGrid>
+
+## API Reference
+
+### Icon
+
+The main icon component that renders Lucide React Native icons with theming support.
+
+| Prop          | Type                               | Default | Description                                           |
+| ------------- | ---------------------------------- | ------- | ----------------------------------------------------- |
+| `name`        | `React.ComponentType<LucideProps>` | -       | The Lucide icon component to render.                  |
+| `size`        | `number`                           | `24`    | The size of the icon in pixels.                       |
+| `color`       | `string`                           | -       | Custom color for the icon.                            |
+| `lightColor`  | `string`                           | -       | Color to use in light theme.                          |
+| `darkColor`   | `string`                           | -       | Color to use in dark theme.                           |
+| `strokeWidth` | `number`                           | `1.8`   | The stroke width of the icon.                         |
+| `...rest`     | `LucideProps`                      | -       | Additional props passed to the Lucide icon component. |
+
+### LucideProps
+
+The Icon component accepts all props from Lucide React Native icons:
+
+| Prop             | Type     | Default | Description                      |
+| ---------------- | -------- | ------- | -------------------------------- |
+| `strokeLinecap`  | `string` | `round` | The line cap style for strokes.  |
+| `strokeLinejoin` | `string` | -       | The line join style for strokes. |
+| `fill`           | `string` | -       | Fill color for the icon.         |
+| `fillOpacity`    | `number` | -       | Opacity of the fill color.       |
+| `strokeOpacity`  | `number` | -       | Opacity of the stroke color.     |
+
+## Accessibility
+
+The Icon component is built with accessibility in mind:
+
+- Icons are decorative by default and hidden from screen readers
+- When icons convey important information, wrap them with accessible text
+- Proper color contrast for themed icons
+- Supports dynamic text sizing through size prop
+
+## Common Icon Patterns
+
+### With Labels
+
+```tsx
+import { Text } from '@/components/ui/text';
+import { View } from '@/components/ui/view';
+
+<View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+  <Icon name={Heart} size={16} />
+  <Text>Favorites</Text>
+</View>;
+```
+
+### As Buttons
+
+```tsx
+import { Pressable } from 'react-native';
+
+<Pressable onPress={handlePress}>
+  <Icon name={Settings} size={24} />
+</Pressable>;
+```
+
+### Navigation Icons
+
+```tsx
+<View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+  <Icon name={Home} />
+  <Icon name={Search} />
+  <Icon name={Bell} />
+  <Icon name={User} />
+</View>
+```

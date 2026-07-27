@@ -1,0 +1,12 @@
+{
+  "root": true,
+  "pages": [
+    "(root)",
+    "changelog",
+    "convex",
+    "components",
+    "charts",
+    "hooks",
+    "theme"
+  ]
+}

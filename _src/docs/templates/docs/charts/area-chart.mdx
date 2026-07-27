@@ -1,0 +1,198 @@
+---
+title: Area Chart
+description: A customizable area chart component with gradient fills and smooth animations.
+---
+
+<ComponentPreview
+  name='area-chart-demo'
+  description='An area chart with gradient fill and smooth animations'
+/>
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx bna-ui add area-chart
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the required dependencies.</Step>
+
+```bash
+npm install react-native-svg react-native-reanimated react-native-gesture-handler
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name='area-chart' title='components/charts/area-chart.tsx' />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { AreaChart } from '@/components/charts/area-chart';
+```
+
+```tsx
+const data = [
+  { x: 'Jan', y: 100, label: 'January' },
+  { x: 'Feb', y: 120, label: 'February' },
+  { x: 'Mar', y: 90, label: 'March' },
+  { x: 'Apr', y: 140, label: 'April' },
+];
+
+<AreaChart
+  data={data}
+  config={{
+    height: 200,
+    showGrid: true,
+    showLabels: true,
+    animated: true,
+  }}
+/>;
+```
+
+## Examples
+
+<ExamplesGrid>
+
+<div>
+#### Basic Area Chart
+
+<ComponentPreview
+  name='area-chart-demo'
+  description='An area chart with gradient fill and smooth animations'
+/>
+
+</div>
+
+<div>
+#### Interactive Area Chart
+
+<ComponentPreview
+  name='area-chart-interactive'
+  description='An interactive area chart with touch gestures'
+/>
+
+</div>
+
+<div>
+#### Styled Area Chart
+
+<ComponentPreview
+  name='area-chart-styled'
+  description='A customized area chart with custom styling'
+/>
+
+</div>
+
+<div>
+#### Large Area Chart
+
+<ComponentPreview
+  name='area-chart-large'
+  description='An area chart with large data'
+/>
+
+</div>
+
+</ExamplesGrid>
+
+## API Reference
+
+### AreaChart
+
+A customizable area chart component with gradient fills and smooth animations. Built on top of the LineChart component with gradient enabled by default.
+
+| Prop     | Type               | Default | Description                                   |
+| -------- | ------------------ | ------- | --------------------------------------------- |
+| `data`   | `ChartDataPoint[]` | -       | Array of data points to display on the chart. |
+| `config` | `ChartConfig`      | `{}`    | Configuration object for chart appearance.    |
+| `style`  | `ViewStyle`        | -       | Additional styles to apply to the chart.      |
+
+### ChartDataPoint
+
+| Property | Type               | Default | Description                          |
+| -------- | ------------------ | ------- | ------------------------------------ |
+| `x`      | `string \| number` | -       | The x-axis value for the data point. |
+| `y`      | `number`           | -       | The y-axis value for the data point. |
+| `label`  | `string`           | -       | Optional label for the data point.   |
+
+### ChartConfig
+
+| Property      | Type      | Default | Description                                                |
+| ------------- | --------- | ------- | ---------------------------------------------------------- |
+| `width`       | `number`  | -       | Fixed width of the chart (auto-sizes if omitted).          |
+| `height`      | `number`  | `200`   | Height of the chart.                                       |
+| `padding`     | `number`  | `20`    | Padding around the chart.                                  |
+| `showGrid`    | `boolean` | `true`  | Whether to show grid lines.                                |
+| `showLabels`  | `boolean` | `true`  | Whether to show x-axis labels.                             |
+| `animated`    | `boolean` | `true`  | Whether to animate the chart on load.                      |
+| `duration`    | `number`  | `1000`  | Animation duration in milliseconds.                        |
+| `gradient`    | `boolean` | `true`  | Whether to show gradient fill (always true for AreaChart). |
+| `interactive` | `boolean` | `false` | Whether to enable touch interactions.                      |
+| `showYLabels` | `boolean` | `true`  | Whether to show y-axis labels.                             |
+| `yLabelCount` | `number`  | `5`     | Number of y-axis labels to display.                        |
+| `yAxisWidth`  | `number`  | `20`    | Width allocated for y-axis labels.                         |
+
+## Features
+
+- **Gradient Fill**: Beautiful gradient fill under the area by default
+- **Smooth Animations**: Built-in animations using React Native Reanimated
+- **Interactive Touch**: Optional touch gestures for data exploration
+- **Responsive Design**: Automatically adapts to container width
+- **Customizable Grid**: Optional grid lines for better readability
+- **Curved Lines**: Smooth bezier curves between data points
+- **Smart Formatting**: Automatic number formatting (K, M suffixes)
+- **Theme Integration**: Uses theme colors for consistent styling
+
+## Differences from LineChart
+
+The AreaChart component is essentially a LineChart with the `gradient` property automatically set to `true`. This creates a filled area under the line with a gradient effect that enhances data visualization for cumulative or volume-based data.
+
+## Use Cases
+
+Area charts are particularly effective for:
+
+- **Time Series Data**: Showing trends over time with emphasis on magnitude
+- **Cumulative Values**: Displaying running totals or accumulated values
+- **Volume Metrics**: Representing quantities like traffic, sales, or usage
+- **Comparative Analysis**: Highlighting the "area under the curve"
+
+## Accessibility
+
+The AreaChart component inherits all accessibility features from LineChart:
+
+- Semantic SVG structure for screen readers
+- Proper contrast ratios for visual elements
+- Touch targets meet minimum size requirements
+- Supports dynamic text sizing
+- Keyboard navigation support (when interactive)
+
+## Performance
+
+The component is optimized for performance:
+
+- Uses React Native Reanimated for smooth 60fps animations
+- Efficient SVG rendering with minimal re-renders
+- Gesture handling optimized for touch interactions
+- Automatic cleanup of animation values

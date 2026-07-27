@@ -1,0 +1,550 @@
+---
+title: ThemeProvider
+description: A context provider that manages theme state and provides consistent theming across your React Native app with React Navigation integration.
+---
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx bna-ui add theme-provider
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npx expo install @react-navigation/native react-native-reanimated
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name='theme-provider' title='theme/theme-provider.tsx' />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+### Basic Setup
+
+Wrap your app with the `ThemeProvider` at the root level, typically in your `App.tsx` or `_layout.tsx` file.
+
+```tsx
+import { ThemeProvider } from '@/theme/theme-provider';
+import { NavigationContainer } from '@react-navigation/native';
+
+export default function App() {
+  return (
+    <ThemeProvider>
+      <NavigationContainer>
+        {/* Your navigation components */}
+      </NavigationContainer>
+    </ThemeProvider>
+  );
+}
+```
+
+### With Expo Router
+
+```tsx
+import { ThemeProvider } from '@/theme/theme-provider';
+import { Stack } from 'expo-router';
+
+export default function RootLayout() {
+  return (
+    <ThemeProvider>
+      <Stack>
+        <Stack.Screen name='index' />
+        <Stack.Screen name='about' />
+      </Stack>
+    </ThemeProvider>
+  );
+}
+```
+
+## API Reference
+
+### ThemeProvider
+
+The main provider component that manages theme state and React Navigation theming.
+
+#### Props
+
+| Prop       | Type              | Required | Description                                    |
+| ---------- | ----------------- | -------- | ---------------------------------------------- |
+| `children` | `React.ReactNode` | Yes      | Child components to be wrapped by the provider |
+
+#### Returns
+
+Provides themed React Navigation context to all child components.
+
+## How It Works
+
+The `ThemeProvider` automatically:
+
+1. **Detects System Theme**: Uses the `useColorScheme` hook to detect the current system color scheme (light/dark)
+2. **Creates Custom Themes**: Builds React Navigation themes using your custom color system
+3. **Provides Theme Context**: Makes the theme available to all React Navigation components
+4. **Handles Theme Changes**: Automatically updates when the system theme changes
+
+### Theme Mapping
+
+The provider maps your custom colors to React Navigation's theme structure:
+
+#### Light Theme Mapping
+
+```tsx
+const customLightTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: Colors.light.primary, // #18181b
+    background: Colors.light.background, // #FFFFFF
+    card: Colors.light.card, // #F2F2F7
+    text: Colors.light.text, // #000000
+    border: Colors.light.border, // #C6C6C8
+    notification: Colors.light.red, // #FF3B30
+  },
+};
+```
+
+#### Dark Theme Mapping
+
+```tsx
+const customDarkTheme = {
+  ...DarkTheme,
+  colors: {
+    ...DarkTheme.colors,
+    primary: Colors.dark.primary, // #e4e4e7
+    background: Colors.dark.background, // #000000
+    card: Colors.dark.card, // #1C1C1E
+    text: Colors.dark.text, // #FFFFFF
+    border: Colors.dark.border, // #38383A
+    notification: Colors.dark.red, // #FF453A
+  },
+};
+```
+
+## Usage Examples
+
+### Basic App Structure
+
+```tsx
+import { ThemeProvider } from '@/theme/theme-provider';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { HomeScreen } from '@/screens/HomeScreen';
+import { SettingsScreen } from '@/screens/SettingsScreen';
+
+const Stack = createStackNavigator();
+
+export default function App() {
+  return (
+    <ThemeProvider>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name='Home' component={HomeScreen} />
+          <Stack.Screen name='Settings' component={SettingsScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </ThemeProvider>
+  );
+}
+```
+
+### With Bottom Tab Navigation
+
+```tsx
+import { ThemeProvider } from '@/theme/theme-provider';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { HomeScreen } from '@/screens/HomeScreen';
+import { ProfileScreen } from '@/screens/ProfileScreen';
+
+const Tab = createBottomTabNavigator();
+
+export default function App() {
+  return (
+    <ThemeProvider>
+      <NavigationContainer>
+        <Tab.Navigator>
+          <Tab.Screen name='Home' component={HomeScreen} />
+          <Tab.Screen name='Profile' component={ProfileScreen} />
+        </Tab.Navigator>
+      </NavigationContainer>
+    </ThemeProvider>
+  );
+}
+```
+
+### Accessing Theme in Components
+
+```tsx
+import { useTheme } from '@react-navigation/native';
+
+export function ThemedComponent() {
+  const { colors } = useTheme();
+
+  return (
+    <View style={{ backgroundColor: colors.background }}>
+      <Text style={{ color: colors.text }}>
+        This text automatically adapts to the theme
+      </Text>
+    </View>
+  );
+}
+```
+
+### Custom Screen with Theme
+
+```tsx
+import { useTheme } from '@react-navigation/native';
+import { Colors } from '@/theme/colors';
+import { useColorScheme } from '@/hooks/useColorScheme';
+
+export function CustomScreen() {
+  const navigationTheme = useTheme();
+  const colorScheme = useColorScheme();
+  const colors = Colors[colorScheme ?? 'light'];
+
+  return (
+    <View
+      style={{
+        flex: 1,
+        backgroundColor: navigationTheme.colors.background,
+      }}
+    >
+      <View
+        style={{
+          backgroundColor: colors.card,
+          padding: 16,
+          margin: 16,
+          borderRadius: 12,
+        }}
+      >
+        <Text style={{ color: colors.text }}>
+          Using custom colors alongside React Navigation theme
+        </Text>
+      </View>
+    </View>
+  );
+}
+```
+
+## Advanced Usage
+
+### Custom Theme Extension
+
+You can extend the theme provider to include additional theme properties:
+
+```tsx
+import { ThemeProvider as BaseThemeProvider } from '@/theme/theme-provider';
+import { createContext, useContext } from 'react';
+
+const CustomThemeContext = createContext({});
+
+export function ExtendedThemeProvider({ children }) {
+  const customTheme = {
+    shadows: {
+      small: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+      },
+    },
+    animations: {
+      duration: 300,
+    },
+  };
+
+  return (
+    <BaseThemeProvider>
+      <CustomThemeContext.Provider value={customTheme}>
+        {children}
+      </CustomThemeContext.Provider>
+    </BaseThemeProvider>
+  );
+}
+
+export const useCustomTheme = () => useContext(CustomThemeContext);
+```
+
+### Theme-Aware StatusBar
+
+```tsx
+import { ThemeProvider } from '@/theme/theme-provider';
+import { useColorScheme } from '@/hooks/useColorScheme';
+import { StatusBar } from 'expo-status-bar';
+
+export default function App() {
+  const colorScheme = useColorScheme();
+
+  return (
+    <ThemeProvider>
+      <StatusBar style={colorScheme === 'dark' ? 'light' : 'dark'} />
+      {/* Your app content */}
+    </ThemeProvider>
+  );
+}
+```
+
+## Best Practices
+
+### Provider Hierarchy
+
+Place the `ThemeProvider` at the highest level possible to ensure all components have access to the theme.
+
+```tsx
+// ✅ Good - at the root level
+export default function App() {
+  return (
+    <ThemeProvider>
+      <SafeAreaProvider>
+        <NavigationContainer>{/* App content */}</NavigationContainer>
+      </SafeAreaProvider>
+    </ThemeProvider>
+  );
+}
+
+// ❌ Bad - nested too deep
+export default function App() {
+  return (
+    <NavigationContainer>
+      <SomeOtherProvider>
+        <ThemeProvider>{/* Limited theme access */}</ThemeProvider>
+      </SomeOtherProvider>
+    </NavigationContainer>
+  );
+}
+```
+
+### Consistent Theme Usage
+
+Use React Navigation's `useTheme` hook for navigation-related styling and your custom Colors for other components.
+
+```tsx
+import { useTheme } from '@react-navigation/native';
+import { Colors } from '@/theme/colors';
+import { useColorScheme } from '@/hooks/useColorScheme';
+
+export function ConsistentComponent() {
+  const navigationTheme = useTheme();
+  const colorScheme = useColorScheme();
+  const customColors = Colors[colorScheme ?? 'light'];
+
+  return (
+    <View style={{ backgroundColor: navigationTheme.colors.background }}>
+      {/* Navigation-related elements use navigation theme */}
+      <Text style={{ color: navigationTheme.colors.text }}>
+        Navigation Text
+      </Text>
+
+      {/* Custom UI elements use custom colors */}
+      <View style={{ backgroundColor: customColors.accent }}>
+        <Text style={{ color: customColors.accentForeground }}>
+          Custom Accent Element
+        </Text>
+      </View>
+    </View>
+  );
+}
+```
+
+### Performance Optimization
+
+The theme provider automatically handles theme changes efficiently. Avoid creating theme objects inside render functions.
+
+```tsx
+// ✅ Good - theme objects created once
+const customLightTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: Colors.light.primary,
+    // ... other colors
+  },
+};
+
+// ❌ Bad - recreating theme objects on each render
+export function BadThemeProvider({ children }) {
+  const colorScheme = useColorScheme();
+
+  const theme = {
+    ...DefaultTheme,
+    colors: {
+      ...DefaultTheme.colors,
+      primary: Colors[colorScheme].primary, // Recreated every render
+    },
+  };
+
+  return <RNThemeProvider value={theme}>{children}</RNThemeProvider>;
+}
+```
+
+## Integration with Other Libraries
+
+### React Native Elements
+
+```tsx
+import { ThemeProvider } from '@/theme/theme-provider';
+import { ThemeProvider as ElementsThemeProvider } from 'react-native-elements';
+import { useColorScheme } from '@/hooks/useColorScheme';
+import { Colors } from '@/theme/colors';
+
+export function CombinedThemeProvider({ children }) {
+  const colorScheme = useColorScheme();
+  const colors = Colors[colorScheme ?? 'light'];
+
+  const elementsTheme = {
+    colors: {
+      primary: colors.primary,
+      secondary: colors.secondary,
+      success: colors.green,
+      warning: colors.orange,
+      error: colors.red,
+    },
+  };
+
+  return (
+    <ThemeProvider>
+      <ElementsThemeProvider theme={elementsTheme}>
+        {children}
+      </ElementsThemeProvider>
+    </ThemeProvider>
+  );
+}
+```
+
+### Styled Components
+
+```tsx
+import styled, {
+  ThemeProvider as StyledThemeProvider,
+} from 'styled-components/native';
+import { ThemeProvider } from '@/theme/theme-provider';
+import { useColorScheme } from '@/hooks/useColorScheme';
+import { Colors } from '@/theme/colors';
+
+export function StyledThemeProvider({ children }) {
+  const colorScheme = useColorScheme();
+  const colors = Colors[colorScheme ?? 'light'];
+
+  return (
+    <ThemeProvider>
+      <StyledThemeProvider theme={{ colors }}>{children}</StyledThemeProvider>
+    </ThemeProvider>
+  );
+}
+
+// Usage in styled components
+const StyledView = styled.View`
+  background-color: ${(props) => props.theme.colors.background};
+  padding: 16px;
+`;
+```
+
+## Troubleshooting
+
+### Theme Not Updating
+
+If your theme isn't updating when the system theme changes:
+
+1. Ensure the `ThemeProvider` is at the root level
+2. Check that you're using the `useColorScheme` hook correctly
+3. Verify React Navigation is properly wrapped
+
+```tsx
+// Make sure this structure is correct
+<ThemeProvider>
+  <NavigationContainer>{/* Your screens */}</NavigationContainer>
+</ThemeProvider>
+```
+
+### Colors Not Matching
+
+If colors don't match between navigation and custom components:
+
+1. Check that you're importing the correct Colors object
+2. Ensure the color scheme detection is consistent
+3. Verify the color mapping in the theme provider
+
+```tsx
+// Check these imports are correct
+import { Colors } from '@/theme/colors';
+import { useColorScheme } from '@/hooks/useColorScheme';
+```
+
+### Performance Issues
+
+If you experience performance issues with theme switching:
+
+1. Avoid creating theme objects in render functions
+2. Use React.memo for components that don't need frequent re-renders
+3. Consider using a theme cache if you have complex theme calculations
+
+```tsx
+const ThemedComponent = React.memo(({ data }) => {
+  const { colors } = useTheme();
+
+  return (
+    <View style={{ backgroundColor: colors.background }}>
+      {/* Component content */}
+    </View>
+  );
+});
+```
+
+## Dependencies
+
+### Required Dependencies
+
+- `@react-navigation/native`: Core navigation library
+- `react-native-reanimated`: Animation library (required by React Navigation)
+
+### Optional Dependencies
+
+- `react-native-safe-area-context`: For safe area handling
+- `@react-navigation/stack`: For stack navigation
+- `@react-navigation/bottom-tabs`: For tab navigation
+
+## Platform Compatibility
+
+The `ThemeProvider` works across all platforms supported by React Native:
+
+- iOS
+- Android
+- Web (React Native Web)
+- Windows (React Native Windows)
+- macOS (React Native macOS)
+
+The theme automatically adapts to platform-specific color schemes and follows system-level appearance settings.
+
+## Accessibility
+
+The theme provider enhances accessibility by:
+
+- Respecting system-level dark mode preferences
+- Providing consistent color contrast ratios
+- Supporting high contrast mode when available
+- Maintaining semantic color meanings across themes
+
+Users with visual impairments benefit from the automatic theme switching and consistent color usage throughout the app.
