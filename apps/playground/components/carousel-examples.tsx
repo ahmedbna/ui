@@ -88,7 +88,9 @@ export function CarouselTestComponent() {
         <Carousel autoPlay autoPlayInterval={5000} loop showIndicators>
           {testimonials.map((testimonial) => (
             <CarouselItem key={testimonial.id} style={styles.testimonialCard}>
-              <Text style={styles.testimonialText}>"{testimonial.text}"</Text>
+              <Text style={styles.testimonialText}>
+                &quot;{testimonial.text}&quot;
+              </Text>
               <View
                 style={{
                   backgroundColor: cardColor,

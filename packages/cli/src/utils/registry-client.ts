@@ -1,7 +1,7 @@
 // src/utils/registry-client.ts
-import fs from 'fs-extra';
 import os from 'os';
 import path from 'path';
+import fs from 'fs-extra';
 import { logger } from './logger.js';
 
 /**

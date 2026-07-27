@@ -596,8 +596,8 @@ export const Demos = () => {
                       Dashboard Overview
                     </Text>
                     <Text variant='body' style={{ marginBottom: 16 }}>
-                      Welcome to your dashboard! Here's a quick overview of your
-                      recent activity.
+                      Welcome to your dashboard! Here&apos;s a quick overview of
+                      your recent activity.
                     </Text>
 
                     <View
@@ -725,7 +725,7 @@ export const Demos = () => {
               <AccordionContent>
                 <Text variant='body'>
                   We stand behind our products with a comprehensive 30-day
-                  return policy. If you're not completely satisfied, simply
+                  return policy. If you&apos;re not completely satisfied, simply
                   return the item in its original condition.
                 </Text>
               </AccordionContent>

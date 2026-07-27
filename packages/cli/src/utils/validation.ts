@@ -1,6 +1,6 @@
-import validateNpmPackageName from 'validate-npm-package-name';
 import { existsSync, readdirSync } from 'fs';
 import path from 'path';
+import validateNpmPackageName from 'validate-npm-package-name';
 
 export function validateProjectName(name: string): {
   valid: boolean;
@@ -101,7 +101,8 @@ export function sanitizeProjectName(name: string): string {
 }
 
 export function isValidDirectoryName(name: string): boolean {
-  // Check for invalid characters in directory names
+  // Control characters are exactly what we are screening for here.
+  // eslint-disable-next-line no-control-regex
   const invalidChars = /[<>:"/\\|?*\x00-\x1f]/;
   return !invalidChars.test(name) && name !== '.' && name !== '..';
 }

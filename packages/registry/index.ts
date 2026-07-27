@@ -6,8 +6,8 @@
  * read lazily via `./server` (Node only) so it never reaches a client bundle.
  */
 import { generatedAt, items } from './generated/registry.js';
-import type { Registry } from './schema.js';
 import * as resolvers from './resolve.js';
+import type { Registry } from './schema.js';
 
 export * from './schema.js';
 

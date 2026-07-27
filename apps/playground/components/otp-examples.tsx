@@ -89,7 +89,9 @@ export function InputOTPExamples() {
           error={error}
           placeholder='Enter 123456'
         />
-        <Text variant='caption'>Try entering anything other than "123456"</Text>
+        <Text variant='caption'>
+          Try entering anything other than &quot;123456&quot;
+        </Text>
       </View>
 
       {/* Custom Length OTP */}

@@ -2,9 +2,9 @@
 
 import { createRequire } from 'module';
 import { Command } from 'commander';
-import { initCommand } from './commands/init.js';
-import { initConvexCommand } from './commands/convex.js';
 import { addCommand } from './commands/add.js';
+import { initConvexCommand } from './commands/convex.js';
+import { initCommand } from './commands/init.js';
 import { logger } from './utils/logger.js';
 
 const require = createRequire(import.meta.url);

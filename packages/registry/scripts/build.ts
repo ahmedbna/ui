@@ -16,6 +16,7 @@ import { createHash } from 'node:crypto';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import { findDependencyCycle } from '../resolve.js';
 import {
   componentRegistrySchema,
   REGISTRY_SCHEMA_VERSION,
@@ -23,7 +24,6 @@ import {
   type Registry,
   type ResolvedFile,
 } from '../schema.js';
-import { findDependencyCycle, resolveAllDependencies } from '../resolve.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DEFINITIONS = path.join(ROOT, 'definitions');

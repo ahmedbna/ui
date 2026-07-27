@@ -1,10 +1,10 @@
 // src/utils/dependencies.ts
 import { execSync } from 'child_process';
-import ora from 'ora';
-import { PackageManager } from './package-manager.js';
-import { logger } from './logger.js';
 import path from 'path';
 import fs from 'fs-extra';
+import ora from 'ora';
+import { logger } from './logger.js';
+import { PackageManager } from './package-manager.js';
 
 /** Local shape for a package to install; the registry ships plain strings. */
 export interface ComponentDependency {

@@ -1,6 +1,6 @@
-import fs from 'fs-extra';
 import os from 'os';
 import path from 'path';
+import fs from 'fs-extra';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import {
   clearRegistryCache,
@@ -100,7 +100,7 @@ describe('fetchRegistryItem', () => {
   });
 
   it('refuses a payload with no schema version', async () => {
-    const { $schemaVersion, ...noVersion } = payload();
+    const { $schemaVersion: _omitted, ...noVersion } = payload();
     vi.stubGlobal('fetch', mockFetch(noVersion));
     await expect(fetchRegistryItem(TEST_URL, 'button')).rejects.toThrow(
       /without a schema version/

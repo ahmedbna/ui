@@ -15,7 +15,7 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
-    "lint": "eslint src/**/*.ts",
+    "lint": "eslint .",
     "clean": "rm -rf dist .turbo",
     "prepublishOnly": "pnpm build"
   },

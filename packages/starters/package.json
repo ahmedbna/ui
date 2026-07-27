@@ -7,9 +7,12 @@
   "description": "Project scaffolds for `bna-ui init` and `bna-ui convex`.",
   "scripts": {
     "build": "node scripts/build.mjs",
-    "clean": "rm -rf dist .turbo"
+    "clean": "rm -rf dist .turbo",
+    "lint": "eslint ."
   },
   "devDependencies": {
-    "@bna-ui/registry": "workspace:*"
+    "@bna-ui/eslint-config": "workspace:*",
+    "@bna-ui/registry": "workspace:*",
+    "eslint": "^9.17.0"
   }
 }

@@ -46,6 +46,9 @@ export const base = [
         },
       ],
       'no-unused-vars': 'off',
+      // `try { probe() } catch {}` is the idiomatic way to feature-detect a
+      // CLI tool; an empty catch there is intent, not an oversight.
+      'no-empty': ['error', { allowEmptyCatch: true }],
     },
   },
   prettier,

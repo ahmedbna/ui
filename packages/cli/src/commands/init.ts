@@ -1,22 +1,22 @@
+import fs from 'fs';
+import path from 'path';
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
 import inquirer from 'inquirer';
 import ora from 'ora';
-import path from 'path';
-import fs from 'fs';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
+import { copyTemplate } from '../utils/filesystem.js';
 import { logger } from '../utils/logger.js';
-import {
-  validateProjectName,
-  validateProjectPath,
-  sanitizeProjectName,
-} from '../utils/validation.js';
-import { copyTemplate, replaceInFile } from '../utils/filesystem.js';
 import {
   detectPackageManagerFromInvocation,
   installDependencies,
   getRunCommand,
   type PackageManager,
 } from '../utils/package-manager.js';
+import {
+  validateProjectName,
+  validateProjectPath,
+  sanitizeProjectName,
+} from '../utils/validation.js';
 
 // Get __dirname equivalent in ES modules
 const __filename = fileURLToPath(import.meta.url);

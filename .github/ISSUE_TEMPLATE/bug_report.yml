@@ -1,0 +1,59 @@
+name: Bug report
+description: Something isn't working
+labels: [bug]
+body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: Where is the problem?
+      options:
+        - A component
+        - The CLI (init / convex / add)
+        - The documentation site
+        - Not sure
+    validations:
+      required: true
+
+  - type: input
+    id: component
+    attributes:
+      label: Component or command
+      placeholder: e.g. button, or `bna-ui add card`
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Include the full error output if there is one.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect?
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. npx bna-ui init my-app
+        2. npx bna-ui add ...
+        3. ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      value: |
+        - bna-ui version: <!-- npx bna-ui --version -->
+        - Expo SDK:
+        - Platform: iOS / Android / Web
+        - OS:
+    validations:
+      required: true

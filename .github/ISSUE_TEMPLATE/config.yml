@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 📚 Documentation
+    url: https://ui.ahmedbna.com
+    about: Component docs, installation and theming guides
+  - name: 💬 Discussions
+    url: https://github.com/ahmedbna/ui/discussions
+    about: Questions, ideas and general help
+  - name: 🔒 Security
+    url: https://github.com/ahmedbna/ui/blob/main/SECURITY.md
+    about: Report a vulnerability privately — please don't open a public issue

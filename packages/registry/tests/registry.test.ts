@@ -3,9 +3,9 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
 import { REGISTRY, listComponents, resolveAllDependencies } from '../index.js';
-import { getPayload } from '../server.js';
 import { findDependencyCycle } from '../resolve.js';
 import { componentRegistrySchema, REGISTRY_SCHEMA_VERSION } from '../schema.js';
+import { getPayload } from '../server.js';
 import baseline from './registry-baseline.json' with { type: 'json' };
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
