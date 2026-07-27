@@ -8,7 +8,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ahmedbna/ui"
+    "url": "git+https://github.com/ahmedbna/ui.git"
   },
   "homepage": "https://ui.ahmedbna.com/",
   "packageManager": "pnpm@10.15.0",

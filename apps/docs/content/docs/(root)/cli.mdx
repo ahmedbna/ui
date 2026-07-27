@@ -88,8 +88,26 @@ Options:
   --yarn                         use yarn as package manager
   --pnpm                         use pnpm as package manager
   --bun                          use bun as package manager
+  --registry <url>               registry to fetch components from
   -h, --help                     display help for command
 ```
+
+### Where components come from
+
+`add` fetches component source from `https://ui.ahmedbna.com/r` and writes it
+into your project. Responses are cached under `~/.cache/bna-ui` and revalidated
+with ETags, so repeat installs are fast and work offline.
+
+Point it somewhere else with the `--registry` flag or the `BNA_UI_REGISTRY`
+environment variable:
+
+```bash
+npx bna-ui add button --registry http://localhost:3000/r
+```
+
+Adding a component brings its whole dependency chain — `button` also installs
+the `text`, `icon` and `spinner` it composes, the hooks and theme files they
+import, and any npm packages they need.
 
 ## Examples
 

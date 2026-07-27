@@ -14,8 +14,11 @@ is laid out and what a good pull request looks like.
 
 ### Fork and clone
 
+Fork [ahmedbna/ui](https://github.com/ahmedbna/ui) on GitHub, then — replacing
+`<your-username>` with your own:
+
 ```bash
-git clone https://github.com/YOUR_USERNAME/ui.git bna-ui
+git clone https://github.com/<your-username>/ui.git bna-ui
 cd bna-ui
 git remote add upstream https://github.com/ahmedbna/ui.git
 ```

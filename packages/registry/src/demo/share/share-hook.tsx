@@ -39,7 +39,7 @@ export function ShareHook() {
       await shareContent({
         message:
           '🚀 Just built an amazing React Native app with this component library!',
-        url: 'https://github.com/example/ui-library',
+        url: 'https://github.com/ahmedbna/ui',
         title: 'Amazing UI Library',
         subject: 'Check out this UI library',
       });

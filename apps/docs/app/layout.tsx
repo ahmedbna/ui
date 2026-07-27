@@ -68,8 +68,8 @@ export const metadata: Metadata = {
     images: [
       'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/bna-ui-header.png',
     ],
-    creator: '@ahmedbna', // Add your Twitter handle if you have one
-    site: '@ahmedbna', // Add your Twitter handle if you have one
+    creator: '@ahmedbnaa',
+    site: '@ahmedbnaa',
   },
 
   // Additional meta tags for other platforms

@@ -45,7 +45,7 @@ export function ShareCallbacks() {
       <ShareButton
         content={{
           message: 'Check out this awesome React Native component library!',
-          url: 'https://github.com/example/ui-library',
+          url: 'https://github.com/ahmedbna/ui',
           title: 'UI Component Library',
         }}
         loading={isLoading}
