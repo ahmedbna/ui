@@ -1,0 +1,56 @@
+# dependencies
+node_modules/
+.pnp
+.pnp.*
+
+# build output
+dist/
+build/
+.next/
+out/
+.turbo/
+*.tsbuildinfo
+
+# generated registry payloads (emitted by packages/registry)
+apps/docs/public/r/
+packages/cli/dist/
+
+# fumadocs generated source
+.source/
+
+# expo
+.expo/
+.expo-shared/
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build/
+expo-env.d.ts
+
+# testing
+coverage/
+
+# misc
+.DS_Store
+*.pem
+.vercel
+.eslintcache
+
+# debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# env
+.env
+.env*.local
+
+# editors
+.idea/
+*.swp
+*.swo
