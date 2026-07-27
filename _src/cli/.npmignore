@@ -1,0 +1,95 @@
+# Source files - we only want the compiled dist/
+src/
+*.ts
+!dist/**/*.d.ts
+
+# Development files
+tsconfig.json
+.gitignore
+*.md
+!README.md
+!LICENSE.md
+
+# Testing
+**/*.test.js
+**/*.test.ts
+**/*.spec.js
+**/*.spec.ts
+jest.config.*
+coverage/
+__tests__/
+
+# Development dependencies
+node_modules/
+.npm/
+.nyc_output/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+lib-cov/
+coverage/
+*.lcov
+
+# ESLint & Prettier
+.eslintrc.*
+eslint.config.js
+.prettierrc*
+prettier.config.*
+
+# Editor directories and files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Development scripts
+scripts/dev*
+scripts/test*
+build/
+examples/
+docs/
+
+# Git
+.git/
+.gitignore
+
+# Temporary files
+tmp/
+temp/
+
+# Environment files
+.env*
+!.env.example
+
+# Package managers
+yarn.lock
+pnpm-lock.yaml
+.pnpm-debug.log*
+
+# Bundler artifacts
+webpack.config.*
+rollup.config.*
+vite.config.*

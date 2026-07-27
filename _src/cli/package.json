@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json.schemastore.org/package.json",
+  "name": "bna-ui",
+  "version": "2.0.4",
+  "type": "module",
+  "description": "BNA UI - Expo React Native CLI, UI Components Library",
+  "main": "dist/index.js",
+  "bin": {
+    "bna-ui": "bin/bna-ui.js"
+  },
+  "scripts": {
+    "build": "npm run clean && tsc && npm run copy-templates && npm run copy-registry",
+    "copy-templates": "cp -r templates dist/ || xcopy /E /I templates dist\\templates",
+    "copy-registry": "cp -r src/registry dist/",
+    "dev": "tsc --watch",
+    "prepublishOnly": "npm run build",
+    "test": "jest",
+    "lint": "eslint src/**/*.ts",
+    "clean": "rm -rf dist",
+    "release:patch": "npm version patch && npm publish --access public",
+    "release:minor": "npm version minor && npm publish --access public",
+    "release:major": "npm version major && npm publish --access public"
+  },
+  "keywords": [
+    "react-native",
+    "expo",
+    "ui",
+    "cli",
+    "starter",
+    "template",
+    "typescript"
+  ],
+  "author": "Ahmed BNA <hi@ahmedbna.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ahmedbna/ui"
+  },
+  "bugs": {
+    "url": "https://github.com/ahmedbna/ui/issues"
+  },
+  "homepage": "https://ui.ahmedbna.com/",
+  "files": [
+    "dist/**/*",
+    "templates/**/*",
+    "bin/**/*",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^11.1.0",
+    "inquirer": "^9.2.12",
+    "ora": "^7.0.1",
+    "fs-extra": "^11.1.1",
+    "validate-npm-package-name": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/inquirer": "^9.0.7",
+    "@types/node": "^20.8.0",
+    "@types/validate-npm-package-name": "^4.0.2",
+    "typescript": "^5.2.2",
+    "eslint": "^8.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0"
+  }
+}
