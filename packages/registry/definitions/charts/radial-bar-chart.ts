@@ -13,7 +13,7 @@ export const radialBarChartRegistry = {
       'react-native-reanimated',
       'react-native-gesture-handler',
     ],
-    registryDependencies: [],
+    registryDependencies: ['text'],
     hooks: ['useColor'],
     theme: ['globals'],
     files: [

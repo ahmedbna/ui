@@ -251,8 +251,8 @@ export function ToggleGroup({
                   isItemPressed(item.value)
                     ? primaryForegroundColor
                     : variant === 'outline'
-                    ? primaryColor
-                    : secondaryForegroundColor
+                      ? primaryColor
+                      : secondaryForegroundColor
                 }
               />
               <Text
@@ -260,8 +260,8 @@ export function ToggleGroup({
                   color: isItemPressed(item.value)
                     ? primaryForegroundColor
                     : variant === 'outline'
-                    ? primaryColor
-                    : secondaryForegroundColor,
+                      ? primaryColor
+                      : secondaryForegroundColor,
                 }}
               >
                 {item.label}
@@ -276,8 +276,8 @@ export function ToggleGroup({
                 isItemPressed(item.value)
                   ? primaryForegroundColor
                   : variant === 'outline'
-                  ? primaryColor
-                  : secondaryForegroundColor
+                    ? primaryColor
+                    : secondaryForegroundColor
               }
             />
           ) : (
@@ -286,8 +286,8 @@ export function ToggleGroup({
                 color: isItemPressed(item.value)
                   ? primaryForegroundColor
                   : variant === 'outline'
-                  ? primaryColor
-                  : secondaryForegroundColor,
+                    ? primaryColor
+                    : secondaryForegroundColor,
               }}
             >
               {item.label}

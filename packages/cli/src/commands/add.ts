@@ -84,7 +84,9 @@ export async function addCommand(
 
     if (unknown.length > 0) {
       logger.error(`Unknown components: ${unknown.join(', ')}`);
-      logger.info(`Run \`bna-ui add\` with no arguments to browse what exists.`);
+      logger.info(
+        `Run \`bna-ui add\` with no arguments to browse what exists.`
+      );
       process.exit(1);
     }
 
@@ -114,7 +116,10 @@ export async function addCommand(
             choices: [
               { name: 'Overwrite all existing files', value: 'overwrite-all' },
               { name: 'Skip existing files', value: 'skip-conflicts' },
-              { name: 'Choose for each file individually', value: 'individual' },
+              {
+                name: 'Choose for each file individually',
+                value: 'individual',
+              },
               { name: 'Cancel operation', value: 'cancel' },
             ],
             default: 'skip-conflicts',

@@ -275,10 +275,10 @@ export function Picker({
                   selectedOptions.length > 0
                     ? text
                     : disabled
-                    ? muted
-                    : error
-                    ? danger
-                    : muted,
+                      ? muted
+                      : error
+                        ? danger
+                        : muted,
               },
               inputStyle,
             ]}

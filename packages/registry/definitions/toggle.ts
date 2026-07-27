@@ -52,7 +52,7 @@ export const toggleRegistry = {
     name: 'toggle-variants',
     description: 'Toggle buttons in different variants',
     type: 'registry:example',
-    registryDependencies: ['toggle'],
+    registryDependencies: ['toggle', 'view'],
     hooks: [],
     theme: [],
     files: [
@@ -74,7 +74,7 @@ export const toggleRegistry = {
     name: 'toggle-sizes',
     description: 'Toggle buttons in different sizes',
     type: 'registry:example',
-    registryDependencies: ['toggle'],
+    registryDependencies: ['toggle', 'view'],
     hooks: [],
     theme: [],
     files: [
@@ -96,7 +96,7 @@ export const toggleRegistry = {
     name: 'toggle-text',
     description: 'Toggle buttons with text labels',
     type: 'registry:example',
-    registryDependencies: ['toggle'],
+    registryDependencies: ['toggle', 'view'],
     hooks: [],
     theme: [],
     files: [
@@ -118,7 +118,7 @@ export const toggleRegistry = {
     name: 'toggle-disabled',
     description: 'Disabled toggle buttons',
     type: 'registry:example',
-    registryDependencies: ['toggle'],
+    registryDependencies: ['toggle', 'view'],
     hooks: [],
     theme: [],
     files: [

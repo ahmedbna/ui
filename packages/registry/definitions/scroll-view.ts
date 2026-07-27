@@ -31,8 +31,8 @@ export const scrollViewRegistry = {
     description: 'A basic scrollable view with content',
     type: 'registry:example',
     registryDependencies: ['scroll-view', 'text', 'view'],
-    hooks: [],
-    theme: [],
+    hooks: ['useColor'],
+    theme: ['globals'],
     files: [
       {
         type: 'registry:example',
@@ -54,7 +54,7 @@ export const scrollViewRegistry = {
     type: 'registry:example',
     registryDependencies: ['scroll-view', 'text', 'view'],
     hooks: [],
-    theme: [],
+    theme: ['globals'],
     files: [
       {
         type: 'registry:example',
@@ -76,7 +76,7 @@ export const scrollViewRegistry = {
     type: 'registry:example',
     registryDependencies: ['scroll-view', 'text', 'view'],
     hooks: [],
-    theme: [],
+    theme: ['globals'],
     files: [
       {
         type: 'registry:example',
@@ -98,7 +98,7 @@ export const scrollViewRegistry = {
     type: 'registry:example',
     registryDependencies: ['scroll-view', 'text', 'view'],
     hooks: [],
-    theme: [],
+    theme: ['globals'],
     files: [
       {
         type: 'registry:example',
@@ -119,8 +119,8 @@ export const scrollViewRegistry = {
     description: 'ScrollView with pull-to-refresh functionality',
     type: 'registry:example',
     registryDependencies: ['scroll-view', 'text', 'view'],
-    hooks: [],
-    theme: [],
+    hooks: ['useColor'],
+    theme: ['globals'],
     files: [
       {
         type: 'registry:example',
@@ -163,8 +163,8 @@ export const scrollViewRegistry = {
     description: 'ScrollView with custom scroll indicators',
     type: 'registry:example',
     registryDependencies: ['scroll-view', 'text', 'view'],
-    hooks: [],
-    theme: [],
+    hooks: ['useColor'],
+    theme: ['globals'],
     files: [
       {
         type: 'registry:example',
@@ -185,8 +185,8 @@ export const scrollViewRegistry = {
     description: 'ScrollView with content inset adjustments',
     type: 'registry:example',
     registryDependencies: ['scroll-view', 'text', 'view'],
-    hooks: [],
-    theme: [],
+    hooks: ['useColor'],
+    theme: ['globals'],
     files: [
       {
         type: 'registry:example',

@@ -8,6 +8,7 @@ import {
   ComboboxItem,
   ComboboxList,
   ComboboxTrigger,
+  OptionType,
 } from '@/components/ui/combobox';
 import { Text } from '@/components/ui/text';
 import { useColor } from '@/hooks/useColor';
@@ -69,22 +70,24 @@ const users = [
 ];
 
 export function ComboboxExamples() {
-  const [value, setValue] = useState('');
-  const [user, setUser] = useState('');
-  const [multipleFrameworks, setMultipleFrameworks] = useState<string[]>([]);
+  const [value, setValue] = useState<OptionType | null>(null);
+  const [user, setUser] = useState<OptionType | null>(null);
+  const [multipleFrameworks, setMultipleFrameworks] = useState<OptionType[]>(
+    []
+  );
 
   const primaryColor = useColor('primary');
   const textColor = useColor('text');
   const mutedColor = useColor('textMuted');
 
   // Helper function to get framework label by value
-  const getFrameworkLabel = (value: string) => {
-    return frameworks.find((f) => f.value === value)?.label || value;
+  const getFrameworkLabel = (option: OptionType) => {
+    return frameworks.find((f) => f.value === option.value)?.label ?? '';
   };
 
   // Helper function to get user label by value
-  const getUserLabel = (value: string) => {
-    return users.find((u) => u.value === value)?.label || value;
+  const getUserLabel = (option: OptionType) => {
+    return users.find((u) => u.value === option.value)?.label ?? '';
   };
 
   return (
@@ -116,9 +119,6 @@ export function ComboboxExamples() {
                     key={framework.value}
                     value={framework.value}
                     searchValue={`${framework.label} ${framework.description}`}
-                    onSelect={(currentValue) => {
-                      setValue(currentValue === value ? '' : currentValue);
-                    }}
                   >
                     <Text>{framework.label}</Text>
                     <Check
@@ -126,7 +126,7 @@ export function ComboboxExamples() {
                       color={primaryColor}
                       style={{
                         marginLeft: 'auto',
-                        opacity: value === framework.value ? 1 : 0,
+                        opacity: value?.value === framework.value ? 1 : 0,
                       }}
                     />
                   </ComboboxItem>
@@ -196,8 +196,8 @@ export function ComboboxExamples() {
               {multipleFrameworks.length === 0
                 ? 'Select frameworks...'
                 : multipleFrameworks.length === 1
-                ? getFrameworkLabel(multipleFrameworks[0])
-                : `${multipleFrameworks.length} frameworks selected`}
+                  ? getFrameworkLabel(multipleFrameworks[0])
+                  : `${multipleFrameworks.length} frameworks selected`}
             </Text>
           </ComboboxTrigger>
           <ComboboxContent>

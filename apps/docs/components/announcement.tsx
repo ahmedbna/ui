@@ -1,3 +1,3 @@
 export function Announcement() {
-  return null
+  return null;
 }

@@ -10,6 +10,14 @@
       "@/theme/*": ["./src/theme/*"]
     }
   },
-  "include": ["index.ts", "schema.ts", "resolve.ts", "server.ts", "definitions", "scripts", "tests"],
+  "include": [
+    "index.ts",
+    "schema.ts",
+    "resolve.ts",
+    "server.ts",
+    "definitions",
+    "scripts",
+    "tests"
+  ],
   "exclude": ["node_modules", "generated", "src"]
 }

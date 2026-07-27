@@ -9,7 +9,7 @@ export const audioWaveformRegistry = {
       'A customizable audio waveform visualization component with playback progress and interactive seeking capabilities.',
     type: 'registry:ui',
     registryDependencies: ['text', 'view'],
-    hooks: [],
+    hooks: ['useColor'],
     theme: [],
     files: [
       {

@@ -1,0 +1,24 @@
+{
+  "$comment": [
+    "Typechecks the shipped component source on its own, so a broken component",
+    "fails in this package rather than only surfacing once the playground",
+    "happens to import it. Mirrors the compiler settings a consumer Expo app",
+    "uses, and the `@/…` aliases the source is written against."
+  ],
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "noEmit": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "types": ["expo/types"],
+    "baseUrl": ".",
+    "paths": {
+      "@/components/*": ["./src/components/*"],
+      "@/demo/*": ["./src/demo/*"],
+      "@/hooks/*": ["./src/hooks/*"],
+      "@/theme/*": ["./src/theme/*"]
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx"]
+}

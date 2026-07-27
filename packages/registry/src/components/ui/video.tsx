@@ -202,8 +202,12 @@ export const Video = forwardRef<VideoView, VideoProps>(
     const [showCustomControls, setShowCustomControls] = useState(false);
     const [isSeeking, setIsSeeking] = useState(false);
 
-    const hideControlsTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
-    const hidePlayIconTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const hideControlsTimeout = useRef<ReturnType<typeof setTimeout> | null>(
+      null
+    );
+    const hidePlayIconTimeout = useRef<ReturnType<typeof setTimeout> | null>(
+      null
+    );
 
     const controlsOpacity = useSharedValue(0);
     const playIconOpacity = useSharedValue(0);

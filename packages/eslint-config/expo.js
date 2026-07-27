@@ -15,7 +15,12 @@ export const expo = [
     },
   },
   {
-    ignores: ['**/dist/**', '**/.expo/**', '**/node_modules/**', '**/.turbo/**'],
+    ignores: [
+      '**/dist/**',
+      '**/.expo/**',
+      '**/node_modules/**',
+      '**/.turbo/**',
+    ],
   },
 ];
 

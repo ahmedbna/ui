@@ -21,8 +21,8 @@ function SearchLayoutContent() {
         headerBlurEffect: isLiquidGlassAvailable()
           ? undefined
           : theme === 'dark'
-          ? 'systemMaterialDark'
-          : 'systemMaterialLight',
+            ? 'systemMaterialDark'
+            : 'systemMaterialLight',
         headerStyle: {
           backgroundColor: isLiquidGlassAvailable()
             ? 'transparent'

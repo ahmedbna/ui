@@ -9,7 +9,7 @@ export const alertDialogRegistry = {
     type: 'registry:ui',
     dependencies: ['react-native-reanimated'],
     registryDependencies: ['card', 'button', 'text', 'view'],
-    hooks: [],
+    hooks: ['useColor'],
     theme: [],
     files: [
       {
@@ -31,7 +31,7 @@ export const alertDialogRegistry = {
     name: 'alert-dialog-demo',
     description: 'A basic alert dialog with confirmation buttons',
     type: 'registry:example',
-    registryDependencies: ['alert-dialog'],
+    registryDependencies: ['alert-dialog', 'button', 'view'],
     hooks: [],
     theme: [],
     files: [
@@ -54,7 +54,7 @@ export const alertDialogRegistry = {
     name: 'alert-dialog-destructive',
     description: 'An alert dialog for destructive actions like delete',
     type: 'registry:example',
-    registryDependencies: ['alert-dialog'],
+    registryDependencies: ['alert-dialog', 'button', 'view'],
     hooks: [],
     theme: [],
     files: [
@@ -77,7 +77,7 @@ export const alertDialogRegistry = {
     name: 'alert-dialog-custom',
     description: 'A custom styled alert dialog with different appearance',
     type: 'registry:example',
-    registryDependencies: ['alert-dialog'],
+    registryDependencies: ['alert-dialog', 'button', 'view', 'text'],
     hooks: [],
     theme: [],
     files: [

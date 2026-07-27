@@ -156,8 +156,8 @@ export function Table<T = any>({
           prev.direction === 'asc'
             ? 'desc'
             : prev.direction === 'desc'
-            ? null
-            : 'asc';
+              ? null
+              : 'asc';
 
         return {
           column: newDirection ? columnId : null,
@@ -255,8 +255,8 @@ export function Table<T = any>({
               column.align === 'center'
                 ? 'center'
                 : column.align === 'right'
-                ? 'flex-end'
-                : 'flex-start',
+                  ? 'flex-end'
+                  : 'flex-start',
           }}
           onPress={() => handleSort(column.id)}
           disabled={!column.sortable || !sortable}

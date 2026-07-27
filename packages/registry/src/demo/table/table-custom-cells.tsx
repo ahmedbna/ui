@@ -131,8 +131,8 @@ const columns: TableColumn<Employee>[] = [
           value === 'Active'
             ? 'default'
             : value === 'On Leave'
-            ? 'secondary'
-            : 'destructive'
+              ? 'secondary'
+              : 'destructive'
         }
       >
         {value}

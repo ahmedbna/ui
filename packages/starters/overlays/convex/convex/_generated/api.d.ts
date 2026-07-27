@@ -8,19 +8,19 @@
  * @module
  */
 
-import type * as auth from "../auth.js";
-import type * as http from "../http.js";
-import type * as passwordReset from "../passwordReset.js";
-import type * as resendOTP from "../resendOTP.js";
-import type * as resendPasswordOTP from "../resendPasswordOTP.js";
-import type * as router from "../router.js";
-import type * as users from "../users.js";
+import type * as auth from '../auth.js';
+import type * as http from '../http.js';
+import type * as passwordReset from '../passwordReset.js';
+import type * as resendOTP from '../resendOTP.js';
+import type * as resendPasswordOTP from '../resendPasswordOTP.js';
+import type * as router from '../router.js';
+import type * as users from '../users.js';
 
 import type {
   ApiFromModules,
   FilterApi,
   FunctionReference,
-} from "convex/server";
+} from 'convex/server';
 
 declare const fullApi: ApiFromModules<{
   auth: typeof auth;
@@ -42,7 +42,7 @@ declare const fullApi: ApiFromModules<{
  */
 export declare const api: FilterApi<
   typeof fullApi,
-  FunctionReference<any, "public">
+  FunctionReference<any, 'public'>
 >;
 
 /**
@@ -55,7 +55,7 @@ export declare const api: FilterApi<
  */
 export declare const internal: FilterApi<
   typeof fullApi,
-  FunctionReference<any, "internal">
+  FunctionReference<any, 'internal'>
 >;
 
 export declare const components: {};

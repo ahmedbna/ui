@@ -14,8 +14,8 @@ export function TabsStyled() {
             value === 'design'
               ? '#3b82f6'
               : value === 'development'
-              ? '#10b981'
-              : '#f59e0b',
+                ? '#10b981'
+                : '#f59e0b',
           shadowColor: '#000',
           shadowOffset: { width: 0, height: 2 },
           shadowOpacity: 0.1,

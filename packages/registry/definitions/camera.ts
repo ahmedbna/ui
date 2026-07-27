@@ -144,7 +144,7 @@ export const cameraRegistry = {
     name: 'camera-zoom',
     description: 'Camera with zoom controls and gestures',
     type: 'registry:example',
-    registryDependencies: ['camera'],
+    registryDependencies: ['camera', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
@@ -166,7 +166,7 @@ export const cameraRegistry = {
     name: 'camera-settings',
     description: 'Camera with advanced settings panel',
     type: 'registry:example',
-    registryDependencies: ['camera'],
+    registryDependencies: ['camera', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [

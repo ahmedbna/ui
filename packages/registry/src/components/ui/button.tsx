@@ -295,11 +295,11 @@ export const Button = forwardRef<View, ButtonProps>(
             alignSelf: 'stretch',
           }
         : flexValue !== null
-        ? {
-            flex: flexValue,
-            maxHeight: size === 'sm' ? 44 : size === 'lg' ? 54 : HEIGHT,
-          }
-        : {};
+          ? {
+              flex: flexValue,
+              maxHeight: size === 'sm' ? 44 : size === 'lg' ? 54 : HEIGHT,
+            }
+          : {};
     };
 
     // Updated getStyleWithoutFlex function

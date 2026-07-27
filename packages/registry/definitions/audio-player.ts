@@ -142,7 +142,7 @@ export const audioPlayerRegistry = {
     description: 'An audio player with custom styling and theming',
     type: 'registry:example',
     registryDependencies: ['audio-player', 'text', 'view'],
-    hooks: [],
+    hooks: ['useColor'],
     theme: [],
     files: [
       {

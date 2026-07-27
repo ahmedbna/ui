@@ -30,7 +30,7 @@ export const actionSheetRegistry = {
     name: 'action-sheet-demo',
     description: 'A basic action sheet with multiple options',
     type: 'registry:example',
-    registryDependencies: ['action-sheet', 'button'],
+    registryDependencies: ['action-sheet', 'button', 'view'],
     hooks: [],
     theme: [],
     files: [

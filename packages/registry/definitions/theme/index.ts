@@ -32,6 +32,8 @@ export const themeRegistry = {
     description: 'Theme Provider',
     type: 'registry:theme',
     dependencies: [],
+    hooks: ['useColorScheme'],
+    theme: ['colors'],
     files: [
       {
         type: 'registry:theme',

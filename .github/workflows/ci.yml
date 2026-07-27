@@ -1,0 +1,106 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  TURBO_TELEMETRY_DISABLED: 1
+
+jobs:
+  verify:
+    name: Lint, typecheck, test, build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      # Registry validation runs inside `build`: an entry with a missing file,
+      # an unknown dependency, a duplicate key or a cycle fails the PR here
+      # rather than reaching a user's `bna-ui add`.
+      - run: pnpm turbo run build
+
+      # And the payloads must stay self-contained — every `@/…` import a
+      # component makes has to ship in the same response.
+      - name: Verify registry payload contract
+        run: pnpm --filter @bna-ui/registry verify
+
+      - run: pnpm turbo run typecheck
+      - run: pnpm turbo run test
+      - run: pnpm turbo run lint
+      - run: pnpm format:check
+
+  cli-e2e:
+    name: CLI end-to-end
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm turbo run build
+
+      # Serve the generated payloads exactly as the docs site will, then drive
+      # the real CLI against them. This is the only check that exercises the
+      # fetch path end to end.
+      - name: Serve the registry
+        run: |
+          npx --yes serve apps/docs/public -l 4321 &
+          for i in $(seq 1 30); do
+            curl -sf http://localhost:4321/r/index.json > /dev/null && break
+            sleep 1
+          done
+
+      - name: Scaffold and add a component
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/e2e && cd /tmp/e2e
+          node "$GITHUB_WORKSPACE/packages/cli/bin/bna-ui.js" init app --skip-install
+          cd app
+          test -f .gitignore || { echo "::error::init produced no .gitignore"; exit 1; }
+          node "$GITHUB_WORKSPACE/packages/cli/bin/bna-ui.js" \
+            add button --registry http://localhost:4321/r --yes
+
+      - name: Every local import resolves in the installed project
+        run: |
+          cd /tmp/e2e/app
+          node --input-type=module -e "
+            import { readdir, readFile, access } from 'node:fs/promises';
+            import path from 'node:path';
+            const roots = ['components', 'hooks', 'theme'];
+            const files = [];
+            const walk = async (d) => {
+              for (const e of await readdir(d, { withFileTypes: true })) {
+                const f = path.join(d, e.name);
+                if (e.isDirectory()) await walk(f); else files.push(f);
+              }
+            };
+            for (const r of roots) await walk(r).catch(() => {});
+            let bad = 0;
+            for (const f of files) {
+              const src = await readFile(f, 'utf8');
+              for (const [, spec] of src.matchAll(/from '@\/([\w/-]+)'/g)) {
+                const hit = await Promise.any(
+                  ['.ts', '.tsx'].map(ext => access(spec + ext))
+                ).then(() => true, () => false);
+                if (!hit) { console.error('missing:', spec, 'imported by', f); bad++; }
+              }
+            }
+            if (bad) { console.error(\`\${bad} unresolved imports\`); process.exit(1); }
+            console.log(\`ok — \${files.length} installed files, all imports resolve\`);
+          "

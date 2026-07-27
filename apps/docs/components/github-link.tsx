@@ -40,8 +40,8 @@ export function StarsCount() {
       {stars === null
         ? '...'
         : stars >= 1000
-        ? `${(stars / 1000).toFixed(1)}k`
-        : stars.toLocaleString()}
+          ? `${(stars / 1000).toFixed(1)}k`
+          : stars.toLocaleString()}
     </span>
   );
 }

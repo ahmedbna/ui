@@ -50,7 +50,7 @@ export const imageRegistry = {
     name: 'image-variants',
     description: 'Images with different border radius variants',
     type: 'registry:example',
-    registryDependencies: ['image'],
+    registryDependencies: ['image', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
@@ -71,7 +71,7 @@ export const imageRegistry = {
     name: 'image-sizes',
     description: 'Images in different sizes and aspect ratios',
     type: 'registry:example',
-    registryDependencies: ['image'],
+    registryDependencies: ['image', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
@@ -92,7 +92,7 @@ export const imageRegistry = {
     name: 'image-loading',
     description: 'Images with different loading indicator configurations',
     type: 'registry:example',
-    registryDependencies: ['image'],
+    registryDependencies: ['image', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
@@ -113,7 +113,7 @@ export const imageRegistry = {
     name: 'image-error',
     description: 'Images with custom error fallback messages',
     type: 'registry:example',
-    registryDependencies: ['image'],
+    registryDependencies: ['image', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
@@ -133,7 +133,7 @@ export const imageRegistry = {
     name: 'image-gallery',
     description: 'Multiple images arranged in a gallery layout',
     type: 'registry:example',
-    registryDependencies: ['image'],
+    registryDependencies: ['image', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
@@ -153,7 +153,7 @@ export const imageRegistry = {
     name: 'image-responsive',
     description: 'Responsive images that adapt to container size',
     type: 'registry:example',
-    registryDependencies: ['image'],
+    registryDependencies: ['image', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
@@ -173,7 +173,7 @@ export const imageRegistry = {
     name: 'image-content-fit',
     description: 'Images with different content fit modes',
     type: 'registry:example',
-    registryDependencies: ['image'],
+    registryDependencies: ['image', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [

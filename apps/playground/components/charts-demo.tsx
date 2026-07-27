@@ -679,7 +679,6 @@ export const ChartsDemo: React.FC = () => {
         <RadialBarChart
           data={radialBarData}
           config={{
-            showLabels: true,
             animated: true,
             duration: 1500,
             gradient: true,
@@ -711,7 +710,6 @@ export const ChartsDemo: React.FC = () => {
         <RadialBarChart
           data={teamProductivityData}
           config={{
-            showLabels: true,
             animated: true,
             duration: 1800,
             gradient: false,
@@ -747,7 +745,6 @@ export const ChartsDemo: React.FC = () => {
             { label: 'Overloaded', value: 10, color: '#ef4444' },
           ]}
           config={{
-            showLabels: true,
             animated: true,
             duration: 2000,
             gradient: true,

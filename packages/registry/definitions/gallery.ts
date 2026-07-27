@@ -57,7 +57,7 @@ export const galleryRegistry = {
     name: 'gallery-grid',
     description: 'Gallery with custom columns, spacing, and aspect ratio',
     type: 'registry:example',
-    registryDependencies: ['gallery', 'view', 'text'],
+    registryDependencies: ['gallery', 'view', 'text', 'scroll-view'],
     hooks: [],
     theme: [],
     files: [
@@ -99,7 +99,7 @@ export const galleryRegistry = {
     name: 'gallery-layouts',
     description: 'Various gallery layouts and configurations',
     type: 'registry:example',
-    registryDependencies: ['gallery', 'view', 'text'],
+    registryDependencies: ['gallery', 'view', 'text', 'scroll-view'],
     hooks: [],
     theme: [],
     files: [

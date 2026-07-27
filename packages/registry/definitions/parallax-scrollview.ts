@@ -101,7 +101,13 @@ export const parallaxScrollViewRegistry = {
     description: 'Complete profile screen using parallax scroll view',
     type: 'registry:example',
     dependencies: ['expo-linear-gradient'],
-    registryDependencies: ['parallax-scrollview', 'avatar', 'text', 'view'],
+    registryDependencies: [
+      'parallax-scrollview',
+      'avatar',
+      'text',
+      'view',
+      'badge',
+    ],
     hooks: [],
     theme: [],
     files: [
@@ -148,7 +154,7 @@ export const parallaxScrollViewRegistry = {
     name: 'parallax-scrollview-product',
     description: 'Product detail screen with parallax image gallery',
     type: 'registry:example',
-    registryDependencies: ['parallax-scrollview', 'text', 'view'],
+    registryDependencies: ['parallax-scrollview', 'text', 'view', 'button'],
     hooks: [],
     theme: [],
     files: [

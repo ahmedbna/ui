@@ -115,8 +115,8 @@ export const switchRegistry = {
     description: 'Multiple switches arranged in a settings list',
     type: 'registry:example',
     registryDependencies: ['switch', 'view'],
-    hooks: [],
-    theme: [],
+    hooks: ['useColor'],
+    theme: ['globals'],
     files: [
       {
         type: 'registry:example',

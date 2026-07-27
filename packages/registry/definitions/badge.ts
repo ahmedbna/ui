@@ -28,7 +28,7 @@ export const badgeRegistry = {
     name: 'badge-demo',
     description: 'Basic badges showing all available variants',
     type: 'registry:example',
-    registryDependencies: ['badge'],
+    registryDependencies: ['badge', 'view'],
     hooks: [],
     theme: [],
     files: [
@@ -49,7 +49,7 @@ export const badgeRegistry = {
     name: 'badge-icons',
     description: 'Badges with icons and custom content',
     type: 'registry:example',
-    registryDependencies: ['badge'],
+    registryDependencies: ['badge', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
@@ -70,7 +70,7 @@ export const badgeRegistry = {
     name: 'badge-notifications',
     description: 'Small notification badges for counters and status',
     type: 'registry:example',
-    registryDependencies: ['badge'],
+    registryDependencies: ['badge', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
@@ -91,7 +91,7 @@ export const badgeRegistry = {
     name: 'badge-styled',
     description: 'Badges with custom colors and styling',
     type: 'registry:example',
-    registryDependencies: ['badge'],
+    registryDependencies: ['badge', 'view'],
     hooks: [],
     theme: [],
     files: [
@@ -112,7 +112,7 @@ export const badgeRegistry = {
     name: 'badge-interactive',
     description: 'Badges that can be pressed or dismissed',
     type: 'registry:example',
-    registryDependencies: ['badge'],
+    registryDependencies: ['badge', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
@@ -133,7 +133,7 @@ export const badgeRegistry = {
     name: 'badge-sizes',
     description: 'Badges in different sizes',
     type: 'registry:example',
-    registryDependencies: ['badge'],
+    registryDependencies: ['badge', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
@@ -154,7 +154,7 @@ export const badgeRegistry = {
     name: 'badge-status',
     description: 'Badges used as status indicators',
     type: 'registry:example',
-    registryDependencies: ['badge'],
+    registryDependencies: ['badge', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [

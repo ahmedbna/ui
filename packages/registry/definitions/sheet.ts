@@ -73,8 +73,8 @@ export const sheetRegistry = {
     description: 'A sheet that slides in from the navigation side',
     type: 'registry:example',
     dependencies: ['lucide-react-native'],
-    registryDependencies: ['sheet', 'button', 'text', 'view'],
-    hooks: [],
+    registryDependencies: ['sheet', 'button', 'text', 'view', 'icon'],
+    hooks: ['useColor'],
     theme: [],
     files: [
       {
@@ -95,7 +95,7 @@ export const sheetRegistry = {
     description: 'A sheet that slides in from the form side',
     type: 'registry:example',
     registryDependencies: ['sheet', 'button', 'text', 'view'],
-    hooks: [],
+    hooks: ['useColor'],
     theme: [],
     files: [
       {
@@ -117,7 +117,7 @@ export const sheetRegistry = {
     type: 'registry:example',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['sheet', 'button', 'text', 'view'],
-    hooks: [],
+    hooks: ['useColor'],
     theme: [],
     files: [
       {

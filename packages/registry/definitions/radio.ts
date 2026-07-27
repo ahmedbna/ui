@@ -97,7 +97,7 @@ export const radioRegistry = {
     description: 'Radio buttons with custom colors and styling',
     type: 'registry:example',
     registryDependencies: ['radio', 'text', 'view'],
-    hooks: [],
+    hooks: ['useColor'],
     theme: [],
     files: [
       {

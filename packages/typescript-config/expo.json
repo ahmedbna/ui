@@ -1,7 +1,13 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "display": "Expo / React Native",
-  "extends": "expo/tsconfig.base",
+  "_comment": [
+    "Deliberately does NOT extend `expo/tsconfig.base`: this package has no",
+    "dependency on expo, so that specifier cannot resolve from here and TS",
+    "silently falls back to defaults (no jsx, no esModuleInterop) instead of",
+    "failing loudly. Consuming apps extend `expo/tsconfig.base` themselves and",
+    "layer this on top."
+  ],
   "compilerOptions": {
     "strict": true,
     "skipLibCheck": true,

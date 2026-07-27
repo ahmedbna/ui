@@ -31,7 +31,7 @@ export const viewRegistry = {
     type: 'registry:example',
     registryDependencies: ['view', 'text'],
     hooks: [],
-    theme: [],
+    theme: ['globals'],
     files: [
       {
         type: 'registry:example',

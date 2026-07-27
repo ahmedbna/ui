@@ -31,7 +31,7 @@ export const onboardingRegistry = {
     description: 'A basic onboarding flow with multiple steps',
     type: 'registry:example',
     dependencies: ['lucide-react-native'],
-    registryDependencies: ['onboarding'],
+    registryDependencies: ['onboarding', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [

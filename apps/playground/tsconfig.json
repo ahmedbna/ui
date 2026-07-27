@@ -1,5 +1,5 @@
 {
-  "extends": "@bna-ui/typescript-config/expo.json",
+  "extends": ["expo/tsconfig.base", "@bna-ui/typescript-config/expo.json"],
   "compilerOptions": {
     // Workspace hoisting puts @types/node in scope, which makes `setTimeout`
     // resolve to Node's overload (returns Timeout) instead of React Native's

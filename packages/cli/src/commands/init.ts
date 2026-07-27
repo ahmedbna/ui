@@ -286,10 +286,10 @@ function showSuccessMessage(
       packageManager === 'npm'
         ? 'npm install'
         : packageManager === 'yarn'
-        ? 'yarn'
-        : packageManager === 'bun'
-        ? 'bun install'
-        : 'pnpm install';
+          ? 'yarn'
+          : packageManager === 'bun'
+            ? 'bun install'
+            : 'pnpm install';
 
     logger.plain(`  ${installCommand}`);
   }

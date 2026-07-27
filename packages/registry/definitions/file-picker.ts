@@ -157,7 +157,7 @@ export const filePickerRegistry = {
     description: 'File picker displaying detailed file information',
     type: 'registry:example',
     registryDependencies: ['file-picker', 'text', 'view'],
-    hooks: [],
+    hooks: ['useColor'],
     theme: [],
     files: [
       {

@@ -252,8 +252,8 @@ function AndroidActionSheet({
                         color: option.destructive
                           ? destructiveColor
                           : option.disabled
-                          ? mutedColor
-                          : textColor,
+                            ? mutedColor
+                            : textColor,
                       },
                     ]}
                     numberOfLines={1}

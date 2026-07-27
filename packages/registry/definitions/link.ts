@@ -96,7 +96,7 @@ export const linkRegistry = {
     name: 'link-custom',
     description: 'Links with custom child components instead of text',
     type: 'registry:example',
-    registryDependencies: ['link', 'text', 'view'],
+    registryDependencies: ['link', 'text', 'view', 'button'],
     hooks: [],
     theme: [],
     files: [

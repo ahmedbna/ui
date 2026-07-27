@@ -8,12 +8,7 @@ import {
 } from 'react-native';
 
 type TextVariant =
-  | 'body'
-  | 'title'
-  | 'subtitle'
-  | 'caption'
-  | 'heading'
-  | 'link';
+  'body' | 'title' | 'subtitle' | 'caption' | 'heading' | 'link';
 
 interface TextProps extends RNTextProps {
   variant?: TextVariant;

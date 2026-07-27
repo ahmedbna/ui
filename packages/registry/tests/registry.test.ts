@@ -11,20 +11,24 @@ import baseline from './registry-baseline.json' with { type: 'json' };
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
 /**
- * Entries whose divergence from the pre-migration baseline is intentional.
- * Anything else drifting is a migration bug and should fail the suite.
+ * Dependency declarations that were intentionally *removed* relative to the
+ * pre-migration baseline. Everything else may only grow — see the equivalence
+ * suite below for why that is the invariant worth enforcing.
  */
-const INTENTIONAL_DIFFS: Record<string, string> = {
-  'audio-recorder-cloud':
-    'dropped the dead `loading-spinner` registryDependency — it never existed in the registry, and the demo uses RN ActivityIndicator',
+const INTENTIONAL_REMOVALS: Record<string, string[]> = {
+  // Never existed in the registry; the old resolver silently no-op'd on it,
+  // and the demo actually uses React Native's ActivityIndicator.
+  'audio-recorder-cloud': ['loading-spinner'],
 };
 
 describe('registry integrity', () => {
   it('every entry satisfies the schema', () => {
     for (const [key, entry] of Object.entries(REGISTRY)) {
       const parsed = componentRegistrySchema.safeParse(entry);
-      expect(parsed.success, `${key}: ${JSON.stringify(parsed.error?.issues)}`)
-        .toBe(true);
+      expect(
+        parsed.success,
+        `${key}: ${JSON.stringify(parsed.error?.issues)}`
+      ).toBe(true);
     }
   });
 
@@ -60,7 +64,9 @@ describe('registry integrity', () => {
   it('all source paths live under src/', () => {
     for (const [key, entry] of Object.entries(REGISTRY)) {
       for (const file of entry.files) {
-        expect(file.path.startsWith('src/'), `"${key}": ${file.path}`).toBe(true);
+        expect(file.path.startsWith('src/'), `"${key}": ${file.path}`).toBe(
+          true
+        );
       }
     }
   });
@@ -73,24 +79,106 @@ describe('equivalence with the pre-migration registry', () => {
     expect(Object.keys(REGISTRY).sort()).toEqual(Object.keys(base).sort());
   });
 
-  it('every entry is byte-identical modulo the templates/ -> src/ path move', () => {
+  it('identity fields are unchanged, modulo the templates/ -> src/ path move', () => {
     const diffs: string[] = [];
 
     for (const key of Object.keys(base)) {
-      const before = JSON.parse(JSON.stringify(base[key]));
-      // The only sanctioned mechanical change: the registry package root moved.
-      before.files = before.files.map((f: any) => ({
-        ...f,
-        path: f.path.replace(/^templates\//, 'src/'),
-      }));
+      const before = {
+        name: base[key].name,
+        description: base[key].description,
+        type: base[key].type,
+        category: base[key].category,
+        preview: base[key].preview,
+        // The only sanctioned mechanical change: the registry package root moved.
+        files: base[key].files.map((f: any) => ({
+          ...f,
+          path: f.path.replace(/^templates\//, 'src/'),
+        })),
+      };
+      const a = REGISTRY[key];
+      const after = {
+        name: a.name,
+        description: a.description,
+        type: a.type,
+        category: a.category,
+        preview: a.preview,
+        files: a.files,
+      };
 
+      if (JSON.stringify(before) !== JSON.stringify(after)) diffs.push(key);
+    }
+
+    expect(diffs).toEqual([]);
+  });
+
+  /**
+   * Dependency declarations were under-specified before the migration: many
+   * entries imported `@/…` modules they never declared, so `bna-ui add` wrote
+   * files that could not compile. Fixing that means declarations grew. What
+   * must never happen is a declaration silently *disappearing* — that would
+   * mean the migration dropped something a component genuinely needs.
+   */
+  it('no dependency declaration was silently dropped', () => {
+    const dropped: string[] = [];
+
+    for (const key of Object.keys(base)) {
       const after = REGISTRY[key];
-      if (JSON.stringify(before) !== JSON.stringify(after)) {
-        diffs.push(key);
+      const allowed = new Set(INTENTIONAL_REMOVALS[key] ?? []);
+
+      for (const field of [
+        'registryDependencies',
+        'hooks',
+        'theme',
+        'dependencies',
+      ] as const) {
+        const beforeDeps: string[] = base[key][field] ?? [];
+        const afterDeps = new Set<string>(after[field] ?? []);
+        for (const dep of beforeDeps) {
+          if (!afterDeps.has(dep) && !allowed.has(dep)) {
+            dropped.push(`${key}.${field}: lost "${dep}"`);
+          }
+        }
       }
     }
 
-    expect(diffs.sort()).toEqual(Object.keys(INTENTIONAL_DIFFS).sort());
+    expect(dropped).toEqual([]);
+  });
+
+  it('removes exactly the declarations we meant to remove', () => {
+    for (const [key, removed] of Object.entries(INTENTIONAL_REMOVALS)) {
+      for (const dep of removed) {
+        expect(REGISTRY[key].registryDependencies ?? []).not.toContain(dep);
+      }
+    }
+  });
+});
+
+describe('payload self-containment', () => {
+  const LOCAL_IMPORT = /from '@\/((?:components|hooks|theme)\/[\w/-]+)'/g;
+
+  it('every payload ships every module its files import', async () => {
+    const violations: string[] = [];
+
+    for (const name of Object.keys(REGISTRY)) {
+      const payload = await getPayload(name);
+      if (!payload) {
+        violations.push(`${name}: no payload`);
+        continue;
+      }
+      const targets = payload.files.map((f) =>
+        f.target.replace(/\.[jt]sx?$/, '')
+      );
+
+      for (const file of payload.files) {
+        for (const [, spec] of file.content.matchAll(LOCAL_IMPORT)) {
+          if (!targets.includes(spec)) {
+            violations.push(`${name}: ${file.target} imports @/${spec}`);
+          }
+        }
+      }
+    }
+
+    expect(violations).toEqual([]);
   });
 });
 

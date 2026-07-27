@@ -131,7 +131,7 @@ export const comboboxRegistry = {
     name: 'combobox-form',
     description: 'Combobox integrated with form validation',
     type: 'registry:ui',
-    registryDependencies: ['combobox', 'text', 'view'],
+    registryDependencies: ['combobox', 'text', 'view', 'button'],
     hooks: [],
     theme: [],
     files: [

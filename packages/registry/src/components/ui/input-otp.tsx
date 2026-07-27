@@ -19,8 +19,10 @@ import {
   ViewStyle,
 } from 'react-native';
 
-export interface InputOTPProps
-  extends Omit<TextInputProps, 'style' | 'value' | 'onChangeText'> {
+export interface InputOTPProps extends Omit<
+  TextInputProps,
+  'style' | 'value' | 'onChangeText'
+> {
   /** Number of OTP digits */
   length?: number;
   /** Current OTP value */
@@ -182,10 +184,10 @@ export const InputOTP = forwardRef<InputOTPRef, InputOTPProps>(
                 borderColor: error
                   ? danger
                   : isActive
-                  ? primary
-                  : hasValue
-                  ? borderColor
-                  : borderColor,
+                    ? primary
+                    : hasValue
+                      ? borderColor
+                      : borderColor,
                 backgroundColor: disabled ? muted + '20' : cardColor,
                 justifyContent: 'center',
                 alignItems: 'center',

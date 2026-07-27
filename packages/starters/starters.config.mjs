@@ -23,12 +23,7 @@ export const starters = {
       'text',
       'view',
     ],
-    hooks: [
-      'useColor',
-      'useColorScheme',
-      'useKeyboardHeight',
-      'useModeToggle',
-    ],
+    hooks: ['useColor', 'useColorScheme', 'useKeyboardHeight', 'useModeToggle'],
     theme: ['colors', 'globals', 'theme-provider'],
   },
 };

@@ -29,7 +29,7 @@ export const chartContainerRegistry = {
     name: 'chart-container-demo',
     description: 'A basic chart container with title and description',
     type: 'registry:example',
-    registryDependencies: ['chart-container'],
+    registryDependencies: ['chart-container', 'line-chart'],
     hooks: [],
     theme: [],
     files: [
@@ -51,8 +51,8 @@ export const chartContainerRegistry = {
     name: 'chart-container-styled',
     description: 'Chart container with custom styling',
     type: 'registry:example',
-    registryDependencies: ['chart-container'],
-    hooks: [],
+    registryDependencies: ['chart-container', 'line-chart'],
+    hooks: ['useColor'],
     theme: [],
     files: [
       {

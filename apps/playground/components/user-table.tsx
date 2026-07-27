@@ -119,8 +119,8 @@ export function BasicUserTable() {
               value === 'admin'
                 ? '#EF4444'
                 : value === 'moderator'
-                ? '#F59E0B'
-                : '#10B981',
+                  ? '#F59E0B'
+                  : '#10B981',
           }}
         >
           {value}
@@ -142,8 +142,8 @@ export function BasicUserTable() {
               value === 'active'
                 ? '#DCFCE7'
                 : value === 'inactive'
-                ? '#FEE2E2'
-                : '#FEF3C7',
+                  ? '#FEE2E2'
+                  : '#FEF3C7',
             alignSelf: 'flex-start',
           }}
         >
@@ -155,8 +155,8 @@ export function BasicUserTable() {
                 value === 'active'
                   ? '#166534'
                   : value === 'inactive'
-                  ? '#991B1B'
-                  : '#92400E',
+                    ? '#991B1B'
+                    : '#92400E',
             }}
           >
             {value}

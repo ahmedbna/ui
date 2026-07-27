@@ -74,7 +74,7 @@ export const collapsibleRegistry = {
     name: 'collapsible-nested',
     description: 'Collapsible components nested within each other',
     type: 'registry:example',
-    registryDependencies: ['collapsible', 'text'],
+    registryDependencies: ['collapsible', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [

@@ -177,10 +177,7 @@ export async function initConvexCommand(
     try {
       // Copy template files
       // dist/commands -> dist/templates (populated by scripts/copy-starters.mjs)
-      const templatePath = path.resolve(
-        __dirname,
-        '../templates/start-convex'
-      );
+      const templatePath = path.resolve(__dirname, '../templates/start-convex');
       await copyTemplate(templatePath, projectPath);
 
       // Update package.json
@@ -406,10 +403,10 @@ function showSuccessMessage(
       packageManager === 'npm'
         ? 'npm install'
         : packageManager === 'yarn'
-        ? 'yarn'
-        : packageManager === 'bun'
-        ? 'bun install'
-        : 'pnpm install';
+          ? 'yarn'
+          : packageManager === 'bun'
+            ? 'bun install'
+            : 'pnpm install';
 
     logger.plain(`  ${installCommand}`);
   }

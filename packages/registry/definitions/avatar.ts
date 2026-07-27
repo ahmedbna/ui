@@ -49,7 +49,7 @@ export const avatarRegistry = {
     name: 'avatar-sizes',
     description: 'Avatars in different sizes',
     type: 'registry:example',
-    registryDependencies: ['avatar'],
+    registryDependencies: ['avatar', 'view'],
     hooks: [],
     theme: [],
     files: [
@@ -70,7 +70,7 @@ export const avatarRegistry = {
     name: 'avatar-fallback',
     description: 'Avatars with fallback text when no image is provided',
     type: 'registry:example',
-    registryDependencies: ['avatar'],
+    registryDependencies: ['avatar', 'view'],
     hooks: [],
     theme: [],
     files: [
@@ -91,7 +91,7 @@ export const avatarRegistry = {
     name: 'avatar-styled',
     description: 'Avatars with custom styling and colors',
     type: 'registry:example',
-    registryDependencies: ['avatar'],
+    registryDependencies: ['avatar', 'view'],
     hooks: [],
     theme: [],
     files: [
@@ -112,7 +112,7 @@ export const avatarRegistry = {
     name: 'avatar-group',
     description: 'Multiple avatars arranged in a group layout',
     type: 'registry:example',
-    registryDependencies: ['avatar'],
+    registryDependencies: ['avatar', 'view'],
     hooks: [],
     theme: [],
     files: [
@@ -133,7 +133,7 @@ export const avatarRegistry = {
     name: 'avatar-status',
     description: 'Avatars with online/offline status indicators',
     type: 'registry:example',
-    registryDependencies: ['avatar'],
+    registryDependencies: ['avatar', 'view'],
     hooks: [],
     theme: [],
     files: [
@@ -154,7 +154,7 @@ export const avatarRegistry = {
     name: 'avatar-bordered',
     description: 'Avatars with custom borders and shadows',
     type: 'registry:example',
-    registryDependencies: ['avatar'],
+    registryDependencies: ['avatar', 'view'],
     hooks: [],
     theme: [],
     files: [

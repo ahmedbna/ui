@@ -29,7 +29,7 @@ export const cardRegistry = {
     name: 'card-demo',
     description: 'A complete card with header, content, and footer sections',
     type: 'registry:example',
-    registryDependencies: ['card', 'button'],
+    registryDependencies: ['card', 'button', 'text'],
     hooks: [],
     theme: [],
     files: [
@@ -50,7 +50,7 @@ export const cardRegistry = {
     name: 'card-simple',
     description: 'A minimal card with just content',
     type: 'registry:example',
-    registryDependencies: ['card'],
+    registryDependencies: ['card', 'text'],
     hooks: [],
     theme: [],
     files: [
@@ -71,7 +71,7 @@ export const cardRegistry = {
     name: 'card-with-image',
     description: 'Card featuring an image with content below',
     type: 'registry:example',
-    registryDependencies: ['card', 'button'],
+    registryDependencies: ['card', 'button', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
@@ -92,8 +92,8 @@ export const cardRegistry = {
     name: 'card-with-form',
     description: 'Interactive card containing a login form',
     type: 'registry:example',
-    registryDependencies: ['card', 'button'],
-    hooks: [],
+    registryDependencies: ['card', 'button', 'text', 'view'],
+    hooks: ['useColor'],
     theme: [],
     files: [
       {
@@ -113,7 +113,7 @@ export const cardRegistry = {
     name: 'card-stats',
     description: 'Grid of cards displaying key metrics and statistics',
     type: 'registry:example',
-    registryDependencies: ['card'],
+    registryDependencies: ['card', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
@@ -134,7 +134,7 @@ export const cardRegistry = {
     name: 'card-notification',
     description: 'Card designed for displaying notifications with actions',
     type: 'registry:example',
-    registryDependencies: ['card', 'button', 'icon'],
+    registryDependencies: ['card', 'button', 'icon', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
@@ -155,7 +155,7 @@ export const cardRegistry = {
     name: 'card-pricing',
     description: 'Professional pricing cards with feature lists and CTAs',
     type: 'registry:example',
-    registryDependencies: ['card', 'button', 'icon'],
+    registryDependencies: ['card', 'button', 'icon', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [

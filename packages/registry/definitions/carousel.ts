@@ -12,7 +12,7 @@ export const carouselRegistry = {
       'lucide-react-native',
       'react-native-gesture-handler',
     ],
-    registryDependencies: ['text'],
+    registryDependencies: ['text', 'view'],
     hooks: ['useColor'],
     theme: ['globals'],
     files: [
@@ -34,7 +34,7 @@ export const carouselRegistry = {
     name: 'carousel-demo',
     description: 'A basic carousel with auto-play and indicators',
     type: 'registry:example',
-    registryDependencies: ['carousel'],
+    registryDependencies: ['carousel', 'text'],
     hooks: [],
     theme: [],
     files: [
@@ -56,7 +56,7 @@ export const carouselRegistry = {
     name: 'carousel-arrows',
     description: 'Carousel with navigation arrows and indicators',
     type: 'registry:example',
-    registryDependencies: ['carousel'],
+    registryDependencies: ['carousel', 'icon', 'text'],
     hooks: [],
     theme: [],
     files: [
@@ -78,8 +78,8 @@ export const carouselRegistry = {
     name: 'carousel-custom-width',
     description: 'Carousel with custom item width and spacing',
     type: 'registry:example',
-    registryDependencies: ['carousel'],
-    hooks: [],
+    registryDependencies: ['carousel', 'text', 'view'],
+    hooks: ['useColor'],
     theme: [],
     files: [
       {
@@ -100,10 +100,10 @@ export const carouselRegistry = {
     name: 'carousel-images',
     description: 'Image carousel with auto-play and loop',
     type: 'registry:example',
-    registryDependencies: ['carousel'],
+    registryDependencies: ['carousel', 'text', 'view'],
     dependencies: ['expo-image'],
     hooks: [],
-    theme: [],
+    theme: ['globals'],
     files: [
       {
         type: 'registry:example',
@@ -123,8 +123,8 @@ export const carouselRegistry = {
     name: 'carousel-cards',
     description: 'Card-based carousel with custom content',
     type: 'registry:example',
-    registryDependencies: ['carousel'],
-    hooks: [],
+    registryDependencies: ['carousel', 'text', 'view'],
+    hooks: ['useColor'],
     theme: [],
     files: [
       {
@@ -145,8 +145,8 @@ export const carouselRegistry = {
     name: 'carousel-no-indicators',
     description: 'Carousel without indicators, arrows only',
     type: 'registry:example',
-    registryDependencies: ['carousel'],
-    hooks: [],
+    registryDependencies: ['carousel', 'text', 'view'],
+    hooks: ['useColor'],
     theme: [],
     files: [
       {
@@ -167,7 +167,7 @@ export const carouselRegistry = {
     name: 'carousel-manual',
     description: 'Manually controlled carousel with external buttons',
     type: 'registry:example',
-    registryDependencies: ['carousel', 'button'],
+    registryDependencies: ['carousel', 'button', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [

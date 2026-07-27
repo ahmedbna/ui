@@ -119,7 +119,7 @@ export const popoverRegistry = {
     description: 'Popovers with custom content and styling',
     type: 'registry:example',
     registryDependencies: ['popover', 'button', 'text', 'view'],
-    hooks: [],
+    hooks: ['useColor'],
     theme: [],
     files: [
       {
@@ -163,7 +163,7 @@ export const popoverRegistry = {
     description: 'A popover styled as a dropdown menu',
     type: 'registry:example',
     registryDependencies: ['popover', 'button', 'text', 'view'],
-    hooks: [],
+    hooks: ['useColor'],
     theme: [],
     files: [
       {

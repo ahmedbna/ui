@@ -221,8 +221,8 @@ export function ComboboxValue({
     ? values.length === 0
       ? placeholder
       : values.length === 1
-      ? values[0].label
-      : `${values.length} selected`
+        ? values[0].label
+        : `${values.length} selected`
     : value?.label || placeholder;
 
   return (

@@ -91,8 +91,8 @@ export function AudioWaveformRealtime() {
             frequency === 1
               ? '#007AFF'
               : frequency === 2
-              ? '#34C759'
-              : '#FF9500'
+                ? '#34C759'
+                : '#FF9500'
           }
           inactiveColor='#E5E5E7'
         />

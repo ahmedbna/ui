@@ -5,11 +5,7 @@ import { CORNERS } from '@/theme/globals';
 import { TextStyle, ViewStyle } from 'react-native';
 
 type BadgeVariant =
-  | 'default'
-  | 'secondary'
-  | 'destructive'
-  | 'outline'
-  | 'success';
+  'default' | 'secondary' | 'destructive' | 'outline' | 'success';
 
 interface BadgeProps {
   children: React.ReactNode;

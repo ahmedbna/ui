@@ -610,10 +610,10 @@ export function DatePicker(props: DatePickerProps) {
                             rangeEndpoints.isStart || rangeEndpoints.isEnd
                               ? primaryColor
                               : inRange
-                              ? primaryColor
-                              : isSelected
-                              ? primaryColor
-                              : 'transparent',
+                                ? primaryColor
+                                : isSelected
+                                  ? primaryColor
+                                  : 'transparent',
                           borderWidth:
                             isToday && !isSelected && !inRange ? 1 : 0,
                           borderColor: primaryColor,
@@ -637,12 +637,12 @@ export function DatePicker(props: DatePickerProps) {
                             rangeEndpoints.isStart || rangeEndpoints.isEnd
                               ? primaryForegroundColor
                               : inRange
-                              ? primaryForegroundColor
-                              : isSelected
-                              ? primaryForegroundColor
-                              : disabled
-                              ? mutedForegroundColor
-                              : textColor,
+                                ? primaryForegroundColor
+                                : isSelected
+                                  ? primaryForegroundColor
+                                  : disabled
+                                    ? mutedForegroundColor
+                                    : textColor,
                           fontWeight:
                             rangeEndpoints.isStart ||
                             rangeEndpoints.isEnd ||
@@ -741,8 +741,8 @@ export function DatePicker(props: DatePickerProps) {
                         ? 12
                         : 0
                       : isPM
-                      ? hour + 12
-                      : hour
+                        ? hour + 12
+                        : hour
                     : hour;
 
                 const isSelected = actualHour === selectedHours;
@@ -852,8 +852,8 @@ export function DatePicker(props: DatePickerProps) {
                             ? selectedHours - 12
                             : selectedHours
                           : selectedHours < 12
-                          ? selectedHours + 12
-                          : selectedHours;
+                            ? selectedHours + 12
+                            : selectedHours;
                         handleTimeChange(newHours, selectedMinutes);
                       }}
                       style={{

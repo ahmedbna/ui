@@ -50,7 +50,7 @@ export const iconRegistry = {
     name: 'icon-sizes',
     description: 'Icons in different sizes',
     type: 'registry:example',
-    registryDependencies: ['icon'],
+    registryDependencies: ['icon', 'view'],
     hooks: [],
     theme: [],
     files: [
@@ -71,7 +71,7 @@ export const iconRegistry = {
     name: 'icon-colors',
     description: 'Icons with custom colors and themed colors',
     type: 'registry:example',
-    registryDependencies: ['icon'],
+    registryDependencies: ['icon', 'view'],
     hooks: [],
     theme: [],
     files: [
@@ -92,7 +92,7 @@ export const iconRegistry = {
     name: 'icon-stroke',
     description: 'Icons with different stroke weights',
     type: 'registry:example',
-    registryDependencies: ['icon'],
+    registryDependencies: ['icon', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
@@ -113,7 +113,7 @@ export const iconRegistry = {
     name: 'icon-interactive',
     description: 'Icons with press and hover interactions',
     type: 'registry:example',
-    registryDependencies: ['icon'],
+    registryDependencies: ['icon', 'button', 'view'],
     hooks: [],
     theme: [],
     files: [
@@ -134,7 +134,7 @@ export const iconRegistry = {
     name: 'icon-grid',
     description: 'A grid of commonly used icons',
     type: 'registry:example',
-    registryDependencies: ['icon'],
+    registryDependencies: ['icon', 'view'],
     hooks: [],
     theme: [],
     files: [
@@ -155,7 +155,7 @@ export const iconRegistry = {
     name: 'icon-themed',
     description: 'Icons that adapt to light and dark themes',
     type: 'registry:example',
-    registryDependencies: ['icon'],
+    registryDependencies: ['icon', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [

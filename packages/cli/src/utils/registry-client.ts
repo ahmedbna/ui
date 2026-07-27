@@ -89,7 +89,10 @@ async function writeCache<T>(file: string, entry: CacheEntry<T>) {
   }
 }
 
-function assertSchemaVersion(payload: { $schemaVersion?: number }, what: string) {
+function assertSchemaVersion(
+  payload: { $schemaVersion?: number },
+  what: string
+) {
   const version = payload.$schemaVersion;
   if (version === undefined) {
     throw new Error(

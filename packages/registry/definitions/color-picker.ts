@@ -57,7 +57,7 @@ export const colorPickerRegistry = {
     name: 'color-picker-sizes',
     description: 'Color pickers with different swatch sizes',
     type: 'registry:example',
-    registryDependencies: ['color-picker'],
+    registryDependencies: ['color-picker', 'view'],
     hooks: [],
     theme: [],
     files: [
@@ -79,7 +79,7 @@ export const colorPickerRegistry = {
     name: 'color-picker-colors',
     description: 'Color pickers with different initial colors',
     type: 'registry:example',
-    registryDependencies: ['color-picker'],
+    registryDependencies: ['color-picker', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
@@ -101,7 +101,7 @@ export const colorPickerRegistry = {
     name: 'color-picker-disabled',
     description: 'Disabled color picker that cannot be opened',
     type: 'registry:example',
-    registryDependencies: ['color-picker'],
+    registryDependencies: ['color-picker', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
@@ -123,7 +123,7 @@ export const colorPickerRegistry = {
     name: 'color-swatch-demo',
     description: 'Standalone color swatches without picker functionality',
     type: 'registry:example',
-    registryDependencies: ['color-picker'],
+    registryDependencies: ['color-picker', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
@@ -144,7 +144,7 @@ export const colorPickerRegistry = {
     name: 'color-picker-styled',
     description: 'Color pickers with custom styling and layouts',
     type: 'registry:example',
-    registryDependencies: ['color-picker'],
+    registryDependencies: ['color-picker', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
@@ -165,8 +165,8 @@ export const colorPickerRegistry = {
     name: 'color-picker-palette',
     description: 'Multiple color pickers arranged as a color palette',
     type: 'registry:example',
-    registryDependencies: ['color-picker'],
-    hooks: [],
+    registryDependencies: ['color-picker', 'text', 'view'],
+    hooks: ['useColor'],
     theme: [],
     files: [
       {
@@ -186,7 +186,7 @@ export const colorPickerRegistry = {
     name: 'color-picker-labeled',
     description: 'color-picker-labeled',
     type: 'registry:example',
-    registryDependencies: ['color-picker'],
+    registryDependencies: ['color-picker', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [

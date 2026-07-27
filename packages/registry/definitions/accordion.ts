@@ -30,7 +30,7 @@ export const accordionRegistry = {
     name: 'accordion-demo',
     description: 'A basic accordion with collapsible sections',
     type: 'registry:example',
-    registryDependencies: ['accordion'],
+    registryDependencies: ['accordion', 'text'],
     hooks: [],
     theme: [],
     files: [
@@ -52,7 +52,7 @@ export const accordionRegistry = {
     name: 'accordion-single',
     description: 'An accordion that allows only one item to be open at a time',
     type: 'registry:example',
-    registryDependencies: ['accordion'],
+    registryDependencies: ['accordion', 'text'],
     hooks: [],
     theme: [],
     files: [
@@ -75,7 +75,7 @@ export const accordionRegistry = {
     description:
       'An accordion that allows multiple items to be open simultaneously',
     type: 'registry:example',
-    registryDependencies: ['accordion'],
+    registryDependencies: ['accordion', 'text'],
     hooks: [],
     theme: [],
     files: [
@@ -97,7 +97,7 @@ export const accordionRegistry = {
     name: 'accordion-controlled',
     description: 'An accordion with controlled state management',
     type: 'registry:example',
-    registryDependencies: ['accordion'],
+    registryDependencies: ['accordion', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
@@ -120,7 +120,7 @@ export const accordionRegistry = {
     description:
       'An accordion formatted as a frequently asked questions section',
     type: 'registry:example',
-    registryDependencies: ['accordion'],
+    registryDependencies: ['accordion', 'text'],
     hooks: [],
     theme: [],
     files: [
@@ -142,7 +142,7 @@ export const accordionRegistry = {
     name: 'accordion-non-collapsible',
     description: 'An accordion where at least one item must always remain open',
     type: 'registry:example',
-    registryDependencies: ['accordion'],
+    registryDependencies: ['accordion', 'text'],
     hooks: [],
     theme: [],
     files: [
@@ -164,9 +164,9 @@ export const accordionRegistry = {
     name: 'accordion-styled',
     description: 'An accordion with custom styling and icons',
     type: 'registry:example',
-    registryDependencies: ['accordion'],
-    hooks: [],
-    theme: [],
+    registryDependencies: ['accordion', 'text', 'view'],
+    hooks: ['useColor'],
+    theme: ['globals'],
     files: [
       {
         type: 'registry:example',

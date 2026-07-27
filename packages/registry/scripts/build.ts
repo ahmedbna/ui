@@ -49,13 +49,16 @@ async function walk(dir: string, filter: (f: string) => boolean) {
  */
 export function fixImport(content: string): string {
   const regex = /@\/(.+?)\/((?:.*?\/)?(?:components|ui|hooks|lib))\/([\w-]+)/g;
-  return content.replace(regex, (match, _p, type: string, component: string) => {
-    if (type.endsWith('components')) return `@/components/${component}`;
-    if (type.endsWith('ui')) return `@/components/ui/${component}`;
-    if (type.endsWith('hooks')) return `@/hooks/${component}`;
-    if (type.endsWith('lib')) return `@/lib/${component}`;
-    return match;
-  });
+  return content.replace(
+    regex,
+    (match, _p, type: string, component: string) => {
+      if (type.endsWith('components')) return `@/components/${component}`;
+      if (type.endsWith('ui')) return `@/components/ui/${component}`;
+      if (type.endsWith('hooks')) return `@/hooks/${component}`;
+      if (type.endsWith('lib')) return `@/lib/${component}`;
+      return match;
+    }
+  );
 }
 
 /** Registry consumers import named exports; demos must not use `export default`. */
@@ -110,7 +113,9 @@ async function validate(registry: Registry) {
     }
     for (const dep of entry.registryDependencies ?? []) {
       if (!registry[dep]) {
-        fail(`"${key}": registryDependencies references unknown entry "${dep}"`);
+        fail(
+          `"${key}": registryDependencies references unknown entry "${dep}"`
+        );
       }
     }
     // `hooks` and `theme` name registry entries too — they are just declared in
@@ -147,21 +152,28 @@ async function validate(registry: Registry) {
  */
 function expandClosure(registry: Registry, name: string): string[] {
   const out: string[] = [];
-  const seen = new Set<string>();
+  const visiting = new Set<string>();
+  const done = new Set<string>();
 
-  const push = (n: string) => {
-    if (seen.has(n) || !registry[n]) return;
-    seen.add(n);
+  // Depth-first over the union of registryDependencies, hooks and theme, so a
+  // hook that itself pulls a hook and a theme file (useColor -> useColorScheme,
+  // colors) is fully expanded. Expanding only one level shipped payloads whose
+  // files imported things the payload did not contain.
+  const visit = (n: string) => {
+    if (done.has(n) || visiting.has(n) || !registry[n]) return;
+    visiting.add(n);
+
+    const entry = registry[n];
+    for (const dep of entry.hooks ?? []) visit(dep);
+    for (const dep of entry.theme ?? []) visit(dep);
+    for (const dep of entry.registryDependencies ?? []) visit(dep);
+
+    visiting.delete(n);
+    done.add(n);
     out.push(n);
   };
 
-  for (const dep of resolveAllDependencies(registry, name)) {
-    // Hooks and theme first: a component's source imports them.
-    for (const hook of registry[dep]?.hooks ?? []) push(hook);
-    for (const theme of registry[dep]?.theme ?? []) push(theme);
-    push(dep);
-  }
-
+  visit(name);
   return out;
 }
 
@@ -201,7 +213,9 @@ async function main() {
   await fs.mkdir(path.join(GENERATED, 'r'), { recursive: true });
 
   const keys = Object.keys(registry).sort();
-  const sorted: Registry = Object.fromEntries(keys.map((k) => [k, registry[k]]));
+  const sorted: Registry = Object.fromEntries(
+    keys.map((k) => [k, registry[k]])
+  );
 
   // Metadata index — no source text.
   const index = {
@@ -250,7 +264,10 @@ async function main() {
     await fs.writeFile(path.join(GENERATED, 'r', `${key}.json`), json);
   }
 
-  const hash = createHash('sha256').update(indexJson).digest('hex').slice(0, 12);
+  const hash = createHash('sha256')
+    .update(indexJson)
+    .digest('hex')
+    .slice(0, 12);
   console.log(
     `✔ registry: ${keys.length} entries → generated/r/  ` +
       `(${(bytes / 1024 / 1024).toFixed(2)} MB, index ${hash})`

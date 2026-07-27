@@ -160,8 +160,8 @@ export const Carousel = forwardRef<CarouselRef, CarouselProps>(
         nextIndex < children.length
           ? nextIndex
           : loop
-          ? 0
-          : currentIndexRef.current;
+            ? 0
+            : currentIndexRef.current;
       if (targetIndex !== currentIndexRef.current) {
         setCurrentIndex(targetIndex);
         setIsUserInteracting(true);
@@ -181,8 +181,8 @@ export const Carousel = forwardRef<CarouselRef, CarouselProps>(
         prevIndex >= 0
           ? prevIndex
           : loop
-          ? children.length - 1
-          : currentIndexRef.current;
+            ? children.length - 1
+            : currentIndexRef.current;
       if (targetIndex !== currentIndexRef.current) {
         setCurrentIndex(targetIndex);
         setIsUserInteracting(true);

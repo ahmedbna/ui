@@ -103,7 +103,9 @@ async function main() {
 
   for (const [name, config] of Object.entries(overlays)) {
     const { files } = await buildOverlay(name, config);
-    console.log(`✔ starter "${name}": ${files} files (${config.base} + overlay)`);
+    console.log(
+      `✔ starter "${name}": ${files} files (${config.base} + overlay)`
+    );
   }
 }
 

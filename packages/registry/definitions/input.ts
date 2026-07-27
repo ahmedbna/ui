@@ -125,7 +125,7 @@ export const inputRegistry = {
     type: 'registry:example',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['input', 'view', 'button', 'text'],
-    hooks: [],
+    hooks: ['useColor'],
     theme: [],
     files: [
       {

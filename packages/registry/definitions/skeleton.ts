@@ -74,8 +74,8 @@ export const skeletonRegistry = {
     description: 'Skeleton placeholders arranged in a card layout',
     type: 'registry:example',
     registryDependencies: ['skeleton', 'view'],
-    hooks: [],
-    theme: [],
+    hooks: ['useColor'],
+    theme: ['globals'],
     files: [
       {
         type: 'registry:example',
@@ -95,8 +95,8 @@ export const skeletonRegistry = {
     description: 'Skeleton layout mimicking a user profile',
     type: 'registry:example',
     registryDependencies: ['skeleton', 'view'],
-    hooks: [],
-    theme: [],
+    hooks: ['useColor'],
+    theme: ['globals'],
     files: [
       {
         type: 'registry:example',
@@ -116,8 +116,8 @@ export const skeletonRegistry = {
     description: 'Multiple skeleton items arranged in a list',
     type: 'registry:example',
     registryDependencies: ['skeleton', 'view'],
-    hooks: [],
-    theme: [],
+    hooks: ['useColor'],
+    theme: ['globals'],
     files: [
       {
         type: 'registry:example',
@@ -137,8 +137,8 @@ export const skeletonRegistry = {
     description: 'Skeletons with custom shapes and styling',
     type: 'registry:example',
     registryDependencies: ['skeleton', 'view'],
-    hooks: [],
-    theme: [],
+    hooks: ['useColor'],
+    theme: ['globals'],
     files: [
       {
         type: 'registry:example',

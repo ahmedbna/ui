@@ -74,7 +74,7 @@ export const inputOtpRegistry = {
     description: 'OTP input with dash separators between digits',
     type: 'registry:example',
     registryDependencies: ['input-otp', 'text', 'view'],
-    hooks: [],
+    hooks: ['useColor'],
     theme: [],
     files: [
       {
@@ -158,7 +158,7 @@ export const inputOtpRegistry = {
     description: 'OTP input with custom colors and styling',
     type: 'registry:example',
     registryDependencies: ['input-otp', 'text', 'view'],
-    hooks: [],
+    hooks: ['useColor'],
     theme: [],
     files: [
       {

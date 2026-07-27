@@ -74,8 +74,8 @@ export const searchbarRegistry = {
     name: 'searchbar-icons',
     description: 'Search bar with custom left and right icons',
     type: 'registry:example',
-    registryDependencies: ['searchbar', 'icon'],
-    hooks: [],
+    registryDependencies: ['searchbar', 'icon', 'view'],
+    hooks: ['useColor'],
     theme: [],
     files: [
       {
@@ -118,7 +118,7 @@ export const searchbarRegistry = {
     name: 'searchbar-styled',
     description: 'Search bar with custom styling and colors',
     type: 'registry:example',
-    registryDependencies: ['searchbar'],
+    registryDependencies: ['searchbar', 'view'],
     hooks: [],
     theme: [],
     files: [

@@ -10,7 +10,7 @@ export const bottomSheetRegistry = {
     type: 'registry:ui',
     dependencies: ['react-native-gesture-handler', 'react-native-reanimated'],
     registryDependencies: ['text', 'view'],
-    hooks: ['useColor'],
+    hooks: ['useColor', 'useKeyboardHeight'],
     theme: ['globals'],
     files: [
       {
@@ -31,7 +31,7 @@ export const bottomSheetRegistry = {
     name: 'bottom-sheet-demo',
     description: 'A basic bottom sheet with gesture support and snap points',
     type: 'registry:example',
-    registryDependencies: ['bottom-sheet', 'button'],
+    registryDependencies: ['bottom-sheet', 'button', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
@@ -53,7 +53,7 @@ export const bottomSheetRegistry = {
     name: 'bottom-sheet-title',
     description: 'Bottom sheet with a title header',
     type: 'registry:example',
-    registryDependencies: ['bottom-sheet', 'button'],
+    registryDependencies: ['bottom-sheet', 'button', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
@@ -75,7 +75,7 @@ export const bottomSheetRegistry = {
     name: 'bottom-sheet-snap-points',
     description: 'Bottom sheet with custom snap point configurations',
     type: 'registry:example',
-    registryDependencies: ['bottom-sheet', 'button'],
+    registryDependencies: ['bottom-sheet', 'button', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
@@ -97,7 +97,7 @@ export const bottomSheetRegistry = {
     name: 'bottom-sheet-form',
     description: 'Bottom sheet containing form elements and inputs',
     type: 'registry:example',
-    registryDependencies: ['bottom-sheet', 'button', 'input'],
+    registryDependencies: ['bottom-sheet', 'button', 'input', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
@@ -119,7 +119,7 @@ export const bottomSheetRegistry = {
     name: 'bottom-sheet-list',
     description: 'Bottom sheet with scrollable list content',
     type: 'registry:example',
-    registryDependencies: ['bottom-sheet', 'button'],
+    registryDependencies: ['bottom-sheet', 'button', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
@@ -141,7 +141,7 @@ export const bottomSheetRegistry = {
     name: 'bottom-sheet-no-dismiss',
     description: 'Bottom sheet that cannot be dismissed by tapping backdrop',
     type: 'registry:example',
-    registryDependencies: ['bottom-sheet', 'button'],
+    registryDependencies: ['bottom-sheet', 'button', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
@@ -163,8 +163,8 @@ export const bottomSheetRegistry = {
     name: 'bottom-sheet-styled',
     description: 'Bottom sheet with custom styling and colors',
     type: 'registry:example',
-    registryDependencies: ['bottom-sheet', 'button'],
-    hooks: [],
+    registryDependencies: ['bottom-sheet', 'button', 'text', 'view'],
+    hooks: ['useColor'],
     theme: [],
     files: [
       {
@@ -185,7 +185,7 @@ export const bottomSheetRegistry = {
     description: 'Bottom sheet used as a menu with action items',
     type: 'registry:example',
     registryDependencies: ['bottom-sheet', 'button', 'text', 'view'],
-    hooks: [],
+    hooks: ['useColor'],
     theme: [],
     files: [
       {

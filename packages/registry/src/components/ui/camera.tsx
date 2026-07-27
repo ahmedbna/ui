@@ -99,7 +99,9 @@ export const Camera = forwardRef<CameraRef, CameraProps>(
     ref
   ) => {
     const cameraRef = useRef<CameraView>(null);
-    const recordingInterval = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const recordingInterval = useRef<ReturnType<typeof setTimeout> | null>(
+      null
+    );
     const timerInterval = useRef<ReturnType<typeof setTimeout> | null>(null);
 
     const fadeAnim = useSharedValue(0);
@@ -692,8 +694,8 @@ export const Camera = forwardRef<CameraRef, CameraProps>(
                         mode === 'picture'
                           ? handleCapture
                           : isRecording
-                          ? handleStopRecording
-                          : handleCapture
+                            ? handleStopRecording
+                            : handleCapture
                       }
                       disabled={isCapturing || isTimerActive}
                       activeOpacity={0.8}

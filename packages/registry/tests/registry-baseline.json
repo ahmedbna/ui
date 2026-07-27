@@ -3,14 +3,8 @@
     "name": "accordion",
     "description": "A vertically stacked set of interactive headings that each reveal a section of content.",
     "type": "registry:ui",
-    "dependencies": [
-      "lucide-react-native"
-    ],
-    "registryDependencies": [
-      "text",
-      "view",
-      "icon"
-    ],
+    "dependencies": ["lucide-react-native"],
+    "registryDependencies": ["text", "view", "icon"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -29,9 +23,7 @@
     "name": "accordion-controlled",
     "description": "An accordion with controlled state management",
     "type": "registry:example",
-    "registryDependencies": [
-      "accordion"
-    ],
+    "registryDependencies": ["accordion"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -50,9 +42,7 @@
     "name": "accordion-demo",
     "description": "A basic accordion with collapsible sections",
     "type": "registry:example",
-    "registryDependencies": [
-      "accordion"
-    ],
+    "registryDependencies": ["accordion"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -71,9 +61,7 @@
     "name": "accordion-faq",
     "description": "An accordion formatted as a frequently asked questions section",
     "type": "registry:example",
-    "registryDependencies": [
-      "accordion"
-    ],
+    "registryDependencies": ["accordion"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -92,9 +80,7 @@
     "name": "accordion-multiple",
     "description": "An accordion that allows multiple items to be open simultaneously",
     "type": "registry:example",
-    "registryDependencies": [
-      "accordion"
-    ],
+    "registryDependencies": ["accordion"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -113,9 +99,7 @@
     "name": "accordion-non-collapsible",
     "description": "An accordion where at least one item must always remain open",
     "type": "registry:example",
-    "registryDependencies": [
-      "accordion"
-    ],
+    "registryDependencies": ["accordion"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -134,9 +118,7 @@
     "name": "accordion-single",
     "description": "An accordion that allows only one item to be open at a time",
     "type": "registry:example",
-    "registryDependencies": [
-      "accordion"
-    ],
+    "registryDependencies": ["accordion"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -155,9 +137,7 @@
     "name": "accordion-styled",
     "description": "An accordion with custom styling and icons",
     "type": "registry:example",
-    "registryDependencies": [
-      "accordion"
-    ],
+    "registryDependencies": ["accordion"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -176,16 +156,9 @@
     "name": "action-sheet",
     "description": "A native-feeling action sheet component that provides a menu of options triggered from the bottom of the screen.",
     "type": "registry:ui",
-    "registryDependencies": [
-      "text",
-      "view"
-    ],
-    "hooks": [
-      "useColor"
-    ],
-    "theme": [
-      "globals"
-    ],
+    "registryDependencies": ["text", "view"],
+    "hooks": ["useColor"],
+    "theme": ["globals"],
     "files": [
       {
         "type": "registry:ui",
@@ -202,10 +175,7 @@
     "name": "action-sheet-demo",
     "description": "A basic action sheet with multiple options",
     "type": "registry:example",
-    "registryDependencies": [
-      "action-sheet",
-      "button"
-    ],
+    "registryDependencies": ["action-sheet", "button"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -224,11 +194,7 @@
     "name": "action-sheet-destructive",
     "description": "An action sheet featuring destructive actions with appropriate styling",
     "type": "registry:example",
-    "registryDependencies": [
-      "action-sheet",
-      "button",
-      "icon"
-    ],
+    "registryDependencies": ["action-sheet", "button", "icon"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -247,11 +213,7 @@
     "name": "action-sheet-disabled",
     "description": "An action sheet with some disabled options",
     "type": "registry:example",
-    "registryDependencies": [
-      "action-sheet",
-      "button",
-      "icon"
-    ],
+    "registryDependencies": ["action-sheet", "button", "icon"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -270,12 +232,7 @@
     "name": "action-sheet-hook",
     "description": "Using the useActionSheet hook for easier management",
     "type": "registry:example",
-    "registryDependencies": [
-      "action-sheet",
-      "button",
-      "view",
-      "icon"
-    ],
+    "registryDependencies": ["action-sheet", "button", "view", "icon"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -294,11 +251,7 @@
     "name": "action-sheet-icons",
     "description": "An action sheet with icons next to each option",
     "type": "registry:example",
-    "registryDependencies": [
-      "action-sheet",
-      "button",
-      "icon"
-    ],
+    "registryDependencies": ["action-sheet", "button", "icon"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -317,11 +270,7 @@
     "name": "action-sheet-long",
     "description": "An action sheet with many options that scrolls",
     "type": "registry:example",
-    "registryDependencies": [
-      "action-sheet",
-      "button",
-      "icon"
-    ],
+    "registryDependencies": ["action-sheet", "button", "icon"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -340,11 +289,7 @@
     "name": "action-sheet-styled",
     "description": "An action sheet with custom styling and branding",
     "type": "registry:example",
-    "registryDependencies": [
-      "action-sheet",
-      "button",
-      "icon"
-    ],
+    "registryDependencies": ["action-sheet", "button", "icon"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -363,16 +308,9 @@
     "name": "alert",
     "description": "Display important messages to users with both visual inline alerts and native system alerts.",
     "type": "registry:ui",
-    "registryDependencies": [
-      "text",
-      "view"
-    ],
-    "hooks": [
-      "useColor"
-    ],
-    "theme": [
-      "globals"
-    ],
+    "registryDependencies": ["text", "view"],
+    "hooks": ["useColor"],
+    "theme": ["globals"],
     "files": [
       {
         "type": "registry:ui",
@@ -389,12 +327,7 @@
     "name": "alert-advanced-demo",
     "description": "Advanced alert usage patterns and combinations",
     "type": "registry:example",
-    "registryDependencies": [
-      "alert",
-      "button",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["alert", "button", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -413,10 +346,7 @@
     "name": "alert-confirm-demo",
     "description": "Confirmation alert for destructive actions",
     "type": "registry:example",
-    "registryDependencies": [
-      "alert",
-      "button"
-    ],
+    "registryDependencies": ["alert", "button"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -435,10 +365,7 @@
     "name": "alert-custom-demo",
     "description": "Custom native alert with multiple options",
     "type": "registry:example",
-    "registryDependencies": [
-      "alert",
-      "button"
-    ],
+    "registryDependencies": ["alert", "button"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -457,10 +384,7 @@
     "name": "alert-demo",
     "description": "A basic native alert with two buttons",
     "type": "registry:example",
-    "registryDependencies": [
-      "alert",
-      "button"
-    ],
+    "registryDependencies": ["alert", "button"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -479,15 +403,8 @@
     "name": "alert-dialog",
     "description": "A modal dialog that interrupts the user with important content and expects a response.",
     "type": "registry:ui",
-    "dependencies": [
-      "react-native-reanimated"
-    ],
-    "registryDependencies": [
-      "card",
-      "button",
-      "text",
-      "view"
-    ],
+    "dependencies": ["react-native-reanimated"],
+    "registryDependencies": ["card", "button", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -506,9 +423,7 @@
     "name": "alert-dialog-custom",
     "description": "A custom styled alert dialog with different appearance",
     "type": "registry:example",
-    "registryDependencies": [
-      "alert-dialog"
-    ],
+    "registryDependencies": ["alert-dialog"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -527,9 +442,7 @@
     "name": "alert-dialog-demo",
     "description": "A basic alert dialog with confirmation buttons",
     "type": "registry:example",
-    "registryDependencies": [
-      "alert-dialog"
-    ],
+    "registryDependencies": ["alert-dialog"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -548,9 +461,7 @@
     "name": "alert-dialog-destructive",
     "description": "An alert dialog for destructive actions like delete",
     "type": "registry:example",
-    "registryDependencies": [
-      "alert-dialog"
-    ],
+    "registryDependencies": ["alert-dialog"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -569,10 +480,7 @@
     "name": "alert-error-demo",
     "description": "Error alert with destructive styling",
     "type": "registry:example",
-    "registryDependencies": [
-      "alert",
-      "button"
-    ],
+    "registryDependencies": ["alert", "button"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -591,10 +499,7 @@
     "name": "alert-success-demo",
     "description": "Success alert with positive messaging",
     "type": "registry:example",
-    "registryDependencies": [
-      "alert",
-      "button"
-    ],
+    "registryDependencies": ["alert", "button"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -613,10 +518,7 @@
     "name": "alert-three-button-demo",
     "description": "A native alert with three button options",
     "type": "registry:example",
-    "registryDependencies": [
-      "alert",
-      "button"
-    ],
+    "registryDependencies": ["alert", "button"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -635,11 +537,7 @@
     "name": "alert-visual-demo",
     "description": "Inline visual alerts that appear within your content",
     "type": "registry:example",
-    "registryDependencies": [
-      "alert",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["alert", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -658,11 +556,7 @@
     "name": "alert-visual-destructive-demo",
     "description": "Destructive visual alerts for error messages",
     "type": "registry:example",
-    "registryDependencies": [
-      "alert",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["alert", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -686,15 +580,9 @@
       "react-native-reanimated",
       "react-native-gesture-handler"
     ],
-    "registryDependencies": [
-      "line-chart"
-    ],
-    "hooks": [
-      "useColor"
-    ],
-    "theme": [
-      "globals"
-    ],
+    "registryDependencies": ["line-chart"],
+    "hooks": ["useColor"],
+    "theme": ["globals"],
     "files": [
       {
         "type": "registry:ui",
@@ -711,10 +599,7 @@
     "name": "area-chart-demo",
     "description": "An area chart with gradient fill and smooth animations",
     "type": "registry:example",
-    "registryDependencies": [
-      "area-chart",
-      "chart-container"
-    ],
+    "registryDependencies": ["area-chart", "chart-container"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -733,10 +618,7 @@
     "name": "area-chart-interactive",
     "description": "An interactive area chart with touch gestures",
     "type": "registry:example",
-    "registryDependencies": [
-      "area-chart",
-      "chart-container"
-    ],
+    "registryDependencies": ["area-chart", "chart-container"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -755,10 +637,7 @@
     "name": "area-chart-large",
     "description": "An area chart with large data",
     "type": "registry:example",
-    "registryDependencies": [
-      "area-chart",
-      "chart-container"
-    ],
+    "registryDependencies": ["area-chart", "chart-container"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -777,13 +656,8 @@
     "name": "area-chart-styled",
     "description": "A customized area chart with custom styling",
     "type": "registry:example",
-    "registryDependencies": [
-      "area-chart",
-      "chart-container"
-    ],
-    "hooks": [
-      "useColor"
-    ],
+    "registryDependencies": ["area-chart", "chart-container"],
+    "hooks": ["useColor"],
     "theme": [],
     "files": [
       {
@@ -801,22 +675,10 @@
     "name": "audio-player",
     "description": "A feature-rich audio player component with waveform visualization, playback controls, and seeking capabilities for music, podcasts, and voice recordings.",
     "type": "registry:ui",
-    "dependencies": [
-      "expo-audio",
-      "lucide-react-native"
-    ],
-    "registryDependencies": [
-      "button",
-      "progress",
-      "text",
-      "audio-waveform"
-    ],
-    "hooks": [
-      "useColor"
-    ],
-    "theme": [
-      "globals"
-    ],
+    "dependencies": ["expo-audio", "lucide-react-native"],
+    "registryDependencies": ["button", "progress", "text", "audio-waveform"],
+    "hooks": ["useColor"],
+    "theme": ["globals"],
     "files": [
       {
         "type": "registry:ui",
@@ -833,11 +695,7 @@
     "name": "audio-player-autoplay",
     "description": "Audio player that starts playing automatically when loaded",
     "type": "registry:example",
-    "registryDependencies": [
-      "audio-player",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["audio-player", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -856,11 +714,7 @@
     "name": "audio-player-demo",
     "description": "A complete audio player with all features enabled",
     "type": "registry:example",
-    "registryDependencies": [
-      "audio-player",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["audio-player", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -879,11 +733,7 @@
     "name": "audio-player-minimal",
     "description": "A minimal audio player with only essential controls",
     "type": "registry:example",
-    "registryDependencies": [
-      "audio-player",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["audio-player", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -902,13 +752,7 @@
     "name": "audio-player-music",
     "description": "Audio player with music-focused UI including album art and track info",
     "type": "registry:example",
-    "registryDependencies": [
-      "audio-player",
-      "text",
-      "view",
-      "image",
-      "button"
-    ],
+    "registryDependencies": ["audio-player", "text", "view", "image", "button"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -927,11 +771,7 @@
     "name": "audio-player-progress",
     "description": "Audio player using only a progress bar for seeking",
     "type": "registry:example",
-    "registryDependencies": [
-      "audio-player",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["audio-player", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -950,11 +790,7 @@
     "name": "audio-player-styled",
     "description": "An audio player with custom styling and theming",
     "type": "registry:example",
-    "registryDependencies": [
-      "audio-player",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["audio-player", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -973,11 +809,7 @@
     "name": "audio-player-waveform",
     "description": "Audio player focused on waveform visualization",
     "type": "registry:example",
-    "registryDependencies": [
-      "audio-player",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["audio-player", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -996,22 +828,15 @@
     "name": "audio-recorder",
     "description": "A comprehensive audio recording component with real-time waveform visualization, quality settings, and built-in playback capabilities.",
     "type": "registry:ui",
-    "dependencies": [
-      "expo-audio",
-      "lucide-react-native"
-    ],
+    "dependencies": ["expo-audio", "lucide-react-native"],
     "registryDependencies": [
       "audio-player",
       "audio-waveform",
       "button",
       "text"
     ],
-    "hooks": [
-      "useColor"
-    ],
-    "theme": [
-      "globals"
-    ],
+    "hooks": ["useColor"],
+    "theme": ["globals"],
     "files": [
       {
         "type": "registry:ui",
@@ -1028,11 +853,7 @@
     "name": "audio-recorder-callbacks",
     "description": "Recorder with comprehensive callback handling",
     "type": "registry:example",
-    "registryDependencies": [
-      "audio-recorder",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["audio-recorder", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -1075,11 +896,7 @@
     "name": "audio-recorder-demo",
     "description": "Full-featured audio recorder with real-time waveform and playback",
     "type": "registry:example",
-    "registryDependencies": [
-      "audio-recorder",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["audio-recorder", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -1098,11 +915,7 @@
     "name": "audio-recorder-hq",
     "description": "High-quality recorder for music or professional audio",
     "type": "registry:example",
-    "registryDependencies": [
-      "audio-recorder",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["audio-recorder", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -1121,12 +934,7 @@
     "name": "audio-recorder-interview",
     "description": "Long-form recorder optimized for interviews and meetings",
     "type": "registry:example",
-    "registryDependencies": [
-      "audio-recorder",
-      "text",
-      "view",
-      "badge"
-    ],
+    "registryDependencies": ["audio-recorder", "text", "view", "badge"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -1145,11 +953,7 @@
     "name": "audio-recorder-minimal",
     "description": "Minimal recorder without waveform visualization",
     "type": "registry:example",
-    "registryDependencies": [
-      "audio-recorder",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["audio-recorder", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -1168,11 +972,7 @@
     "name": "audio-recorder-styled",
     "description": "Audio recorder with custom styling and branding",
     "type": "registry:example",
-    "registryDependencies": [
-      "audio-recorder",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["audio-recorder", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -1191,11 +991,7 @@
     "name": "audio-recorder-voice",
     "description": "Optimized recorder for quick voice notes with time limit",
     "type": "registry:example",
-    "registryDependencies": [
-      "audio-recorder",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["audio-recorder", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -1214,10 +1010,7 @@
     "name": "audio-waveform",
     "description": "A customizable audio waveform visualization component with playback progress and interactive seeking capabilities.",
     "type": "registry:ui",
-    "registryDependencies": [
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -1236,12 +1029,7 @@
     "name": "audio-waveform-compact",
     "description": "Compact waveforms suitable for chat messages and minimal interfaces",
     "type": "registry:example",
-    "registryDependencies": [
-      "audio-waveform",
-      "button",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["audio-waveform", "button", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -1260,16 +1048,9 @@
     "name": "audio-waveform-demo",
     "description": "A basic audio waveform with playback controls and progress tracking",
     "type": "registry:example",
-    "registryDependencies": [
-      "audio-waveform",
-      "button",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["audio-waveform", "button", "text", "view"],
     "hooks": [],
-    "theme": [
-      "useColor"
-    ],
+    "theme": ["useColor"],
     "files": [
       {
         "type": "registry:example",
@@ -1286,12 +1067,7 @@
     "name": "audio-waveform-interactive",
     "description": "A waveform with touch-based seeking functionality and custom audio data",
     "type": "registry:example",
-    "registryDependencies": [
-      "audio-waveform",
-      "button",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["audio-waveform", "button", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -1310,12 +1086,7 @@
     "name": "audio-waveform-realtime",
     "description": "A waveform that updates with real-time audio data and configurable patterns",
     "type": "registry:example",
-    "registryDependencies": [
-      "audio-waveform",
-      "button",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["audio-waveform", "button", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -1334,12 +1105,7 @@
     "name": "audio-waveform-recording",
     "description": "An animated waveform for recording visualization with real-time audio levels",
     "type": "registry:example",
-    "registryDependencies": [
-      "audio-waveform",
-      "button",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["audio-waveform", "button", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -1358,12 +1124,7 @@
     "name": "audio-waveform-styled",
     "description": "Multiple themed waveforms with custom colors, dimensions, and styles",
     "type": "registry:example",
-    "registryDependencies": [
-      "audio-waveform",
-      "button",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["audio-waveform", "button", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -1382,20 +1143,10 @@
     "name": "avatar",
     "description": "An image element with a fallback for representing the user.",
     "type": "registry:ui",
-    "dependencies": [
-      "expo-image"
-    ],
-    "registryDependencies": [
-      "text",
-      "view",
-      "image"
-    ],
-    "hooks": [
-      "useColor"
-    ],
-    "theme": [
-      "globals"
-    ],
+    "dependencies": ["expo-image"],
+    "registryDependencies": ["text", "view", "image"],
+    "hooks": ["useColor"],
+    "theme": ["globals"],
     "files": [
       {
         "type": "registry:ui",
@@ -1412,9 +1163,7 @@
     "name": "avatar-bordered",
     "description": "Avatars with custom borders and shadows",
     "type": "registry:example",
-    "registryDependencies": [
-      "avatar"
-    ],
+    "registryDependencies": ["avatar"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -1433,9 +1182,7 @@
     "name": "avatar-demo",
     "description": "A basic avatar with image and fallback text",
     "type": "registry:example",
-    "registryDependencies": [
-      "avatar"
-    ],
+    "registryDependencies": ["avatar"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -1454,9 +1201,7 @@
     "name": "avatar-fallback",
     "description": "Avatars with fallback text when no image is provided",
     "type": "registry:example",
-    "registryDependencies": [
-      "avatar"
-    ],
+    "registryDependencies": ["avatar"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -1475,9 +1220,7 @@
     "name": "avatar-group",
     "description": "Multiple avatars arranged in a group layout",
     "type": "registry:example",
-    "registryDependencies": [
-      "avatar"
-    ],
+    "registryDependencies": ["avatar"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -1496,9 +1239,7 @@
     "name": "avatar-sizes",
     "description": "Avatars in different sizes",
     "type": "registry:example",
-    "registryDependencies": [
-      "avatar"
-    ],
+    "registryDependencies": ["avatar"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -1517,9 +1258,7 @@
     "name": "avatar-status",
     "description": "Avatars with online/offline status indicators",
     "type": "registry:example",
-    "registryDependencies": [
-      "avatar"
-    ],
+    "registryDependencies": ["avatar"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -1538,9 +1277,7 @@
     "name": "avatar-styled",
     "description": "Avatars with custom styling and colors",
     "type": "registry:example",
-    "registryDependencies": [
-      "avatar"
-    ],
+    "registryDependencies": ["avatar"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -1559,13 +1296,9 @@
     "name": "avoid-keyboard",
     "description": "A component that automatically adjusts its height to avoid keyboard overlap with smooth animations and cross-platform support.",
     "type": "registry:ui",
-    "dependencies": [
-      "react-native-reanimated"
-    ],
+    "dependencies": ["react-native-reanimated"],
     "registryDependencies": [],
-    "hooks": [
-      "useKeyboardHeight"
-    ],
+    "hooks": ["useKeyboardHeight"],
     "theme": [],
     "files": [
       {
@@ -1583,9 +1316,7 @@
     "name": "avoid-keyboard-chat",
     "description": "Real-world chat interface example",
     "type": "registry:example",
-    "dependencies": [
-      "lucide-react-native"
-    ],
+    "dependencies": ["lucide-react-native"],
     "registryDependencies": [
       "avoid-keyboard",
       "input",
@@ -1612,12 +1343,7 @@
     "description": "Simple keyboard avoidance with default settings",
     "type": "registry:example",
     "dependencies": [],
-    "registryDependencies": [
-      "avoid-keyboard",
-      "input",
-      "view",
-      "text"
-    ],
+    "registryDependencies": ["avoid-keyboard", "input", "view", "text"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -1662,9 +1388,7 @@
     "name": "avoid-keyboard-form",
     "description": "Form with multiple inputs and keyboard avoidance",
     "type": "registry:example",
-    "dependencies": [
-      "lucide-react-native"
-    ],
+    "dependencies": ["lucide-react-native"],
     "registryDependencies": [
       "avoid-keyboard",
       "input",
@@ -1691,12 +1415,7 @@
     "description": "Add extra spacing above the keyboard",
     "type": "registry:example",
     "dependencies": [],
-    "registryDependencies": [
-      "avoid-keyboard",
-      "input",
-      "view",
-      "text"
-    ],
+    "registryDependencies": ["avoid-keyboard", "input", "view", "text"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -1715,9 +1434,7 @@
     "name": "avoid-keyboard-playground",
     "description": "Playground to test different configurations",
     "type": "registry:example",
-    "dependencies": [
-      "lucide-react-native"
-    ],
+    "dependencies": ["lucide-react-native"],
     "registryDependencies": [
       "avoid-keyboard",
       "button",
@@ -1725,10 +1442,7 @@
       "view",
       "text"
     ],
-    "hooks": [
-      "useKeyboardHeight",
-      "useColor"
-    ],
+    "hooks": ["useKeyboardHeight", "useColor"],
     "theme": [],
     "files": [
       {
@@ -1747,16 +1461,9 @@
     "description": "A small status descriptor for UI elements.",
     "type": "registry:ui",
     "dependencies": [],
-    "registryDependencies": [
-      "text",
-      "view"
-    ],
-    "hooks": [
-      "useColor"
-    ],
-    "theme": [
-      "globals"
-    ],
+    "registryDependencies": ["text", "view"],
+    "hooks": ["useColor"],
+    "theme": ["globals"],
     "files": [
       {
         "type": "registry:ui",
@@ -1773,9 +1480,7 @@
     "name": "badge-demo",
     "description": "Basic badges showing all available variants",
     "type": "registry:example",
-    "registryDependencies": [
-      "badge"
-    ],
+    "registryDependencies": ["badge"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -1794,9 +1499,7 @@
     "name": "badge-icons",
     "description": "Badges with icons and custom content",
     "type": "registry:example",
-    "registryDependencies": [
-      "badge"
-    ],
+    "registryDependencies": ["badge"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -1815,9 +1518,7 @@
     "name": "badge-interactive",
     "description": "Badges that can be pressed or dismissed",
     "type": "registry:example",
-    "registryDependencies": [
-      "badge"
-    ],
+    "registryDependencies": ["badge"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -1836,9 +1537,7 @@
     "name": "badge-notifications",
     "description": "Small notification badges for counters and status",
     "type": "registry:example",
-    "registryDependencies": [
-      "badge"
-    ],
+    "registryDependencies": ["badge"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -1857,9 +1556,7 @@
     "name": "badge-sizes",
     "description": "Badges in different sizes",
     "type": "registry:example",
-    "registryDependencies": [
-      "badge"
-    ],
+    "registryDependencies": ["badge"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -1878,9 +1575,7 @@
     "name": "badge-status",
     "description": "Badges used as status indicators",
     "type": "registry:example",
-    "registryDependencies": [
-      "badge"
-    ],
+    "registryDependencies": ["badge"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -1899,9 +1594,7 @@
     "name": "badge-styled",
     "description": "Badges with custom colors and styling",
     "type": "registry:example",
-    "registryDependencies": [
-      "badge"
-    ],
+    "registryDependencies": ["badge"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -1920,17 +1613,10 @@
     "name": "bar-chart",
     "description": "A customizable bar chart component with smooth animations and rounded corners.",
     "type": "registry:ui",
-    "dependencies": [
-      "react-native-svg",
-      "react-native-reanimated"
-    ],
+    "dependencies": ["react-native-svg", "react-native-reanimated"],
     "registryDependencies": [],
-    "hooks": [
-      "useColor"
-    ],
-    "theme": [
-      "globals"
-    ],
+    "hooks": ["useColor"],
+    "theme": ["globals"],
     "files": [
       {
         "type": "registry:ui",
@@ -1947,10 +1633,7 @@
     "name": "bar-chart-demo",
     "description": "A basic bar chart with smooth animations and rounded corners",
     "type": "registry:example",
-    "registryDependencies": [
-      "bar-chart",
-      "chart-container"
-    ],
+    "registryDependencies": ["bar-chart", "chart-container"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -1969,9 +1652,7 @@
     "name": "bar-chart-minimal",
     "description": "A minimal bar chart without labels",
     "type": "registry:example",
-    "registryDependencies": [
-      "bar-chart"
-    ],
+    "registryDependencies": ["bar-chart"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -1990,10 +1671,7 @@
     "name": "bar-chart-sample",
     "description": "A sample bar chart with custom colors",
     "type": "registry:example",
-    "registryDependencies": [
-      "bar-chart",
-      "chart-container"
-    ],
+    "registryDependencies": ["bar-chart", "chart-container"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -2012,20 +1690,10 @@
     "name": "bottom-sheet",
     "description": "A modal sheet component that slides up from the bottom with gesture support and snap points.",
     "type": "registry:ui",
-    "dependencies": [
-      "react-native-gesture-handler",
-      "react-native-reanimated"
-    ],
-    "registryDependencies": [
-      "text",
-      "view"
-    ],
-    "hooks": [
-      "useColor"
-    ],
-    "theme": [
-      "globals"
-    ],
+    "dependencies": ["react-native-gesture-handler", "react-native-reanimated"],
+    "registryDependencies": ["text", "view"],
+    "hooks": ["useColor"],
+    "theme": ["globals"],
     "files": [
       {
         "type": "registry:ui",
@@ -2042,10 +1710,7 @@
     "name": "bottom-sheet-demo",
     "description": "A basic bottom sheet with gesture support and snap points",
     "type": "registry:example",
-    "registryDependencies": [
-      "bottom-sheet",
-      "button"
-    ],
+    "registryDependencies": ["bottom-sheet", "button"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -2064,11 +1729,7 @@
     "name": "bottom-sheet-form",
     "description": "Bottom sheet containing form elements and inputs",
     "type": "registry:example",
-    "registryDependencies": [
-      "bottom-sheet",
-      "button",
-      "input"
-    ],
+    "registryDependencies": ["bottom-sheet", "button", "input"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -2087,10 +1748,7 @@
     "name": "bottom-sheet-list",
     "description": "Bottom sheet with scrollable list content",
     "type": "registry:example",
-    "registryDependencies": [
-      "bottom-sheet",
-      "button"
-    ],
+    "registryDependencies": ["bottom-sheet", "button"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -2109,12 +1767,7 @@
     "name": "bottom-sheet-menu",
     "description": "Bottom sheet used as a menu with action items",
     "type": "registry:example",
-    "registryDependencies": [
-      "bottom-sheet",
-      "button",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["bottom-sheet", "button", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -2133,10 +1786,7 @@
     "name": "bottom-sheet-no-dismiss",
     "description": "Bottom sheet that cannot be dismissed by tapping backdrop",
     "type": "registry:example",
-    "registryDependencies": [
-      "bottom-sheet",
-      "button"
-    ],
+    "registryDependencies": ["bottom-sheet", "button"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -2155,10 +1805,7 @@
     "name": "bottom-sheet-snap-points",
     "description": "Bottom sheet with custom snap point configurations",
     "type": "registry:example",
-    "registryDependencies": [
-      "bottom-sheet",
-      "button"
-    ],
+    "registryDependencies": ["bottom-sheet", "button"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -2177,10 +1824,7 @@
     "name": "bottom-sheet-styled",
     "description": "Bottom sheet with custom styling and colors",
     "type": "registry:example",
-    "registryDependencies": [
-      "bottom-sheet",
-      "button"
-    ],
+    "registryDependencies": ["bottom-sheet", "button"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -2199,10 +1843,7 @@
     "name": "bottom-sheet-title",
     "description": "Bottom sheet with a title header",
     "type": "registry:example",
-    "registryDependencies": [
-      "bottom-sheet",
-      "button"
-    ],
+    "registryDependencies": ["bottom-sheet", "button"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -2227,12 +1868,8 @@
       "react-native-gesture-handler"
     ],
     "registryDependencies": [],
-    "hooks": [
-      "useColor"
-    ],
-    "theme": [
-      "globals"
-    ],
+    "hooks": ["useColor"],
+    "theme": ["globals"],
     "files": [
       {
         "type": "registry:ui",
@@ -2249,10 +1886,7 @@
     "name": "bubble-chart-demo",
     "description": "A basic bubble chart with animated bubbles and grid lines",
     "type": "registry:example",
-    "registryDependencies": [
-      "bubble-chart",
-      "chart-container"
-    ],
+    "registryDependencies": ["bubble-chart", "chart-container"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -2271,9 +1905,7 @@
     "name": "bubble-chart-minimal",
     "description": "A minimal bubble chart without labels or grid",
     "type": "registry:example",
-    "registryDependencies": [
-      "bubble-chart"
-    ],
+    "registryDependencies": ["bubble-chart"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -2292,10 +1924,7 @@
     "name": "bubble-chart-sample",
     "description": "A sample bubble chart",
     "type": "registry:example",
-    "registryDependencies": [
-      "bubble-chart",
-      "chart-container"
-    ],
+    "registryDependencies": ["bubble-chart", "chart-container"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -2314,13 +1943,8 @@
     "name": "bubble-chart-styled",
     "description": "A customized bubble chart with custom styling",
     "type": "registry:example",
-    "registryDependencies": [
-      "bubble-chart",
-      "chart-container"
-    ],
-    "hooks": [
-      "useColor"
-    ],
+    "registryDependencies": ["bubble-chart", "chart-container"],
+    "hooks": ["useColor"],
     "theme": [],
     "files": [
       {
@@ -2343,17 +1967,9 @@
       "lucide-react-native",
       "react-native-reanimated"
     ],
-    "registryDependencies": [
-      "text",
-      "icon",
-      "spinner"
-    ],
-    "hooks": [
-      "useColor"
-    ],
-    "theme": [
-      "globals"
-    ],
+    "registryDependencies": ["text", "icon", "spinner"],
+    "hooks": ["useColor"],
+    "theme": ["globals"],
     "files": [
       {
         "type": "registry:ui",
@@ -2370,9 +1986,7 @@
     "name": "button-animation",
     "description": "Buttons with and without animations",
     "type": "registry:example",
-    "registryDependencies": [
-      "button"
-    ],
+    "registryDependencies": ["button"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -2391,9 +2005,7 @@
     "name": "button-custom",
     "description": "Buttons with custom colors and styles",
     "type": "registry:example",
-    "registryDependencies": [
-      "button"
-    ],
+    "registryDependencies": ["button"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -2412,9 +2024,7 @@
     "name": "button-demo",
     "description": "A basic button with default styling",
     "type": "registry:example",
-    "registryDependencies": [
-      "button"
-    ],
+    "registryDependencies": ["button"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -2433,9 +2043,7 @@
     "name": "button-disabled",
     "description": "Buttons in disabled state",
     "type": "registry:example",
-    "registryDependencies": [
-      "button"
-    ],
+    "registryDependencies": ["button"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -2454,9 +2062,7 @@
     "name": "button-icon-only",
     "description": "Icon-only buttons for compact layouts",
     "type": "registry:example",
-    "registryDependencies": [
-      "button"
-    ],
+    "registryDependencies": ["button"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -2475,9 +2081,7 @@
     "name": "button-loading",
     "description": "Buttons with loading spinners",
     "type": "registry:example",
-    "registryDependencies": [
-      "button"
-    ],
+    "registryDependencies": ["button"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -2496,9 +2100,7 @@
     "name": "button-sizes",
     "description": "Buttons in different sizes",
     "type": "registry:example",
-    "registryDependencies": [
-      "button"
-    ],
+    "registryDependencies": ["button"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -2517,9 +2119,7 @@
     "name": "button-variants",
     "description": "Buttons with different visual styles",
     "type": "registry:example",
-    "registryDependencies": [
-      "button"
-    ],
+    "registryDependencies": ["button"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -2538,9 +2138,7 @@
     "name": "button-with-icons",
     "description": "Buttons with leading icons",
     "type": "registry:example",
-    "registryDependencies": [
-      "button"
-    ],
+    "registryDependencies": ["button"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -2564,17 +2162,9 @@
       "lucide-react-native",
       "react-native-gesture-handler"
     ],
-    "registryDependencies": [
-      "button",
-      "text",
-      "progress"
-    ],
-    "hooks": [
-      "useColor"
-    ],
-    "theme": [
-      "globals"
-    ],
+    "registryDependencies": ["button", "text", "progress"],
+    "hooks": ["useColor"],
+    "theme": ["globals"],
     "files": [
       {
         "type": "registry:ui",
@@ -2591,9 +2181,7 @@
     "name": "camera-custom-controls",
     "description": "Camera with custom control settings",
     "type": "registry:example",
-    "registryDependencies": [
-      "camera"
-    ],
+    "registryDependencies": ["camera"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -2612,9 +2200,7 @@
     "name": "camera-demo",
     "description": "A basic camera with default settings",
     "type": "registry:example",
-    "registryDependencies": [
-      "camera"
-    ],
+    "registryDependencies": ["camera"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -2633,9 +2219,7 @@
     "name": "camera-picture-only",
     "description": "Camera configured for picture-only mode",
     "type": "registry:example",
-    "registryDependencies": [
-      "camera"
-    ],
+    "registryDependencies": ["camera"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -2668,9 +2252,7 @@
       "video",
       "camera"
     ],
-    "hooks": [
-      "useColor"
-    ],
+    "hooks": ["useColor"],
     "theme": [],
     "files": [
       {
@@ -2688,9 +2270,7 @@
     "name": "camera-preview-demo",
     "description": "A basic camera preview with capture and save functionality",
     "type": "registry:example",
-    "registryDependencies": [
-      "camera-preview"
-    ],
+    "registryDependencies": ["camera-preview"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -2709,9 +2289,7 @@
     "name": "camera-settings",
     "description": "Camera with advanced settings panel",
     "type": "registry:example",
-    "registryDependencies": [
-      "camera"
-    ],
+    "registryDependencies": ["camera"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -2730,9 +2308,7 @@
     "name": "camera-timer",
     "description": "Camera with timer functionality",
     "type": "registry:example",
-    "registryDependencies": [
-      "camera"
-    ],
+    "registryDependencies": ["camera"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -2751,9 +2327,7 @@
     "name": "camera-video",
     "description": "Camera with video recording capabilities",
     "type": "registry:example",
-    "registryDependencies": [
-      "camera"
-    ],
+    "registryDependencies": ["camera"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -2772,9 +2346,7 @@
     "name": "camera-zoom",
     "description": "Camera with zoom controls and gestures",
     "type": "registry:example",
-    "registryDependencies": [
-      "camera"
-    ],
+    "registryDependencies": ["camera"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -2799,12 +2371,8 @@
       "react-native-gesture-handler"
     ],
     "registryDependencies": [],
-    "hooks": [
-      "useColor"
-    ],
-    "theme": [
-      "globals"
-    ],
+    "hooks": ["useColor"],
+    "theme": ["globals"],
     "files": [
       {
         "type": "registry:ui",
@@ -2821,10 +2389,7 @@
     "name": "candlestick-chart-demo",
     "description": "A basic candlestick chart with smooth animations and grid lines",
     "type": "registry:example",
-    "registryDependencies": [
-      "candlestick-chart",
-      "chart-container"
-    ],
+    "registryDependencies": ["candlestick-chart", "chart-container"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -2843,9 +2408,7 @@
     "name": "candlestick-chart-minimal",
     "description": "A minimal candlestick chart without labels or grid",
     "type": "registry:example",
-    "registryDependencies": [
-      "candlestick-chart"
-    ],
+    "registryDependencies": ["candlestick-chart"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -2864,10 +2427,7 @@
     "name": "candlestick-chart-sample",
     "description": "A sample candlestick chart",
     "type": "registry:example",
-    "registryDependencies": [
-      "candlestick-chart",
-      "chart-container"
-    ],
+    "registryDependencies": ["candlestick-chart", "chart-container"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -2886,10 +2446,7 @@
     "name": "candlestick-chart-styled",
     "description": "A customized candlestick chart with custom colors",
     "type": "registry:example",
-    "registryDependencies": [
-      "candlestick-chart",
-      "chart-container"
-    ],
+    "registryDependencies": ["candlestick-chart", "chart-container"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -2909,16 +2466,9 @@
     "description": "Displays a card with header, content, and footer.",
     "type": "registry:ui",
     "dependencies": [],
-    "registryDependencies": [
-      "text",
-      "view"
-    ],
-    "hooks": [
-      "useColor"
-    ],
-    "theme": [
-      "globals"
-    ],
+    "registryDependencies": ["text", "view"],
+    "hooks": ["useColor"],
+    "theme": ["globals"],
     "files": [
       {
         "type": "registry:ui",
@@ -2935,10 +2485,7 @@
     "name": "card-demo",
     "description": "A complete card with header, content, and footer sections",
     "type": "registry:example",
-    "registryDependencies": [
-      "card",
-      "button"
-    ],
+    "registryDependencies": ["card", "button"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -2957,11 +2504,7 @@
     "name": "card-notification",
     "description": "Card designed for displaying notifications with actions",
     "type": "registry:example",
-    "registryDependencies": [
-      "card",
-      "button",
-      "icon"
-    ],
+    "registryDependencies": ["card", "button", "icon"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -2980,11 +2523,7 @@
     "name": "card-pricing",
     "description": "Professional pricing cards with feature lists and CTAs",
     "type": "registry:example",
-    "registryDependencies": [
-      "card",
-      "button",
-      "icon"
-    ],
+    "registryDependencies": ["card", "button", "icon"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -3003,9 +2542,7 @@
     "name": "card-simple",
     "description": "A minimal card with just content",
     "type": "registry:example",
-    "registryDependencies": [
-      "card"
-    ],
+    "registryDependencies": ["card"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -3024,9 +2561,7 @@
     "name": "card-stats",
     "description": "Grid of cards displaying key metrics and statistics",
     "type": "registry:example",
-    "registryDependencies": [
-      "card"
-    ],
+    "registryDependencies": ["card"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -3045,10 +2580,7 @@
     "name": "card-with-form",
     "description": "Interactive card containing a login form",
     "type": "registry:example",
-    "registryDependencies": [
-      "card",
-      "button"
-    ],
+    "registryDependencies": ["card", "button"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -3067,10 +2599,7 @@
     "name": "card-with-image",
     "description": "Card featuring an image with content below",
     "type": "registry:example",
-    "registryDependencies": [
-      "card",
-      "button"
-    ],
+    "registryDependencies": ["card", "button"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -3094,15 +2623,9 @@
       "lucide-react-native",
       "react-native-gesture-handler"
     ],
-    "registryDependencies": [
-      "text"
-    ],
-    "hooks": [
-      "useColor"
-    ],
-    "theme": [
-      "globals"
-    ],
+    "registryDependencies": ["text"],
+    "hooks": ["useColor"],
+    "theme": ["globals"],
     "files": [
       {
         "type": "registry:ui",
@@ -3119,9 +2642,7 @@
     "name": "carousel-arrows",
     "description": "Carousel with navigation arrows and indicators",
     "type": "registry:example",
-    "registryDependencies": [
-      "carousel"
-    ],
+    "registryDependencies": ["carousel"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -3140,9 +2661,7 @@
     "name": "carousel-cards",
     "description": "Card-based carousel with custom content",
     "type": "registry:example",
-    "registryDependencies": [
-      "carousel"
-    ],
+    "registryDependencies": ["carousel"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -3161,9 +2680,7 @@
     "name": "carousel-custom-width",
     "description": "Carousel with custom item width and spacing",
     "type": "registry:example",
-    "registryDependencies": [
-      "carousel"
-    ],
+    "registryDependencies": ["carousel"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -3182,9 +2699,7 @@
     "name": "carousel-demo",
     "description": "A basic carousel with auto-play and indicators",
     "type": "registry:example",
-    "registryDependencies": [
-      "carousel"
-    ],
+    "registryDependencies": ["carousel"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -3203,12 +2718,8 @@
     "name": "carousel-images",
     "description": "Image carousel with auto-play and loop",
     "type": "registry:example",
-    "registryDependencies": [
-      "carousel"
-    ],
-    "dependencies": [
-      "expo-image"
-    ],
+    "registryDependencies": ["carousel"],
+    "dependencies": ["expo-image"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -3227,10 +2738,7 @@
     "name": "carousel-manual",
     "description": "Manually controlled carousel with external buttons",
     "type": "registry:example",
-    "registryDependencies": [
-      "carousel",
-      "button"
-    ],
+    "registryDependencies": ["carousel", "button"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -3249,9 +2757,7 @@
     "name": "carousel-no-indicators",
     "description": "Carousel without indicators, arrows only",
     "type": "registry:example",
-    "registryDependencies": [
-      "carousel"
-    ],
+    "registryDependencies": ["carousel"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -3270,20 +2776,10 @@
     "name": "chart-container",
     "description": "A container component for wrapping charts with title, description, and consistent styling.",
     "type": "registry:ui",
-    "dependencies": [
-      "expo-image"
-    ],
-    "registryDependencies": [
-      "text",
-      "view",
-      "image"
-    ],
-    "hooks": [
-      "useColor"
-    ],
-    "theme": [
-      "globals"
-    ],
+    "dependencies": ["expo-image"],
+    "registryDependencies": ["text", "view", "image"],
+    "hooks": ["useColor"],
+    "theme": ["globals"],
     "files": [
       {
         "type": "registry:ui",
@@ -3300,9 +2796,7 @@
     "name": "chart-container-demo",
     "description": "A basic chart container with title and description",
     "type": "registry:example",
-    "registryDependencies": [
-      "chart-container"
-    ],
+    "registryDependencies": ["chart-container"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -3321,9 +2815,7 @@
     "name": "chart-container-styled",
     "description": "Chart container with custom styling",
     "type": "registry:example",
-    "registryDependencies": [
-      "chart-container"
-    ],
+    "registryDependencies": ["chart-container"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -3342,19 +2834,10 @@
     "name": "checkbox",
     "description": "A control that allows the user to toggle between checked and not checked states.",
     "type": "registry:ui",
-    "dependencies": [
-      "lucide-react-native"
-    ],
-    "registryDependencies": [
-      "text",
-      "view"
-    ],
-    "hooks": [
-      "useColor"
-    ],
-    "theme": [
-      "globals"
-    ],
+    "dependencies": ["lucide-react-native"],
+    "registryDependencies": ["text", "view"],
+    "hooks": ["useColor"],
+    "theme": ["globals"],
     "files": [
       {
         "type": "registry:ui",
@@ -3371,10 +2854,7 @@
     "name": "checkbox-custom-styling",
     "description": "Checkboxes with custom label styling",
     "type": "registry:example",
-    "registryDependencies": [
-      "checkbox",
-      "view"
-    ],
+    "registryDependencies": ["checkbox", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -3393,9 +2873,7 @@
     "name": "checkbox-demo",
     "description": "A basic checkbox with label",
     "type": "registry:example",
-    "registryDependencies": [
-      "checkbox"
-    ],
+    "registryDependencies": ["checkbox"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -3414,11 +2892,7 @@
     "name": "checkbox-group",
     "description": "Multiple checkboxes working together as a group",
     "type": "registry:example",
-    "registryDependencies": [
-      "checkbox",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["checkbox", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -3437,11 +2911,7 @@
     "name": "checkbox-states",
     "description": "Checkboxes in different states: unchecked, checked, and disabled",
     "type": "registry:example",
-    "registryDependencies": [
-      "checkbox",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["checkbox", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -3460,11 +2930,7 @@
     "name": "checkbox-with-error",
     "description": "A checkbox with error styling and message",
     "type": "registry:example",
-    "registryDependencies": [
-      "checkbox",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["checkbox", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -3483,9 +2949,7 @@
     "name": "checkbox-without-label",
     "description": "A checkbox without a label",
     "type": "registry:example",
-    "registryDependencies": [
-      "checkbox"
-    ],
+    "registryDependencies": ["checkbox"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -3504,14 +2968,8 @@
     "name": "collapsible",
     "description": "An interactive component which can be expanded/collapsed to show and hide content.",
     "type": "registry:ui",
-    "dependencies": [
-      "lucide-react-native"
-    ],
-    "registryDependencies": [
-      "icon",
-      "text",
-      "view"
-    ],
+    "dependencies": ["lucide-react-native"],
+    "registryDependencies": ["icon", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -3530,10 +2988,7 @@
     "name": "collapsible-demo",
     "description": "A basic collapsible component with title and content",
     "type": "registry:example",
-    "registryDependencies": [
-      "collapsible",
-      "text"
-    ],
+    "registryDependencies": ["collapsible", "text"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -3552,11 +3007,7 @@
     "name": "collapsible-faq",
     "description": "Collapsible components styled as frequently asked questions",
     "type": "registry:example",
-    "registryDependencies": [
-      "collapsible",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["collapsible", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -3575,11 +3026,7 @@
     "name": "collapsible-multiple",
     "description": "Multiple collapsible components working independently",
     "type": "registry:example",
-    "registryDependencies": [
-      "collapsible",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["collapsible", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -3598,10 +3045,7 @@
     "name": "collapsible-nested",
     "description": "Collapsible components nested within each other",
     "type": "registry:example",
-    "registryDependencies": [
-      "collapsible",
-      "text"
-    ],
+    "registryDependencies": ["collapsible", "text"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -3620,12 +3064,7 @@
     "name": "collapsible-with-content",
     "description": "Collapsible containing interactive elements like checkboxes",
     "type": "registry:example",
-    "registryDependencies": [
-      "collapsible",
-      "checkbox",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["collapsible", "checkbox", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -3650,16 +3089,9 @@
       "react-native-reanimated",
       "react-native-svg"
     ],
-    "registryDependencies": [
-      "text",
-      "view"
-    ],
-    "hooks": [
-      "useColor"
-    ],
-    "theme": [
-      "globals"
-    ],
+    "registryDependencies": ["text", "view"],
+    "hooks": ["useColor"],
+    "theme": ["globals"],
     "files": [
       {
         "type": "registry:ui",
@@ -3676,9 +3108,7 @@
     "name": "color-picker-colors",
     "description": "Color pickers with different initial colors",
     "type": "registry:example",
-    "registryDependencies": [
-      "color-picker"
-    ],
+    "registryDependencies": ["color-picker"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -3697,9 +3127,7 @@
     "name": "color-picker-demo",
     "description": "A basic color picker with swatch and modal selection",
     "type": "registry:example",
-    "registryDependencies": [
-      "color-picker"
-    ],
+    "registryDependencies": ["color-picker"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -3718,9 +3146,7 @@
     "name": "color-picker-disabled",
     "description": "Disabled color picker that cannot be opened",
     "type": "registry:example",
-    "registryDependencies": [
-      "color-picker"
-    ],
+    "registryDependencies": ["color-picker"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -3739,9 +3165,7 @@
     "name": "color-picker-labeled",
     "description": "color-picker-labeled",
     "type": "registry:example",
-    "registryDependencies": [
-      "color-picker"
-    ],
+    "registryDependencies": ["color-picker"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -3760,9 +3184,7 @@
     "name": "color-picker-palette",
     "description": "Multiple color pickers arranged as a color palette",
     "type": "registry:example",
-    "registryDependencies": [
-      "color-picker"
-    ],
+    "registryDependencies": ["color-picker"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -3781,9 +3203,7 @@
     "name": "color-picker-sizes",
     "description": "Color pickers with different swatch sizes",
     "type": "registry:example",
-    "registryDependencies": [
-      "color-picker"
-    ],
+    "registryDependencies": ["color-picker"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -3802,9 +3222,7 @@
     "name": "color-picker-styled",
     "description": "Color pickers with custom styling and layouts",
     "type": "registry:example",
-    "registryDependencies": [
-      "color-picker"
-    ],
+    "registryDependencies": ["color-picker"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -3823,9 +3241,7 @@
     "name": "color-swatch-demo",
     "description": "Standalone color swatches without picker functionality",
     "type": "registry:example",
-    "registryDependencies": [
-      "color-picker"
-    ],
+    "registryDependencies": ["color-picker"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -3863,12 +3279,8 @@
       "react-native-gesture-handler"
     ],
     "registryDependencies": [],
-    "hooks": [
-      "useColor"
-    ],
-    "theme": [
-      "globals"
-    ],
+    "hooks": ["useColor"],
+    "theme": ["globals"],
     "files": [
       {
         "type": "registry:ui",
@@ -3885,10 +3297,7 @@
     "name": "column-chart-demo",
     "description": "A horizontal bar chart with smooth animations",
     "type": "registry:example",
-    "registryDependencies": [
-      "column-chart",
-      "chart-container"
-    ],
+    "registryDependencies": ["column-chart", "chart-container"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -3907,10 +3316,7 @@
     "name": "column-chart-large",
     "description": "A column chart with large dataset",
     "type": "registry:example",
-    "registryDependencies": [
-      "column-chart",
-      "chart-container"
-    ],
+    "registryDependencies": ["column-chart", "chart-container"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -3929,13 +3335,8 @@
     "name": "column-chart-sample",
     "description": "An sample column chart",
     "type": "registry:example",
-    "registryDependencies": [
-      "column-chart",
-      "chart-container"
-    ],
-    "hooks": [
-      "useColor"
-    ],
+    "registryDependencies": ["column-chart", "chart-container"],
+    "hooks": ["useColor"],
     "theme": [],
     "files": [
       {
@@ -3953,13 +3354,8 @@
     "name": "column-chart-styled",
     "description": "A customized column chart with custom colors and styling",
     "type": "registry:example",
-    "registryDependencies": [
-      "column-chart",
-      "chart-container"
-    ],
-    "hooks": [
-      "useColor"
-    ],
+    "registryDependencies": ["column-chart", "chart-container"],
+    "hooks": ["useColor"],
     "theme": [],
     "files": [
       {
@@ -3977,19 +3373,10 @@
     "name": "combobox",
     "description": "A searchable dropdown component that combines an input with a list of options.",
     "type": "registry:ui",
-    "dependencies": [
-      "lucide-react-native"
-    ],
-    "registryDependencies": [
-      "text",
-      "view"
-    ],
-    "hooks": [
-      "useColor"
-    ],
-    "theme": [
-      "globals"
-    ],
+    "dependencies": ["lucide-react-native"],
+    "registryDependencies": ["text", "view"],
+    "hooks": ["useColor"],
+    "theme": ["globals"],
     "files": [
       {
         "type": "registry:ui",
@@ -4006,9 +3393,7 @@
     "name": "combobox-demo",
     "description": "A basic combobox with search functionality",
     "type": "registry:ui",
-    "registryDependencies": [
-      "combobox"
-    ],
+    "registryDependencies": ["combobox"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -4027,9 +3412,7 @@
     "name": "combobox-disabled",
     "description": "Disabled combobox component",
     "type": "registry:ui",
-    "registryDependencies": [
-      "combobox"
-    ],
+    "registryDependencies": ["combobox"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -4048,11 +3431,7 @@
     "name": "combobox-form",
     "description": "Combobox integrated with form validation",
     "type": "registry:ui",
-    "registryDependencies": [
-      "combobox",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["combobox", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -4071,9 +3450,7 @@
     "name": "combobox-groups",
     "description": "Combobox with grouped options",
     "type": "registry:ui",
-    "registryDependencies": [
-      "combobox"
-    ],
+    "registryDependencies": ["combobox"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -4092,9 +3469,7 @@
     "name": "combobox-large",
     "description": "Combobox handling large datasets efficiently",
     "type": "registry:ui",
-    "registryDependencies": [
-      "combobox"
-    ],
+    "registryDependencies": ["combobox"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -4113,9 +3488,7 @@
     "name": "combobox-multiple",
     "description": "Combobox that allows selecting multiple values",
     "type": "registry:ui",
-    "registryDependencies": [
-      "combobox"
-    ],
+    "registryDependencies": ["combobox"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -4134,9 +3507,7 @@
     "name": "combobox-search",
     "description": "Combobox with custom search behavior",
     "type": "registry:ui",
-    "registryDependencies": [
-      "combobox"
-    ],
+    "registryDependencies": ["combobox"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -4155,9 +3526,7 @@
     "name": "date-picker",
     "description": "A customizable date and time picker component with bottom sheet UI.",
     "type": "registry:ui",
-    "dependencies": [
-      "lucide-react-native"
-    ],
+    "dependencies": ["lucide-react-native"],
     "registryDependencies": [
       "bottom-sheet",
       "button",
@@ -4166,12 +3535,8 @@
       "text",
       "view"
     ],
-    "hooks": [
-      "useColor"
-    ],
-    "theme": [
-      "globals"
-    ],
+    "hooks": ["useColor"],
+    "theme": ["globals"],
     "files": [
       {
         "type": "registry:ui",
@@ -4188,10 +3553,7 @@
     "name": "date-picker-constraints",
     "description": "Date picker with minimum and maximum date limits",
     "type": "registry:example",
-    "registryDependencies": [
-      "date-picker",
-      "view"
-    ],
+    "registryDependencies": ["date-picker", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -4210,9 +3572,7 @@
     "name": "date-picker-datetime",
     "description": "A combined date and time picker",
     "type": "registry:example",
-    "registryDependencies": [
-      "date-picker"
-    ],
+    "registryDependencies": ["date-picker"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -4231,9 +3591,7 @@
     "name": "date-picker-demo",
     "description": "A basic date picker with calendar view",
     "type": "registry:example",
-    "registryDependencies": [
-      "date-picker"
-    ],
+    "registryDependencies": ["date-picker"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -4252,12 +3610,7 @@
     "name": "date-picker-form",
     "description": "Date picker integrated within a form with validation",
     "type": "registry:example",
-    "registryDependencies": [
-      "date-picker",
-      "button",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["date-picker", "button", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -4276,11 +3629,7 @@
     "name": "date-picker-formats",
     "description": "Time picker with 12-hour and 24-hour formats",
     "type": "registry:example",
-    "registryDependencies": [
-      "date-picker",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["date-picker", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -4299,9 +3648,7 @@
     "name": "date-picker-range",
     "description": "A date range picker",
     "type": "registry:example",
-    "registryDependencies": [
-      "date-picker"
-    ],
+    "registryDependencies": ["date-picker"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -4320,10 +3667,7 @@
     "name": "date-picker-time",
     "description": "A time picker with hour and minute selection",
     "type": "registry:example",
-    "registryDependencies": [
-      "date-picker",
-      "view"
-    ],
+    "registryDependencies": ["date-picker", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -4342,10 +3686,7 @@
     "name": "date-picker-variants",
     "description": "Date pickers with different styling variants",
     "type": "registry:example",
-    "registryDependencies": [
-      "date-picker",
-      "view"
-    ],
+    "registryDependencies": ["date-picker", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -4369,15 +3710,9 @@
       "react-native-reanimated",
       "react-native-gesture-handler"
     ],
-    "registryDependencies": [
-      "text"
-    ],
-    "hooks": [
-      "useColor"
-    ],
-    "theme": [
-      "globals"
-    ],
+    "registryDependencies": ["text"],
+    "hooks": ["useColor"],
+    "theme": ["globals"],
     "files": [
       {
         "type": "registry:ui",
@@ -4394,10 +3729,7 @@
     "name": "doughnut-chart-demo",
     "description": "A doughnut chart with smooth animations and percentage labels",
     "type": "registry:example",
-    "registryDependencies": [
-      "doughnut-chart",
-      "chart-container"
-    ],
+    "registryDependencies": ["doughnut-chart", "chart-container"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -4416,10 +3748,7 @@
     "name": "doughnut-chart-large",
     "description": "A doughnut chart with large dataset and legend-only labels",
     "type": "registry:example",
-    "registryDependencies": [
-      "doughnut-chart",
-      "chart-container"
-    ],
+    "registryDependencies": ["doughnut-chart", "chart-container"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -4438,13 +3767,8 @@
     "name": "doughnut-chart-sample",
     "description": "A sample doughnut chart with custom theme colors",
     "type": "registry:example",
-    "registryDependencies": [
-      "doughnut-chart",
-      "chart-container"
-    ],
-    "hooks": [
-      "useColor"
-    ],
+    "registryDependencies": ["doughnut-chart", "chart-container"],
+    "hooks": ["useColor"],
     "theme": [],
     "files": [
       {
@@ -4462,10 +3786,7 @@
     "name": "doughnut-chart-styled",
     "description": "A customized doughnut chart with custom colors and styling",
     "type": "registry:example",
-    "registryDependencies": [
-      "doughnut-chart",
-      "chart-container"
-    ],
+    "registryDependencies": ["doughnut-chart", "chart-container"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -4484,21 +3805,10 @@
     "name": "file-picker",
     "description": "A customizable file picker component with validation, preview, and multiple file support.",
     "type": "registry:ui",
-    "dependencies": [
-      "lucide-react-native",
-      "expo-document-picker"
-    ],
-    "registryDependencies": [
-      "button",
-      "text",
-      "view"
-    ],
-    "hooks": [
-      "useColor"
-    ],
-    "theme": [
-      "globals"
-    ],
+    "dependencies": ["lucide-react-native", "expo-document-picker"],
+    "registryDependencies": ["button", "text", "view"],
+    "hooks": ["useColor"],
+    "theme": ["globals"],
     "files": [
       {
         "type": "registry:ui",
@@ -4515,12 +3825,7 @@
     "name": "file-picker-controlled",
     "description": "Controlled file picker using the useFilePicker hook",
     "type": "registry:example",
-    "registryDependencies": [
-      "file-picker",
-      "button",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["file-picker", "button", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -4539,9 +3844,7 @@
     "name": "file-picker-demo",
     "description": "A basic file picker with validation and preview",
     "type": "registry:example",
-    "registryDependencies": [
-      "file-picker"
-    ],
+    "registryDependencies": ["file-picker"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -4560,11 +3863,7 @@
     "name": "file-picker-images",
     "description": "File picker configured for images only",
     "type": "registry:example",
-    "registryDependencies": [
-      "file-picker",
-      "view",
-      "text"
-    ],
+    "registryDependencies": ["file-picker", "view", "text"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -4583,11 +3882,7 @@
     "name": "file-picker-info",
     "description": "File picker displaying detailed file information",
     "type": "registry:example",
-    "registryDependencies": [
-      "file-picker",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["file-picker", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -4606,11 +3901,7 @@
     "name": "file-picker-single",
     "description": "File picker for selecting a single file",
     "type": "registry:example",
-    "registryDependencies": [
-      "file-picker",
-      "view",
-      "text"
-    ],
+    "registryDependencies": ["file-picker", "view", "text"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -4629,11 +3920,7 @@
     "name": "file-picker-styled",
     "description": "File picker with custom styling and colors",
     "type": "registry:example",
-    "registryDependencies": [
-      "file-picker",
-      "view",
-      "text"
-    ],
+    "registryDependencies": ["file-picker", "view", "text"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -4652,11 +3939,7 @@
     "name": "file-picker-validation",
     "description": "File picker with size limits and extension validation",
     "type": "registry:example",
-    "registryDependencies": [
-      "file-picker",
-      "view",
-      "text"
-    ],
+    "registryDependencies": ["file-picker", "view", "text"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -4681,16 +3964,9 @@
       "react-native-gesture-handler",
       "react-native-reanimated"
     ],
-    "registryDependencies": [
-      "button",
-      "text"
-    ],
-    "hooks": [
-      "useColor"
-    ],
-    "theme": [
-      "globals"
-    ],
+    "registryDependencies": ["button", "text"],
+    "hooks": ["useColor"],
+    "theme": ["globals"],
     "files": [
       {
         "type": "registry:ui",
@@ -4707,11 +3983,7 @@
     "name": "gallery-controls",
     "description": "Images with controls",
     "type": "registry:example",
-    "registryDependencies": [
-      "gallery",
-      "view",
-      "text"
-    ],
+    "registryDependencies": ["gallery", "view", "text"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -4730,9 +4002,7 @@
     "name": "gallery-demo",
     "description": "A basic image gallery with grid layout and fullscreen viewing",
     "type": "registry:example",
-    "registryDependencies": [
-      "gallery"
-    ],
+    "registryDependencies": ["gallery"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -4751,11 +4021,7 @@
     "name": "gallery-grid",
     "description": "Gallery with custom columns, spacing, and aspect ratio",
     "type": "registry:example",
-    "registryDependencies": [
-      "gallery",
-      "view",
-      "text"
-    ],
+    "registryDependencies": ["gallery", "view", "text"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -4774,9 +4040,7 @@
     "name": "gallery-info",
     "description": "Gallery displaying image titles and descriptions",
     "type": "registry:example",
-    "registryDependencies": [
-      "gallery"
-    ],
+    "registryDependencies": ["gallery"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -4795,11 +4059,7 @@
     "name": "gallery-layouts",
     "description": "Various gallery layouts and configurations",
     "type": "registry:example",
-    "registryDependencies": [
-      "gallery",
-      "view",
-      "text"
-    ],
+    "registryDependencies": ["gallery", "view", "text"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -4818,11 +4078,7 @@
     "name": "gallery-overlay",
     "description": "Images with overlay",
     "type": "registry:example",
-    "registryDependencies": [
-      "gallery",
-      "view",
-      "text"
-    ],
+    "registryDependencies": ["gallery", "view", "text"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -4860,12 +4116,8 @@
       "react-native-gesture-handler"
     ],
     "registryDependencies": [],
-    "hooks": [
-      "useColor"
-    ],
-    "theme": [
-      "globals"
-    ],
+    "hooks": ["useColor"],
+    "theme": ["globals"],
     "files": [
       {
         "type": "registry:ui",
@@ -4882,10 +4134,7 @@
     "name": "heatmap-chart-demo",
     "description": "A heatmap chart with smooth animations and color scaling",
     "type": "registry:example",
-    "registryDependencies": [
-      "heatmap-chart",
-      "chart-container"
-    ],
+    "registryDependencies": ["heatmap-chart", "chart-container"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -4904,10 +4153,7 @@
     "name": "heatmap-chart-large",
     "description": "A heatmap chart with large dataset",
     "type": "registry:example",
-    "registryDependencies": [
-      "heatmap-chart",
-      "chart-container"
-    ],
+    "registryDependencies": ["heatmap-chart", "chart-container"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -4926,10 +4172,7 @@
     "name": "heatmap-chart-sample",
     "description": "A sample heatmap chart with different data",
     "type": "registry:example",
-    "registryDependencies": [
-      "heatmap-chart",
-      "chart-container"
-    ],
+    "registryDependencies": ["heatmap-chart", "chart-container"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -4948,13 +4191,8 @@
     "name": "heatmap-chart-styled",
     "description": "A customized heatmap chart with custom colors and styling",
     "type": "registry:example",
-    "registryDependencies": [
-      "heatmap-chart",
-      "chart-container"
-    ],
-    "hooks": [
-      "useColor"
-    ],
+    "registryDependencies": ["heatmap-chart", "chart-container"],
+    "hooks": ["useColor"],
     "theme": [],
     "files": [
       {
@@ -4972,13 +4210,8 @@
     "name": "hello-wave",
     "description": "An animated waving hand emoji component with smooth rotation animation.",
     "type": "registry:ui",
-    "dependencies": [
-      "react-native-reanimated"
-    ],
-    "registryDependencies": [
-      "text",
-      "view"
-    ],
+    "dependencies": ["react-native-reanimated"],
+    "registryDependencies": ["text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -4997,9 +4230,7 @@
     "name": "hello-wave-demo",
     "description": "An animated waving hand emoji",
     "type": "registry:example",
-    "registryDependencies": [
-      "hello-wave"
-    ],
+    "registryDependencies": ["hello-wave"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -5018,17 +4249,9 @@
     "name": "icon",
     "description": "A themed icon component with support for Lucide React Native icons.",
     "type": "registry:ui",
-    "dependencies": [
-      "lucide-react-native",
-      "react-native-svg"
-    ],
-    "registryDependencies": [
-      "text",
-      "view"
-    ],
-    "hooks": [
-      "useColor"
-    ],
+    "dependencies": ["lucide-react-native", "react-native-svg"],
+    "registryDependencies": ["text", "view"],
+    "hooks": ["useColor"],
     "theme": [],
     "files": [
       {
@@ -5046,9 +4269,7 @@
     "name": "icon-colors",
     "description": "Icons with custom colors and themed colors",
     "type": "registry:example",
-    "registryDependencies": [
-      "icon"
-    ],
+    "registryDependencies": ["icon"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -5067,9 +4288,7 @@
     "name": "icon-demo",
     "description": "A basic icon with default styling",
     "type": "registry:example",
-    "registryDependencies": [
-      "icon"
-    ],
+    "registryDependencies": ["icon"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -5088,9 +4307,7 @@
     "name": "icon-grid",
     "description": "A grid of commonly used icons",
     "type": "registry:example",
-    "registryDependencies": [
-      "icon"
-    ],
+    "registryDependencies": ["icon"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -5109,9 +4326,7 @@
     "name": "icon-interactive",
     "description": "Icons with press and hover interactions",
     "type": "registry:example",
-    "registryDependencies": [
-      "icon"
-    ],
+    "registryDependencies": ["icon"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -5130,9 +4345,7 @@
     "name": "icon-sizes",
     "description": "Icons in different sizes",
     "type": "registry:example",
-    "registryDependencies": [
-      "icon"
-    ],
+    "registryDependencies": ["icon"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -5151,9 +4364,7 @@
     "name": "icon-stroke",
     "description": "Icons with different stroke weights",
     "type": "registry:example",
-    "registryDependencies": [
-      "icon"
-    ],
+    "registryDependencies": ["icon"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -5172,9 +4383,7 @@
     "name": "icon-themed",
     "description": "Icons that adapt to light and dark themes",
     "type": "registry:example",
-    "registryDependencies": [
-      "icon"
-    ],
+    "registryDependencies": ["icon"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -5193,19 +4402,10 @@
     "name": "image",
     "description": "A responsive image component with loading states, error handling, and flexible styling options.",
     "type": "registry:ui",
-    "dependencies": [
-      "expo-image"
-    ],
-    "registryDependencies": [
-      "text",
-      "view"
-    ],
-    "hooks": [
-      "useColor"
-    ],
-    "theme": [
-      "globals"
-    ],
+    "dependencies": ["expo-image"],
+    "registryDependencies": ["text", "view"],
+    "hooks": ["useColor"],
+    "theme": ["globals"],
     "files": [
       {
         "type": "registry:ui",
@@ -5222,9 +4422,7 @@
     "name": "image-content-fit",
     "description": "Images with different content fit modes",
     "type": "registry:example",
-    "registryDependencies": [
-      "image"
-    ],
+    "registryDependencies": ["image"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -5243,9 +4441,7 @@
     "name": "image-demo",
     "description": "A basic image with loading indicator and error fallback",
     "type": "registry:example",
-    "registryDependencies": [
-      "image"
-    ],
+    "registryDependencies": ["image"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -5264,9 +4460,7 @@
     "name": "image-error",
     "description": "Images with custom error fallback messages",
     "type": "registry:example",
-    "registryDependencies": [
-      "image"
-    ],
+    "registryDependencies": ["image"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -5285,9 +4479,7 @@
     "name": "image-gallery",
     "description": "Multiple images arranged in a gallery layout",
     "type": "registry:example",
-    "registryDependencies": [
-      "image"
-    ],
+    "registryDependencies": ["image"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -5306,9 +4498,7 @@
     "name": "image-loading",
     "description": "Images with different loading indicator configurations",
     "type": "registry:example",
-    "registryDependencies": [
-      "image"
-    ],
+    "registryDependencies": ["image"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -5327,9 +4517,7 @@
     "name": "image-responsive",
     "description": "Responsive images that adapt to container size",
     "type": "registry:example",
-    "registryDependencies": [
-      "image"
-    ],
+    "registryDependencies": ["image"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -5348,9 +4536,7 @@
     "name": "image-sizes",
     "description": "Images in different sizes and aspect ratios",
     "type": "registry:example",
-    "registryDependencies": [
-      "image"
-    ],
+    "registryDependencies": ["image"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -5369,9 +4555,7 @@
     "name": "image-variants",
     "description": "Images with different border radius variants",
     "type": "registry:example",
-    "registryDependencies": [
-      "image"
-    ],
+    "registryDependencies": ["image"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -5390,20 +4574,10 @@
     "name": "input",
     "description": "A styled text input component with label, validation, icons, and grouped layouts.",
     "type": "registry:ui",
-    "dependencies": [
-      "lucide-react-native"
-    ],
-    "registryDependencies": [
-      "text",
-      "icon",
-      "view"
-    ],
-    "hooks": [
-      "useColor"
-    ],
-    "theme": [
-      "globals"
-    ],
+    "dependencies": ["lucide-react-native"],
+    "registryDependencies": ["text", "icon", "view"],
+    "hooks": ["useColor"],
+    "theme": ["globals"],
     "files": [
       {
         "type": "registry:ui",
@@ -5420,12 +4594,8 @@
     "name": "input-demo",
     "description": "A basic input with label and placeholder",
     "type": "registry:example",
-    "dependencies": [
-      "lucide-react-native"
-    ],
-    "registryDependencies": [
-      "input"
-    ],
+    "dependencies": ["lucide-react-native"],
+    "registryDependencies": ["input"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -5444,13 +4614,8 @@
     "name": "input-disabled",
     "description": "Disabled inputs with reduced opacity",
     "type": "registry:example",
-    "dependencies": [
-      "lucide-react-native"
-    ],
-    "registryDependencies": [
-      "input",
-      "view"
-    ],
+    "dependencies": ["lucide-react-native"],
+    "registryDependencies": ["input", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -5469,15 +4634,8 @@
     "name": "input-form",
     "description": "Complete form example with various input types",
     "type": "registry:example",
-    "dependencies": [
-      "lucide-react-native"
-    ],
-    "registryDependencies": [
-      "input",
-      "button",
-      "view",
-      "text"
-    ],
+    "dependencies": ["lucide-react-native"],
+    "registryDependencies": ["input", "button", "view", "text"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -5496,12 +4654,8 @@
     "name": "input-grouped",
     "description": "Multiple inputs grouped together in a card-like container",
     "type": "registry:example",
-    "dependencies": [
-      "lucide-react-native"
-    ],
-    "registryDependencies": [
-      "input"
-    ],
+    "dependencies": ["lucide-react-native"],
+    "registryDependencies": ["input"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -5520,13 +4674,8 @@
     "name": "input-icons",
     "description": "Inputs with left-side icons",
     "type": "registry:example",
-    "dependencies": [
-      "lucide-react-native"
-    ],
-    "registryDependencies": [
-      "input",
-      "view"
-    ],
+    "dependencies": ["lucide-react-native"],
+    "registryDependencies": ["input", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -5545,15 +4694,9 @@
     "name": "input-otp",
     "description": "A secure input component for one-time passwords and verification codes.",
     "type": "registry:ui",
-    "registryDependencies": [
-      "text"
-    ],
-    "hooks": [
-      "useColor"
-    ],
-    "theme": [
-      "globals"
-    ],
+    "registryDependencies": ["text"],
+    "hooks": ["useColor"],
+    "theme": ["globals"],
     "files": [
       {
         "type": "registry:ui",
@@ -5570,9 +4713,7 @@
     "name": "input-otp-demo",
     "description": "A basic OTP input with 6 digits",
     "type": "registry:example",
-    "registryDependencies": [
-      "input-otp"
-    ],
+    "registryDependencies": ["input-otp"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -5591,12 +4732,7 @@
     "name": "input-otp-disabled",
     "description": "OTP input in disabled state",
     "type": "registry:example",
-    "registryDependencies": [
-      "input-otp",
-      "text",
-      "view",
-      "button"
-    ],
+    "registryDependencies": ["input-otp", "text", "view", "button"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -5615,12 +4751,7 @@
     "name": "input-otp-error",
     "description": "OTP input showing error state with validation message",
     "type": "registry:example",
-    "registryDependencies": [
-      "input-otp",
-      "text",
-      "view",
-      "button"
-    ],
+    "registryDependencies": ["input-otp", "text", "view", "button"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -5639,11 +4770,7 @@
     "name": "input-otp-lengths",
     "description": "OTP inputs with different digit lengths",
     "type": "registry:example",
-    "registryDependencies": [
-      "input-otp",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["input-otp", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -5662,11 +4789,7 @@
     "name": "input-otp-masked",
     "description": "OTP input that masks digits with dots for security",
     "type": "registry:example",
-    "registryDependencies": [
-      "input-otp",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["input-otp", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -5685,11 +4808,7 @@
     "name": "input-otp-no-cursor",
     "description": "OTP input without the blinking cursor indicator",
     "type": "registry:example",
-    "registryDependencies": [
-      "input-otp",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["input-otp", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -5708,11 +4827,7 @@
     "name": "input-otp-separator",
     "description": "OTP input with dash separators between digits",
     "type": "registry:example",
-    "registryDependencies": [
-      "input-otp",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["input-otp", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -5731,11 +4846,7 @@
     "name": "input-otp-styled",
     "description": "OTP input with custom colors and styling",
     "type": "registry:example",
-    "registryDependencies": [
-      "input-otp",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["input-otp", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -5754,15 +4865,8 @@
     "name": "input-right-components",
     "description": "Inputs with buttons, icons, or custom components on the right",
     "type": "registry:example",
-    "dependencies": [
-      "lucide-react-native"
-    ],
-    "registryDependencies": [
-      "input",
-      "view",
-      "button",
-      "text"
-    ],
+    "dependencies": ["lucide-react-native"],
+    "registryDependencies": ["input", "view", "button", "text"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -5781,13 +4885,8 @@
     "name": "input-validation",
     "description": "Inputs with error states and validation messages",
     "type": "registry:example",
-    "dependencies": [
-      "lucide-react-native"
-    ],
-    "registryDependencies": [
-      "input",
-      "view"
-    ],
+    "dependencies": ["lucide-react-native"],
+    "registryDependencies": ["input", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -5806,13 +4905,8 @@
     "name": "input-variants",
     "description": "Different input variants - filled and outline",
     "type": "registry:example",
-    "dependencies": [
-      "lucide-react-native"
-    ],
-    "registryDependencies": [
-      "input",
-      "view"
-    ],
+    "dependencies": ["lucide-react-native"],
+    "registryDependencies": ["input", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -5837,12 +4931,8 @@
       "react-native-gesture-handler"
     ],
     "registryDependencies": [],
-    "hooks": [
-      "useColor"
-    ],
-    "theme": [
-      "globals"
-    ],
+    "hooks": ["useColor"],
+    "theme": ["globals"],
     "files": [
       {
         "type": "registry:ui",
@@ -5859,10 +4949,7 @@
     "name": "line-chart-demo",
     "description": "A basic line chart with smooth animations and grid lines",
     "type": "registry:example",
-    "registryDependencies": [
-      "line-chart",
-      "chart-container"
-    ],
+    "registryDependencies": ["line-chart", "chart-container"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -5881,10 +4968,7 @@
     "name": "line-chart-interactive",
     "description": "An interactive line chart with touch gestures",
     "type": "registry:example",
-    "registryDependencies": [
-      "line-chart",
-      "chart-container"
-    ],
+    "registryDependencies": ["line-chart", "chart-container"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -5903,9 +4987,7 @@
     "name": "line-chart-minimal",
     "description": "A minimal line chart without labels or grid",
     "type": "registry:example",
-    "registryDependencies": [
-      "line-chart"
-    ],
+    "registryDependencies": ["line-chart"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -5924,13 +5006,8 @@
     "name": "line-chart-styled",
     "description": "A customized line chart with custom styling",
     "type": "registry:example",
-    "registryDependencies": [
-      "line-chart",
-      "chart-container"
-    ],
-    "hooks": [
-      "useColor"
-    ],
+    "registryDependencies": ["line-chart", "chart-container"],
+    "hooks": ["useColor"],
     "theme": [],
     "files": [
       {
@@ -5948,13 +5025,8 @@
     "name": "link",
     "description": "A navigation component that handles both internal and external links with customizable browser behavior.",
     "type": "registry:ui",
-    "dependencies": [
-      "expo-router",
-      "expo-web-browser"
-    ],
-    "registryDependencies": [
-      "text"
-    ],
+    "dependencies": ["expo-router", "expo-web-browser"],
+    "registryDependencies": ["text"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -5973,11 +5045,7 @@
     "name": "link-browser",
     "description": "Links with different browser opening behaviors",
     "type": "registry:example",
-    "registryDependencies": [
-      "link",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["link", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -5996,11 +5064,7 @@
     "name": "link-buttons",
     "description": "Links styled as buttons for navigation",
     "type": "registry:example",
-    "registryDependencies": [
-      "link",
-      "button",
-      "view"
-    ],
+    "registryDependencies": ["link", "button", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -6019,11 +5083,7 @@
     "name": "link-custom",
     "description": "Links with custom child components instead of text",
     "type": "registry:example",
-    "registryDependencies": [
-      "link",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["link", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -6042,10 +5102,7 @@
     "name": "link-demo",
     "description": "Basic internal navigation links",
     "type": "registry:example",
-    "registryDependencies": [
-      "link",
-      "view"
-    ],
+    "registryDependencies": ["link", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -6064,10 +5121,7 @@
     "name": "link-external",
     "description": "Links that open external URLs",
     "type": "registry:example",
-    "registryDependencies": [
-      "link",
-      "view"
-    ],
+    "registryDependencies": ["link", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -6086,11 +5140,7 @@
     "name": "link-styled",
     "description": "Links with custom styling and variants",
     "type": "registry:example",
-    "registryDependencies": [
-      "link",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["link", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -6109,11 +5159,7 @@
     "name": "link-types",
     "description": "Various types of links including mailto and tel",
     "type": "registry:example",
-    "registryDependencies": [
-      "link",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["link", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -6138,17 +5184,9 @@
       "expo-media-library",
       "lucide-react-native"
     ],
-    "registryDependencies": [
-      "button",
-      "text",
-      "view"
-    ],
-    "hooks": [
-      "useColor"
-    ],
-    "theme": [
-      "globals"
-    ],
+    "registryDependencies": ["button", "text", "view"],
+    "hooks": ["useColor"],
+    "theme": ["globals"],
     "files": [
       {
         "type": "registry:ui",
@@ -6165,9 +5203,7 @@
     "name": "media-picker-demo",
     "description": "A basic media picker with image and video selection",
     "type": "registry:example",
-    "registryDependencies": [
-      "media-picker"
-    ],
+    "registryDependencies": ["media-picker"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -6186,12 +5222,8 @@
     "name": "media-picker-gallery",
     "description": "Media picker with custom gallery modal",
     "type": "registry:example",
-    "dependencies": [
-      "lucide-react-native"
-    ],
-    "registryDependencies": [
-      "media-picker"
-    ],
+    "dependencies": ["lucide-react-native"],
+    "registryDependencies": ["media-picker"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -6210,12 +5242,8 @@
     "name": "media-picker-images",
     "description": "Media picker configured for images only",
     "type": "registry:example",
-    "dependencies": [
-      "lucide-react-native"
-    ],
-    "registryDependencies": [
-      "media-picker"
-    ],
+    "dependencies": ["lucide-react-native"],
+    "registryDependencies": ["media-picker"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -6234,14 +5262,8 @@
     "name": "media-picker-multiple",
     "description": "Media picker with multiple selection enabled",
     "type": "registry:example",
-    "dependencies": [
-      "lucide-react-native"
-    ],
-    "registryDependencies": [
-      "media-picker",
-      "text",
-      "view"
-    ],
+    "dependencies": ["lucide-react-native"],
+    "registryDependencies": ["media-picker", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -6260,14 +5282,8 @@
     "name": "media-picker-preview",
     "description": "Media picker showing selected media previews",
     "type": "registry:example",
-    "dependencies": [
-      "lucide-react-native"
-    ],
-    "registryDependencies": [
-      "media-picker",
-      "text",
-      "view"
-    ],
+    "dependencies": ["lucide-react-native"],
+    "registryDependencies": ["media-picker", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -6286,14 +5302,8 @@
     "name": "media-picker-quality",
     "description": "Media picker with different quality settings",
     "type": "registry:example",
-    "dependencies": [
-      "lucide-react-native"
-    ],
-    "registryDependencies": [
-      "media-picker",
-      "text",
-      "view"
-    ],
+    "dependencies": ["lucide-react-native"],
+    "registryDependencies": ["media-picker", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -6312,12 +5322,8 @@
     "name": "media-picker-videos",
     "description": "Media picker configured for videos only",
     "type": "registry:example",
-    "dependencies": [
-      "lucide-react-native"
-    ],
-    "registryDependencies": [
-      "media-picker"
-    ],
+    "dependencies": ["lucide-react-native"],
+    "registryDependencies": ["media-picker"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -6336,17 +5342,9 @@
     "name": "mode-toggle",
     "description": "An animated button component for switching between light and dark themes.",
     "type": "registry:ui",
-    "dependencies": [
-      "lucide-react-native",
-      "react-native-reanimated"
-    ],
-    "registryDependencies": [
-      "button",
-      "icon"
-    ],
-    "hooks": [
-      "useModeToggle"
-    ],
+    "dependencies": ["lucide-react-native", "react-native-reanimated"],
+    "registryDependencies": ["button", "icon"],
+    "hooks": ["useModeToggle"],
     "theme": [],
     "files": [
       {
@@ -6364,9 +5362,7 @@
     "name": "mode-toggle-demo",
     "description": "Animated theme toggle button",
     "type": "registry:example",
-    "registryDependencies": [
-      "mode-toggle"
-    ],
+    "registryDependencies": ["mode-toggle"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -6385,17 +5381,9 @@
     "name": "onboarding",
     "description": "A customizable multi-step onboarding flow with smooth animations and gesture support.",
     "type": "registry:ui",
-    "dependencies": [
-      "react-native-gesture-handler",
-      "react-native-reanimated"
-    ],
-    "registryDependencies": [
-      "button",
-      "text"
-    ],
-    "hooks": [
-      "useColor"
-    ],
+    "dependencies": ["react-native-gesture-handler", "react-native-reanimated"],
+    "registryDependencies": ["button", "text"],
+    "hooks": ["useColor"],
     "theme": [],
     "files": [
       {
@@ -6413,12 +5401,8 @@
     "name": "onboarding-custom-buttons",
     "description": "Onboarding with custom button text",
     "type": "registry:example",
-    "dependencies": [
-      "lucide-react-native"
-    ],
-    "registryDependencies": [
-      "onboarding"
-    ],
+    "dependencies": ["lucide-react-native"],
+    "registryDependencies": ["onboarding"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -6437,12 +5421,8 @@
     "name": "onboarding-demo",
     "description": "A basic onboarding flow with multiple steps",
     "type": "registry:example",
-    "dependencies": [
-      "lucide-react-native"
-    ],
-    "registryDependencies": [
-      "onboarding"
-    ],
+    "dependencies": ["lucide-react-native"],
+    "registryDependencies": ["onboarding"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -6461,12 +5441,7 @@
     "name": "onboarding-hook",
     "description": "Media picker showing selected media previews",
     "type": "registry:example",
-    "registryDependencies": [
-      "onboarding",
-      "view",
-      "text",
-      "button"
-    ],
+    "registryDependencies": ["onboarding", "view", "text", "button"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -6485,10 +5460,7 @@
     "name": "onboarding-images",
     "description": "Onboarding flow with custom images for each step",
     "type": "registry:example",
-    "registryDependencies": [
-      "onboarding",
-      "image"
-    ],
+    "registryDependencies": ["onboarding", "image"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -6507,12 +5479,8 @@
     "name": "onboarding-no-skip",
     "description": "Onboarding flow without skip functionality",
     "type": "registry:example",
-    "dependencies": [
-      "lucide-react-native"
-    ],
-    "registryDependencies": [
-      "onboarding"
-    ],
+    "dependencies": ["lucide-react-native"],
+    "registryDependencies": ["onboarding"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -6531,12 +5499,8 @@
     "name": "onboarding-no-swipe",
     "description": "Onboarding with swipe gestures disabled",
     "type": "registry:example",
-    "dependencies": [
-      "lucide-react-native"
-    ],
-    "registryDependencies": [
-      "onboarding"
-    ],
+    "dependencies": ["lucide-react-native"],
+    "registryDependencies": ["onboarding"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -6555,13 +5519,8 @@
     "name": "onboarding-styled",
     "description": "Onboarding with custom colors and styling",
     "type": "registry:example",
-    "dependencies": [
-      "lucide-react-native",
-      "expo-linear-gradient"
-    ],
-    "registryDependencies": [
-      "onboarding"
-    ],
+    "dependencies": ["lucide-react-native", "expo-linear-gradient"],
+    "registryDependencies": ["onboarding"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -6580,16 +5539,9 @@
     "name": "parallax-scrollview",
     "description": "A scroll view with parallax header effect that transforms as the user scrolls.",
     "type": "registry:ui",
-    "dependencies": [
-      "react-native-reanimated"
-    ],
-    "registryDependencies": [
-      "view"
-    ],
-    "hooks": [
-      "useBottomTabOverflow",
-      "useColor"
-    ],
+    "dependencies": ["react-native-reanimated"],
+    "registryDependencies": ["view"],
+    "hooks": ["useBottomTabOverflow", "useColor"],
     "theme": [],
     "files": [
       {
@@ -6607,14 +5559,8 @@
     "name": "parallax-scrollview-article",
     "description": "Article layout with parallax hero image",
     "type": "registry:example",
-    "dependencies": [
-      "expo-linear-gradient"
-    ],
-    "registryDependencies": [
-      "parallax-scrollview",
-      "text",
-      "view"
-    ],
+    "dependencies": ["expo-linear-gradient"],
+    "registryDependencies": ["parallax-scrollview", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -6633,11 +5579,7 @@
     "name": "parallax-scrollview-custom-height",
     "description": "Parallax scroll view with custom header height",
     "type": "registry:example",
-    "registryDependencies": [
-      "parallax-scrollview",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["parallax-scrollview", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -6656,11 +5598,7 @@
     "name": "parallax-scrollview-demo",
     "description": "A basic parallax scroll view with header image",
     "type": "registry:example",
-    "registryDependencies": [
-      "parallax-scrollview",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["parallax-scrollview", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -6679,14 +5617,8 @@
     "name": "parallax-scrollview-gradient",
     "description": "Parallax scroll view with gradient overlay header",
     "type": "registry:example",
-    "dependencies": [
-      "expo-linear-gradient"
-    ],
-    "registryDependencies": [
-      "parallax-scrollview",
-      "text",
-      "view"
-    ],
+    "dependencies": ["expo-linear-gradient"],
+    "registryDependencies": ["parallax-scrollview", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -6705,11 +5637,7 @@
     "name": "parallax-scrollview-product",
     "description": "Product detail screen with parallax image gallery",
     "type": "registry:example",
-    "registryDependencies": [
-      "parallax-scrollview",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["parallax-scrollview", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -6728,15 +5656,8 @@
     "name": "parallax-scrollview-profile",
     "description": "Complete profile screen using parallax scroll view",
     "type": "registry:example",
-    "dependencies": [
-      "expo-linear-gradient"
-    ],
-    "registryDependencies": [
-      "parallax-scrollview",
-      "avatar",
-      "text",
-      "view"
-    ],
+    "dependencies": ["expo-linear-gradient"],
+    "registryDependencies": ["parallax-scrollview", "avatar", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -6755,21 +5676,10 @@
     "name": "picker",
     "description": "A customizable dropdown picker component with search, sections, and multiple selection support.",
     "type": "registry:ui",
-    "dependencies": [
-      "lucide-react-native"
-    ],
-    "registryDependencies": [
-      "icon",
-      "scroll-view",
-      "text",
-      "view"
-    ],
-    "hooks": [
-      "useColor"
-    ],
-    "theme": [
-      "globals"
-    ],
+    "dependencies": ["lucide-react-native"],
+    "registryDependencies": ["icon", "scroll-view", "text", "view"],
+    "hooks": ["useColor"],
+    "theme": ["globals"],
     "files": [
       {
         "type": "registry:ui",
@@ -6786,11 +5696,7 @@
     "name": "picker-advanced",
     "description": "Picker with descriptions, disabled options, and custom modal title",
     "type": "registry:example",
-    "registryDependencies": [
-      "picker",
-      "view",
-      "text"
-    ],
+    "registryDependencies": ["picker", "view", "text"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -6809,9 +5715,7 @@
     "name": "picker-demo",
     "description": "A basic picker with simple options",
     "type": "registry:example",
-    "registryDependencies": [
-      "picker"
-    ],
+    "registryDependencies": ["picker"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -6830,12 +5734,7 @@
     "name": "picker-form",
     "description": "Picker integrated with form validation and error handling",
     "type": "registry:example",
-    "registryDependencies": [
-      "picker",
-      "view",
-      "text",
-      "button"
-    ],
+    "registryDependencies": ["picker", "view", "text", "button"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -6854,9 +5753,7 @@
     "name": "picker-multiple",
     "description": "Picker allowing multiple selections",
     "type": "registry:example",
-    "registryDependencies": [
-      "picker"
-    ],
+    "registryDependencies": ["picker"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -6875,9 +5772,7 @@
     "name": "picker-searchable",
     "description": "Picker with search functionality",
     "type": "registry:example",
-    "registryDependencies": [
-      "picker"
-    ],
+    "registryDependencies": ["picker"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -6896,9 +5791,7 @@
     "name": "picker-sections",
     "description": "Picker with grouped options in sections",
     "type": "registry:example",
-    "registryDependencies": [
-      "picker"
-    ],
+    "registryDependencies": ["picker"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -6917,12 +5810,8 @@
     "name": "picker-styled",
     "description": "Picker with custom styling, icons, and labels",
     "type": "registry:example",
-    "dependencies": [
-      "lucide-react-native"
-    ],
-    "registryDependencies": [
-      "picker"
-    ],
+    "dependencies": ["lucide-react-native"],
+    "registryDependencies": ["picker"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -6941,11 +5830,7 @@
     "name": "picker-variants",
     "description": "Different picker variants: outline, filled, and group",
     "type": "registry:example",
-    "registryDependencies": [
-      "picker",
-      "view",
-      "text"
-    ],
+    "registryDependencies": ["picker", "view", "text"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -6970,12 +5855,8 @@
       "react-native-gesture-handler"
     ],
     "registryDependencies": [],
-    "hooks": [
-      "useColor"
-    ],
-    "theme": [
-      "globals"
-    ],
+    "hooks": ["useColor"],
+    "theme": ["globals"],
     "files": [
       {
         "type": "registry:ui",
@@ -6992,10 +5873,7 @@
     "name": "pie-chart-demo",
     "description": "A pie chart with smooth animations",
     "type": "registry:example",
-    "registryDependencies": [
-      "pie-chart",
-      "chart-container"
-    ],
+    "registryDependencies": ["pie-chart", "chart-container"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -7014,10 +5892,7 @@
     "name": "pie-chart-large",
     "description": "A pie chart with large dataset",
     "type": "registry:example",
-    "registryDependencies": [
-      "pie-chart",
-      "chart-container"
-    ],
+    "registryDependencies": ["pie-chart", "chart-container"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -7036,10 +5911,7 @@
     "name": "pie-chart-sample",
     "description": "A sample pie chart",
     "type": "registry:example",
-    "registryDependencies": [
-      "pie-chart",
-      "chart-container"
-    ],
+    "registryDependencies": ["pie-chart", "chart-container"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -7058,13 +5930,8 @@
     "name": "pie-chart-styled",
     "description": "A customized pie chart with custom colors and styling",
     "type": "registry:example",
-    "registryDependencies": [
-      "pie-chart",
-      "chart-container"
-    ],
-    "hooks": [
-      "useColor"
-    ],
+    "registryDependencies": ["pie-chart", "chart-container"],
+    "hooks": ["useColor"],
     "theme": [],
     "files": [
       {
@@ -7088,12 +5955,8 @@
       "react-native-gesture-handler"
     ],
     "registryDependencies": [],
-    "hooks": [
-      "useColor"
-    ],
-    "theme": [
-      "globals"
-    ],
+    "hooks": ["useColor"],
+    "theme": ["globals"],
     "files": [
       {
         "type": "registry:ui",
@@ -7110,10 +5973,7 @@
     "name": "polar-area-chart-demo",
     "description": "A polar area chart with smooth animations",
     "type": "registry:example",
-    "registryDependencies": [
-      "polar-area-chart",
-      "chart-container"
-    ],
+    "registryDependencies": ["polar-area-chart", "chart-container"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -7132,10 +5992,7 @@
     "name": "polar-area-chart-large",
     "description": "A polar area chart with large dataset",
     "type": "registry:example",
-    "registryDependencies": [
-      "polar-area-chart",
-      "chart-container"
-    ],
+    "registryDependencies": ["polar-area-chart", "chart-container"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -7154,13 +6011,8 @@
     "name": "polar-area-chart-sample",
     "description": "A sample polar area chart",
     "type": "registry:example",
-    "registryDependencies": [
-      "polar-area-chart",
-      "chart-container"
-    ],
-    "hooks": [
-      "useColor"
-    ],
+    "registryDependencies": ["polar-area-chart", "chart-container"],
+    "hooks": ["useColor"],
     "theme": [],
     "files": [
       {
@@ -7178,13 +6030,8 @@
     "name": "polar-area-chart-styled",
     "description": "A customized polar area chart with custom colors and styling",
     "type": "registry:example",
-    "registryDependencies": [
-      "polar-area-chart",
-      "chart-container"
-    ],
-    "hooks": [
-      "useColor"
-    ],
+    "registryDependencies": ["polar-area-chart", "chart-container"],
+    "hooks": ["useColor"],
     "theme": [],
     "files": [
       {
@@ -7202,18 +6049,10 @@
     "name": "popover",
     "description": "A contextual overlay that displays rich content triggered by user interaction.",
     "type": "registry:ui",
-    "dependencies": [
-      "react-native-reanimated"
-    ],
-    "registryDependencies": [
-      "button"
-    ],
-    "hooks": [
-      "useColor"
-    ],
-    "theme": [
-      "globals"
-    ],
+    "dependencies": ["react-native-reanimated"],
+    "registryDependencies": ["button"],
+    "hooks": ["useColor"],
+    "theme": ["globals"],
     "files": [
       {
         "type": "registry:ui",
@@ -7230,12 +6069,7 @@
     "name": "popover-alignment",
     "description": "Popovers with different alignment options",
     "type": "registry:example",
-    "registryDependencies": [
-      "popover",
-      "button",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["popover", "button", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -7254,12 +6088,7 @@
     "name": "popover-controlled",
     "description": "A controlled popover with external state management",
     "type": "registry:example",
-    "registryDependencies": [
-      "popover",
-      "button",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["popover", "button", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -7278,12 +6107,7 @@
     "name": "popover-custom",
     "description": "Popovers with custom content and styling",
     "type": "registry:example",
-    "registryDependencies": [
-      "popover",
-      "button",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["popover", "button", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -7302,11 +6126,7 @@
     "name": "popover-demo",
     "description": "A basic popover with trigger button and content",
     "type": "registry:example",
-    "registryDependencies": [
-      "popover",
-      "button",
-      "text"
-    ],
+    "registryDependencies": ["popover", "button", "text"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -7325,13 +6145,7 @@
     "name": "popover-form",
     "description": "A popover containing form elements",
     "type": "registry:example",
-    "registryDependencies": [
-      "popover",
-      "button",
-      "text",
-      "view",
-      "input"
-    ],
+    "registryDependencies": ["popover", "button", "text", "view", "input"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -7350,12 +6164,7 @@
     "name": "popover-menu",
     "description": "A popover styled as a dropdown menu",
     "type": "registry:example",
-    "registryDependencies": [
-      "popover",
-      "button",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["popover", "button", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -7374,12 +6183,7 @@
     "name": "popover-positioning",
     "description": "Popovers positioned on different sides of the trigger",
     "type": "registry:example",
-    "registryDependencies": [
-      "popover",
-      "button",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["popover", "button", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -7398,19 +6202,10 @@
     "name": "progress",
     "description": "A progress bar component to show completion status with optional interactivity.",
     "type": "registry:ui",
-    "dependencies": [
-      "react-native-gesture-handler",
-      "react-native-reanimated"
-    ],
-    "registryDependencies": [
-      "view"
-    ],
-    "hooks": [
-      "useColor"
-    ],
-    "theme": [
-      "globals"
-    ],
+    "dependencies": ["react-native-gesture-handler", "react-native-reanimated"],
+    "registryDependencies": ["view"],
+    "hooks": ["useColor"],
+    "theme": ["globals"],
     "files": [
       {
         "type": "registry:ui",
@@ -7427,11 +6222,7 @@
     "name": "progress-animated",
     "description": "Progress bars with smooth animations and transitions",
     "type": "registry:example",
-    "registryDependencies": [
-      "progress",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["progress", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -7450,9 +6241,7 @@
     "name": "progress-demo",
     "description": "A basic progress bar showing completion status",
     "type": "registry:example",
-    "registryDependencies": [
-      "progress"
-    ],
+    "registryDependencies": ["progress"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -7471,11 +6260,7 @@
     "name": "progress-heights",
     "description": "Progress bars with different heights",
     "type": "registry:example",
-    "registryDependencies": [
-      "progress",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["progress", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -7494,11 +6279,7 @@
     "name": "progress-interactive",
     "description": "An interactive progress bar that can be dragged or tapped",
     "type": "registry:example",
-    "registryDependencies": [
-      "progress",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["progress", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -7517,11 +6298,7 @@
     "name": "progress-labels",
     "description": "Progress bars with percentage labels and descriptions",
     "type": "registry:example",
-    "registryDependencies": [
-      "progress",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["progress", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -7540,11 +6317,7 @@
     "name": "progress-media",
     "description": "Progress bars styled for media player controls",
     "type": "registry:example",
-    "registryDependencies": [
-      "progress",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["progress", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -7569,12 +6342,8 @@
       "react-native-gesture-handler"
     ],
     "registryDependencies": [],
-    "hooks": [
-      "useColor"
-    ],
-    "theme": [
-      "globals"
-    ],
+    "hooks": ["useColor"],
+    "theme": ["globals"],
     "files": [
       {
         "type": "registry:ui",
@@ -7591,10 +6360,7 @@
     "name": "progress-ring-chart-demo",
     "description": "A circular progress ring with smooth animations",
     "type": "registry:example",
-    "registryDependencies": [
-      "progress-ring-chart",
-      "chart-container"
-    ],
+    "registryDependencies": ["progress-ring-chart", "chart-container"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -7613,10 +6379,7 @@
     "name": "progress-ring-chart-large",
     "description": "A large progress ring with center text",
     "type": "registry:example",
-    "registryDependencies": [
-      "progress-ring-chart",
-      "chart-container"
-    ],
+    "registryDependencies": ["progress-ring-chart", "chart-container"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -7635,10 +6398,7 @@
     "name": "progress-ring-chart-sample",
     "description": "A sample progress ring chart",
     "type": "registry:example",
-    "registryDependencies": [
-      "progress-ring-chart",
-      "chart-container"
-    ],
+    "registryDependencies": ["progress-ring-chart", "chart-container"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -7657,10 +6417,7 @@
     "name": "progress-ring-chart-styled",
     "description": "A customized progress ring with gradient and custom styling",
     "type": "registry:example",
-    "registryDependencies": [
-      "progress-ring-chart",
-      "chart-container"
-    ],
+    "registryDependencies": ["progress-ring-chart", "chart-container"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -7679,11 +6436,7 @@
     "name": "progress-steps",
     "description": "Multi-step progress indicators",
     "type": "registry:example",
-    "registryDependencies": [
-      "progress",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["progress", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -7708,12 +6461,8 @@
       "react-native-gesture-handler"
     ],
     "registryDependencies": [],
-    "hooks": [
-      "useColor"
-    ],
-    "theme": [
-      "globals"
-    ],
+    "hooks": ["useColor"],
+    "theme": ["globals"],
     "files": [
       {
         "type": "registry:ui",
@@ -7730,10 +6479,7 @@
     "name": "radar-chart-demo",
     "description": "A radar chart with smooth animations",
     "type": "registry:example",
-    "registryDependencies": [
-      "radar-chart",
-      "chart-container"
-    ],
+    "registryDependencies": ["radar-chart", "chart-container"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -7752,10 +6498,7 @@
     "name": "radar-chart-large",
     "description": "A radar chart with large dataset",
     "type": "registry:example",
-    "registryDependencies": [
-      "radar-chart",
-      "chart-container"
-    ],
+    "registryDependencies": ["radar-chart", "chart-container"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -7774,10 +6517,7 @@
     "name": "radar-chart-sample",
     "description": "A sample radar chart",
     "type": "registry:example",
-    "registryDependencies": [
-      "radar-chart",
-      "chart-container"
-    ],
+    "registryDependencies": ["radar-chart", "chart-container"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -7796,13 +6536,8 @@
     "name": "radar-chart-styled",
     "description": "A customized radar chart with custom colors and styling",
     "type": "registry:example",
-    "registryDependencies": [
-      "radar-chart",
-      "chart-container"
-    ],
-    "hooks": [
-      "useColor"
-    ],
+    "registryDependencies": ["radar-chart", "chart-container"],
+    "hooks": ["useColor"],
     "theme": [],
     "files": [
       {
@@ -7826,12 +6561,8 @@
       "react-native-gesture-handler"
     ],
     "registryDependencies": [],
-    "hooks": [
-      "useColor"
-    ],
-    "theme": [
-      "globals"
-    ],
+    "hooks": ["useColor"],
+    "theme": ["globals"],
     "files": [
       {
         "type": "registry:ui",
@@ -7848,10 +6579,7 @@
     "name": "radial-bar-chart-demo",
     "description": "A radial bar chart with smooth animations and center totals",
     "type": "registry:example",
-    "registryDependencies": [
-      "radial-bar-chart",
-      "chart-container"
-    ],
+    "registryDependencies": ["radial-bar-chart", "chart-container"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -7870,13 +6598,8 @@
     "name": "radial-bar-chart-gradient",
     "description": "A radial bar chart with gradient effects",
     "type": "registry:example",
-    "registryDependencies": [
-      "radial-bar-chart",
-      "chart-container"
-    ],
-    "hooks": [
-      "useColor"
-    ],
+    "registryDependencies": ["radial-bar-chart", "chart-container"],
+    "hooks": ["useColor"],
     "theme": [],
     "files": [
       {
@@ -7894,10 +6617,7 @@
     "name": "radial-bar-chart-large",
     "description": "A radial bar chart with large dataset",
     "type": "registry:example",
-    "registryDependencies": [
-      "radial-bar-chart",
-      "chart-container"
-    ],
+    "registryDependencies": ["radial-bar-chart", "chart-container"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -7916,13 +6636,8 @@
     "name": "radial-bar-chart-sample",
     "description": "A sample radial bar chart with custom data",
     "type": "registry:example",
-    "registryDependencies": [
-      "radial-bar-chart",
-      "chart-container"
-    ],
-    "hooks": [
-      "useColor"
-    ],
+    "registryDependencies": ["radial-bar-chart", "chart-container"],
+    "hooks": ["useColor"],
     "theme": [],
     "files": [
       {
@@ -7940,18 +6655,10 @@
     "name": "radio",
     "description": "A set of checkable buttons—known as radio buttons—where no more than one of the buttons can be checked at a time.",
     "type": "registry:ui",
-    "dependencies": [
-      "react-native"
-    ],
-    "registryDependencies": [
-      "text"
-    ],
-    "hooks": [
-      "useColor"
-    ],
-    "theme": [
-      "globals"
-    ],
+    "dependencies": ["react-native"],
+    "registryDependencies": ["text"],
+    "hooks": ["useColor"],
+    "theme": ["globals"],
     "files": [
       {
         "type": "registry:ui",
@@ -7968,9 +6675,7 @@
     "name": "radio-demo",
     "description": "A basic radio group with multiple options",
     "type": "registry:example",
-    "registryDependencies": [
-      "radio"
-    ],
+    "registryDependencies": ["radio"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -7989,11 +6694,7 @@
     "name": "radio-disabled",
     "description": "Radio group with some disabled options",
     "type": "registry:example",
-    "registryDependencies": [
-      "radio",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["radio", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -8012,12 +6713,7 @@
     "name": "radio-form",
     "description": "Radio group integrated with form validation",
     "type": "registry:example",
-    "registryDependencies": [
-      "radio",
-      "button",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["radio", "button", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -8036,9 +6732,7 @@
     "name": "radio-horizontal",
     "description": "Radio buttons arranged horizontally",
     "type": "registry:example",
-    "registryDependencies": [
-      "radio"
-    ],
+    "registryDependencies": ["radio"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -8057,9 +6751,7 @@
     "name": "radio-large",
     "description": "Radio buttons with larger size and spacing",
     "type": "registry:example",
-    "registryDependencies": [
-      "radio"
-    ],
+    "registryDependencies": ["radio"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -8078,11 +6770,7 @@
     "name": "radio-single",
     "description": "Individual radio button component usage",
     "type": "registry:example",
-    "registryDependencies": [
-      "radio",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["radio", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -8101,11 +6789,7 @@
     "name": "radio-styled",
     "description": "Radio buttons with custom colors and styling",
     "type": "registry:example",
-    "registryDependencies": [
-      "radio",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["radio", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -8130,12 +6814,8 @@
       "react-native-gesture-handler"
     ],
     "registryDependencies": [],
-    "hooks": [
-      "useColor"
-    ],
-    "theme": [
-      "globals"
-    ],
+    "hooks": ["useColor"],
+    "theme": ["globals"],
     "files": [
       {
         "type": "registry:ui",
@@ -8152,10 +6832,7 @@
     "name": "scatter-chart-demo",
     "description": "A scatter plot with smooth animations",
     "type": "registry:example",
-    "registryDependencies": [
-      "scatter-chart",
-      "chart-container"
-    ],
+    "registryDependencies": ["scatter-chart", "chart-container"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -8174,10 +6851,7 @@
     "name": "scatter-chart-large",
     "description": "A scatter chart with large dataset",
     "type": "registry:example",
-    "registryDependencies": [
-      "scatter-chart",
-      "chart-container"
-    ],
+    "registryDependencies": ["scatter-chart", "chart-container"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -8196,10 +6870,7 @@
     "name": "scatter-chart-sample",
     "description": "A sample scatter chart with various data points",
     "type": "registry:example",
-    "registryDependencies": [
-      "scatter-chart",
-      "chart-container"
-    ],
+    "registryDependencies": ["scatter-chart", "chart-container"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -8218,13 +6889,8 @@
     "name": "scatter-chart-styled",
     "description": "A customized scatter chart with custom colors and styling",
     "type": "registry:example",
-    "registryDependencies": [
-      "scatter-chart",
-      "chart-container"
-    ],
-    "hooks": [
-      "useColor"
-    ],
+    "registryDependencies": ["scatter-chart", "chart-container"],
+    "hooks": ["useColor"],
     "theme": [],
     "files": [
       {
@@ -8243,9 +6909,7 @@
     "description": "A scrollable view component that allows content to be scrolled when it exceeds the container size.",
     "type": "registry:ui",
     "dependencies": [],
-    "registryDependencies": [
-      "view"
-    ],
+    "registryDependencies": ["view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -8264,11 +6928,7 @@
     "name": "scroll-view-demo",
     "description": "A basic scrollable view with content",
     "type": "registry:example",
-    "registryDependencies": [
-      "scroll-view",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["scroll-view", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -8287,11 +6947,7 @@
     "name": "scroll-view-horizontal",
     "description": "Horizontal scrolling with cards",
     "type": "registry:example",
-    "registryDependencies": [
-      "scroll-view",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["scroll-view", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -8310,11 +6966,7 @@
     "name": "scroll-view-indicators",
     "description": "ScrollView with custom scroll indicators",
     "type": "registry:example",
-    "registryDependencies": [
-      "scroll-view",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["scroll-view", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -8333,11 +6985,7 @@
     "name": "scroll-view-inset",
     "description": "ScrollView with content inset adjustments",
     "type": "registry:example",
-    "registryDependencies": [
-      "scroll-view",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["scroll-view", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -8356,11 +7004,7 @@
     "name": "scroll-view-nested",
     "description": "ScrollViews nested within each other",
     "type": "registry:example",
-    "registryDependencies": [
-      "scroll-view",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["scroll-view", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -8379,11 +7023,7 @@
     "name": "scroll-view-refresh",
     "description": "ScrollView with pull-to-refresh functionality",
     "type": "registry:example",
-    "registryDependencies": [
-      "scroll-view",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["scroll-view", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -8402,11 +7042,7 @@
     "name": "scroll-view-styled",
     "description": "ScrollView with custom styling and padding",
     "type": "registry:example",
-    "registryDependencies": [
-      "scroll-view",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["scroll-view", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -8425,11 +7061,7 @@
     "name": "scroll-view-vertical",
     "description": "Vertical scrolling with multiple items",
     "type": "registry:example",
-    "registryDependencies": [
-      "scroll-view",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["scroll-view", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -8448,20 +7080,10 @@
     "name": "searchbar",
     "description": "A customizable search input with debouncing, loading states, and suggestions.",
     "type": "registry:ui",
-    "dependencies": [
-      "lucide-react-native"
-    ],
-    "registryDependencies": [
-      "icon",
-      "text",
-      "view"
-    ],
-    "hooks": [
-      "useColor"
-    ],
-    "theme": [
-      "globals"
-    ],
+    "dependencies": ["lucide-react-native"],
+    "registryDependencies": ["icon", "text", "view"],
+    "hooks": ["useColor"],
+    "theme": ["globals"],
     "files": [
       {
         "type": "registry:ui",
@@ -8478,9 +7100,7 @@
     "name": "searchbar-demo",
     "description": "A basic search bar with search functionality",
     "type": "registry:example",
-    "registryDependencies": [
-      "searchbar"
-    ],
+    "registryDependencies": ["searchbar"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -8499,10 +7119,7 @@
     "name": "searchbar-icons",
     "description": "Search bar with custom left and right icons",
     "type": "registry:example",
-    "registryDependencies": [
-      "searchbar",
-      "icon"
-    ],
+    "registryDependencies": ["searchbar", "icon"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -8521,11 +7138,7 @@
     "name": "searchbar-instant",
     "description": "Search bar with no debounce for instant search",
     "type": "registry:example",
-    "registryDependencies": [
-      "searchbar",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["searchbar", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -8544,9 +7157,7 @@
     "name": "searchbar-loading",
     "description": "Search bar with loading indicator",
     "type": "registry:example",
-    "registryDependencies": [
-      "searchbar"
-    ],
+    "registryDependencies": ["searchbar"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -8565,9 +7176,7 @@
     "name": "searchbar-no-clear",
     "description": "Search bar without the clear button",
     "type": "registry:example",
-    "registryDependencies": [
-      "searchbar"
-    ],
+    "registryDependencies": ["searchbar"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -8586,9 +7195,7 @@
     "name": "searchbar-styled",
     "description": "Search bar with custom styling and colors",
     "type": "registry:example",
-    "registryDependencies": [
-      "searchbar"
-    ],
+    "registryDependencies": ["searchbar"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -8607,9 +7214,7 @@
     "name": "searchbar-suggestions",
     "description": "Search bar with dropdown suggestions",
     "type": "registry:example",
-    "registryDependencies": [
-      "searchbar"
-    ],
+    "registryDependencies": ["searchbar"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -8629,12 +7234,8 @@
     "description": "Visually or semantically separates content.",
     "type": "registry:ui",
     "dependencies": [],
-    "registryDependencies": [
-      "view"
-    ],
-    "hooks": [
-      "useColor"
-    ],
+    "registryDependencies": ["view"],
+    "hooks": ["useColor"],
     "theme": [],
     "files": [
       {
@@ -8652,11 +7253,7 @@
     "name": "separator-colors",
     "description": "Separators with custom colors and opacity",
     "type": "registry:example",
-    "registryDependencies": [
-      "separator",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["separator", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -8675,11 +7272,7 @@
     "name": "separator-demo",
     "description": "A basic horizontal separator",
     "type": "registry:example",
-    "registryDependencies": [
-      "separator",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["separator", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -8698,11 +7291,7 @@
     "name": "separator-spacing",
     "description": "Separators with different margin and padding",
     "type": "registry:example",
-    "registryDependencies": [
-      "separator",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["separator", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -8721,11 +7310,7 @@
     "name": "separator-thickness",
     "description": "Separators with different thickness values",
     "type": "registry:example",
-    "registryDependencies": [
-      "separator",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["separator", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -8744,11 +7329,7 @@
     "name": "separator-vertical",
     "description": "A vertical separator for inline content",
     "type": "registry:example",
-    "registryDependencies": [
-      "separator",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["separator", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -8767,19 +7348,10 @@
     "name": "share",
     "description": "A button component for sharing content across platforms with native share functionality.",
     "type": "registry:ui",
-    "dependencies": [
-      "lucide-react-native"
-    ],
-    "registryDependencies": [
-      "button",
-      "text"
-    ],
-    "hooks": [
-      "useColor"
-    ],
-    "theme": [
-      "globals"
-    ],
+    "dependencies": ["lucide-react-native"],
+    "registryDependencies": ["button", "text"],
+    "hooks": ["useColor"],
+    "theme": ["globals"],
     "files": [
       {
         "type": "registry:ui",
@@ -8796,11 +7368,7 @@
     "name": "share-callbacks",
     "description": "Share button with success, error, and dismiss callbacks",
     "type": "registry:example",
-    "registryDependencies": [
-      "share",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["share", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -8819,10 +7387,7 @@
     "name": "share-custom-content",
     "description": "Share button with custom title, subject, and content",
     "type": "registry:example",
-    "registryDependencies": [
-      "share",
-      "view"
-    ],
+    "registryDependencies": ["share", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -8841,9 +7406,7 @@
     "name": "share-demo",
     "description": "A basic share button with text and URL sharing",
     "type": "registry:example",
-    "registryDependencies": [
-      "share"
-    ],
+    "registryDependencies": ["share"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -8862,12 +7425,7 @@
     "name": "share-hook",
     "description": "Using the useShare hook for programmatic sharing",
     "type": "registry:example",
-    "registryDependencies": [
-      "share",
-      "text",
-      "view",
-      "button"
-    ],
+    "registryDependencies": ["share", "text", "view", "button"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -8886,10 +7444,7 @@
     "name": "share-icon-only",
     "description": "Compact share button with icon only",
     "type": "registry:example",
-    "registryDependencies": [
-      "share",
-      "view"
-    ],
+    "registryDependencies": ["share", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -8908,10 +7463,7 @@
     "name": "share-sizes",
     "description": "Share buttons in different sizes",
     "type": "registry:example",
-    "registryDependencies": [
-      "share",
-      "view"
-    ],
+    "registryDependencies": ["share", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -8930,10 +7482,7 @@
     "name": "share-url-only",
     "description": "Share button for sharing URLs without additional text",
     "type": "registry:example",
-    "registryDependencies": [
-      "share",
-      "view"
-    ],
+    "registryDependencies": ["share", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -8952,10 +7501,7 @@
     "name": "share-variants",
     "description": "Share buttons with different visual variants",
     "type": "registry:example",
-    "registryDependencies": [
-      "share",
-      "view"
-    ],
+    "registryDependencies": ["share", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -8974,20 +7520,10 @@
     "name": "sheet",
     "description": "A modal component that slides in from the side of the screen, commonly used for navigation menus, filters, and detail views.",
     "type": "registry:ui",
-    "dependencies": [
-      "lucide-react-native"
-    ],
-    "registryDependencies": [
-      "button",
-      "text",
-      "view"
-    ],
-    "hooks": [
-      "useColor"
-    ],
-    "theme": [
-      "globals"
-    ],
+    "dependencies": ["lucide-react-native"],
+    "registryDependencies": ["button", "text", "view"],
+    "hooks": ["useColor"],
+    "theme": ["globals"],
     "files": [
       {
         "type": "registry:ui",
@@ -9004,12 +7540,7 @@
     "name": "sheet-demo",
     "description": "A basic sheet that slides in from the right side",
     "type": "registry:example",
-    "registryDependencies": [
-      "sheet",
-      "button",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["sheet", "button", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -9028,15 +7559,8 @@
     "name": "sheet-filter",
     "description": "A sheet that slides in from the filter side",
     "type": "registry:example",
-    "dependencies": [
-      "lucide-react-native"
-    ],
-    "registryDependencies": [
-      "sheet",
-      "button",
-      "text",
-      "view"
-    ],
+    "dependencies": ["lucide-react-native"],
+    "registryDependencies": ["sheet", "button", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -9055,12 +7579,7 @@
     "name": "sheet-form",
     "description": "A sheet that slides in from the form side",
     "type": "registry:example",
-    "registryDependencies": [
-      "sheet",
-      "button",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["sheet", "button", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -9079,12 +7598,7 @@
     "name": "sheet-left",
     "description": "A sheet that slides in from the left side",
     "type": "registry:example",
-    "registryDependencies": [
-      "sheet",
-      "button",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["sheet", "button", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -9103,15 +7617,8 @@
     "name": "sheet-navigation",
     "description": "A sheet that slides in from the navigation side",
     "type": "registry:example",
-    "dependencies": [
-      "lucide-react-native"
-    ],
-    "registryDependencies": [
-      "sheet",
-      "button",
-      "text",
-      "view"
-    ],
+    "dependencies": ["lucide-react-native"],
+    "registryDependencies": ["sheet", "button", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -9132,12 +7639,8 @@
     "type": "registry:ui",
     "dependencies": [],
     "registryDependencies": [],
-    "hooks": [
-      "useColor"
-    ],
-    "theme": [
-      "globals"
-    ],
+    "hooks": ["useColor"],
+    "theme": ["globals"],
     "files": [
       {
         "type": "registry:ui",
@@ -9154,10 +7657,7 @@
     "name": "skeleton-card",
     "description": "Skeleton placeholders arranged in a card layout",
     "type": "registry:example",
-    "registryDependencies": [
-      "skeleton",
-      "view"
-    ],
+    "registryDependencies": ["skeleton", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -9176,9 +7676,7 @@
     "name": "skeleton-demo",
     "description": "A basic skeleton loader with pulsing animation",
     "type": "registry:example",
-    "registryDependencies": [
-      "skeleton"
-    ],
+    "registryDependencies": ["skeleton"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -9197,10 +7695,7 @@
     "name": "skeleton-list",
     "description": "Multiple skeleton items arranged in a list",
     "type": "registry:example",
-    "registryDependencies": [
-      "skeleton",
-      "view"
-    ],
+    "registryDependencies": ["skeleton", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -9219,10 +7714,7 @@
     "name": "skeleton-profile",
     "description": "Skeleton layout mimicking a user profile",
     "type": "registry:example",
-    "registryDependencies": [
-      "skeleton",
-      "view"
-    ],
+    "registryDependencies": ["skeleton", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -9241,10 +7733,7 @@
     "name": "skeleton-shapes",
     "description": "Skeletons with custom shapes and styling",
     "type": "registry:example",
-    "registryDependencies": [
-      "skeleton",
-      "view"
-    ],
+    "registryDependencies": ["skeleton", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -9263,10 +7752,7 @@
     "name": "skeleton-sizes",
     "description": "Skeletons in various sizes and dimensions",
     "type": "registry:example",
-    "registryDependencies": [
-      "skeleton",
-      "view"
-    ],
+    "registryDependencies": ["skeleton", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -9285,18 +7771,10 @@
     "name": "spinner",
     "description": "A loading indicator component with multiple variants and customization options.",
     "type": "registry:ui",
-    "dependencies": [
-      "lucide-react-native"
-    ],
-    "registryDependencies": [
-      "text"
-    ],
-    "hooks": [
-      "useColor"
-    ],
-    "theme": [
-      "globals"
-    ],
+    "dependencies": ["lucide-react-native"],
+    "registryDependencies": ["text"],
+    "hooks": ["useColor"],
+    "theme": ["globals"],
     "files": [
       {
         "type": "registry:ui",
@@ -9313,11 +7791,7 @@
     "name": "spinner-colors",
     "description": "Spinners with custom colors and styling",
     "type": "registry:example",
-    "registryDependencies": [
-      "spinner",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["spinner", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -9336,9 +7810,7 @@
     "name": "spinner-demo",
     "description": "A basic spinner with default styling",
     "type": "registry:example",
-    "registryDependencies": [
-      "spinner"
-    ],
+    "registryDependencies": ["spinner"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -9357,11 +7829,7 @@
     "name": "spinner-inline",
     "description": "Small spinners for inline usage in buttons or text",
     "type": "registry:example",
-    "registryDependencies": [
-      "spinner",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["spinner", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -9380,10 +7848,7 @@
     "name": "spinner-labels",
     "description": "Spinners with custom loading labels",
     "type": "registry:example",
-    "registryDependencies": [
-      "spinner",
-      "view"
-    ],
+    "registryDependencies": ["spinner", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -9402,11 +7867,7 @@
     "name": "spinner-overlay",
     "description": "Full-screen loading overlay with backdrop",
     "type": "registry:example",
-    "registryDependencies": [
-      "spinner",
-      "button",
-      "view"
-    ],
+    "registryDependencies": ["spinner", "button", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -9425,11 +7886,7 @@
     "name": "spinner-sizes",
     "description": "Spinners in different sizes: sm, default, lg, and icon",
     "type": "registry:example",
-    "registryDependencies": [
-      "spinner",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["spinner", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -9448,11 +7905,7 @@
     "name": "spinner-speeds",
     "description": "Spinners with different animation speeds: slow, normal, and fast",
     "type": "registry:example",
-    "registryDependencies": [
-      "spinner",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["spinner", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -9471,11 +7924,7 @@
     "name": "spinner-variants",
     "description": "Different spinner variants: default, circle, dots, pulse, and bars",
     "type": "registry:example",
-    "registryDependencies": [
-      "spinner",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["spinner", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -9500,12 +7949,8 @@
       "react-native-gesture-handler"
     ],
     "registryDependencies": [],
-    "hooks": [
-      "useColor"
-    ],
-    "theme": [
-      "globals"
-    ],
+    "hooks": ["useColor"],
+    "theme": ["globals"],
     "files": [
       {
         "type": "registry:ui",
@@ -9522,10 +7967,7 @@
     "name": "stacked-area-chart-demo",
     "description": "A stacked area chart with smooth animations and gradient fills",
     "type": "registry:example",
-    "registryDependencies": [
-      "stacked-area-chart",
-      "chart-container"
-    ],
+    "registryDependencies": ["stacked-area-chart", "chart-container"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -9544,10 +7986,7 @@
     "name": "stacked-area-chart-large",
     "description": "A stacked area chart with large dataset",
     "type": "registry:example",
-    "registryDependencies": [
-      "stacked-area-chart",
-      "chart-container"
-    ],
+    "registryDependencies": ["stacked-area-chart", "chart-container"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -9566,10 +8005,7 @@
     "name": "stacked-area-chart-sample",
     "description": "A sample stacked area chart with revenue data",
     "type": "registry:example",
-    "registryDependencies": [
-      "stacked-area-chart",
-      "chart-container"
-    ],
+    "registryDependencies": ["stacked-area-chart", "chart-container"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -9588,10 +8024,7 @@
     "name": "stacked-area-chart-styled",
     "description": "A customized stacked area chart with custom colors and styling",
     "type": "registry:example",
-    "registryDependencies": [
-      "stacked-area-chart",
-      "chart-container"
-    ],
+    "registryDependencies": ["stacked-area-chart", "chart-container"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -9616,12 +8049,8 @@
       "react-native-gesture-handler"
     ],
     "registryDependencies": [],
-    "hooks": [
-      "useColor"
-    ],
-    "theme": [
-      "globals"
-    ],
+    "hooks": ["useColor"],
+    "theme": ["globals"],
     "files": [
       {
         "type": "registry:ui",
@@ -9638,10 +8067,7 @@
     "name": "stacked-bar-chart-demo",
     "description": "A stacked bar chart with smooth animations",
     "type": "registry:example",
-    "registryDependencies": [
-      "stacked-bar-chart",
-      "chart-container"
-    ],
+    "registryDependencies": ["stacked-bar-chart", "chart-container"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -9660,10 +8086,7 @@
     "name": "stacked-bar-chart-horizontal",
     "description": "A horizontal stacked bar chart",
     "type": "registry:example",
-    "registryDependencies": [
-      "stacked-bar-chart",
-      "chart-container"
-    ],
+    "registryDependencies": ["stacked-bar-chart", "chart-container"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -9682,10 +8105,7 @@
     "name": "stacked-bar-chart-large",
     "description": "A stacked bar chart with large dataset",
     "type": "registry:example",
-    "registryDependencies": [
-      "stacked-bar-chart",
-      "chart-container"
-    ],
+    "registryDependencies": ["stacked-bar-chart", "chart-container"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -9704,10 +8124,7 @@
     "name": "stacked-bar-chart-styled",
     "description": "A customized stacked bar chart with custom colors and styling",
     "type": "registry:example",
-    "registryDependencies": [
-      "stacked-bar-chart",
-      "chart-container"
-    ],
+    "registryDependencies": ["stacked-bar-chart", "chart-container"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -9727,13 +8144,8 @@
     "description": "A control that allows the user to toggle between checked and not checked states.",
     "type": "registry:ui",
     "dependencies": [],
-    "registryDependencies": [
-      "text",
-      "view"
-    ],
-    "hooks": [
-      "useColor"
-    ],
+    "registryDependencies": ["text", "view"],
+    "hooks": ["useColor"],
     "theme": [],
     "files": [
       {
@@ -9751,10 +8163,7 @@
     "name": "switch-colors",
     "description": "Switches with custom colors and styling",
     "type": "registry:example",
-    "registryDependencies": [
-      "switch",
-      "view"
-    ],
+    "registryDependencies": ["switch", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -9773,9 +8182,7 @@
     "name": "switch-demo",
     "description": "A basic switch with label",
     "type": "registry:example",
-    "registryDependencies": [
-      "switch"
-    ],
+    "registryDependencies": ["switch"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -9794,10 +8201,7 @@
     "name": "switch-disabled",
     "description": "Switches in disabled state",
     "type": "registry:example",
-    "registryDependencies": [
-      "switch",
-      "view"
-    ],
+    "registryDependencies": ["switch", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -9816,10 +8220,7 @@
     "name": "switch-error",
     "description": "Switch with error message and styling",
     "type": "registry:example",
-    "registryDependencies": [
-      "switch",
-      "view"
-    ],
+    "registryDependencies": ["switch", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -9838,10 +8239,7 @@
     "name": "switch-settings",
     "description": "Multiple switches arranged in a settings list",
     "type": "registry:example",
-    "registryDependencies": [
-      "switch",
-      "view"
-    ],
+    "registryDependencies": ["switch", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -9860,10 +8258,7 @@
     "name": "switch-simple",
     "description": "A switch without label text",
     "type": "registry:example",
-    "registryDependencies": [
-      "switch",
-      "view"
-    ],
+    "registryDependencies": ["switch", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -9882,20 +8277,10 @@
     "name": "table",
     "description": "A flexible data table component with sorting, filtering, pagination, and search functionality.",
     "type": "registry:ui",
-    "dependencies": [
-      "lucide-react-native"
-    ],
-    "registryDependencies": [
-      "button",
-      "text",
-      "view"
-    ],
-    "hooks": [
-      "useColor"
-    ],
-    "theme": [
-      "globals"
-    ],
+    "dependencies": ["lucide-react-native"],
+    "registryDependencies": ["button", "text", "view"],
+    "hooks": ["useColor"],
+    "theme": ["globals"],
     "files": [
       {
         "type": "registry:ui",
@@ -9912,13 +8297,7 @@
     "name": "table-custom-cells",
     "description": "Table with custom cell renderers and formatting",
     "type": "registry:example",
-    "registryDependencies": [
-      "table",
-      "avatar",
-      "badge",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["table", "avatar", "badge", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -9937,9 +8316,7 @@
     "name": "table-demo",
     "description": "A basic data table with sample data",
     "type": "registry:example",
-    "registryDependencies": [
-      "table"
-    ],
+    "registryDependencies": ["table"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -9958,11 +8335,7 @@
     "name": "table-loading",
     "description": "Table showing loading state",
     "type": "registry:example",
-    "registryDependencies": [
-      "table",
-      "button",
-      "view"
-    ],
+    "registryDependencies": ["table", "button", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -9981,9 +8354,7 @@
     "name": "table-pagination",
     "description": "Table with pagination controls",
     "type": "registry:example",
-    "registryDependencies": [
-      "table"
-    ],
+    "registryDependencies": ["table"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -10002,9 +8373,7 @@
     "name": "table-search",
     "description": "Table with search functionality",
     "type": "registry:example",
-    "registryDependencies": [
-      "table"
-    ],
+    "registryDependencies": ["table"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -10023,9 +8392,7 @@
     "name": "table-sortable",
     "description": "Table with sortable columns",
     "type": "registry:example",
-    "registryDependencies": [
-      "table"
-    ],
+    "registryDependencies": ["table"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -10044,20 +8411,10 @@
     "name": "tabs",
     "description": "A foundational View component with transparent background and ref forwarding support.",
     "type": "registry:ui",
-    "dependencies": [
-      "react-native-gesture-handler",
-      "react-native-reanimated"
-    ],
-    "registryDependencies": [
-      "text",
-      "view"
-    ],
-    "hooks": [
-      "useColor"
-    ],
-    "theme": [
-      "globals"
-    ],
+    "dependencies": ["react-native-gesture-handler", "react-native-reanimated"],
+    "registryDependencies": ["text", "view"],
+    "hooks": ["useColor"],
+    "theme": ["globals"],
     "files": [
       {
         "type": "registry:ui",
@@ -10074,11 +8431,7 @@
     "name": "tabs-demo",
     "description": "Basic tabs container with content",
     "type": "registry:example",
-    "registryDependencies": [
-      "tabs",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["tabs", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -10097,11 +8450,7 @@
     "name": "tabs-disabled",
     "description": "Tabs with disabled states",
     "type": "registry:example",
-    "registryDependencies": [
-      "tabs",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["tabs", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -10120,11 +8469,7 @@
     "name": "tabs-styled",
     "description": "Tabs with custom colors and styling",
     "type": "registry:example",
-    "registryDependencies": [
-      "tabs",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["tabs", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -10143,11 +8488,7 @@
     "name": "tabs-vertical",
     "description": "Tabs arranged in vertical orientation",
     "type": "registry:example",
-    "registryDependencies": [
-      "tabs",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["tabs", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -10168,12 +8509,8 @@
     "type": "registry:ui",
     "dependencies": [],
     "registryDependencies": [],
-    "hooks": [
-      "useColor"
-    ],
-    "theme": [
-      "globals"
-    ],
+    "hooks": ["useColor"],
+    "theme": ["globals"],
     "files": [
       {
         "type": "registry:ui",
@@ -10190,10 +8527,7 @@
     "name": "text-colors",
     "description": "Text with custom light and dark mode colors",
     "type": "registry:example",
-    "registryDependencies": [
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -10212,10 +8546,7 @@
     "name": "text-demo",
     "description": "Basic text component showing different variants",
     "type": "registry:example",
-    "registryDependencies": [
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -10234,10 +8565,7 @@
     "name": "text-variants",
     "description": "All text variants showing the typography hierarchy",
     "type": "registry:example",
-    "registryDependencies": [
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -10274,9 +8602,7 @@
       "react-native-reanimated",
       "lucide-react-native"
     ],
-    "registryDependencies": [
-      "text"
-    ],
+    "registryDependencies": ["text"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -10295,11 +8621,7 @@
     "name": "toast-actions",
     "description": "Toast notifications with action buttons",
     "type": "registry:example",
-    "registryDependencies": [
-      "toast",
-      "button",
-      "view"
-    ],
+    "registryDependencies": ["toast", "button", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -10318,11 +8640,7 @@
     "name": "toast-compact",
     "description": "Compact toast notifications without title or description",
     "type": "registry:example",
-    "registryDependencies": [
-      "toast",
-      "button",
-      "view"
-    ],
+    "registryDependencies": ["toast", "button", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -10341,10 +8659,7 @@
     "name": "toast-demo",
     "description": "A basic toast notification with title and description",
     "type": "registry:example",
-    "registryDependencies": [
-      "toast",
-      "button"
-    ],
+    "registryDependencies": ["toast", "button"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -10363,11 +8678,7 @@
     "name": "toast-duration",
     "description": "Toast notifications with custom durations",
     "type": "registry:example",
-    "registryDependencies": [
-      "toast",
-      "button",
-      "view"
-    ],
+    "registryDependencies": ["toast", "button", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -10386,11 +8697,7 @@
     "name": "toast-multiple",
     "description": "Multiple toast notifications stacked vertically",
     "type": "registry:example",
-    "registryDependencies": [
-      "toast",
-      "button",
-      "view"
-    ],
+    "registryDependencies": ["toast", "button", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -10409,11 +8716,7 @@
     "name": "toast-variants",
     "description": "Toast notifications with different variants (success, error, warning, info)",
     "type": "registry:example",
-    "registryDependencies": [
-      "toast",
-      "button",
-      "view"
-    ],
+    "registryDependencies": ["toast", "button", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -10432,20 +8735,10 @@
     "name": "toggle",
     "description": "A two-state button that can be either on or off.",
     "type": "registry:ui",
-    "dependencies": [
-      "lucide-react-native"
-    ],
-    "registryDependencies": [
-      "text",
-      "view",
-      "icon"
-    ],
-    "hooks": [
-      "useColor"
-    ],
-    "theme": [
-      "globals"
-    ],
+    "dependencies": ["lucide-react-native"],
+    "registryDependencies": ["text", "view", "icon"],
+    "hooks": ["useColor"],
+    "theme": ["globals"],
     "files": [
       {
         "type": "registry:ui",
@@ -10462,9 +8755,7 @@
     "name": "toggle-demo",
     "description": "A basic toggle button with icon",
     "type": "registry:example",
-    "registryDependencies": [
-      "toggle"
-    ],
+    "registryDependencies": ["toggle"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -10483,9 +8774,7 @@
     "name": "toggle-disabled",
     "description": "Disabled toggle buttons",
     "type": "registry:example",
-    "registryDependencies": [
-      "toggle"
-    ],
+    "registryDependencies": ["toggle"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -10504,9 +8793,7 @@
     "name": "toggle-group-multiple",
     "description": "Multiple selection toggle group",
     "type": "registry:example",
-    "registryDependencies": [
-      "toggle"
-    ],
+    "registryDependencies": ["toggle"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -10525,9 +8812,7 @@
     "name": "toggle-group-outline",
     "description": "Toggle group with outline variant",
     "type": "registry:example",
-    "registryDependencies": [
-      "toggle"
-    ],
+    "registryDependencies": ["toggle"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -10546,9 +8831,7 @@
     "name": "toggle-group-single",
     "description": "Single selection toggle group",
     "type": "registry:example",
-    "registryDependencies": [
-      "toggle"
-    ],
+    "registryDependencies": ["toggle"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -10567,9 +8850,7 @@
     "name": "toggle-group-vertical",
     "description": "Vertical toggle group layout",
     "type": "registry:example",
-    "registryDependencies": [
-      "toggle"
-    ],
+    "registryDependencies": ["toggle"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -10588,9 +8869,7 @@
     "name": "toggle-sizes",
     "description": "Toggle buttons in different sizes",
     "type": "registry:example",
-    "registryDependencies": [
-      "toggle"
-    ],
+    "registryDependencies": ["toggle"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -10609,9 +8888,7 @@
     "name": "toggle-text",
     "description": "Toggle buttons with text labels",
     "type": "registry:example",
-    "registryDependencies": [
-      "toggle"
-    ],
+    "registryDependencies": ["toggle"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -10630,9 +8907,7 @@
     "name": "toggle-variants",
     "description": "Toggle buttons in different variants",
     "type": "registry:example",
-    "registryDependencies": [
-      "toggle"
-    ],
+    "registryDependencies": ["toggle"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -10657,12 +8932,8 @@
       "react-native-gesture-handler"
     ],
     "registryDependencies": [],
-    "hooks": [
-      "useColor"
-    ],
-    "theme": [
-      "globals"
-    ],
+    "hooks": ["useColor"],
+    "theme": ["globals"],
     "files": [
       {
         "type": "registry:ui",
@@ -10679,10 +8950,7 @@
     "name": "treemap-chart-demo",
     "description": "A treemap chart with smooth animations",
     "type": "registry:example",
-    "registryDependencies": [
-      "treemap-chart",
-      "chart-container"
-    ],
+    "registryDependencies": ["treemap-chart", "chart-container"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -10701,10 +8969,7 @@
     "name": "treemap-chart-large",
     "description": "A treemap chart with large dataset",
     "type": "registry:example",
-    "registryDependencies": [
-      "treemap-chart",
-      "chart-container"
-    ],
+    "registryDependencies": ["treemap-chart", "chart-container"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -10723,13 +8988,8 @@
     "name": "treemap-chart-sample",
     "description": "A sample treemap chart with various data sizes",
     "type": "registry:example",
-    "registryDependencies": [
-      "treemap-chart",
-      "chart-container"
-    ],
-    "hooks": [
-      "useColor"
-    ],
+    "registryDependencies": ["treemap-chart", "chart-container"],
+    "hooks": ["useColor"],
     "theme": [],
     "files": [
       {
@@ -10747,13 +9007,8 @@
     "name": "treemap-chart-styled",
     "description": "A customized treemap chart with custom colors and styling",
     "type": "registry:example",
-    "registryDependencies": [
-      "treemap-chart",
-      "chart-container"
-    ],
-    "hooks": [
-      "useColor"
-    ],
+    "registryDependencies": ["treemap-chart", "chart-container"],
+    "hooks": ["useColor"],
     "theme": [],
     "files": [
       {
@@ -10771,9 +9026,7 @@
     "name": "useBottomTabOverflow",
     "description": "useBottomTabOverflow",
     "type": "registry:hook",
-    "dependencies": [
-      "@react-navigation/bottom-tabs"
-    ],
+    "dependencies": ["@react-navigation/bottom-tabs"],
     "files": [
       {
         "type": "registry:hook",
@@ -10787,12 +9040,8 @@
     "description": "useColor",
     "type": "registry:hook",
     "dependencies": [],
-    "hooks": [
-      "useColorScheme"
-    ],
-    "theme": [
-      "colors"
-    ],
+    "hooks": ["useColorScheme"],
+    "theme": ["colors"],
     "files": [
       {
         "type": "registry:hook",
@@ -10837,9 +9086,7 @@
     "description": "useModeToggle",
     "type": "registry:hook",
     "dependencies": [],
-    "hooks": [
-      "useColorScheme"
-    ],
+    "hooks": ["useColorScheme"],
     "files": [
       {
         "type": "registry:hook",
@@ -10852,21 +9099,10 @@
     "name": "video",
     "description": "A video player component with custom controls, gestures, and subtitle support.",
     "type": "registry:ui",
-    "dependencies": [
-      "expo-video",
-      "lucide-react-native"
-    ],
-    "registryDependencies": [
-      "progress",
-      "text",
-      "view"
-    ],
-    "hooks": [
-      "useColor"
-    ],
-    "theme": [
-      "globals"
-    ],
+    "dependencies": ["expo-video", "lucide-react-native"],
+    "registryDependencies": ["progress", "text", "view"],
+    "hooks": ["useColor"],
+    "theme": ["globals"],
     "files": [
       {
         "type": "registry:ui",
@@ -10883,9 +9119,7 @@
     "name": "video-autoplay-loop",
     "description": "Video that automatically plays and loops",
     "type": "registry:example",
-    "registryDependencies": [
-      "video"
-    ],
+    "registryDependencies": ["video"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -10904,11 +9138,7 @@
     "name": "video-content-fit",
     "description": "Videos with different content fitting options",
     "type": "registry:example",
-    "registryDependencies": [
-      "video",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["video", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -10927,9 +9157,7 @@
     "name": "video-custom-controls",
     "description": "Video player with custom control interface",
     "type": "registry:example",
-    "registryDependencies": [
-      "video"
-    ],
+    "registryDependencies": ["video"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -10948,9 +9176,7 @@
     "name": "video-demo",
     "description": "A basic video player with custom controls",
     "type": "registry:example",
-    "registryDependencies": [
-      "video"
-    ],
+    "registryDependencies": ["video"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -10969,11 +9195,7 @@
     "name": "video-gestures",
     "description": "Video player with tap-to-play and seek gestures",
     "type": "registry:example",
-    "registryDependencies": [
-      "video",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["video", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -10992,9 +9214,7 @@
     "name": "video-native-controls",
     "description": "Video player using native system controls",
     "type": "registry:example",
-    "registryDependencies": [
-      "video"
-    ],
+    "registryDependencies": ["video"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -11013,11 +9233,7 @@
     "name": "video-sources",
     "description": "Video players with different source types",
     "type": "registry:example",
-    "registryDependencies": [
-      "video",
-      "text",
-      "view"
-    ],
+    "registryDependencies": ["video", "text", "view"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -11036,9 +9252,7 @@
     "name": "video-subtitles",
     "description": "Video player with subtitle support",
     "type": "registry:example",
-    "registryDependencies": [
-      "video"
-    ],
+    "registryDependencies": ["video"],
     "hooks": [],
     "theme": [],
     "files": [
@@ -11077,10 +9291,7 @@
     "name": "view-demo",
     "description": "Basic view container with content",
     "type": "registry:example",
-    "registryDependencies": [
-      "view",
-      "text"
-    ],
+    "registryDependencies": ["view", "text"],
     "hooks": [],
     "theme": [],
     "files": [

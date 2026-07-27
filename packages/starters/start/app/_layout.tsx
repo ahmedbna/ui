@@ -54,8 +54,8 @@ export default function RootLayout() {
                 backgroundColor: isLiquidGlassAvailable()
                   ? 'transparent'
                   : colorScheme === 'dark'
-                  ? Colors.dark.card
-                  : Colors.light.card,
+                    ? Colors.dark.card
+                    : Colors.light.card,
               },
               headerTransparent: Platform.OS === 'ios' ? true : false,
               headerLargeTitle: false,
@@ -72,14 +72,14 @@ export default function RootLayout() {
                   Platform.OS === 'ios'
                     ? 'transparent'
                     : colorScheme === 'dark'
-                    ? Colors.dark.card
-                    : Colors.light.card,
+                      ? Colors.dark.card
+                      : Colors.light.card,
               },
               headerBlurEffect: isLiquidGlassAvailable()
                 ? undefined
                 : colorScheme === 'dark'
-                ? 'dark'
-                : 'light',
+                  ? 'dark'
+                  : 'light',
             }}
           />
           <Stack.Screen name='+not-found' />

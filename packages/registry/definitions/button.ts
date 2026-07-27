@@ -57,7 +57,7 @@ export const buttonRegistry = {
     name: 'button-variants',
     description: 'Buttons with different visual styles',
     type: 'registry:example',
-    registryDependencies: ['button'],
+    registryDependencies: ['button', 'view'],
     hooks: [],
     theme: [],
     files: [
@@ -79,7 +79,7 @@ export const buttonRegistry = {
     name: 'button-sizes',
     description: 'Buttons in different sizes',
     type: 'registry:example',
-    registryDependencies: ['button'],
+    registryDependencies: ['button', 'view'],
     hooks: [],
     theme: [],
     files: [
@@ -101,7 +101,7 @@ export const buttonRegistry = {
     name: 'button-with-icons',
     description: 'Buttons with leading icons',
     type: 'registry:example',
-    registryDependencies: ['button'],
+    registryDependencies: ['button', 'view'],
     hooks: [],
     theme: [],
     files: [
@@ -123,7 +123,7 @@ export const buttonRegistry = {
     name: 'button-icon-only',
     description: 'Icon-only buttons for compact layouts',
     type: 'registry:example',
-    registryDependencies: ['button'],
+    registryDependencies: ['button', 'view'],
     hooks: [],
     theme: [],
     files: [
@@ -145,7 +145,7 @@ export const buttonRegistry = {
     name: 'button-loading',
     description: 'Buttons with loading spinners',
     type: 'registry:example',
-    registryDependencies: ['button'],
+    registryDependencies: ['button', 'view'],
     hooks: [],
     theme: [],
     files: [
@@ -167,7 +167,7 @@ export const buttonRegistry = {
     name: 'button-disabled',
     description: 'Buttons in disabled state',
     type: 'registry:example',
-    registryDependencies: ['button'],
+    registryDependencies: ['button', 'view'],
     hooks: [],
     theme: [],
     files: [
@@ -189,7 +189,7 @@ export const buttonRegistry = {
     name: 'button-custom',
     description: 'Buttons with custom colors and styles',
     type: 'registry:example',
-    registryDependencies: ['button'],
+    registryDependencies: ['button', 'view'],
     hooks: [],
     theme: [],
     files: [
@@ -211,7 +211,7 @@ export const buttonRegistry = {
     name: 'button-animation',
     description: 'Buttons with and without animations',
     type: 'registry:example',
-    registryDependencies: ['button'],
+    registryDependencies: ['button', 'text', 'view'],
     hooks: [],
     theme: [],
     files: [
