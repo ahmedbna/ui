@@ -1,7 +1,6 @@
-// templates/demo/combobox-example.tsx
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { ComboboxLarge } from '@/templates/demo/combobox/combobox-large';
+import { ComboboxLarge } from '@/demo/combobox/combobox-large';
 import React from 'react';
 
 // Main demo screen combining all demo

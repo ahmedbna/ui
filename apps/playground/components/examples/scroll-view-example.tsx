@@ -1,7 +1,6 @@
-// templates/demo/scroll-view-example.tsx
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { ScrollViewInset } from '@/templates/demo/scroll-view/scroll-view-inset';
+import { ScrollViewInset } from '@/demo/scroll-view/scroll-view-inset';
 
 // Main demo screen combining all demo
 export function ScrollViewExample() {

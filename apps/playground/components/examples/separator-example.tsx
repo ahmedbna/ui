@@ -1,7 +1,6 @@
-// templates/demo/separator-example.tsx
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { SeparatorSpacing } from '@/templates/demo/separator/separator-spacing';
+import { SeparatorSpacing } from '@/demo/separator/separator-spacing';
 import React from 'react';
 
 // Main demo screen combining all demo

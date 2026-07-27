@@ -1,7 +1,6 @@
-// templates/demo/radio-example.tsx
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { RadioForm } from '@/templates/demo/radio/radio-form';
+import { RadioForm } from '@/demo/radio/radio-form';
 
 // Main demo screen combining all demo
 export function RadioExample() {

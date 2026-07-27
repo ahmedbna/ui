@@ -1,7 +1,6 @@
-// templates/demo/image-example.tsx
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { ImageGallery } from '@/templates/demo/image/image-gallery';
+import { ImageGallery } from '@/demo/image/image-gallery';
 
 // Main demo screen combining all demo
 export function ImageExample() {

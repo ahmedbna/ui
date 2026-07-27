@@ -1,7 +1,6 @@
-// templates/demo/video-example.tsx
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { VideoSources } from '@/templates/demo/video/video-sources';
+import { VideoSources } from '@/demo/video/video-sources';
 
 // Main demo screen combining all video demo
 export function VideoExample() {

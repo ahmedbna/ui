@@ -4,11 +4,11 @@ import * as DocumentPicker from 'expo-document-picker';
 import { Trash2 } from 'lucide-react-native';
 import React from 'react';
 import { Alert, StyleSheet } from 'react-native';
-import { Button } from './ui/button';
-import { SelectedFile, useFilePicker } from './ui/file-picker';
-import { ScrollView } from './ui/scroll-view';
-import { Text } from './ui/text';
-import { View } from './ui/view';
+import { Button } from '@/components/ui/button';
+import { SelectedFile, useFilePicker } from '@/components/ui/file-picker';
+import { ScrollView } from '@/components/ui/scroll-view';
+import { Text } from '@/components/ui/text';
+import { View } from '@/components/ui/view';
 
 interface FilePickerProps {
   maxFiles?: number;

@@ -1,7 +1,6 @@
-// templates/demo/link-example.tsx
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { LinkButtons } from '@/templates/demo/link/link-buttons';
+import { LinkButtons } from '@/demo/link/link-buttons';
 
 // Main demo screen combining all demo
 export function LinkExample() {

@@ -1,7 +1,6 @@
-// templates/demo/searchbar-example.tsx
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { SearchBarInstant } from '@/templates/demo/searchbar/searchbar-instant';
+import { SearchBarInstant } from '@/demo/searchbar/searchbar-instant';
 
 // Main demo screen combining all demo
 export function SearchBarExample() {

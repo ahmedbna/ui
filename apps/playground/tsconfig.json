@@ -1,10 +1,28 @@
 {
-  "extends": "expo/tsconfig.base",
+  "extends": "@bna-ui/typescript-config/expo.json",
   "compilerOptions": {
-    "strict": true,
+    // Workspace hoisting puts @types/node in scope, which makes `setTimeout`
+    // resolve to Node's overload (returns Timeout) instead of React Native's
+    // (returns number). Pin the ambient types to what an Expo app actually has.
+    "types": ["expo/types"],
     "paths": {
+      "@/components/ui/*": ["../../packages/registry/src/components/ui/*"],
+      "@/components/charts/*": [
+        "../../packages/registry/src/components/charts/*"
+      ],
+      "@/demo/*": ["../../packages/registry/src/demo/*"],
+      "@/hooks/*": ["../../packages/registry/src/hooks/*"],
+      "@/theme/*": ["../../packages/registry/src/theme/*"],
       "@/*": ["./*"]
     }
   },
-  "include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts"]
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    ".expo/types/**/*.ts",
+    "expo-env.d.ts",
+    "../../packages/registry/src/**/*.ts",
+    "../../packages/registry/src/**/*.tsx"
+  ],
+  "exclude": ["node_modules"]
 }

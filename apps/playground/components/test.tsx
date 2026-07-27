@@ -46,21 +46,21 @@ import { PopoverExamples } from './popover-example';
 import { ShareExamples } from './share-examples';
 import { SheetExample } from './sheet-example';
 import ToggleExamples from './toggle-examples';
-import { Alert, AlertDescription, AlertTitle } from './ui/alert';
-import { CameraPreview } from './ui/camera-preview';
-import { Link } from './ui/link';
-import { Picker, PickerOption } from './ui/picker';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { CameraPreview } from '@/components/ui/camera-preview';
+import { Link } from '@/components/ui/link';
+import { Picker, PickerOption } from '@/components/ui/picker';
 import {
   Popover,
   PopoverBody,
   PopoverContent,
   PopoverTrigger,
-} from './ui/popover';
-import { Progress } from './ui/progress';
-import { RadioButton, RadioGroup } from './ui/radio';
-import { SearchBar, SearchBarWithSuggestions } from './ui/searchbar';
-import { useToast } from './ui/toast';
-import { Toggle } from './ui/toggle';
+} from '@/components/ui/popover';
+import { Progress } from '@/components/ui/progress';
+import { RadioButton, RadioGroup } from '@/components/ui/radio';
+import { SearchBar, SearchBarWithSuggestions } from '@/components/ui/searchbar';
+import { useToast } from '@/components/ui/toast';
+import { Toggle } from '@/components/ui/toggle';
 import { TableDemo } from './user-table';
 
 // Simple options array

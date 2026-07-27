@@ -1,7 +1,7 @@
 // docs/demo/card-example.tsx
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { CardPricing } from '@/templates/demo/card/card-pricing';
+import { CardPricing } from '@/demo/card/card-pricing';
 
 // Main demo screen combining all card demo
 export function CardExample() {

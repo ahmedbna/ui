@@ -1,7 +1,6 @@
-// templates/demo/date-picker-example.tsx
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { DatePickerForm } from '@/templates/demo/date-picker/date-picker-form';
+import { DatePickerForm } from '@/demo/date-picker/date-picker-form';
 
 // Main demo screen combining all demo
 export function DatePickerExample() {

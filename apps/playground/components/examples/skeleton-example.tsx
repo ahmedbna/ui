@@ -1,7 +1,6 @@
-// templates/demo/skeleton-example.tsx
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { SkeletonShapes } from '@/templates/demo/skeleton/skeleton-shapes';
+import { SkeletonShapes } from '@/demo/skeleton/skeleton-shapes';
 
 // Main demo screen combining all demo
 export function SkeletonExample() {

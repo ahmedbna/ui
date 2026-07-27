@@ -1,15 +1,20 @@
 {
-  "name": "bna-ui",
+  "name": "playground",
   "main": "expo-router/entry",
   "version": "1.0.0",
+  "private": true,
   "scripts": {
+    "dev": "expo start",
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "lint": "expo lint"
+    "lint": "expo lint",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf .expo .turbo"
   },
   "dependencies": {
+    "@bna-ui/registry": "workspace:*",
     "@expo/vector-icons": "^14.1.0",
     "@hookform/resolvers": "^5.0.1",
     "@react-native-masked-view/masked-view": "0.3.2",
@@ -56,10 +61,11 @@
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
+    "@bna-ui/eslint-config": "workspace:*",
+    "@bna-ui/typescript-config": "workspace:*",
     "@types/react": "~19.0.10",
     "eslint": "^9.25.0",
     "eslint-config-expo": "~9.2.0",
     "typescript": "~5.8.3"
-  },
-  "private": true
+  }
 }

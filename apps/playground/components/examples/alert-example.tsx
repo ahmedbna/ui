@@ -1,7 +1,7 @@
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
 
-import { AlertAdvancedDemo } from '@/templates/demo/alert/alert-advanced-demo';
+import { AlertAdvancedDemo } from '@/demo/alert/alert-advanced-demo';
 
 export function AlertExample() {
   return (

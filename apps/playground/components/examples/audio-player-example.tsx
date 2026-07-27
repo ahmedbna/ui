@@ -2,7 +2,7 @@
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
 
-import { AudioPlayerMusic } from '../../templates/demo/audio-player/audio-player-music';
+import { AudioPlayerMusic } from '@/demo/audio-player/audio-player-music';
 
 // Main demo screen combining all demo
 export function AudioPlayerExample() {

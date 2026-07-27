@@ -1,7 +1,6 @@
-// templates/demo/spinner-example.tsx
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { SpinnerOverlay } from '@/templates/demo/spinner/spinner-overlay';
+import { SpinnerOverlay } from '@/demo/spinner/spinner-overlay';
 import React from 'react';
 
 // Main demo screen combining all demo

@@ -1,7 +1,6 @@
-// templates/demo/popover-example.tsx
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { PopoverMenu } from '@/templates/demo/popover/popover-menu';
+import { PopoverMenu } from '@/demo/popover/popover-menu';
 
 // Main demo screen combining all demo
 export function PopoverExample() {

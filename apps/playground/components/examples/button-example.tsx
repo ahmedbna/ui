@@ -1,7 +1,7 @@
 // docs/demo/button-example.tsx
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { ButtonVariants } from '@/templates/demo/button/button-variants';
+import { ButtonVariants } from '@/demo/button/button-variants';
 
 // Main demo screen combining all button demo
 export function ButtonExample() {

@@ -1,7 +1,6 @@
-// templates/demo/color-picker-example.tsx
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { ColorPickerLabeled } from '@/templates/demo/color-picker/color-picker-labeled';
+import { ColorPickerLabeled } from '@/demo/color-picker/color-picker-labeled';
 import React from 'react';
 
 // Main demo screen combining all demo

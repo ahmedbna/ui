@@ -5,7 +5,7 @@ import { Colors } from '@/theme/colors';
 import { Home, Trash2 } from 'lucide-react-native';
 import React, { useState } from 'react';
 import { ScrollView } from 'react-native';
-import { Button } from './ui/button';
+import { Button } from '@/components/ui/button';
 
 export function SpinnerDemo() {
   const [loading, setLoading] = useState(true);

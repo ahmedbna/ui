@@ -91,8 +91,8 @@ export const Carousel = forwardRef<CarouselRef, CarouselProps>(
     const [isUserInteracting, setIsUserInteracting] = useState(false);
 
     // Use useRef to store timer ID and prevent stale closures
-    const autoPlayTimerRef = useRef<number | null>(null);
-    const scrollTimeoutRef = useRef<number | null>(null);
+    const autoPlayTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const scrollTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
     const currentIndexRef = useRef(currentIndex); // Keep ref in sync for auto play
 
     // Update ref when currentIndex changes

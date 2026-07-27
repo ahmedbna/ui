@@ -2,7 +2,7 @@
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
 
-import { ActionSheetHook } from '@/templates/demo/action-sheet/action-sheet-hook';
+import { ActionSheetHook } from '@/demo/action-sheet/action-sheet-hook';
 
 // Main demo screen combining all demo
 export function ActionSheetExammple() {

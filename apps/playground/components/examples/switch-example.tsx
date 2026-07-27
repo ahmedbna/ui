@@ -1,7 +1,6 @@
-// templates/demo/switch-example.tsx
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { SwitchColors } from '@/templates/demo/switch/switch-colors';
+import { SwitchColors } from '@/demo/switch/switch-colors';
 
 // Main demo screen combining all demo
 export function SwitchExample() {

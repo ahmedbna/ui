@@ -99,8 +99,8 @@ export const Camera = forwardRef<CameraRef, CameraProps>(
     ref
   ) => {
     const cameraRef = useRef<CameraView>(null);
-    const recordingInterval = useRef<number | null>(null);
-    const timerInterval = useRef<number | null>(null);
+    const recordingInterval = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const timerInterval = useRef<ReturnType<typeof setTimeout> | null>(null);
 
     const fadeAnim = useSharedValue(0);
     const settingsAnim = useSharedValue(0);

@@ -3,7 +3,7 @@ import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
 import React from 'react';
 
-import { AudioRecorderInterview } from '@/templates/demo/audio-recorder/audio-recorder-interview';
+import { AudioRecorderInterview } from '@/demo/audio-recorder/audio-recorder-interview';
 
 export function AudioRecorderExample() {
   return (

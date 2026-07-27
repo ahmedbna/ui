@@ -1,6 +1,6 @@
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { CheckboxGroup } from '@/templates/demo/checkbox/checkbox-group';
+import { CheckboxGroup } from '@/demo/checkbox/checkbox-group';
 import React from 'react';
 
 // Main demo screen combining all checkbox demo

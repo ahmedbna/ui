@@ -1,13 +1,12 @@
-// templates/demo/avatar-example.tsx
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { AvatarBordered } from '@/templates/demo/avatar/avatar-bordered';
-import { AvatarDemo } from '@/templates/demo/avatar/avatar-demo';
-import { AvatarFallbackDemo } from '@/templates/demo/avatar/avatar-fallback';
-import { AvatarGroup } from '@/templates/demo/avatar/avatar-group';
-import { AvatarSizes } from '@/templates/demo/avatar/avatar-sizes';
-import { AvatarStatus } from '@/templates/demo/avatar/avatar-status';
-import { AvatarStyled } from '@/templates/demo/avatar/avatar-styled';
+import { AvatarBordered } from '@/demo/avatar/avatar-bordered';
+import { AvatarDemo } from '@/demo/avatar/avatar-demo';
+import { AvatarFallbackDemo } from '@/demo/avatar/avatar-fallback';
+import { AvatarGroup } from '@/demo/avatar/avatar-group';
+import { AvatarSizes } from '@/demo/avatar/avatar-sizes';
+import { AvatarStatus } from '@/demo/avatar/avatar-status';
+import { AvatarStyled } from '@/demo/avatar/avatar-styled';
 import React from 'react';
 
 // Main demo screen combining all demo

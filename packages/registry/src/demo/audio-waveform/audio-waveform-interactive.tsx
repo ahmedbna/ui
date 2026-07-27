@@ -18,7 +18,7 @@ export function AudioWaveformInteractive() {
 
   // Auto-play simulation
   useEffect(() => {
-    let interval: number;
+    let interval: ReturnType<typeof setInterval>;
     if (isPlaying && !isSeeking) {
       interval = setInterval(() => {
         setProgress((prev) => {

@@ -1,7 +1,7 @@
 // docs/demo/toggle-example.tsx
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { ToggleGroupOutline } from '@/templates/demo/toggle/toggle-group-outline';
+import { ToggleGroupOutline } from '@/demo/toggle/toggle-group-outline';
 
 // Main demo screen combining all demo
 export function ToggleExample() {

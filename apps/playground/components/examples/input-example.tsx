@@ -1,7 +1,6 @@
-// templates/demo/input-example.tsx
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { InputForm } from '@/templates/demo/input/input-form';
+import { InputForm } from '@/demo/input/input-form';
 
 // Main demo screen combining all demo
 export function InputExample() {

@@ -1,7 +1,6 @@
-// templates/demo/badge-example.tsx
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { BadgeStatus } from '@/templates/demo/badge/badge-status';
+import { BadgeStatus } from '@/demo/badge/badge-status';
 
 // Main demo screen combining all demo
 export function BadgeExample() {

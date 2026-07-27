@@ -1,7 +1,6 @@
-// templates/demo/toast-example.tsx
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { ToastCompact } from '@/templates/demo/toast/toast-compact';
+import { ToastCompact } from '@/demo/toast/toast-compact';
 
 // Main demo screen combining all toast demo
 export function ToastExample() {

@@ -1,7 +1,7 @@
 // docs/demo/tabs-example.tsx
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { TabsStyled } from '@/templates/demo/tabs/tabs-styled';
+import { TabsStyled } from '@/demo/tabs/tabs-styled';
 
 // Main demo screen combining all tab demo
 export function TabsExample() {

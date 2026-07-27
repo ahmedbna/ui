@@ -1,7 +1,6 @@
-// templates/demo/camera-example.tsx
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { CameraDemo } from '@/templates/demo/camera/camera-demo';
+import { CameraDemo } from '@/demo/camera/camera-demo';
 import React from 'react';
 
 // Main demo screen combining all camera demo

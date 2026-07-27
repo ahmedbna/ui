@@ -1,7 +1,6 @@
-// templates/demo/input-otp-example.tsx
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { InputOTPNoCursor } from '@/templates/demo/input-otp/input-otp-no-cursor';
+import { InputOTPNoCursor } from '@/demo/input-otp/input-otp-no-cursor';
 
 // Main demo screen combining all demo
 export function InputOTPExample() {

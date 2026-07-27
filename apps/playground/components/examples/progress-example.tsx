@@ -1,7 +1,6 @@
-// templates/demo/progress-example.tsx
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { ProgressSteps } from '@/templates/demo/progress/progress-steps';
+import { ProgressSteps } from '@/demo/progress/progress-steps';
 
 // Main demo screen combining all demo
 export function ProgressExample() {

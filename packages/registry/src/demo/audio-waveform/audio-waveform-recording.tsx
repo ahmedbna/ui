@@ -11,7 +11,7 @@ export function AudioWaveformRecording() {
 
   // Simulate recording with real-time audio levels
   useEffect(() => {
-    let interval: number;
+    let interval: ReturnType<typeof setInterval>;
     if (isRecording) {
       interval = setInterval(() => {
         // Generate random audio level (simulating microphone input)

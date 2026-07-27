@@ -1,7 +1,6 @@
-// templates/demo/date-picker-example.tsx
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { FilePickerInfo } from '@/templates/demo/file-picker/file-picker-info';
+import { FilePickerInfo } from '@/demo/file-picker/file-picker-info';
 
 // Main demo screen combining all demo
 export function FilePickerExample() {

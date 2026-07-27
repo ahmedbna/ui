@@ -1,7 +1,6 @@
-// templates/demo/icon-example.tsx
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { IconThemed } from '@/templates/demo/icon/icon-themed';
+import { IconThemed } from '@/demo/icon/icon-themed';
 
 // Main demo screen combining all demo
 export function IconExample() {

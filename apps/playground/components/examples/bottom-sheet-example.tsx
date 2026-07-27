@@ -1,7 +1,7 @@
 // docs/demo/bottom-sheet-example.tsx
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { BottomSheetForm } from '@/templates/demo/bottom-sheet/bottom-sheet-form';
+import { BottomSheetForm } from '@/demo/bottom-sheet/bottom-sheet-form';
 
 // Main demo screen combining all demo
 export function BottomSheetExample() {

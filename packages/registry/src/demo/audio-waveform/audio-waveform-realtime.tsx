@@ -12,7 +12,7 @@ export function AudioWaveformRealtime() {
 
   // Simulate real-time audio data with different patterns
   useEffect(() => {
-    let interval: number;
+    let interval: ReturnType<typeof setInterval>;
     if (isActive) {
       interval = setInterval(() => {
         const time = Date.now() / 1000;

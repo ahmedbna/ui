@@ -23,6 +23,9 @@ importers:
 
   apps/playground:
     dependencies:
+      '@bna-ui/registry':
+        specifier: workspace:*
+        version: link:../../packages/registry
       '@expo/vector-icons':
         specifier: ^14.1.0
         version: 14.1.0(expo-font@13.3.2(expo@53.0.27(@babel/core@7.29.7)(@expo/metro-runtime@5.0.4(react-native@0.79.2(@babel/core@7.29.7)(@types/react@19.0.14)(react@19.0.0)))(react-native-webview@13.13.5(react-native@0.79.2(@babel/core@7.29.7)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0))(react-native@0.79.2(@babel/core@7.29.7)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0))(react@19.0.0))(react-native@0.79.2(@babel/core@7.29.7)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)
@@ -156,6 +159,12 @@ importers:
       '@babel/core':
         specifier: ^7.25.2
         version: 7.29.7
+      '@bna-ui/eslint-config':
+        specifier: workspace:*
+        version: link:../../packages/eslint-config
+      '@bna-ui/typescript-config':
+        specifier: workspace:*
+        version: link:../../packages/typescript-config
       '@types/react':
         specifier: ~19.0.10
         version: 19.0.14

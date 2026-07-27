@@ -1,7 +1,6 @@
-// templates/demo/accordion-demo.tsx
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { AccordionStyled } from '@/templates/demo/accordion/accordion-styled';
+import { AccordionStyled } from '@/demo/accordion/accordion-styled';
 import React from 'react';
 
 // Main demo screen combining all demo

@@ -1,7 +1,6 @@
-// templates/demo/date-picker-example.tsx
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { GalleryOverlay } from '@/templates/demo/gallery/gallery-overlay';
+import { GalleryOverlay } from '@/demo/gallery/gallery-overlay';
 
 // Main demo screen combining all demo
 export function GalleryExample() {

@@ -1,7 +1,6 @@
-// templates/demo/carousel-example.tsx
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { CarouselManual } from '@/templates/demo/carousel/carousel-manual';
+import { CarouselManual } from '@/demo/carousel/carousel-manual';
 
 // Main demo screen combining all carousel demo
 export function CarouselExample() {

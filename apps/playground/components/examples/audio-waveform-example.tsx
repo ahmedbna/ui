@@ -1,7 +1,7 @@
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
 
-import { AudioWaveformCompact } from '@/templates/demo/audio-waveform/audio-waveform-compact';
+import { AudioWaveformCompact } from '@/demo/audio-waveform/audio-waveform-compact';
 
 export function AudioWaveformExample() {
   return (

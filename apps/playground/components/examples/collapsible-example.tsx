@@ -1,6 +1,6 @@
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
-import { CollapsibleFAQ } from '@/templates/demo/collapsible/collapsible-faq';
+import { CollapsibleFAQ } from '@/demo/collapsible/collapsible-faq';
 import React from 'react';
 
 // Main demo screen combining all collapsible demo
