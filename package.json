@@ -29,6 +29,7 @@
     "release": "turbo run build --filter=bna-ui && changeset publish"
   },
   "devDependencies": {
+    "@changesets/changelog-github": "^0.5.1",
     "@changesets/cli": "^2.27.10",
     "prettier": "^3.4.2",
     "turbo": "^2.3.3",
