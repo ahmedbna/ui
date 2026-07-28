@@ -31,9 +31,18 @@ export function DocsSidebar({
         <div className='h-(--top-spacing) shrink-0' />
         {tree.children.map((item) => (
           <SidebarGroup key={item.$id}>
-            <SidebarGroupLabel className='text-muted-foreground font-medium'>
-              {item.name}
-            </SidebarGroupLabel>
+            {item.type === 'folder' && item.index ? (
+              <SidebarGroupLabel
+                asChild
+                className='text-muted-foreground font-medium'
+              >
+                <Link href={item.index.url}>{item.name}</Link>
+              </SidebarGroupLabel>
+            ) : (
+              <SidebarGroupLabel className='text-muted-foreground font-medium'>
+                {item.name}
+              </SidebarGroupLabel>
+            )}
             <SidebarGroupContent>
               {item.type === 'folder' && (
                 <SidebarMenu className='gap-0.5'>

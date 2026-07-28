@@ -84,9 +84,19 @@ export function MobileNav({
               if (group.type === 'folder') {
                 return (
                   <div key={index} className='flex flex-col gap-4'>
-                    <div className='text-muted-foreground text-sm font-medium'>
-                      {group.name}
-                    </div>
+                    {group.index ? (
+                      <MobileLink
+                        href={group.index.url}
+                        onOpenChange={setOpen}
+                        className='text-muted-foreground text-sm font-medium'
+                      >
+                        {group.name}
+                      </MobileLink>
+                    ) : (
+                      <div className='text-muted-foreground text-sm font-medium'>
+                        {group.name}
+                      </div>
+                    )}
                     <div className='flex flex-col gap-3'>
                       {group.children.map((item) => {
                         if (item.type === 'page') {

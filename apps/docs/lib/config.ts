@@ -21,12 +21,8 @@ export const siteConfig = {
       href: '/charts',
     },
     {
-      label: 'Hooks',
-      href: '/docs/hooks',
-    },
-    {
-      label: 'Theme',
-      href: '/docs/theme',
+      label: 'Convex',
+      href: '/docs/convex',
     },
   ],
 };
