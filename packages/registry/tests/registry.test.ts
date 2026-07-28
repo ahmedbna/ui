@@ -19,6 +19,17 @@ const INTENTIONAL_REMOVALS: Record<string, string[]> = {
   // Never existed in the registry; the old resolver silently no-op'd on it,
   // and the demo actually uses React Native's ActivityIndicator.
   'audio-recorder-cloud': ['loading-spinner'],
+
+  // popover.tsx imports Reanimated zero times — it positions itself with
+  // `ref.measure()` and `Dimensions.get()`. The declaration was stale. Pruned
+  // during the SDK 57 upgrade so the entry doesn't inherit Reanimated 4's new
+  // `react-native-worklets` requirement for a dependency it never had.
+  popover: ['react-native-reanimated'],
+
+  // SDK 56 forked React Navigation into Expo Router: `useBottomTabBarHeight`
+  // and friends now come from `expo-router/js-tabs`, so the standalone
+  // `@react-navigation/bottom-tabs` dependency was replaced by `expo-router`.
+  useBottomTabOverflow: ['@react-navigation/bottom-tabs'],
 };
 
 describe('registry integrity', () => {

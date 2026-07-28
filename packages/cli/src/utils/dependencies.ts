@@ -13,6 +13,40 @@ export interface ComponentDependency {
   dev?: boolean;
 }
 
+/**
+ * Splits `name[@version]` into its parts.
+ *
+ * The leading `@` of a scoped package is not a version delimiter, so the search
+ * for `@` has to start past index 0 — otherwise `@expo/vector-icons` parses as
+ * an empty name.
+ */
+export function parseDependency(spec: string): ComponentDependency {
+  const at = spec.indexOf('@', 1);
+  if (at === -1) return { name: spec, version: 'latest' };
+  return { name: spec.slice(0, at), version: spec.slice(at + 1) };
+}
+
+/**
+ * True when `targetPath` is an Expo app.
+ *
+ * Worth knowing because `expo install` resolves each package to the version
+ * that matches the project's SDK, where a bare `npm install` resolves to
+ * `latest` and quietly pulls a package built for the *next* SDK.
+ */
+export function isExpoProject(targetPath: string): boolean {
+  try {
+    const packageJsonPath = path.join(targetPath, 'package.json');
+    if (!fs.existsSync(packageJsonPath)) return false;
+
+    const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
+    return Boolean(
+      packageJson.dependencies?.expo ?? packageJson.devDependencies?.expo
+    );
+  } catch {
+    return false;
+  }
+}
+
 export async function installPackageDependencies(
   dependencies: string[],
   targetPath: string,
@@ -20,14 +54,7 @@ export async function installPackageDependencies(
 ): Promise<void> {
   if (dependencies.length === 0) return;
 
-  // Convert string dependencies to ComponentDependency objects
-  const componentDeps = dependencies.map((dep) => {
-    if (dep.includes('@')) {
-      const [name, version] = dep.split('@');
-      return { name, version };
-    }
-    return { name: dep, version: 'latest' };
-  });
+  const componentDeps = dependencies.map(parseDependency);
 
   if (componentDeps.length > 0) {
     await installDeps(componentDeps, targetPath, packageManager, false);
@@ -48,11 +75,16 @@ async function installDeps(
       return dep.version === 'latest' ? dep.name : `${dep.name}@${dep.version}`;
     });
 
-    const installCmd = getPackageInstallCommand(
-      packageManager,
-      packages,
-      isDev
-    );
+    // Registry entries declare bare package names, which a plain install
+    // resolves to `latest`. In an Expo app that is wrong the moment a new SDK
+    // ships: `expo-camera@latest` targets the newest SDK, not the one the
+    // project is on. `expo install` pins each package to the project's SDK and
+    // passes anything it doesn't recognise through to the package manager, so
+    // prefer it whenever the target is an Expo project.
+    const installCmd =
+      !isDev && isExpoProject(targetPath)
+        ? `npx expo install ${packages.join(' ')}`
+        : getPackageInstallCommand(packageManager, packages, isDev);
 
     logger.debug(`Running: ${installCmd}`);
 
@@ -108,11 +140,9 @@ export function checkExistingDependencies(
       ...Object.keys(packageJson.devDependencies || {}),
     ]);
 
-    return dependencies.filter((dep) => {
-      // Handle dependencies with version specifiers
-      const depName = dep.includes('@') ? dep.split('@')[0] : dep;
-      return !existing.has(depName);
-    });
+    return dependencies.filter(
+      (dep) => !existing.has(parseDependency(dep).name)
+    );
   } catch (error) {
     logger.warn('Failed to check existing dependencies:', error);
     return dependencies; // If can't read package.json, install all
@@ -143,7 +173,7 @@ export function getDependencyInfo(
     const existingDeps: string[] = [];
 
     dependencies.forEach((dep) => {
-      const depName = dep.includes('@') ? dep.split('@')[0] : dep;
+      const depName = parseDependency(dep).name;
       if (existing.has(depName)) {
         existingDeps.push(dep);
       } else {

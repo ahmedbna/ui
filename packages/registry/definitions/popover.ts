@@ -7,7 +7,7 @@ export const popoverRegistry = {
     description:
       'A contextual overlay that displays rich content triggered by user interaction.',
     type: 'registry:ui',
-    dependencies: ['react-native-reanimated'],
+    dependencies: [],
     registryDependencies: ['button'],
     hooks: ['useColor'],
     theme: ['globals'],

@@ -12,7 +12,8 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "types": ["expo/types"],
-    "baseUrl": ".",
+    // No `baseUrl`: TypeScript 6 deprecates it, and these `paths` are already
+    // written relative to this file, which is what TS falls back to.
     "paths": {
       "@/components/*": ["./src/components/*"],
       "@/demo/*": ["./src/demo/*"],

@@ -1,6 +1,6 @@
 import { Icon } from '@/components/ui/icon';
 import { useColor } from '@/hooks/useColor';
-import { PlatformPressable } from '@react-navigation/elements';
+import { PlatformPressable } from 'expo-router/react-navigation';
 import { BlurView } from 'expo-blur';
 import * as Haptics from 'expo-haptics';
 import { Tabs } from 'expo-router';

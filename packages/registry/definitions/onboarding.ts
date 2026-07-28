@@ -7,7 +7,11 @@ export const onboardingRegistry = {
     description:
       'A customizable multi-step onboarding flow with smooth animations and gesture support.',
     type: 'registry:ui',
-    dependencies: ['react-native-gesture-handler', 'react-native-reanimated'],
+    dependencies: [
+      'react-native-gesture-handler',
+      'react-native-reanimated',
+      'react-native-worklets',
+    ],
     registryDependencies: ['button', 'text'],
     hooks: ['useColor'],
     theme: [],

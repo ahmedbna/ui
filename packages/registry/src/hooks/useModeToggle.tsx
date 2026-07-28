@@ -39,7 +39,8 @@ export function useModeToggle(): UseModeToggleReturn {
     // Only use Appearance.setColorScheme on native platforms
     if (Platform.OS !== 'web') {
       if (newMode === 'system') {
-        Appearance.setColorScheme(null);
+        // RN 0.86 replaced `null` ("follow the system") with `'unspecified'`.
+        Appearance.setColorScheme('unspecified');
       } else {
         Appearance.setColorScheme(newMode);
       }

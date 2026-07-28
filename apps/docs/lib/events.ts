@@ -18,8 +18,12 @@ const eventSchema = z.object({
     'set_layout',
   ]),
   // declare type AllowedPropertyValues = string | number | boolean | null
+  // zod 4 requires an explicit key schema; the single-argument form is gone.
   properties: z
-    .record(z.union([z.string(), z.number(), z.boolean(), z.null()]))
+    .record(
+      z.string(),
+      z.union([z.string(), z.number(), z.boolean(), z.null()])
+    )
     .optional(),
 });
 

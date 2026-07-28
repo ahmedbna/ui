@@ -1,7 +1,7 @@
 import { ChartsDemo } from '@/components/charts-demo';
 import { ScrollView } from '@/components/ui/scroll-view';
 import { View } from '@/components/ui/view';
-import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
+import { useBottomTabBarHeight } from 'expo-router/js-tabs';
 
 export default function ChartsScreen() {
   const bottom = useBottomTabBarHeight();

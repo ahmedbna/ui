@@ -32,6 +32,15 @@ import { Text } from '@/components/ui/text';
 import React from 'react';
 import { View } from 'react-native';
 
+// Generated once at module scope. `Math.random()` in the render body is impure
+// — it would redraw this series differently on every re-render, and React now
+// flags it.
+const highFrequencyData = Array.from({ length: 50 }, (_, i) => ({
+  x: i,
+  y: Math.sin(i * 0.2) * 30 + 50 + Math.random() * 10,
+  label: `Point ${i + 1}`,
+}));
+
 export const ChartsDemo: React.FC = () => {
   // Sample data for different chart types
   const lineChartData = [
@@ -486,11 +495,7 @@ export const ChartsDemo: React.FC = () => {
         description='Large dataset visualization'
       >
         <LineChart
-          data={Array.from({ length: 50 }, (_, i) => ({
-            x: i,
-            y: Math.sin(i * 0.2) * 30 + 50 + Math.random() * 10,
-            label: `Point ${i + 1}`,
-          }))}
+          data={highFrequencyData}
           config={{
             height: 200,
             showGrid: true,

@@ -7,7 +7,11 @@ export const progressRegistry = {
     description:
       'A progress bar component to show completion status with optional interactivity.',
     type: 'registry:ui',
-    dependencies: ['react-native-gesture-handler', 'react-native-reanimated'],
+    dependencies: [
+      'react-native-gesture-handler',
+      'react-native-reanimated',
+      'react-native-worklets',
+    ],
     registryDependencies: ['view'],
     hooks: ['useColor'],
     theme: ['globals'],

@@ -2,7 +2,7 @@
 
 import { Gallery, type GalleryItem } from '@/components/ui/gallery';
 import { Text } from '@/components/ui/text';
-import * as FileSystem from 'expo-file-system';
+import { File, Paths } from 'expo-file-system';
 import * as MediaLibrary from 'expo-media-library';
 import React from 'react';
 import { Alert, ScrollView, Share, StyleSheet, View } from 'react-native';
@@ -71,11 +71,11 @@ export function GalleryDemo() {
         return;
       }
 
-      const fileUri = FileSystem.documentDirectory + `${item.id}.jpg`;
-      const { uri } = await FileSystem.downloadAsync(item.uri, fileUri);
+      const destination = new File(Paths.document, `${item.id}.jpg`);
+      const downloaded = await File.downloadFileAsync(item.uri, destination);
 
-      const asset = await MediaLibrary.createAssetAsync(uri);
-      await MediaLibrary.createAlbumAsync('Gallery Downloads', asset, false);
+      const asset = await MediaLibrary.Asset.create(downloaded.uri);
+      await MediaLibrary.Album.create('Gallery Downloads', [asset], false);
 
       Alert.alert('Success', 'Image downloaded to your gallery!');
     } catch (error) {

@@ -11,6 +11,7 @@ export const colorPickerRegistry = {
       'expo-linear-gradient',
       'react-native-gesture-handler',
       'react-native-reanimated',
+      'react-native-worklets',
       'react-native-svg',
     ],
     registryDependencies: ['text', 'view'],

@@ -7,7 +7,11 @@ export const modeToggleRegistry = {
     description:
       'An animated button component for switching between light and dark themes.',
     type: 'registry:ui',
-    dependencies: ['lucide-react-native', 'react-native-reanimated'],
+    dependencies: [
+      'lucide-react-native',
+      'react-native-reanimated',
+      'react-native-worklets',
+    ],
     registryDependencies: ['button', 'icon'],
     hooks: ['useModeToggle'],
     theme: [],

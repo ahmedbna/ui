@@ -74,8 +74,9 @@ export function CameraPreview() {
         }
       }
 
-      // Save to media library
-      await MediaLibrary.saveToLibraryAsync(capturedMedia.uri);
+      // Save to media library. SDK 56 removed `saveToLibraryAsync` — it still
+      // type-checks from the root entrypoint but throws at runtime.
+      await MediaLibrary.Asset.create(capturedMedia.uri);
 
       Alert.alert(
         'Success!',

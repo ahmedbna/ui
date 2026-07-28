@@ -31,7 +31,7 @@ export const themeRegistry = {
     name: 'theme-provider',
     description: 'Theme Provider',
     type: 'registry:theme',
-    dependencies: [],
+    dependencies: ['expo-router'],
     hooks: ['useColorScheme'],
     theme: ['colors'],
     files: [

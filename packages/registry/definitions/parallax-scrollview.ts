@@ -7,7 +7,7 @@ export const parallaxScrollViewRegistry = {
     description:
       'A scroll view with parallax header effect that transforms as the user scrolls.',
     type: 'registry:ui',
-    dependencies: ['react-native-reanimated'],
+    dependencies: ['react-native-reanimated', 'react-native-worklets'],
     registryDependencies: ['view'],
     hooks: ['useBottomTabOverflow', 'useColor'],
     theme: [],

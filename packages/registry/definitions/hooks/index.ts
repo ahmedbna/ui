@@ -3,7 +3,7 @@ export const hooksRegistry = {
     name: 'useBottomTabOverflow',
     description: 'useBottomTabOverflow',
     type: 'registry:hook',
-    dependencies: ['@react-navigation/bottom-tabs'],
+    dependencies: ['expo-router'],
     files: [
       {
         type: 'registry:hook',

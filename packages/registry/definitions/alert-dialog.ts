@@ -7,7 +7,7 @@ export const alertDialogRegistry = {
     description:
       'A modal dialog that interrupts the user with important content and expects a response.',
     type: 'registry:ui',
-    dependencies: ['react-native-reanimated'],
+    dependencies: ['react-native-reanimated', 'react-native-worklets'],
     registryDependencies: ['card', 'button', 'text', 'view'],
     hooks: ['useColor'],
     theme: [],

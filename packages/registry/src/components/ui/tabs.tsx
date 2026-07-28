@@ -18,7 +18,7 @@ import {
 } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
-  Extrapolate,
+  Extrapolation,
   interpolate,
   runOnJS,
   useAnimatedStyle,
@@ -287,7 +287,7 @@ function CarouselContainer({
       translateX.value,
       [0, screenWidth * 0.5],
       [0, 1],
-      Extrapolate.CLAMP
+      Extrapolation.CLAMP
     );
 
     return {
@@ -301,7 +301,7 @@ function CarouselContainer({
       translateX.value,
       [-screenWidth * 0.5, 0],
       [1, 0],
-      Extrapolate.CLAMP
+      Extrapolation.CLAMP
     );
 
     return {

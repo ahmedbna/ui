@@ -7,21 +7,17 @@ const workspaceRoot = path.resolve(projectRoot, '../..');
 
 const config = getDefaultConfig(projectRoot);
 
-// 1. Watch the whole workspace so edits in packages/registry trigger a rebuild.
+// Watch the whole workspace so edits in packages/registry trigger a rebuild.
 config.watchFolders = [workspaceRoot];
 
-// 2. Resolve modules from the app first, then the workspace root.
-config.resolver.nodeModulesPaths = [
-  path.resolve(projectRoot, 'node_modules'),
-  path.resolve(workspaceRoot, 'node_modules'),
-];
-
-// 3. Don't walk up past the workspace root looking for node_modules.
-config.resolver.disableHierarchicalLookup = true;
-
-// Note: the `@/…` aliases that map into packages/registry are declared in
-// tsconfig.json. Expo's Metro reads tsconfig `paths` natively
-// (config.resolver.unstable_enablePackageExports / tsconfigPaths experiment,
-// on by default since SDK 49), so they need no duplication here.
+// Note: the `nodeModulesPaths` / `disableHierarchicalLookup` overrides this file
+// used to carry are gone. `expo/metro-config` resolves workspace packages on its
+// own now, and SDK 55 turned on `autolinkingModuleResolution` for monorepos by
+// default — `expo-doctor` flags the overrides as a config mismatch. `watchFolders`
+// is the one thing Expo can't infer.
+//
+// The `@/…` aliases that map into packages/registry are declared in
+// tsconfig.json. Expo's Metro reads tsconfig `paths` natively, so they need no
+// duplication here.
 
 module.exports = config;

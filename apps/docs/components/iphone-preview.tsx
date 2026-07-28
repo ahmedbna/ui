@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import { useHydrated } from '@/hooks/use-hydrated';
 import { cn } from '@/lib/utils';
 import { useTheme } from 'next-themes';
 import { Code, Code2 } from 'lucide-react';
@@ -24,18 +25,14 @@ export const IPhonePreview = ({
   const currentTheme = theme === 'system' ? systemTheme : theme;
   const mediaUrl = currentTheme === 'dark' ? preview.dark : preview.light;
 
-  const [mounted, setMounted] = React.useState(false);
+  // Placeholder renders during SSR; the real preview takes over after hydration.
+  const mounted = useHydrated();
 
   // Check if the URL ends with .png (case insensitive)
   const isImage = mediaUrl.toLowerCase().endsWith('.png');
 
   const border = width * 0.15;
   const notchwidth = width * 0.45;
-
-  // Ensure component is mounted to avoid hydration mismatch
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
 
   if (!mounted) {
     return (

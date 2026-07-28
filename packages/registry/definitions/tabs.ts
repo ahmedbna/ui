@@ -7,7 +7,11 @@ export const tabsRegistry = {
     description:
       'A foundational View component with transparent background and ref forwarding support.',
     type: 'registry:ui',
-    dependencies: ['react-native-gesture-handler', 'react-native-reanimated'],
+    dependencies: [
+      'react-native-gesture-handler',
+      'react-native-reanimated',
+      'react-native-worklets',
+    ],
     registryDependencies: ['text', 'view'],
     hooks: ['useColor'],
     theme: ['globals'],

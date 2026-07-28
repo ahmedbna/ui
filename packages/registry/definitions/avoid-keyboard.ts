@@ -7,7 +7,7 @@ export const avoidKeyboardRegistry = {
     description:
       'A component that automatically adjusts its height to avoid keyboard overlap with smooth animations and cross-platform support.',
     type: 'registry:ui',
-    dependencies: ['react-native-reanimated'],
+    dependencies: ['react-native-reanimated', 'react-native-worklets'],
     registryDependencies: [],
     hooks: ['useKeyboardHeight'],
     theme: [],

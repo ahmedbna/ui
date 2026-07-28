@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import { useHydrated } from '@/hooks/use-hydrated';
 
 type Layout = 'fixed' | 'full';
 
@@ -128,10 +129,7 @@ const Layout = ({
   }, [forcedLayout, layout, applyLayout]);
 
   // Prevent layout changes during hydration
-  const [isHydrated, setIsHydrated] = React.useState(false);
-  React.useEffect(() => {
-    setIsHydrated(true);
-  }, []);
+  const isHydrated = useHydrated();
 
   const providerValue = React.useMemo(
     () => ({

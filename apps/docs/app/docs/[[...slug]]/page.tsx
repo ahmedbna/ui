@@ -6,7 +6,7 @@ import {
   IconArrowRight,
   IconArrowUpRight,
 } from '@tabler/icons-react';
-import { findNeighbour } from 'fumadocs-core/server';
+import { findNeighbour } from 'fumadocs-core/page-tree';
 import { source } from '@/lib/source';
 import { DocsTableOfContents } from '@/components/docs-toc';
 import { Badge } from '@/components/ui/badge';
@@ -53,11 +53,9 @@ export default async function Page(props: {
   }
 
   const doc = page.data;
-  // @ts-expect-error - revisit fumadocs types.
   const MDX = doc.body;
   const neighbours = await findNeighbour(source.pageTree, page.url);
 
-  // @ts-expect-error - revisit fumadocs types.
   const links = doc.links;
 
   return (
@@ -161,10 +159,8 @@ export default async function Page(props: {
       </div>
       <div className='sticky top-[calc(var(--header-height)+1px)] z-30 ml-auto hidden h-[calc(100svh-var(--header-height)-var(--footer-height))] w-72 flex-col gap-4 overflow-hidden overscroll-none pb-8 xl:flex'>
         <div className='h-(--top-spacing) shrink-0' />
-        {/* @ts-expect-error - revisit fumadocs types. */}
         {doc.toc?.length ? (
           <div className='no-scrollbar overflow-y-auto px-8'>
-            {/* @ts-expect-error - revisit fumadocs types. */}
             <DocsTableOfContents toc={doc.toc} />
             <div className='h-12' />
           </div>

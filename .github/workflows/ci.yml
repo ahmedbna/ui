@@ -41,6 +41,15 @@ jobs:
       - run: pnpm turbo run lint
       - run: pnpm format:check
 
+      # Turbo's tasks say nothing about whether the installed versions actually
+      # match the Expo SDK the playground declares. This is the check that keeps
+      # the component source and the SDK from drifting apart again.
+      - name: Playground matches its Expo SDK
+        working-directory: apps/playground
+        run: |
+          npx expo install --check
+          npx expo-doctor
+
   cli-e2e:
     name: CLI end-to-end
     runs-on: ubuntu-latest
@@ -75,6 +84,25 @@ jobs:
           test -f .gitignore || { echo "::error::init produced no .gitignore"; exit 1; }
           node "$GITHUB_WORKSPACE/packages/cli/bin/bna-ui.js" \
             add button --registry http://localhost:4321/r --yes
+
+      # The scaffold and the registry source have to target the same SDK. They
+      # drifted apart once already — starters on SDK 54 while the components
+      # were written against 53 — and nothing in the build caught it. This is a
+      # static check because `init --skip-install` leaves no node_modules.
+      - name: Scaffold targets the same Expo SDK as the registry
+        run: |
+          set -euo pipefail
+          major() { node -p "
+            const v = require('$1').${2}.expo;
+            /(\d+)/.exec(v.replace(/^[^0-9]*/, ''))[1]
+          "; }
+          scaffold=$(major /tmp/e2e/app/package.json dependencies)
+          registry=$(major "$GITHUB_WORKSPACE/packages/registry/package.json" devDependencies)
+          echo "scaffold expo SDK $scaffold / registry expo SDK $registry"
+          if [ "$scaffold" != "$registry" ]; then
+            echo "::error::scaffold is on Expo SDK $scaffold but components are built against $registry"
+            exit 1
+          fi
 
       - name: Every local import resolves in the installed project
         run: |

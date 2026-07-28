@@ -12,6 +12,7 @@ export const buttonRegistry = {
       'expo-haptics',
       'lucide-react-native',
       'react-native-reanimated',
+      'react-native-worklets',
     ],
     registryDependencies: ['text', 'icon', 'spinner'],
     hooks: ['useColor'],

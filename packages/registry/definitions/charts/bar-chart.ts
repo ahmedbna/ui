@@ -8,7 +8,11 @@ export const barChartRegistry = {
     description:
       'A customizable bar chart component with smooth animations and rounded corners.',
     type: 'registry:ui',
-    dependencies: ['react-native-svg', 'react-native-reanimated'],
+    dependencies: [
+      'react-native-svg',
+      'react-native-reanimated',
+      'react-native-worklets',
+    ],
     registryDependencies: [],
     hooks: ['useColor'],
     theme: ['globals'],

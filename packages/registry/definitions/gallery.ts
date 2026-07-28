@@ -12,6 +12,7 @@ export const galleryRegistry = {
       'lucide-react-native',
       'react-native-gesture-handler',
       'react-native-reanimated',
+      'react-native-worklets',
     ],
     registryDependencies: ['button', 'text'],
     hooks: ['useColor'],

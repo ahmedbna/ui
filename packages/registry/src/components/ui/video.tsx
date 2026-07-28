@@ -39,6 +39,11 @@ interface VideoProps {
   muted?: boolean;
   nativeControls?: boolean;
   showControls?: boolean;
+  /**
+   * Kept as a boolean on this component's own API — SDK 55 replaced
+   * `VideoView`'s `allowsFullscreen` prop with `fullscreenOptions.enable`,
+   * and that translation happens internally so consumers don't have to care.
+   */
   allowsFullscreen?: boolean;
   allowsPictureInPicture?: boolean;
   contentFit?: 'contain' | 'cover' | 'fill';
@@ -376,7 +381,7 @@ export const Video = forwardRef<VideoView, VideoProps>(
           ref={ref}
           player={player}
           style={styles.video}
-          allowsFullscreen={allowsFullscreen}
+          fullscreenOptions={{ enable: allowsFullscreen }}
           allowsPictureInPicture={allowsPictureInPicture}
           nativeControls={false}
           contentFit={contentFit}

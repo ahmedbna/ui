@@ -92,9 +92,12 @@ export const MediaPicker = forwardRef<RNView, MediaPickerProps>(
   ) => {
     const [assets, setAssets] = useState<MediaAsset[]>(selectedAssets);
     const [isGalleryVisible, setIsGalleryVisible] = useState(false);
-    const [galleryAssets, setGalleryAssets] = useState<MediaLibrary.Asset[]>(
-      []
-    );
+    // SDK 56 replaced the eagerly-populated `Asset` object with a lazy handle
+    // whose fields are async getters. `AssetInfo` is the resolved shape, so the
+    // gallery resolves once on load and the render path stays synchronous.
+    const [galleryAssets, setGalleryAssets] = useState<
+      MediaLibrary.AssetInfo[]
+    >([]);
     const [hasPermission, setHasPermission] = useState<boolean | null>(null);
 
     // Use ref to track previous selectedAssets to avoid unnecessary updates
@@ -142,20 +145,34 @@ export const MediaPicker = forwardRef<RNView, MediaPickerProps>(
       if (!hasPermission) return;
 
       try {
-        const mediaTypeFilter =
-          mediaType === 'image'
-            ? [MediaLibrary.MediaType.photo]
-            : mediaType === 'video'
-              ? [MediaLibrary.MediaType.video]
-              : [MediaLibrary.MediaType.photo, MediaLibrary.MediaType.video];
+        const query = new MediaLibrary.Query();
 
-        const { assets: galleryAssets } = await MediaLibrary.getAssetsAsync({
-          first: 100,
-          mediaType: mediaTypeFilter,
-          sortBy: MediaLibrary.SortBy.creationTime,
-        });
+        if (mediaType === 'image') {
+          query.eq(
+            MediaLibrary.AssetField.MEDIA_TYPE,
+            MediaLibrary.MediaType.IMAGE
+          );
+        } else if (mediaType === 'video') {
+          query.eq(
+            MediaLibrary.AssetField.MEDIA_TYPE,
+            MediaLibrary.MediaType.VIDEO
+          );
+        } else {
+          query.within(MediaLibrary.AssetField.MEDIA_TYPE, [
+            MediaLibrary.MediaType.IMAGE,
+            MediaLibrary.MediaType.VIDEO,
+          ]);
+        }
 
-        setGalleryAssets(galleryAssets);
+        const found = await query
+          .orderBy({
+            key: MediaLibrary.AssetField.CREATION_TIME,
+            ascending: false,
+          })
+          .limit(100)
+          .exe();
+
+        setGalleryAssets(await Promise.all(found.map((a) => a.getInfo())));
       } catch (error) {
         onError?.('Failed to load gallery assets');
       }
@@ -221,16 +238,14 @@ export const MediaPicker = forwardRef<RNView, MediaPickerProps>(
     };
 
     const handleGalleryAssetSelect = async (
-      galleryAsset: MediaLibrary.Asset
+      galleryAsset: MediaLibrary.AssetInfo
     ) => {
       try {
-        const assetInfo = await MediaLibrary.getAssetInfoAsync(galleryAsset);
-
         const newAsset: MediaAsset = {
           id: galleryAsset.id,
-          uri: assetInfo.localUri || galleryAsset.uri,
+          uri: galleryAsset.uri,
           type:
-            galleryAsset.mediaType === MediaLibrary.MediaType.video
+            galleryAsset.mediaType === MediaLibrary.MediaType.VIDEO
               ? 'video'
               : 'image',
           width: galleryAsset.width,
@@ -299,7 +314,7 @@ export const MediaPicker = forwardRef<RNView, MediaPickerProps>(
       </View>
     );
 
-    const renderGalleryItem = ({ item }: { item: MediaLibrary.Asset }) => {
+    const renderGalleryItem = ({ item }: { item: MediaLibrary.AssetInfo }) => {
       const isSelected = assets.some((asset) => asset.id === item.id);
       const itemWidth = screenWidth / 3 - 4;
 
@@ -317,7 +332,7 @@ export const MediaPicker = forwardRef<RNView, MediaPickerProps>(
             style={styles.galleryImage}
             contentFit='cover'
           />
-          {item.mediaType === MediaLibrary.MediaType.video && (
+          {item.mediaType === MediaLibrary.MediaType.VIDEO && (
             <View style={styles.videoIndicator}>
               <Video size={20} color='white' />
             </View>

@@ -1,22 +1,24 @@
 import * as React from 'react';
 
 const MOBILE_BREAKPOINT = 768;
+const QUERY = `(max-width: ${MOBILE_BREAKPOINT - 1}px)`;
 
+function subscribe(onChange: () => void) {
+  const mql = window.matchMedia(QUERY);
+  mql.addEventListener('change', onChange);
+  return () => mql.removeEventListener('change', onChange);
+}
+
+/**
+ * `useSyncExternalStore` is the right primitive here: matchMedia is an external
+ * store, and the third argument is the server snapshot, so SSR renders `false`
+ * and hydration cannot mismatch. The previous `useState` + `useEffect` pair did
+ * the same thing via a cascading render, which React now flags.
+ */
 export function useIsMobile() {
-  const [isMobile, setIsMobile] = React.useState<boolean>(false);
-  const [isHydrated, setIsHydrated] = React.useState(false);
-
-  React.useEffect(() => {
-    setIsHydrated(true);
-    const mql = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`);
-    const onChange = () => {
-      setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
-    };
-    mql.addEventListener('change', onChange);
-    setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
-    return () => mql.removeEventListener('change', onChange);
-  }, []);
-
-  // Return false during SSR to prevent hydration mismatch
-  return isHydrated ? isMobile : false;
+  return React.useSyncExternalStore(
+    subscribe,
+    () => window.matchMedia(QUERY).matches,
+    () => false
+  );
 }

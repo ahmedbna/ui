@@ -7,7 +7,7 @@ export const helloWaveRegistry = {
     description:
       'An animated waving hand emoji component with smooth rotation animation.',
     type: 'registry:ui',
-    dependencies: ['react-native-reanimated'],
+    dependencies: ['react-native-reanimated', 'react-native-worklets'],
     registryDependencies: ['text', 'view'],
     hooks: [],
     theme: [],

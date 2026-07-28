@@ -28,7 +28,7 @@ import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
 import { useColor } from '@/hooks/useColor';
 import { CORNERS } from '@/theme/globals';
-import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
+import { useBottomTabBarHeight } from 'expo-router/js-tabs';
 import { Camera, Eye, EyeOff, Lock, Pen, Search } from 'lucide-react-native';
 import { useState } from 'react';
 import { Pressable } from 'react-native';
@@ -90,6 +90,16 @@ export const Demos = () => {
   const [progress, setProgress] = useState(50);
 
   const [selectedDate, setSelectedDate] = useState<Date | undefined>();
+  // Read the clock once via a lazy initialiser rather than on every render:
+  // `Date.now()` in the render body is impure, and re-reading it would also
+  // hand the picker new bound objects each pass.
+  const [dateBounds] = useState(() => {
+    const now = Date.now();
+    return {
+      min: new Date(now),
+      max: new Date(now + 365 * 24 * 60 * 60 * 1000),
+    };
+  });
   const [selectedTime, setSelectedTime] = useState<Date | undefined>();
   const [selectedDateTime, setSelectedDateTime] = useState<Date | undefined>();
   const [selectedCountry, setSelectedCountry] = useState('');
@@ -444,8 +454,8 @@ export const Demos = () => {
               value={selectedDate}
               onChange={setSelectedDate}
               placeholder='Only future dates allowed'
-              minimumDate={new Date()}
-              maximumDate={new Date(Date.now() + 365 * 24 * 60 * 60 * 1000)} // 1 year from now
+              minimumDate={dateBounds.min}
+              maximumDate={dateBounds.max} // 1 year from now
             />
           </View>
 

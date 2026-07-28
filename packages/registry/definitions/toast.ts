@@ -10,6 +10,7 @@ export const toastRegistry = {
     dependencies: [
       'react-native-gesture-handler',
       'react-native-reanimated',
+      'react-native-worklets',
       'lucide-react-native',
     ],
     registryDependencies: ['text'],
