@@ -12,7 +12,16 @@ import { getPayload } from '@bna-ui/registry/server';
 export { REGISTRY, getComponent, listComponents } from '@bna-ui/registry';
 export type { ComponentRegistry, RegistryPayload } from '@bna-ui/registry';
 
-/** Full payload for an entry: metadata plus the source of every file it needs. */
+/** An entry's own source: the file(s) it declares, not what it depends on. */
+export { getEntryFiles, getSource } from '@bna-ui/registry/server';
+
+/**
+ * Full payload for an entry: metadata plus the source of every file it needs.
+ *
+ * `files` is the dependency closure in dependency order, so it is not indexable
+ * by position — `files[0]` is a leaf dependency (`hooks/useColorScheme.ts` for
+ * most entries), never the entry itself. Use `getSource` to render source.
+ */
 export const getRegistryItem = getPayload;
 
 export type FileTree = {

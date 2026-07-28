@@ -5,7 +5,7 @@ import { describe, expect, it } from 'vitest';
 import { REGISTRY, listComponents, resolveAllDependencies } from '../index.js';
 import { findDependencyCycle } from '../resolve.js';
 import { componentRegistrySchema, REGISTRY_SCHEMA_VERSION } from '../schema.js';
-import { getPayload } from '../server.js';
+import { getEntryFiles, getPayload, getSource } from '../server.js';
 import baseline from './registry-baseline.json' with { type: 'json' };
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -237,6 +237,61 @@ describe('generated payloads', () => {
         expect(file.path.includes('..'), `${name}: ${file.path}`).toBe(false);
       }
     }
+  });
+});
+
+/**
+ * The docs render "the source of <name>" straight out of these. Indexing the
+ * payload by position instead once served `hooks/useColorScheme.ts` — the
+ * leaf-most dependency of almost every entry — on 473 of 479 component pages.
+ */
+describe('own-file resolution', () => {
+  it('returns exactly the files an entry declares, in order', async () => {
+    const violations: string[] = [];
+
+    for (const [name, entry] of Object.entries(REGISTRY)) {
+      const resolved = await getEntryFiles(name);
+      const got = resolved.map((f) => f.path);
+      const want = entry.files.map((f) => f.path);
+
+      if (got.join('|') !== want.join('|')) {
+        violations.push(`${name}: got [${got}] want [${want}]`);
+      }
+      for (const file of resolved) {
+        if (!file.content.length)
+          violations.push(`${name}: ${file.path} empty`);
+      }
+    }
+
+    expect(violations).toEqual([]);
+  });
+
+  it('never serves a dependency in place of the entry', async () => {
+    const accordion = await getSource('accordion');
+    expect(accordion).toContain('AccordionTrigger');
+    expect(accordion).not.toContain('useRNColorScheme');
+
+    const demo = await getSource('accordion-demo');
+    expect(demo).toContain('AccordionDemo');
+    expect(demo).not.toContain('useRNColorScheme');
+  });
+
+  it('selects among an entry with several files', async () => {
+    const native = await getSource('useColorScheme');
+    const web = await getSource(
+      'useColorScheme',
+      'hooks/useColorScheme.web.ts'
+    );
+
+    expect(native).toContain('useRNColorScheme');
+    expect(native).not.toContain('useState');
+    expect(web).toContain('hasHydrated');
+    expect(await getSource('useColorScheme', 'hooks/nope.ts')).toBeNull();
+  });
+
+  it('returns nothing for an unknown entry', async () => {
+    expect(await getEntryFiles('does-not-exist')).toEqual([]);
+    expect(await getSource('does-not-exist')).toBeNull();
   });
 });
 

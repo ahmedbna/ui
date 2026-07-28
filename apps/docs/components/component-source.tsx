@@ -7,11 +7,12 @@ import { cn } from '@/lib/utils';
 import { CodeCollapsibleWrapper } from '@/components/code-collapsible-wrapper';
 import { CopyButton } from '@/components/copy-button';
 import { getIconForLanguageExtension } from '@/components/icons';
-import { getRegistryItem } from '@/lib/registry';
+import { getSource } from '@/lib/registry';
 
 export async function ComponentSource({
   name,
   src,
+  file,
   title,
   language,
   collapsible = true,
@@ -19,6 +20,8 @@ export async function ComponentSource({
 }: React.ComponentProps<'div'> & {
   name?: string;
   src?: string;
+  /** Target path, for the rare entry declaring more than one file. */
+  file?: string;
   title?: string;
   language?: string;
   collapsible?: boolean;
@@ -30,8 +33,7 @@ export async function ComponentSource({
   let code: string | undefined;
 
   if (name) {
-    const item = await getRegistryItem(name);
-    code = item?.files?.[0]?.content;
+    code = (await getSource(name, file)) ?? undefined;
   }
 
   if (src) {

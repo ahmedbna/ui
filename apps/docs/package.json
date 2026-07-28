@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "node scripts/sync-registry.mjs && next build",
+    "build": "node scripts/sync-registry.mjs && node scripts/check-mdx-references.mjs && next build",
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
