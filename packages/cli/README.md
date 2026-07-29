@@ -36,14 +36,18 @@ Already have an Expo project? Skip `init` and run `add` inside it.
 
 ### Commands
 
-| Command                 | What it does                                                   |
-| ----------------------- | -------------------------------------------------------------- |
-| `bna-ui init [name]`    | Scaffold a new Expo app with routing, theming and a tab layout |
-| `bna-ui convex [name]`  | Same, plus a Convex backend with auth and OTP email flows      |
-| `bna-ui add [...names]` | Add components, with their hooks, theme files and npm deps     |
+| Command                          | What it does                                                     |
+| -------------------------------- | ---------------------------------------------------------------- |
+| `bna-ui init [name]`             | Scaffold a new Expo app with routing, theming and a tab layout   |
+| `bna-ui convex [name]`           | Same, plus a Convex backend with auth and OTP email flows        |
+| `bna-ui convex [name] --no-auth` | Same, plus a Convex backend with no sign-in — schema and a query |
+| `bna-ui add [...names]`          | Add components, with their hooks, theme files and npm deps       |
 
 Useful flags for `add`: `--overwrite`, `--dry-run`, `--yes`,
 `--npm` / `--yarn` / `--pnpm` / `--bun`, and `--registry <url>`.
+
+`init` and `convex` both take `--skip-install`; `convex` also takes
+`--skip-convex` to leave `npx convex dev` for you to run later.
 
 Components are fetched from `https://ui.ahmedbna.com/r` and cached under
 `~/.cache/bna-ui`, so repeat installs work offline.

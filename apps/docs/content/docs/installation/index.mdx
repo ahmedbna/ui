@@ -1,0 +1,157 @@
+---
+title: Installation
+description: Pick the stack you are building on and follow the guide for it — plain Expo, Expo with a Convex backend, or Expo with Convex and authentication.
+---
+
+<Callout title='Recommended for new projects'>
+  The CLI scaffolds a complete app — routing, theming, a tab layout and thirteen
+  components already wired up. Pick a starting point below and copy one command.
+</Callout>
+
+Choose the setup that matches what you are building.
+
+<div className='mt-6 grid gap-4 sm:grid-cols-3 sm:gap-6'>
+  <LinkedCard
+    href='/docs/installation/expo'
+    className='items-start gap-1 p-6 text-sm sm:p-6'
+  >
+    <svg
+      viewBox='0 0 24 24'
+      xmlns='http://www.w3.org/2000/svg'
+      className='mb-2 h-8 w-8'
+      fill='none'
+      stroke='currentColor'
+      strokeWidth='1.6'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      aria-hidden='true'
+    >
+      <rect width='14' height='20' x='5' y='2' rx='2' ry='2' />
+      <path d='M12 18h.01' />
+    </svg>
+    <div className='font-medium'>Expo</div>
+    <div className='text-muted-foreground leading-relaxed'>
+      The components, theming and a tab layout. No backend.
+    </div>
+  </LinkedCard>
+
+<LinkedCard
+  href='/docs/installation/convex'
+  className='items-start gap-1 p-6 text-sm sm:p-6'
+>
+  <svg
+    viewBox='0 0 24 24'
+    xmlns='http://www.w3.org/2000/svg'
+    className='mb-2 h-8 w-8'
+    fill='none'
+    stroke='currentColor'
+    strokeWidth='1.6'
+    strokeLinecap='round'
+    strokeLinejoin='round'
+    aria-hidden='true'
+  >
+    <ellipse cx='12' cy='5' rx='9' ry='3' />
+    <path d='M3 5v14a9 3 0 0 0 18 0V5' />
+    <path d='M3 12a9 3 0 0 0 18 0' />
+  </svg>
+  <div className='font-medium'>Expo + Convex</div>
+  <div className='text-muted-foreground leading-relaxed'>
+    A real-time backend with a schema and a live query. No sign-in.
+  </div>
+</LinkedCard>
+
+  <LinkedCard
+    href='/docs/installation/convex-auth'
+    className='items-start gap-1 p-6 text-sm sm:p-6'
+  >
+    <svg
+      viewBox='0 0 24 24'
+      xmlns='http://www.w3.org/2000/svg'
+      className='mb-2 h-8 w-8'
+      fill='none'
+      stroke='currentColor'
+      strokeWidth='1.6'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      aria-hidden='true'
+    >
+      <rect width='18' height='11' x='3' y='11' rx='2' ry='2' />
+      <path d='M7 11V7a5 5 0 0 1 10 0v4' />
+    </svg>
+    <div className='font-medium'>Expo + Convex + Auth</div>
+    <div className='text-muted-foreground leading-relaxed'>
+      Google, Apple, password and email OTP sign-in, pre-wired.
+    </div>
+  </LinkedCard>
+</div>
+
+## Which one should I pick?
+
+| You want to…                                            | Start with                                             |
+| ------------------------------------------------------- | ------------------------------------------------------ |
+| Build a UI and ship it, no server                       | [Expo](/docs/installation/expo)                        |
+| Store data and sync it live across devices, no accounts | [Expo + Convex](/docs/installation/convex)             |
+| Have users sign in on day one                           | [Expo + Convex + Auth](/docs/installation/convex-auth) |
+
+Convex is a real-time backend: queries and mutations are TypeScript functions,
+and every client subscribed to a query re-renders when its data changes. You can
+start on the Expo path and add Convex later — nothing in the component library
+depends on it.
+
+## Existing project
+
+Already have an Expo app? Don't run `init` over it. The manual guide adds the
+theme system and hooks to a project you already have, then leaves you to pull in
+components one at a time with `bna-ui add`.
+
+<div className='mt-6 grid gap-4 sm:grid-cols-2 sm:gap-6'>
+  <LinkedCard
+    href='/docs/installation/manual'
+    className='items-start gap-1 p-6 text-sm sm:p-6'
+  >
+    <svg
+      viewBox='0 0 24 24'
+      xmlns='http://www.w3.org/2000/svg'
+      className='mb-2 h-8 w-8'
+      fill='none'
+      stroke='currentColor'
+      strokeWidth='1.6'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      aria-hidden='true'
+    >
+      <polyline points='4 17 10 11 4 5' />
+      <line x1='12' x2='20' y1='19' y2='19' />
+    </svg>
+    <div className='font-medium'>Manual installation</div>
+    <div className='text-muted-foreground leading-relaxed'>
+      Add BNA UI to an Expo app you already created.
+    </div>
+  </LinkedCard>
+
+  <LinkedCard
+    href='/docs/components'
+    className='items-start gap-1 p-6 text-sm sm:p-6'
+  >
+    <svg
+      viewBox='0 0 24 24'
+      xmlns='http://www.w3.org/2000/svg'
+      className='mb-2 h-8 w-8'
+      fill='none'
+      stroke='currentColor'
+      strokeWidth='1.6'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      aria-hidden='true'
+    >
+      <rect width='7' height='7' x='3' y='3' rx='1' />
+      <rect width='7' height='7' x='14' y='3' rx='1' />
+      <rect width='7' height='7' x='14' y='14' rx='1' />
+      <rect width='7' height='7' x='3' y='14' rx='1' />
+    </svg>
+    <div className='font-medium'>Browse components</div>
+    <div className='text-muted-foreground leading-relaxed'>
+      Every component, with a preview and its source.
+    </div>
+  </LinkedCard>
+</div>

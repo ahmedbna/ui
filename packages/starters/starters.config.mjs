@@ -29,9 +29,17 @@ export const starters = {
 };
 
 /**
- * `start-convex` is `start` plus a Convex backend. Only the delta is checked
- * in (see `overlays/convex/`); the shared app shell is copied from `start`.
+ * Both Convex scaffolds are `start` plus a backend. Only the delta is checked
+ * in (see `overlays/`); the shared app shell is copied from `start`.
+ *
+ * They overlay `start` independently rather than layering auth on top of
+ * `start-convex` — the two diverge in `_layout.tsx`, `schema.ts`, `app.json`
+ * and `package.json`, so chaining them would buy two shared files at the cost
+ * of a build-order dependency between overlays.
  */
 export const overlays = {
+  /** Convex only: schema, a demo query, no auth. */
   'start-convex': { base: 'start', overlay: 'overlays/convex' },
+  /** Convex plus @convex-dev/auth — Google, Apple, password, email OTP. */
+  'start-convex-auth': { base: 'start', overlay: 'overlays/convex-auth' },
 };

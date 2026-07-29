@@ -1,0 +1,76 @@
+---
+title: Expo
+description: Scaffold a new Expo app with BNA UI — Expo Router, light and dark theming, and thirteen components already wired up.
+---
+
+Use this if you are starting a new app and do not need a backend yet.
+
+## Create the app
+
+```bash
+npx bna-ui init my-app
+```
+
+The CLI asks for a project name if you leave it out, and detects your package
+manager from how you invoked it. Pass `.` as the name to scaffold into the
+current directory.
+
+<Steps>
+
+<Step>Move into the project and start it</Step>
+
+```bash
+cd my-app
+npx expo start
+```
+
+<Step>Open it</Step>
+
+Press `i` for the iOS simulator, `a` for Android, or `w` for web. The tab
+layout, theming and mode toggle all work out of the box.
+
+</Steps>
+
+## What you get
+
+```
+app/                 Screens and routing (Expo Router — files become routes)
+├── (tabs)/          Tab navigator: home, search, settings
+├── sheet.tsx        A modal sheet route
+└── _layout.tsx      Root layout: ThemeProvider
+components/ui/       avoid-keyboard, button, card, icon, input, input-otp,
+                     link, mode-toggle, scroll-view, spinner, tabs, text, view
+hooks/               useColor, useColorScheme, useKeyboardHeight, useModeToggle
+theme/               colors.ts, globals.ts, theme-provider.tsx
+```
+
+Those thirteen components are the same source `bna-ui add` installs — they are
+copied into your project, not imported from a package, so you own them and can
+edit them freely.
+
+## Add more components
+
+```bash
+npx bna-ui add avatar
+```
+
+Hooks, theme files and npm dependencies come along automatically. Run it with no
+arguments to browse everything interactively:
+
+```bash
+npx bna-ui add
+```
+
+## Flags
+
+| Flag                              | What it does                             |
+| --------------------------------- | ---------------------------------------- |
+| `--skip-install`                  | Scaffold without installing npm packages |
+| `--npm` `--yarn` `--pnpm` `--bun` | Force a package manager                  |
+
+## Next
+
+- [Browse the components](/docs/components)
+- [Customise the theme](/docs/theming)
+- Need a backend? [Add Convex](/docs/installation/convex)
+- Adding to an app you already have? [Manual installation](/docs/installation/manual)

@@ -42,6 +42,7 @@ program
   .option('--bun', 'Use bun as package manager')
   .option('--skip-install', 'Skip package installation')
   .option('--skip-convex', 'Skip Convex initialization')
+  .option('--no-auth', 'Scaffold a Convex backend without authentication')
   .action(initConvexCommand);
 
 program

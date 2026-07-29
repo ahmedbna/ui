@@ -1,0 +1,201 @@
+---
+title: Expo + Convex + Auth
+description: Scaffold an Expo app with BNA UI, a Convex backend and authentication — Google, Apple, password and email OTP sign-in, pre-wired.
+---
+
+Everything from the [Convex starter](/docs/installation/convex), plus
+[`@convex-dev/auth`](https://labs.convex.dev/auth) with sign-in screens already
+built. This is what `npx bna-ui convex` gives you by default.
+
+## Create the app
+
+```bash
+npx bna-ui convex my-app
+```
+
+The CLI scaffolds the project, installs dependencies, then runs four steps for
+you. The first two are interactive — follow the prompts:
+
+<Steps>
+
+<Step>`npx convex dev --once`</Step>
+
+A browser window opens so you can log in or sign up, then pick or create a
+Convex project. Your deployment URL is written to `.env.local` as
+`EXPO_PUBLIC_CONVEX_URL`.
+
+<Step>`npx @convex-dev/auth`</Step>
+
+Generates the signing keys your deployment needs to issue JWTs and sets them as
+deployment environment variables.
+
+<Step>`npx convex env set EXPO_URL my-app://`</Step>
+
+Your app's deep-link scheme, so OAuth can redirect back into the app after
+sign-in.
+
+<Step>`npx convex env set SITE_URL http://localhost:3000/`</Step>
+
+The web redirect target. See [production](#production) — this one needs changing
+before you ship.
+
+</Steps>
+
+Pass `--skip-convex` to skip all four and run them yourself later.
+
+## Run it
+
+Two processes, as with any Convex app. In one terminal:
+
+```bash
+npx convex dev
+```
+
+In another:
+
+```bash
+npx expo start
+```
+
+You land on the sign-in screen. **Log in anonymously** works immediately —
+everything else needs credentials, below.
+
+## What you get
+
+On top of the Expo starter:
+
+```
+app/_layout.tsx           ConvexAuthProvider (SecureStore on iOS/Android)
+                          + AuthLoading / Unauthenticated / Authenticated
+components/auth/
+├── auth.tsx              The sign-in screen: Password / OAuth / OTP tabs
+├── password.tsx          Sign in, sign up, forgot and reset password
+├── email-otp.tsx         Passwordless email codes
+├── google.tsx            Google sign-in button
+├── apple.tsx             Apple sign-in button
+└── singout.tsx           Sign-out button (used in the settings tab)
+convex/
+├── auth.ts               Provider configuration and the redirect allow-list
+├── auth.config.ts        JWT issuer
+├── schema.ts             authTables + a users table
+├── users.ts              get, getAll, update, …
+├── http.ts               Mounts the auth HTTP routes
+├── resendOTP.ts          Email OTP delivery via Resend
+├── passwordReset.ts      Password-reset codes via Resend
+└── resendPasswordOTP.ts
+```
+
+The root layout swaps on auth state: a spinner while the session resolves, the
+sign-in screen when signed out, your tabs when signed in. Tokens are stored in
+the platform keychain via `expo-secure-store`.
+
+## Configure the providers
+
+Every provider except anonymous needs credentials set on your Convex deployment.
+Set them with `npx convex env set` — they live on the deployment, not in
+`.env.local`, because they are read by server-side functions.
+
+### Email — required for OTP and password reset
+
+Both the email OTP tab and the forgot-password flow send mail through
+[Resend](https://resend.com). Without this key they fail silently:
+
+```bash
+npx convex env set AUTH_RESEND_KEY re_your_key_here
+```
+
+<Callout title='Set this first'>
+  The password tab's sign-in and sign-up work without it, but "forgot password"
+  and the whole OTP tab do not. See the [Resend guide](/docs/convex/resend) for
+  domain verification.
+</Callout>
+
+### Google
+
+```bash
+npx convex env set AUTH_GOOGLE_ID your_google_client_id
+npx convex env set AUTH_GOOGLE_SECRET your_google_client_secret
+```
+
+Full walkthrough: [Google OAuth setup](/docs/convex/google).
+
+### Apple
+
+```bash
+npx convex env set AUTH_APPLE_ID your_apple_service_id
+npx convex env set AUTH_APPLE_SECRET your_generated_jwt
+```
+
+Full walkthrough: [Apple Sign-In setup](/docs/convex/apple).
+
+### GitHub
+
+`convex/auth.ts` also configures GitHub, but the sign-in screen ships no button
+for it. Add `AUTH_GITHUB_ID` / `AUTH_GITHUB_SECRET` and a button modelled on
+`components/auth/google.tsx` if you want it.
+
+## Environment reference
+
+| Variable                 | Where it lives    | Set by                | Used for                                          |
+| ------------------------ | ----------------- | --------------------- | ------------------------------------------------- |
+| `EXPO_PUBLIC_CONVEX_URL` | `.env.local`      | `npx convex dev`      | Building the client in `app/_layout.tsx`          |
+| `EXPO_URL`               | Convex deployment | the CLI               | Allow-listing your app scheme for OAuth redirects |
+| `SITE_URL`               | Convex deployment | the CLI               | Allow-listing the web redirect target             |
+| `AUTH_RESEND_KEY`        | Convex deployment | **you**               | Email OTP and password reset                      |
+| `AUTH_GOOGLE_ID/SECRET`  | Convex deployment | **you**               | Google sign-in                                    |
+| `AUTH_APPLE_ID/SECRET`   | Convex deployment | **you**               | Apple sign-in                                     |
+| `CONVEX_SITE_URL`        | Convex deployment | Convex, automatically | The JWT issuer in `auth.config.ts`                |
+
+Check what is set at any time:
+
+```bash
+npx convex env list
+```
+
+## Password rules
+
+`convex/auth.ts` enforces a minimum of 8 characters with at least one digit, one
+lowercase and one uppercase letter. Edit `validatePasswordRequirements` to change
+that — it throws, and the message surfaces in the sign-up form.
+
+## Production
+
+Two things bite here, both in `convex/auth.ts`'s `redirect` callback, which
+rejects any target that is not an `exp://` dev URL, `EXPO_URL`, or `SITE_URL`:
+
+<Steps>
+
+<Step>Point `SITE_URL` at your real site</Step>
+
+The CLI sets it to `http://localhost:3000/`, which is fine for development and
+wrong everywhere else.
+
+```bash
+npx convex env set SITE_URL https://your-site.com --prod
+```
+
+<Step>Make sure `EXPO_URL` matches your production scheme</Step>
+
+It is set from your project name. If you change `scheme` in `app.json`, change
+this to match, or OAuth redirects will be rejected.
+
+```bash
+npx convex env set EXPO_URL your-scheme:// --prod
+```
+
+</Steps>
+
+Then set your provider credentials against the production deployment too, and
+deploy:
+
+```bash
+npx convex env set AUTH_RESEND_KEY re_your_prod_key --prod
+npx convex deploy
+```
+
+## Next
+
+- [Google OAuth setup](/docs/convex/google)
+- [Apple Sign-In setup](/docs/convex/apple)
+- [Resend email setup](/docs/convex/resend)
+- [Convex Auth documentation](https://labs.convex.dev/auth)

@@ -1,0 +1,186 @@
+---
+title: Manual
+description: Add BNA UI to an Expo app you already created — the theme system, the hooks components depend on, and the import alias that makes it all resolve.
+---
+
+Use this when you already have an Expo project. Do not run `npx bna-ui init`
+over it — that scaffolds a whole app and will overwrite what you have.
+
+There are two ways in. The CLI can install everything for you, or you can copy
+the files by hand.
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value='cli'>CLI</TabsTrigger>
+  <TabsTrigger value='manual'>Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value='cli'>
+
+<Steps>
+
+<Step>Add the `@/*` alias to your `tsconfig.json`</Step>
+
+Every file BNA UI installs imports through `@/…`, so this has to exist first:
+
+```json title="tsconfig.json"
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "paths": {
+      "@/*": ["./*"]
+    }
+  },
+  "include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts"]
+}
+```
+
+<Step>Add any component</Step>
+
+```bash
+npx bna-ui add button
+```
+
+The theme files and hooks it depends on come along automatically, as do its npm
+dependencies. Run it with no arguments to browse everything:
+
+```bash
+npx bna-ui add
+```
+
+<Step>Wrap your root layout</Step>
+
+See [wire it up](#wire-it-up) below.
+
+</Steps>
+
+</TabsContent>
+
+<TabsContent value='manual'>
+
+<Steps>
+
+<Step>Install the dependencies</Step>
+
+```bash
+npx expo install expo-router
+```
+
+<Step>Add the `@/*` alias to your `tsconfig.json`</Step>
+
+```json title="tsconfig.json"
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "paths": {
+      "@/*": ["./*"]
+    }
+  },
+  "include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts"]
+}
+```
+
+<Step>Point `main` at the Expo Router entry</Step>
+
+```json title="package.json"
+{
+  "main": "expo-router/entry"
+}
+```
+
+<Step>Create the theme</Step>
+
+Three files under `theme/`. `colors.ts` holds every semantic token components
+read — change these and the whole app follows:
+
+<ComponentSource name='colors' title='theme/colors.ts' />
+
+<ComponentSource name='globals' title='theme/globals.ts' />
+
+<ComponentSource name='theme-provider' title='theme/theme-provider.tsx' />
+
+<Step>Create the hooks</Step>
+
+`useColorScheme` needs both files — the `.web.ts` variant defers to `light`
+until hydration so static web renders don't flash:
+
+<ComponentSource name='useColorScheme' title='hooks/useColorScheme.ts' />
+
+<ComponentSource
+  name='useColorScheme'
+  file='hooks/useColorScheme.web.ts'
+  title='hooks/useColorScheme.web.ts'
+/>
+
+`useColor` is what every component calls to resolve a token for the active
+scheme:
+
+<ComponentSource name='useColor' title='hooks/useColor.ts' />
+
+`useModeToggle` backs the light/dark/system switch:
+
+<ComponentSource name='useModeToggle' title='hooks/useModeToggle.tsx' />
+
+<Step>Wrap your root layout</Step>
+
+See below.
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Wire it up
+
+Wrap your root layout in `ThemeProvider` so components can resolve colours:
+
+```tsx title="app/_layout.tsx"
+import { Stack } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
+import { ThemeProvider } from '@/theme/theme-provider';
+
+export default function RootLayout() {
+  return (
+    <ThemeProvider>
+      <Stack>
+        <Stack.Screen name='(tabs)' options={{ headerShown: false }} />
+        <Stack.Screen name='+not-found' />
+      </Stack>
+      <StatusBar style='auto' />
+    </ThemeProvider>
+  );
+}
+```
+
+## Using it
+
+Components read colours through `useColor`, so light and dark work with no
+per-component wiring:
+
+```tsx
+import { Button } from '@/components/ui/button';
+import { Text } from '@/components/ui/text';
+import { View } from '@/components/ui/view';
+import { useColor } from '@/hooks/useColor';
+
+export default function Screen() {
+  const background = useColor('background');
+
+  return (
+    <View style={{ flex: 1, padding: 24, backgroundColor: background }}>
+      <Text variant='heading'>Hello</Text>
+      <Button onPress={() => {}}>Get started</Button>
+    </View>
+  );
+}
+```
+
+## Next
+
+- [Browse the components](/docs/components)
+- [Theming](/docs/theming) — how the tokens fit together
+- [CLI reference](/docs/cli)

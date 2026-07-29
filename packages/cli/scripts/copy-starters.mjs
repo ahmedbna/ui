@@ -28,7 +28,9 @@ async function main() {
   await fs.rm(DEST, { recursive: true, force: true });
   await fs.mkdir(DEST, { recursive: true });
 
-  for (const name of ['start', 'start-convex']) {
+  const names = ['start', 'start-convex', 'start-convex-auth'];
+
+  for (const name of names) {
     const src = path.join(STARTERS, name);
     try {
       await fs.access(src);
@@ -44,7 +46,7 @@ async function main() {
 
   const size = await dirSize(DEST);
   console.log(
-    `✔ starters: start, start-convex → dist/templates/ ` +
+    `✔ starters: ${names.join(', ')} → dist/templates/ ` +
       `(${(size / 1024 / 1024).toFixed(2)} MB)`
   );
 }

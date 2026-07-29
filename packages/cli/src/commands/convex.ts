@@ -31,15 +31,26 @@ interface InitConvexOptions {
   bun?: boolean;
   skipInstall?: boolean;
   skipConvex?: boolean;
+  /** Commander's `--no-auth` negation: true unless the flag was passed. */
+  auth?: boolean;
 }
 
 export async function initConvexCommand(
   projectName?: string,
   options: InitConvexOptions = {}
 ) {
+  // `--no-auth` scaffolds a Convex backend with no sign-in; the default stays
+  // the auth starter, so a bare `bna-ui convex` keeps producing what it always
+  // has.
+  const withAuth = options.auth !== false;
+
   // Show the banner first
   logger.banner();
-  logger.header('🚀 Welcome to BNA - Expo React Native Starter with Convex');
+  logger.header(
+    withAuth
+      ? '🚀 Welcome to BNA - Expo React Native Starter with Convex Auth'
+      : '🚀 Welcome to BNA - Expo React Native Starter with Convex'
+  );
 
   try {
     // Get project name
@@ -177,7 +188,12 @@ export async function initConvexCommand(
     try {
       // Copy template files
       // dist/commands -> dist/templates (populated by scripts/copy-starters.mjs)
-      const templatePath = path.resolve(__dirname, '../templates/start-convex');
+      const templatePath = path.resolve(
+        __dirname,
+        withAuth
+          ? '../templates/start-convex-auth'
+          : '../templates/start-convex'
+      );
       await copyTemplate(templatePath, projectPath);
 
       // Update package.json
@@ -195,7 +211,12 @@ export async function initConvexCommand(
 
       // Initialize Convex
       if (!options.skipConvex) {
-        await initializeConvex(projectPath, packageManager, sanitizedName);
+        await initializeConvex(
+          projectPath,
+          packageManager,
+          sanitizedName,
+          withAuth
+        );
       }
 
       // Show success message
@@ -204,7 +225,8 @@ export async function initConvexCommand(
         packageManager,
         options.skipInstall ?? false,
         options.skipConvex ?? false,
-        useCurrentDirectory
+        useCurrentDirectory,
+        withAuth
       );
     } catch (error) {
       spinner.fail('Failed to create project');
@@ -278,7 +300,8 @@ async function updateAppJson(
 async function initializeConvex(
   projectPath: string,
   packageManager: PackageManager,
-  projectName: string
+  projectName: string,
+  withAuth: boolean
 ): Promise<void> {
   logger.newline();
   logger.info('Initializing Convex...');
@@ -289,7 +312,11 @@ async function initializeConvex(
 
   // --- Initialize Convex Backend ---
   try {
-    logger.info('1. Setting up your Convex backend...');
+    logger.info(
+      withAuth
+        ? '1. Setting up your Convex backend...'
+        : 'Setting up your Convex backend...'
+    );
     logger.warn('A browser window will open for you to log in or sign up.');
 
     execSync('npx convex dev --once', {
@@ -306,6 +333,13 @@ async function initializeConvex(
     );
     logger.debug('Convex init error:', error);
     // Exit here, as the next steps will fail if the backend isn't set up.
+    return;
+  }
+
+  // Everything below wires up authentication: the `@convex-dev/auth` initializer
+  // and the two env vars that allow-list OAuth redirect targets. None of it
+  // applies to a Convex-only project.
+  if (!withAuth) {
     return;
   }
 
@@ -386,10 +420,15 @@ function showSuccessMessage(
   packageManager: PackageManager,
   skipInstall: boolean,
   skipConvex: boolean,
-  useCurrentDirectory: boolean
+  useCurrentDirectory: boolean,
+  withAuth: boolean
 ): void {
   logger.newline();
-  logger.success(`🎉 Successfully created ${projectName} with Convex!`);
+  logger.success(
+    withAuth
+      ? `🎉 Successfully created ${projectName} with Convex Auth!`
+      : `🎉 Successfully created ${projectName} with Convex!`
+  );
   logger.newline();
 
   logger.info('Next steps:');
@@ -413,7 +452,9 @@ function showSuccessMessage(
 
   if (skipConvex) {
     logger.plain(`  npx convex dev`);
-    logger.plain(`  npx @convex-dev/auth`);
+    if (withAuth) {
+      logger.plain(`  npx @convex-dev/auth`);
+    }
   }
 
   logger.plain(`  ${getRunCommand(packageManager, 'start')}`);
@@ -435,6 +476,15 @@ function showSuccessMessage(
     logger.info('Convex commands:');
     logger.plain(`  npx convex dev        Start Convex development server`);
     logger.plain(`  npx convex dashboard  Open Convex dashboard`);
+    logger.newline();
+  }
+
+  if (withAuth) {
+    // Email OTP and password reset fail silently without this, and nothing
+    // else in the flow asks for it.
+    logger.info('Before email sign-in works, set your Resend key:');
+    logger.plain(`  npx convex env set AUTH_RESEND_KEY re_your_key_here`);
+    logger.plain(`  https://ui.ahmedbna.com/docs/installation/convex-auth`);
     logger.newline();
   }
 

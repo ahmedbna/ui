@@ -36,6 +36,13 @@ const nextConfig = {
         destination: '/docs/components/:path*',
         permanent: true,
       },
+      // The Convex setup guide moved into the installation section, where it
+      // sits beside the Expo and Convex-without-auth paths.
+      {
+        source: '/docs/convex/installation',
+        destination: '/docs/installation/convex-auth',
+        permanent: true,
+      },
     ];
   },
 };

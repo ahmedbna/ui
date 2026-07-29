@@ -1,90 +1,111 @@
 ---
 title: Convex
-description: A complete React Native starter with BNA UI components and Convex backend integration, featuring Google, Apple, email/password, and email OTP authentication.
+description: A React Native starter with BNA UI components and a Convex backend — real-time data, with or without Google, Apple, password and email OTP authentication.
 ---
 
-**Start building your mobile app with a complete authentication system in minutes.**
+[Convex](https://convex.dev) is a real-time backend. You write queries and
+mutations as TypeScript functions, and every client subscribed to a query
+re-renders when its data changes — no refetching, no cache invalidation.
 
-The BNA UI Convex Auth Starter combines the power of BNA UI's mobile-first component library with Convex's real-time backend and comprehensive authentication system. Get Google, Apple, email/password, and email OTP authentication working out of the box.
+BNA UI ships two Convex scaffolds: one with a backend and no sign-in, one with
+[`@convex-dev/auth`](https://labs.convex.dev/auth) and the sign-in screens
+already built.
 
-This starter is built around the same principles as BNA UI:
+<div className='mt-6 grid gap-4 sm:grid-cols-2 sm:gap-6'>
+  <LinkedCard
+    href='/docs/installation/convex'
+    className='items-start gap-1 p-6 text-sm sm:p-6'
+  >
+    <div className='font-medium'>Expo + Convex</div>
+    <div className='text-muted-foreground leading-relaxed'>
+      A schema and a live query. No authentication.
+    </div>
+  </LinkedCard>
 
-- **Open Code:** Full access to authentication components and Convex integration code.
-- **Mobile-First:** Authentication flows designed specifically for React Native and Expo.
-- **Cross-Platform:** Works seamlessly across iOS, Android, and web.
-- **Real-Time:** Powered by Convex for instant data synchronization.
-- **Production-Ready:** Complete authentication system with secure token handling.
-- **Beautiful Defaults:** Polished authentication UI components that look great on mobile.
+  <LinkedCard
+    href='/docs/installation/convex-auth'
+    className='items-start gap-1 p-6 text-sm sm:p-6'
+  >
+    <div className='font-medium'>Expo + Convex + Auth</div>
+    <div className='text-muted-foreground leading-relaxed'>
+      Google, Apple, password and email OTP sign-in, pre-wired.
+    </div>
+  </LinkedCard>
+</div>
 
-## What's Included
+This section covers the provider setup the auth starter needs: [Google](/docs/convex/google),
+[Apple](/docs/convex/apple) and [Resend](/docs/convex/resend).
 
-### Authentication Methods
+## The auth starter
 
-- **Google Sign-In:** Native Google authentication with platform-specific implementations
-- **Apple Sign-In:** Sign in with Apple for iOS users, with web fallback
-- **Email & Password:** Traditional email/password authentication with validation
-- **Email OTP:** Passwordless authentication via email one-time passwords
-- **Session Management:** Automatic token refresh and secure session handling
+Built around the same principles as the rest of BNA UI:
 
-### BNA UI Components
+- **Open Code:** the authentication screens and the Convex functions are copied
+  into your project, not imported from a package.
+- **Mobile-First:** flows designed for React Native, with tokens in the platform
+  keychain.
+- **Cross-Platform:** iOS, Android and web.
+- **Real-Time:** every query is a live subscription.
 
-Pre-built, customizable authentication components:
+### Sign-in methods
 
-- `AuthScreen` - Main authentication screen with method selection
-- `SignInForm` - Email/password sign-in form with validation
-- `SignUpForm` - User registration form with real-time validation
-- `OTPInput` - Accessible OTP input component with auto-focus
-- `SocialButton` - Unified social authentication buttons
-- `AuthButton` - Primary authentication action button
-- `AuthInput` - Form input with built-in validation states
+| Method           | Provider                                  | Ships with a button  |
+| ---------------- | ----------------------------------------- | -------------------- |
+| Anonymous        | `@convex-dev/auth` `Anonymous`            | Yes                  |
+| Email + password | `@convex-dev/auth` `Password`, with reset | Yes                  |
+| Email OTP        | Resend                                    | Yes                  |
+| Google           | `@auth/core` Google                       | Yes                  |
+| Apple            | `@auth/core` Apple                        | Yes                  |
+| GitHub           | `@auth/core` GitHub                       | No — configured only |
 
-### Convex Integration
+GitHub is set up in `convex/auth.ts` but the sign-in screen has no button for
+it. Model one on `components/auth/google.tsx` if you want it.
 
-- **Real-time Backend:** Instant data synchronization across all devices
-- **Secure Authentication:** JWT tokens with automatic refresh
-- **User Management:** Complete user profiles and session handling
-- **Type Safety:** End-to-end TypeScript integration with Convex
-- **Development Tools:** Built-in development dashboard and debugging
+### What lands in your project
 
-## Authentication Flow
+```
+app/_layout.tsx           ConvexAuthProvider, switching on auth state
+components/auth/
+├── auth.tsx              The sign-in screen: Password / OAuth / OTP tabs
+├── password.tsx          Sign in, sign up, forgot and reset password
+├── email-otp.tsx         Passwordless email codes
+├── google.tsx            Google sign-in button
+├── apple.tsx             Apple sign-in button
+└── singout.tsx           Sign-out button, used in the settings tab
+convex/
+├── auth.ts               Providers, password rules, redirect allow-list
+├── auth.config.ts        JWT issuer
+├── schema.ts             authTables + a users table
+├── users.ts              User queries and mutations
+├── http.ts               Mounts the auth HTTP routes
+├── resendOTP.ts          Email OTP delivery
+├── passwordReset.ts      Password-reset codes
+└── resendPasswordOTP.ts
+```
 
-The starter provides a complete authentication flow optimized for mobile:
+The root layout renders a spinner while the session resolves, the sign-in screen
+when signed out, and your tabs when signed in:
 
-### 1. Welcome Screen
+```tsx title="app/_layout.tsx"
+<ConvexAuthProvider client={convex} storage={secureStorage}>
+  <AuthLoading>
+    <Spinner size='lg' variant='circle' />
+  </AuthLoading>
+  <Unauthenticated>
+    <Auth />
+  </Unauthenticated>
+  <Authenticated>
+    <Stack>{/* your app */}</Stack>
+  </Authenticated>
+</ConvexAuthProvider>
+```
 
-- Clean, mobile-optimized landing page
-- Platform-appropriate social sign-in buttons
-- Smooth transitions between authentication methods
+`storage` is `expo-secure-store` on iOS and Android — the Keychain and the
+Keystore respectively — and the platform default on web.
 
-### 2. Social Authentication
+### Reading the signed-in user
 
-- Google OAuth
-- Apple OAuth
-
-### 3. Email/Password Flow
-
-- Real-time form validation
-- Secure password requirements
-- Forgot password functionality
-- Account creation with email verification
-
-### 4. OTP Authentication
-
-- Passwordless email authentication
-- Auto-advancing OTP input
-- Resend functionality with cooldown
-- Accessibility-optimized for mobile
-
-## Convex Backend Features
-
-### Real-time User Management
-
-```typescript
-// convex/users.ts
-import { v } from 'convex/values';
-import { getAuthUserId } from '@convex-dev/auth/server';
-import { internalQuery, mutation, query } from './_generated/server';
-
+```ts title="convex/users.ts"
 export const get = query({
   handler: async (ctx) => {
     const authId = await getAuthUserId(ctx);
@@ -93,85 +114,38 @@ export const get = query({
       throw new Error('Not authenticated');
     }
 
-    const user = await ctx.db.get(authId);
-
-    return user;
+    return await ctx.db.get(authId);
   },
 });
 ```
 
-### Secure Session Handling
+### Password rules
 
-- Automatic token refresh
-- Secure credential storage using Expo SecureStore
-- Cross-platform session persistence
-- Logout with proper cleanup
+`convex/auth.ts` requires at least 8 characters with one digit, one lowercase
+and one uppercase letter. Edit `validatePasswordRequirements` to change it — it
+throws, and the message surfaces in the sign-up form.
 
-### Database Integration
+## Environment
 
-- User profiles with custom fields
-- Real-time data synchronization
-- Optimistic updates for smooth UX
-- Offline support with sync
+| Variable                 | Where it lives    | Set by                | Used for                              |
+| ------------------------ | ----------------- | --------------------- | ------------------------------------- |
+| `EXPO_PUBLIC_CONVEX_URL` | `.env.local`      | `npx convex dev`      | Building the client                   |
+| `EXPO_URL`               | Convex deployment | `bna-ui convex`       | Allow-listing your app scheme         |
+| `SITE_URL`               | Convex deployment | `bna-ui convex`       | Allow-listing the web redirect target |
+| `AUTH_RESEND_KEY`        | Convex deployment | you                   | Email OTP and password reset          |
+| `AUTH_GOOGLE_ID/SECRET`  | Convex deployment | you                   | Google sign-in                        |
+| `AUTH_APPLE_ID/SECRET`   | Convex deployment | you                   | Apple sign-in                         |
+| `CONVEX_SITE_URL`        | Convex deployment | Convex, automatically | The JWT issuer                        |
 
-## Environment Configuration
+Deployment variables are set with `npx convex env set NAME value` and listed
+with `npx convex env list`. They are not in `.env.local`, because server-side
+functions read them.
 
-Required environment variables:
+The full walkthrough, including production, is in the [auth installation
+guide](/docs/installation/convex-auth).
 
-```bash
-# Convex
-CONVEX_DEPLOYMENT=your-deployment-url
+## Learn more
 
-# Google OAuth
-AUTH_GOOGLE_ID=your-ios-client-id
-AUTH_GOOGLE_SECRET=your-android-secret-id
-
-# Apple Sign-In (iOS only)
-AUTH_APPLE_ID=your-apple-service-identifier
-AUTH_APPLE_SECRET=your-apple-secret
-
-# Email Provider (for OTP)
-AUTH_RESEND_KEY=your-resend-api-key
-
-# Redirect Url
-EXPO_URL=your-app-schema://
-```
-
-## Security Features
-
-- **Secure Token Storage:** Platform-appropriate secure storage (Keychain on iOS, Keystore on Android)
-- **Automatic Token Refresh:** Seamless session management without user intervention
-- **CSRF Protection:** Built-in protection against cross-site request forgery
-- **Rate Limiting:** Authentication attempt limiting to prevent abuse
-- **Input Validation:** Client and server-side validation for all authentication inputs
-
-## Expo Integration
-
-Perfect integration with Expo's ecosystem:
-
-- **Expo AuthSession:** Native OAuth flows for Google and Apple
-- **Expo SecureStore:** Secure credential storage
-- **Expo Haptics:** Tactile feedback for authentication actions
-- **Expo Updates:** Over-the-air updates for authentication flows
-- **Expo Dev Client:** Full debugging support during development
-
-## Production Deployment
-
-Ready for production with:
-
-- **Convex Production:** One-click deployment to Convex cloud
-- **EAS Build:** Optimized builds for iOS and Android app stores
-- **Environment Management:** Separate staging and production configurations
-- **Analytics Integration:** Built-in authentication event tracking
-- **Error Monitoring:** Comprehensive error logging and monitoring
-
-## Getting Help
-
-- **Documentation:** Complete guides for all authentication methods
-- **Examples:** Real-world implementation examples
-- **Community:** Active Discord community for support
-- **TypeScript:** Full type safety with helpful error messages
-
----
-
-_Secure authentication in minutes with a complete and beautiful BNA UI & Convex Auth! 🚀_
+- [Convex documentation](https://docs.convex.dev)
+- [Convex Auth documentation](https://labs.convex.dev/auth)
+- [Report an issue](https://github.com/ahmedbna/ui/issues)

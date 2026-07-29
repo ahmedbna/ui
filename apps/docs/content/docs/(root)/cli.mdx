@@ -42,23 +42,35 @@ The `convex` command creates a new project with Convex configured, installs depe
 npx bna-ui convex [project-name]
 ```
 
+By default this scaffolds the full authentication setup — Google, Apple,
+password and email OTP sign-in. Pass `--no-auth` for a Convex backend with no
+sign-in at all: a schema, a demo query, and nothing to delete before you start.
+
+```bash
+npx bna-ui convex [project-name] --no-auth
+```
+
+See [Expo + Convex](/docs/installation/convex) and [Expo + Convex +
+Auth](/docs/installation/convex-auth) for what each one gives you.
+
 ### Options
 
 ```bash
 Usage: bna-ui convex [options] [project-name]
 
-initialize a new BNA project with Convex backend
+Initialize a new BNA project with Convex backend
 
 Arguments:
-  project-name                   name of the project (optional)
+  project-name                   Name of the project
 
 Options:
-  --npm                          use npm as package manager
-  --yarn                         use yarn as package manager
-  --pnpm                         use pnpm as package manager
-  --bun                          use bun as package manager
-  --skip-install                 skip package installation
-  --skip-convex                  skip Convex initialization
+  --npm                          Use npm as package manager
+  --yarn                         Use yarn as package manager
+  --pnpm                         Use pnpm as package manager
+  --bun                          Use bun as package manager
+  --skip-install                 Skip package installation
+  --skip-convex                  Skip Convex initialization
+  --no-auth                      Scaffold a Convex backend without authentication
   -h, --help                     display help for command
 ```
 
