@@ -48,33 +48,7 @@ npx expo install lucide-react-native
 
 ## Usage
 
-```tsx
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from '@/components/ui/sheet';
-```
-
-```tsx
-<Sheet>
-  <SheetTrigger>
-    <Button>Open Sheet</Button>
-  </SheetTrigger>
-  <SheetContent>
-    <SheetHeader>
-      <SheetTitle>Sheet Title</SheetTitle>
-      <SheetDescription>
-        This is a description of the sheet content.
-      </SheetDescription>
-    </SheetHeader>
-    {/* Your content here */}
-  </SheetContent>
-</Sheet>
-```
+<Usage name='sheet' />
 
 ## Examples
 
@@ -133,70 +107,11 @@ import {
 
 ## API Reference
 
-### Sheet
-
-The root component that manages the sheet state and provides context to child components.
-
-| Prop           | Type                      | Default   | Description                                   |
-| -------------- | ------------------------- | --------- | --------------------------------------------- |
-| `open`         | `boolean`                 | -         | Controls whether the sheet is open or closed. |
-| `onOpenChange` | `(open: boolean) => void` | -         | Callback fired when the sheet state changes.  |
-| `side`         | `'left' \| 'right'`       | `'right'` | The side from which the sheet slides in.      |
-| `children`     | `ReactNode`               | -         | The sheet trigger and content components.     |
-
-### SheetTrigger
-
-The trigger component that opens the sheet when pressed.
-
-| Prop       | Type        | Default | Description                                     |
-| ---------- | ----------- | ------- | ----------------------------------------------- |
-| `children` | `ReactNode` | -       | The trigger content (usually a button or text). |
-| `asChild`  | `boolean`   | `false` | Whether to render as a child component.         |
-
-### SheetContent
-
-The main content container that slides in from the specified side.
-
-| Prop       | Type        | Default | Description                                          |
-| ---------- | ----------- | ------- | ---------------------------------------------------- |
-| `children` | `ReactNode` | -       | The content to display inside the sheet.             |
-| `style`    | `ViewStyle` | -       | Additional styles to apply to the content container. |
-
-### SheetHeader
-
-A header component that provides consistent spacing and layout for the sheet title and description.
-
-| Prop       | Type        | Default | Description                                 |
-| ---------- | ----------- | ------- | ------------------------------------------- |
-| `children` | `ReactNode` | -       | The header content (title and description). |
-| `style`    | `ViewStyle` | -       | Additional styles to apply to the header.   |
-
-### SheetTitle
-
-The title component for the sheet header.
-
-| Prop       | Type        | Default | Description                |
-| ---------- | ----------- | ------- | -------------------------- |
-| `children` | `ReactNode` | -       | The title text or content. |
-
-### SheetDescription
-
-The description component for the sheet header.
-
-| Prop       | Type        | Default | Description                      |
-| ---------- | ----------- | ------- | -------------------------------- |
-| `children` | `ReactNode` | -       | The description text or content. |
+<ApiReference name='sheet' />
 
 ## Accessibility
 
-The Sheet component is built with accessibility in mind:
-
-- Uses native Modal component for proper focus management
-- Includes proper ARIA attributes for screen readers
-- Supports keyboard navigation and dismissal
-- Close button is positioned for easy access
-- Overlay can be pressed to dismiss the sheet
-- Proper hit areas for touch targets
+<Accessibility name='sheet' />
 
 ## Animation
 

@@ -51,28 +51,7 @@ npm install react-native-svg react-native-reanimated react-native-gesture-handle
 
 ## Usage
 
-```tsx
-import { DoughnutChart } from '@/components/charts/doughnut-chart';
-```
-
-```tsx
-const data = [
-  { label: 'Sales', value: 120 },
-  { label: 'Marketing', value: 98 },
-  { label: 'Support', value: 86 },
-  { label: 'Development', value: 140 },
-];
-
-<DoughnutChart
-  data={data}
-  config={{
-    height: 300,
-    showLabels: true,
-    animated: true,
-    innerRadius: 0.6,
-  }}
-/>;
-```
+<Usage name='doughnut-chart' />
 
 ## Examples
 
@@ -122,34 +101,7 @@ const data = [
 
 ## API Reference
 
-### DoughnutChart
-
-A customizable doughnut chart component with smooth animations, interactive legends, and flexible styling. Perfect for displaying proportional data with emphasis on part-to-whole relationships.
-
-| Prop     | Type               | Default | Description                                   |
-| -------- | ------------------ | ------- | --------------------------------------------- |
-| `data`   | `ChartDataPoint[]` | -       | Array of data points to display on the chart. |
-| `config` | `ChartConfig`      | `{}`    | Configuration object for chart appearance.    |
-| `style`  | `ViewStyle`        | -       | Additional styles to apply to the chart.      |
-
-### ChartDataPoint
-
-| Property | Type     | Default | Description                          |
-| -------- | -------- | ------- | ------------------------------------ |
-| `label`  | `string` | -       | The label for the data point.        |
-| `value`  | `number` | -       | The value for the data point.        |
-| `color`  | `string` | -       | Optional custom color for the slice. |
-
-### ChartConfig
-
-| Property      | Type      | Default | Description                                       |
-| ------------- | --------- | ------- | ------------------------------------------------- |
-| `width`       | `number`  | -       | Fixed width of the chart (auto-sizes if omitted). |
-| `height`      | `number`  | `200`   | Height of the chart.                              |
-| `showLabels`  | `boolean` | `true`  | Whether to show percentage labels on slices.      |
-| `animated`    | `boolean` | `true`  | Whether to animate the chart on load.             |
-| `duration`    | `number`  | `1000`  | Animation duration in milliseconds.               |
-| `innerRadius` | `number`  | `0.5`   | Inner radius as a ratio of outer radius (0-1).    |
+<ApiReference name='doughnut-chart' />
 
 ## Features
 
@@ -184,14 +136,7 @@ The circular layout of the DoughnutChart makes it ideal for:
 
 ## Accessibility
 
-The DoughnutChart component includes several accessibility features:
-
-- Semantic SVG structure for screen readers
-- Proper contrast ratios for visual elements
-- Text labels with percentage values
-- Interactive legend for detailed information
-- Color-blind friendly default palette
-- Keyboard navigation support
+<Accessibility name='doughnut-chart' />
 
 ## Performance
 

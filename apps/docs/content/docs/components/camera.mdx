@@ -67,23 +67,7 @@ npx expo install expo-camera react-native-gesture-handler lucide-react-native
 
 ## Usage
 
-```tsx
-import { Camera } from '@/components/ui/camera';
-```
-
-```tsx
-<Camera
-  onCapture={({ uri, type }) => {
-    console.log('Captured:', uri, type);
-  }}
-  onVideoCapture={({ uri, type }) => {
-    console.log('Video captured:', uri, type);
-  }}
-  onClose={() => {
-    // Handle camera close
-  }}
-/>
-```
+<Usage name='camera' />
 
 ## Examples
 
@@ -242,13 +226,7 @@ The Camera component requires camera and microphone permissions. The component w
 
 ## Accessibility
 
-The Camera component includes accessibility features:
-
-- **Screen Reader Support**: All controls have appropriate labels
-- **High Contrast**: Clear visual distinction between active/inactive states
-- **Touch Targets**: All interactive elements meet minimum size requirements
-- **Keyboard Navigation**: Focus management for external keyboard users
-- **Reduced Motion**: Respects system animation preferences
+<Accessibility name='camera' />
 
 ## Performance
 

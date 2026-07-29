@@ -45,25 +45,7 @@ npx bna-ui add useColorScheme
 
 ## Usage
 
-```tsx
-import { useModeToggle } from '@/hooks/useModeToggle';
-```
-
-```tsx
-export function ThemeToggle() {
-  const { isDark, mode, setMode, toggleMode } = useModeToggle();
-
-  return (
-    <View>
-      <Text>Current mode: {mode}</Text>
-      <Text>Is dark: {isDark ? 'Yes' : 'No'}</Text>
-      <TouchableOpacity onPress={toggleMode}>
-        <Text>Toggle Theme</Text>
-      </TouchableOpacity>
-    </View>
-  );
-}
-```
+<Usage name='useModeToggle' />
 
 ## API Reference
 
@@ -378,12 +360,7 @@ export function useModeToggleContext() {
 
 ## Accessibility
 
-The hook supports accessibility by:
-
-- Providing programmatic access to theme state for screen readers
-- Enabling proper contrast ratios through theme mode control
-- Supporting system-level accessibility preferences in system mode
-- Allowing users to override system preferences when needed
+<Accessibility name='useModeToggle' />
 
 ## Platform Support
 

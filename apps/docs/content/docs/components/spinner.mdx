@@ -48,18 +48,7 @@ npx expo install lucide-react-native
 
 ## Usage
 
-```tsx
-import {
-  Spinner,
-  LoadingOverlay,
-  InlineLoader,
-  ButtonSpinner,
-} from '@/components/ui/spinner';
-```
-
-```tsx
-<Spinner size='default' variant='default' />
-```
+<Usage name='spinner' />
 
 ## Examples
 
@@ -148,59 +137,9 @@ import {
 
 ## API Reference
 
-### Spinner
-
-The main spinner component with multiple variants and customization options.
-
-| Prop        | Type                                                   | Default     | Description                                     |
-| ----------- | ------------------------------------------------------ | ----------- | ----------------------------------------------- |
-| `size`      | `'default' \| 'sm' \| 'lg' \| 'icon'`                  | `'default'` | The size of the spinner.                        |
-| `variant`   | `'default' \| 'circle' \| 'dots' \| 'pulse' \| 'bars'` | `'default'` | The visual variant of the spinner.              |
-| `label`     | `string`                                               | -           | Optional label text to display with spinner.    |
-| `showLabel` | `boolean`                                              | `false`     | Whether to show the default "Loading..." label. |
-| `style`     | `ViewStyle`                                            | -           | Additional styles to apply to the container.    |
-| `color`     | `string`                                               | -           | Custom color for the spinner.                   |
-| `speed`     | `'slow' \| 'normal' \| 'fast'`                         | `'normal'`  | Animation speed of the spinner.                 |
-
-### LoadingOverlay
-
-A full-screen overlay component with spinner for blocking UI interactions during loading.
-
-| Prop              | Type           | Default | Description                                    |
-| ----------------- | -------------- | ------- | ---------------------------------------------- |
-| `visible`         | `boolean`      | -       | Whether the overlay is visible.                |
-| `backdrop`        | `boolean`      | `true`  | Whether to show a backdrop behind the spinner. |
-| `backdropColor`   | `string`       | -       | Custom backdrop color.                         |
-| `backdropOpacity` | `number`       | `0.5`   | Opacity of the backdrop (0-1).                 |
-| `onRequestClose`  | `() => void`   | -       | Callback when overlay should be closed.        |
-| `...spinnerProps` | `SpinnerProps` | -       | All props from the Spinner component.          |
-
-### InlineLoader
-
-A compact spinner optimized for inline usage within text or small containers.
-
-| Prop      | Type                                                   | Default     | Description                        |
-| --------- | ------------------------------------------------------ | ----------- | ---------------------------------- |
-| `size`    | `'default' \| 'sm' \| 'lg' \| 'icon'`                  | `'sm'`      | The size of the spinner.           |
-| `variant` | `'default' \| 'circle' \| 'dots' \| 'pulse' \| 'bars'` | `'default'` | The visual variant of the spinner. |
-| `color`   | `string`                                               | -           | Custom color for the spinner.      |
-
-### ButtonSpinner
-
-A spinner component specifically designed for button loading states.
-
-| Prop      | Type                                                   | Default     | Description                        |
-| --------- | ------------------------------------------------------ | ----------- | ---------------------------------- |
-| `size`    | `'default' \| 'sm' \| 'lg' \| 'icon'`                  | `'sm'`      | The size of the spinner.           |
-| `variant` | `'default' \| 'circle' \| 'dots' \| 'pulse' \| 'bars'` | `'default'` | The visual variant of the spinner. |
-| `color`   | `string`                                               | -           | Custom color for the spinner.      |
+<ApiReference name='spinner' />
 
 ## Accessibility
 
-The Spinner component is built with accessibility in mind:
+<Accessibility name='spinner' />
 
-- Provides meaningful loading states for screen readers
-- Supports custom labels for better context
-- Maintains proper contrast ratios for visibility
-- Non-intrusive animations that respect user preferences
-- Loading overlays properly manage focus and interaction states

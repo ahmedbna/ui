@@ -48,13 +48,7 @@ npx expo install react-native-gesture-handler react-native-reanimated
 
 ## Usage
 
-```tsx
-import { Progress } from '@/components/ui/progress';
-```
-
-```tsx
-<Progress value={65} />
-```
+<Usage name='progress' />
 
 ## Examples
 
@@ -133,29 +127,11 @@ import { Progress } from '@/components/ui/progress';
 
 ## API Reference
 
-### Progress
-
-The main progress bar component.
-
-| Prop            | Type                      | Default | Description                                                   |
-| --------------- | ------------------------- | ------- | ------------------------------------------------------------- |
-| `value`         | `number`                  | -       | The progress value between 0-100.                             |
-| `style`         | `ViewStyle`               | -       | Additional styles to apply to the progress container.         |
-| `height`        | `number`                  | `4`     | The height of the progress bar in pixels.                     |
-| `onValueChange` | `(value: number) => void` | -       | Callback fired when the progress value changes (interactive). |
-| `onSeekStart`   | `() => void`              | -       | Callback fired when seeking starts (interactive).             |
-| `onSeekEnd`     | `() => void`              | -       | Callback fired when seeking ends (interactive).               |
-| `interactive`   | `boolean`                 | `false` | Whether the progress bar can be interacted with (tap/drag).   |
+<ApiReference name='progress' />
 
 ## Accessibility
 
-The Progress component is built with accessibility in mind:
-
-- Uses semantic structure for screen readers
-- Supports gesture-based interaction when interactive
-- Proper touch targets for interactive elements
-- Smooth animations with reduced motion support
-- Clear visual feedback for progress states
+<Accessibility name='progress' />
 
 ## Interactive Features
 

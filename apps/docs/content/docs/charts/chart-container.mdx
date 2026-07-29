@@ -45,18 +45,7 @@ npx bna-ui add chart-container
 
 ## Usage
 
-```tsx
-import { ChartContainer } from '@/components/charts/chart-container';
-```
-
-```tsx
-<ChartContainer
-  title='Monthly Revenue'
-  description='Revenue data for the last 6 months'
->
-  {/* Your chart component goes here */}
-</ChartContainer>
-```
+<Usage name='chart-container' />
 
 ## Examples
 
@@ -86,22 +75,9 @@ import { ChartContainer } from '@/components/charts/chart-container';
 
 ## API Reference
 
-### ChartContainer
-
-A container component that provides consistent styling and layout for charts.
-
-| Prop          | Type        | Default | Description                                     |
-| ------------- | ----------- | ------- | ----------------------------------------------- |
-| `title`       | `string`    | -       | The title displayed above the chart.            |
-| `description` | `string`    | -       | The description text displayed below the title. |
-| `children`    | `ReactNode` | -       | The chart component to be wrapped.              |
-| `style`       | `ViewStyle` | -       | Additional styles to apply to the container.    |
+<ApiReference name='chart-container' />
 
 ## Accessibility
 
-The ChartContainer component is built with accessibility in mind:
+<Accessibility name='chart-container' />
 
-- Uses semantic structure for screen readers
-- Proper heading hierarchy with title and description
-- Consistent spacing and layout
-- Supports dynamic text sizing

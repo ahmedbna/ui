@@ -51,28 +51,7 @@ npm install react-native-svg react-native-reanimated react-native-gesture-handle
 
 ## Usage
 
-```tsx
-import { BubbleChart } from '@/components/charts/bubble-chart';
-```
-
-```tsx
-const data = [
-  { x: 10, y: 20, size: 15, label: 'A', color: '#FF6B6B' },
-  { x: 25, y: 30, size: 25, label: 'B', color: '#4ECDC4' },
-  { x: 40, y: 15, size: 30, label: 'C', color: '#45B7D1' },
-  { x: 35, y: 45, size: 20, label: 'D', color: '#96CEB4' },
-];
-
-<BubbleChart
-  data={data}
-  config={{
-    height: 300,
-    showGrid: true,
-    showLabels: true,
-    animated: true,
-  }}
-/>;
-```
+<Usage name='bubble-chart' />
 
 ## Examples
 
@@ -122,37 +101,7 @@ const data = [
 
 ## API Reference
 
-### BubbleChart
-
-A customizable bubble chart component with smooth animations and interactive features.
-
-| Prop     | Type                     | Default | Description                                   |
-| -------- | ------------------------ | ------- | --------------------------------------------- |
-| `data`   | `BubbleChartDataPoint[]` | -       | Array of data points to display on the chart. |
-| `config` | `ChartConfig`            | `{}`    | Configuration object for chart appearance.    |
-| `style`  | `ViewStyle`              | -       | Additional styles to apply to the chart.      |
-
-### BubbleChartDataPoint
-
-| Property | Type     | Default | Description                          |
-| -------- | -------- | ------- | ------------------------------------ |
-| `x`      | `number` | -       | The x-axis value for the data point. |
-| `y`      | `number` | -       | The y-axis value for the data point. |
-| `size`   | `number` | -       | The size value for the bubble.       |
-| `label`  | `string` | -       | Optional label for the data point.   |
-| `color`  | `string` | -       | Optional color for the bubble.       |
-
-### ChartConfig
-
-| Property     | Type      | Default | Description                                       |
-| ------------ | --------- | ------- | ------------------------------------------------- |
-| `width`      | `number`  | -       | Fixed width of the chart (auto-sizes if omitted). |
-| `height`     | `number`  | `200`   | Height of the chart.                              |
-| `padding`    | `number`  | `20`    | Padding around the chart.                         |
-| `showGrid`   | `boolean` | `true`  | Whether to show grid lines.                       |
-| `showLabels` | `boolean` | `true`  | Whether to show bubble labels.                    |
-| `animated`   | `boolean` | `true`  | Whether to animate the chart on load.             |
-| `duration`   | `number`  | `800`   | Animation duration in milliseconds.               |
+<ApiReference name='bubble-chart' />
 
 ## Features
 
@@ -167,13 +116,7 @@ A customizable bubble chart component with smooth animations and interactive fea
 
 ## Accessibility
 
-The BubbleChart component is built with accessibility in mind:
-
-- Semantic SVG structure for screen readers
-- Proper contrast ratios for visual elements
-- Touch targets meet minimum size requirements
-- Supports dynamic text sizing
-- Keyboard navigation support (when interactive)
+<Accessibility name='bubble-chart' />
 
 ## Performance
 

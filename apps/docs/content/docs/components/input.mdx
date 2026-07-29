@@ -48,13 +48,7 @@ npx expo install lucide-react-native
 
 ## Usage
 
-```tsx
-import { Input, GroupedInput, GroupedInputItem } from '@/components/ui/input';
-```
-
-```tsx
-<Input label='Username' placeholder='Enter your username' icon={User} />
-```
+<Usage name='input' />
 
 ## Examples
 
@@ -143,63 +137,11 @@ import { Input, GroupedInput, GroupedInputItem } from '@/components/ui/input';
 
 ## API Reference
 
-### Input
-
-The main input component with label, validation, and icon support.
-
-| Prop             | Type                               | Default    | Description                                              |
-| ---------------- | ---------------------------------- | ---------- | -------------------------------------------------------- |
-| `label`          | `string`                           | -          | Label text displayed inside the input                    |
-| `error`          | `string`                           | -          | Error message to display below the input                 |
-| `icon`           | `React.ComponentType<LucideProps>` | -          | Lucide icon component to display on the left             |
-| `rightComponent` | `ReactNode \| (() => ReactNode)`   | -          | Component or function returning component for right side |
-| `containerStyle` | `ViewStyle`                        | -          | Style for the outer container                            |
-| `inputStyle`     | `TextStyle`                        | -          | Style for the text input                                 |
-| `labelStyle`     | `TextStyle`                        | -          | Style for the label text                                 |
-| `errorStyle`     | `TextStyle`                        | -          | Style for the error message                              |
-| `variant`        | `'filled' \| 'outline'`            | `'filled'` | Visual variant of the input                              |
-| `disabled`       | `boolean`                          | `false`    | Whether the input is disabled                            |
-
-Extends all `TextInputProps` except `style`.
-
-### GroupedInput
-
-Container component for grouping multiple inputs together.
-
-| Prop             | Type        | Default | Description                                 |
-| ---------------- | ----------- | ------- | ------------------------------------------- |
-| `children`       | `ReactNode` | -       | Child components (usually GroupedInputItem) |
-| `containerStyle` | `ViewStyle` | -       | Style for the container                     |
-| `title`          | `string`    | -       | Optional title for the group                |
-| `titleStyle`     | `TextStyle` | -       | Style for the title text                    |
-
-### GroupedInputItem
-
-Input component designed to be used within GroupedInput.
-
-| Prop             | Type                               | Default | Description                                              |
-| ---------------- | ---------------------------------- | ------- | -------------------------------------------------------- |
-| `label`          | `string`                           | -       | Label text displayed inside the input                    |
-| `error`          | `string`                           | -       | Error message (displayed at group level)                 |
-| `icon`           | `React.ComponentType<LucideProps>` | -       | Lucide icon component to display on the left             |
-| `rightComponent` | `ReactNode \| (() => ReactNode)`   | -       | Component or function returning component for right side |
-| `inputStyle`     | `TextStyle`                        | -       | Style for the text input                                 |
-| `labelStyle`     | `TextStyle`                        | -       | Style for the label text                                 |
-| `errorStyle`     | `TextStyle`                        | -       | Style for the error message                              |
-| `disabled`       | `boolean`                          | `false` | Whether the input is disabled                            |
-
-Extends all `TextInputProps` except `style`.
+<ApiReference name='input' />
 
 ## Accessibility
 
-The Input component is built with accessibility in mind:
-
-- Proper focus management and keyboard navigation
-- Screen reader support with semantic labeling
-- High contrast support for error states
-- Proper touch targets for mobile devices
-- Support for dynamic text sizing
-- Keyboard shortcuts and hardware keyboard support
+<Accessibility name='input' />
 
 ## Styling
 

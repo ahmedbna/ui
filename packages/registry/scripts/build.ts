@@ -18,8 +18,10 @@ import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { findDependencyCycle } from '../resolve.js';
 import {
+  componentMetaSchema,
   componentRegistrySchema,
   REGISTRY_SCHEMA_VERSION,
+  type ComponentMeta,
   type ComponentRegistry,
   type Registry,
   type ResolvedFile,
@@ -27,7 +29,29 @@ import {
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DEFINITIONS = path.join(ROOT, 'definitions');
+const META = path.join(ROOT, 'meta');
 const GENERATED = path.join(ROOT, 'generated');
+
+/** Entry types that are user-facing and therefore expected to be documented. */
+const DOCUMENTED_TYPES = new Set([
+  'registry:ui',
+  'registry:hook',
+  'registry:theme',
+]);
+
+/** Where the published registry lives; overridable for a staging deploy. */
+const SITE_URL = (
+  process.env.BNA_UI_SITE_URL ?? 'https://ui.ahmedbna.com'
+).replace(/\/+$/, '');
+
+/**
+ * The Expo SDK the shipped source is typechecked against, read from this
+ * package rather than restated — a claim about compatibility that drifts is
+ * worse than none.
+ */
+const EXPO_VERSION = JSON.parse(
+  await fs.readFile(path.join(ROOT, 'package.json'), 'utf8')
+).devDependencies?.expo;
 
 const errors: string[] = [];
 const fail = (msg: string) => errors.push(msg);
@@ -97,6 +121,90 @@ async function loadDefinitions(): Promise<Registry> {
     fail(`no definitions found under ${path.relative(ROOT, DEFINITIONS)}`);
   }
   return registry;
+}
+
+/**
+ * Loads `meta/` — the API reference as data.
+ *
+ * Same discovery convention as `loadDefinitions`: walk the directory, import
+ * every file, keep the named exports ending in `Meta`, each one a single
+ * `ComponentMeta` naming the entry it documents. Kept separate from
+ * `definitions/` so the two concerns stay legible — a definition says what to
+ * install, a meta says what it does.
+ */
+async function loadMeta(): Promise<Map<string, ComponentMeta>> {
+  const metas = new Map<string, ComponentMeta>();
+
+  let files: string[];
+  try {
+    files = await walk(META, (f) => f.endsWith('.ts'));
+  } catch {
+    // No `meta/` yet — every entry simply has no documentation metadata.
+    return metas;
+  }
+
+  const origin = new Map<string, string>();
+
+  for (const file of files) {
+    const mod = await import(pathToFileURL(file).href);
+    const rel = path.relative(ROOT, file);
+
+    for (const [exportName, value] of Object.entries(mod)) {
+      if (!value || typeof value !== 'object' || Array.isArray(value)) continue;
+      if (!exportName.endsWith('Meta')) continue;
+
+      const meta = value as ComponentMeta;
+      if (typeof meta.name !== 'string') {
+        fail(`${rel}: export \`${exportName}\` has no \`name\``);
+        continue;
+      }
+      if (metas.has(meta.name)) {
+        fail(
+          `duplicate meta for "${meta.name}" — also in ${origin.get(meta.name)}`
+        );
+        continue;
+      }
+      origin.set(meta.name, rel);
+      metas.set(meta.name, meta);
+    }
+  }
+
+  return metas;
+}
+
+/** Validates every meta and merges it onto its registry entry. */
+function attachMeta(registry: Registry, metas: Map<string, ComponentMeta>) {
+  for (const [name, meta] of metas) {
+    const parsed = componentMetaSchema.safeParse(meta);
+    if (!parsed.success) {
+      for (const issue of parsed.error.issues) {
+        fail(`meta "${name}": ${issue.path.join('.')} — ${issue.message}`);
+      }
+      continue;
+    }
+
+    const entry = registry[name];
+    if (!entry) {
+      fail(`meta "${name}": no registry entry with that name`);
+      continue;
+    }
+
+    entry.meta = parsed.data;
+  }
+
+  // A user-facing entry with no meta has no API reference anywhere — not on its
+  // page, not in its `.md`, not in the JSON an agent reads.
+  const undocumented = Object.values(registry)
+    .filter((entry) => DOCUMENTED_TYPES.has(entry.type) && !entry.meta)
+    .map((entry) => entry.name);
+
+  if (undocumented.length) {
+    console.warn(
+      `⚠ ${undocumented.length} documented-type entries have no meta/: ` +
+        `${undocumented.slice(0, 6).join(', ')}` +
+        (undocumented.length > 6 ? `, +${undocumented.length - 6} more` : '')
+    );
+  }
 }
 
 async function validate(registry: Registry) {
@@ -177,6 +285,107 @@ function expandClosure(registry: Registry, name: string): string[] {
   return out;
 }
 
+/**
+ * Everything an agent needs about one component, in a single request.
+ *
+ * `/r/<name>.json` exists to be written to disk by the CLI — it is the flattened
+ * file closure and nothing else. An agent asking "what does this component do,
+ * what props does it take, how do I use it" would have to fetch that, guess the
+ * documentation URL, scrape the HTML, and infer the rest. This answers all of it
+ * at `/r/ai/<name>.json`: prose, props, usage, install command, the entry's own
+ * source, and every example that composes it.
+ *
+ * Only for entries a human would install. The 394 demos are reachable as the
+ * `examples` of the component they belong to, and would otherwise triple the
+ * size of the endpoint for no gain.
+ */
+async function buildAiBundle(
+  registry: Registry,
+  key: string,
+  payload: {
+    dependencies: string[];
+    registryDependencies: string[];
+  }
+): Promise<Record<string, unknown>> {
+  const entry = registry[key];
+  const docUrl = docPathFor(entry);
+
+  // Ownership comes from the demo's directory, not from its dependency list:
+  // `registryDependencies` says a demo *uses* Button, which is true of eighty-
+  // odd demos across the library, whereas `src/demo/button/` says it *is* a
+  // Button example. Charts nest one level deeper.
+  const examples = Object.values(registry).filter(
+    (candidate) =>
+      candidate.type === 'registry:example' &&
+      demoOwner(candidate) === key
+  );
+
+  return {
+    $schemaVersion: REGISTRY_SCHEMA_VERSION,
+    name: entry.name,
+    type: entry.type,
+    description: entry.description,
+    ...(docUrl
+      ? { docs: `${SITE_URL}${docUrl}`, markdown: `${SITE_URL}${docUrl}.md` }
+      : {}),
+    registry: `${SITE_URL}/r/${key}.json`,
+    install: {
+      cli: `npx bna-ui add ${key}`,
+      npm: payload.dependencies,
+    },
+    // Library-level facts only. Per-component platform support is not recorded
+    // anywhere today, and asserting it here would be a guess.
+    framework: {
+      runtime: 'react-native',
+      framework: 'expo',
+      expo: EXPO_VERSION,
+      note:
+        'Not a web library. Components render through react-native — no DOM, ' +
+        'no Tailwind, no Radix. Style with StyleSheet objects and the style ' +
+        'prop. Source is copied into the project and imported through ' +
+        '@/components/ui/*, @/components/charts/*, @/hooks/* and @/theme/*.',
+    },
+    dependencies: payload.dependencies,
+    registryDependencies: payload.registryDependencies,
+    ...(entry.meta ? { meta: entry.meta } : {}),
+    files: await readFiles(registry, [key]),
+    examples: await Promise.all(
+      examples.map(async (example) => ({
+        name: example.name,
+        description: example.description,
+        files: await readFiles(registry, [example.name]),
+      }))
+    ),
+  };
+}
+
+/**
+ * The component a demo illustrates, from its directory.
+ *
+ *   src/demo/button/button-variants.tsx        -> button
+ *   src/demo/charts/area-chart/area-chart-demo -> area-chart
+ */
+function demoOwner(entry: ComponentRegistry): string | undefined {
+  const parts = (entry.files[0]?.path ?? '').split('/');
+  const i = parts.indexOf('demo');
+  if (i === -1) return undefined;
+  const rest = parts.slice(i + 1, -1);
+  return rest[0] === 'charts' ? rest[1] : rest[0];
+}
+
+/**
+ * The documentation path for an entry, derived from where its file lands in a
+ * consumer project — the only field that says which docs section it belongs to.
+ */
+function docPathFor(entry: ComponentRegistry): string | undefined {
+  const target = entry.files[0]?.target ?? '';
+  if (target.startsWith('components/charts/')) return `/docs/charts/${entry.name}`;
+  if (target.startsWith('components/ui/')) return `/docs/components/${entry.name}`;
+  if (target.startsWith('hooks/')) return `/docs/hooks/${entry.name}`;
+  if (target.startsWith('theme/')) return `/docs/theme/${entry.name}`;
+  return undefined;
+}
+
 async function readFiles(
   registry: Registry,
   names: string[]
@@ -200,6 +409,7 @@ async function readFiles(
 
 async function main() {
   const registry = await loadDefinitions();
+  attachMeta(registry, await loadMeta());
   await validate(registry);
 
   if (errors.length) {
@@ -244,7 +454,10 @@ async function main() {
   );
 
   // One payload per entry, transitive closure flattened.
+  await fs.mkdir(path.join(GENERATED, 'r', 'ai'), { recursive: true });
   let bytes = 0;
+  const aiIndex: Array<Record<string, unknown>> = [];
+
   for (const key of keys) {
     const entry = sorted[key];
     const chain = expandClosure(sorted, key);
@@ -258,11 +471,46 @@ async function main() {
       ].sort(),
       registryDependencies: chain.filter((n) => n !== key),
       files: await readFiles(sorted, chain),
+      ...(entry.meta ? { meta: entry.meta } : {}),
     };
     const json = JSON.stringify(payload);
     bytes += json.length;
     await fs.writeFile(path.join(GENERATED, 'r', `${key}.json`), json);
+
+    if (!DOCUMENTED_TYPES.has(entry.type)) continue;
+
+    const bundle = await buildAiBundle(sorted, key, payload);
+    await fs.writeFile(
+      path.join(GENERATED, 'r', 'ai', `${key}.json`),
+      JSON.stringify(bundle)
+    );
+    aiIndex.push({
+      name: entry.name,
+      type: entry.type,
+      description: entry.description,
+      docs: bundle.docs,
+      markdown: bundle.markdown,
+      url: `${SITE_URL}/r/ai/${key}.json`,
+      install: `npx bna-ui add ${key}`,
+    });
   }
+
+  await fs.writeFile(
+    path.join(GENERATED, 'r', 'ai', 'index.json'),
+    JSON.stringify(
+      {
+        $schemaVersion: REGISTRY_SCHEMA_VERSION,
+        generatedAt: index.generatedAt,
+        description:
+          'BNA UI — React Native / Expo components. Each item links to a bundle ' +
+          'carrying that component’s description, props, usage, dependencies, ' +
+          'source and examples.',
+        items: aiIndex,
+      },
+      null,
+      2
+    )
+  );
 
   const hash = createHash('sha256')
     .update(indexJson)
@@ -272,6 +520,7 @@ async function main() {
     `✔ registry: ${keys.length} entries → generated/r/  ` +
       `(${(bytes / 1024 / 1024).toFixed(2)} MB, index ${hash})`
   );
+  console.log(`✔ ai bundles: ${aiIndex.length} → generated/r/ai/`);
 }
 
 main().catch((err) => {

@@ -1,0 +1,75 @@
+---
+title: Claude Skill
+description: A packaged skill that teaches Claude this library's components, conventions and endpoints — loaded only when a conversation is actually about React Native.
+---
+
+A [Skill](https://code.claude.com/docs/en/skills) is a folder Claude loads on
+demand. The BNA UI skill bundles the component catalogue, the theming and layout
+conventions, and every machine-readable endpoint, so Claude knows what exists
+here without being told each time.
+
+The loading is progressive: only the trigger description sits in context
+permanently. The catalogue and conventions are read when a conversation is
+actually about React Native — so the cost is near zero the rest of the time.
+
+## Install
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">Claude Code</TabsTrigger>
+  <TabsTrigger value="manual">Claude apps</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+<Steps>
+
+<Step>Download and unpack it into your skills directory.</Step>
+
+```bash
+curl -L https://ui.ahmedbna.com/skills/bna-ui.zip -o bna-ui.zip \
+  && unzip -q bna-ui.zip -d ~/.claude/skills && rm bna-ui.zip
+```
+
+<Step>Restart Claude Code, or run `/doctor` to confirm it loaded.</Step>
+
+</Steps>
+
+Use `.claude/skills` instead of `~/.claude/skills` to scope it to one project.
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+Download [bna-ui.zip](https://ui.ahmedbna.com/skills/bna-ui.zip) and upload it
+under **Settings → Capabilities → Skills**.
+
+</TabsContent>
+
+</CodeTabs>
+
+## What's in it
+
+| File | Read when |
+| --- | --- |
+| `SKILL.md` | A conversation touches React Native, Expo or BNA UI. |
+| `references/catalogue.md` | Claude needs to find the right component. |
+| `references/conventions.md` | Claude is writing or reviewing component code. |
+| `references/endpoints.md` | Claude needs live data from the registry. |
+
+The catalogue is generated from the registry at build time, so it lists exactly
+what is installable — it cannot drift.
+
+## Skill, MCP, or rules file?
+
+They stack, and each covers a different gap.
+
+- **[MCP server](/docs/mcp)** — live data. Claude reads the actual current source
+  and props rather than a snapshot. Best if you install one thing.
+- **Skill** — conventions and judgement. Knows *when* to reach for this library
+  and how to use it well, without a network round-trip.
+- **[Rules file](/docs/agents)** — works in any assistant, including ones that
+  support neither of the above.
+
+Together: the skill supplies the conventions, the MCP server supplies the facts.

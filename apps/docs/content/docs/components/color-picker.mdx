@@ -48,17 +48,7 @@ npx expo install expo-linear-gradient react-native-gesture-handler react-native-
 
 ## Usage
 
-```tsx
-import { ColorPicker, ColorSwatch } from '@/components/ui/color-picker';
-```
-
-```tsx
-<ColorPicker
-  value='#ff0000'
-  onColorChange={(color) => console.log('Color changed:', color)}
-  onColorSelect={(color) => console.log('Color selected:', color)}
-/>
-```
+<Usage name='color-picker' />
 
 ## Examples
 
@@ -147,29 +137,7 @@ import { ColorPicker, ColorSwatch } from '@/components/ui/color-picker';
 
 ## API Reference
 
-### ColorPicker
-
-The main color picker component that displays a swatch and opens a modal for color selection.
-
-| Prop            | Type                      | Default     | Description                                             |
-| --------------- | ------------------------- | ----------- | ------------------------------------------------------- |
-| `value`         | `string`                  | `'#ff0000'` | The current color value in hex format.                  |
-| `onColorChange` | `(color: string) => void` | -           | Callback fired when the color changes during selection. |
-| `onColorSelect` | `(color: string) => void` | -           | Callback fired when the user confirms color selection.  |
-| `swatchSize`    | `number`                  | `HEIGHT`    | The size of the color swatch in pixels.                 |
-| `disabled`      | `boolean`                 | `false`     | Whether the color picker is disabled.                   |
-| `style`         | `ViewStyle`               | -           | Additional styles to apply to the container.            |
-
-### ColorSwatch
-
-A standalone color swatch component that can be used independently.
-
-| Prop      | Type         | Default | Description                                |
-| --------- | ------------ | ------- | ------------------------------------------ |
-| `color`   | `string`     | -       | The color to display in hex format.        |
-| `size`    | `number`     | `32`    | The size of the swatch in pixels.          |
-| `style`   | `ViewStyle`  | -       | Additional styles to apply to the swatch.  |
-| `onPress` | `() => void` | -       | Callback fired when the swatch is pressed. |
+<ApiReference name='color-picker' />
 
 ## Color Utilities
 
@@ -192,13 +160,7 @@ The component includes several utility functions for color manipulation:
 
 ## Accessibility
 
-The ColorPicker component is built with accessibility in mind:
-
-- Color values are displayed in uppercase hex format for easy reading
-- High contrast knobs for better visibility
-- Proper touch targets for gesture interactions
-- Modal provides clear cancel and confirm actions
-- Color preview shows the selected color prominently
+<Accessibility name='color-picker' />
 
 ## Notes
 

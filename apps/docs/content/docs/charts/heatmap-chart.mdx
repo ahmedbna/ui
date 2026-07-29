@@ -51,30 +51,7 @@ npm install react-native-svg react-native-reanimated react-native-gesture-handle
 
 ## Usage
 
-```tsx
-import { HeatmapChart } from '@/components/charts/heatmap-chart';
-```
-
-```tsx
-const data = [
-  { row: 'Mon', col: 'Morning', value: 45 },
-  { row: 'Mon', col: 'Afternoon', value: 62 },
-  { row: 'Mon', col: 'Evening', value: 38 },
-  { row: 'Tue', col: 'Morning', value: 52 },
-  { row: 'Tue', col: 'Afternoon', value: 71 },
-  { row: 'Tue', col: 'Evening', value: 43 },
-];
-
-<HeatmapChart
-  data={data}
-  config={{
-    height: 300,
-    showLabels: true,
-    animated: true,
-    colorScale: ['#e0f2fe', '#0369a1', '#1e3a8a'],
-  }}
-/>;
-```
+<Usage name='heatmap-chart' />
 
 ## Examples
 
@@ -124,36 +101,7 @@ const data = [
 
 ## API Reference
 
-### HeatmapChart
-
-A customizable heatmap chart component with smooth animations and flexible color scaling. Perfect for visualizing matrix data, correlation matrices, activity patterns, and any two-dimensional data with intensity values.
-
-| Prop     | Type                 | Default | Description                                   |
-| -------- | -------------------- | ------- | --------------------------------------------- |
-| `data`   | `HeatmapDataPoint[]` | -       | Array of data points to display on the chart. |
-| `config` | `ChartConfig`        | `{}`    | Configuration object for chart appearance.    |
-| `style`  | `ViewStyle`          | -       | Additional styles to apply to the chart.      |
-
-### HeatmapDataPoint
-
-| Property | Type               | Default | Description                               |
-| -------- | ------------------ | ------- | ----------------------------------------- |
-| `row`    | `string \| number` | -       | The row identifier for the data point.    |
-| `col`    | `string \| number` | -       | The column identifier for the data point. |
-| `value`  | `number`           | -       | The intensity value for the data point.   |
-| `label`  | `string`           | -       | Optional custom label for the data point. |
-
-### ChartConfig
-
-| Property     | Type       | Default                             | Description                                       |
-| ------------ | ---------- | ----------------------------------- | ------------------------------------------------- |
-| `width`      | `number`   | -                                   | Fixed width of the chart (auto-sizes if omitted). |
-| `height`     | `number`   | `200`                               | Height of the chart.                              |
-| `padding`    | `number`   | `20`                                | Padding around the chart.                         |
-| `showLabels` | `boolean`  | `true`                              | Whether to show labels for cells and axes.        |
-| `animated`   | `boolean`  | `true`                              | Whether to animate the chart on load.             |
-| `duration`   | `number`   | `1000`                              | Animation duration in milliseconds.               |
-| `colorScale` | `string[]` | `['#e0f2fe', '#0369a1', '#1e3a8a']` | Array of hex colors for the gradient scale.       |
+<ApiReference name='heatmap-chart' />
 
 ## Features
 
@@ -208,13 +156,7 @@ The chart features sophisticated entry animations:
 
 ## Accessibility
 
-The HeatmapChart component includes several accessibility features:
-
-- **Semantic Structure**: Proper SVG structure for screen readers
-- **Value Labels**: Numeric values displayed within cells
-- **High Contrast**: Automatic text color adjustment for readability
-- **Descriptive Labels**: Row and column labels provide context
-- **Keyboard Navigation**: Supports focus management
+<Accessibility name='heatmap-chart' />
 
 ## Performance
 

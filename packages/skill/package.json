@@ -1,0 +1,18 @@
+{
+  "name": "@bna-ui/skill",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "description": "Claude Skill packaging BNA UI's registry knowledge for coding agents.",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "clean": "rm -rf dist .turbo",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "@bna-ui/eslint-config": "workspace:*",
+    "@bna-ui/registry": "workspace:*",
+    "eslint": "^9.17.0"
+  }
+}

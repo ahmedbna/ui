@@ -51,22 +51,7 @@ npm install react-native-svg react-native-reanimated react-native-gesture-handle
 
 ## Usage
 
-```tsx
-import { ProgressRingChart } from '@/components/charts/progress-ring-chart';
-```
-
-```tsx
-<ProgressRingChart
-  progress={75}
-  size={120}
-  strokeWidth={8}
-  config={{
-    animated: true,
-    duration: 1000,
-    gradient: true,
-  }}
-/>
-```
+<Usage name='progress-ring-chart' />
 
 ## Examples
 
@@ -116,28 +101,7 @@ import { ProgressRingChart } from '@/components/charts/progress-ring-chart';
 
 ## API Reference
 
-### ProgressRingChart
-
-A customizable circular progress ring component with smooth animations and flexible styling. Perfect for displaying progress, completion rates, or any percentage-based data.
-
-| Prop          | Type          | Default | Description                                |
-| ------------- | ------------- | ------- | ------------------------------------------ |
-| `progress`    | `number`      | -       | Progress value from 0 to 100.              |
-| `size`        | `number`      | `120`   | Size of the progress ring in pixels.       |
-| `strokeWidth` | `number`      | `8`     | Width of the progress ring stroke.         |
-| `config`      | `ChartConfig` | `{}`    | Configuration object for chart appearance. |
-| `style`       | `ViewStyle`   | -       | Additional styles to apply to the chart.   |
-| `showLabel`   | `boolean`     | `true`  | Whether to show the label above the ring.  |
-| `label`       | `string`      | -       | Label text to display above the ring.      |
-| `centerText`  | `string`      | -       | Custom text to display in the center.      |
-
-### ChartConfig
-
-| Property   | Type      | Default | Description                                  |
-| ---------- | --------- | ------- | -------------------------------------------- |
-| `animated` | `boolean` | `true`  | Whether to animate the chart on load.        |
-| `duration` | `number`  | `1000`  | Animation duration in milliseconds.          |
-| `gradient` | `boolean` | `false` | Whether to use gradient colors for the ring. |
+<ApiReference name='progress-ring-chart' />
 
 ## Features
 
@@ -171,13 +135,7 @@ The circular design of the ProgressRingChart makes it ideal for:
 
 ## Accessibility
 
-The ProgressRingChart component includes several accessibility features:
-
-- Semantic SVG structure for screen readers
-- Proper contrast ratios for visual elements
-- Text labels for progress values
-- Supports dynamic text sizing
-- Keyboard navigation support
+<Accessibility name='progress-ring-chart' />
 
 ## Performance
 

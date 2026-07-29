@@ -42,18 +42,7 @@ npx bna-ui add input-otp
 
 ## Usage
 
-```tsx
-import { InputOTP, InputOTPWithSeparator } from '@/components/ui/input-otp';
-```
-
-```tsx
-<InputOTP
-  length={6}
-  value={otp}
-  onChangeText={setOtp}
-  onComplete={(value) => console.log('OTP Complete:', value)}
-/>
-```
+<Usage name='input-otp' />
 
 ## Examples
 
@@ -211,14 +200,7 @@ export function MyComponent() {
 
 ## Accessibility
 
-The InputOTP component is built with accessibility in mind:
-
-- Uses a hidden TextInput for proper keyboard handling and screen reader support
-- Supports dynamic text sizing for better readability
-- Provides proper focus management between slots
-- Error messages are announced by screen readers
-- Maintains proper contrast ratios for all states
-- Supports keyboard navigation and input
+<Accessibility name='input-otp' />
 
 ## Security Considerations
 

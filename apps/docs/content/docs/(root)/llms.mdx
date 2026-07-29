@@ -1,0 +1,124 @@
+---
+title: AI & LLMs
+description: Every page and every component is available as Markdown and as structured JSON, so an AI assistant can read this library without scraping it.
+---
+
+Everything in these docs exists in a machine-readable form. Nothing here needs an
+API key, and every endpoint sends `Access-Control-Allow-Origin: *`.
+
+## Any page as Markdown
+
+Append `.md` to any documentation URL.
+
+```bash
+curl https://ui.ahmedbna.com/docs/components/button.md
+```
+
+The Markdown is not the page's prose with the components stripped out — it is the
+page with them **expanded**. `<ComponentPreview>` and `<ComponentSource>` become
+real code blocks, so the file contains the complete source of the component and
+of every example on the page. Each file opens with a header naming the library,
+its React-Native-not-web constraint, the install command and the import contract,
+so a model handed one file in isolation has everything it needs.
+
+Every page also advertises this in its `<head>`:
+
+```html
+<link rel="alternate" type="text/markdown" href="https://ui.ahmedbna.com/docs/components/button.md" />
+```
+
+## llms.txt
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">Index</TabsTrigger>
+  <TabsTrigger value="manual">Everything</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+[`/llms.txt`](https://ui.ahmedbna.com/llms.txt) follows the
+[llmstxt.org](https://llmstxt.org) convention: what this library is, then every
+page grouped by section with a one-line description, then the conventions that
+matter and the endpoints below. Start here.
+
+```bash
+curl https://ui.ahmedbna.com/llms.txt
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+[`/llms-full.txt`](https://ui.ahmedbna.com/llms-full.txt) is every page's
+Markdown concatenated into one file — roughly 2 MB, including the source of
+every component and every example. Use it when you would rather ingest once than
+fetch ninety-six times.
+
+```bash
+curl https://ui.ahmedbna.com/llms-full.txt
+```
+
+</TabsContent>
+
+</CodeTabs>
+
+## Component bundles
+
+`/r/ai/<name>.json` is the one request that answers everything about a
+component: what it does, its props and variants, a usage snippet, its
+accessibility notes, its npm and registry dependencies, its source, and every
+example that uses it.
+
+```bash
+curl https://ui.ahmedbna.com/r/ai/button.json
+```
+
+```json
+{
+  "name": "button",
+  "description": "A versatile button component with multiple variants, sizes, and interactive animations.",
+  "docs": "https://ui.ahmedbna.com/docs/components/button",
+  "markdown": "https://ui.ahmedbna.com/docs/components/button.md",
+  "install": { "cli": "npx bna-ui add button", "npm": ["expo-haptics", "..."] },
+  "framework": { "runtime": "react-native", "framework": "expo" },
+  "meta": { "types": [], "variants": [], "usage": {}, "accessibility": {} },
+  "files": [{ "target": "components/ui/button.tsx", "content": "..." }],
+  "examples": [{ "name": "button-variants", "files": [] }]
+}
+```
+
+[`/r/ai/index.json`](https://ui.ahmedbna.com/r/ai/index.json) lists every
+installable component with its description and bundle URL.
+
+## Install payloads
+
+`/r/<name>.json` is what the CLI fetches: the component's source plus the full
+transitive closure of everything it imports, in dependency order and ready to
+write to disk. One request installs a component no matter how deep its graph.
+
+```bash
+curl https://ui.ahmedbna.com/r/button.json
+```
+
+Every payload carries a `$schemaVersion`. A CLI that sees a version higher than
+it understands refuses the payload rather than writing files it cannot interpret.
+
+## What a model needs to know
+
+If you are pasting context into an assistant yourself, these are the four things
+that stop it writing web React:
+
+- **This is React Native.** Components render through `react-native`, not the
+  DOM. There are no HTML elements, no Tailwind classes and no Radix primitives.
+- **Style with objects.** `StyleSheet` and the `style` prop, never `className`.
+- **Imports are aliases.** Source is copied into your project and resolves
+  through `@/components/ui/*`, `@/components/charts/*`, `@/hooks/*` and
+  `@/theme/*`. Those specifiers are part of the contract.
+- **Colours come from `useColor`.** Never hardcode hex. Sizing tokens
+  (`HEIGHT`, `FONT_SIZE`, `BORDER_RADIUS`, `CORNERS`) come from `@/theme/globals`.
+
+Or skip the pasting: every page has a **Copy Page** button and an
+**Open in…** menu that hands ChatGPT, Claude, Gemini, v0, Copilot, Cursor or
+Windsurf a prompt with all of the above already in it.

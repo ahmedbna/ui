@@ -37,37 +37,7 @@ npx bna-ui add globals
 
 ## Usage
 
-```tsx
-import { HEIGHT, FONT_SIZE, BORDER_RADIUS, CORNERS } from '@/theme/globals';
-```
-
-```tsx
-export function StyledButton({ title, onPress }) {
-  return (
-    <TouchableOpacity
-      style={{
-        height: HEIGHT,
-        backgroundColor: '#007AFF',
-        borderRadius: BORDER_RADIUS,
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingHorizontal: 16,
-      }}
-      onPress={onPress}
-    >
-      <Text
-        style={{
-          color: 'white',
-          fontSize: FONT_SIZE,
-          fontWeight: '600',
-        }}
-      >
-        {title}
-      </Text>
-    </TouchableOpacity>
-  );
-}
-```
+<Usage name='globals' />
 
 ## Constants
 

@@ -48,13 +48,7 @@ npx expo install react-native-reanimated react-native-gesture-handler lucide-rea
 
 ## Usage
 
-```tsx
-import { Button } from '@/components/ui/button';
-```
-
-```tsx
-<Button onPress={() => console.log('Button pressed!')}>Click me</Button>
-```
+<Usage name='button' />
 
 ## Examples
 
@@ -153,44 +147,7 @@ import { Button } from '@/components/ui/button';
 
 ## API Reference
 
-### Button
-
-A pressable button component with multiple variants and states.
-
-| Prop             | Type                         | Default     | Description                                   |
-| ---------------- | ---------------------------- | ----------- | --------------------------------------------- |
-| `children`       | `ReactNode`                  | -           | The button content (text or custom elements). |
-| `onPress`        | `() => void`                 | -           | Function called when the button is pressed.   |
-| `variant`        | `ButtonVariant`              | `'default'` | The visual style variant of the button.       |
-| `size`           | `ButtonSize`                 | `'default'` | The size of the button.                       |
-| `disabled`       | `boolean`                    | `false`     | Whether the button is disabled.               |
-| `loading`        | `boolean`                    | `false`     | Whether the button is in loading state.       |
-| `loadingVariant` | `SpinnerVariant`             | `'default'` | The variant of the loading spinner.           |
-| `animation`      | `boolean`                    | `true`      | Whether to enable press animations.           |
-| `icon`           | `ComponentType<LucideProps>` | -           | Icon component to display before the text.    |
-| `style`          | `ViewStyle \| ViewStyle[]`   | -           | Additional styles for the button container.   |
-| `textStyle`      | `TextStyle`                  | -           | Additional styles for the button text.        |
-
-### ButtonVariant
-
-The available button variants:
-
-- `'default'` - Primary button with solid background
-- `'destructive'` - Red button for destructive actions
-- `'success'` - Green button for success actions
-- `'outline'` - Button with border and transparent background
-- `'secondary'` - Secondary button with muted colors
-- `'ghost'` - Button with no background
-- `'link'` - Text-only button with underline
-
-### ButtonSize
-
-The available button sizes:
-
-- `'default'` - Standard button size (48px height)
-- `'sm'` - Small button size (44px height)
-- `'lg'` - Large button size (54px height)
-- `'icon'` - Square button for icons only (48x48px)
+<ApiReference name='button' />
 
 ## Animations
 
@@ -203,13 +160,7 @@ The Button component features a liquid glass animation effect by default:
 
 ## Accessibility
 
-The Button component is built with accessibility in mind:
-
-- Proper touch target size (minimum 44px)
-- Disabled state prevents interaction and reduces opacity
-- Loading state shows spinner with appropriate color contrast
-- Supports screen readers with proper accessibility labels
-- Responsive to system accessibility settings
+<Accessibility name='button' />
 
 ## Best Practices
 

@@ -9,6 +9,11 @@ import { CodeCollapsibleWrapper } from '@/components/code-collapsible-wrapper';
 import { CodeTabs } from '@/components/code-tabs';
 import { ComponentPreview } from '@/components/component-preview';
 import { ComponentSource } from '@/components/component-source';
+import {
+  Accessibility,
+  ApiReference,
+  Usage,
+} from '@/components/api-reference';
 import { ComponentsList } from '@/components/components-list';
 import { ChartsList } from '@/components/charts-list';
 import { ThemeList } from '@/components/theme-list';
@@ -342,6 +347,9 @@ export const mdxComponents = {
   CodeTabs,
   ComponentPreview,
   ComponentSource,
+  ApiReference,
+  Usage,
+  Accessibility,
   CodeCollapsibleWrapper,
   ComponentsList,
   ChartsList,

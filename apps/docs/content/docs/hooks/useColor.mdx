@@ -50,17 +50,7 @@ npx bna-ui add useColorScheme
 
 ## Usage
 
-```tsx
-import { useColor } from '@/hooks/useColor';
-```
-
-```tsx
-export function ThemedText({ style, ...props }) {
-  const color = useColor('text', { light: '#000', dark: '#fff' });
-
-  return <Text style={[{ color }, style]} {...props} />;
-}
-```
+<Usage name='useColor' />
 
 ## API Reference
 
@@ -323,12 +313,7 @@ export function useAnimatedThemeColor(
 
 ## Accessibility
 
-The hook supports accessibility by:
-
-- Respecting system-level dark mode preferences
-- Enabling proper color contrast ratios through theme definitions
-- Supporting high contrast modes when defined in your color palette
-- Maintaining consistent color relationships across themes
+<Accessibility name='useColor' />
 
 ## Related Hooks
 

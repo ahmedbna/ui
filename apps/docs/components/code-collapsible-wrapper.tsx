@@ -26,7 +26,10 @@ export function CodeCollapsibleWrapper({
       {...props}
     >
       <CollapsibleTrigger asChild>
-        <div className='absolute top-1.5 right-9 z-10 flex items-center'>
+        {/* `right-9` clears a lone copy button; a component block also carries
+            an actions menu beside it, so shift further left when one is
+            present rather than leaving a gap on every other block. */}
+        <div className='group-has-data-[slot=component-actions]/collapsible:right-18 absolute top-1.5 right-9 z-10 flex items-center'>
           <Button
             variant='ghost'
             size='sm'

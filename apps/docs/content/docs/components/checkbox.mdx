@@ -48,19 +48,7 @@ npx expo install lucide-react-native
 
 ## Usage
 
-```tsx
-import { Checkbox } from '@/components/ui/checkbox';
-```
-
-```tsx
-const [checked, setChecked] = useState(false);
-
-<Checkbox
-  checked={checked}
-  onCheckedChange={setChecked}
-  label='Accept terms and conditions'
-/>;
-```
+<Usage name='checkbox' />
 
 ## Examples
 
@@ -129,29 +117,11 @@ const [checked, setChecked] = useState(false);
 
 ## API Reference
 
-### Checkbox
-
-A checkbox component that allows users to select or deselect an option.
-
-| Prop              | Type                         | Default | Description                                              |
-| ----------------- | ---------------------------- | ------- | -------------------------------------------------------- |
-| `checked`         | `boolean`                    | -       | Whether the checkbox is checked.                         |
-| `onCheckedChange` | `(checked: boolean) => void` | -       | Callback function called when the checked state changes. |
-| `label`           | `string`                     | -       | Optional label text to display next to the checkbox.     |
-| `error`           | `string`                     | -       | Error message to display (affects styling).              |
-| `disabled`        | `boolean`                    | `false` | Whether the checkbox is disabled.                        |
-| `labelStyle`      | `TextStyle`                  | -       | Additional styles to apply to the label text.            |
+<ApiReference name='checkbox' />
 
 ## Accessibility
 
-The Checkbox component is built with accessibility in mind:
-
-- Uses TouchableOpacity for proper touch handling
-- Supports disabled state with reduced opacity
-- Label text is properly associated with the checkbox
-- Provides visual feedback for checked/unchecked states
-- Uses semantic color theming for different states
-- Supports custom styling while maintaining accessibility
+<Accessibility name='checkbox' />
 
 ## Theming
 

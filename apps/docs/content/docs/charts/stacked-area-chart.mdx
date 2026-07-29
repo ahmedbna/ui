@@ -51,30 +51,7 @@ npm install react-native-svg react-native-reanimated react-native-gesture-handle
 
 ## Usage
 
-```tsx
-import { StackedAreaChart } from '@/components/charts/stacked-area-chart';
-```
-
-```tsx
-const data = [
-  { x: 1, y: [20, 30, 40], label: 'Jan' },
-  { x: 2, y: [25, 35, 45], label: 'Feb' },
-  { x: 3, y: [30, 40, 50], label: 'Mar' },
-  { x: 4, y: [35, 45, 55], label: 'Apr' },
-];
-
-const categories = ['Series 1', 'Series 2', 'Series 3'];
-
-<StackedAreaChart
-  data={data}
-  categories={categories}
-  config={{
-    height: 300,
-    showLabels: true,
-    animated: true,
-  }}
-/>;
-```
+<Usage name='stacked-area-chart' />
 
 ## Examples
 
@@ -124,37 +101,7 @@ const categories = ['Series 1', 'Series 2', 'Series 3'];
 
 ## API Reference
 
-### StackedAreaChart
-
-A customizable stacked area chart component with smooth animations and gradient fills. Perfect for displaying multiple data series over time or categories, showing both individual values and cumulative totals.
-
-| Prop         | Type                     | Default | Description                                   |
-| ------------ | ------------------------ | ------- | --------------------------------------------- |
-| `data`       | `StackedAreaDataPoint[]` | -       | Array of data points to display on the chart. |
-| `colors`     | `string[]`               | `[]`    | Array of colors for each data series.         |
-| `config`     | `ChartConfig`            | `{}`    | Configuration object for chart appearance.    |
-| `style`      | `ViewStyle`              | -       | Additional styles to apply to the chart.      |
-| `categories` | `string[]`               | `[]`    | Array of category names for the legend.       |
-
-### StackedAreaDataPoint
-
-| Property | Type       | Default | Description                                  |
-| -------- | ---------- | ------- | -------------------------------------------- |
-| `x`      | `number`   | -       | The x-axis value for the data point.         |
-| `y`      | `number[]` | -       | Array of y-values for each series at this x. |
-| `label`  | `string`   | -       | Optional label for the data point.           |
-
-### ChartConfig
-
-| Property     | Type      | Default | Description                                       |
-| ------------ | --------- | ------- | ------------------------------------------------- |
-| `width`      | `number`  | -       | Fixed width of the chart (auto-sizes if omitted). |
-| `height`     | `number`  | `200`   | Height of the chart.                              |
-| `padding`    | `number`  | `20`    | Padding around the chart.                         |
-| `showGrid`   | `boolean` | `true`  | Whether to show grid lines.                       |
-| `showLabels` | `boolean` | `true`  | Whether to show labels for data points.           |
-| `animated`   | `boolean` | `true`  | Whether to animate the chart on load.             |
-| `duration`   | `number`  | `1000`  | Animation duration in milliseconds.               |
+<ApiReference name='stacked-area-chart' />
 
 ## Features
 
@@ -190,13 +137,7 @@ The stacked area chart is ideal for:
 
 ## Accessibility
 
-The StackedAreaChart component includes several accessibility features:
-
-- Semantic SVG structure for screen readers
-- Proper contrast ratios for visual elements
-- Text labels for data points and categories
-- Legend with clear category identification
-- Grid lines for better value estimation
+<Accessibility name='stacked-area-chart' />
 
 ## Performance
 

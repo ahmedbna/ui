@@ -58,25 +58,7 @@ export default function App() {
 
 ## Usage
 
-```tsx
-import { useToast } from '@/components/ui/toast';
-```
-
-```tsx
-function MyComponent() {
-  const { toast } = useToast();
-
-  const showToast = () => {
-    toast({
-      title: 'Success!',
-      description: 'Your changes have been saved.',
-      variant: 'success',
-    });
-  };
-
-  return <Button onPress={showToast}>Show Toast</Button>;
-}
-```
+<Usage name='toast' />
 
 ## Examples
 
@@ -199,14 +181,7 @@ The toast component features iOS Dynamic Island-inspired animations:
 
 ## Accessibility
 
-The Toast component is built with accessibility in mind:
-
-- Proper color contrast for all variants
-- Clear visual hierarchy with title and description
-- Icon indicators for different toast types
-- Dismissible with both gesture and button interactions
-- Supports dynamic text sizing
-- Screen reader friendly content structure
+<Accessibility name='toast' />
 
 ## Customization
 

@@ -48,20 +48,7 @@ npx expo install expo-document-picker lucide-react-native
 
 ## Usage
 
-```tsx
-import { FilePicker } from '@/components/ui/file-picker';
-```
-
-```tsx
-<FilePicker
-  onFilesSelected={(files) => console.log('Selected files:', files)}
-  onError={(error) => console.error('Error:', error)}
-  fileType='all'
-  multiple={true}
-  maxFiles={5}
-  placeholder='Select your files'
-/>
-```
+<Usage name='file-picker' />
 
 ## Examples
 
@@ -244,13 +231,7 @@ The FilePicker includes built-in validation for:
 
 ## Accessibility
 
-The FilePicker component is built with accessibility in mind:
-
-- Proper accessibility labels and hints
-- Screen reader support for file information
-- Keyboard navigation support
-- Clear error messaging
-- Semantic button structure
+<Accessibility name='file-picker' />
 
 ## Best Practices
 

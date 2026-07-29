@@ -48,18 +48,7 @@ npx expo install expo-image expo-image-picker expo-media-library lucide-react-na
 
 ## Usage
 
-```tsx
-import { MediaPicker } from '@/components/ui/media-picker';
-```
-
-```tsx
-<MediaPicker
-  mediaType='all'
-  multiple={true}
-  maxSelection={5}
-  onSelectionChange={(assets) => console.log(assets)}
-/>
-```
+<Usage name='media-picker' />
 
 ## Examples
 
@@ -138,45 +127,7 @@ import { MediaPicker } from '@/components/ui/media-picker';
 
 ## API Reference
 
-### MediaPicker
-
-The main component for selecting media from device gallery or camera.
-
-| Prop                | Type                             | Default  | Description                                                   |
-| ------------------- | -------------------------------- | -------- | ------------------------------------------------------------- |
-| `children`          | `ReactNode`                      | -        | Custom trigger element. If not provided, uses default button. |
-| `style`             | `ViewStyle`                      | -        | Additional styles to apply to the container.                  |
-| `size`              | `ButtonSize`                     | -        | Size of the default button trigger.                           |
-| `variant`           | `ButtonVariant`                  | -        | Variant of the default button trigger.                        |
-| `icon`              | `ComponentType<LucideProps>`     | -        | Icon for the default button trigger.                          |
-| `disabled`          | `boolean`                        | `false`  | Whether the media picker is disabled.                         |
-| `mediaType`         | `'image' \| 'video' \| 'all'`    | `'all'`  | Type of media to allow selection.                             |
-| `multiple`          | `boolean`                        | `false`  | Whether to allow multiple selection.                          |
-| `maxSelection`      | `number`                         | `10`     | Maximum number of items that can be selected.                 |
-| `quality`           | `'low' \| 'medium' \| 'high'`    | `'high'` | Quality of selected media.                                    |
-| `buttonText`        | `string`                         | -        | Text for the default button trigger.                          |
-| `placeholder`       | `string`                         | -        | Placeholder text (currently unused).                          |
-| `gallery`           | `boolean`                        | `false`  | Whether to show custom gallery modal.                         |
-| `showPreview`       | `boolean`                        | `true`   | Whether to show preview of selected media.                    |
-| `previewSize`       | `number`                         | `80`     | Size of preview thumbnails in pixels.                         |
-| `selectedAssets`    | `MediaAsset[]`                   | `[]`     | Controlled selected assets.                                   |
-| `onSelectionChange` | `(assets: MediaAsset[]) => void` | -        | Callback when selection changes.                              |
-| `onError`           | `(error: string) => void`        | -        | Callback when an error occurs.                                |
-
-### MediaAsset
-
-The interface for media assets returned by the picker.
-
-| Property   | Type                 | Description                      |
-| ---------- | -------------------- | -------------------------------- |
-| `id`       | `string`             | Unique identifier for the asset. |
-| `uri`      | `string`             | Local URI of the selected media. |
-| `type`     | `'image' \| 'video'` | Type of the media asset.         |
-| `width`    | `number?`            | Width of the media in pixels.    |
-| `height`   | `number?`            | Height of the media in pixels.   |
-| `duration` | `number?`            | Duration in seconds for videos.  |
-| `filename` | `string?`            | Original filename of the media.  |
-| `fileSize` | `number?`            | File size in bytes.              |
+<ApiReference name='media-picker' />
 
 ## Permissions
 
@@ -200,13 +151,7 @@ The component automatically requests these permissions when first used.
 
 ## Accessibility
 
-The MediaPicker component is built with accessibility in mind:
-
-- Proper labeling for screen readers
-- Keyboard navigation support
-- High contrast support for buttons and indicators
-- Semantic structure for better navigation
-- Error announcements for screen readers
+<Accessibility name='media-picker' />
 
 ## Notes
 

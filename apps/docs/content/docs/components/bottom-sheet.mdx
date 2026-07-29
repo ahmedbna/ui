@@ -64,30 +64,7 @@ export default function RootLayout() {
 
 ## Usage
 
-```tsx
-import { BottomSheet, useBottomSheet } from '@/components/ui/bottom-sheet';
-```
-
-```tsx
-function MyComponent() {
-  const { isVisible, open, close } = useBottomSheet();
-
-  return (
-    <>
-      <Button onPress={open}>Open Bottom Sheet</Button>
-
-      <BottomSheet
-        isVisible={isVisible}
-        onClose={close}
-        title='Settings'
-        snapPoints={[0.3, 0.6, 0.9]}
-      >
-        <Text>Your content here</Text>
-      </BottomSheet>
-    </>
-  );
-}
-```
+<Usage name='bottom-sheet' />
 
 ## Examples
 
@@ -236,12 +213,7 @@ The component uses React Native Reanimated for smooth animations:
 
 ## Accessibility
 
-The BottomSheet component includes accessibility features:
-
-- **Modal Semantics**: Proper modal behavior for screen readers
-- **Focus Management**: Traps focus within the sheet when open
-- **Gesture Alternatives**: Provides non-gesture ways to interact
-- **Backdrop Dismiss**: Can be disabled for better accessibility control
+<Accessibility name='bottom-sheet' />
 
 ## Best Practices
 

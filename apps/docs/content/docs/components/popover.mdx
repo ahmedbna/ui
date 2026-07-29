@@ -42,38 +42,7 @@ npx bna-ui add popover
 
 ## Usage
 
-```tsx
-import {
-  Popover,
-  PopoverBody,
-  PopoverClose,
-  PopoverContent,
-  PopoverFooter,
-  PopoverHeader,
-  PopoverTrigger,
-} from '@/components/ui/popover';
-```
-
-```tsx
-<Popover>
-  <PopoverTrigger>
-    <Button>Open Popover</Button>
-  </PopoverTrigger>
-  <PopoverContent>
-    <PopoverHeader>
-      <Text>Popover Title</Text>
-    </PopoverHeader>
-    <PopoverBody>
-      <Text>This is the popover content.</Text>
-    </PopoverBody>
-    <PopoverFooter>
-      <PopoverClose>
-        <Button variant='outline'>Close</Button>
-      </PopoverClose>
-    </PopoverFooter>
-  </PopoverContent>
-</Popover>
-```
+<Usage name='popover' />
 
 ## Examples
 
@@ -152,77 +121,7 @@ import {
 
 ## API Reference
 
-### Popover
-
-The root component that manages the popover state and provides context.
-
-| Prop           | Type                      | Default | Description                                 |
-| -------------- | ------------------------- | ------- | ------------------------------------------- |
-| `children`     | `ReactNode`               | -       | The popover trigger and content components. |
-| `open`         | `boolean`                 | `false` | Controls the open state of the popover.     |
-| `onOpenChange` | `(open: boolean) => void` | -       | Callback fired when the open state changes. |
-
-### PopoverTrigger
-
-The element that triggers the popover when pressed.
-
-| Prop       | Type        | Default | Description                                          |
-| ---------- | ----------- | ------- | ---------------------------------------------------- |
-| `children` | `ReactNode` | -       | The trigger content.                                 |
-| `asChild`  | `boolean`   | `false` | When true, merges props with the child element.      |
-| `style`    | `ViewStyle` | -       | Additional styles to apply to the trigger container. |
-
-### PopoverContent
-
-The container for the popover content with positioning logic.
-
-| Prop          | Type                                     | Default  | Description                                            |
-| ------------- | ---------------------------------------- | -------- | ------------------------------------------------------ |
-| `children`    | `ReactNode`                              | -        | The popover content.                                   |
-| `align`       | `'start' \| 'center' \| 'end'`           | `center` | How to align the popover relative to the trigger.      |
-| `side`        | `'top' \| 'right' \| 'bottom' \| 'left'` | `bottom` | The preferred side of the trigger to position against. |
-| `sideOffset`  | `number`                                 | `8`      | The distance between the trigger and the popover.      |
-| `alignOffset` | `number`                                 | `0`      | An offset in pixels from the alignment position.       |
-| `style`       | `ViewStyle`                              | -        | Additional styles to apply to the content container.   |
-| `maxWidth`    | `number`                                 | `300`    | Maximum width of the popover in pixels.                |
-| `maxHeight`   | `number`                                 | `400`    | Maximum height of the popover in pixels.               |
-
-### PopoverHeader
-
-A header section for the popover content.
-
-| Prop       | Type        | Default | Description                                         |
-| ---------- | ----------- | ------- | --------------------------------------------------- |
-| `children` | `ReactNode` | -       | The header content.                                 |
-| `style`    | `ViewStyle` | -       | Additional styles to apply to the header container. |
-
-### PopoverBody
-
-The main content area of the popover.
-
-| Prop       | Type        | Default | Description                                       |
-| ---------- | ----------- | ------- | ------------------------------------------------- |
-| `children` | `ReactNode` | -       | The body content.                                 |
-| `style`    | `ViewStyle` | -       | Additional styles to apply to the body container. |
-
-### PopoverFooter
-
-A footer section for the popover content.
-
-| Prop       | Type        | Default | Description                                         |
-| ---------- | ----------- | ------- | --------------------------------------------------- |
-| `children` | `ReactNode` | -       | The footer content.                                 |
-| `style`    | `ViewStyle` | -       | Additional styles to apply to the footer container. |
-
-### PopoverClose
-
-A utility component that closes the popover when pressed.
-
-| Prop       | Type        | Default | Description                                        |
-| ---------- | ----------- | ------- | -------------------------------------------------- |
-| `children` | `ReactNode` | -       | The close trigger content.                         |
-| `asChild`  | `boolean`   | `false` | When true, merges props with the child element.    |
-| `style`    | `ViewStyle` | -       | Additional styles to apply to the close container. |
+<ApiReference name='popover' />
 
 ## Positioning
 
@@ -235,10 +134,5 @@ The popover automatically positions itself relative to the trigger element and a
 
 ## Accessibility
 
-The Popover component is built with accessibility in mind:
+<Accessibility name='popover' />
 
-- Proper focus management when opening and closing
-- Keyboard navigation support (Escape to close)
-- Screen reader compatible with proper ARIA attributes
-- Touch-friendly interaction areas
-- Respects user's motion preferences

@@ -51,28 +51,7 @@ npm install react-native-svg react-native-reanimated react-native-gesture-handle
 
 ## Usage
 
-```tsx
-import { CandlestickChart } from '@/components/charts/candlestick-chart';
-```
-
-```tsx
-const data = [
-  { date: 'Jan 1', open: 100, high: 120, low: 95, close: 110 },
-  { date: 'Jan 2', open: 110, high: 125, low: 105, close: 115 },
-  { date: 'Jan 3', open: 115, high: 130, low: 110, close: 125 },
-  { date: 'Jan 4', open: 125, high: 140, low: 120, close: 135 },
-];
-
-<CandlestickChart
-  data={data}
-  config={{
-    height: 200,
-    showGrid: true,
-    showLabels: true,
-    animated: true,
-  }}
-/>;
-```
+<Usage name='candlestick-chart' />
 
 ## Examples
 
@@ -122,37 +101,7 @@ const data = [
 
 ## API Reference
 
-### CandlestickChart
-
-A customizable candlestick chart component for financial data visualization with smooth animations.
-
-| Prop     | Type                     | Default | Description                                  |
-| -------- | ------------------------ | ------- | -------------------------------------------- |
-| `data`   | `CandlestickDataPoint[]` | -       | Array of candlestick data points to display. |
-| `config` | `ChartConfig`            | `{}`    | Configuration object for chart appearance.   |
-| `style`  | `ViewStyle`              | -       | Additional styles to apply to the chart.     |
-
-### CandlestickDataPoint
-
-| Property | Type     | Default | Description                         |
-| -------- | -------- | ------- | ----------------------------------- |
-| `date`   | `string` | -       | The date/time label for the candle. |
-| `open`   | `number` | -       | The opening price for the period.   |
-| `high`   | `number` | -       | The highest price for the period.   |
-| `low`    | `number` | -       | The lowest price for the period.    |
-| `close`  | `number` | -       | The closing price for the period.   |
-
-### ChartConfig
-
-| Property     | Type      | Default | Description                                       |
-| ------------ | --------- | ------- | ------------------------------------------------- |
-| `width`      | `number`  | -       | Fixed width of the chart (auto-sizes if omitted). |
-| `height`     | `number`  | `200`   | Height of the chart.                              |
-| `padding`    | `number`  | `20`    | Padding around the chart.                         |
-| `showGrid`   | `boolean` | `true`  | Whether to show grid lines.                       |
-| `showLabels` | `boolean` | `true`  | Whether to show date labels.                      |
-| `animated`   | `boolean` | `true`  | Whether to animate the chart on load.             |
-| `duration`   | `number`  | `800`   | Animation duration in milliseconds.               |
+<ApiReference name='candlestick-chart' />
 
 ## Features
 
@@ -167,13 +116,7 @@ A customizable candlestick chart component for financial data visualization with
 
 ## Accessibility
 
-The CandlestickChart component is built with accessibility in mind:
-
-- Semantic SVG structure for screen readers
-- Proper contrast ratios for visual elements
-- Touch targets meet minimum size requirements
-- Supports dynamic text sizing
-- Keyboard navigation support (when interactive)
+<Accessibility name='candlestick-chart' />
 
 ## Performance
 

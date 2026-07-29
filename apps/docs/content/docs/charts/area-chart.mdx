@@ -48,28 +48,7 @@ npm install react-native-svg react-native-reanimated react-native-gesture-handle
 
 ## Usage
 
-```tsx
-import { AreaChart } from '@/components/charts/area-chart';
-```
-
-```tsx
-const data = [
-  { x: 'Jan', y: 100, label: 'January' },
-  { x: 'Feb', y: 120, label: 'February' },
-  { x: 'Mar', y: 90, label: 'March' },
-  { x: 'Apr', y: 140, label: 'April' },
-];
-
-<AreaChart
-  data={data}
-  config={{
-    height: 200,
-    showGrid: true,
-    showLabels: true,
-    animated: true,
-  }}
-/>;
-```
+<Usage name='area-chart' />
 
 ## Examples
 
@@ -119,40 +98,7 @@ const data = [
 
 ## API Reference
 
-### AreaChart
-
-A customizable area chart component with gradient fills and smooth animations. Built on top of the LineChart component with gradient enabled by default.
-
-| Prop     | Type               | Default | Description                                   |
-| -------- | ------------------ | ------- | --------------------------------------------- |
-| `data`   | `ChartDataPoint[]` | -       | Array of data points to display on the chart. |
-| `config` | `ChartConfig`      | `{}`    | Configuration object for chart appearance.    |
-| `style`  | `ViewStyle`        | -       | Additional styles to apply to the chart.      |
-
-### ChartDataPoint
-
-| Property | Type               | Default | Description                          |
-| -------- | ------------------ | ------- | ------------------------------------ |
-| `x`      | `string \| number` | -       | The x-axis value for the data point. |
-| `y`      | `number`           | -       | The y-axis value for the data point. |
-| `label`  | `string`           | -       | Optional label for the data point.   |
-
-### ChartConfig
-
-| Property      | Type      | Default | Description                                                |
-| ------------- | --------- | ------- | ---------------------------------------------------------- |
-| `width`       | `number`  | -       | Fixed width of the chart (auto-sizes if omitted).          |
-| `height`      | `number`  | `200`   | Height of the chart.                                       |
-| `padding`     | `number`  | `20`    | Padding around the chart.                                  |
-| `showGrid`    | `boolean` | `true`  | Whether to show grid lines.                                |
-| `showLabels`  | `boolean` | `true`  | Whether to show x-axis labels.                             |
-| `animated`    | `boolean` | `true`  | Whether to animate the chart on load.                      |
-| `duration`    | `number`  | `1000`  | Animation duration in milliseconds.                        |
-| `gradient`    | `boolean` | `true`  | Whether to show gradient fill (always true for AreaChart). |
-| `interactive` | `boolean` | `false` | Whether to enable touch interactions.                      |
-| `showYLabels` | `boolean` | `true`  | Whether to show y-axis labels.                             |
-| `yLabelCount` | `number`  | `5`     | Number of y-axis labels to display.                        |
-| `yAxisWidth`  | `number`  | `20`    | Width allocated for y-axis labels.                         |
+<ApiReference name='area-chart' />
 
 ## Features
 
@@ -180,13 +126,7 @@ Area charts are particularly effective for:
 
 ## Accessibility
 
-The AreaChart component inherits all accessibility features from LineChart:
-
-- Semantic SVG structure for screen readers
-- Proper contrast ratios for visual elements
-- Touch targets meet minimum size requirements
-- Supports dynamic text sizing
-- Keyboard navigation support (when interactive)
+<Accessibility name='area-chart' />
 
 ## Performance
 

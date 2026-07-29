@@ -189,28 +189,7 @@ function AudioPlayer() {
 
 ## API Reference
 
-### AudioWaveform
-
-The main AudioWaveform component.
-
-| Prop            | Type                         | Default     | Description                                                       |
-| --------------- | ---------------------------- | ----------- | ----------------------------------------------------------------- |
-| `data`          | `number[]`                   | -           | Audio amplitude data (0-1 range). Auto-generated if not provided. |
-| `isPlaying`     | `boolean`                    | `false`     | Whether the audio is currently playing.                           |
-| `progress`      | `number`                     | `0`         | Current playback progress (0-100).                                |
-| `onSeek`        | `(position: number) => void` | -           | Callback fired when user seeks to a position.                     |
-| `onSeekStart`   | `() => void`                 | -           | Callback fired when seeking starts.                               |
-| `onSeekEnd`     | `() => void`                 | -           | Callback fired when seeking ends.                                 |
-| `style`         | `ViewStyle`                  | -           | Additional styles for the container.                              |
-| `height`        | `number`                     | `60`        | Height of the waveform in pixels.                                 |
-| `barCount`      | `number`                     | `50`        | Number of bars in the waveform.                                   |
-| `barWidth`      | `number`                     | `3`         | Width of each bar in pixels.                                      |
-| `barGap`        | `number`                     | `2`         | Gap between bars in pixels.                                       |
-| `activeColor`   | `string`                     | theme color | Color for played/active portion.                                  |
-| `inactiveColor` | `string`                     | theme color | Color for unplayed/inactive portion.                              |
-| `animated`      | `boolean`                    | `true`      | Whether to animate the waveform during playback.                  |
-| `showProgress`  | `boolean`                    | `false`     | Whether to show progress indicator.                               |
-| `interactive`   | `boolean`                    | `false`     | Whether to enable touch-based seeking.                            |
+<ApiReference name='audio-waveform' />
 
 ## Usage Patterns
 
@@ -326,12 +305,7 @@ function RecordingView() {
 
 ## Accessibility
 
-The AudioWaveform component follows accessibility best practices:
-
-- Proper touch target sizes for interactive elements
-- Screen reader support for progress information
-- Respects system accessibility settings
-- Keyboard navigation support where applicable
+<Accessibility name='audio-waveform' />
 
 ## Performance
 

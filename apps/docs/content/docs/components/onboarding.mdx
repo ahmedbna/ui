@@ -53,38 +53,7 @@ npx expo install react-native-gesture-handler react-native-reanimated
 
 ## Usage
 
-```tsx
-import { Onboarding, OnboardingStep } from '@/components/ui/onboarding';
-```
-
-```tsx
-const steps: OnboardingStep[] = [
-  {
-    id: '1',
-    title: 'Welcome',
-    description: 'Get started with our amazing app',
-    icon: <WelcomeIcon />,
-  },
-  {
-    id: '2',
-    title: 'Explore Features',
-    description: 'Discover all the powerful features we offer',
-    icon: <FeaturesIcon />,
-  },
-  {
-    id: '3',
-    title: 'Get Started',
-    description: "You are all set! Let's begin your journey",
-    icon: <StartIcon />,
-  },
-];
-
-<Onboarding
-  steps={steps}
-  onComplete={() => console.log('Onboarding completed')}
-  onSkip={() => console.log('Onboarding skipped')}
-/>;
-```
+<Usage name='onboarding' />
 
 ## Examples
 
@@ -234,11 +203,5 @@ const {
 
 ## Accessibility
 
-The Onboarding component is built with accessibility in mind:
+<Accessibility name='onboarding' />
 
-- Proper semantic structure for screen readers
-- Keyboard navigation support
-- High contrast support for progress indicators
-- Descriptive labels for navigation buttons
-- Support for dynamic text sizing
-- Focus management between steps

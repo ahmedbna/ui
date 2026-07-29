@@ -1,0 +1,92 @@
+---
+title: MCP Server
+description: Let Claude Code, Cursor, VS Code and other assistants browse the registry and read component source directly, instead of guessing or scraping.
+---
+
+`bna-ui mcp` runs a [Model Context Protocol](https://modelcontextprotocol.io)
+server over the same registry the CLI installs from. Your assistant asks it what
+exists and reads the real source, rather than recalling a component library from
+its training data — which, for anything that looks like this one, means web React.
+
+<Callout>
+  It needs no configuration and no API key. Everything it serves is the public
+  registry, cached under `~/.cache/bna-ui` with ETags, so repeat calls are free
+  and it keeps working offline.
+</Callout>
+
+## Install
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">Claude Code</TabsTrigger>
+  <TabsTrigger value="manual">Other clients</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+claude mcp add bna-ui -- npx -y bna-ui mcp
+```
+
+Then ask for a component by name — "add a BNA UI button with a loading state" —
+and Claude will call `get_component` before writing anything.
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+Every MCP client takes the same command. Add this to its config file:
+
+```json
+{
+  "mcpServers": {
+    "bna-ui": {
+      "command": "npx",
+      "args": ["-y", "bna-ui", "mcp"]
+    }
+  }
+}
+```
+
+- **Cursor** — `.cursor/mcp.json`, or
+  [one-click install](cursor://anysphere.cursor-deeplink/mcp/install?name=bna-ui&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsImJuYS11aSIsIm1jcCJdfQ%3D%3D)
+- **VS Code / Copilot** — `.vscode/mcp.json`, or
+  [one-click install](vscode:mcp/install?%7B%22name%22%3A%22bna-ui%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22bna-ui%22%2C%22mcp%22%5D%7D)
+- **Windsurf** — `~/.codeium/windsurf/mcp_config.json`
+- **Codex** — `~/.codex/config.toml`
+
+</TabsContent>
+
+</CodeTabs>
+
+## Tools
+
+| Tool | What it answers |
+| --- | --- |
+| `list_components` | Everything installable, filterable by component, chart, hook or theme. |
+| `search_components` | "Which component does X?" — matches names and descriptions. |
+| `get_component` | Description, props, variants, usage, accessibility notes, dependencies, full source and every example. |
+| `get_component_source` | Just the source, for when the API is already known. |
+| `get_install_plan` | The exact `add` command, the npm packages, and the files it will write. Never writes anything itself. |
+| `get_docs` | Any documentation page as Markdown, with all source expanded inline. |
+
+Every component response is prefixed with the React-Native constraint, because a
+model that read it once at the start of a long session has usually stopped
+attending to it by the time it writes the JSX.
+
+## Nothing is written to disk
+
+`get_install_plan` returns a command; it does not run it. Installing stays an
+explicit step you or your assistant takes with `npx bna-ui add`, so nothing
+appears in your project without you asking.
+
+## Without MCP
+
+Any agent that can run a command gets the same data:
+
+```bash
+npx bna-ui info button --json
+```
+
+Or fetch it directly — see [AI & LLMs](/docs/llms) for every endpoint.

@@ -48,24 +48,7 @@ npx expo install lucide-react-native
 
 ## Usage
 
-```tsx
-import { Table, TableColumn } from '@/components/ui/table';
-```
-
-```tsx
-const data = [
-  { id: 1, name: 'John Doe', email: 'john@example.com', role: 'Admin' },
-  { id: 2, name: 'Jane Smith', email: 'jane@example.com', role: 'User' },
-];
-
-const columns: TableColumn[] = [
-  { id: 'name', header: 'Name', accessorKey: 'name', sortable: true },
-  { id: 'email', header: 'Email', accessorKey: 'email', sortable: true },
-  { id: 'role', header: 'Role', accessorKey: 'role', filterable: true },
-];
-
-<Table data={data} columns={columns} />;
-```
+<Usage name='table' />
 
 ## Examples
 
@@ -134,44 +117,7 @@ const columns: TableColumn[] = [
 
 ## API Reference
 
-### Table
-
-The main table component that renders data in a structured format.
-
-| Prop                | Type                              | Default               | Description                                       |
-| ------------------- | --------------------------------- | --------------------- | ------------------------------------------------- |
-| `data`              | `T[]`                             | -                     | Array of data objects to display in the table.    |
-| `columns`           | `TableColumn<T>[]`                | -                     | Array of column definitions.                      |
-| `pagination`        | `boolean`                         | `true`                | Whether to enable pagination.                     |
-| `pageSize`          | `number`                          | `10`                  | Number of rows per page.                          |
-| `searchable`        | `boolean`                         | `true`                | Whether to show the search bar.                   |
-| `searchPlaceholder` | `string`                          | `'Search...'`         | Placeholder text for the search input.            |
-| `loading`           | `boolean`                         | `false`               | Whether to show loading state.                    |
-| `emptyMessage`      | `string`                          | `'No data available'` | Message to show when no data is available.        |
-| `style`             | `ViewStyle`                       | -                     | Additional styles for the table container.        |
-| `headerStyle`       | `ViewStyle`                       | -                     | Additional styles for the header row.             |
-| `rowStyle`          | `ViewStyle`                       | -                     | Additional styles for data rows.                  |
-| `cellStyle`         | `ViewStyle`                       | -                     | Additional styles for table cells.                |
-| `onRowPress`        | `(row: T, index: number) => void` | -                     | Callback when a row is pressed.                   |
-| `sortable`          | `boolean`                         | `true`                | Whether to enable global sorting functionality.   |
-| `filterable`        | `boolean`                         | `true`                | Whether to enable global filtering functionality. |
-
-### TableColumn
-
-Configuration object for table columns.
-
-| Prop          | Type                                      | Default  | Description                                        |
-| ------------- | ----------------------------------------- | -------- | -------------------------------------------------- |
-| `id`          | `string`                                  | -        | Unique identifier for the column.                  |
-| `header`      | `string`                                  | -        | Text to display in the column header.              |
-| `accessorKey` | `string`                                  | -        | Key to access data from the row object.            |
-| `sortable`    | `boolean`                                 | `false`  | Whether this column can be sorted.                 |
-| `filterable`  | `boolean`                                 | `false`  | Whether this column is included in search filters. |
-| `width`       | `number \| string`                        | -        | Fixed width for the column.                        |
-| `minWidth`    | `number`                                  | `100`    | Minimum width for the column.                      |
-| `cell`        | `(value: any, row: T) => React.ReactNode` | -        | Custom cell renderer function.                     |
-| `headerCell`  | `() => React.ReactNode`                   | -        | Custom header cell renderer function.              |
-| `align`       | `'left' \| 'center' \| 'right'`           | `'left'` | Text alignment for the column.                     |
+<ApiReference name='table' />
 
 ## Features
 

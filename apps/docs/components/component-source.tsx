@@ -4,10 +4,13 @@ import * as React from 'react';
 
 import { highlightCode } from '@/lib/highlight-code';
 import { cn } from '@/lib/utils';
+import { siteConfig } from '@/lib/config';
+import { docUrlForEntry, githubUrlForEntry } from '@/lib/component-links';
 import { CodeCollapsibleWrapper } from '@/components/code-collapsible-wrapper';
-import { CopyButton } from '@/components/copy-button';
+import { ComponentActions } from '@/components/component-actions';
 import { getIconForLanguageExtension } from '@/components/icons';
 import { getSource } from '@/lib/registry';
+import { REGISTRY } from '@bna-ui/registry';
 
 export async function ComponentSource({
   name,
@@ -48,11 +51,20 @@ export async function ComponentSource({
   const lang = language ?? title?.split('.').pop() ?? 'tsx';
   const highlightedCode = await highlightCode(code, lang);
 
+  const actions = {
+    name,
+    code,
+    origin: siteConfig.url,
+    target: title ?? file ?? (name ? REGISTRY[name]?.files[0]?.target : src),
+    docUrl: name ? docUrlForEntry(name) : undefined,
+    githubUrl: name ? githubUrlForEntry(name) : undefined,
+  };
+
   if (!collapsible) {
     return (
       <div className={cn('relative', className)}>
         <ComponentCode
-          code={code}
+          actions={actions}
           highlightedCode={highlightedCode}
           language={lang}
           title={title}
@@ -64,7 +76,7 @@ export async function ComponentSource({
   return (
     <CodeCollapsibleWrapper className={className}>
       <ComponentCode
-        code={code}
+        actions={actions}
         highlightedCode={highlightedCode}
         language={lang}
         title={title}
@@ -74,12 +86,12 @@ export async function ComponentSource({
 }
 
 function ComponentCode({
-  code,
+  actions,
   highlightedCode,
   language,
   title,
 }: {
-  code: string;
+  actions: React.ComponentProps<typeof ComponentActions>;
   highlightedCode: string;
   language: string;
   title: string | undefined;
@@ -96,7 +108,7 @@ function ComponentCode({
           {title}
         </figcaption>
       )}
-      <CopyButton value={code} />
+      <ComponentActions {...actions} />
       <div dangerouslySetInnerHTML={{ __html: highlightedCode }} />
     </figure>
   );

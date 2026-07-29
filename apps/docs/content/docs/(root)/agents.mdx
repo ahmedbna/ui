@@ -1,0 +1,72 @@
+---
+title: Rules for agents
+description: Drop-in AGENTS.md, Cursor rules and CLAUDE.md snippets that teach a coding assistant this is React Native, not the web.
+---
+
+An assistant that has never seen BNA UI will assume it works like every other
+component library it has read — web React, Tailwind, Radix. These files correct
+that before it writes a line.
+
+If your assistant supports [MCP](/docs/mcp), install that instead or as well: it
+reads the live registry rather than a snapshot.
+
+## AGENTS.md
+
+The canonical brief, generated from the registry so its component list is never
+stale. Put it at the root of your project.
+
+```bash
+curl -o AGENTS.md https://ui.ahmedbna.com/AGENTS.md
+```
+
+[Read it](https://ui.ahmedbna.com/AGENTS.md) — it covers the React-Native
+constraint, the install flow, the `@/` import contract, theming through
+`useColor`, and every machine-readable endpoint.
+
+## Cursor
+
+```bash
+mkdir -p .cursor/rules && curl -o .cursor/rules/bna-ui.mdc https://ui.ahmedbna.com/AGENTS.md
+```
+
+Add a front-matter block at the top so Cursor applies it to your React Native
+files:
+
+```text
+---
+description: BNA UI — React Native component library conventions
+globs: ['**/*.tsx', '**/*.ts']
+alwaysApply: false
+---
+```
+
+## Claude Code
+
+Claude Code reads `AGENTS.md` at the project root automatically. If you keep a
+`CLAUDE.md` instead, reference it rather than duplicating it:
+
+```md
+## UI components
+
+This project uses BNA UI (React Native / Expo). See AGENTS.md for the
+conventions, or run `npx bna-ui info <component>` for a component's API.
+
+Never write `<div>` or `className` — these components render through
+react-native. Colours come from the `useColor` hook.
+```
+
+## The short version
+
+If you are pasting context by hand, these five lines do most of the work:
+
+```text
+BNA UI is a React Native / Expo component library, not a web library.
+Components render through react-native — no DOM, no Tailwind, no Radix.
+Style with StyleSheet objects and the style prop, never className.
+Imports resolve through @/components/ui/*, @/hooks/* and @/theme/*.
+Colours come from the useColor hook; never hardcode hex.
+```
+
+Or use the **Copy Page** button at the top of any component page, which puts the
+whole page — source, props and all — on your clipboard with that context already
+attached.

@@ -48,27 +48,7 @@ npm install react-native-svg react-native-reanimated
 
 ## Usage
 
-```tsx
-import { BarChart } from '@/components/charts/bar-chart';
-```
-
-```tsx
-const data = [
-  { label: 'Jan', value: 100, color: '#3b82f6' },
-  { label: 'Feb', value: 120, color: '#ef4444' },
-  { label: 'Mar', value: 90, color: '#10b981' },
-  { label: 'Apr', value: 140, color: '#f59e0b' },
-];
-
-<BarChart
-  data={data}
-  config={{
-    height: 200,
-    showLabels: true,
-    animated: true,
-  }}
-/>;
-```
+<Usage name='bar-chart' />
 
 ## Examples
 
@@ -108,35 +88,7 @@ const data = [
 
 ## API Reference
 
-### BarChart
-
-A customizable bar chart component with smooth animations and rounded corners.
-
-| Prop     | Type               | Default | Description                                   |
-| -------- | ------------------ | ------- | --------------------------------------------- |
-| `data`   | `ChartDataPoint[]` | -       | Array of data points to display on the chart. |
-| `config` | `ChartConfig`      | `{}`    | Configuration object for chart appearance.    |
-| `style`  | `ViewStyle`        | -       | Additional styles to apply to the chart.      |
-
-### ChartDataPoint
-
-| Property | Type     | Default | Description                        |
-| -------- | -------- | ------- | ---------------------------------- |
-| `label`  | `string` | -       | The label for the bar.             |
-| `value`  | `number` | -       | The value of the bar.              |
-| `color`  | `string` | -       | Optional custom color for the bar. |
-
-### ChartConfig
-
-| Property     | Type      | Default | Description                                       |
-| ------------ | --------- | ------- | ------------------------------------------------- |
-| `width`      | `number`  | -       | Fixed width of the chart (auto-sizes if omitted). |
-| `height`     | `number`  | `200`   | Height of the chart.                              |
-| `padding`    | `number`  | `20`    | Padding around the chart.                         |
-| `showGrid`   | `boolean` | `false` | Whether to show grid lines.                       |
-| `showLabels` | `boolean` | `true`  | Whether to show labels on bars.                   |
-| `animated`   | `boolean` | `true`  | Whether to animate the chart on load.             |
-| `duration`   | `number`  | `800`   | Animation duration in milliseconds.               |
+<ApiReference name='bar-chart' />
 
 ## Features
 
@@ -150,13 +102,7 @@ A customizable bar chart component with smooth animations and rounded corners.
 
 ## Accessibility
 
-The BarChart component is built with accessibility in mind:
-
-- Semantic SVG structure for screen readers
-- Proper contrast ratios for visual elements
-- Touch targets meet minimum size requirements
-- Supports dynamic text sizing
-- Clear visual hierarchy with labels and values
+<Accessibility name='bar-chart' />
 
 ## Performance
 

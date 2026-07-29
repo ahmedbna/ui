@@ -48,25 +48,7 @@ npx expo install lucide-react-native
 
 ## Usage
 
-```tsx
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@/components/ui/accordion';
-```
-
-```tsx
-<Accordion type='single' collapsible>
-  <AccordionItem value='item-1'>
-    <AccordionTrigger>Is it accessible?</AccordionTrigger>
-    <AccordionContent>
-      Yes. It adheres to the WAI-ARIA design pattern.
-    </AccordionContent>
-  </AccordionItem>
-</Accordion>
-```
+<Usage name='accordion' />
 
 ## Examples
 
@@ -145,44 +127,7 @@ import {
 
 ## API Reference
 
-### Accordion
-
-Contains all the parts of a collapsible accordion.
-
-| Prop            | Type                                  | Default | Description                                                                                                                                                                 |
-| --------------- | ------------------------------------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `type`          | `'single' \| 'multiple'`              | -       | Determines whether one or multiple items can be opened at the same time.                                                                                                    |
-| `value`         | `string \| string[]`                  | -       | The controlled value of the item to expand when `type` is `"single"` or the controlled values of the items to expand when `type` is `"multiple"`.                           |
-| `defaultValue`  | `string \| string[]`                  | -       | The value of the item to expand when initially rendered when `type` is `"single"` or the values of the items to expand when initially rendered when `type` is `"multiple"`. |
-| `onValueChange` | `(value: string \| string[]) => void` | -       | Event handler called when the expanded state of an item changes.                                                                                                            |
-| `collapsible`   | `boolean`                             | `false` | When `type` is `"single"`, allows closing content when clicking trigger for an open item.                                                                                   |
-| `disabled`      | `boolean`                             | `false` | When `true`, prevents the user from interacting with the accordion.                                                                                                         |
-
-### AccordionItem
-
-Contains all the parts of a collapsible item.
-
-| Prop       | Type      | Default | Description                                                    |
-| ---------- | --------- | ------- | -------------------------------------------------------------- |
-| `value`    | `string`  | -       | A unique value for the item.                                   |
-| `disabled` | `boolean` | `false` | When `true`, prevents the user from interacting with the item. |
-
-### AccordionTrigger
-
-Toggles the collapsed state of its associated item.
-
-| Prop       | Type              | Default | Description                            |
-| ---------- | ----------------- | ------- | -------------------------------------- |
-| `children` | `React.ReactNode` | -       | The content to display in the trigger. |
-
-### AccordionContent
-
-Contains the collapsible content for an item.
-
-| Prop       | Type              | Default | Description                                          |
-| ---------- | ----------------- | ------- | ---------------------------------------------------- |
-| `children` | `React.ReactNode` | -       | The content to display when the item is expanded.    |
-| `style`    | `object`          | -       | Additional styles to apply to the content container. |
+<ApiReference name='accordion' />
 
 ## Data Attributes
 

@@ -51,27 +51,7 @@ npm install react-native-svg react-native-reanimated react-native-gesture-handle
 
 ## Usage
 
-```tsx
-import { TreeMapChart } from '@/components/charts/treemap-chart';
-```
-
-```tsx
-const data = [
-  { label: 'Sales', value: 120 },
-  { label: 'Marketing', value: 98 },
-  { label: 'Support', value: 86 },
-  { label: 'Development', value: 140 },
-];
-
-<TreeMapChart
-  data={data}
-  config={{
-    height: 300,
-    showLabels: true,
-    animated: true,
-  }}
-/>;
-```
+<Usage name='treemap-chart' />
 
 ## Examples
 
@@ -121,35 +101,7 @@ const data = [
 
 ## API Reference
 
-### TreeMapChart
-
-A customizable treemap chart component that uses the squarified treemap algorithm for optimal rectangle aspect ratios. Perfect for displaying hierarchical data with emphasis on proportional relationships between categories.
-
-| Prop     | Type                 | Default | Description                                   |
-| -------- | -------------------- | ------- | --------------------------------------------- |
-| `data`   | `TreeMapDataPoint[]` | -       | Array of data points to display on the chart. |
-| `config` | `ChartConfig`        | `{}`    | Configuration object for chart appearance.    |
-| `style`  | `ViewStyle`          | -       | Additional styles to apply to the chart.      |
-
-### TreeMapDataPoint
-
-| Property   | Type                 | Default | Description                                    |
-| ---------- | -------------------- | ------- | ---------------------------------------------- |
-| `label`    | `string`             | -       | The label for the data point.                  |
-| `value`    | `number`             | -       | The value for the data point.                  |
-| `color`    | `string`             | -       | Optional custom color for the rectangle.       |
-| `children` | `TreeMapDataPoint[]` | -       | Optional nested data for hierarchical display. |
-
-### ChartConfig
-
-| Property     | Type      | Default | Description                                       |
-| ------------ | --------- | ------- | ------------------------------------------------- |
-| `width`      | `number`  | -       | Fixed width of the chart (auto-sizes if omitted). |
-| `height`     | `number`  | `200`   | Height of the chart.                              |
-| `padding`    | `number`  | `10`    | Padding around the chart.                         |
-| `showLabels` | `boolean` | `true`  | Whether to show labels for rectangles.            |
-| `animated`   | `boolean` | `true`  | Whether to animate the chart on load.             |
-| `duration`   | `number`  | `800`   | Animation duration in milliseconds.               |
+<ApiReference name='treemap-chart' />
 
 ## Features
 
@@ -195,13 +147,7 @@ The TreeMapChart is designed for:
 
 ## Accessibility
 
-The TreeMapChart component includes several accessibility features:
-
-- Semantic SVG structure for screen readers
-- Proper contrast ratios with automatic text color adjustment
-- Text labels for both categories and values
-- Supports dynamic text sizing based on rectangle size
-- High contrast borders for visual separation
+<Accessibility name='treemap-chart' />
 
 ## Performance
 

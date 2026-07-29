@@ -198,6 +198,51 @@ export async function fetchRegistryItem(
   }
 }
 
+/**
+ * Everything about one component, for an agent rather than for `add`.
+ *
+ * Same fetch path, cache and schema gate as the install payload — this is a
+ * different view of the same registry, not a second client.
+ */
+export async function fetchAiBundle(
+  registryUrl: string,
+  name: string
+): Promise<AiBundle | null> {
+  try {
+    return await fetchJson<AiBundle>(
+      `${registryUrl}/ai/${encodeURIComponent(name)}.json`,
+      path.join(cacheDir(registryUrl), 'ai', `${name}.json`),
+      `component "${name}"`
+    );
+  } catch (error) {
+    if (error instanceof Error && error.message.startsWith('NOT_FOUND:')) {
+      return null;
+    }
+    throw error;
+  }
+}
+
+export interface AiBundle {
+  $schemaVersion: number;
+  name: string;
+  type: string;
+  description: string;
+  docs?: string;
+  markdown?: string;
+  registry: string;
+  install: { cli: string; npm: string[] };
+  framework: Record<string, unknown>;
+  dependencies: string[];
+  registryDependencies: string[];
+  meta?: Record<string, unknown>;
+  files: RegistryFile[];
+  examples: Array<{
+    name: string;
+    description: string;
+    files: RegistryFile[];
+  }>;
+}
+
 export async function clearRegistryCache(registryUrl: string): Promise<void> {
   await fs.remove(cacheDir(registryUrl));
 }

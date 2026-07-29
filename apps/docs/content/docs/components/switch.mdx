@@ -39,17 +39,7 @@ npx bna-ui add switch
 
 ## Usage
 
-```tsx
-import { Switch } from '@/components/ui/switch';
-```
-
-```tsx
-<Switch
-  label='Enable notifications'
-  value={isEnabled}
-  onValueChange={setIsEnabled}
-/>
-```
+<Usage name='switch' />
 
 ## Examples
 
@@ -115,27 +105,9 @@ import { Switch } from '@/components/ui/switch';
 
 ## API Reference
 
-### Switch
-
-A toggle switch component with optional label and error states.
-
-| Prop            | Type                              | Default | Description                                        |
-| --------------- | --------------------------------- | ------- | -------------------------------------------------- |
-| `label`         | `string`                          | -       | Optional label text for the switch.                |
-| `error`         | `string`                          | -       | Error message to display (changes label color).    |
-| `labelStyle`    | `TextStyle`                       | -       | Additional styles to apply to the label text.      |
-| `value`         | `boolean`                         | -       | The current state of the switch.                   |
-| `onValueChange` | `(value: boolean) => void`        | -       | Callback fired when the switch state changes.      |
-| `disabled`      | `boolean`                         | `false` | Whether the switch is disabled.                    |
-| `...props`      | `SwitchProps` (from React Native) | -       | All other React Native Switch props are supported. |
+<ApiReference name='switch' />
 
 ## Accessibility
 
-The Switch component is built with accessibility in mind:
+<Accessibility name='switch' />
 
-- Uses native React Native Switch for optimal platform behavior
-- Supports screen reader announcements for state changes
-- Proper focus management and keyboard navigation
-- Color contrast meets accessibility standards
-- Label text is properly associated with the switch control
-- Error states provide clear feedback to assistive technologies

@@ -29,13 +29,13 @@ export const comboboxRegistry = {
   'combobox-demo': {
     name: 'combobox-demo',
     description: 'A basic combobox with search functionality',
-    type: 'registry:ui',
+    type: 'registry:example',
     registryDependencies: ['combobox'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:ui',
+        type: 'registry:example',
         path: 'src/demo/combobox/combobox-demo.tsx',
         target: 'components/demo/combobox/combobox-demo.tsx',
       },
@@ -50,13 +50,13 @@ export const comboboxRegistry = {
   'combobox-groups': {
     name: 'combobox-groups',
     description: 'Combobox with grouped options',
-    type: 'registry:ui',
+    type: 'registry:example',
     registryDependencies: ['combobox'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:ui',
+        type: 'registry:example',
         path: 'src/demo/combobox/combobox-groups.tsx',
         target: 'components/demo/combobox/combobox-groups.tsx',
       },
@@ -70,13 +70,13 @@ export const comboboxRegistry = {
   'combobox-multiple': {
     name: 'combobox-multiple',
     description: 'Combobox that allows selecting multiple values',
-    type: 'registry:ui',
+    type: 'registry:example',
     registryDependencies: ['combobox'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:ui',
+        type: 'registry:example',
         path: 'src/demo/combobox/combobox-multiple.tsx',
         target: 'components/demo/combobox/combobox-multiple.tsx',
       },
@@ -90,13 +90,13 @@ export const comboboxRegistry = {
   'combobox-disabled': {
     name: 'combobox-disabled',
     description: 'Disabled combobox component',
-    type: 'registry:ui',
+    type: 'registry:example',
     registryDependencies: ['combobox'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:ui',
+        type: 'registry:example',
         path: 'src/demo/combobox/combobox-disabled.tsx',
         target: 'components/demo/combobox/combobox-disabled.tsx',
       },
@@ -110,13 +110,13 @@ export const comboboxRegistry = {
   'combobox-search': {
     name: 'combobox-search',
     description: 'Combobox with custom search behavior',
-    type: 'registry:ui',
+    type: 'registry:example',
     registryDependencies: ['combobox'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:ui',
+        type: 'registry:example',
         path: 'src/demo/combobox/combobox-search.tsx',
         target: 'components/demo/combobox/combobox-search.tsx',
       },
@@ -130,13 +130,13 @@ export const comboboxRegistry = {
   'combobox-form': {
     name: 'combobox-form',
     description: 'Combobox integrated with form validation',
-    type: 'registry:ui',
+    type: 'registry:example',
     registryDependencies: ['combobox', 'text', 'view', 'button'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:ui',
+        type: 'registry:example',
         path: 'src/demo/combobox/combobox-form.tsx',
         target: 'components/demo/combobox/combobox-form.tsx',
       },
@@ -150,13 +150,13 @@ export const comboboxRegistry = {
   'combobox-large': {
     name: 'combobox-large',
     description: 'Combobox handling large datasets efficiently',
-    type: 'registry:ui',
+    type: 'registry:example',
     registryDependencies: ['combobox'],
     hooks: [],
     theme: [],
     files: [
       {
-        type: 'registry:ui',
+        type: 'registry:example',
         path: 'src/demo/combobox/combobox-large.tsx',
         target: 'components/demo/combobox/combobox-large.tsx',
       },

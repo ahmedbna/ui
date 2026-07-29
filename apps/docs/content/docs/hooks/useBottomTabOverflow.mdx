@@ -46,19 +46,7 @@ npx expo install @react-navigation/bottom-tabs
 
 ## Usage
 
-```tsx
-import { useBottomTabOverflow } from '@/hooks/useBottomTabOverflow';
-```
-
-```tsx
-export function MyScreen() {
-  const tabOverflow = useBottomTabOverflow();
-
-  return (
-    <View style={{ paddingBottom: tabOverflow }}>{/* Your content */}</View>
-  );
-}
-```
+<Usage name='useBottomTabOverflow' />
 
 ## API Reference
 
@@ -175,8 +163,5 @@ export function ScreenWithFAB() {
 
 ## Accessibility
 
-The hook helps maintain proper accessibility by:
+<Accessibility name='useBottomTabOverflow' />
 
-- Ensuring content is not hidden behind navigation elements
-- Maintaining proper touch targets for interactive elements
-- Supporting screen readers by keeping content visible and accessible

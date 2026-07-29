@@ -37,24 +37,7 @@ npx bna-ui add useKeyboardHeight
 
 ## Usage
 
-```tsx
-import { useKeyboardHeight } from '@/hooks/useKeyboardHeight';
-```
-
-```tsx
-export function KeyboardAwareView({ children }) {
-  const { keyboardHeight, isKeyboardVisible, keyboardAnimationDuration } =
-    useKeyboardHeight();
-
-  return (
-    <View>
-      <Text>Keyboard Height: {keyboardHeight}</Text>
-      <Text>Keyboard Visible: {isKeyboardVisible ? 'Yes' : 'No'}</Text>
-      <Text>Animation Duration: {keyboardAnimationDuration}ms</Text>
-    </View>
-  );
-}
-```
+<Usage name='useKeyboardHeight' />
 
 ## API Reference
 
@@ -246,12 +229,7 @@ export function DebugKeyboardInfo() {
 
 ## Accessibility
 
-The hook supports accessibility by:
-
-- Preserving keyboard navigation patterns
-- Maintaining focus management during keyboard transitions
-- Supporting screen readers by keeping content visible above keyboard
-- Enabling proper scrolling behavior for assistive technologies
+<Accessibility name='useKeyboardHeight' />
 
 ## References
 

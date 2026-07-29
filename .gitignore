@@ -13,6 +13,8 @@ out/
 
 # generated registry payloads (emitted by packages/registry)
 apps/docs/public/r/
+apps/docs/public/skills/
+apps/docs/public/AGENTS.md
 packages/cli/dist/
 
 # fumadocs generated source
@@ -59,3 +61,4 @@ lerna-debug.log*
 # generated registry payloads
 packages/registry/generated/
 packages/starters/dist/
+packages/skill/dist/

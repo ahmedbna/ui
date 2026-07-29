@@ -48,17 +48,7 @@ npx expo install lucide-react-native
 
 ## Usage
 
-```tsx
-import { SearchBar, SearchBarWithSuggestions } from '@/components/ui/searchbar';
-```
-
-```tsx
-<SearchBar
-  placeholder='Search for anything...'
-  onSearch={(query) => console.log('Searching for:', query)}
-  loading={false}
-/>
-```
+<Usage name='searchbar' />
 
 ## Examples
 
@@ -137,39 +127,7 @@ import { SearchBar, SearchBarWithSuggestions } from '@/components/ui/searchbar';
 
 ## API Reference
 
-### SearchBar
-
-The main search input component with debouncing and customization options.
-
-| Prop              | Type                       | Default     | Description                                            |
-| ----------------- | -------------------------- | ----------- | ------------------------------------------------------ |
-| `loading`         | `boolean`                  | `false`     | Shows loading indicator when true.                     |
-| `onSearch`        | `(query: string) => void`  | -           | Callback fired when search is triggered (debounced).   |
-| `onClear`         | `() => void`               | -           | Callback fired when clear button is pressed.           |
-| `showClearButton` | `boolean`                  | `true`      | Whether to show the clear button when text is present. |
-| `leftIcon`        | `ReactNode`                | Search icon | Custom left icon component.                            |
-| `rightIcon`       | `ReactNode`                | -           | Custom right icon component.                           |
-| `containerStyle`  | `ViewStyle \| ViewStyle[]` | -           | Additional styles for the container.                   |
-| `inputStyle`      | `TextStyle \| TextStyle[]` | -           | Additional styles for the text input.                  |
-| `debounceMs`      | `number`                   | `300`       | Debounce delay in milliseconds for search callbacks.   |
-| `placeholder`     | `string`                   | 'Search...' | Placeholder text for the input.                        |
-| `value`           | `string`                   | -           | Controlled value of the input.                         |
-| `onChangeText`    | `(text: string) => void`   | -           | Callback fired when text changes.                      |
-
-All other `TextInputProps` are also supported.
-
-### SearchBarWithSuggestions
-
-An enhanced search bar with dropdown suggestions functionality.
-
-| Prop                | Type                           | Default | Description                                   |
-| ------------------- | ------------------------------ | ------- | --------------------------------------------- |
-| `suggestions`       | `string[]`                     | `[]`    | Array of suggestion strings to display.       |
-| `onSuggestionPress` | `(suggestion: string) => void` | -       | Callback fired when a suggestion is selected. |
-| `maxSuggestions`    | `number`                       | `5`     | Maximum number of suggestions to display.     |
-| `showSuggestions`   | `boolean`                      | `true`  | Whether to show the suggestions dropdown.     |
-
-All `SearchBar` props are also supported.
+<ApiReference name='searchbar' />
 
 ## Features
 
@@ -184,10 +142,5 @@ All `SearchBar` props are also supported.
 
 ## Accessibility
 
-The SearchBar component follows accessibility guidelines:
+<Accessibility name='searchbar' />
 
-- Proper focus management and keyboard navigation
-- Screen reader compatible with appropriate labels
-- Clear button is properly labeled for assistive technologies
-- Suggestions dropdown supports keyboard navigation
-- High contrast support for better visibility

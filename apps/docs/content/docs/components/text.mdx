@@ -48,15 +48,7 @@ npx expo install react-native
 
 ## Usage
 
-```tsx
-import { Text } from '@/components/ui/text';
-```
-
-```tsx
-<Text variant="body">This is body text</Text>
-<Text variant="heading">This is a heading</Text>
-<Text variant="caption">This is caption text</Text>
-```
+<Usage name='text' />
 
 ## Examples
 
@@ -95,18 +87,7 @@ import { Text } from '@/components/ui/text';
 
 ## API Reference
 
-### Text
-
-A flexible text component that supports multiple variants and theming.
-
-| Prop         | Type                                                                  | Default  | Description                                      |
-| ------------ | --------------------------------------------------------------------- | -------- | ------------------------------------------------ |
-| `variant`    | `'body' \| 'title' \| 'subtitle' \| 'caption' \| 'heading' \| 'link'` | `'body'` | The text variant that determines styling.        |
-| `lightColor` | `string`                                                              | -        | Custom color for light theme.                    |
-| `darkColor`  | `string`                                                              | -        | Custom color for dark theme.                     |
-| `children`   | `ReactNode`                                                           | -        | The text content to display.                     |
-| `style`      | `TextStyle`                                                           | -        | Additional styles to apply to the text.          |
-| `...props`   | `TextProps`                                                           | -        | All other React Native Text props are supported. |
+<ApiReference name='text' />
 
 ## Variants
 
@@ -145,10 +126,5 @@ The Text component automatically adapts to your app's theme:
 
 ## Accessibility
 
-The Text component is built with accessibility in mind:
+<Accessibility name='text' />
 
-- Inherits all React Native Text accessibility features
-- Supports dynamic text sizing for users with vision impairments
-- Maintains proper contrast ratios with theme colors
-- Works with screen readers and other assistive technologies
-- Supports semantic roles via standard React Native Text props

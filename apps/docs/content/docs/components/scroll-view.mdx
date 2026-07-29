@@ -42,15 +42,7 @@ npx bna-ui add scroll-view
 
 ## Usage
 
-```tsx
-import { ScrollView } from '@/components/ui/scroll-view';
-```
-
-```tsx
-<ScrollView>
-  <Text>Your scrollable content here</Text>
-</ScrollView>
-```
+<Usage name='scroll-view' />
 
 ## Examples
 
@@ -139,41 +131,9 @@ import { ScrollView } from '@/components/ui/scroll-view';
 
 ## API Reference
 
-### ScrollView
-
-A wrapper around React Native's ScrollView with enhanced styling capabilities.
-
-| Prop                             | Type                                   | Default   | Description                                                                   |
-| -------------------------------- | -------------------------------------- | --------- | ----------------------------------------------------------------------------- |
-| `style`                          | `ViewStyle`                            | -         | Additional styles to apply to the scroll view.                                |
-| `contentContainerStyle`          | `ViewStyle`                            | -         | Styles applied to the scroll view content container.                          |
-| `horizontal`                     | `boolean`                              | `false`   | When true, the scroll view's children are arranged horizontally.              |
-| `showsVerticalScrollIndicator`   | `boolean`                              | `true`    | When true, shows a vertical scroll indicator.                                 |
-| `showsHorizontalScrollIndicator` | `boolean`                              | `true`    | When true, shows a horizontal scroll indicator.                               |
-| `scrollEnabled`                  | `boolean`                              | `true`    | When false, the content does not scroll.                                      |
-| `bounces`                        | `boolean`                              | `true`    | When true, the scroll view bounces when it reaches the end.                   |
-| `bouncesZoom`                    | `boolean`                              | `true`    | When true, gestures can drive zoom past min/max.                              |
-| `alwaysBounceVertical`           | `boolean`                              | `false`   | When true, the scroll view bounces vertically even when content is smaller.   |
-| `alwaysBounceHorizontal`         | `boolean`                              | `false`   | When true, the scroll view bounces horizontally even when content is smaller. |
-| `pagingEnabled`                  | `boolean`                              | `false`   | When true, the scroll view stops on multiples of the scroll view's size.      |
-| `scrollEventThrottle`            | `number`                               | -         | Controls how often the scroll event will be fired while scrolling.            |
-| `onScroll`                       | `function`                             | -         | Fires at most once per frame during scrolling.                                |
-| `onScrollBeginDrag`              | `function`                             | -         | Called when the user begins to drag the scroll view.                          |
-| `onScrollEndDrag`                | `function`                             | -         | Called when the user stops dragging the scroll view.                          |
-| `onMomentumScrollBegin`          | `function`                             | -         | Called when the momentum scroll starts.                                       |
-| `onMomentumScrollEnd`            | `function`                             | -         | Called when the momentum scroll ends.                                         |
-| `refreshControl`                 | `RefreshControl`                       | -         | A RefreshControl component for pull-to-refresh functionality.                 |
-| `keyboardDismissMode`            | `'none' \| 'on-drag' \| 'interactive'` | `'none'`  | Determines when the keyboard is dismissed.                                    |
-| `keyboardShouldPersistTaps`      | `'always' \| 'never' \| 'handled'`     | `'never'` | Determines when the keyboard should stay visible after a tap.                 |
-
-All other props from React Native's ScrollView are also supported.
+<ApiReference name='scroll-view' />
 
 ## Accessibility
 
-The ScrollView component maintains React Native's built-in accessibility features:
+<Accessibility name='scroll-view' />
 
-- Automatically announces scrollable content to screen readers
-- Supports gesture-based navigation for users with accessibility needs
-- Maintains proper focus management during scrolling
-- Compatible with VoiceOver and TalkBack
-- Supports dynamic text sizing and high contrast modes

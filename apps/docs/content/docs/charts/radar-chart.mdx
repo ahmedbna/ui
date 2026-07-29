@@ -48,28 +48,7 @@ npm install react-native-svg react-native-reanimated react-native-gesture-handle
 
 ## Usage
 
-```tsx
-import { RadarChart } from '@/components/charts/radar-chart';
-```
-
-```tsx
-const data = [
-  { label: 'Speed', value: 80 },
-  { label: 'Reliability', value: 92 },
-  { label: 'Comfort', value: 75 },
-  { label: 'Safety', value: 88 },
-  { label: 'Efficiency', value: 85 },
-];
-
-<RadarChart
-  data={data}
-  config={{
-    height: 300,
-    showLabels: true,
-    animated: true,
-  }}
-/>;
-```
+<Usage name='radar-chart' />
 
 ## Examples
 
@@ -119,33 +98,7 @@ const data = [
 
 ## API Reference
 
-### RadarChart
-
-A customizable radar chart component with smooth animations and flexible styling. Perfect for displaying multi-dimensional data with emphasis on comparison across multiple metrics.
-
-| Prop     | Type                    | Default | Description                                   |
-| -------- | ----------------------- | ------- | --------------------------------------------- |
-| `data`   | `RadarChartDataPoint[]` | -       | Array of data points to display on the chart. |
-| `config` | `ChartConfig`           | `{}`    | Configuration object for chart appearance.    |
-| `style`  | `ViewStyle`             | -       | Additional styles to apply to the chart.      |
-
-### RadarChartDataPoint
-
-| Property | Type     | Default | Description                   |
-| -------- | -------- | ------- | ----------------------------- |
-| `label`  | `string` | -       | The label for the data point. |
-| `value`  | `number` | -       | The value for the data point. |
-
-### ChartConfig
-
-| Property     | Type      | Default | Description                                          |
-| ------------ | --------- | ------- | ---------------------------------------------------- |
-| `width`      | `number`  | -       | Fixed width of the chart (auto-sizes if omitted).    |
-| `height`     | `number`  | `200`   | Height of the chart.                                 |
-| `showLabels` | `boolean` | `true`  | Whether to show labels around the chart.             |
-| `animated`   | `boolean` | `true`  | Whether to animate the chart on load.                |
-| `duration`   | `number`  | `1000`  | Animation duration in milliseconds.                  |
-| `maxValue`   | `number`  | -       | Maximum value for the chart scale (auto if omitted). |
+<ApiReference name='radar-chart' />
 
 ## Features
 
@@ -179,13 +132,7 @@ The circular layout of the RadarChart makes it ideal for:
 
 ## Accessibility
 
-The RadarChart component includes several accessibility features:
-
-- Semantic SVG structure for screen readers
-- Proper contrast ratios for visual elements
-- Text labels for all data points
-- Supports dynamic text sizing
-- Clear visual hierarchy with grid lines
+<Accessibility name='radar-chart' />
 
 ## Performance
 

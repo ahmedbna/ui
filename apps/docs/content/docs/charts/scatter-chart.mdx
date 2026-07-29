@@ -51,27 +51,7 @@ npm install react-native-svg react-native-reanimated react-native-gesture-handle
 
 ## Usage
 
-```tsx
-import { ScatterPlot } from '@/components/charts/scatter-chart';
-```
-
-```tsx
-const data = [
-  { x: 10, y: 20, label: 'Point A' },
-  { x: 25, y: 35, label: 'Point B' },
-  { x: 40, y: 15, label: 'Point C' },
-  { x: 55, y: 45, label: 'Point D' },
-];
-
-<ScatterPlot
-  data={data}
-  config={{
-    height: 300,
-    showLabels: true,
-    animated: true,
-  }}
-/>;
-```
+<Usage name='scatter-chart' />
 
 ## Examples
 
@@ -121,35 +101,7 @@ const data = [
 
 ## API Reference
 
-### ScatterPlot
-
-A customizable scatter plot component with smooth animations and flexible styling. Perfect for visualizing relationships between two numerical variables and identifying patterns, trends, or outliers in data.
-
-| Prop     | Type               | Default | Description                                   |
-| -------- | ------------------ | ------- | --------------------------------------------- |
-| `data`   | `ChartDataPoint[]` | -       | Array of data points to display on the chart. |
-| `config` | `ChartConfig`      | `{}`    | Configuration object for chart appearance.    |
-| `style`  | `ViewStyle`        | -       | Additional styles to apply to the chart.      |
-
-### ChartDataPoint
-
-| Property | Type     | Default | Description                          |
-| -------- | -------- | ------- | ------------------------------------ |
-| `x`      | `number` | -       | The x-coordinate for the data point. |
-| `y`      | `number` | -       | The y-coordinate for the data point. |
-| `label`  | `string` | -       | Optional label for the data point.   |
-
-### ChartConfig
-
-| Property     | Type      | Default | Description                                       |
-| ------------ | --------- | ------- | ------------------------------------------------- |
-| `width`      | `number`  | -       | Fixed width of the chart (auto-sizes if omitted). |
-| `height`     | `number`  | `200`   | Height of the chart.                              |
-| `padding`    | `number`  | `20`    | Padding around the chart.                         |
-| `showGrid`   | `boolean` | `true`  | Whether to show grid lines.                       |
-| `showLabels` | `boolean` | `true`  | Whether to show axis labels.                      |
-| `animated`   | `boolean` | `true`  | Whether to animate the chart on load.             |
-| `duration`   | `number`  | `800`   | Animation duration in milliseconds.               |
+<ApiReference name='scatter-chart' />
 
 ## Features
 
@@ -183,13 +135,7 @@ The ScatterPlot component is optimized for:
 
 ## Accessibility
 
-The ScatterPlot component includes several accessibility features:
-
-- Semantic SVG structure for screen readers
-- Proper contrast ratios for visual elements
-- Clear axis labels with numerical values
-- Grid lines for better data point reference
-- Supports dynamic text sizing
+<Accessibility name='scatter-chart' />
 
 ## Performance
 

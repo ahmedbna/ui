@@ -50,25 +50,7 @@ npx bna-ui add useColorScheme
 
 ## Usage
 
-```tsx
-import { useColorScheme } from '@/hooks/useColorScheme';
-```
-
-```tsx
-export function ThemedComponent() {
-  const colorScheme = useColorScheme();
-
-  return (
-    <View
-      style={{
-        backgroundColor: colorScheme === 'dark' ? '#000' : '#fff',
-      }}
-    >
-      {/* Your themed content */}
-    </View>
-  );
-}
-```
+<Usage name='useColorScheme' />
 
 ## API Reference
 
@@ -311,9 +293,5 @@ export function useTheme(): Theme {
 
 ## Accessibility
 
-The hook helps maintain proper accessibility by:
+<Accessibility name='useColorScheme' />
 
-- Respecting user's system-level accessibility preferences
-- Supporting high contrast modes automatically
-- Enabling proper color contrast ratios for different themes
-- Ensuring consistent theming across the application

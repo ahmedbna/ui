@@ -5,6 +5,7 @@ import { Command } from 'commander';
 import { addCommand } from './commands/add.js';
 import { initConvexCommand } from './commands/convex.js';
 import { initCommand } from './commands/init.js';
+import { infoCommand } from './commands/info.js';
 import { logger } from './utils/logger.js';
 
 const require = createRequire(import.meta.url);
@@ -61,6 +62,27 @@ program
     'Registry to fetch components from (default: https://ui.ahmedbna.com/r)'
   )
   .action(addCommand);
+
+program
+  .command('info')
+  .description("Print a component's props, source and examples")
+  .argument('<component>', 'Component name, e.g. button')
+  .option('--json', 'Emit the full bundle as JSON, for scripts and agents')
+  .option('--registry <url>', 'Registry to fetch from')
+  .action(infoCommand);
+
+program
+  .command('mcp')
+  .description(
+    'Run an MCP server so AI assistants can browse and read the registry'
+  )
+  .option('--registry <url>', 'Registry to serve from')
+  .action(async (options) => {
+    // Imported lazily: the MCP SDK is a sizeable dependency and every other
+    // command starts faster without it.
+    const { mcpCommand } = await import('./commands/mcp.js');
+    await mcpCommand(options);
+  });
 
 program.parse();
 

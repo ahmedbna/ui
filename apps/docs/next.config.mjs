@@ -24,6 +24,18 @@ const nextConfig = {
       },
     ],
   },
+  // `/docs/components/button.md` serves the Markdown build of that page.
+  //
+  // The handler lives at `/llms/**` because a Route Handler cannot share a path
+  // with a Page, and `/docs/[[...slug]]` is the docs page. Rewrites run in the
+  // `afterFiles` phase — after `public/` and `_next`, before dynamic routes — so
+  // the `.md` request is claimed here and never reaches the page.
+  rewrites() {
+    return [
+      { source: '/docs.md', destination: '/llms' },
+      { source: '/docs/:path(.*).md', destination: '/llms/:path' },
+    ];
+  },
   redirects() {
     return [
       {
@@ -41,6 +53,13 @@ const nextConfig = {
       {
         source: '/docs/convex/installation',
         destination: '/docs/installation/convex-auth',
+        permanent: true,
+      },
+      // The hook was renamed to `useColor` in the registry; its page kept the
+      // old filename, so the slug never matched the entry it documents.
+      {
+        source: '/docs/hooks/useThemeColor',
+        destination: '/docs/hooks/useColor',
         permanent: true,
       },
     ];

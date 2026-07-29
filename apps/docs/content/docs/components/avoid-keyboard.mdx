@@ -51,19 +51,7 @@ npx expo install react-native-reanimated
 
 ## Usage
 
-```tsx
-import { AvoidKeyboard } from '@/components/ui/avoid-keyboard';
-```
-
-```tsx
-<View style={{ flex: 1 }}>
-  {/* Your content */}
-  <TextInput placeholder='Type here...' />
-
-  {/* This will push content up when keyboard appears */}
-  <AvoidKeyboard />
-</View>
-```
+<Usage name='avoid-keyboard' />
 
 ## Examples
 
@@ -133,14 +121,7 @@ import { AvoidKeyboard } from '@/components/ui/avoid-keyboard';
 
 ## API Reference
 
-### AvoidKeyboard
-
-Automatically adjusts height to avoid keyboard overlap with smooth animations.
-
-| Prop       | Type     | Default | Description                                   |
-| ---------- | -------- | ------- | --------------------------------------------- |
-| `offset`   | `number` | `0`     | Additional spacing above the keyboard (in px) |
-| `duration` | `number` | `0`     | Extra animation duration (in ms)              |
+<ApiReference name='avoid-keyboard' />
 
 ## Features
 
@@ -267,12 +248,7 @@ console.log('Keyboard:', { keyboardHeight, isKeyboardVisible });
 
 ## Accessibility
 
-The AvoidKeyboard component enhances accessibility by:
-
-- **Preventing content hiding**: Ensures form inputs remain visible
-- **Maintaining focus**: Keeps focused elements in view
-- **Supporting assistive tech**: Works with screen readers and voice control
-- **Respecting user settings**: Honors system animation preferences
+<Accessibility name='avoid-keyboard' />
 
 ## Integration with Other Libraries
 

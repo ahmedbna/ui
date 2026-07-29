@@ -90,6 +90,24 @@ describe('equivalence with the pre-migration registry', () => {
     expect(Object.keys(REGISTRY).sort()).toEqual(Object.keys(base).sort());
   });
 
+  /**
+   * Entries whose identity changed on purpose since the baseline was taken.
+   *
+   * These seven are demos that were mistyped `registry:ui`. That made them
+   * appear in the `bna-ui add` picker as if they were components, gave each one
+   * a documentation page it does not have, and would have earned each an agent
+   * bundle describing a demo as an installable component.
+   */
+  const SANCTIONED_TYPE_CHANGES = new Set([
+    'combobox-demo',
+    'combobox-disabled',
+    'combobox-form',
+    'combobox-groups',
+    'combobox-large',
+    'combobox-multiple',
+    'combobox-search',
+  ]);
+
   it('identity fields are unchanged, modulo the templates/ -> src/ path move', () => {
     const diffs: string[] = [];
 
@@ -97,13 +115,17 @@ describe('equivalence with the pre-migration registry', () => {
       const before = {
         name: base[key].name,
         description: base[key].description,
-        type: base[key].type,
+        type: SANCTIONED_TYPE_CHANGES.has(key)
+          ? REGISTRY[key].type
+          : base[key].type,
         category: base[key].category,
         preview: base[key].preview,
-        // The only sanctioned mechanical change: the registry package root moved.
+        // Sanctioned mechanical changes: the registry package root moved, and
+        // the mistyped demos above were retyped on their files too.
         files: base[key].files.map((f: any) => ({
           ...f,
           path: f.path.replace(/^templates\//, 'src/'),
+          type: SANCTIONED_TYPE_CHANGES.has(key) ? 'registry:example' : f.type,
         })),
       };
       const a = REGISTRY[key];
@@ -220,9 +242,29 @@ describe('generated payloads', () => {
   });
 
   it('emits a payload for every entry', async () => {
-    const files = await fs.readdir(path.join(ROOT, 'generated', 'r'));
+    const entries = await fs.readdir(path.join(ROOT, 'generated', 'r'), {
+      withFileTypes: true,
+    });
+    // Install payloads are the files directly in `r/`; `ai/` is a sibling
+    // directory of agent bundles, emitted only for installable entries.
+    const payloads = entries.filter((entry) => entry.isFile());
     // +1 for index.json
-    expect(files.length).toBe(Object.keys(REGISTRY).length + 1);
+    expect(payloads.length).toBe(Object.keys(REGISTRY).length + 1);
+  });
+
+  it('emits an AI bundle for every installable entry', async () => {
+    const documented = new Set([
+      'registry:ui',
+      'registry:hook',
+      'registry:theme',
+    ]);
+    const expected = Object.values(REGISTRY).filter((entry) =>
+      documented.has(entry.type)
+    );
+    const files = await fs.readdir(path.join(ROOT, 'generated', 'r', 'ai'));
+
+    // +1 for index.json
+    expect(files.length).toBe(expected.length + 1);
   });
 
   it('rejects path traversal in payload names', async () => {
