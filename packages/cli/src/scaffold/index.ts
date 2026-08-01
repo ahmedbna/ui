@@ -12,7 +12,11 @@ import {
 } from '../utils/package-manager.js';
 import { createSpinner, failSpinner, succeedSpinner } from '../utils/theme.js';
 import { renderNextSteps } from './next-steps.js';
-import { setAppIdentity, setPackageName } from './patches.js';
+import {
+  setAppIdentity,
+  setPackageName,
+  writeComponentsConfig,
+} from './patches.js';
 import { resolveTarget } from './prompts.js';
 import { templateDir } from './templates.js';
 import type {
@@ -54,6 +58,7 @@ export async function runScaffold<O extends ScaffoldOptions, R>(
     // Identity first: every other patch may depend on the project being named.
     await setPackageName(ctx);
     await setAppIdentity(ctx);
+    await writeComponentsConfig(ctx);
     for (const patch of config.patches ?? []) {
       await patch(ctx);
     }

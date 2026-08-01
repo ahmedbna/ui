@@ -1,5 +1,6 @@
 // src/commands/add.ts
 import path from 'path';
+import { DEFAULT_ALIASES, applyAliases, readConfig } from '../utils/config.js';
 import {
   checkExistingDependencies,
   installPackageDependencies,
@@ -19,7 +20,12 @@ import {
   type RegistryFile,
 } from '../utils/registry-client.js';
 import { assertUsableProject } from '../utils/registry.js';
-import { createSpinner, failSpinner, succeedSpinner } from '../utils/theme.js';
+import {
+  createSpinner,
+  failSpinner,
+  succeedSpinner,
+  theme,
+} from '../utils/theme.js';
 
 interface AddCommandOptions extends PackageManagerFlags {
   overwrite?: boolean;
@@ -34,9 +40,10 @@ export async function addCommand(
 ): Promise<void> {
   try {
     const projectPath = process.cwd();
-    const registryUrl = resolveRegistryUrl(options.registry);
-
     await assertUsableProject(projectPath);
+
+    const config = await readConfig(projectPath);
+    const registryUrl = resolveRegistryUrl(options.registry, config?.registry);
 
     if (components.length === 0) {
       components = await selectComponentsInteractively(registryUrl);
@@ -66,7 +73,10 @@ export async function addCommand(
         // Later entries win, but content is identical for a shared dependency,
         // so first-write-wins vs last-write-wins is immaterial here.
         for (const file of payload.files) {
-          if (!files.has(file.target)) files.set(file.target, file);
+          // Remapped once, here, so conflict detection, the dry run and the
+          // write all agree on where a file is going.
+          const target = applyAliases(file.target, config?.aliases);
+          if (!files.has(target)) files.set(target, { ...file, target });
         }
       }
       spinner.stop();
@@ -81,7 +91,11 @@ export async function addCommand(
       });
     }
 
-    const { manager: packageManager } = await resolvePackageManager(options);
+    const { manager: packageManager } = await resolvePackageManager(
+      options,
+      projectPath,
+      config?.packageManager
+    );
 
     // Conflict handling, on the files actually about to be written.
     const conflicts: string[] = [];
@@ -89,6 +103,18 @@ export async function addCommand(
       if (await fileExists(path.join(projectPath, target))) {
         conflicts.push(target);
       }
+    }
+
+    // Before any prompting: a dry run must never ask a question, or it cannot
+    // be used from a script.
+    if (options.dryRun) {
+      reportDryRun({
+        resolvedNames,
+        targets: [...files.keys()],
+        packageDeps,
+        conflicts,
+      });
+      return;
     }
 
     const skip = new Set<string>();
@@ -139,20 +165,6 @@ export async function addCommand(
       throw cancelled('Every file already exists — nothing to write.');
     }
 
-    if (options.dryRun) {
-      logger.info('Dry run — would install the following:');
-      logger.plain(`Components: ${[...resolvedNames].sort().join(', ')}`);
-      logger.plain(`Files:`);
-      toWrite.forEach((f) => logger.plain(`    ${f.target}`));
-      if (packageDeps.size > 0) {
-        logger.plain(`Package dependencies: ${[...packageDeps].join(', ')}`);
-      }
-      if (skip.size > 0) {
-        logger.plain(`Skipped files: ${[...skip].join(', ')}`);
-      }
-      return;
-    }
-
     const missingDeps = checkExistingDependencies(
       [...packageDeps],
       projectPath
@@ -179,26 +191,80 @@ export async function addCommand(
       throw error;
     }
 
-    logger.success(`Successfully added ${components.length} component(s):`);
-    components.forEach((name) => logger.plain(`  ✓ ${name}`));
+    logger.newline();
+    logger.success(
+      `Added ${components.length} component${components.length === 1 ? '' : 's'}:`
+    );
+    for (const name of components) {
+      logger.plain(`  ${theme.ok(theme.glyph.success)} ${name}`);
+    }
 
     const extras = [...resolvedNames].filter((n) => !components.includes(n));
     if (extras.length > 0) {
-      logger.info(`Also installed dependencies: ${extras.sort().join(', ')}`);
+      logger.plain(
+        theme.dim(`  plus its dependencies: ${extras.sort().join(', ')}`)
+      );
     }
 
     if (skip.size > 0) {
-      logger.warn(`Skipped ${skip.size} existing file(s)`);
+      logger.warn(
+        `Kept ${skip.size} existing file${skip.size === 1 ? '' : 's'}. Pass --overwrite to replace them.`
+      );
     }
 
+    // Read from the config rather than hardcoded: a project that relocated its
+    // components would otherwise be told the wrong import path.
+    const componentsAlias =
+      config?.aliases?.components ?? DEFAULT_ALIASES.components;
     logger.newline();
-    logger.info('Next steps:');
-    logger.plain('  Import components from @/components/ui');
-    logger.plain('  Check the documentation for usage examples');
+    logger.info(
+      `Import from ${theme.code(`@/${componentsAlias}/ui`)} — docs at https://ui.ahmedbna.com/docs/components`
+    );
   } catch (error) {
     // Rethrown for `reportFatal`; the raw `Error` dump this replaced buried the
     // registry client's carefully written multi-line messages.
     throw toCliError(error);
+  }
+}
+
+function reportDryRun({
+  resolvedNames,
+  targets,
+  packageDeps,
+  conflicts,
+}: {
+  resolvedNames: Set<string>;
+  targets: string[];
+  packageDeps: Set<string>;
+  conflicts: string[];
+}): void {
+  const existing = new Set(conflicts);
+
+  logger.info('Dry run — nothing will be written.');
+  logger.newline();
+  logger.plain(`  ${theme.heading('Components')}`);
+  logger.plain(`    ${[...resolvedNames].sort().join(', ')}`);
+
+  logger.newline();
+  logger.plain(`  ${theme.heading('Files')}`);
+  for (const target of targets) {
+    // Marked rather than omitted: what `add` would do to a file that already
+    // exists depends on --overwrite, and the dry run should show both.
+    const note = existing.has(target) ? theme.dim('  (already exists)') : '';
+    logger.plain(`    ${theme.code(target)}${note}`);
+  }
+
+  if (packageDeps.size > 0) {
+    logger.newline();
+    logger.plain(`  ${theme.heading('npm packages')}`);
+    logger.plain(`    ${[...packageDeps].sort().join(', ')}`);
+  }
+
+  logger.newline();
+  if (conflicts.length > 0) {
+    logger.warn(
+      `${conflicts.length} of these already exist. Without --overwrite they are kept.`
+    );
   }
 }
 

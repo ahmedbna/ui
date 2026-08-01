@@ -34,24 +34,30 @@ export interface PackageManagerChoice {
  * Precedence, in order:
  *
  *   1. An explicit flag.
- *   2. How this process was launched — `npx`, `pnpm dlx`, `bunx`. Usually the
+ *   2. `packageManager` in the project's `components.json`.
+ *   3. How this process was launched — `npx`, `pnpm dlx`, `bunx`. Usually the
  *      only signal available to `init`, where the project does not exist yet.
- *   3. The project's own lockfile or `packageManager` field. This is what the
+ *   4. The project's own lockfile or `packageManager` field. This is what the
  *      hand-rolled detection never looked at, so `bna-ui add` inside a pnpm
  *      project could install with npm and leave a stray package-lock.json.
- *   4. npm.
+ *   5. npm.
  *
  * Reports *how* it decided rather than logging, because the scaffold commands
  * announce a detected manager while `add` stays quiet.
  */
 export async function resolvePackageManager(
   flags: PackageManagerFlags,
-  cwd: string = process.cwd()
+  cwd: string = process.cwd(),
+  /** From `components.json`. Loses to a flag, beats every detected signal. */
+  configured?: PackageManager
 ): Promise<PackageManagerChoice> {
   if (flags.npm) return { manager: 'npm', source: 'flag' };
   if (flags.yarn) return { manager: 'yarn', source: 'flag' };
   if (flags.pnpm) return { manager: 'pnpm', source: 'flag' };
   if (flags.bun) return { manager: 'bun', source: 'flag' };
+
+  const fromConfig = asSupported(configured);
+  if (fromConfig) return { manager: fromConfig, source: 'flag' };
 
   const fromInvocation = asSupported(getUserAgent());
   if (fromInvocation) return { manager: fromInvocation, source: 'detected' };

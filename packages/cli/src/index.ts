@@ -6,8 +6,10 @@ import { addCommand } from './commands/add.js';
 import { initConvexCommand } from './commands/convex.js';
 import { infoCommand } from './commands/info.js';
 import { initCommand } from './commands/init.js';
+import { listCommand, searchCommand } from './commands/list.js';
 import { initSupabaseCommand } from './commands/supabase.js';
 import { reportFatal } from './utils/errors.js';
+import { checkForUpdate, reportUpdate } from './utils/update-check.js';
 
 const require = createRequire(import.meta.url);
 // Read from package.json rather than a literal: this was hardcoded to '1.0.0'
@@ -76,6 +78,23 @@ program
   .action(addCommand);
 
 program
+  .command('list')
+  .alias('ls')
+  .description('List every component, chart, hook and theme file')
+  .option('--type <type>', 'Narrow to ui, chart, hook or theme')
+  .option('--json', 'Emit the list as JSON, for scripts and agents')
+  .option('--registry <url>', 'Registry to read from')
+  .action(listCommand);
+
+program
+  .command('search')
+  .description('Search the registry by name or description')
+  .argument('<query>', 'Search term, e.g. "chart" or "date"')
+  .option('--json', 'Emit matches as JSON, for scripts and agents')
+  .option('--registry <url>', 'Registry to read from')
+  .action(searchCommand);
+
+program
   .command('info')
   .description("Print a component's props, source and examples")
   .argument('<component>', 'Component name, e.g. button')
@@ -105,7 +124,16 @@ process.on('uncaughtException', (error) => {
   reportFatal(error);
 });
 
+// Started before the command runs and awaited after, so the network round trip
+// overlaps with the real work instead of delaying it.
+const updatePromise = checkForUpdate(version);
+
 // `parseAsync`, not `parse`: commander does not await an async `.action()`
 // handler under `parse()`, so a rejecting command was caught only by whichever
 // microtask happened to run first.
 await program.parseAsync().catch(reportFatal);
+
+// Last, so it never pushes the command's own output off screen. `mcp` is
+// excluded because its stdout is a protocol channel.
+const latest = await updatePromise;
+if (latest && !process.argv.includes('mcp')) reportUpdate(version, latest);

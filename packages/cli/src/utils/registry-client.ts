@@ -49,12 +49,22 @@ export interface RegistryIndex {
 }
 
 /**
- * Resolution order: explicit `--registry` flag, then `BNA_UI_REGISTRY`, then
- * the public registry. The flag exists so an unreleased component can be tested
- * against a local docs server (`--registry http://localhost:3000/r`).
+ * Resolution order: explicit `--registry` flag, then the project's
+ * `components.json`, then `BNA_UI_REGISTRY`, then the public registry.
+ *
+ * The flag exists so an unreleased component can be tested against a local docs
+ * server (`--registry http://localhost:3000/r`); the config entry exists so a
+ * project pinned to a private registry does not have to repeat it.
  */
-export function resolveRegistryUrl(override?: string): string {
-  const url = override || process.env.BNA_UI_REGISTRY || DEFAULT_REGISTRY_URL;
+export function resolveRegistryUrl(
+  override?: string,
+  fromConfig?: string
+): string {
+  const url =
+    override ||
+    fromConfig ||
+    process.env.BNA_UI_REGISTRY ||
+    DEFAULT_REGISTRY_URL;
   return url.replace(/\/+$/, '');
 }
 

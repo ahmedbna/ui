@@ -6,6 +6,7 @@
  * would break. The handful of values that genuinely vary are patched afterwards.
  */
 import path from 'path';
+import { DEFAULT_ALIASES, writeConfig } from '../utils/config.js';
 import { CliError } from '../utils/errors.js';
 import {
   pathExists,
@@ -107,4 +108,18 @@ export const patchSupabaseConfig: ScaffoldPatch = async (
   } catch (error) {
     logger.debug('Could not update supabase/config.toml:', error);
   }
+};
+
+/**
+ * Seeds `components.json` so later `add` runs inherit the project's choices.
+ *
+ * Written with defaults rather than left absent: an empty-but-present config is
+ * discoverable and editable, where a missing one leaves users guessing that the
+ * feature exists at all.
+ */
+export const writeComponentsConfig: ScaffoldPatch = async (ctx) => {
+  await writeConfig(ctx.projectPath, {
+    aliases: { ...DEFAULT_ALIASES },
+    packageManager: ctx.packageManager,
+  });
 };
