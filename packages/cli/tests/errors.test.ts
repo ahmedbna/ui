@@ -133,7 +133,8 @@ describe('reportFatal', () => {
 
 describe('softFail', () => {
   it('warns without throwing, so an optional step cannot fail the command', () => {
-    const warn = vi.spyOn(console, 'log').mockImplementation(() => {});
+    // stderr, not stdout — see the note on `logger.warn`.
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
     expect(() =>
       softFail('convex init failed', { hint: 'run npx convex dev' })
     ).not.toThrow();

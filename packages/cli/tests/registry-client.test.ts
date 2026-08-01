@@ -1,6 +1,6 @@
+import fs from 'fs/promises';
 import os from 'os';
 import path from 'path';
-import fs from 'fs-extra';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import {
   clearRegistryCache,
@@ -159,9 +159,9 @@ describe('fetchRegistryItem', () => {
   });
 
   it('does not fail when the cache directory is unwritable', async () => {
-    const spy = vi
-      .spyOn(fs, 'ensureDir')
-      .mockRejectedValue(new Error('EACCES'));
+    // Retargeted from fs-extra's `ensureDir` onto the native `mkdir` the
+    // filesystem helpers now use.
+    const spy = vi.spyOn(fs, 'mkdir').mockRejectedValue(new Error('EACCES'));
     vi.stubGlobal('fetch', mockFetch(payload()));
 
     const item = await fetchRegistryItem(TEST_URL, 'button');
@@ -176,7 +176,7 @@ describe('cache location', () => {
     await fetchRegistryItem(TEST_URL, 'button');
 
     const base = path.join(os.homedir(), '.cache', 'bna-ui');
-    expect(await fs.pathExists(base)).toBe(true);
+    await expect(fs.access(base)).resolves.toBeUndefined();
     await clearRegistryCache(TEST_URL);
   });
 });

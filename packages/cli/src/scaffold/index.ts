@@ -31,7 +31,7 @@ export async function runScaffold<O extends ScaffoldOptions, R>(
 
   const target = await resolveTarget(projectName, config.defaultProjectName);
 
-  const { manager, source } = resolvePackageManager(options);
+  const { manager, source } = await resolvePackageManager(options);
   if (source === 'detected') {
     logger.info(`Detected package manager: ${manager}`);
   }

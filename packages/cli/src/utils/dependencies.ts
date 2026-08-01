@@ -1,7 +1,7 @@
 // src/utils/dependencies.ts
 import { execSync } from 'child_process';
+import fs from 'fs';
 import path from 'path';
-import fs from 'fs-extra';
 import { logger } from './logger.js';
 import { PackageManager } from './package-manager.js';
 import { createSpinner, failSpinner, succeedSpinner } from './theme.js';

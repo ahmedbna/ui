@@ -6,8 +6,13 @@
  * would break. The handful of values that genuinely vary are patched afterwards.
  */
 import path from 'path';
-import fs from 'fs-extra';
 import { CliError } from '../utils/errors.js';
+import {
+  pathExists,
+  readFile,
+  readJson,
+  writeFile,
+} from '../utils/filesystem.js';
 import { logger } from '../utils/logger.js';
 import type { ScaffoldContext, ScaffoldPatch } from './types.js';
 
@@ -19,7 +24,7 @@ async function editJson(
 ): Promise<void> {
   let json: Record<string, unknown>;
   try {
-    json = (await fs.readJson(filePath)) as Record<string, unknown>;
+    json = await readJson<Record<string, unknown>>(filePath);
   } catch (error) {
     throw new CliError(`Could not read ${what}.`, {
       hint: 'The bundled template may be corrupt — try reinstalling bna-ui.',
@@ -30,7 +35,7 @@ async function editJson(
   edit(json);
 
   try {
-    await fs.writeFile(filePath, JSON.stringify(json, null, 2) + '\n', 'utf8');
+    await writeFile(filePath, JSON.stringify(json, null, 2) + '\n');
   } catch (error) {
     throw new CliError(`Could not write ${what}.`, { cause: error });
   }
@@ -93,12 +98,11 @@ export const patchSupabaseConfig: ScaffoldPatch = async (
 ) => {
   const configPath = path.join(ctx.projectPath, 'supabase', 'config.toml');
   try {
-    if (!(await fs.pathExists(configPath))) return;
-    const original = await fs.readFile(configPath, 'utf8');
-    await fs.writeFile(
+    if (!(await pathExists(configPath))) return;
+    const original = await readFile(configPath);
+    await writeFile(
       configPath,
-      patchSupabaseConfigText(original, ctx.projectName),
-      'utf8'
+      patchSupabaseConfigText(original, ctx.projectName)
     );
   } catch (error) {
     logger.debug('Could not update supabase/config.toml:', error);

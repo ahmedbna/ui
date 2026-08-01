@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json.schemastore.org/package.json",
+  "name": "@bna-ui/mcp",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "MCP server for the BNA UI registry \u2014 lets AI assistants browse and read components",
+  "main": "dist/index.js",
+  "bin": {
+    "bna-ui-mcp": "bin/bna-ui-mcp.js"
+  },
+  "scripts": {
+    "build": "pnpm clean && tsc",
+    "dev": "tsc --watch",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "clean": "rm -rf dist .turbo",
+    "prepublishOnly": "pnpm build"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "react-native",
+    "expo",
+    "bna-ui"
+  ],
+  "author": "Ahmed BNA <ahmdabdelsamea@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ahmedbna/ui.git",
+    "directory": "packages/mcp"
+  },
+  "bugs": {
+    "url": "https://github.com/ahmedbna/ui/issues"
+  },
+  "homepage": "https://ui.ahmedbna.com/docs/mcp",
+  "files": [
+    "dist/**/*",
+    "bin/**/*",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "bna-ui": "workspace:*",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@bna-ui/eslint-config": "workspace:*",
+    "@bna-ui/typescript-config": "workspace:*",
+    "@types/node": "^22.10.2",
+    "eslint": "^9.17.0",
+    "typescript": "~6.0.3"
+  }
+}

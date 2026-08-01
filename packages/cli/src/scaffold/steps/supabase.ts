@@ -1,9 +1,9 @@
 import { execSync } from 'child_process';
 import path from 'path';
-import inquirer from 'inquirer';
 import { softFail } from '../../utils/errors.js';
 import { writeFile } from '../../utils/filesystem.js';
 import { logger } from '../../utils/logger.js';
+import { input } from '../../utils/prompts.js';
 import { theme } from '../../utils/theme.js';
 import { runExternalSequence } from '../external.js';
 import {
@@ -53,43 +53,35 @@ async function promptForCredentials(): Promise<SupabaseCredentials | null> {
   );
   logger.newline();
 
-  const { url } = await inquirer.prompt<{ url: string }>([
-    {
-      type: 'input',
-      name: 'url',
-      message: 'Supabase project URL:',
-      validate: (input: string) => {
-        if (!input.trim()) return true; // skipping is allowed
-        return (
-          projectRefFromUrl(input) !== null ||
-          'Expected something like https://abcdefgh.supabase.co'
-        );
-      },
+  const url = await input({
+    message: 'Supabase project URL:',
+    validate: (value: string) => {
+      if (!value.trim()) return true; // skipping is allowed
+      return (
+        projectRefFromUrl(value) !== null ||
+        'Expected something like https://abcdefgh.supabase.co'
+      );
     },
-  ]);
+  });
 
   if (!url.trim()) {
     logger.warn('Skipped. Copy .env.example to .env.local when you have them.');
     return null;
   }
 
-  const { publishableKey } = await inquirer.prompt<{ publishableKey: string }>([
-    {
-      type: 'input',
-      name: 'publishableKey',
-      message: 'Publishable key (sb_publishable_…):',
-      validate: (input: string) => {
-        const value = input.trim();
-        if (!value) return 'A key is required now that a URL was given.';
-        if (value.startsWith('sb_secret_')) {
-          // Worth stopping for: a secret key bypasses row level security, and
-          // EXPO_PUBLIC_ variables are compiled into the shipped app bundle.
-          return 'That is a secret key. It would ship inside your app — use the publishable key.';
-        }
-        return true;
-      },
+  const publishableKey = await input({
+    message: 'Publishable key (sb_publishable_…):',
+    validate: (raw: string) => {
+      const value = raw.trim();
+      if (!value) return 'A key is required now that a URL was given.';
+      if (value.startsWith('sb_secret_')) {
+        // Worth stopping for: a secret key bypasses row level security, and
+        // EXPO_PUBLIC_ variables are compiled into the shipped app bundle.
+        return 'That is a secret key. It would ship inside your app — use the publishable key.';
+      }
+      return true;
     },
-  ]);
+  });
 
   return { url: url.trim(), publishableKey: publishableKey.trim() };
 }

@@ -1,6 +1,6 @@
+import fs from 'fs/promises';
 import os from 'os';
 import path from 'path';
-import fs from 'fs-extra';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import {
   checkExistingDependencies,
@@ -56,11 +56,11 @@ describe('project inspection', () => {
   });
 
   afterEach(async () => {
-    await fs.remove(dir);
+    await fs.rm(dir, { recursive: true, force: true });
   });
 
   const write = (pkg: Record<string, unknown>) =>
-    fs.writeJson(path.join(dir, 'package.json'), pkg);
+    fs.writeFile(path.join(dir, 'package.json'), JSON.stringify(pkg));
 
   it('detects an Expo project', async () => {
     await write({ dependencies: { expo: '~57.0.8' } });

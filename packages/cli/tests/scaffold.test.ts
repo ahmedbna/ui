@@ -44,10 +44,17 @@ beforeEach(async () => {
   );
   await fs.writeFile(
     path.join(start, 'app.json'),
-    JSON.stringify({ expo: { name: 'bna', slug: 'bna', scheme: 'bna' } }, null, 2)
+    JSON.stringify(
+      { expo: { name: 'bna', slug: 'bna', scheme: 'bna' } },
+      null,
+      2
+    )
   );
   await fs.writeFile(path.join(start, 'gitignore'), 'node_modules\n');
-  await fs.writeFile(path.join(start, 'app', '_layout.tsx'), 'export default null;\n');
+  await fs.writeFile(
+    path.join(start, 'app', '_layout.tsx'),
+    'export default null;\n'
+  );
 
   vi.stubEnv('BNA_UI_TEMPLATES', templates);
   vi.spyOn(console, 'log').mockImplementation(() => {});
@@ -69,7 +76,9 @@ describe('runScaffold', () => {
     await runScaffold(baseConfig, 'my-app', { skipInstall: true });
 
     const projectPath = path.join(workdir, 'my-app');
-    expect(await readJson(path.join(projectPath, 'package.json'))).toMatchObject({
+    expect(
+      await readJson(path.join(projectPath, 'package.json'))
+    ).toMatchObject({
       name: 'my-app',
     });
     expect((await readJson(path.join(projectPath, 'app.json'))).expo).toEqual({
@@ -85,10 +94,12 @@ describe('runScaffold', () => {
     // npm strips `.gitignore` from tarballs, so starters ship it dot-less.
     // Every scaffolded project having no .gitignore was a real shipped bug.
     await runScaffold(baseConfig, 'my-app', { skipInstall: true });
-    expect(await fs.readFile(path.join(workdir, 'my-app', '.gitignore'), 'utf8')).toContain(
-      'node_modules'
-    );
-    await expect(fs.access(path.join(workdir, 'my-app', 'gitignore'))).rejects.toThrow();
+    expect(
+      await fs.readFile(path.join(workdir, 'my-app', '.gitignore'), 'utf8')
+    ).toContain('node_modules');
+    await expect(
+      fs.access(path.join(workdir, 'my-app', 'gitignore'))
+    ).rejects.toThrow();
   });
 
   it('copies nested files', async () => {
@@ -100,7 +111,9 @@ describe('runScaffold', () => {
 
   it('sanitizes an unruly project name', async () => {
     await runScaffold(baseConfig, 'My Cool App', { skipInstall: true });
-    expect(await readJson(path.join(workdir, 'my-cool-app', 'package.json'))).toMatchObject({
+    expect(
+      await readJson(path.join(workdir, 'my-cool-app', 'package.json'))
+    ).toMatchObject({
       name: 'my-cool-app',
     });
   });
@@ -156,10 +169,17 @@ describe('runScaffold', () => {
   });
 
   it('selects the template from the options', async () => {
-    await fs.cp(path.join(templates, 'start'), path.join(templates, 'start-convex'), {
-      recursive: true,
-    });
-    await fs.writeFile(path.join(templates, 'start-convex', 'MARKER'), 'convex\n');
+    await fs.cp(
+      path.join(templates, 'start'),
+      path.join(templates, 'start-convex'),
+      {
+        recursive: true,
+      }
+    );
+    await fs.writeFile(
+      path.join(templates, 'start-convex', 'MARKER'),
+      'convex\n'
+    );
 
     await runScaffold(
       { ...baseConfig, template: () => 'start-convex' },
@@ -205,14 +225,16 @@ describe('patchSupabaseConfigText', () => {
 
 describe('project name handling', () => {
   it('rejects a name with no usable characters', async () => {
-    await expect(runScaffold(baseConfig, '!!!', { skipInstall: true })).rejects.toThrow(
-      /no usable characters/i
-    );
+    await expect(
+      runScaffold(baseConfig, '!!!', { skipInstall: true })
+    ).rejects.toThrow(/no usable characters/i);
   });
 
   it('flattens a traversal attempt into a plain directory name', async () => {
     await runScaffold(baseConfig, '../../etc', { skipInstall: true });
     // Sanitizing collapses the separators, so the project lands under cwd.
-    await expect(fs.access(path.join(workdir, 'etc', 'package.json'))).resolves.toBeUndefined();
+    await expect(
+      fs.access(path.join(workdir, 'etc', 'package.json'))
+    ).resolves.toBeUndefined();
   });
 });

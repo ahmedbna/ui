@@ -7,9 +7,9 @@
  * `utils/validation.ts`.
  */
 import path from 'path';
-import inquirer from 'inquirer';
 import { CliError, cancelled } from '../utils/errors.js';
 import { logger } from '../utils/logger.js';
+import { confirm, input } from '../utils/prompts.js';
 import { theme } from '../utils/theme.js';
 import {
   sanitizeProjectName,
@@ -25,21 +25,16 @@ export interface ScaffoldTarget {
 }
 
 async function promptForName(defaultName: string): Promise<string> {
-  const { projectName } = await inquirer.prompt<{ projectName: string }>([
-    {
-      type: 'input',
-      name: 'projectName',
-      message: 'What is your project name?',
-      default: defaultName,
-      validate: (input: string) => {
-        // `.` means "here", which is not a package name but is a valid answer.
-        if (input.trim() === '.') return true;
-        const validation = validateProjectName(input);
-        return validation.valid || validation.message || 'Invalid project name';
-      },
+  return input({
+    message: 'What is your project name?',
+    default: defaultName,
+    validate: (value: string) => {
+      // `.` means "here", which is not a package name but is a valid answer.
+      if (value.trim() === '.') return true;
+      const validation = validateProjectName(value);
+      return validation.valid || validation.message || 'Invalid project name';
     },
-  ]);
-  return projectName;
+  });
 }
 
 /** Scaffolding into the cwd, which may already hold files. */
@@ -65,14 +60,10 @@ async function resolveInPlace(defaultName: string): Promise<ScaffoldTarget> {
       logger.plain(theme.dim(`  ${file}`));
     }
 
-    const { proceed } = await inquirer.prompt<{ proceed: boolean }>([
-      {
-        type: 'confirm',
-        name: 'proceed',
-        message: 'Continue anyway?',
-        default: false,
-      },
-    ]);
+    const proceed = await confirm({
+      message: 'Continue anyway?',
+      default: false,
+    });
     if (!proceed) throw cancelled('Nothing was created.');
   }
 

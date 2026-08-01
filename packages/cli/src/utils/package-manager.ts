@@ -1,8 +1,18 @@
 import { execSync } from 'child_process';
+import { detect, getUserAgent } from 'package-manager-detector';
 import { logger } from './logger.js';
 import { createSpinner, failSpinner, succeedSpinner } from './theme.js';
 
 export type PackageManager = 'npm' | 'yarn' | 'pnpm' | 'bun';
+
+const SUPPORTED = new Set<PackageManager>(['npm', 'yarn', 'pnpm', 'bun']);
+
+/** Narrow whatever the detector reports to a manager we can drive. */
+function asSupported(name: string | null | undefined): PackageManager | null {
+  return name && SUPPORTED.has(name as PackageManager)
+    ? (name as PackageManager)
+    : null;
+}
 
 /** The `--npm` / `--yarn` / `--pnpm` / `--bun` flags every command accepts. */
 export interface PackageManagerFlags {
@@ -19,75 +29,37 @@ export interface PackageManagerChoice {
 }
 
 /**
- * The flag ladder, in one place.
+ * Which package manager to install with.
+ *
+ * Precedence, in order:
+ *
+ *   1. An explicit flag.
+ *   2. How this process was launched — `npx`, `pnpm dlx`, `bunx`. Usually the
+ *      only signal available to `init`, where the project does not exist yet.
+ *   3. The project's own lockfile or `packageManager` field. This is what the
+ *      hand-rolled detection never looked at, so `bna-ui add` inside a pnpm
+ *      project could install with npm and leave a stray package-lock.json.
+ *   4. npm.
  *
  * Reports *how* it decided rather than logging, because the scaffold commands
- * announce a detected manager while `add` stays quiet — behaviour that was
- * previously kept in sync by having four copies of the same ternary chain.
+ * announce a detected manager while `add` stays quiet.
  */
-export function resolvePackageManager(
-  flags: PackageManagerFlags
-): PackageManagerChoice {
+export async function resolvePackageManager(
+  flags: PackageManagerFlags,
+  cwd: string = process.cwd()
+): Promise<PackageManagerChoice> {
   if (flags.npm) return { manager: 'npm', source: 'flag' };
   if (flags.yarn) return { manager: 'yarn', source: 'flag' };
   if (flags.pnpm) return { manager: 'pnpm', source: 'flag' };
   if (flags.bun) return { manager: 'bun', source: 'flag' };
 
-  return { manager: detectPackageManagerFromInvocation(), source: 'detected' };
-}
+  const fromInvocation = asSupported(getUserAgent());
+  if (fromInvocation) return { manager: fromInvocation, source: 'detected' };
 
-export function detectPackageManager(): PackageManager {
-  try {
-    execSync('pnpm --version', { stdio: 'ignore' });
-    return 'pnpm';
-  } catch {}
+  const fromProject = asSupported((await detect({ cwd }))?.name);
+  if (fromProject) return { manager: fromProject, source: 'detected' };
 
-  try {
-    execSync('yarn --version', { stdio: 'ignore' });
-    return 'yarn';
-  } catch {}
-
-  try {
-    execSync('bun --version', { stdio: 'ignore' });
-    return 'bun';
-  } catch {}
-
-  return 'npm';
-}
-
-export function detectPackageManagerFromInvocation(): PackageManager {
-  // Check environment variables set by package managers
-  const npmConfig = process.env.npm_config_user_agent;
-  const npmExecpath = process.env.npm_execpath;
-
-  if (npmConfig) {
-    if (npmConfig.includes('pnpm')) return 'pnpm';
-    if (npmConfig.includes('yarn')) return 'yarn';
-    if (npmConfig.includes('bun')) return 'bun';
-    if (npmConfig.includes('npm')) return 'npm';
-  }
-
-  if (npmExecpath) {
-    if (npmExecpath.includes('pnpm')) return 'pnpm';
-    if (npmExecpath.includes('yarn')) return 'yarn';
-    if (npmExecpath.includes('bun')) return 'bun';
-  }
-
-  // Check process argv for dlx/bunx patterns
-  const argv = process.argv.join(' ');
-  if (argv.includes('pnpm dlx') || argv.includes('pnpm/dlx')) return 'pnpm';
-  if (argv.includes('yarn dlx') || argv.includes('yarn/dlx')) return 'yarn';
-  if (argv.includes('bunx') || argv.includes('bun/') || process.env.BUN_INSTALL)
-    return 'bun';
-  if (argv.includes('npx') || argv.includes('npm/')) return 'npm';
-
-  // Additional check for process.env variables that might indicate the package manager
-  if (process.env.PNPM_HOME || process.env.PNPM_SCRIPT_SRC_DIR) return 'pnpm';
-  if (process.env.YARN_WRAP_OUTPUT) return 'yarn';
-  if (process.env.BUN_INSTALL) return 'bun';
-
-  // Fallback to detection by availability
-  return detectPackageManager();
+  return { manager: 'npm', source: 'detected' };
 }
 
 export function getInstallCommand(packageManager: PackageManager): string {

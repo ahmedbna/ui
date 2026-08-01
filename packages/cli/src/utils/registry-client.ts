@@ -1,8 +1,8 @@
 // src/utils/registry-client.ts
 import os from 'os';
 import path from 'path';
-import fs from 'fs-extra';
 import { CliError, RegistryNotFoundError } from './errors.js';
+import { readJson, remove, writeJson } from './filesystem.js';
 import { logger } from './logger.js';
 
 /**
@@ -75,7 +75,7 @@ interface CacheEntry<T> {
 
 async function readCache<T>(file: string): Promise<CacheEntry<T> | null> {
   try {
-    return (await fs.readJson(file)) as CacheEntry<T>;
+    return await readJson<CacheEntry<T>>(file);
   } catch {
     return null;
   }
@@ -83,8 +83,7 @@ async function readCache<T>(file: string): Promise<CacheEntry<T> | null> {
 
 async function writeCache<T>(file: string, entry: CacheEntry<T>) {
   try {
-    await fs.ensureDir(path.dirname(file));
-    await fs.writeJson(file, entry);
+    await writeJson(file, entry);
   } catch {
     // A read-only or full home directory must not break `add`.
   }
@@ -239,5 +238,5 @@ export interface AiBundle {
 }
 
 export async function clearRegistryCache(registryUrl: string): Promise<void> {
-  await fs.remove(cacheDir(registryUrl));
+  await remove(cacheDir(registryUrl));
 }

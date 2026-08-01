@@ -13,8 +13,15 @@ export const logger = {
     console.log(theme.ok(theme.glyph.success), message, ...args);
   },
 
+  /**
+   * Diagnostics go to stderr, not stdout.
+   *
+   * This is conventional for warnings, and load-bearing for the MCP server:
+   * stdout there is the JSON-RPC channel, so a cache-fallback warning printed
+   * on it would corrupt the protocol stream mid-session.
+   */
   warn: (message: string, ...args: unknown[]) => {
-    console.log(theme.warn(theme.glyph.warning), message, ...args);
+    console.warn(theme.warn(theme.glyph.warning), message, ...args);
   },
 
   error: (message: string, ...args: unknown[]) => {
@@ -22,8 +29,8 @@ export const logger = {
   },
 
   debug: (message: string, ...args: unknown[]) => {
-    if (process.env.DEBUG) {
-      console.log(theme.dim(theme.glyph.debug), message, ...args);
+    if (process.env.DEBUG || process.argv.includes('--verbose')) {
+      console.error(theme.dim(theme.glyph.debug), message, ...args);
     }
   },
 

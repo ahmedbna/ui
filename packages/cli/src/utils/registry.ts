@@ -1,7 +1,7 @@
 // src/utils/registry.ts
 import path from 'path';
-import fs from 'fs-extra';
 import { CliError } from './errors.js';
+import { pathExists, readFile, readJson } from './filesystem.js';
 
 /**
  * Everything that used to live here — dependency resolution, conflict
@@ -35,10 +35,10 @@ function parseJsonc(text: string): unknown {
 async function hasPathAlias(projectPath: string): Promise<boolean> {
   for (const name of ['tsconfig.json', 'jsconfig.json']) {
     const configPath = path.join(projectPath, name);
-    if (!(await fs.pathExists(configPath))) continue;
+    if (!(await pathExists(configPath))) continue;
 
     try {
-      const config = parseJsonc(await fs.readFile(configPath, 'utf8')) as {
+      const config = parseJsonc(await readFile(configPath)) as {
         compilerOptions?: { paths?: Record<string, unknown> };
       };
       const paths = config.compilerOptions?.paths;
@@ -58,7 +58,7 @@ async function hasPathAlias(projectPath: string): Promise<boolean> {
 export async function assertUsableProject(projectPath: string): Promise<void> {
   const packageJsonPath = path.join(projectPath, 'package.json');
 
-  if (!(await fs.pathExists(packageJsonPath))) {
+  if (!(await pathExists(packageJsonPath))) {
     throw new CliError('No package.json here.', {
       hint: 'Run this inside your app, or scaffold one first with `bna-ui init <name>`.',
     });
@@ -69,7 +69,7 @@ export async function assertUsableProject(projectPath: string): Promise<void> {
     devDependencies?: Record<string, string>;
   };
   try {
-    packageJson = await fs.readJson(packageJsonPath);
+    packageJson = await readJson(packageJsonPath);
   } catch (error) {
     throw new CliError('Could not read package.json.', {
       hint: 'It may be malformed — check that it is valid JSON.',

@@ -1,6 +1,5 @@
 // src/commands/add.ts
 import path from 'path';
-import inquirer from 'inquirer';
 import {
   checkExistingDependencies,
   installPackageDependencies,
@@ -8,7 +7,11 @@ import {
 import { CliError, cancelled, toCliError } from '../utils/errors.js';
 import { createDirectory, fileExists, writeFile } from '../utils/filesystem.js';
 import { logger } from '../utils/logger.js';
-import { detectPackageManagerFromInvocation } from '../utils/package-manager.js';
+import {
+  resolvePackageManager,
+  type PackageManagerFlags,
+} from '../utils/package-manager.js';
+import { checkbox, confirm, select } from '../utils/prompts.js';
 import {
   fetchRegistryIndex,
   fetchRegistryItem,
@@ -18,14 +21,10 @@ import {
 import { assertUsableProject } from '../utils/registry.js';
 import { createSpinner, failSpinner, succeedSpinner } from '../utils/theme.js';
 
-interface AddCommandOptions {
+interface AddCommandOptions extends PackageManagerFlags {
   overwrite?: boolean;
   dryRun?: boolean;
   yes?: boolean;
-  npm?: boolean;
-  yarn?: boolean;
-  pnpm?: boolean;
-  bun?: boolean;
   registry?: string;
 }
 
@@ -82,7 +81,7 @@ export async function addCommand(
       });
     }
 
-    const packageManager = getPackageManager(options);
+    const { manager: packageManager } = await resolvePackageManager(options);
 
     // Conflict handling, on the files actually about to be written.
     const conflicts: string[] = [];
@@ -100,23 +99,18 @@ export async function addCommand(
       conflicts.forEach((file) => logger.plain(`  ${file}`));
 
       if (!options.yes) {
-        const { choice } = await inquirer.prompt([
-          {
-            type: 'list',
-            name: 'choice',
-            message: 'How would you like to handle existing files?',
-            choices: [
-              { name: 'Overwrite all existing files', value: 'overwrite-all' },
-              { name: 'Skip existing files', value: 'skip-conflicts' },
-              {
-                name: 'Choose for each file individually',
-                value: 'individual',
-              },
-              { name: 'Cancel operation', value: 'cancel' },
-            ],
-            default: 'skip-conflicts',
-          },
-        ]);
+        const choice = await select<
+          'overwrite-all' | 'skip-conflicts' | 'individual' | 'cancel'
+        >({
+          message: 'How would you like to handle existing files?',
+          default: 'skip-conflicts',
+          choices: [
+            { name: 'Skip existing files', value: 'skip-conflicts' },
+            { name: 'Overwrite all existing files', value: 'overwrite-all' },
+            { name: 'Choose for each file individually', value: 'individual' },
+            { name: 'Cancel', value: 'cancel' },
+          ],
+        });
 
         if (choice === 'cancel') {
           throw cancelled('Nothing was written.');
@@ -124,14 +118,10 @@ export async function addCommand(
           overwriteAll = true;
         } else if (choice === 'individual') {
           for (const target of conflicts) {
-            const { shouldOverwrite } = await inquirer.prompt([
-              {
-                type: 'confirm',
-                name: 'shouldOverwrite',
-                message: `Overwrite ${target}?`,
-                default: false,
-              },
-            ]);
+            const shouldOverwrite = await confirm({
+              message: `Overwrite ${target}?`,
+              default: false,
+            });
             if (!shouldOverwrite) skip.add(target);
           }
         } else {
@@ -233,28 +223,15 @@ async function selectComponentsInteractively(
     throw error;
   }
 
-  const { selectedComponents } = await inquirer.prompt([
-    {
-      type: 'checkbox',
-      name: 'selectedComponents',
-      message: 'Select components to add:',
-      choices,
-      pageSize: 15,
-    },
-  ]);
+  const selectedComponents = await checkbox<string>({
+    message: 'Select components to add:',
+    choices,
+    pageSize: 15,
+  });
 
   if (selectedComponents.length === 0) {
     throw cancelled('No components selected.');
   }
 
   return selectedComponents;
-}
-
-function getPackageManager(options: AddCommandOptions) {
-  if (options.npm) return 'npm';
-  if (options.yarn) return 'yarn';
-  if (options.pnpm) return 'pnpm';
-  if (options.bun) return 'bun';
-
-  return detectPackageManagerFromInvocation();
 }
