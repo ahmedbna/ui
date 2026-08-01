@@ -1,0 +1,372 @@
+---
+title: Troubleshooting and FAQ
+description: The failures the Supabase starters actually produce — silent realtime, rejected redirects, empty queries, sessions that do not survive a relaunch — plus common questions and a Convex to Supabase migration guide.
+---
+
+## Auth
+
+### OAuth opens the browser, then nothing happens
+
+Your app's redirect URL is not in the allow-list. **Authentication → URL
+Configuration → Redirect URLs** needs both spellings, because Expo Go and a
+build produce different ones:
+
+```
+exp://localhost:8081
+my-app://
+```
+
+To see exactly what your device produces:
+
+```ts
+import { makeRedirectUri } from 'expo-auth-session';
+console.log(makeRedirectUri());
+```
+
+That string, verbatim, has to be on the list.
+
+### Works in Expo Go, breaks in a build
+
+Same cause, other direction — `exp://localhost:8081` is allow-listed and
+`<scheme>://` is not. It also happens after changing `scheme` in `app.json`,
+which the CLI sets to your project name at scaffold time.
+
+### `redirect_uri_mismatch` from Google or Apple
+
+A different list. The provider needs Supabase's callback:
+
+```
+https://<your-project-ref>.supabase.co/auth/v1/callback
+```
+
+Supabase's list is where your _app_ may receive the redirect afterwards. Both
+have to be right. See [Google](/docs/supabase/google) and
+[Apple](/docs/supabase/apple).
+
+### The user is signed out on every relaunch
+
+Session persistence is failing. Almost always the storage adapter: `expo-secure-store`
+refuses values over 2048 bytes and a real session is several kilobytes. This is
+why the starter uses `LargeSecureStore`.
+
+It is a nasty one to catch because a test account with no metadata can fit under
+the limit — so it works all through development and breaks on your first real
+user. See [authentication](/docs/supabase/auth#session-storage).
+
+### Requests start failing after the app has been backgrounded
+
+The access token expired and the refresh timer did not run — iOS suspends timers
+in backgrounded apps. The fix is in `lib/supabase.ts`:
+
+```ts
+AppState.addEventListener('change', (state) => {
+  if (state === 'active') supabase.auth.startAutoRefresh();
+  else supabase.auth.stopAutoRefresh();
+});
+```
+
+### Sign-in hangs with no error
+
+`detectSessionInUrl` is `true` on native. There is no URL to parse, so the
+client waits for a callback that never arrives. It must be
+`Platform.OS === 'web'`.
+
+### `Email not confirmed`
+
+Confirmations are on and the link has not been opened. That is correct
+behaviour: `supabase/config.toml` turns them off locally for convenience, and
+the hosted project has them on. The sign-up screen handles it —
+
+```ts title="app/(auth)/sign-up.tsx"
+if (!data.session) {
+  toast.success('Check your email', `We sent a confirmation link to ${email}.`);
+  router.replace('/sign-in');
+}
+```
+
+— so if you removed that branch, put it back.
+
+### The OTP screen has no code to enter
+
+Your Magic Link email template has `{{ .ConfirmationURL }}` but not
+`{{ .Token }}`. The default template omits the code. See
+[email](/docs/supabase/email#the-otp-code).
+
+### No email arrives at all, and no error
+
+The built-in SMTP rate limit, which is a handful of messages an hour. Configure
+your own provider.
+
+### The onboarding screen flashes for existing users
+
+The guard is `!profile?.onboarded` instead of `profile?.onboarded === false`.
+The profile row is created by a database trigger and is briefly `null`, which
+the loose check reads as "not onboarded".
+
+## Database
+
+### A query returns an empty array with no error
+
+RLS. An empty result is what a policy denial looks like from the client — there
+is no permission error, because the row simply is not visible.
+
+Check in order:
+
+<Steps>
+
+<Step>Is there a policy for this operation and role at all?</Step>
+
+A table with RLS enabled and no matching policy returns nothing. `to
+authenticated` policies do not apply to an anonymous caller.
+
+<Step>Is the user actually signed in?</Step>
+
+`auth.uid()` is `null` otherwise, and every `auth.uid() = user_id` comparison
+fails.
+
+<Step>Try it in the SQL editor as that user</Step>
+
+```sql
+set local role authenticated;
+set local request.jwt.claims = '{"sub": "<user-id>"}';
+select * from public.tasks;
+reset role;
+```
+
+</Steps>
+
+### An insert fails with "new row violates row-level security policy"
+
+The `with check` expression on your insert policy is false. Usually the client
+sent a `user_id` that is not `auth.uid()` — which is the policy doing its job.
+
+### Everything works, and anyone can read the table
+
+RLS is not enabled. Policies on a table without it do nothing:
+
+```sql
+alter table public.your_table enable row level security;
+```
+
+New tables have it off. This is the most consequential default in Postgres.
+
+### Queries got slow as the table grew
+
+Every policy that filters on a column makes every query filter on it. Without an
+index that is a sequential scan:
+
+```sql
+create index tasks_user_id_created_at_idx
+  on public.tasks (user_id, created_at desc);
+```
+
+### `db push` says the migration is already applied
+
+The remote history and your local files disagree — usually because someone
+changed the schema in Studio. Reconcile the history, then capture the Studio
+changes as a real migration:
+
+```bash
+npx supabase migration repair --status applied <version>
+npx supabase db diff -f describe_what_changed
+```
+
+### TypeScript does not know about a column I added
+
+Regenerate: `npm run db:types`. The shipped CI has a job that fails when the
+checked-in types drift from the migrations.
+
+## Realtime
+
+### The subscription connects but never fires
+
+The table is not in the publication:
+
+```sql
+alter publication supabase_realtime add table public.tasks;
+```
+
+Check what is:
+
+```sql
+select tablename from pg_publication_tables where pubname = 'supabase_realtime';
+```
+
+### DELETE events arrive with no data
+
+`replica identity full` is missing. Postgres sends only the primary key
+otherwise.
+
+### Rows appear twice
+
+An optimistic insert plus the realtime echo. Deduplicate by id — that is what
+`applyChange` in `lib/realtime.ts` does.
+
+Or: the channel was subscribed twice because the effect cleanup does not call
+`supabase.removeChannel(channel)`.
+
+### The list is stale after the app was backgrounded
+
+Events do not queue while the socket is closed. Refetch on reconnect:
+
+```ts
+.subscribe((status) => {
+  if (status === 'SUBSCRIBED') load();
+});
+```
+
+## Storage
+
+### Upload fails with a 403
+
+The bucket has no insert policy, or the object path does not match it. The
+owner-scoped policies key off the first path segment, so the path has to start
+with the user's id:
+
+```ts
+const path = `${user.id}/avatar.${extension}`;
+```
+
+### Upload fails with `mime type not supported`
+
+`contentType` was not set, so it defaulted to `application/octet-stream`, which
+is not in the bucket's `allowed_mime_types`.
+
+### Large images fail on Android
+
+Base64. Use `fetch(uri).then((r) => r.arrayBuffer())` — base64 is a third larger
+and has to be held in memory whole.
+
+### The new avatar does not appear
+
+The path is stable, so the URL is stable, so every cache in between keeps
+serving the old image. Add a cache-buster:
+
+```ts
+return `${publicUrl}?v=${Date.now()}`;
+```
+
+## Edge functions
+
+### `tsc --noEmit` fails on files under `supabase/functions`
+
+They are Deno. Exclude them:
+
+```json title="tsconfig.json"
+"exclude": ["node_modules", "supabase/functions"]
+```
+
+### `invoke` returns a 401
+
+The function was deployed with JWT verification on and the caller has no
+session, or the token expired.
+
+### The function's queries return nothing
+
+It is running as `anon` and RLS is filtering everything. Forward the caller's
+header:
+
+```ts
+{
+  global: {
+    headers: {
+      Authorization: req.headers.get('Authorization')!;
+    }
+  }
+}
+```
+
+## FAQ
+
+**Is the publishable key safe to ship?**
+Yes — that is what it is for. It grants exactly what your RLS policies allow the
+`anon` role. Which is why those policies are the thing to review. A
+`sb_secret_…` key is never safe to ship; it bypasses RLS entirely.
+
+**Do I need the Supabase CLI?**
+No. The scaffold works without it and prints the commands instead. You need it
+to apply migrations, generate types or deploy functions — so in practice, yes.
+
+**Do I need Docker?**
+Only for `supabase start`. Linking a hosted project covers migrations, types and
+functions with no Docker at all.
+
+**Can I use this in Expo Go?**
+Yes, including OAuth — that is why the starter uses browser PKCE rather than
+native sign-in SDKs.
+
+**How do I add a table?**
+`npx supabase migration new <name>`, write the DDL plus `enable row level
+security` and its policies, `npm run db:push`, `npm run db:types`. See
+[database](/docs/supabase/database).
+
+**How do I add a sign-in provider?**
+Configure it in the dashboard, then add a line to the `PROVIDERS` array in
+`components/auth/oauth-buttons.tsx`. All of them share one code path.
+
+**Why is there no `callback` route?**
+The deep link can arrive while any screen is mounted, and on a cold start before
+the router has settled. `providers/auth-provider.tsx` handles it centrally so
+none of that matters.
+
+**Can I use Supabase with the Convex starter?**
+Pick one. They are both backends; running both means two sources of truth.
+
+## Migrating from Convex
+
+Both are TypeScript-first backends with realtime queries, so the shapes map
+closely.
+
+| Convex                       | Supabase                                            |
+| ---------------------------- | --------------------------------------------------- |
+| `convex/schema.ts`           | `supabase/migrations/*.sql`                         |
+| `defineTable({...})`         | `create table …`                                    |
+| Function-level auth checks   | RLS policies, enforced by Postgres                  |
+| `useQuery(api.tasks.list)`   | `select` + a `postgres_changes` subscription        |
+| `useMutation(api.tasks.add)` | `supabase.from('tasks').insert(...)`                |
+| `query` / `mutation`         | Direct queries; edge functions for privileged work  |
+| `action`                     | Edge function                                       |
+| `ctx.auth.getUserIdentity()` | `auth.uid()` in a policy, `getUser()` in a function |
+| `_generated/api.d.ts`        | `lib/database.types.ts` from `supabase gen types`   |
+| `ConvexAuthProvider`         | `providers/auth-provider.tsx`                       |
+
+The real shift is where authorization lives. In Convex you check permissions
+inside each function; in Supabase the client talks to the database directly, so
+the check has to be a policy. A Convex function that forgot its check leaks
+through one endpoint — a Postgres table that forgot RLS leaks entirely.
+
+Suggested order:
+
+<Steps>
+
+<Step>Translate the schema</Step>
+
+One migration per Convex table, with RLS enabled and policies written at the
+same time. Never as a follow-up.
+
+<Step>Move reads</Step>
+
+Each `useQuery` becomes a `select` plus a subscription. `hooks/useTasks.ts` is
+the pattern.
+
+<Step>Move writes</Step>
+
+Each `useMutation` becomes a direct query. The authorization that lived in the
+function body is now the policy's `with check`.
+
+<Step>Move actions</Step>
+
+Anything calling a third-party API or needing a secret becomes an edge function.
+
+<Step>Move auth last</Step>
+
+`ConvexAuthProvider` → `AuthProvider`. Users do not transfer; plan a
+re-registration or a scripted import via the admin API.
+
+</Steps>
+
+## Still stuck
+
+- [Report an issue](https://github.com/ahmedbna/ui/issues)
+- [Supabase docs](https://supabase.com/docs) ·
+  [Supabase GitHub discussions](https://github.com/orgs/supabase/discussions)

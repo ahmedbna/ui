@@ -1,0 +1,161 @@
+---
+title: Apple Sign-In
+description: Configure Apple as an OAuth provider for the Supabase Auth starter — the Services ID, the client secret you have to generate and rotate, and App Store review requirements.
+---
+
+Apple is the fiddliest provider to set up and the one App Store review cares
+about most. The starter's Apple button uses the same browser PKCE path as Google
+and GitHub, so once the provider is configured there is no code to write.
+
+<Callout title='App Store review requires this'>
+  If your iOS app offers any third-party sign-in — Google, GitHub, anything —
+  Apple requires Sign in with Apple as an option. Shipping without it is a
+  rejection.
+</Callout>
+
+You need a paid [Apple Developer](https://developer.apple.com) account.
+
+## Configure Apple
+
+<Steps>
+
+<Step>Create an App ID</Step>
+
+[developer.apple.com](https://developer.apple.com/account) → **Certificates,
+Identifiers & Profiles → Identifiers → +** → **App IDs** → **App**.
+
+Use your bundle identifier from `app.json` (`ios.bundleIdentifier`). Under
+**Capabilities**, enable **Sign In with Apple**.
+
+<Step>Create a Services ID</Step>
+
+**Identifiers → + → Services IDs**. This is a separate identifier from the App
+ID, and it is the one that becomes your `client_id`. Something like
+`com.yourcompany.myapp.signin`.
+
+Enable **Sign In with Apple**, then **Configure**:
+
+- **Primary App ID**: the App ID from the previous step
+- **Domains**: `<your-project-ref>.supabase.co`
+- **Return URLs**: `https://<your-project-ref>.supabase.co/auth/v1/callback`
+
+<Step>Create a signing key</Step>
+
+**Keys → +**. Name it, enable **Sign In with Apple**, configure it against your
+primary App ID, and register.
+
+Download the `.p8` file. **Apple lets you download it once.** Note the Key ID
+shown next to it, and your Team ID from the top right of the developer portal.
+
+<Step>Generate the client secret</Step>
+
+Apple does not issue a static secret. It is a JWT you sign with the `.p8` key,
+valid for at most six months.
+
+Supabase's dashboard has a generator: **Authentication → Providers → Apple →
+Generate a new secret**. Paste your Team ID, Key ID, Services ID and the
+contents of the `.p8`.
+
+<Step>Enable the provider</Step>
+
+Same page: enable Apple, set **Client ID** to the Services ID, paste the
+generated secret, save.
+
+For a native iOS sheet later, add your bundle identifier to **Additional client
+IDs** — a native `signInWithIdToken` presents the bundle ID rather than the
+Services ID.
+
+<Step>Allow-list your app's redirect URLs</Step>
+
+**Authentication → URL Configuration → Redirect URLs**:
+
+```
+exp://localhost:8081
+my-app://
+```
+
+</Steps>
+
+<Callout title='The secret expires'>
+  Six months, maximum. When it lapses, Apple sign-in stops for everyone with no
+  code change and no deploy to blame. Put a calendar reminder on it the day you
+  set it up — this catches people every time.
+</Callout>
+
+## Test it
+
+```bash
+npx expo start
+```
+
+Tap **Continue with Apple**. The browser sheet opens; sign in with an Apple ID.
+
+## What Apple sends back
+
+Less than the other providers, and only once. Apple returns the user's name on
+the **first** authorization and never again — and if the user picks **Hide My
+Email**, the address is a private relay that forwards to their real one.
+
+The `handle_new_user` trigger reads whatever is present:
+
+```sql title="supabase/migrations/0001_profiles.sql"
+coalesce(
+  new.raw_user_meta_data ->> 'display_name',
+  new.raw_user_meta_data ->> 'full_name',
+  new.raw_user_meta_data ->> 'name'
+)
+```
+
+So an Apple sign-up often lands with a null `display_name`. That is fine here:
+the onboarding screen asks for one, which is part of why it exists.
+
+Do not build anything that depends on re-reading the name from Apple later. If
+you need it, capture it at first sign-in.
+
+## When it does not work
+
+| What you see                             | Usually                                                          |
+| ---------------------------------------- | ---------------------------------------------------------------- |
+| `invalid_client`                         | Client ID is the App ID instead of the Services ID               |
+| `invalid_client` after months of working | The six-month secret expired                                     |
+| `invalid_request` / redirect rejected    | Return URL in the Services ID does not match `/auth/v1/callback` |
+| Browser closes, nothing happens          | Your app's scheme is not in Supabase's redirect allow-list       |
+| Name is null after the first sign-in     | Working as designed — Apple sends it once                        |
+
+To test the first-time flow again, revoke the app under **Settings → Apple ID →
+Sign-In & Security → Sign in with Apple** on the device, then delete the user in
+Supabase.
+
+## Going native
+
+`expo-apple-authentication` gives the system sheet instead of a browser, which
+is what iOS users expect. It needs a development build:
+
+```bash
+npx expo install expo-apple-authentication
+```
+
+```tsx
+const credential = await AppleAuthentication.signInAsync({
+  requestedScopes: [
+    AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
+    AppleAuthentication.AppleAuthenticationScope.EMAIL,
+  ],
+});
+
+await supabase.auth.signInWithIdToken({
+  provider: 'apple',
+  token: credential.identityToken!,
+});
+```
+
+Add `"expo-apple-authentication"` to `plugins` in `app.json`, and add your
+bundle identifier to **Additional client IDs** in the Supabase provider
+settings. Keep the browser button for Android and web — `AppleAuthentication`
+is iOS-only.
+
+## Next
+
+- [Google Sign-In](/docs/supabase/google)
+- [Authentication](/docs/supabase/auth)
+- [Supabase Apple provider docs](https://supabase.com/docs/guides/auth/social-login/auth-apple)

@@ -23,7 +23,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     { url: siteConfig.url, changeFrequency: 'weekly', priority: 1 },
-    { url: `${siteConfig.url}/charts`, changeFrequency: 'weekly', priority: 0.8 },
+    {
+      url: `${siteConfig.url}/charts`,
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
     ...pages,
   ];
 }

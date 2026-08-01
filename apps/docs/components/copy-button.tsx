@@ -40,9 +40,7 @@ export function CopyButton({
           onClick={() =>
             copyToClipboard(
               value,
-              event
-                ? { name: event, properties: { code: value } }
-                : undefined
+              event ? { name: event, properties: { code: value } } : undefined
             )
           }
           {...props}

@@ -1,0 +1,199 @@
+---
+title: Deployment
+description: Ship a Supabase-backed Expo app — EAS build profiles and environment variables, the GitHub Actions workflow both starters include, migration safety, and the production checklist.
+---
+
+Two things deploy independently: your Supabase project (migrations, functions,
+configuration) and your app (EAS build, or an over-the-air update). The starters
+ship a GitHub Actions workflow that does both.
+
+## Environment variables
+
+`EXPO_PUBLIC_` variables are **inlined into the JavaScript bundle at build
+time**. They are not read at runtime, and they are not secret.
+
+That means:
+
+- Changing one requires a new build or OTA update, not a server restart.
+- Anyone with your app has them. That is fine for the publishable key, whose
+  privileges are exactly what your RLS policies grant, and never fine for a
+  secret key.
+
+For EAS, put them on the build profile rather than in `.env.local`, which is
+gitignored and not uploaded:
+
+```json title="eas.json"
+{
+  "build": {
+    "preview": {
+      "distribution": "internal",
+      "channel": "preview",
+      "env": {
+        "EXPO_PUBLIC_SUPABASE_URL": "https://staging-ref.supabase.co",
+        "EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY": "sb_publishable_staging"
+      }
+    },
+    "production": {
+      "autoIncrement": true,
+      "channel": "production",
+      "env": {
+        "EXPO_PUBLIC_SUPABASE_URL": "https://prod-ref.supabase.co",
+        "EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY": "sb_publishable_prod"
+      }
+    }
+  }
+}
+```
+
+Or manage them as EAS environment variables, which keeps them out of the repo:
+
+```bash
+eas env:create --name EXPO_PUBLIC_SUPABASE_URL --value https://prod-ref.supabase.co --environment production
+```
+
+<Callout title='Use separate Supabase projects for staging and production'>
+  Not separate schemas in one project. Migrations, auth settings, rate limits
+  and provider credentials are all project-level, and you want to get them wrong
+  somewhere that is not production.
+</Callout>
+
+## Building
+
+```bash
+eas build --platform all --profile preview
+eas build --platform all --profile production
+eas submit --platform ios --profile production
+```
+
+The shipped `development` profile has `developmentClient: true` — that is the
+one to use if you switch to native OAuth, which does not work in Expo Go.
+
+## Over-the-air updates
+
+```bash
+eas update --branch production --message "Fix the reset-password redirect"
+```
+
+OTA updates ship JavaScript. They cannot change native code, and that includes
+anything a config plugin touches — adding `expo-apple-authentication`, changing
+`scheme`, adding a permission string all need a new build.
+
+Changing `scheme` also means updating your Supabase redirect allow-list, or
+OAuth breaks for everyone.
+
+## The shipped workflow
+
+`.github/workflows/ci.yml` in both starters has four jobs.
+
+**`verify`** — `tsc --noEmit`, `expo lint`, `jest`. Runs on every PR, needs no
+database because `lib/database.types.ts` is checked in.
+
+**`types-are-current`** — spins up a local Postgres, applies every migration,
+regenerates the types and fails if the checked-in file differs:
+
+```yaml title=".github/workflows/ci.yml"
+- run: supabase db start
+- run: supabase gen types typescript --local > lib/database.types.ts
+- name: No uncommitted type changes
+  run: git diff --exit-code lib/database.types.ts
+```
+
+This is the job that stops a migration landing without its types — the drift is
+otherwise invisible until someone's editor disagrees with production.
+
+**`deploy`** — on merge to `main`, links the project, pushes migrations and
+deploys functions.
+
+**`build`** — kicks off an EAS build.
+
+### Secrets it needs
+
+| Secret                  | From                                                                       |
+| ----------------------- | -------------------------------------------------------------------------- |
+| `SUPABASE_ACCESS_TOKEN` | [Account → Access Tokens](https://supabase.com/dashboard/account/tokens)   |
+| `SUPABASE_PROJECT_ID`   | Your project reference                                                     |
+| `SUPABASE_DB_PASSWORD`  | Set when you created the project                                           |
+| `EXPO_TOKEN`            | [expo.dev/settings/access-tokens](https://expo.dev/settings/access-tokens) |
+
+## Migration safety
+
+`supabase db push` applies anything not in the remote migration history. It does
+not roll back, and it runs against a live database.
+
+The usual rules:
+
+- **Add columns nullable**, backfill in a separate migration, then add the
+  constraint. A `not null` column with a default rewrites the table and takes a
+  lock.
+- **Do not drop anything the deployed app still reads.** Deploy the app that
+  stops reading it first, then drop it.
+- **Deploy migrations before the app that needs them.** A new column with old
+  clients is harmless; a new client without its column is a crash.
+
+That ordering matters more here than with a web app, because your users decide
+when they update. Assume old versions are live for weeks.
+
+## Production checklist
+
+<Steps>
+
+<Step>Turn email confirmations on</Step>
+
+`supabase/config.toml` has them off for local development. Check the hosted
+project's setting under **Authentication → Providers → Email**.
+
+<Step>Configure your own SMTP</Step>
+
+The built-in service is rate-limited to a handful of messages an hour. See
+[email](/docs/supabase/email).
+
+<Step>Allow-list the production redirect URLs</Step>
+
+Your production scheme, and the `reset-password` path. If `scheme` in `app.json`
+changed, this changed.
+
+<Step>Confirm no secret key is in the bundle</Step>
+
+```bash
+grep -r "sb_secret_" . --exclude-dir=node_modules
+```
+
+<Step>Re-read every RLS policy as an attacker</Step>
+
+Assume the publishable key is public, because it is. Two accounts, and check
+that one cannot see the other's rows or files.
+
+<Step>Add indexes for the columns policies filter on</Step>
+
+Every policy filtering on `user_id` makes every query filter on it. See
+[database](/docs/supabase/database#indexes-follow-policies).
+
+<Step>Raise the auth rate limits</Step>
+
+**Authentication → Rate Limits**. The defaults are sized for the built-in email
+service.
+
+<Step>Turn on Point in Time Recovery</Step>
+
+Daily backups are the default on paid plans; PITR is what you want the day
+someone runs the wrong `delete`.
+
+<Step>Check the function JWT settings</Step>
+
+Anything user-specific must deploy **without** `--no-verify-jwt`.
+
+</Steps>
+
+## Monitoring
+
+The dashboard's **Logs** section covers Postgres, PostgREST, auth, storage and
+edge functions. **Reports** shows query performance — the slow query list is
+usually where a missing RLS index shows up.
+
+For the app, `expo-updates` and EAS Insights cover adoption and crashes.
+
+## Next
+
+- [Database and RLS](/docs/supabase/database)
+- [Troubleshooting](/docs/supabase/troubleshooting)
+- [Expo EAS Build docs](https://docs.expo.dev/build/introduction/)

@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 
 const EmailButton = () => {
   const openEmailClient = () => {
-    const emailAddress = 'hi@ahmedbna.com';
+    const emailAddress = 'ahmdabdelsamea@gmail.com';
     const subject = 'Hello';
 
     const mailtoLink = `mailto:${emailAddress}?subject=${encodeURIComponent(

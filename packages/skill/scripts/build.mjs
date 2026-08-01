@@ -83,8 +83,8 @@ Copies the component's source into the project along with everything it imports,
 and prints the npm packages to install. The project owns the code afterwards —
 edit it freely.
 
-Scaffold a new app with \`npx bna-ui init my-app\`, or \`npx bna-ui convex my-app\`
-for one with a Convex backend and auth.
+Scaffold a new app with \`npx bna-ui init my-app\`, or add a backend with auth:
+\`npx bna-ui convex my-app\` or \`npx bna-ui supabase my-app\`.
 
 ## Imports and theming
 

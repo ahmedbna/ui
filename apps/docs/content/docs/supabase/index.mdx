@@ -1,0 +1,160 @@
+---
+title: Supabase
+description: A React Native starter with BNA UI components and a Supabase backend — Postgres, row level security, realtime, storage and edge functions, with or without authentication.
+---
+
+[Supabase](https://supabase.com) is Postgres with an API in front of it. You
+write SQL migrations and row level security policies; the client library gives
+you typed queries, realtime subscriptions, file storage, authentication and
+Deno edge functions against the same database.
+
+BNA UI ships two Supabase scaffolds: one with a backend and no sign-in, one with
+authentication and the screens already built.
+
+<div className='mt-6 grid gap-4 sm:grid-cols-2 sm:gap-6'>
+  <LinkedCard
+    href='/docs/installation/supabase'
+    className='items-start gap-1 p-6 text-sm sm:p-6'
+  >
+    <img
+      src='/images/supabase.svg'
+      alt='Supabase'
+      className='mb-2 size-8 rounded-none object-contain'
+    />
+    <div className='font-medium'>Expo + Supabase</div>
+    <div className='text-muted-foreground leading-relaxed'>
+      Migrations, RLS, realtime, storage and an edge function. No sign-in.
+    </div>
+  </LinkedCard>
+
+  <LinkedCard
+    href='/docs/installation/supabase-auth'
+    className='items-start gap-1 p-6 text-sm sm:p-6'
+  >
+    <img
+      src='/images/supabase.svg'
+      alt='Supabase'
+      className='mb-2 size-8 rounded-none object-contain'
+    />
+    <div className='font-medium'>Expo + Supabase + Auth</div>
+    <div className='text-muted-foreground leading-relaxed'>
+      Password, magic links, OTP, Google, Apple and GitHub, pre-wired.
+    </div>
+  </LinkedCard>
+</div>
+
+## The auth starter
+
+Built around the same principles as the rest of BNA UI:
+
+- **Open Code:** the authentication screens, the hooks and the SQL migrations
+  are copied into your project, not imported from a package.
+- **Mobile-First:** flows designed for React Native, with the session encrypted
+  in the platform keychain.
+- **Cross-Platform:** iOS, Android and web, from one code path.
+- **Secure by default:** row level security on every table, scoped by
+  `auth.uid()` — not by what the client asks for.
+
+### Sign-in methods
+
+| Method           | Mechanism                       | Ships with a screen |
+| ---------------- | ------------------------------- | ------------------- |
+| Email + password | `signInWithPassword`            | Yes                 |
+| Magic link       | `signInWithOtp` + deep link     | Yes                 |
+| Email OTP        | `signInWithOtp` + `verifyOtp`   | Yes                 |
+| Google           | `signInWithOAuth`, browser PKCE | Yes                 |
+| Apple            | `signInWithOAuth`, browser PKCE | Yes                 |
+| GitHub           | `signInWithOAuth`, browser PKCE | Yes                 |
+
+All three OAuth providers share one code path, so adding a fourth is a line in
+an array.
+
+### What lands in your project
+
+```
+lib/
+├── supabase.ts             the client
+├── large-secure-store.ts   AES-256 session storage
+├── realtime.ts             the postgres_changes reducer, as a pure function
+└── database.types.ts       generated from your schema
+providers/auth-provider.tsx session, profile, deep links
+app/(auth)/                 six screens
+app/(onboarding)/           intro carousel + profile setup
+supabase/migrations/        profiles, tasks, storage — with RLS on all of them
+supabase/functions/         hello-world, delete-account
+```
+
+### The two layers of access control
+
+The route guards in `app/_layout.tsx` decide what renders:
+
+```tsx title="app/_layout.tsx"
+<Stack.Protected guard={!signedIn}>
+  <Stack.Screen name='(auth)' />
+</Stack.Protected>
+<Stack.Protected guard={signedIn && !needsOnboarding}>
+  <Stack.Screen name='(tabs)' />
+</Stack.Protected>
+```
+
+The RLS policies decide what the database will actually return:
+
+```sql title="supabase/migrations/0002_tasks.sql"
+create policy "Users can read their own tasks"
+  on public.tasks for select
+  to authenticated
+  using (auth.uid() = user_id);
+```
+
+Only the second one is a security boundary. The first is there so users are not
+looking at empty screens.
+
+### Reading the signed-in user
+
+```tsx
+import { useAuth } from '@/providers/auth-provider';
+
+const { user, profile, loading, signOut } = useAuth();
+```
+
+`profile` is the row from `public.profiles`, kept current over a realtime
+subscription. `user` is the `auth.users` record Supabase owns.
+
+## Environment
+
+| Variable                               | Where it lives | Set by            | Used for                           |
+| -------------------------------------- | -------------- | ----------------- | ---------------------------------- |
+| `EXPO_PUBLIC_SUPABASE_URL`             | `.env.local`   | `bna-ui supabase` | Building the client                |
+| `EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | `.env.local`   | `bna-ui supabase` | Building the client                |
+| `SUPABASE_SERVICE_ROLE_KEY`            | Edge functions | Supabase          | Server-side work that bypasses RLS |
+| `SUPABASE_ANON_KEY`                    | Edge functions | Supabase          | Server-side work that respects RLS |
+
+<Callout title='Publishable, not anon'>
+  Supabase is retiring the legacy `anon` and `service_role` keys at the end of
+  2026. Both starters use `sb_publishable_…` in the app and `sb_secret_…`
+  server-side. The publishable key carries exactly the privileges your RLS
+  policies grant the `anon` role, which is why those policies matter.
+</Callout>
+
+Provider credentials — Google, Apple, GitHub, SMTP — live in the Supabase
+dashboard, not in any file in your repository.
+
+## Guides
+
+- [Database, RLS and migrations](/docs/supabase/database) — the schema, every
+  policy explained, and the codegen workflow
+- [Authentication](/docs/supabase/auth) — session persistence, route guards,
+  deep links, and swapping to native OAuth
+- [Google](/docs/supabase/google) · [Apple](/docs/supabase/apple) ·
+  [Email and SMTP](/docs/supabase/email)
+- [Storage](/docs/supabase/storage) · [Realtime](/docs/supabase/realtime) ·
+  [Edge functions](/docs/supabase/edge-functions)
+- [Deployment](/docs/supabase/deployment) — EAS, CI/CD, and the production
+  checklist
+- [Troubleshooting](/docs/supabase/troubleshooting) — and a Convex → Supabase
+  migration guide
+
+## Learn more
+
+- [Supabase documentation](https://supabase.com/docs)
+- [Report an issue](https://github.com/ahmedbna/ui/issues)

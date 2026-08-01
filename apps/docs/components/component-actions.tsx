@@ -118,7 +118,10 @@ export function ComponentActions({
                 onSelect={() =>
                   copyToClipboard(`npx bna-ui add ${name}`, {
                     name: 'copy_npm_command',
-                    properties: { command: `npx bna-ui add ${name}`, pm: 'npm' },
+                    properties: {
+                      command: `npx bna-ui add ${name}`,
+                      pm: 'npm',
+                    },
                   })
                 }
               >

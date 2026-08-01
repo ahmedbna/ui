@@ -44,9 +44,9 @@ export default function RootLayout() {
 
   useEffect(() => {
     if (Platform.OS === 'android') {
-      NavigationBar.setButtonStyleAsync(
-        colorScheme === 'light' ? 'dark' : 'light'
-      );
+      // `setButtonStyleAsync` was removed in expo-navigation-bar 57; `setStyle`
+      // is the replacement and is synchronous.
+      NavigationBar.setStyle(colorScheme === 'light' ? 'dark' : 'light');
     }
   }, [colorScheme]);
 

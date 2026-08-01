@@ -272,13 +272,19 @@ function extractApiReference(section, problems, where) {
       // Prose between `## API Reference` and the first `###` — always absent
       // in this corpus, so anything here means the page is shaped differently.
       if (plain(node).trim()) {
-        problems.push(`${where}: content before the first "###" — left in place`);
+        problems.push(
+          `${where}: content before the first "###" — left in place`
+        );
         unmigrated = true;
       }
       continue;
     }
     if (node.type === 'table') {
-      const props = propsFromTable(node, problems, `${where} ### ${current.name}`);
+      const props = propsFromTable(
+        node,
+        problems,
+        `${where} ### ${current.name}`
+      );
       if (props) current.props = props;
       else unmigrated = true;
       continue;

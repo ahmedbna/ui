@@ -29,7 +29,7 @@ export const ResendOTP = Email({
 
     try {
       const { data, error } = await resend.emails.send({
-        from: 'BNA UI <hi@ahmedbna.com>',
+        from: 'BNA UI <ahmdabdelsamea@gmail.com>',
         to: [email],
         subject: `Sign in to BNA UI`,
         text: `Your verification code is: ${token}`,

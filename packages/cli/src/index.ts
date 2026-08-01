@@ -4,8 +4,9 @@ import { createRequire } from 'module';
 import { Command } from 'commander';
 import { addCommand } from './commands/add.js';
 import { initConvexCommand } from './commands/convex.js';
-import { initCommand } from './commands/init.js';
 import { infoCommand } from './commands/info.js';
+import { initCommand } from './commands/init.js';
+import { initSupabaseCommand } from './commands/supabase.js';
 import { logger } from './utils/logger.js';
 
 const require = createRequire(import.meta.url);
@@ -45,6 +46,20 @@ program
   .option('--skip-convex', 'Skip Convex initialization')
   .option('--no-auth', 'Scaffold a Convex backend without authentication')
   .action(initConvexCommand);
+
+program
+  .command('supabase')
+  .description('Initialize a new BNA project with a Supabase backend')
+  .argument('[project-name]', 'Name of the project')
+  .option('-t, --template <template>', 'Template to use', 'default')
+  .option('--npm', 'Use npm as package manager')
+  .option('--yarn', 'Use yarn as package manager')
+  .option('--pnpm', 'Use pnpm as package manager')
+  .option('--bun', 'Use bun as package manager')
+  .option('--skip-install', 'Skip package installation')
+  .option('--skip-supabase', 'Skip linking the project and applying migrations')
+  .option('--no-auth', 'Scaffold a Supabase backend without authentication')
+  .action(initSupabaseCommand);
 
 program
   .command('add')

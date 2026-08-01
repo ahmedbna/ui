@@ -1,0 +1,387 @@
+---
+title: Expo + Supabase + Auth
+description: Scaffold an Expo app with BNA UI, a Supabase backend and authentication — password, magic links, email OTP, Google, Apple and GitHub, with protected routes, onboarding and user profiles pre-wired.
+---
+
+Everything from the [Supabase starter](/docs/installation/supabase), plus
+authentication with the screens already built: six routes under `(auth)`, a
+two-step onboarding flow, user profiles with avatar uploads, and route guards
+backed by row level security. This is what `npx bna-ui supabase` gives you by
+default.
+
+## Create the app
+
+```bash
+npx bna-ui supabase my-app
+```
+
+<Steps>
+
+<Step>Create a Supabase project</Step>
+
+At [supabase.com/dashboard](https://supabase.com/dashboard). Note the project
+reference — the subdomain in `https://<ref>.supabase.co`.
+
+<Step>Answer the two prompts</Step>
+
+Your project URL and publishable key, both from **Project Settings → API**.
+They are written to `.env.local`. Press enter to skip and fill the file in
+yourself later.
+
+<Step>It links, migrates and generates types</Step>
+
+If the [Supabase CLI](https://supabase.com/docs/guides/local-development) is on
+your `PATH`, the scaffold runs these for you; if not, they are printed as next
+steps. Nothing fails either way.
+
+```bash
+npx supabase link --project-ref your-project-ref
+npx supabase db push
+npm run db:types
+```
+
+<Step>Allow-list your redirect URLs</Step>
+
+In **Authentication → URL Configuration → Redirect URLs**, add all three. Expo
+Go uses the first, a build uses the second, and the password-recovery email
+uses the third:
+
+```
+exp://localhost:8081
+my-app://
+my-app://reset-password
+```
+
+<Step>Deploy the edge functions</Step>
+
+```bash
+npm run functions:deploy
+```
+
+`delete-account` is what the delete button in Settings calls. It has to be a
+function because removing a user needs a secret key.
+
+</Steps>
+
+<Callout title='The redirect allow-list is the thing people forget'>
+  OAuth and magic links both come back through a deep link, and Supabase rejects
+  any redirect target that is not on that list. Nothing in the CLI can set it —
+  it lives in the dashboard. A sign-in that opens the browser and then does
+  nothing is almost always this.
+</Callout>
+
+Pass `--skip-supabase` to skip the prompts and the CLI steps.
+
+## Run it
+
+```bash
+npx expo start
+```
+
+You land on the sign-in screen. Email and password work immediately; the rest
+need configuration, below.
+
+## What you get
+
+On top of the Supabase starter:
+
+```
+lib/
+├── supabase.ts             encrypted storage, PKCE, AppState refresh
+└── large-secure-store.ts   AES-256 wrapper — SecureStore caps values at 2048 bytes
+providers/
+└── auth-provider.tsx       session, user, profile, and the deep-link handler
+hooks/
+├── useProfile.ts           profile updates
+└── useAvatarUpload.ts      image → avatars bucket → profiles.avatar_url
+app/
+├── _layout.tsx             AuthProvider + the Stack.Protected route guards
+├── (auth)/
+│   ├── sign-in.tsx  sign-up.tsx
+│   ├── magic-link.tsx  verify-otp.tsx
+│   └── forgot-password.tsx  reset-password.tsx
+└── (onboarding)/
+    ├── index.tsx           three-step intro carousel
+    └── profile.tsx         display name + avatar, sets profiles.onboarded
+components/auth/
+├── auth-screen.tsx         shared frame — title, body, keyboard avoidance
+├── oauth-buttons.tsx       Google / Apple / GitHub, browser PKCE
+└── sign-out-button.tsx
+supabase/migrations/
+├── 0001_profiles.sql       profiles, RLS, handle_new_user trigger
+├── 0002_tasks.sql          per-user tasks, RLS, realtime
+└── 0003_storage.sql        avatars + files buckets, owner-scoped policies
+supabase/functions/
+├── hello-world/            runs as the caller
+└── delete-account/         runs as admin, identifies the caller from their JWT
+```
+
+## Sign-in methods
+
+| Method           | Ships with a screen | Needs                                              |
+| ---------------- | ------------------- | -------------------------------------------------- |
+| Email + password | Yes                 | SMTP, for the confirmation email                   |
+| Magic link       | Yes                 | SMTP                                               |
+| Email OTP        | Yes                 | SMTP, and `{{ .Token }}` in the email template     |
+| Google           | Yes                 | Client ID and secret in Authentication → Providers |
+| Apple            | Yes                 | A Services ID and a generated client secret        |
+| GitHub           | Yes                 | An OAuth app                                       |
+
+Provider walkthroughs: [Google](/docs/supabase/google),
+[Apple](/docs/supabase/apple), [email and SMTP](/docs/supabase/email).
+
+<Callout title='Configure your own SMTP before you ship'>
+  Supabase's built-in email service is rate-limited to a handful of messages an
+  hour and is explicitly not for production. Without your own provider, sign-ups
+  silently stop arriving once you have real users.
+</Callout>
+
+## How the guards work
+
+`app/_layout.tsx` mounts exactly one route group at a time:
+
+```tsx title="app/_layout.tsx"
+<Stack.Protected guard={!signedIn}>
+  <Stack.Screen name='(auth)' />
+</Stack.Protected>
+
+<Stack.Protected guard={needsOnboarding}>
+  <Stack.Screen name='(onboarding)' />
+</Stack.Protected>
+
+<Stack.Protected guard={signedIn && !needsOnboarding}>
+  <Stack.Screen name='(tabs)' />
+  <Stack.Screen name='sheet' />
+</Stack.Protected>
+```
+
+`Stack.Protected` unmounts the screens whose guard is false and redirects away
+from them, so with no session there is no navigation path into `(tabs)` — not by
+deep link either.
+
+That is the convenience layer. The boundary that actually holds is row level
+security: every policy filters on `auth.uid()`, so a modified client gets
+nothing it is not entitled to regardless of what the app renders.
+
+`needsOnboarding` is `profile?.onboarded === false` rather than
+`!profile?.onboarded`, because the profile row is created by a database trigger
+and is briefly `null` right after sign-up. Treating `null` as "not onboarded"
+would flash the onboarding screen at returning users.
+
+## Session storage
+
+`expo-secure-store` refuses values larger than 2048 bytes, and a Supabase
+session — access token, refresh token and the whole user object — is
+comfortably past that. This is a nasty failure mode: a test account with no
+metadata can squeak under the limit, so it works in development and breaks the
+first time a real user signs in.
+
+`lib/large-secure-store.ts` keeps a 256-bit AES key in SecureStore and the
+ciphertext in AsyncStorage, which has no size limit:
+
+```ts title="lib/supabase.ts"
+export const supabase = createClient<Database>(url, publishableKey, {
+  auth: {
+    storage: Platform.OS === 'web' ? undefined : new LargeSecureStore(),
+    persistSession: true,
+    autoRefreshToken: true,
+    detectSessionInUrl: Platform.OS === 'web',
+    flowType: 'pkce',
+  },
+});
+```
+
+And because a refresh timer in a backgrounded app is unreliable — iOS suspends
+it outright — the client is told when the app comes back:
+
+```ts title="lib/supabase.ts"
+AppState.addEventListener('change', (state) => {
+  if (state === 'active') supabase.auth.startAutoRefresh();
+  else supabase.auth.stopAutoRefresh();
+});
+```
+
+Without that, a user who leaves the app for an hour returns to expired requests.
+
+## OAuth
+
+One code path for all three providers, in `components/auth/oauth-buttons.tsx`:
+
+```ts title="components/auth/oauth-buttons.tsx"
+const redirectTo = makeRedirectUri();
+
+const { data } = await supabase.auth.signInWithOAuth({
+  provider,
+  options: { redirectTo, skipBrowserRedirect: true },
+});
+
+const result = await openAuthSessionAsync(data.url, redirectTo);
+
+if (result.type === 'success') {
+  const code = new URL(result.url).searchParams.get('code');
+  await supabase.auth.exchangeCodeForSession(code);
+}
+```
+
+This is browser-based PKCE. It works in Expo Go and on web, and needs no native
+modules or per-platform client IDs. The alternative — native sign-in SDKs
+feeding `signInWithIdToken` — gives a nicer sheet on iOS but requires a
+development build; [the auth guide](/docs/supabase/auth) covers swapping to it.
+
+`skipBrowserRedirect` stops supabase-js navigating the page itself, because we
+want the URL to hand to an auth session that returns control to the app.
+
+## Deep links
+
+Magic links, email confirmations and password recovery all come back into the
+app as a URL. `providers/auth-provider.tsx` handles them centrally rather than
+in a `callback` route, because the link can arrive while any screen is mounted —
+and on a cold start, before the router has settled anywhere at all.
+
+```ts title="providers/auth-provider.tsx"
+const handleUrl = async (url: string) => {
+  const { queryParams } = Linking.parse(url);
+
+  const code = queryParams?.code;
+  if (typeof code === 'string') {
+    await supabase.auth.exchangeCodeForSession(code);
+    return;
+  }
+  // Older projects and some templates return tokens in the #fragment instead.
+  // …
+};
+
+Linking.getInitialURL().then((url) => url && handleUrl(url));
+const subscription = Linking.addEventListener('url', ({ url }) =>
+  handleUrl(url)
+);
+```
+
+## Profiles
+
+`auth.users` belongs to Supabase and you should not write to it. Everything your
+app knows about a user lives in `public.profiles`, keyed by the same id, created
+by a trigger so it exists from the moment the user does:
+
+```sql title="supabase/migrations/0001_profiles.sql"
+create function public.handle_new_user()
+returns trigger
+language plpgsql
+security definer
+set search_path = ''
+as $$
+begin
+  insert into public.profiles (id, email, display_name, avatar_url)
+  values (
+    new.id,
+    new.email,
+    coalesce(
+      new.raw_user_meta_data ->> 'display_name',
+      new.raw_user_meta_data ->> 'full_name',
+      new.raw_user_meta_data ->> 'name'
+    ),
+    coalesce(
+      new.raw_user_meta_data ->> 'avatar_url',
+      new.raw_user_meta_data ->> 'picture'
+    )
+  )
+  on conflict (id) do nothing;
+  return new;
+end;
+$$;
+```
+
+The `coalesce` calls pick up the name and picture OAuth providers supply, which
+is why a Google sign-up arrives with an avatar already set.
+
+<Callout title='security definer needs an empty search_path'>
+  A `security definer` function runs as its owner. Without `set search_path =
+  ''` a user-created schema earlier in the path could shadow `public.profiles`
+  and capture the insert. Every definer function in the starter pins it.
+</Callout>
+
+## Storage
+
+Avatars go to `<user-id>/avatar.<ext>` in a public bucket. The path is not
+cosmetic — the policies compare its first segment to the caller's id:
+
+```sql title="supabase/migrations/0003_storage.sql"
+create policy "Users can upload their own avatar"
+  on storage.objects for insert
+  to authenticated
+  with check (
+    bucket_id = 'avatars'
+    and (storage.foldername(name))[1] = auth.uid()::text
+  );
+```
+
+The bucket is public so avatars render without a token; writes are still scoped
+to their owner. There is also a private `files` bucket, used by nothing, as the
+shape to copy. See [storage](/docs/supabase/storage).
+
+## Environment reference
+
+| Variable                               | Where it lives | Set by            | Used for                                |
+| -------------------------------------- | -------------- | ----------------- | --------------------------------------- |
+| `EXPO_PUBLIC_SUPABASE_URL`             | `.env.local`   | `bna-ui supabase` | Building the client                     |
+| `EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | `.env.local`   | `bna-ui supabase` | Building the client                     |
+| `SUPABASE_SERVICE_ROLE_KEY`            | Edge functions | Supabase          | `delete-account`, which bypasses RLS    |
+| `SUPABASE_ANON_KEY`                    | Edge functions | Supabase          | `hello-world`, which runs as the caller |
+
+Provider credentials live in the dashboard under **Authentication → Providers**,
+not in any file.
+
+## Local development
+
+To run the whole stack locally, including a mail catcher that collects every
+magic link and OTP, install [Docker](https://docs.docker.com/desktop/) and:
+
+```bash
+npx supabase start          # Studio at http://localhost:54323
+npx supabase db reset       # migrations + seed.sql
+npm run db:types:local
+```
+
+Sign-up emails land in [Inbucket](http://localhost:54324) instead of a real
+inbox, so the entire auth flow is testable without configuring SMTP.
+`supabase/config.toml` sets `enable_confirmations = false` locally so sign-up
+returns a session immediately.
+
+## Before you ship
+
+<Steps>
+
+<Step>Turn email confirmations on and configure real SMTP</Step>
+
+Local config has confirmations off for convenience. Production should not.
+
+<Step>Add your production scheme to the redirect allow-list</Step>
+
+If you change `scheme` in `app.json`, change this to match, or OAuth redirects
+are rejected.
+
+<Step>Re-read every policy as if you held the publishable key</Step>
+
+Because someone will. `supabase/migrations/` is your entire access-control
+surface.
+
+<Step>Confirm no secret key reached the bundle</Step>
+
+```bash
+grep -r "sb_secret_" . --exclude-dir=node_modules
+```
+
+</Steps>
+
+Full checklist: [deployment](/docs/supabase/deployment).
+
+## Next
+
+- [Auth architecture](/docs/supabase/auth) ·
+  [Database and RLS](/docs/supabase/database)
+- [Google](/docs/supabase/google) · [Apple](/docs/supabase/apple) ·
+  [Email and SMTP](/docs/supabase/email)
+- [Storage](/docs/supabase/storage) · [Realtime](/docs/supabase/realtime) ·
+  [Edge functions](/docs/supabase/edge-functions)
+- [Deployment](/docs/supabase/deployment) ·
+  [Troubleshooting](/docs/supabase/troubleshooting)

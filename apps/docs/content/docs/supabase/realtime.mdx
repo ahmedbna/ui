@@ -1,0 +1,209 @@
+---
+title: Realtime
+description: Live Postgres subscriptions in Expo — the two SQL lines that make changes broadcast at all, reconciling events with optimistic updates, reconnect behaviour, and presence and broadcast channels.
+---
+
+Supabase Realtime pushes database changes to subscribed clients over a
+WebSocket. Both starters use it for the task list; the reducer that folds events
+into local state is a pure function in `lib/realtime.ts` so it can be tested
+without a database.
+
+## Two lines of SQL first
+
+A subscription with neither of these connects successfully and then never fires,
+which is the single most common "realtime is broken" report.
+
+```sql title="supabase/migrations/0002_tasks.sql"
+alter publication supabase_realtime add table public.tasks;
+alter table public.tasks replica identity full;
+```
+
+**The publication** is what makes the table broadcast at all. A table you add
+later is silent until you add it here too.
+
+**`replica identity full`** is what puts the entire row in `UPDATE` and `DELETE`
+payloads. Without it Postgres sends only the primary key, so a `DELETE` handler
+cannot tell whose row it was and an `UPDATE` handler has nothing to merge.
+
+It has a cost — the WAL carries the whole old row on every write — so on a very
+high-write table, consider `replica identity default` and a refetch instead.
+
+## Subscribing
+
+```ts title="hooks/useTasks.ts"
+const channel = supabase
+  .channel(`tasks:${userId}`)
+  .on<Task>(
+    'postgres_changes',
+    {
+      event: '*',
+      schema: 'public',
+      table: 'tasks',
+      filter: `user_id=eq.${userId}`,
+    },
+    (payload) => setTasks((prev) => applyChange(prev, payload))
+  )
+  .subscribe();
+
+return () => {
+  supabase.removeChannel(channel);
+};
+```
+
+The cleanup is not optional. Without `removeChannel`, a screen that mounts twice
+holds two subscriptions and every event is applied twice.
+
+<Callout title='Realtime respects RLS'>
+  A client is only sent changes to rows its own policies would let it select.
+  The `filter` above is a bandwidth optimisation, not a security control — the
+  policies in `0002_tasks.sql` are what stop one user seeing another's events.
+</Callout>
+
+## Reconciling with optimistic updates
+
+Realtime echoes back every write, including the ones this device made. Applying
+an optimistic insert _and_ the echo gives you the row twice.
+
+```ts title="lib/realtime.ts"
+case 'INSERT': {
+  const row = payload.new;
+  if (tasks.some((task) => task.id === row.id)) return tasks;
+  return [row, ...tasks].sort(byNewest);
+}
+```
+
+Deduplicating by id lets the hook apply the mutation immediately — realtime can
+be several hundred milliseconds behind, and waiting for it makes the UI feel
+broken on a slow connection.
+
+The mutations roll back on failure:
+
+```ts title="hooks/useTasks.ts"
+const toggle = useCallback(async (task: Task) => {
+  const next = !task.is_complete;
+  setTasks((prev) =>
+    prev.map((t) => (t.id === task.id ? { ...t, is_complete: next } : t))
+  );
+
+  const { error } = await supabase
+    .from('tasks')
+    .update({ is_complete: next })
+    .eq('id', task.id);
+
+  if (error) {
+    setTasks((prev) => prev.map((t) => (t.id === task.id ? task : t)));
+  }
+}, []);
+```
+
+Optimistic without rollback is just lying to the user.
+
+## Reconnecting
+
+A backgrounded app or a dropped network means the socket closed, and everything
+that happened while it was away was missed. The events do not queue.
+
+```ts title="hooks/useTasks.ts"
+.subscribe((status) => {
+  setConnected(status === 'SUBSCRIBED');
+  if (status === 'SUBSCRIBED') load();
+});
+```
+
+Refetching on every `SUBSCRIBED` — including the first — is the simplest thing
+that is actually correct. The alternative, trusting the cache across a
+reconnect, silently diverges.
+
+The starters also surface `connected` in the UI as a small dot, because "is it
+live right now" is otherwise invisible.
+
+## Offline
+
+There is no built-in offline queue. What the starters do:
+
+- Reads render from state, so a backgrounded app still shows its last data.
+- Writes fail loudly and roll back rather than appearing to succeed.
+- Reconnecting refetches.
+
+For genuine offline-first — queued mutations, conflict resolution, local
+persistence — you want a sync layer on top. That is a different architecture
+than a starter should pick for you.
+
+## Presence and broadcast
+
+`postgres_changes` is one of three channel types.
+
+**Broadcast** sends ephemeral messages between clients with no database round
+trip. Good for typing indicators and cursors:
+
+```ts
+const channel = supabase.channel('room:1');
+
+channel
+  .on('broadcast', { event: 'typing' }, ({ payload }) => {
+    console.log(payload.user, 'is typing');
+  })
+  .subscribe();
+
+channel.send({ type: 'broadcast', event: 'typing', payload: { user: 'ada' } });
+```
+
+**Presence** tracks who is currently on a channel and syncs it automatically:
+
+```ts
+const channel = supabase.channel('room:1');
+
+channel
+  .on('presence', { event: 'sync' }, () => {
+    console.log(channel.presenceState());
+  })
+  .subscribe(async (status) => {
+    if (status === 'SUBSCRIBED') {
+      await channel.track({
+        user_id: user.id,
+        online_at: new Date().toISOString(),
+      });
+    }
+  });
+```
+
+Presence state is held in memory on the server and disappears when the client
+disconnects — which is the point, and also why it is not a substitute for an
+`is_online` column if you need durability.
+
+## Debugging a silent subscription
+
+<Steps>
+
+<Step>Is the table in the publication?</Step>
+
+```sql
+select tablename from pg_publication_tables
+where pubname = 'supabase_realtime';
+```
+
+<Step>Log the subscribe status</Step>
+
+```ts
+.subscribe((status, err) => console.log(status, err));
+```
+
+`CHANNEL_ERROR` usually means the filter is malformed. `TIMED_OUT` means the
+socket never opened — check the URL and key.
+
+<Step>Can the same query read the row?</Step>
+
+If a plain `select` returns nothing, RLS is filtering it, and realtime will
+filter it identically.
+
+<Step>Is Realtime enabled for the project?</Step>
+
+**Database → Replication** in the dashboard.
+
+</Steps>
+
+## Next
+
+- [Database and RLS](/docs/supabase/database)
+- [Troubleshooting](/docs/supabase/troubleshooting)
+- [Supabase Realtime docs](https://supabase.com/docs/guides/realtime)

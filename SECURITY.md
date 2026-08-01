@@ -11,7 +11,7 @@
 
 **Please do not open a public issue for security problems.**
 
-Email [hi@ahmedbna.com](mailto:hi@ahmedbna.com) with:
+Email [ahmdabdelsamea@gmail.com](mailto:ahmdabdelsamea@gmail.com) with:
 
 - What the issue is and where it lives (package and file, if known)
 - Steps to reproduce it

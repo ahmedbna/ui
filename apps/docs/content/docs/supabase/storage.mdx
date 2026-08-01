@@ -1,0 +1,168 @@
+---
+title: Storage
+description: Upload files from Expo to Supabase Storage — buckets, owner-scoped policies, reading a file URI without base64, public versus signed URLs, and the cache-busting problem avatars run into.
+---
+
+Supabase Storage is S3-compatible object storage with the same row level
+security model as the database — policies on `storage.objects` decide who can
+read and write what.
+
+## Buckets
+
+The auth starter creates two, and the difference is the whole design decision:
+
+```sql title="supabase/migrations/0003_storage.sql"
+insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
+values ('avatars', 'avatars', true, 2097152,
+        array['image/jpeg', 'image/png', 'image/webp']);
+
+insert into storage.buckets (id, name, public, file_size_limit)
+values ('files', 'files', false, 10485760);
+```
+
+|          | `public: true`                                              | `public: false`                      |
+| -------- | ----------------------------------------------------------- | ------------------------------------ |
+| Read     | `getPublicUrl()` — anyone with the URL, no token            | `createSignedUrl()` — time-limited   |
+| Good for | Avatars, product images, anything already shown to everyone | Documents, exports, anything private |
+| Caching  | CDN-cached, cheap                                           | Not cached, each URL is minted       |
+
+`public` only affects reads. Writes are always governed by policies.
+
+`file_size_limit` and `allowed_mime_types` are enforced server-side, which is
+why the upload hooks set `contentType` explicitly — an upload whose declared
+type is not on the list is rejected.
+
+## Owner-scoped policies
+
+`storage.objects` has RLS enabled already and ships with no policies, so an
+un-policied bucket rejects everything. The pattern that makes a shared bucket
+into per-user namespaces:
+
+```sql title="supabase/migrations/0003_storage.sql"
+create policy "Users can upload their own avatar"
+  on storage.objects for insert
+  to authenticated
+  with check (
+    bucket_id = 'avatars'
+    and (storage.foldername(name))[1] = auth.uid()::text
+  );
+```
+
+`storage.foldername(name)` splits the object path into segments; `[1]` is the
+first. Requiring it to equal the caller's id means an object at
+`<user-id>/avatar.jpg` can only be written by that user.
+
+This is why the upload hook builds the path the way it does:
+
+```ts title="hooks/useAvatarUpload.ts"
+const path = `${user.id}/avatar.${extension}`;
+```
+
+The path is not cosmetic. Change its shape and the policy stops matching.
+
+<Callout title='Public read, scoped write'>
+  The `avatars` bucket is public so avatars render in a plain `<Image>` with no
+  token, while the insert, update and delete policies still restrict writes to
+  the owner. Public does not mean unprotected.
+</Callout>
+
+## Uploading from Expo
+
+The part people get wrong is reading the file. `expo-image-picker` gives you a
+local URI; Supabase wants bytes.
+
+```ts title="hooks/useAvatarUpload.ts"
+const body = await fetch(asset.uri).then((res) => res.arrayBuffer());
+
+const { error } = await supabase.storage
+  .from('avatars')
+  .upload(path, body, { contentType, upsert: true });
+```
+
+Two things matter here:
+
+**Use `arrayBuffer()`, not base64.** `ImagePicker`'s `base64: true` option is
+tempting, but base64 is a third larger than the bytes it encodes and has to be
+held in JavaScript memory in one piece. That is what makes large photos fail on
+Android.
+
+**Set `contentType` explicitly.** Supabase defaults to
+`application/octet-stream`, which makes the object download rather than render
+and fails the bucket's `allowed_mime_types` check.
+
+`upsert: true` replaces the existing object instead of failing on a name clash —
+correct for a single avatar per user, wrong if you want history.
+
+## Reading
+
+Public bucket:
+
+```ts
+const {
+  data: { publicUrl },
+} = supabase.storage.from('avatars').getPublicUrl(path);
+```
+
+This is a pure string operation — no network call, no token, and it does not
+verify the object exists.
+
+Private bucket:
+
+```ts
+const { data } = await supabase.storage
+  .from('files')
+  .createSignedUrl(path, 60 * 60); // one hour
+
+// data.signedUrl
+```
+
+This one is a request, it respects your select policy, and the URL expires.
+
+## The cache-busting problem
+
+An avatar at a stable path gets a stable URL, so after an upload the CDN and the
+device's image cache both keep serving the old image. The user changes their
+photo and nothing appears to happen.
+
+```ts title="hooks/useAvatarUpload.ts"
+return `${publicUrl}?v=${Date.now()}`;
+```
+
+The query string is ignored by storage and treated as a different resource by
+every cache in between. The alternative is a unique path per upload plus a
+cleanup job; for one avatar per user this is simpler.
+
+## Listing and deleting
+
+```ts
+const { data } = await supabase.storage.from('files').list(user.id, {
+  limit: 100,
+  sortBy: { column: 'created_at', order: 'desc' },
+});
+
+await supabase.storage.from('files').remove([`${user.id}/report.pdf`]);
+```
+
+`list` takes a prefix, and with owner-scoped policies the prefix has to be the
+user's id — listing the bucket root returns nothing useful.
+
+<Callout title='Storage does not cascade'>
+  `profiles` and `tasks` are removed when a user is, because they reference
+  `auth.users` with `on delete cascade`. Objects have no such foreign key, so
+  `supabase/functions/delete-account` removes them explicitly. Anything you
+  store per user needs the same treatment.
+</Callout>
+
+## Larger files
+
+`upload` sends the whole body in one request, which is fine into the tens of
+megabytes. Past that, use resumable uploads (TUS) or a signed upload URL that
+the device streams to directly. Both are documented upstream; neither is in the
+starter, because the shape of the code changes enough that a demo would be
+misleading.
+
+## Next
+
+- [Database and RLS](/docs/supabase/database)
+- [Edge functions](/docs/supabase/edge-functions)
+- [Supabase Storage docs](https://supabase.com/docs/guides/storage)

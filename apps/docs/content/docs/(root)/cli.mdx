@@ -74,6 +74,54 @@ Options:
   -h, --help                     display help for command
 ```
 
+## supabase
+
+Use the `supabase` command to initialize a new BNA project with a Supabase
+backend — Postgres, row level security, realtime, storage and edge functions.
+
+```bash
+npx bna-ui supabase [project-name]
+```
+
+By default this scaffolds the full authentication setup — password, magic links,
+email OTP, Google, Apple and GitHub. Pass `--no-auth` for a backend with no
+sign-in: migrations, a live query, storage and an edge function.
+
+```bash
+npx bna-ui supabase [project-name] --no-auth
+```
+
+After copying files it asks for your project URL and publishable key, writes
+them to `.env.local`, and then — only if the [Supabase
+CLI](https://supabase.com/docs/guides/local-development) is on your `PATH` —
+links the project, applies the migrations and generates
+`lib/database.types.ts`. If it is not installed, those commands are printed as
+next steps instead. Nothing fails either way.
+
+See [Expo + Supabase](/docs/installation/supabase) and [Expo + Supabase +
+Auth](/docs/installation/supabase-auth) for what each one gives you.
+
+### Options
+
+```bash
+Usage: bna-ui supabase [options] [project-name]
+
+Initialize a new BNA project with a Supabase backend
+
+Arguments:
+  project-name                   Name of the project
+
+Options:
+  --npm                          Use npm as package manager
+  --yarn                         Use yarn as package manager
+  --pnpm                         Use pnpm as package manager
+  --bun                          Use bun as package manager
+  --skip-install                 Skip package installation
+  --skip-supabase                Skip linking the project and applying migrations
+  --no-auth                      Scaffold a Supabase backend without authentication
+  -h, --help                     display help for command
+```
+
 ## add
 
 Use the `add` command to add components and dependencies to your React Native or Expo project.
@@ -133,6 +181,12 @@ npx bna-ui init my-app
 
 ```bash
 npx bna-ui convex my-convex-app
+```
+
+### Initialize with Supabase backend
+
+```bash
+npx bna-ui supabase my-supabase-app
 ```
 
 ### Initialize using specific package manager

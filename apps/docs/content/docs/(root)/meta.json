@@ -1,3 +1,13 @@
 {
-  "pages": ["index", "cli", "theming", "llms", "mcp", "agents", "skills", "shadcn", "about"]
+  "pages": [
+    "index",
+    "cli",
+    "theming",
+    "llms",
+    "mcp",
+    "agents",
+    "skills",
+    "shadcn",
+    "about"
+  ]
 }

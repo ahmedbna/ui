@@ -38,7 +38,7 @@ export const ResendOTPPasswordReset = Resend({
 
     try {
       const { data, error } = await resend.emails.send({
-        from: 'BNA UI <hi@ahmedbna.com>',
+        from: 'BNA UI <ahmdabdelsamea@gmail.com>',
         to: [email],
         subject: `Reset your BNA UI password`,
         text: `Your password reset code is: ${token}`,

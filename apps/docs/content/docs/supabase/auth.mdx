@@ -1,0 +1,287 @@
+---
+title: Authentication
+description: How the Supabase Auth starter persists a session, guards routes, handles deep links and runs OAuth — and how to swap the browser flow for native sign-in sheets.
+---
+
+The auth starter has four moving parts: a client configured for React Native, a
+provider that owns session state, route guards that decide what renders, and RLS
+policies that decide what the database returns. Only the last one is a security
+boundary.
+
+## The client
+
+```ts title="lib/supabase.ts"
+export const supabase = createClient<Database>(supabaseUrl, supabaseKey, {
+  auth: {
+    storage: Platform.OS === 'web' ? undefined : new LargeSecureStore(),
+    persistSession: true,
+    autoRefreshToken: true,
+    detectSessionInUrl: Platform.OS === 'web',
+    flowType: 'pkce',
+  },
+});
+```
+
+| Option               | Why it is set this way                                                   |
+| -------------------- | ------------------------------------------------------------------------ |
+| `storage`            | Encrypted device storage on native; the browser's own on web             |
+| `detectSessionInUrl` | There is no URL on native — leaving it on makes sign-in appear to hang   |
+| `flowType: 'pkce'`   | The code in a deep link is worthless without the verifier held on-device |
+
+### Session storage
+
+`expo-secure-store` refuses values over 2048 bytes. A Supabase session is
+several kilobytes. Writing one directly fails — and it fails _later than you
+would like_, because a test account with no metadata can fit under the limit,
+so it works all through development and breaks on your first real user.
+
+`lib/large-secure-store.ts` splits the problem: a 256-bit AES key in SecureStore
+(which is good at small secrets), the ciphertext in AsyncStorage (which has no
+size limit).
+
+```ts title="lib/large-secure-store.ts"
+async setItem(key: string, value: string) {
+  const encrypted = await this._encrypt(key, value);
+  await AsyncStorage.setItem(key, encrypted);
+}
+```
+
+A ciphertext whose key is gone — reinstalled on Android, Keychain cleared — is
+unrecoverable, so `getItem` drops it and returns `null`. The user lands on the
+sign-in screen instead of an infinite spinner.
+
+Plain AsyncStorage also works and is simpler. It leaves the refresh token
+readable by anything that can reach the app's sandbox, which on a rooted or
+jailbroken device is a real difference.
+
+### Token refresh
+
+```ts title="lib/supabase.ts"
+AppState.addEventListener('change', (state) => {
+  if (state === 'active') supabase.auth.startAutoRefresh();
+  else supabase.auth.stopAutoRefresh();
+});
+```
+
+`autoRefreshToken` runs on a timer, and iOS suspends timers in backgrounded
+apps. Without this listener, a user who leaves the app for an hour comes back to
+failing requests with no obvious cause.
+
+## The provider
+
+`providers/auth-provider.tsx` holds `session`, `user`, `profile` and `loading`,
+and exposes `useAuth()`.
+
+```ts title="providers/auth-provider.tsx"
+supabase.auth.getSession().then(({ data }) => {
+  setSession(data.session);
+  setLoading(false);
+});
+
+const {
+  data: { subscription },
+} = supabase.auth.onAuthStateChange((_event, nextSession) => {
+  setSession(nextSession);
+  setLoading(false);
+});
+```
+
+`getSession` reads the persisted session off disk; `onAuthStateChange` covers
+everything after — sign-in, sign-out, token refresh, and sessions established by
+a deep link.
+
+`loading` matters: rendering the navigator before the session resolves flashes
+the sign-in screen at a user who is already signed in.
+
+The profile is loaded with `maybeSingle`, not `single`, because it is created by
+a database trigger and the first read can land before the trigger commits. A
+null profile means "not yet", not "error". A realtime subscription on the row
+keeps it current when onboarding writes to it from another screen.
+
+## Route guards
+
+```tsx title="app/_layout.tsx"
+const signedIn = !!session;
+const needsOnboarding = signedIn && profile?.onboarded === false;
+
+<Stack.Protected guard={!signedIn}>
+  <Stack.Screen name='(auth)' />
+</Stack.Protected>
+
+<Stack.Protected guard={needsOnboarding}>
+  <Stack.Screen name='(onboarding)' />
+</Stack.Protected>
+
+<Stack.Protected guard={signedIn && !needsOnboarding}>
+  <Stack.Screen name='(tabs)' />
+  <Stack.Screen name='sheet' />
+</Stack.Protected>
+```
+
+The three guards are mutually exclusive, so exactly one group is mounted.
+`Stack.Protected` unmounts the screens whose guard is false and redirects away
+from them, so there is no navigation path into `(tabs)` without a session — deep
+link included.
+
+Note `profile?.onboarded === false` rather than `!profile?.onboarded`. While the
+trigger is still committing, `profile` is `null`; the loose version would treat
+that as "not onboarded" and flash the onboarding flow at returning users.
+
+<Callout title='Guards are not authorization'>
+  They decide what renders. Anyone can run a modified build. The policies in
+  `supabase/migrations/` are what actually stop one user reading another's rows,
+  and they run in Postgres where the client cannot argue. See [database and
+  RLS](/docs/supabase/database).
+</Callout>
+
+## Deep links
+
+Magic links, email confirmations and password recovery all return to the app as
+a URL. The starter handles them on the provider rather than in a route, because
+the link can arrive while any screen is mounted — and on a cold start, before
+the router has settled anywhere.
+
+```ts title="providers/auth-provider.tsx"
+const handleUrl = async (url: string) => {
+  const { queryParams } = Linking.parse(url);
+
+  // PKCE: the link carries ?code=…
+  const code = queryParams?.code;
+  if (typeof code === 'string') {
+    await supabase.auth.exchangeCodeForSession(code);
+    return;
+  }
+
+  // Implicit: older projects and some templates return tokens in the #fragment
+  const fragment = url.split('#')[1];
+  if (!fragment) return;
+
+  const params = new URLSearchParams(fragment);
+  const access_token = params.get('access_token');
+  const refresh_token = params.get('refresh_token');
+
+  if (access_token && refresh_token) {
+    await supabase.auth.setSession({ access_token, refresh_token });
+  }
+};
+
+Linking.getInitialURL().then((url) => url && handleUrl(url));
+Linking.addEventListener('url', ({ url }) => handleUrl(url));
+```
+
+Both shapes are handled because which one you get depends on your project's
+settings and email templates, and getting it wrong looks identical to a broken
+link.
+
+## OAuth
+
+One code path for Google, Apple and GitHub:
+
+```ts title="components/auth/oauth-buttons.tsx"
+const redirectTo = makeRedirectUri();
+
+const { data } = await supabase.auth.signInWithOAuth({
+  provider,
+  options: { redirectTo, skipBrowserRedirect: true },
+});
+
+const result = await openAuthSessionAsync(data.url, redirectTo);
+if (result.type !== 'success') return; // dismissed
+
+const code = new URL(result.url).searchParams.get('code');
+await supabase.auth.exchangeCodeForSession(code);
+```
+
+`makeRedirectUri()` resolves to `exp://…` under Expo Go and `<scheme>://` in a
+build, reading `scheme` from `app.json`. **Both spellings must be in your
+project's redirect allow-list** — this is the most common OAuth failure.
+
+Adding a fourth provider is a line in the `PROVIDERS` array, assuming it is
+configured in the dashboard.
+
+### Switching to native sign-in
+
+Browser PKCE works everywhere, including Expo Go. Native sheets look better and,
+on iOS, are what users expect. The trade is a development build and per-platform
+configuration.
+
+For Apple:
+
+```bash
+npx expo install expo-apple-authentication
+```
+
+```tsx
+import * as AppleAuthentication from 'expo-apple-authentication';
+
+const credential = await AppleAuthentication.signInAsync({
+  requestedScopes: [
+    AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
+    AppleAuthentication.AppleAuthenticationScope.EMAIL,
+  ],
+});
+
+await supabase.auth.signInWithIdToken({
+  provider: 'apple',
+  token: credential.identityToken!,
+});
+```
+
+Add `"expo-apple-authentication"` to `plugins` in `app.json`, and enable the
+Apple provider in Supabase with your bundle identifier as an additional client
+ID.
+
+Google's native flow uses `@react-native-google-signin/google-signin` and the
+same `signInWithIdToken` shape. It needs a web client ID and an iOS client ID,
+and there is a well-known nonce mismatch on iOS — Google's SDK skips the nonce
+by default while Supabase expects one, unless you opt out.
+
+<Callout title='Apple requires Sign in with Apple'>
+  If your iOS app offers any third-party sign-in, App Store review requires Sign
+  in with Apple as an option. The browser flow satisfies this; the native sheet
+  is a better experience.
+</Callout>
+
+## Password rules
+
+`app/(auth)/sign-up.tsx` and `reset-password.tsx` share a `describePasswordProblem`
+function that mirrors what Supabase enforces server-side, so the user is told
+before the round trip:
+
+```ts
+function describePasswordProblem(password: string): string | undefined {
+  if (password.length < 8) return 'At least 8 characters.';
+  if (!/[a-z]/.test(password)) return 'Include a lowercase letter.';
+  if (!/[A-Z]/.test(password)) return 'Include an uppercase letter.';
+  if (!/[0-9]/.test(password)) return 'Include a digit.';
+  return undefined;
+}
+```
+
+Change it together with the project's policy under **Authentication → Providers
+→ Email**, or one of the two will lie.
+
+## Deleting an account
+
+Removing a user requires a secret key, which must never reach the app bundle.
+`supabase/functions/delete-account` holds one server-side and identifies the
+caller from their own JWT, never from the request body:
+
+```ts title="supabase/functions/delete-account/index.ts"
+const {
+  data: { user },
+} = await asUser.auth.getUser();
+// …then, only after the caller is known:
+const asAdmin = createClient(url, Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!);
+await asAdmin.auth.admin.deleteUser(user.id);
+```
+
+`profiles` and `tasks` both cascade from `auth.users`. Storage objects do not,
+so the function removes them explicitly.
+
+## Next
+
+- [Google](/docs/supabase/google) · [Apple](/docs/supabase/apple) ·
+  [Email and SMTP](/docs/supabase/email)
+- [Database and RLS](/docs/supabase/database)
+- [Troubleshooting](/docs/supabase/troubleshooting)

@@ -2,13 +2,12 @@ import { Platform } from 'react-native';
 import { useColor } from '@/hooks/useColor';
 import { isLiquidGlassAvailable } from 'expo-glass-effect';
 import MaterialIcons from '@expo/vector-icons/Feather';
-import {
-  Badge,
-  Icon,
-  Label,
-  NativeTabs,
-  VectorIcon,
-} from 'expo-router/unstable-native-tabs';
+// `Icon`, `Label`, `Badge` and `VectorIcon` are statics on `NativeTabs.Trigger`
+// rather than top-level exports of this module — they were removed as named
+// exports in expo-router 57 and importing them by name throws at runtime.
+import { NativeTabs } from 'expo-router/unstable-native-tabs';
+
+const { Icon, Label, Badge, VectorIcon } = NativeTabs.Trigger;
 
 export default function TabsLayout() {
   const red = useColor('red');

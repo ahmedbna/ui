@@ -19,8 +19,8 @@ its training data — which, for anything that looks like this one, means web Re
 <CodeTabs>
 
 <TabsList>
-  <TabsTrigger value="cli">Claude Code</TabsTrigger>
-  <TabsTrigger value="manual">Other clients</TabsTrigger>
+  <TabsTrigger value='cli'>Claude Code</TabsTrigger>
+  <TabsTrigger value='manual'>Other clients</TabsTrigger>
 </TabsList>
 
 <TabsContent value="cli">
@@ -62,14 +62,14 @@ Every MCP client takes the same command. Add this to its config file:
 
 ## Tools
 
-| Tool | What it answers |
-| --- | --- |
-| `list_components` | Everything installable, filterable by component, chart, hook or theme. |
-| `search_components` | "Which component does X?" — matches names and descriptions. |
-| `get_component` | Description, props, variants, usage, accessibility notes, dependencies, full source and every example. |
-| `get_component_source` | Just the source, for when the API is already known. |
-| `get_install_plan` | The exact `add` command, the npm packages, and the files it will write. Never writes anything itself. |
-| `get_docs` | Any documentation page as Markdown, with all source expanded inline. |
+| Tool                   | What it answers                                                                                        |
+| ---------------------- | ------------------------------------------------------------------------------------------------------ |
+| `list_components`      | Everything installable, filterable by component, chart, hook or theme.                                 |
+| `search_components`    | "Which component does X?" — matches names and descriptions.                                            |
+| `get_component`        | Description, props, variants, usage, accessibility notes, dependencies, full source and every example. |
+| `get_component_source` | Just the source, for when the API is already known.                                                    |
+| `get_install_plan`     | The exact `add` command, the npm packages, and the files it will write. Never writes anything itself.  |
+| `get_docs`             | Any documentation page as Markdown, with all source expanded inline.                                   |
 
 Every component response is prefixed with the React-Native constraint, because a
 model that read it once at the start of a long session has usually stopped

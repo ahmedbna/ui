@@ -4,6 +4,7 @@
     "(root)",
     "installation",
     "convex",
+    "supabase",
     "components",
     "charts",
     "hooks",

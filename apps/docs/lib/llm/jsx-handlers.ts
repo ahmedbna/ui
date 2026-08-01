@@ -151,8 +151,9 @@ function codeSpan(value: string): string {
 function inlineParagraph(value: string): RootContent {
   return {
     type: 'paragraph',
-    children: (processor.parse(value).children[0] as { children?: RootContent[] })
-      ?.children ?? [text(value)],
+    children: (
+      processor.parse(value).children[0] as { children?: RootContent[] }
+    )?.children ?? [text(value)],
   } as RootContent;
 }
 
@@ -206,7 +207,8 @@ function bullets(items: string[]): RootContent {
 function langFor(file: string | undefined): string {
   const ext = file?.split('.').pop();
   if (!ext) return 'tsx';
-  if (ext === 'ts' || ext === 'tsx' || ext === 'js' || ext === 'jsx') return ext;
+  if (ext === 'ts' || ext === 'tsx' || ext === 'js' || ext === 'jsx')
+    return ext;
   if (ext === 'json' || ext === 'css') return ext;
   return 'tsx';
 }
@@ -405,7 +407,14 @@ function pageTreeList(id: string): Handler {
         };
       });
 
-    return [{ type: 'list', ordered: false, spread: false, children: items } as RootContent];
+    return [
+      {
+        type: 'list',
+        ordered: false,
+        spread: false,
+        children: items,
+      } as RootContent,
+    ];
   };
 }
 

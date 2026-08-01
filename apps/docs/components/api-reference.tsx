@@ -25,7 +25,9 @@ export function ApiReference({ name }: { name: string }) {
 
   return (
     <>
-      {meta.types?.map((type) => <TypeTable key={type.name} type={type} />)}
+      {meta.types?.map((type) => (
+        <TypeTable key={type.name} type={type} />
+      ))}
       {meta.variants?.map((group) => (
         <VariantList key={group.name} group={group} />
       ))}
@@ -157,24 +159,20 @@ function Code({ children, className }: React.ComponentProps<'code'>) {
  * `fallback='code'` wraps a value with no backticks of its own in a code span,
  * which is what a bare type wants.
  */
-function Inline({
-  text,
-  fallback,
-}: {
-  text: string;
-  fallback?: 'code';
-}) {
+function Inline({ text, fallback }: { text: string; fallback?: 'code' }) {
   if (fallback === 'code' && !text.includes('`')) return <Code>{text}</Code>;
 
   return (
     <>
-      {text.split(/(`[^`]+`)/g).map((part, i) =>
-        part.startsWith('`') && part.endsWith('`') && part.length > 2 ? (
-          <Code key={i}>{part.slice(1, -1)}</Code>
-        ) : (
-          <React.Fragment key={i}>{part}</React.Fragment>
-        )
-      )}
+      {text
+        .split(/(`[^`]+`)/g)
+        .map((part, i) =>
+          part.startsWith('`') && part.endsWith('`') && part.length > 2 ? (
+            <Code key={i}>{part.slice(1, -1)}</Code>
+          ) : (
+            <React.Fragment key={i}>{part}</React.Fragment>
+          )
+        )}
     </>
   );
 }

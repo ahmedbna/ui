@@ -116,7 +116,9 @@ export async function mcpCommand(options: { registry?: string } = {}) {
         'Find BNA UI components by name or description. Prefer this over ' +
         'guessing a component name.',
       inputSchema: {
-        query: z.string().describe('Search term, e.g. "date picker" or "chart".'),
+        query: z
+          .string()
+          .describe('Search term, e.g. "date picker" or "chart".'),
       },
     },
     async ({ query }) => {
@@ -162,7 +164,9 @@ export async function mcpCommand(options: { registry?: string } = {}) {
         'snippet, accessibility notes, dependencies, full source, and every ' +
         'example. Read this before writing code that uses the component.',
       inputSchema: {
-        name: z.string().describe('Component name, e.g. "button" or "area-chart".'),
+        name: z
+          .string()
+          .describe('Component name, e.g. "button" or "area-chart".'),
         includeExamples: z
           .boolean()
           .optional()
@@ -223,7 +227,10 @@ export async function mcpCommand(options: { registry?: string } = {}) {
     },
     async ({ names }) => {
       const bundles = await Promise.all(
-        names.map(async (name) => [name, await fetchAiBundle(registryUrl, name)] as const)
+        names.map(
+          async (name) =>
+            [name, await fetchAiBundle(registryUrl, name)] as const
+        )
       );
 
       const missing = bundles.filter(([, b]) => !b).map(([name]) => name);

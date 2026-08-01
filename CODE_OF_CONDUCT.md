@@ -33,7 +33,7 @@ code review — and whenever someone is representing the project in public.
 
 ## Enforcement
 
-Report unacceptable behaviour to **hi@ahmedbna.com**. Reports are reviewed
+Report unacceptable behaviour to **ahmdabdelsamea@gmail.com**. Reports are reviewed
 promptly and treated confidentially; you will not be asked to justify why the
 behaviour bothered you.
 

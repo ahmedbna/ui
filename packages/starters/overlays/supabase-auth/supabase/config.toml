@@ -1,0 +1,93 @@
+# Local stack configuration, read by `supabase start` and `supabase db reset`.
+# A linked project ignores everything here except [db].major_version, which must
+# match your remote database or `db push` refuses to run.
+#
+# `project_id` is overwritten by `supabase link`.
+project_id = "bna"
+
+[api]
+enabled = true
+port = 54321
+schemas = ["public", "storage", "graphql_public"]
+extra_search_path = ["public", "extensions"]
+max_rows = 1000
+
+[db]
+port = 54322
+shadow_port = 54320
+major_version = 17
+
+[db.pooler]
+enabled = false
+port = 54329
+pool_mode = "transaction"
+
+[realtime]
+enabled = true
+
+[studio]
+enabled = true
+port = 54323
+
+# Catches every email the local stack sends — magic links, OTPs, confirmations,
+# password resets — at http://localhost:54324 instead of delivering them. This
+# is how you test the whole auth flow without configuring SMTP.
+[inbucket]
+enabled = true
+port = 54324
+
+[storage]
+enabled = true
+file_size_limit = "50MiB"
+
+[auth]
+enabled = true
+# Must match `scheme` in app.json, or OAuth callbacks and magic links have
+# nowhere to return to.
+site_url = "bna://"
+additional_redirect_urls = [
+  "bna://",
+  "bna://reset-password",
+  "exp://localhost:8081",
+  "exp://localhost:8081/--/reset-password",
+  "http://localhost:8081",
+]
+jwt_expiry = 3600
+enable_refresh_token_rotation = true
+refresh_token_reuse_interval = 10
+enable_signup = true
+
+[auth.email]
+enable_signup = true
+double_confirm_changes = true
+# Off locally so sign-up returns a session immediately and you are not clicking
+# through Inbucket on every reload. Leave it ON in production.
+enable_confirmations = false
+otp_length = 6
+otp_expiry = 3600
+
+# Uncomment and fill in to test a provider locally. The secrets are read from
+# the environment, so keep them out of this file — it is checked in.
+# [auth.external.google]
+# enabled = true
+# client_id = "env(SUPABASE_AUTH_GOOGLE_CLIENT_ID)"
+# secret = "env(SUPABASE_AUTH_GOOGLE_SECRET)"
+# redirect_uri = "http://localhost:54321/auth/v1/callback"
+
+# [auth.external.apple]
+# enabled = true
+# client_id = "env(SUPABASE_AUTH_APPLE_CLIENT_ID)"
+# secret = "env(SUPABASE_AUTH_APPLE_SECRET)"
+
+# [auth.external.github]
+# enabled = true
+# client_id = "env(SUPABASE_AUTH_GITHUB_CLIENT_ID)"
+# secret = "env(SUPABASE_AUTH_GITHUB_SECRET)"
+
+[edge_runtime]
+enabled = true
+policy = "oneshot"
+inspector_port = 8083
+
+[analytics]
+enabled = false

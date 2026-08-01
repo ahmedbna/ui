@@ -122,7 +122,10 @@ function headingFor(folder: Folder): string {
 
 /** `/docs/components/button` → `['components', 'button']` */
 function urlToSlugs(url: string): string[] {
-  return url.replace(/^\/docs\/?/, '').split('/').filter(Boolean);
+  return url
+    .replace(/^\/docs\/?/, '')
+    .split('/')
+    .filter(Boolean);
 }
 
 export function buildLlmsTxt(): string {

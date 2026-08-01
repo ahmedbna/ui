@@ -144,7 +144,9 @@ async function buildHeader(page: DocsPage): Promise<string> {
 
     const registryDeps = payload?.registryDependencies ?? [];
     if (registryDeps.length) {
-      facts.push(`- Registry dependencies: ${registryDeps.map(mono).join(', ')}`);
+      facts.push(
+        `- Registry dependencies: ${registryDeps.map(mono).join(', ')}`
+      );
     }
 
     if (entry.preview?.light) {

@@ -1,0 +1,226 @@
+---
+title: Database and RLS
+description: The schema both Supabase starters ship, every row level security policy explained, and the migration and type-generation workflow that keeps your code and your database in step.
+---
+
+Your Postgres schema lives in `supabase/migrations/` as plain SQL, applied in
+filename order and checked into git. There is no schema DSL and no ORM — the
+migration is the source of truth, and `lib/database.types.ts` is generated from
+it.
+
+## The workflow
+
+<Steps>
+
+<Step>Write a migration</Step>
+
+```bash
+npx supabase migration new add_projects
+```
+
+Creates `supabase/migrations/<timestamp>_add_projects.sql`. Write your DDL in
+it, including `enable row level security` and the policies.
+
+<Step>Apply it</Step>
+
+```bash
+npm run db:push        # to your linked project
+npm run db:reset       # or: rebuild the local stack from scratch + seed.sql
+```
+
+<Step>Regenerate the types</Step>
+
+```bash
+npm run db:types
+```
+
+<Step>Commit the migration and the types together</Step>
+
+The shipped `.github/workflows/ci.yml` has a job that rebuilds the types from
+your migrations and fails if the checked-in file differs, so this is enforced
+rather than remembered.
+
+</Steps>
+
+<Callout title='Generate a migration from changes you made in Studio'>
+  If you changed the schema by clicking around in Studio, `npx supabase db diff
+  -f add_projects` (aliased to `npm run db:diff`) writes the difference out as a
+  migration instead of leaving your local and remote schemas divergent.
+</Callout>
+
+## Typed queries
+
+`lib/database.types.ts` is passed to `createClient` as a generic, which is what
+makes everything downstream typed:
+
+```ts title="lib/supabase.ts"
+export const supabase = createClient<Database>(url, key, {/* … */});
+```
+
+From there, column names, filters and return types are all checked:
+
+```ts
+const { data } = await supabase
+  .from('tasks')
+  .select('id, text, is_complete')
+  .eq('is_complete', false);
+
+// data: { id: string; text: string; is_complete: boolean }[] | null
+```
+
+The starters also export the row types by name, which is usually what you want
+in a component signature:
+
+```ts title="lib/database.types.ts"
+export type Tables<T extends keyof PublicSchema['Tables']> =
+  PublicSchema['Tables'][T]['Row'];
+
+export type Profile = Tables<'profiles'>;
+export type Task = Tables<'tasks'>;
+```
+
+<Callout title='The generated file is checked in on purpose'>
+  CI has no database to generate it from, and neither does a fresh clone. Commit
+  it with every migration.
+</Callout>
+
+## Row level security
+
+RLS is the whole security model. The publishable key is compiled into your app
+bundle, so anyone with the app has it — your policies are the only thing
+deciding what that key can do.
+
+Two rules cover most of it:
+
+1. **Enable RLS on every table in `public`.** A new table has it off. Adding
+   policies to a table without it does nothing.
+2. **Never trust a column the client supplies.** Verify it with `with check`.
+
+### The anatomy of a policy
+
+```sql title="supabase/migrations/0002_tasks.sql"
+create policy "Users can update their own tasks"
+  on public.tasks for update
+  to authenticated
+  using (auth.uid() = user_id)
+  with check (auth.uid() = user_id);
+```
+
+| Clause             | What it decides                                                      |
+| ------------------ | -------------------------------------------------------------------- |
+| `for update`       | Which operation. Separate policies for `select`, `insert`, `delete`. |
+| `to authenticated` | Which role. `anon` is an unauthenticated caller.                     |
+| `using`            | Which existing rows are visible to this operation                    |
+| `with check`       | What the row is allowed to look like **after** the write             |
+
+`using` without `with check` on an update lets a user take a row they own and
+reassign it to somebody else. Both clauses, every time.
+
+`auth.uid()` reads the id out of the caller's JWT. It is `null` for an
+anonymous caller, so every policy above fails closed.
+
+### Insert policies only have `with check`
+
+There is no existing row to test, so this is the one that stops a client
+claiming ownership it does not have:
+
+```sql
+create policy "Users can create their own tasks"
+  on public.tasks for insert
+  to authenticated
+  with check (auth.uid() = user_id);
+```
+
+The client still sends `user_id` — see `hooks/useTasks.ts` — but sending
+somebody else's is rejected by the database.
+
+### The no-auth starter is different
+
+Its policies are `using (true)` for the `anon` role, which is correct for a
+public demo and wrong for real data:
+
+```sql title="supabase/migrations/0001_tasks.sql"
+create policy "Anyone can read tasks"
+  on public.tasks for select
+  to anon, authenticated
+  using (true);
+```
+
+Anyone who extracts the publishable key from your app can do exactly what these
+policies allow, from curl, forever. Tighten them or move to the auth starter
+before you put anything real behind them.
+
+### Indexes follow policies
+
+Every policy that filters on a column makes every query filter on that column.
+Without an index, each one is a sequential scan:
+
+```sql title="supabase/migrations/0002_tasks.sql"
+create index tasks_user_id_created_at_idx
+  on public.tasks (user_id, created_at desc);
+```
+
+This is the most common performance problem in an RLS-heavy schema, and it does
+not show up until the table is large.
+
+### Testing a policy
+
+The honest test is two accounts. Sign in as one, create a row, sign in as the
+other, and confirm it is not there. Locally you can also ask Postgres directly:
+
+```sql
+set local role authenticated;
+set local request.jwt.claims = '{"sub": "<some-user-id>"}';
+select * from public.tasks;   -- only that user's rows
+reset role;
+```
+
+## Triggers
+
+The auth starter creates a profile row the moment a user exists, rather than
+from the client:
+
+```sql title="supabase/migrations/0001_profiles.sql"
+create trigger on_auth_user_created
+  after insert on auth.users
+  for each row execute function public.handle_new_user();
+```
+
+Doing it in the database means it cannot be skipped by a user who closes the app
+mid-sign-up, and the app never has to handle "signed in but no profile yet" as a
+permanent state.
+
+<Callout title='security definer functions need an empty search_path'>
+  `handle_new_user` runs as its owner so it can write to a table the caller has
+  no insert policy for. Without `set search_path = ''`, a schema earlier in the
+  path could shadow `public.profiles` and capture the insert. Pin it on every
+  definer function you write.
+</Callout>
+
+## Realtime needs two lines
+
+```sql
+alter publication supabase_realtime add table public.tasks;
+alter table public.tasks replica identity full;
+```
+
+The publication is what makes changes broadcast at all — without it a
+subscription connects and then stays silent. `replica identity full` is what
+puts the whole row in `UPDATE` and `DELETE` payloads instead of just the primary
+key. See [realtime](/docs/supabase/realtime).
+
+## Migrations in production
+
+`supabase db push` applies anything not yet recorded in the remote migration
+history. It does not roll back, and Postgres DDL that rewrites a large table
+takes a lock — so the usual advice applies: add columns as nullable, backfill
+separately, and drop nothing until nothing reads it.
+
+The shipped CI workflow pushes migrations on merge to `main`. See
+[deployment](/docs/supabase/deployment).
+
+## Next
+
+- [Realtime](/docs/supabase/realtime) · [Storage](/docs/supabase/storage)
+- [Edge functions](/docs/supabase/edge-functions)
+- [Supabase RLS documentation](https://supabase.com/docs/guides/database/postgres/row-level-security)

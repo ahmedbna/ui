@@ -17,8 +17,8 @@ actually about React Native — so the cost is near zero the rest of the time.
 <CodeTabs>
 
 <TabsList>
-  <TabsTrigger value="cli">Claude Code</TabsTrigger>
-  <TabsTrigger value="manual">Claude apps</TabsTrigger>
+  <TabsTrigger value='cli'>Claude Code</TabsTrigger>
+  <TabsTrigger value='manual'>Claude apps</TabsTrigger>
 </TabsList>
 
 <TabsContent value="cli">
@@ -51,12 +51,12 @@ under **Settings → Capabilities → Skills**.
 
 ## What's in it
 
-| File | Read when |
-| --- | --- |
-| `SKILL.md` | A conversation touches React Native, Expo or BNA UI. |
-| `references/catalogue.md` | Claude needs to find the right component. |
-| `references/conventions.md` | Claude is writing or reviewing component code. |
-| `references/endpoints.md` | Claude needs live data from the registry. |
+| File                        | Read when                                            |
+| --------------------------- | ---------------------------------------------------- |
+| `SKILL.md`                  | A conversation touches React Native, Expo or BNA UI. |
+| `references/catalogue.md`   | Claude needs to find the right component.            |
+| `references/conventions.md` | Claude is writing or reviewing component code.       |
+| `references/endpoints.md`   | Claude needs live data from the registry.            |
 
 The catalogue is generated from the registry at build time, so it lists exactly
 what is installable — it cannot drift.
@@ -67,7 +67,7 @@ They stack, and each covers a different gap.
 
 - **[MCP server](/docs/mcp)** — live data. Claude reads the actual current source
   and props rather than a snapshot. Best if you install one thing.
-- **Skill** — conventions and judgement. Knows *when* to reach for this library
+- **Skill** — conventions and judgement. Knows _when_ to reach for this library
   and how to use it well, without a network round-trip.
 - **[Rules file](/docs/agents)** — works in any assistant, including ones that
   support neither of the above.

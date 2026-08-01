@@ -28,7 +28,13 @@ async function main() {
   await fs.rm(DEST, { recursive: true, force: true });
   await fs.mkdir(DEST, { recursive: true });
 
-  const names = ['start', 'start-convex', 'start-convex-auth'];
+  const names = [
+    'start',
+    'start-convex',
+    'start-convex-auth',
+    'start-supabase',
+    'start-supabase-auth',
+  ];
 
   for (const name of names) {
     const src = path.join(STARTERS, name);

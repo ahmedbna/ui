@@ -3,15 +3,24 @@ import fs from 'fs-extra';
 import { logger } from './logger.js';
 
 /**
- * Files stored under a dot-less name in the package because npm refuses to
- * publish them verbatim, and restored to their real name on scaffold.
+ * Files and directories stored under a dot-less name in the package because npm
+ * refuses to publish them verbatim, and restored to their real name on
+ * scaffold.
  *
  * npm strips `.gitignore` from tarballs entirely, so shipping one as-is meant
  * every `bna-ui init` produced a project with no `.gitignore` at all.
+ *
+ * `github` has a second reason: the copy filter below skips anything matching
+ * `\.git`, which a literal `.github/` would trip. Storing it dot-less gets it
+ * past the filter, and this map puts the dot back.
+ *
+ * Top-level only — every entry here sits at the root of a scaffold.
  */
 const RENAME_ON_SCAFFOLD: Record<string, string> = {
   gitignore: '.gitignore',
   npmrc: '.npmrc',
+  'env.example': '.env.example',
+  github: '.github',
 };
 
 export async function copyTemplate(

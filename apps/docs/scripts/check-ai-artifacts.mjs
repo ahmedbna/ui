@@ -105,7 +105,9 @@ async function main() {
     }
 
     if (markdown.length < MIN_BYTES) {
-      errors.push(`${rel}: only ${markdown.length} bytes — body did not render`);
+      errors.push(
+        `${rel}: only ${markdown.length} bytes — body did not render`
+      );
     }
 
     const leaked = leakedJsx(markdown);
@@ -172,11 +174,15 @@ async function main() {
       (name) => name.endsWith('.json') && name !== 'index.json'
     );
   } catch {
-    errors.push('public/r/ai is missing — the registry did not emit AI bundles');
+    errors.push(
+      'public/r/ai is missing — the registry did not emit AI bundles'
+    );
   }
 
   for (const file of bundles) {
-    const bundle = JSON.parse(await fs.readFile(path.join(aiDir, file), 'utf8'));
+    const bundle = JSON.parse(
+      await fs.readFile(path.join(aiDir, file), 'utf8')
+    );
     const where = `r/ai/${file}`;
 
     if (!bundle.files?.length || bundle.files.some((f) => !f.content)) {

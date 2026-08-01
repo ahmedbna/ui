@@ -1,6 +1,6 @@
 ---
 title: Installation
-description: Pick the stack you are building on and follow the guide for it — plain Expo, Expo with a Convex backend, or Expo with Convex and authentication.
+description: Pick the stack you are building on and follow the guide for it — plain Expo, or Expo with a Convex or Supabase backend, with or without authentication.
 ---
 
 <Callout title='Recommended for new projects'>
@@ -47,40 +47,107 @@ Choose the setup that matches what you are building.
   </div>
 </LinkedCard>
 
-  <LinkedCard
-    href='/docs/installation/convex-auth'
-    className='items-start gap-1 p-6 text-sm sm:p-6'
-  >
-    <img
-      src='/images/convex-black.svg'
-      alt='Convex'
-      className='mb-2 size-8 rounded-none object-contain dark:hidden'
-    />
-    <img
-      src='/images/convex-white.svg'
-      alt=''
+<LinkedCard
+  href='/docs/installation/convex-auth'
+  className='items-start gap-1 p-6 text-sm sm:p-6'
+>
+  <img
+    src='/images/convex-black.svg'
+    alt='Convex'
+    className='mb-2 size-8 rounded-none object-contain dark:hidden'
+  />
+  <img
+    src='/images/convex-white.svg'
+    alt=''
+    aria-hidden='true'
+    className='mb-2 hidden size-8 rounded-none object-contain dark:block'
+  />
+  <div className='font-medium'>Expo + Convex + Auth</div>
+  <div className='text-muted-foreground leading-relaxed'>
+    Google, Apple, password and email OTP sign-in, pre-wired.
+  </div>
+</LinkedCard>
+
+<LinkedCard
+  href='/docs/installation/supabase'
+  className='items-start gap-1 p-6 text-sm sm:p-6'
+>
+  <img
+    src='/images/supabase.svg'
+    alt='Supabase'
+    className='mb-2 size-8 rounded-none object-contain'
+  />
+  <div className='font-medium'>Expo + Supabase</div>
+  <div className='text-muted-foreground leading-relaxed'>
+    Postgres with row level security, realtime and storage. No sign-in.
+  </div>
+</LinkedCard>
+
+<LinkedCard
+  href='/docs/installation/supabase-auth'
+  className='items-start gap-1 p-6 text-sm sm:p-6'
+>
+  <img
+    src='/images/supabase.svg'
+    alt='Supabase'
+    className='mb-2 size-8 rounded-none object-contain'
+  />
+  <div className='font-medium'>Expo + Supabase + Auth</div>
+  <div className='text-muted-foreground leading-relaxed'>
+    Password, magic links, OTP, Google, Apple and GitHub, pre-wired.
+  </div>
+</LinkedCard>
+
+<LinkedCard
+  href='/docs/installation/manual'
+  className='items-start gap-1 p-6 text-sm sm:p-6'
+>
+    <svg
+      viewBox='0 0 24 24'
+      xmlns='http://www.w3.org/2000/svg'
+      className='mb-2 h-8 w-8'
+      fill='none'
+      stroke='currentColor'
+      strokeWidth='1.6'
+      strokeLinecap='round'
+      strokeLinejoin='round'
       aria-hidden='true'
-      className='mb-2 hidden size-8 rounded-none object-contain dark:block'
-    />
-    <div className='font-medium'>Expo + Convex + Auth</div>
+    >
+      <polyline points='4 17 10 11 4 5' />
+      <line x1='12' x2='20' y1='19' y2='19' />
+    </svg>
+    <div className='font-medium'>Manual installation</div>
     <div className='text-muted-foreground leading-relaxed'>
-      Google, Apple, password and email OTP sign-in, pre-wired.
+      Add BNA UI to an Expo app you already created.
     </div>
+
   </LinkedCard>
 </div>
 
 ## Which one should I pick?
 
-| You want to…                                            | Start with                                             |
-| ------------------------------------------------------- | ------------------------------------------------------ |
-| Build a UI and ship it, no server                       | [Expo](/docs/installation/expo)                        |
-| Store data and sync it live across devices, no accounts | [Expo + Convex](/docs/installation/convex)             |
-| Have users sign in on day one                           | [Expo + Convex + Auth](/docs/installation/convex-auth) |
+| You want to…                                            | Start with                                                                                             |
+| ------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| Build a UI and ship it, no server                       | [Expo](/docs/installation/expo)                                                                        |
+| Store data and sync it live across devices, no accounts | [Convex](/docs/installation/convex) or [Supabase](/docs/installation/supabase)                         |
+| Have users sign in on day one                           | [Convex + Auth](/docs/installation/convex-auth) or [Supabase + Auth](/docs/installation/supabase-auth) |
 
-Convex is a real-time backend: queries and mutations are TypeScript functions,
-and every client subscribed to a query re-renders when its data changes. You can
-start on the Expo path and add Convex later — nothing in the component library
-depends on it.
+### Convex or Supabase?
+
+Both are real-time backends and both starters give you the same app. They differ
+in where your logic lives and how authorization works.
+
+|                   | Convex                                    | Supabase                                            |
+| ----------------- | ----------------------------------------- | --------------------------------------------------- |
+| Data model        | Documents, schema in TypeScript           | Postgres, schema in SQL migrations                  |
+| Queries           | TypeScript functions on the server        | Direct queries from the client, plus edge functions |
+| Authorization     | Checked inside each function              | Row level security policies, enforced by Postgres   |
+| Realtime          | Every query is a live subscription        | Opt in per table                                    |
+| Local dev         | Cloud dev deployment                      | Cloud, or the whole stack in Docker                 |
+| Reach for it when | You want end-to-end TypeScript and no SQL | You want Postgres, SQL and a relational schema      |
+
+Nothing in the component library depends on either, so you can start on the plain
+Expo path and add a backend later.
 
 ## Existing project
 

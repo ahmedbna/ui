@@ -316,8 +316,7 @@ async function buildAiBundle(
   // Button example. Charts nest one level deeper.
   const examples = Object.values(registry).filter(
     (candidate) =>
-      candidate.type === 'registry:example' &&
-      demoOwner(candidate) === key
+      candidate.type === 'registry:example' && demoOwner(candidate) === key
   );
 
   return {
@@ -379,8 +378,10 @@ function demoOwner(entry: ComponentRegistry): string | undefined {
  */
 function docPathFor(entry: ComponentRegistry): string | undefined {
   const target = entry.files[0]?.target ?? '';
-  if (target.startsWith('components/charts/')) return `/docs/charts/${entry.name}`;
-  if (target.startsWith('components/ui/')) return `/docs/components/${entry.name}`;
+  if (target.startsWith('components/charts/'))
+    return `/docs/charts/${entry.name}`;
+  if (target.startsWith('components/ui/'))
+    return `/docs/components/${entry.name}`;
   if (target.startsWith('hooks/')) return `/docs/hooks/${entry.name}`;
   if (target.startsWith('theme/')) return `/docs/theme/${entry.name}`;
   return undefined;

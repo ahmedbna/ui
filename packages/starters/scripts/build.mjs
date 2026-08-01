@@ -31,20 +31,22 @@ async function copyDir(src, dest) {
   await fs.cp(src, dest, { recursive: true });
 }
 
-async function buildStarter(name, config, registry) {
+/**
+ * Writes the registry entries a scaffold asks for into `out`.
+ *
+ * Each entry is expanded to its full closure and written to the target path the
+ * registry declares — the same targets `bna-ui add` uses. Shared with
+ * `buildOverlay` so an overlay can pull components the base does not have,
+ * rather than checking a second copy of them in.
+ */
+async function materialize(name, out, config, registry) {
   const { REGISTRY, resolveAllDependencies } = registry;
-  const out = path.join(DIST, name);
 
-  await fs.rm(out, { recursive: true, force: true });
-  await copyDir(path.join(ROOT, name), out);
-
-  // Expand each requested entry to its full closure, then write every file to
-  // the target path the registry declares — the same targets `bna-ui add` uses.
   const wanted = new Set();
   for (const entry of [
-    ...config.components,
-    ...config.hooks,
-    ...config.theme,
+    ...(config.components ?? []),
+    ...(config.hooks ?? []),
+    ...(config.theme ?? []),
   ]) {
     if (!REGISTRY[entry]) {
       throw new Error(
@@ -75,10 +77,26 @@ async function buildStarter(name, config, registry) {
   return { entries: wanted.size, written };
 }
 
-async function buildOverlay(name, { base, overlay }) {
+async function buildStarter(name, config, registry) {
   const out = path.join(DIST, name);
+
+  await fs.rm(out, { recursive: true, force: true });
+  await copyDir(path.join(ROOT, name), out);
+
+  return materialize(name, out, config, registry);
+}
+
+async function buildOverlay(name, config, registry) {
+  const { base, overlay } = config;
+  const out = path.join(DIST, name);
+
   await fs.rm(out, { recursive: true, force: true });
   await copyDir(path.join(DIST, base), out);
+
+  // Extra registry entries land before the overlay copy, so an overlay file can
+  // still override one of them.
+  const { entries } = await materialize(name, out, config, registry);
+
   await fs.cp(path.join(ROOT, overlay), out, { recursive: true, force: true });
 
   const count = async (dir) => {
@@ -88,7 +106,7 @@ async function buildOverlay(name, { base, overlay }) {
     }
     return n;
   };
-  return { files: await count(out) };
+  return { files: await count(out), entries };
 }
 
 async function main() {
@@ -102,9 +120,10 @@ async function main() {
   }
 
   for (const [name, config] of Object.entries(overlays)) {
-    const { files } = await buildOverlay(name, config);
+    const { files, entries } = await buildOverlay(name, config, registry);
     console.log(
-      `✔ starter "${name}": ${files} files (${config.base} + overlay)`
+      `✔ starter "${name}": ${files} files (${config.base} + overlay` +
+        `${entries ? ` + ${entries} registry entries` : ''})`
     );
   }
 }

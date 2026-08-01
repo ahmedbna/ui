@@ -1,0 +1,204 @@
+---
+title: Expo + Supabase
+description: Scaffold an Expo app with BNA UI and a Supabase backend — Postgres with row level security, realtime subscriptions, storage and an edge function, with no authentication.
+---
+
+Use this when you need a database, file storage and live updates, but not
+sign-in. Every table still has row level security enabled — "no auth" is not
+"no RLS", and the docs below explain why that distinction matters more here
+than in the auth starter.
+
+```bash
+npx bna-ui supabase my-app --no-auth
+```
+
+<Callout title='Without --no-auth you get the auth starter'>
+  Plain `npx bna-ui supabase` scaffolds the full authentication setup —
+  password, magic links, email OTP, Google, Apple and GitHub. The `--no-auth`
+  flag is what selects the backend-only variant.
+</Callout>
+
+## Create a project
+
+<Steps>
+
+<Step>Create a Supabase project</Step>
+
+At [supabase.com/dashboard](https://supabase.com/dashboard). Note the project
+reference — the subdomain in `https://<ref>.supabase.co`.
+
+<Step>Run the CLI</Step>
+
+```bash
+npx bna-ui supabase my-app --no-auth
+```
+
+It asks for your project URL and publishable key, both from
+**Project Settings → API**, then writes them to `.env.local`. Press enter at
+either prompt to skip and fill the file in yourself later.
+
+<Step>It links, migrates and generates types</Step>
+
+If the [Supabase CLI](https://supabase.com/docs/guides/local-development) is on
+your `PATH`, the scaffold runs these three for you. If it is not, they are
+printed as next steps instead — nothing fails.
+
+```bash
+npx supabase link --project-ref your-project-ref
+npx supabase db push
+npm run db:types
+```
+
+<Step>Deploy the edge function</Step>
+
+Optional; the settings tab calls it.
+
+```bash
+npm run functions:deploy
+```
+
+</Steps>
+
+Pass `--skip-supabase` to skip the prompts and all of the above.
+
+## Run it
+
+```bash
+npx expo start
+```
+
+Three tabs, each demonstrating one thing: a live task list, a database query,
+and storage plus an edge function.
+
+## What you get
+
+On top of the Expo starter:
+
+```
+lib/
+├── supabase.ts            the client — no session, so nothing is persisted
+├── realtime.ts            applyChange: the postgres_changes reducer
+└── database.types.ts      generated; regenerate with `npm run db:types`
+hooks/
+├── useTasks.ts            select + subscription + optimistic CRUD
+└── useUpload.ts           file URI → ArrayBuffer → storage → public URL
+app/(tabs)/
+├── (home)/index.tsx       live task list
+├── search/index.tsx       `ilike` query against Postgres
+└── settings/index.tsx     storage upload + edge function + connection status
+supabase/
+├── config.toml            local stack configuration
+├── seed.sql               `supabase db reset` fixtures
+├── migrations/
+│   ├── 0001_tasks.sql     table, RLS, realtime publication, replica identity
+│   └── 0002_storage.sql   public bucket + policies
+└── functions/hello-world/index.ts
+__tests__/realtime.test.ts jest-expo + the realtime reducer
+.github/workflows/ci.yml   typecheck, test, type drift, deploy, EAS build
+```
+
+## The client
+
+There is no session to persist and nothing to refresh, so all three are off:
+
+```ts title="lib/supabase.ts"
+export const supabase = createClient<Database>(supabaseUrl, supabaseKey, {
+  auth: {
+    persistSession: false,
+    autoRefreshToken: false,
+    detectSessionInUrl: false,
+  },
+});
+```
+
+`detectSessionInUrl` must be `false` on native regardless of auth — there is no
+URL to parse, and leaving it on makes the client wait for a callback that never
+arrives.
+
+## Row level security
+
+This is the part to read twice. The publishable key is compiled into your app
+bundle, so anyone with the app has it. Your RLS policies are the only thing
+standing between that key and your data.
+
+The shipped migration enables RLS and then grants the `anon` role everything:
+
+```sql title="supabase/migrations/0001_tasks.sql"
+alter table public.tasks enable row level security;
+
+create policy "Anyone can read tasks"
+  on public.tasks for select
+  to anon, authenticated
+  using (true);
+```
+
+That is correct for a public demo and wrong for real data. Before you ship
+anything that matters, either tighten these policies or move to the auth
+starter, where every policy is scoped by `auth.uid()`.
+
+<Callout title='RLS is off by default on a new table'>
+  A table you create later without `enable row level security` is readable and
+  writable by anyone holding the publishable key, no matter what policies you
+  add. Enable it first, then write policies.
+</Callout>
+
+Full detail: [database, RLS and migrations](/docs/supabase/database).
+
+## Realtime
+
+Two lines in the migration do the work that is easy to miss:
+
+```sql title="supabase/migrations/0001_tasks.sql"
+alter publication supabase_realtime add table public.tasks;
+alter table public.tasks replica identity full;
+```
+
+Without the first, a subscription connects successfully and then never fires —
+the single most common "realtime is broken" report. Without the second, `UPDATE`
+and `DELETE` events carry only the primary key.
+
+The client side is `hooks/useTasks.ts`, and the reducer it uses is a pure
+function in `lib/realtime.ts` so it can be unit-tested without a database.
+
+More: [realtime](/docs/supabase/realtime).
+
+## Environment
+
+| Variable                               | Where it lives | Set by            | Used for                            |
+| -------------------------------------- | -------------- | ----------------- | ----------------------------------- |
+| `EXPO_PUBLIC_SUPABASE_URL`             | `.env.local`   | `bna-ui supabase` | Building the client                 |
+| `EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | `.env.local`   | `bna-ui supabase` | Building the client                 |
+| `SUPABASE_SERVICE_ROLE_KEY`            | Edge functions | Supabase          | Server-side queries that bypass RLS |
+
+<Callout title='Never put a secret key in the app'>
+  `EXPO_PUBLIC_` variables are inlined into the JavaScript bundle at build time.
+  A `sb_secret_…` key there bypasses RLS entirely and is readable by anyone who
+  downloads the app. Secret keys belong in edge function environment variables
+  only — the CLI refuses one at the prompt for this reason.
+</Callout>
+
+Supabase is retiring the legacy `anon` and `service_role` keys at the end of 2026. This starter uses the replacements, `sb_publishable_…` and `sb_secret_…`,
+throughout.
+
+## Local development
+
+Everything above works against a hosted project. To run the whole stack on your
+machine instead — Postgres, storage, realtime, Studio and a mail catcher —
+install [Docker](https://docs.docker.com/desktop/) and:
+
+```bash
+npx supabase start          # Studio at http://localhost:54323
+npx supabase db reset       # applies migrations, then seed.sql
+npm run db:types:local
+```
+
+Point `.env.local` at the URL and key `supabase start` prints.
+
+## Next
+
+- [Database, RLS and migrations](/docs/supabase/database)
+- [Storage](/docs/supabase/storage) · [Realtime](/docs/supabase/realtime) ·
+  [Edge functions](/docs/supabase/edge-functions)
+- [Deployment](/docs/supabase/deployment) ·
+  [Troubleshooting](/docs/supabase/troubleshooting)
+- [Add authentication](/docs/installation/supabase-auth)

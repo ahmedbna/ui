@@ -96,13 +96,30 @@ jobs:
             const v = require('$1').${2}.expo;
             /(\d+)/.exec(v.replace(/^[^0-9]*/, ''))[1]
           "; }
-          scaffold=$(major /tmp/e2e/app/package.json dependencies)
           registry=$(major "$GITHUB_WORKSPACE/packages/registry/package.json" devDependencies)
-          echo "scaffold expo SDK $scaffold / registry expo SDK $registry"
+          echo "registry expo SDK $registry"
+
+          scaffold=$(major /tmp/e2e/app/package.json dependencies)
+          echo "  init scaffold: $scaffold"
           if [ "$scaffold" != "$registry" ]; then
             echo "::error::scaffold is on Expo SDK $scaffold but components are built against $registry"
             exit 1
           fi
+
+          # Every backend overlay replaces package.json wholesale, so each one
+          # pins Expo independently and can drift on its own. Only `init` is
+          # scaffolded above, so check the rest statically.
+          fail=0
+          for pkg in "$GITHUB_WORKSPACE"/packages/starters/overlays/*/package.json; do
+            name=$(basename "$(dirname "$pkg")")
+            overlay=$(major "$pkg" dependencies)
+            echo "  $name overlay: $overlay"
+            if [ "$overlay" != "$registry" ]; then
+              echo "::error::overlay $name is on Expo SDK $overlay but components are built against $registry"
+              fail=1
+            fi
+          done
+          [ "$fail" -eq 0 ]
 
       - name: Every local import resolves in the installed project
         run: |

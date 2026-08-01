@@ -1,0 +1,22 @@
+-- Applied by `supabase db reset` against the local stack. Never runs against a
+-- linked project — `supabase db push` applies migrations only.
+--
+-- Tasks are owned by a user, and there are no users on a fresh database, so
+-- there is nothing useful to insert here until you have signed up once. Sign up
+-- through the app against `supabase start`, then either add rows below keyed to
+-- your own id, or leave this empty.
+--
+-- To seed a user directly instead, use the admin API rather than writing to
+-- auth.users by hand — the password hashing and identity rows are not something
+-- to reproduce in SQL:
+--
+--   supabase start
+--   curl -X POST "http://localhost:54321/auth/v1/admin/users" \
+--     -H "apikey: $(supabase status -o json | jq -r .SERVICE_ROLE_KEY)" \
+--     -H "Authorization: Bearer $(supabase status -o json | jq -r .SERVICE_ROLE_KEY)" \
+--     -H "Content-Type: application/json" \
+--     -d '{"email":"you@example.com","password":"Password1","email_confirm":true}'
+--
+-- The handle_new_user trigger in 0001_profiles.sql creates the profile row.
+
+select 1;

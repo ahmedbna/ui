@@ -1,0 +1,191 @@
+---
+title: Edge Functions
+description: Write, serve, deploy and invoke Deno edge functions from Expo — running as the caller versus as an admin, JWT verification, CORS, secrets, and why deleting a user has to happen server-side.
+---
+
+Edge functions are Deno running close to your database. Use one when the work
+needs a secret the app must not hold, or when it should happen server-side
+regardless of what the client does.
+
+Both starters ship `hello-world`; the auth starter also ships `delete-account`,
+which exists because there is no safe way to do it from the app.
+
+## The two client shapes
+
+This is the decision that matters in every function you write.
+
+**As the caller** — forward their `Authorization` header. Queries run under the
+same RLS policies the app has, so the function can only see what the user can:
+
+```ts title="supabase/functions/hello-world/index.ts"
+const authHeader = req.headers.get('Authorization')!;
+
+const supabase = createClient(
+  Deno.env.get('SUPABASE_URL')!,
+  Deno.env.get('SUPABASE_ANON_KEY')!,
+  { global: { headers: { Authorization: authHeader } } }
+);
+
+const {
+  data: { user },
+} = await supabase.auth.getUser();
+
+// Scoped to this user's rows by RLS, not by a where clause.
+const { count } = await supabase
+  .from('tasks')
+  .select('*', { count: 'exact', head: true });
+```
+
+**As an admin** — the secret key, which bypasses RLS entirely. Only after you
+have established who is calling, and never with an id taken from the request
+body:
+
+```ts title="supabase/functions/delete-account/index.ts"
+// 1. Who is this? From their token, not from what they sent.
+const {
+  data: { user },
+} = await asUser.auth.getUser();
+if (!user) return new Response('Not authenticated', { status: 401 });
+
+// 2. Only now, the powerful client.
+const asAdmin = createClient(
+  Deno.env.get('SUPABASE_URL')!,
+  Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!
+);
+await asAdmin.auth.admin.deleteUser(user.id);
+```
+
+<Callout title='Never take the id from the body'>
+  A function that deletes `body.userId` with an admin client lets any signed-in
+  user delete anybody. The caller's identity comes from their JWT, which they
+  cannot forge.
+</Callout>
+
+## Running one
+
+```bash
+npx supabase functions serve          # all functions, hot-reloading
+npx supabase functions serve hello-world --no-verify-jwt
+```
+
+Against the local stack this picks up `supabase/functions/` directly. Logs go to
+the terminal.
+
+## Deploying
+
+```bash
+npm run functions:deploy              # all of them
+npx supabase functions deploy hello-world
+```
+
+The shipped CI workflow deploys on merge to `main`. See
+[deployment](/docs/supabase/deployment).
+
+## JWT verification
+
+By default a deployed function rejects requests without a valid JWT before your
+code runs. That is what you want for anything user-specific.
+
+```bash
+# No auth in this project, so the function accepts anonymous callers:
+npx supabase functions deploy hello-world --no-verify-jwt
+```
+
+The no-auth starter deploys with `--no-verify-jwt`; the auth starter does not,
+for either function. `delete-account` in particular must never accept an
+unauthenticated request.
+
+## Invoking from Expo
+
+```ts
+const { data, error } = await supabase.functions.invoke('hello-world');
+```
+
+`invoke` attaches the current session's access token automatically, which is
+what makes the "as the caller" pattern above work. With a body:
+
+```ts
+const { data, error } = await supabase.functions.invoke('send-report', {
+  body: { month: '2026-07' },
+});
+```
+
+`error` is a `FunctionsHttpError` for a non-2xx response. The body is not parsed
+into it, so if you return structured errors, read them explicitly:
+
+```ts
+if (error instanceof FunctionsHttpError) {
+  const details = await error.context.json();
+}
+```
+
+## CORS
+
+Both shipped functions answer the preflight:
+
+```ts
+const corsHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Headers':
+    'authorization, x-client-info, apikey, content-type',
+};
+
+if (req.method === 'OPTIONS') {
+  return new Response('ok', { headers: corsHeaders });
+}
+```
+
+Native requests are not preflighted, so this looks like dead code until you run
+the app on web — where a missing `OPTIONS` handler fails every call. Tighten
+`Allow-Origin` to your own domain in production.
+
+## Secrets
+
+```bash
+npx supabase secrets set STRIPE_SECRET_KEY=sk_live_...
+npx supabase secrets list
+```
+
+Read them with `Deno.env.get('STRIPE_SECRET_KEY')`. `SUPABASE_URL`,
+`SUPABASE_ANON_KEY` and `SUPABASE_SERVICE_ROLE_KEY` are injected automatically.
+
+This is where every credential that must not ship in the app belongs.
+
+## TypeScript and the editor
+
+`supabase/functions/` is Deno, not React Native. It resolves `jsr:` specifiers
+and the `Deno` global, neither of which exists in the Expo project — so the
+starters exclude it:
+
+```json title="tsconfig.json"
+"exclude": ["node_modules", "supabase/functions"]
+```
+
+Without that, `npx tsc --noEmit` fails on every function. For editor support,
+open `supabase/functions/` with the Deno extension; `supabase/functions/deno.json`
+is already there for it.
+
+## Scheduling
+
+Postgres runs the scheduler, via `pg_cron` calling the function over HTTP:
+
+```sql
+select cron.schedule(
+  'nightly-digest',
+  '0 3 * * *',
+  $$
+  select net.http_post(
+    url := 'https://<ref>.supabase.co/functions/v1/send-digest',
+    headers := '{"Authorization": "Bearer <service-role-key>"}'::jsonb
+  );
+  $$
+);
+```
+
+Enable `pg_cron` and `pg_net` under **Database → Extensions** first.
+
+## Next
+
+- [Authentication](/docs/supabase/auth)
+- [Deployment](/docs/supabase/deployment)
+- [Supabase Edge Functions docs](https://supabase.com/docs/guides/functions)

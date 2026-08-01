@@ -1,0 +1,138 @@
+---
+title: Google Sign-In
+description: Configure Google as an OAuth provider for the Supabase Auth starter — creating the OAuth client, the two redirect URLs that matter, and what to do when the browser comes back to nothing.
+---
+
+The starter's Google button works as soon as the provider is configured in your
+Supabase project. No code changes, no extra dependencies — it shares the browser
+PKCE path with Apple and GitHub.
+
+## Create the OAuth client
+
+<Steps>
+
+<Step>Open the Google Cloud console</Step>
+
+[console.cloud.google.com](https://console.cloud.google.com) → create or pick a
+project.
+
+<Step>Configure the consent screen</Step>
+
+**APIs & Services → OAuth consent screen**. Pick **External** unless this is a
+Workspace-only app. Fill in the app name, support email and developer contact.
+
+While the app is in **Testing**, only accounts you list under **Test users** can
+sign in — everyone else gets "access blocked". Publish before launch.
+
+<Step>Create the credentials</Step>
+
+**APIs & Services → Credentials → Create credentials → OAuth client ID**, type
+**Web application**. Web, not Android or iOS: the browser flow authenticates
+against Supabase's callback, which is a web endpoint.
+
+<Step>Add the authorized redirect URI</Step>
+
+Under **Authorized redirect URIs**, add exactly this, with your project
+reference:
+
+```
+https://<your-project-ref>.supabase.co/auth/v1/callback
+```
+
+<Step>Copy the client ID and secret into Supabase</Step>
+
+Supabase dashboard → **Authentication → Providers → Google** → enable, paste
+both, save.
+
+<Step>Allow-list your app's redirect URLs</Step>
+
+**Authentication → URL Configuration → Redirect URLs**. Both spellings, because
+Expo Go and a build produce different ones:
+
+```
+exp://localhost:8081
+my-app://
+```
+
+</Steps>
+
+<Callout title='Two different redirect lists'>
+  Google's list is where Supabase may receive the callback — one URL, ending in
+  `/auth/v1/callback`. Supabase's list is where your app may receive it
+  afterwards. Configuring one and not the other is the usual cause of a sign-in
+  that gets all the way to "Continue" and then dies.
+</Callout>
+
+## Test it
+
+```bash
+npx expo start
+```
+
+Tap **Continue with Google**. A browser sheet opens, you pick an account, and it
+closes; the session lands and the route guards move you into the app.
+
+## What the starter does
+
+```ts title="components/auth/oauth-buttons.tsx"
+const redirectTo = makeRedirectUri();
+
+const { data } = await supabase.auth.signInWithOAuth({
+  provider: 'google',
+  options: { redirectTo, skipBrowserRedirect: true },
+});
+
+const result = await openAuthSessionAsync(data.url, redirectTo);
+
+if (result.type === 'success') {
+  const code = new URL(result.url).searchParams.get('code');
+  await supabase.auth.exchangeCodeForSession(code);
+}
+```
+
+Google hands back a name and picture in the ID token, and the `handle_new_user`
+trigger reads them, so a Google sign-up arrives with `display_name` and
+`avatar_url` already populated:
+
+```sql title="supabase/migrations/0001_profiles.sql"
+coalesce(
+  new.raw_user_meta_data ->> 'full_name',
+  new.raw_user_meta_data ->> 'name'
+),
+coalesce(
+  new.raw_user_meta_data ->> 'avatar_url',
+  new.raw_user_meta_data ->> 'picture'
+)
+```
+
+## When it does not work
+
+| What you see                                    | Usually                                                             |
+| ----------------------------------------------- | ------------------------------------------------------------------- |
+| `redirect_uri_mismatch` from Google             | The `/auth/v1/callback` URI is missing or has a typo                |
+| Browser closes, nothing happens                 | Your app's scheme is not in Supabase's redirect allow-list          |
+| "Access blocked: app not verified"              | Consent screen still in Testing and this account is not a test user |
+| Works in Expo Go, fails in a build              | `exp://localhost:8081` is allow-listed but `<scheme>://` is not     |
+| `Unsupported provider: provider is not enabled` | Google is not switched on in Authentication → Providers             |
+
+To see the redirect your device actually produces, log it:
+
+```ts
+console.log(makeRedirectUri());
+```
+
+Whatever that prints has to be in Supabase's list, exactly.
+
+## Going native
+
+The browser flow works in Expo Go and needs no native modules. A native Google
+sheet needs `@react-native-google-signin/google-signin`, a development build,
+and separate iOS and web client IDs — plus care around the nonce, which Google's
+iOS SDK omits by default while Supabase expects one. See
+[authentication](/docs/supabase/auth#switching-to-native-sign-in).
+
+## Next
+
+- [Apple Sign-In](/docs/supabase/apple)
+- [Email and SMTP](/docs/supabase/email)
+- [Supabase Google provider docs](https://supabase.com/docs/guides/auth/social-login/auth-google)

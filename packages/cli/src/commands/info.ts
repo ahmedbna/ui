@@ -46,7 +46,10 @@ export async function infoCommand(
   }
 
   const meta = bundle.meta as
-    | { usage?: { import?: string }; types?: Array<{ name: string; props: unknown[] }> }
+    | {
+        usage?: { import?: string };
+        types?: Array<{ name: string; props: unknown[] }>;
+      }
     | undefined;
 
   if (meta?.usage?.import) {

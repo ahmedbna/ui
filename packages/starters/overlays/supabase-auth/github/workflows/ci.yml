@@ -1,0 +1,98 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  verify:
+    name: Typecheck, lint, test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      # lib/database.types.ts is checked in, so this passes with no database.
+      # If it drifts from your migrations, the `types-are-current` job below
+      # catches it.
+      - run: npx tsc --noEmit
+      - run: npm run lint
+      - run: npm test
+
+  types-are-current:
+    name: Generated types match the migrations
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - uses: supabase/setup-cli@v1
+        with:
+          version: latest
+
+      - run: npm ci
+
+      # Applies every migration to a throwaway local Postgres, regenerates the
+      # types from it, and fails if the checked-in file differs. This is the
+      # check that stops a migration landing without its types.
+      - run: supabase db start
+      - run: supabase gen types typescript --local > lib/database.types.ts
+      - name: No uncommitted type changes
+        run: |
+          git diff --exit-code lib/database.types.ts \
+            || { echo "::error::lib/database.types.ts is stale — run 'npm run db:types' and commit it"; exit 1; }
+
+  deploy:
+    name: Deploy migrations and functions
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    needs: [verify, types-are-current]
+    runs-on: ubuntu-latest
+    env:
+      # Repository secrets → Settings → Secrets and variables → Actions.
+      # SUPABASE_ACCESS_TOKEN comes from https://supabase.com/dashboard/account/tokens
+      SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+      SUPABASE_PROJECT_ID: ${{ secrets.SUPABASE_PROJECT_ID }}
+      SUPABASE_DB_PASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: supabase/setup-cli@v1
+        with:
+          version: latest
+
+      - run: supabase link --project-ref "$SUPABASE_PROJECT_ID"
+      - run: supabase db push
+      # JWT verification stays on for both — hello-world reads the caller's
+      # identity, and delete-account must never accept an anonymous request.
+      - run: supabase functions deploy hello-world
+      - run: supabase functions deploy delete-account
+
+  build:
+    name: EAS build
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    needs: [verify]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          # https://expo.dev/settings/access-tokens
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      - run: npm ci
+      # EXPO_PUBLIC_ variables are baked into the bundle at build time, so they
+      # belong on the EAS build profile (eas.json / EAS environment variables),
+      # not here.
+      - run: eas build --platform all --profile preview --non-interactive --no-wait

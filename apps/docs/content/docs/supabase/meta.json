@@ -1,0 +1,15 @@
+{
+  "pages": [
+    "index",
+    "auth",
+    "database",
+    "realtime",
+    "storage",
+    "edge-functions",
+    "google",
+    "apple",
+    "email",
+    "deployment",
+    "troubleshooting"
+  ]
+}

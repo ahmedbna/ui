@@ -1,3 +1,10 @@
 {
-  "pages": ["expo", "convex", "convex-auth", "manual"]
+  "pages": [
+    "expo",
+    "convex",
+    "convex-auth",
+    "supabase",
+    "supabase-auth",
+    "manual"
+  ]
 }

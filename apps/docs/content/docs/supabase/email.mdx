@@ -1,0 +1,188 @@
+---
+title: Email and SMTP
+description: Configure email delivery for the Supabase Auth starter — custom SMTP, the templates magic links and OTP codes need, deep-link configuration, and testing the whole flow locally.
+---
+
+Three of the starter's six auth screens send email: sign-up confirmation, magic
+link, and password recovery. All three go through Supabase's email service,
+which needs configuring before it is usable for anything but development.
+
+<Callout title='The built-in service is not for production'>
+  Supabase's default SMTP is rate-limited to a handful of messages per hour and
+  is explicitly documented as for testing only. Past that limit, sign-ups
+  silently stop arriving — no error in your app, nothing in the logs the user
+  can see. Configure your own provider before launch.
+</Callout>
+
+## Custom SMTP
+
+<Steps>
+
+<Step>Get SMTP credentials</Step>
+
+[Resend](https://resend.com), [Postmark](https://postmarkapp.com),
+[SendGrid](https://sendgrid.com) and Amazon SES all work. You need a host, port,
+username and password.
+
+<Step>Verify your sending domain</Step>
+
+With the provider, not with Supabase — SPF and DKIM records on your DNS. Skipping
+this is the difference between the inbox and the spam folder, and auth email is
+exactly the kind of mail providers are suspicious of.
+
+<Step>Enter them in Supabase</Step>
+
+**Project Settings → Authentication → SMTP Settings** → enable custom SMTP.
+Set the sender address to something at your verified domain.
+
+<Step>Raise the rate limits</Step>
+
+**Authentication → Rate Limits**. The defaults are sized for the built-in
+service; with your own SMTP they are lower than you need.
+
+</Steps>
+
+## Templates
+
+**Authentication → Email Templates**. Each one is HTML with Go template
+variables.
+
+| Template       | Sent when                      | Must contain                             |
+| -------------- | ------------------------------ | ---------------------------------------- |
+| Confirm signup | `signUp` with confirmations on | `{{ .ConfirmationURL }}`                 |
+| Magic Link     | `signInWithOtp`                | `{{ .ConfirmationURL }}`, `{{ .Token }}` |
+| Reset Password | `resetPasswordForEmail`        | `{{ .ConfirmationURL }}`                 |
+| Change Email   | `updateUser({ email })`        | `{{ .ConfirmationURL }}`                 |
+
+### The OTP code
+
+The starter's `/verify-otp` screen asks for a six-digit code, and the magic-link
+screen sends the user there. That code only exists in the email if the template
+includes `{{ .Token }}` — the default Magic Link template has the link but not
+the code.
+
+Add both, so either path works:
+
+```html
+<h2>Sign in to My App</h2>
+
+<p><a href="{{ .ConfirmationURL }}">Click here to sign in</a></p>
+
+<p>Or enter this code: <strong>{{ .Token }}</strong></p>
+
+<p>It expires in an hour. If you did not request this, ignore this email.</p>
+```
+
+Offering both matters more on mobile than on web: a mail client that opens the
+link in an in-app browser can fail to hand control back to your app, and the
+code is the escape hatch.
+
+## Deep links
+
+The link in an email has to come back into the app. Two things make that work.
+
+**The redirect passed from the client.** The starter uses `makeRedirectUri()`,
+which resolves to `exp://…` in Expo Go and `<scheme>://` in a build:
+
+```ts title="app/(auth)/sign-up.tsx"
+const redirectTo = makeRedirectUri();
+
+await supabase.auth.signUp({
+  email,
+  password,
+  options: { emailRedirectTo: redirectTo },
+});
+```
+
+Password recovery adds a path, so the user lands on the right screen:
+
+```ts title="app/(auth)/forgot-password.tsx"
+const redirectTo = makeRedirectUri({ path: 'reset-password' });
+
+await supabase.auth.resetPasswordForEmail(email, { redirectTo });
+```
+
+**The allow-list.** Supabase rejects any redirect target not in
+**Authentication → URL Configuration → Redirect URLs**:
+
+```
+exp://localhost:8081
+exp://localhost:8081/--/reset-password
+my-app://
+my-app://reset-password
+```
+
+The `/--/` spelling is how Expo Go encodes a path. Include it or password
+recovery works in a build and not in development.
+
+Once the app has the URL, `providers/auth-provider.tsx` exchanges it for a
+session — see [authentication](/docs/supabase/auth#deep-links).
+
+## Confirmations on or off
+
+`supabase/config.toml` has confirmations **off** locally:
+
+```toml title="supabase/config.toml"
+[auth.email]
+enable_confirmations = false
+```
+
+So `signUp` returns a session immediately and you are not clicking through a
+mail catcher on every reload. The hosted project has them **on** by default,
+which is right for production — and it changes what `signUp` returns:
+
+```ts title="app/(auth)/sign-up.tsx"
+if (!data.session) {
+  toast.success('Check your email', `We sent a confirmation link to ${email}.`);
+  router.replace('/sign-in');
+}
+```
+
+That branch is why the sign-up screen does not look broken when confirmations
+are on. Keep it.
+
+## Testing locally
+
+`supabase start` includes [Inbucket](http://localhost:54324), which catches
+every message the stack sends instead of delivering it. The whole flow —
+sign-up, magic link, OTP, recovery — is testable with no SMTP configured at all.
+
+```bash
+npx supabase start
+# then open http://localhost:54324
+```
+
+Emails appear immediately, with the rendered template, so it is also the fastest
+way to check that `{{ .Token }}` is where you think it is.
+
+## Rate limits and abuse
+
+Email endpoints are the ones people hammer. Supabase applies per-hour limits per
+address and per IP, and the starter surfaces the resulting error in a toast
+rather than swallowing it.
+
+Two behaviours worth knowing:
+
+- `resetPasswordForEmail` returns success whether or not the address has an
+  account, so the form cannot be used to discover who has one. The starter's
+  confirmation copy says "if an account exists" for the same reason.
+- `signInWithOtp` in the starter passes `shouldCreateUser: false`, so the magic
+  link screen cannot create accounts by accident. Flip it if you want magic
+  links to double as sign-up.
+
+## When it does not work
+
+| What you see                              | Usually                                                   |
+| ----------------------------------------- | --------------------------------------------------------- |
+| No email at all, no error                 | Built-in SMTP rate limit — configure your own             |
+| Email arrives in spam                     | Sending domain has no SPF/DKIM                            |
+| Link opens a browser, app never opens     | Scheme missing from the redirect allow-list               |
+| `/verify-otp` has no code to enter        | Template lacks `{{ .Token }}`                             |
+| Recovery works in a build, not in Expo Go | `exp://localhost:8081/--/reset-password` not allow-listed |
+| "Email link is invalid or has expired"    | Link already used, or older than the configured expiry    |
+
+## Next
+
+- [Authentication](/docs/supabase/auth)
+- [Troubleshooting](/docs/supabase/troubleshooting)
+- [Supabase SMTP docs](https://supabase.com/docs/guides/auth/auth-smtp)
