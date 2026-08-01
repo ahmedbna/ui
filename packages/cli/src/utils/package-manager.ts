@@ -4,6 +4,38 @@ import { createSpinner, failSpinner, succeedSpinner } from './theme.js';
 
 export type PackageManager = 'npm' | 'yarn' | 'pnpm' | 'bun';
 
+/** The `--npm` / `--yarn` / `--pnpm` / `--bun` flags every command accepts. */
+export interface PackageManagerFlags {
+  npm?: boolean;
+  yarn?: boolean;
+  pnpm?: boolean;
+  bun?: boolean;
+}
+
+export interface PackageManagerChoice {
+  manager: PackageManager;
+  /** `flag` when the user asked for it, `detected` when we inferred it. */
+  source: 'flag' | 'detected';
+}
+
+/**
+ * The flag ladder, in one place.
+ *
+ * Reports *how* it decided rather than logging, because the scaffold commands
+ * announce a detected manager while `add` stays quiet — behaviour that was
+ * previously kept in sync by having four copies of the same ternary chain.
+ */
+export function resolvePackageManager(
+  flags: PackageManagerFlags
+): PackageManagerChoice {
+  if (flags.npm) return { manager: 'npm', source: 'flag' };
+  if (flags.yarn) return { manager: 'yarn', source: 'flag' };
+  if (flags.pnpm) return { manager: 'pnpm', source: 'flag' };
+  if (flags.bun) return { manager: 'bun', source: 'flag' };
+
+  return { manager: detectPackageManagerFromInvocation(), source: 'detected' };
+}
+
 export function detectPackageManager(): PackageManager {
   try {
     execSync('pnpm --version', { stdio: 'ignore' });
