@@ -78,12 +78,75 @@ jobs:
       - name: Scaffold and add a component
         run: |
           set -euo pipefail
+          bna() { node "$GITHUB_WORKSPACE/packages/cli/bin/bna-ui.js" "$@"; }
           mkdir -p /tmp/e2e && cd /tmp/e2e
-          node "$GITHUB_WORKSPACE/packages/cli/bin/bna-ui.js" init app --skip-install
+
+          bna init app --skip-install
           cd app
           test -f .gitignore || { echo "::error::init produced no .gitignore"; exit 1; }
-          node "$GITHUB_WORKSPACE/packages/cli/bin/bna-ui.js" \
-            add button --registry http://localhost:4321/r --yes
+          test -f components.json || { echo "::error::init produced no components.json"; exit 1; }
+
+          bna add button --registry http://localhost:4321/r --yes
+
+          # `add` must refuse to write into a project whose imports cannot
+          # resolve; the components it writes all import through `@/…`.
+          node -e "
+            const fs = require('fs');
+            const c = JSON.parse(fs.readFileSync('tsconfig.json', 'utf8').replace(/,(\s*[}\]])/g, '\$1'));
+            delete c.compilerOptions.paths;
+            fs.writeFileSync('tsconfig.alias-removed.json', JSON.stringify(c, null, 2));
+          "
+          mv tsconfig.json tsconfig.keep.json && mv tsconfig.alias-removed.json tsconfig.json
+          if bna add avatar --registry http://localhost:4321/r --yes 2>/dev/null; then
+            echo "::error::add succeeded without an @/* path alias"; exit 1
+          fi
+          mv tsconfig.keep.json tsconfig.json
+
+      # `--dry-run` must never prompt, or it is unusable from a script, and the
+      # discovery commands must work against the same served registry.
+      - name: Non-interactive commands
+        run: |
+          set -euo pipefail
+          bna() { node "$GITHUB_WORKSPACE/packages/cli/bin/bna-ui.js" "$@"; }
+          cd /tmp/e2e/app
+          export BNA_UI_REGISTRY=http://localhost:4321/r
+
+          bna add avatar --dry-run < /dev/null | grep -q 'Dry run'
+          test ! -f components/ui/avatar.tsx || { echo "::error::--dry-run wrote a file"; exit 1; }
+
+          bna list --json | node -e "
+            let s=''; process.stdin.on('data',d=>s+=d).on('end',()=>{
+              const items = JSON.parse(s);
+              if (!items.length) { console.error('::error::list returned nothing'); process.exit(1); }
+            })"
+          bna search button | grep -q button
+          bna info button --json | node -e "
+            let s=''; process.stdin.on('data',d=>s+=d).on('end',()=>{
+              if (JSON.parse(s).name !== 'button') { console.error('::error::info returned the wrong bundle'); process.exit(1); }
+            })"
+
+      # The convex and supabase scaffolds were never built in CI, so the
+      # `env.example` -> `.env.example` and `github` -> `.github` renames and the
+      # config.toml rewrite went unverified.
+      - name: Scaffold the backend variants
+        run: |
+          set -euo pipefail
+          bna() { node "$GITHUB_WORKSPACE/packages/cli/bin/bna-ui.js" "$@"; }
+          mkdir -p /tmp/e2e-backends && cd /tmp/e2e-backends
+
+          bna convex cx --no-auth --skip-convex --skip-install
+          test -f cx/convex/schema.ts || { echo "::error::convex scaffold has no convex/"; exit 1; }
+
+          bna supabase sb --no-auth --skip-supabase --skip-install
+          test -f sb/.env.example || { echo "::error::env.example was not renamed"; exit 1; }
+          test -d sb/.github        || { echo "::error::github was not renamed"; exit 1; }
+          grep -q 'project_id = "sb"' sb/supabase/config.toml \
+            || { echo "::error::config.toml project_id was not rewritten"; exit 1; }
+          grep -q 'sb://' sb/supabase/config.toml \
+            || { echo "::error::config.toml scheme was not rewritten"; exit 1; }
+
+          bna supabase sba --skip-supabase --skip-install
+          test -f sba/app/\(auth\)/sign-in.tsx || { echo "::error::auth scaffold missing sign-in"; exit 1; }
 
       # The scaffold and the registry source have to target the same SDK. They
       # drifted apart once already — starters on SDK 54 while the components

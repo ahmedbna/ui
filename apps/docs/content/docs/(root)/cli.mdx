@@ -18,18 +18,24 @@ npx bna-ui init [project-name]
 ```bash
 Usage: bna-ui init [options] [project-name]
 
-initialize a new BNA project
+Scaffold a new Expo app with BNA UI set up
 
 Arguments:
-  project-name                   name of the project (optional)
+  project-name    Name of the project, or `.` for the current directory
 
 Options:
-  --npm                          use npm as package manager
-  --yarn                         use yarn as package manager
-  --pnpm                         use pnpm as package manager
-  --bun                          use bun as package manager
-  --skip-install                 skip package installation
-  -h, --help                     display help for command
+  --npm           Install with npm
+  --yarn          Install with yarn
+  --pnpm          Install with pnpm
+  --bun           Install with bun
+  --verbose       Print the full error stack on failure
+  --skip-install  Create the project without installing dependencies
+  -h, --help      display help for command
+
+Examples
+  $ bna-ui init my-app
+  $ bna-ui init .                  # scaffold into the current directory
+  $ bna-ui init my-app --pnpm --skip-install
 ```
 
 ## convex
@@ -58,20 +64,26 @@ Auth](/docs/installation/convex-auth) for what each one gives you.
 ```bash
 Usage: bna-ui convex [options] [project-name]
 
-Initialize a new BNA project with Convex backend
+Scaffold a new Expo app with a Convex backend
 
 Arguments:
-  project-name                   Name of the project
+  project-name    Name of the project
 
 Options:
-  --npm                          Use npm as package manager
-  --yarn                         Use yarn as package manager
-  --pnpm                         Use pnpm as package manager
-  --bun                          Use bun as package manager
-  --skip-install                 Skip package installation
-  --skip-convex                  Skip Convex initialization
-  --no-auth                      Scaffold a Convex backend without authentication
-  -h, --help                     display help for command
+  --npm           Install with npm
+  --yarn          Install with yarn
+  --pnpm          Install with pnpm
+  --bun           Install with bun
+  --verbose       Print the full error stack on failure
+  --skip-install  Create the project without installing dependencies
+  --skip-convex   Skip provisioning the Convex backend
+  --no-auth       Scaffold Convex without authentication
+  -h, --help      display help for command
+
+Examples
+  $ bna-ui convex my-app
+  $ bna-ui convex my-app --no-auth
+  $ bna-ui convex my-app --skip-convex   # wire it up yourself later
 ```
 
 ## supabase
@@ -106,20 +118,26 @@ Auth](/docs/installation/supabase-auth) for what each one gives you.
 ```bash
 Usage: bna-ui supabase [options] [project-name]
 
-Initialize a new BNA project with a Supabase backend
+Scaffold a new Expo app with a Supabase backend
 
 Arguments:
-  project-name                   Name of the project
+  project-name     Name of the project
 
 Options:
-  --npm                          Use npm as package manager
-  --yarn                         Use yarn as package manager
-  --pnpm                         Use pnpm as package manager
-  --bun                          Use bun as package manager
-  --skip-install                 Skip package installation
-  --skip-supabase                Skip linking the project and applying migrations
-  --no-auth                      Scaffold a Supabase backend without authentication
-  -h, --help                     display help for command
+  --npm            Install with npm
+  --yarn           Install with yarn
+  --pnpm           Install with pnpm
+  --bun            Install with bun
+  --verbose        Print the full error stack on failure
+  --skip-install   Create the project without installing dependencies
+  --skip-supabase  Skip linking the project and applying migrations
+  --no-auth        Scaffold Supabase without authentication
+  -h, --help       display help for command
+
+Examples
+  $ bna-ui supabase my-app
+  $ bna-ui supabase my-app --no-auth
+  $ bna-ui supabase my-app --skip-supabase
 ```
 
 ## add
@@ -135,21 +153,29 @@ npx bna-ui add [component]
 ```bash
 Usage: bna-ui add [options] [components...]
 
-add components to your project
+Add components to an existing project
 
 Arguments:
-  components                     component names to add (optional, multiple)
+  components        Component names. Omit to pick interactively.
 
 Options:
-  --overwrite                    overwrite existing files
-  --dry-run                      show what would be installed without installing
-  -y, --yes                      skip confirmation prompts
-  --npm                          use npm as package manager
-  --yarn                         use yarn as package manager
-  --pnpm                         use pnpm as package manager
-  --bun                          use bun as package manager
-  --registry <url>               registry to fetch components from
-  -h, --help                     display help for command
+  --npm             Install with npm
+  --yarn            Install with yarn
+  --pnpm            Install with pnpm
+  --bun             Install with bun
+  --verbose         Print the full error stack on failure
+  --overwrite       Replace files that already exist
+  --dry-run         Show what would be written, and write nothing
+  -y, --yes         Skip prompts, keeping any existing files
+  --registry <url>  Registry to fetch from
+  -h, --help        display help for command
+
+Examples
+  $ bna-ui add button
+  $ bna-ui add button input card
+  $ bna-ui add                     # browse and pick
+  $ bna-ui add button --dry-run
+  $ bna-ui add button --registry http://localhost:3000/r
 ```
 
 ### Where components come from
@@ -168,6 +194,135 @@ npx bna-ui add button --registry http://localhost:3000/r
 Adding a component brings its whole dependency chain — `button` also installs
 the `text`, `icon` and `spinner` it composes, the hooks and theme files they
 import, and any npm packages they need.
+
+## list
+
+Every component, chart, hook and theme file the registry ships.
+
+```bash
+npx bna-ui list
+npx bna-ui list --type chart
+```
+
+### Options
+
+```bash
+Usage: bna-ui list|ls [options]
+
+List every component, chart, hook and theme file
+
+Options:
+  --type <type>     Narrow to ui, chart, hook or theme
+  --json            Emit as JSON, for scripts and agents
+  --registry <url>  Registry to read from
+  --verbose         Print the full error stack on failure
+  -h, --help        display help for command
+
+Examples
+  $ bna-ui list
+  $ bna-ui list --type chart
+  $ bna-ui list --json
+```
+
+## search
+
+Find something without knowing its exact name.
+
+```bash
+npx bna-ui search chart
+```
+
+### Options
+
+```bash
+Usage: bna-ui search [options] <query>
+
+Search the registry by name or description
+
+Arguments:
+  query             Search term, e.g. "chart" or "date"
+
+Options:
+  --json            Emit as JSON, for scripts and agents
+  --registry <url>  Registry to read from
+  --verbose         Print the full error stack on failure
+  -h, --help        display help for command
+
+Examples
+  $ bna-ui search chart
+  $ bna-ui search "date picker"
+```
+
+## info
+
+A component's description, props, install command, source and examples — the
+same bundle the MCP server serves. `--json` makes it machine-readable.
+
+```bash
+npx bna-ui info button
+npx bna-ui info button --json
+```
+
+### Options
+
+```bash
+Usage: bna-ui info [options] <component>
+
+Print a component's props, source and examples
+
+Arguments:
+  component         Component name, e.g. button
+
+Options:
+  --json            Emit the full bundle as JSON, for scripts and agents
+  --registry <url>  Registry to fetch from
+  --verbose         Print the full error stack on failure
+  -h, --help        display help for command
+
+Examples
+  $ bna-ui info button
+  $ bna-ui info button --json | jq .meta
+```
+
+## mcp
+
+Runs an MCP server over stdio so an AI assistant can browse and read the
+registry itself. See [MCP](/docs/mcp) for editor configuration.
+
+```bash
+claude mcp add bna-ui -- npx -y bna-ui mcp
+```
+
+The server ships as a separate package, `@bna-ui/mcp`, and `bna-ui mcp` hands
+off to it. That keeps the MCP SDK — which pulls in HTTP and SSE transport
+dependencies this server never uses — out of every `npx bna-ui add`.
+
+## components.json
+
+`init` writes one. It is optional: every command works without it, on the same
+defaults. It exists so you stop repeating yourself.
+
+```json title="components.json"
+{
+  "registry": "https://ui.ahmedbna.com/r",
+  "aliases": {
+    "components": "src/components",
+    "hooks": "src/hooks",
+    "theme": "src/theme"
+  },
+  "packageManager": "pnpm"
+}
+```
+
+| Key              | Effect                                                           |
+| ---------------- | ---------------------------------------------------------------- |
+| `registry`       | Where `add`, `list`, `search` and `info` fetch from              |
+| `aliases`        | Where each kind of file is written, relative to the project root |
+| `packageManager` | Which manager installs npm dependencies                          |
+
+With the aliases above, `add button` writes `src/components/ui/button.tsx`
+rather than `components/ui/button.tsx`. Only the leading segment is remapped —
+the `ui/` beneath it is part of the registry's own layout.
 
 ## Examples
 
@@ -231,13 +386,20 @@ npx bna-ui add button --dry-run
 npx bna-ui add button input --yes
 ```
 
-## Package Managers
+## Package managers
 
-The CLI supports multiple package managers. You can specify which one to use with the following flags:
+Pass a flag to force one:
 
-- `--npm`: Use npm (default)
-- `--yarn`: Use yarn
-- `--pnpm`: Use pnpm
-- `--bun`: Use bun
+- `--npm`
+- `--yarn`
+- `--pnpm`
+- `--bun`
 
-If no package manager flag is specified, the CLI will use the default package manager for your system.
+Without a flag the CLI works it out, in this order:
+
+1. `packageManager` in your `components.json`.
+2. How you invoked it — `npx`, `pnpm dlx`, `bunx`.
+3. Your project's lockfile or its `packageManager` field.
+4. npm.
+
+The scaffold commands print which one they picked.

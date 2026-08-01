@@ -36,21 +36,59 @@ Already have an Expo project? Skip `init` and run `add` inside it.
 
 ### Commands
 
-| Command                          | What it does                                                     |
-| -------------------------------- | ---------------------------------------------------------------- |
-| `bna-ui init [name]`             | Scaffold a new Expo app with routing, theming and a tab layout   |
-| `bna-ui convex [name]`           | Same, plus a Convex backend with auth and OTP email flows        |
-| `bna-ui convex [name] --no-auth` | Same, plus a Convex backend with no sign-in — schema and a query |
-| `bna-ui add [...names]`          | Add components, with their hooks, theme files and npm deps       |
+| Command                  | What it does                                                       |
+| ------------------------ | ------------------------------------------------------------------ |
+| `bna-ui init [name]`     | Scaffold a new Expo app with routing, theming and a tab layout     |
+| `bna-ui convex [name]`   | Same, plus a Convex backend with auth and OTP email flows          |
+| `bna-ui supabase [name]` | Same, plus a Supabase backend with auth, migrations and edge funcs |
+| `bna-ui add [...names]`  | Add components, with their hooks, theme files and npm deps         |
+| `bna-ui list`            | List every component, chart, hook and theme file                   |
+| `bna-ui search <query>`  | Find something by name or description                              |
+| `bna-ui info <name>`     | Print a component's props, source and examples                     |
+| `bna-ui mcp`             | Run an MCP server so AI assistants can browse the registry         |
 
-Useful flags for `add`: `--overwrite`, `--dry-run`, `--yes`,
-`--npm` / `--yarn` / `--pnpm` / `--bun`, and `--registry <url>`.
+Pass `--no-auth` to `convex` or `supabase` for a backend with no sign-in.
 
-`init` and `convex` both take `--skip-install`; `convex` also takes
-`--skip-convex` to leave `npx convex dev` for you to run later.
+Run `bna-ui <command> --help` for the flags and worked examples of any command.
+
+**Common flags**
+
+- All scaffolds: `--skip-install`, `--npm` / `--yarn` / `--pnpm` / `--bun`
+- `convex`: `--skip-convex` — leave `npx convex dev` for you to run later
+- `supabase`: `--skip-supabase` — leave linking and migrations for later
+- `add`: `--overwrite`, `--dry-run`, `--yes`, `--registry <url>`
+- Anywhere: `--verbose` for the full stack on failure
+
+**Environment**
+
+| Variable             | Effect                   |
+| -------------------- | ------------------------ |
+| `BNA_UI_REGISTRY`    | Registry to fetch from   |
+| `NO_COLOR`           | Disable all colour       |
+| `NO_UPDATE_NOTIFIER` | Silence the update check |
 
 Components are fetched from `https://ui.ahmedbna.com/r` and cached under
-`~/.cache/bna-ui`, so repeat installs work offline.
+`~/.cache/bna-ui` with ETags, so repeat installs work offline.
+
+### components.json
+
+`init` writes one, and it is entirely optional — every command works without it.
+It saves repeating yourself:
+
+```json
+{
+  "registry": "https://ui.ahmedbna.com/r",
+  "aliases": { "components": "src/components", "hooks": "src/hooks" },
+  "packageManager": "pnpm"
+}
+```
+
+With `aliases` set, `add` writes to `src/components/ui/button.tsx` instead of
+`components/ui/button.tsx`.
+
+### Requirements
+
+Node.js **22.12 or newer**.
 
 ## 🎯 Usage Example
 
@@ -168,10 +206,10 @@ If you find BNA UI helpful, please consider giving it a star on GitHub! It helps
 
 ## 📈 Stats
 
-![GitHub package.json version](https://img.shields.io/github/package-json/v/ahmedbna/ui)
-![npm](https://img.shields.io/npm/v/bna-ui)
-![npm](https://img.shields.io/npm/dm/bna-ui)
-![GitHub](https://img.shields.io/github/license/ahmedbna/ui)
+![GitHub package.json version](https://img.shields.io/github/package-json/v/ahmedbna/ui?color=FAD40B&labelColor=18181B)
+![npm](https://img.shields.io/npm/v/bna-ui?color=FAD40B&labelColor=18181B)
+![npm](https://img.shields.io/npm/dm/bna-ui?color=FAD40B&labelColor=18181B)
+![GitHub](https://img.shields.io/github/license/ahmedbna/ui?color=FAD40B&labelColor=18181B)
 
 ---
 

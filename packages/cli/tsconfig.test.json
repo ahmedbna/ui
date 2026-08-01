@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true,
+    // The base config sets rootDir to src/ for the build; test files live
+    // beside it, not under it.
+    "rootDir": "."
+  },
+  "include": ["src/**/*", "tests/**/*", "vitest.config.ts"]
+}

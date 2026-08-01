@@ -42,6 +42,13 @@ Already have an Expo project? Skip `init` and run `add` inside it.
 | `bna-ui convex [name]`   | Same, plus a Convex backend with auth and OTP email flows          |
 | `bna-ui supabase [name]` | Same, plus a Supabase backend with auth, RLS, realtime and storage |
 | `bna-ui add [...names]`  | Add components, with their hooks, theme files and npm deps         |
+| `bna-ui list`            | List every component, chart, hook and theme file                   |
+| `bna-ui search <query>`  | Find something by name or description                              |
+| `bna-ui info <name>`     | Print a component's props, source and examples                     |
+| `bna-ui mcp`             | Run an MCP server so AI assistants can browse the registry         |
+
+Requires Node.js 22.12 or newer. Run `bna-ui <command> --help` for the flags
+and worked examples of any command.
 
 Useful flags for `add`: `--overwrite`, `--dry-run`, `--yes`,
 `--npm` / `--yarn` / `--pnpm` / `--bun`, and `--registry <url>`.
@@ -201,10 +208,10 @@ If you find BNA UI helpful, please consider giving it a star on GitHub! It helps
 
 ## 📈 Stats
 
-![GitHub package.json version](https://img.shields.io/github/package-json/v/ahmedbna/ui)
-![npm](https://img.shields.io/npm/v/bna-ui)
-![npm](https://img.shields.io/npm/dm/bna-ui)
-![GitHub](https://img.shields.io/github/license/ahmedbna/ui)
+![GitHub package.json version](https://img.shields.io/github/package-json/v/ahmedbna/ui?color=FAD40B&labelColor=18181B)
+![npm](https://img.shields.io/npm/v/bna-ui?color=FAD40B&labelColor=18181B)
+![npm](https://img.shields.io/npm/dm/bna-ui?color=FAD40B&labelColor=18181B)
+![GitHub](https://img.shields.io/github/license/ahmedbna/ui?color=FAD40B&labelColor=18181B)
 
 ---
 
