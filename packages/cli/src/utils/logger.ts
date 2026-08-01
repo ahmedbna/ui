@@ -1,50 +1,49 @@
-import chalk from 'chalk';
-
-// ASCII Art for BNA
-const bnaBanner = `
-${chalk.cyan('██████╗ ███╗   ██╗ █████╗ ')}
-${chalk.cyan('██╔══██╗████╗  ██║██╔══██╗')}
-${chalk.cyan('██████╔╝██╔██╗ ██║███████║')}
-${chalk.cyan('██╔══██╗██║╚██╗██║██╔══██║')}
-${chalk.cyan('██████╔╝██║ ╚████║██║  ██║')}
-${chalk.cyan('╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═╝')}
-
-${chalk.gray('Expo React Native CLI, UI Components Library')}
-`;
+/**
+ * Console output. All styling comes from `theme.ts`; this module chooses no
+ * colours of its own.
+ */
+import { bannerLines, theme } from './theme.js';
 
 export const logger = {
-  info: (message: string, ...args: any[]) => {
-    console.log(chalk.blue('ℹ'), message, ...args);
+  info: (message: string, ...args: unknown[]) => {
+    console.log(theme.note(theme.glyph.info), message, ...args);
   },
 
-  success: (message: string, ...args: any[]) => {
-    console.log(chalk.green('✓'), message, ...args);
+  success: (message: string, ...args: unknown[]) => {
+    console.log(theme.ok(theme.glyph.success), message, ...args);
   },
 
-  warn: (message: string, ...args: any[]) => {
-    console.log(chalk.yellow('⚠'), message, ...args);
+  warn: (message: string, ...args: unknown[]) => {
+    console.log(theme.warn(theme.glyph.warning), message, ...args);
   },
 
-  error: (message: string, ...args: any[]) => {
-    console.error(chalk.red('✗'), message, ...args);
+  error: (message: string, ...args: unknown[]) => {
+    console.error(theme.danger(theme.glyph.error), message, ...args);
   },
 
-  debug: (message: string, ...args: any[]) => {
+  debug: (message: string, ...args: unknown[]) => {
     if (process.env.DEBUG) {
-      console.log(chalk.gray('🐛'), message, ...args);
+      console.log(theme.dim(theme.glyph.debug), message, ...args);
     }
   },
 
-  plain: (message: string, ...args: any[]) => {
+  /** Unstyled. Used for every indented detail line. */
+  plain: (message: string, ...args: unknown[]) => {
     console.log(message, ...args);
   },
 
+  /**
+   * A section title, prefixed with the wordmark chip.
+   *
+   * The title itself is bold in the terminal's own foreground rather than brand
+   * yellow — see the contrast note in `theme.ts`.
+   */
   header: (message: string) => {
-    console.log('\n' + chalk.bold.cyan(message) + '\n');
+    console.log('\n' + theme.badge() + ' ' + theme.heading(message) + '\n');
   },
 
   banner: () => {
-    console.log(bnaBanner);
+    console.log(bannerLines().join('\n'));
   },
 
   newline: () => {

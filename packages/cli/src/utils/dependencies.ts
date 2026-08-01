@@ -2,9 +2,9 @@
 import { execSync } from 'child_process';
 import path from 'path';
 import fs from 'fs-extra';
-import ora from 'ora';
 import { logger } from './logger.js';
 import { PackageManager } from './package-manager.js';
+import { createSpinner, failSpinner, succeedSpinner } from './theme.js';
 
 /** Local shape for a package to install; the registry ships plain strings. */
 export interface ComponentDependency {
@@ -68,7 +68,7 @@ async function installDeps(
   isDev: boolean
 ): Promise<void> {
   const depType = isDev ? 'dev dependencies' : 'dependencies';
-  const spinner = ora(`Installing ${depType}...`).start();
+  const spinner = createSpinner(`Installing ${depType}...`).start();
 
   try {
     const packages = dependencies.map((dep) => {
@@ -94,9 +94,9 @@ async function installDeps(
       timeout: 300000,
     });
 
-    spinner.succeed(`${depType} installed successfully!`);
+    succeedSpinner(spinner, `${depType} installed successfully!`);
   } catch (error) {
-    spinner.fail(`Failed to install ${depType}`);
+    failSpinner(spinner, `Failed to install ${depType}`);
     logger.error('Installation error:', error);
     throw error;
   }

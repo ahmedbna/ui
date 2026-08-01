@@ -4,7 +4,6 @@ import path from 'path';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import inquirer from 'inquirer';
-import ora from 'ora';
 import { copyTemplate, writeFile } from '../utils/filesystem.js';
 import { logger } from '../utils/logger.js';
 import {
@@ -13,6 +12,7 @@ import {
   getRunCommand,
   type PackageManager,
 } from '../utils/package-manager.js';
+import { createSpinner, failSpinner, succeedSpinner } from '../utils/theme.js';
 import {
   validateProjectName,
   validateProjectPath,
@@ -183,7 +183,9 @@ export async function initSupabaseCommand(
       logger.info(`Detected package manager: ${packageManager}`);
     }
 
-    const spinner = ora('Creating your BNA Supabase project...').start();
+    const spinner = createSpinner(
+      'Creating your BNA Supabase project...'
+    ).start();
 
     try {
       // dist/commands -> dist/templates (populated by scripts/copy-starters.mjs)
@@ -199,7 +201,7 @@ export async function initSupabaseCommand(
       await updateAppJson(projectPath, sanitizedName);
       await updateSupabaseConfig(projectPath, sanitizedName);
 
-      spinner.succeed('Project created successfully!');
+      succeedSpinner(spinner, 'Project created successfully!');
 
       if (!options.skipInstall) {
         await installDependencies(projectPath, packageManager);
@@ -220,7 +222,7 @@ export async function initSupabaseCommand(
         credentials
       );
     } catch (error) {
-      spinner.fail('Failed to create project');
+      failSpinner(spinner, 'Failed to create project');
       throw error;
     }
   } catch (error) {

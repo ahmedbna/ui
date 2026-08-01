@@ -7,7 +7,7 @@ import { initConvexCommand } from './commands/convex.js';
 import { infoCommand } from './commands/info.js';
 import { initCommand } from './commands/init.js';
 import { initSupabaseCommand } from './commands/supabase.js';
-import { logger } from './utils/logger.js';
+import { reportFatal } from './utils/errors.js';
 
 const require = createRequire(import.meta.url);
 // Read from package.json rather than a literal: this was hardcoded to '1.0.0'
@@ -99,16 +99,16 @@ program
     await mcpCommand(options);
   });
 
-program.parse();
-
-// Handle unhandled promise rejections
-process.on('unhandledRejection', (reason, promise) => {
-  logger.error('Unhandled Rejection at:', promise, 'reason:', reason);
-  process.exit(1);
+// Registered before parsing, not after. These used to sit below `program.parse()`,
+// so anything thrown while commander dispatched a command escaped them entirely.
+process.on('unhandledRejection', (reason) => {
+  reportFatal(reason);
 });
-
-// Handle uncaught exceptions
 process.on('uncaughtException', (error) => {
-  logger.error('Uncaught Exception:', error);
-  process.exit(1);
+  reportFatal(error);
 });
+
+// `parseAsync`, not `parse`: commander does not await an async `.action()`
+// handler under `parse()`, so a rejecting command was caught only by whichever
+// microtask happened to run first.
+await program.parseAsync().catch(reportFatal);

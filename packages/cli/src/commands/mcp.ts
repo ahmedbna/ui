@@ -15,11 +15,10 @@
  * Nothing here writes to disk. Installing is `add`'s job, and an agent that
  * wants it can run the `install` command this returns.
  */
+import { createRequire } from 'module';
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
-import { createRequire } from 'module';
 import { z } from 'zod';
-
 import {
   fetchAiBundle,
   fetchRegistryIndex,

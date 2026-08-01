@@ -1,11 +1,11 @@
 // src/commands/add.ts
 import path from 'path';
 import inquirer from 'inquirer';
-import ora from 'ora';
 import {
   checkExistingDependencies,
   installPackageDependencies,
 } from '../utils/dependencies.js';
+import { CliError, cancelled, toCliError } from '../utils/errors.js';
 import { createDirectory, fileExists, writeFile } from '../utils/filesystem.js';
 import { logger } from '../utils/logger.js';
 import { detectPackageManagerFromInvocation } from '../utils/package-manager.js';
@@ -15,7 +15,8 @@ import {
   resolveRegistryUrl,
   type RegistryFile,
 } from '../utils/registry-client.js';
-import { validateProjectStructure } from '../utils/registry.js';
+import { assertUsableProject } from '../utils/registry.js';
+import { createSpinner, failSpinner, succeedSpinner } from '../utils/theme.js';
 
 interface AddCommandOptions {
   overwrite?: boolean;
@@ -36,13 +37,7 @@ export async function addCommand(
     const projectPath = process.cwd();
     const registryUrl = resolveRegistryUrl(options.registry);
 
-    const isValidProject = await validateProjectStructure(projectPath);
-    if (!isValidProject) {
-      logger.error(
-        'This command must be run in a valid React Native/Expo project'
-      );
-      process.exit(1);
-    }
+    await assertUsableProject(projectPath);
 
     if (components.length === 0) {
       components = await selectComponentsInteractively(registryUrl);
@@ -51,7 +46,7 @@ export async function addCommand(
     // Each payload arrives with its transitive closure — components, hooks and
     // theme files — already flattened, so this is one request per requested
     // component regardless of how deep the dependency graph goes.
-    const spinner = ora('Resolving components...').start();
+    const spinner = createSpinner('Resolving components...').start();
     const files = new Map<string, RegistryFile>();
     const packageDeps = new Set<string>();
     const resolvedNames = new Set<string>();
@@ -77,17 +72,14 @@ export async function addCommand(
       }
       spinner.stop();
     } catch (error) {
-      spinner.fail('Could not resolve components');
-      logger.error(error instanceof Error ? error.message : String(error));
-      process.exit(1);
+      failSpinner(spinner, 'Could not resolve components');
+      throw error;
     }
 
     if (unknown.length > 0) {
-      logger.error(`Unknown components: ${unknown.join(', ')}`);
-      logger.info(
-        `Run \`bna-ui add\` with no arguments to browse what exists.`
-      );
-      process.exit(1);
+      throw new CliError(`Unknown components: ${unknown.join(', ')}`, {
+        hint: 'Run `bna-ui list` to see everything, or `bna-ui add` with no arguments to browse interactively.',
+      });
     }
 
     const packageManager = getPackageManager(options);
@@ -127,8 +119,7 @@ export async function addCommand(
         ]);
 
         if (choice === 'cancel') {
-          logger.info('Operation cancelled');
-          process.exit(0);
+          throw cancelled('Nothing was written.');
         } else if (choice === 'overwrite-all') {
           overwriteAll = true;
         } else if (choice === 'individual') {
@@ -155,8 +146,7 @@ export async function addCommand(
     const toWrite = [...files.values()].filter((f) => !skip.has(f.target));
 
     if (toWrite.length === 0) {
-      logger.warn('No files to write after handling conflicts');
-      process.exit(0);
+      throw cancelled('Every file already exists — nothing to write.');
     }
 
     if (options.dryRun) {
@@ -186,16 +176,16 @@ export async function addCommand(
       );
     }
 
-    const writeSpinner = ora('Writing components...').start();
+    const writeSpinner = createSpinner('Writing components...').start();
     try {
       for (const file of toWrite) {
         const dest = path.join(projectPath, file.target);
         await createDirectory(path.dirname(dest));
         await writeFile(dest, file.content);
       }
-      writeSpinner.succeed('Components installed successfully!');
+      succeedSpinner(writeSpinner, 'Components installed successfully!');
     } catch (error) {
-      writeSpinner.fail('Failed to write components');
+      failSpinner(writeSpinner, 'Failed to write components');
       throw error;
     }
 
@@ -216,15 +206,16 @@ export async function addCommand(
     logger.plain('  Import components from @/components/ui');
     logger.plain('  Check the documentation for usage examples');
   } catch (error) {
-    logger.error('Failed to add components:', error);
-    process.exit(1);
+    // Rethrown for `reportFatal`; the raw `Error` dump this replaced buried the
+    // registry client's carefully written multi-line messages.
+    throw toCliError(error);
   }
 }
 
 async function selectComponentsInteractively(
   registryUrl: string
 ): Promise<string[]> {
-  const spinner = ora('Loading registry...').start();
+  const spinner = createSpinner('Loading registry...').start();
   let choices: { name: string; value: string }[];
 
   try {
@@ -238,9 +229,8 @@ async function selectComponentsInteractively(
       }));
     spinner.stop();
   } catch (error) {
-    spinner.fail('Failed to load the registry');
-    logger.error(error instanceof Error ? error.message : String(error));
-    process.exit(1);
+    failSpinner(spinner, 'Failed to load the registry');
+    throw error;
   }
 
   const { selectedComponents } = await inquirer.prompt([
@@ -254,8 +244,7 @@ async function selectComponentsInteractively(
   ]);
 
   if (selectedComponents.length === 0) {
-    logger.error('No components selected');
-    process.exit(1);
+    throw cancelled('No components selected.');
   }
 
   return selectedComponents;

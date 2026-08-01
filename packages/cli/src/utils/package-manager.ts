@@ -1,6 +1,6 @@
 import { execSync } from 'child_process';
-import ora from 'ora';
 import { logger } from './logger.js';
+import { createSpinner, failSpinner, succeedSpinner } from './theme.js';
 
 export type PackageManager = 'npm' | 'yarn' | 'pnpm' | 'bun';
 
@@ -93,10 +93,9 @@ export async function installDependencies(
 ): Promise<void> {
   const installCommand = getInstallCommand(packageManager);
 
-  const spinner = ora({
-    text: `Installing dependencies with ${packageManager}...`,
-    spinner: 'dots',
-  }).start();
+  const spinner = createSpinner(
+    `Installing dependencies with ${packageManager}...`
+  ).start();
 
   try {
     execSync(installCommand, {
@@ -104,9 +103,9 @@ export async function installDependencies(
       stdio: 'pipe',
       timeout: 300000, // 5 minutes timeout
     });
-    spinner.succeed('Dependencies installed successfully!');
+    succeedSpinner(spinner, 'Dependencies installed successfully!');
   } catch (error) {
-    spinner.fail('Failed to install dependencies');
+    failSpinner(spinner, 'Failed to install dependencies');
     logger.error('Installation error:', error);
     throw error;
   }

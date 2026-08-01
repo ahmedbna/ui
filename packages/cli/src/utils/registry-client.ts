@@ -2,6 +2,7 @@
 import os from 'os';
 import path from 'path';
 import fs from 'fs-extra';
+import { CliError, RegistryNotFoundError } from './errors.js';
 import { logger } from './logger.js';
 
 /**
@@ -95,16 +96,15 @@ function assertSchemaVersion(
 ) {
   const version = payload.$schemaVersion;
   if (version === undefined) {
-    throw new Error(
-      `The registry returned ${what} without a schema version. ` +
-        `It may be an old or misconfigured registry.`
+    throw new CliError(
+      `The registry returned ${what} without a schema version.`,
+      { hint: 'It may be an old or misconfigured registry.' }
     );
   }
   if (version > SUPPORTED_SCHEMA_VERSION) {
-    throw new Error(
-      `This registry speaks schema v${version}, but your CLI only understands ` +
-        `v${SUPPORTED_SCHEMA_VERSION}.\n` +
-        `  Upgrade with: npm install -g bna-ui@latest`
+    throw new CliError(
+      `This registry speaks schema v${version}, but your CLI only understands v${SUPPORTED_SCHEMA_VERSION}.`,
+      { hint: 'Upgrade with: npm install -g bna-ui@latest' }
     );
   }
 }
@@ -127,11 +127,10 @@ async function fetchJson<T extends { $schemaVersion?: number }>(
       logger.warn(`Could not reach the registry — using cached ${what}.`);
       return cached.data;
     }
-    throw new Error(
-      `Could not reach the registry at ${url}\n` +
-        `  ${error instanceof Error ? error.message : String(error)}\n` +
-        `  Check your connection, or pass --registry <url>.`
-    );
+    throw new CliError(`Could not reach the registry at ${url}`, {
+      hint: 'Check your connection, or pass --registry <url>.',
+      cause: error,
+    });
   }
 
   if (response.status === 304 && cached) {
@@ -139,7 +138,7 @@ async function fetchJson<T extends { $schemaVersion?: number }>(
   }
 
   if (response.status === 404) {
-    throw new Error(`NOT_FOUND:${what}`);
+    throw new RegistryNotFoundError(what);
   }
 
   if (!response.ok) {
@@ -149,7 +148,7 @@ async function fetchJson<T extends { $schemaVersion?: number }>(
       );
       return cached.data;
     }
-    throw new Error(
+    throw new CliError(
       `Registry returned ${response.status} ${response.statusText} for ${url}`
     );
   }
@@ -191,9 +190,7 @@ export async function fetchRegistryItem(
       `component "${name}"`
     );
   } catch (error) {
-    if (error instanceof Error && error.message.startsWith('NOT_FOUND:')) {
-      return null;
-    }
+    if (error instanceof RegistryNotFoundError) return null;
     throw error;
   }
 }
@@ -215,9 +212,7 @@ export async function fetchAiBundle(
       `component "${name}"`
     );
   } catch (error) {
-    if (error instanceof Error && error.message.startsWith('NOT_FOUND:')) {
-      return null;
-    }
+    if (error instanceof RegistryNotFoundError) return null;
     throw error;
   }
 }

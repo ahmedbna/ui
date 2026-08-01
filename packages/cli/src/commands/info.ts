@@ -6,8 +6,10 @@
  * server serves. `--json` makes it machine-readable; the default is the shape a
  * person would want to read.
  */
+import { CliError } from '../utils/errors.js';
 import { logger } from '../utils/logger.js';
 import { fetchAiBundle, resolveRegistryUrl } from '../utils/registry-client.js';
+import { theme } from '../utils/theme.js';
 
 export async function infoCommand(
   name: string,
@@ -17,9 +19,9 @@ export async function infoCommand(
   const bundle = await fetchAiBundle(registryUrl, name);
 
   if (!bundle) {
-    logger.error(`No component named "${name}".`);
-    logger.info(`  Browse them all: ${registryUrl}/ai/index.json`);
-    process.exit(1);
+    throw new CliError(`No component named "${name}".`, {
+      hint: `Run \`bna-ui search ${name}\`, or browse them all: ${registryUrl}/ai/index.json`,
+    });
   }
 
   if (options.json) {
@@ -28,21 +30,25 @@ export async function infoCommand(
     return;
   }
 
+  /** Field labels recede so the values they introduce carry the line. */
+  const field = (label: string, value: string) =>
+    `  ${theme.dim(label.padEnd(10))}  ${value}`;
+
   const lines: string[] = [
     '',
-    `  ${bundle.name} — ${bundle.description}`,
+    `  ${theme.badge(bundle.name)} ${bundle.description}`,
     '',
-    `  Install     ${bundle.install.cli}`,
+    field('Install', theme.code(bundle.install.cli)),
   ];
 
-  if (bundle.docs) lines.push(`  Docs        ${bundle.docs}`);
-  if (bundle.markdown) lines.push(`  Markdown    ${bundle.markdown}`);
+  if (bundle.docs) lines.push(field('Docs', bundle.docs));
+  if (bundle.markdown) lines.push(field('Markdown', bundle.markdown));
 
   if (bundle.install.npm.length) {
-    lines.push(`  npm         ${bundle.install.npm.join(', ')}`);
+    lines.push(field('npm', bundle.install.npm.join(', ')));
   }
   if (bundle.registryDependencies.length) {
-    lines.push(`  Also adds   ${bundle.registryDependencies.join(', ')}`);
+    lines.push(field('Also adds', bundle.registryDependencies.join(', ')));
   }
 
   const meta = bundle.meta as
@@ -53,22 +59,30 @@ export async function infoCommand(
     | undefined;
 
   if (meta?.usage?.import) {
-    lines.push('', `  ${meta.usage.import}`);
+    lines.push('', `  ${theme.code(meta.usage.import)}`);
   }
   if (meta?.types?.length) {
     lines.push(
       '',
-      '  Props',
-      ...meta.types.map((type) => `    ${type.name} (${type.props.length})`)
+      `  ${theme.heading('Props')}`,
+      ...meta.types.map(
+        (type) => `    ${type.name} ${theme.dim(`(${type.props.length})`)}`
+      )
     );
   }
   if (bundle.examples.length) {
     lines.push(
       '',
-      `  Examples    ${bundle.examples.map((e) => e.name).join(', ')}`
+      field('Examples', bundle.examples.map((e) => e.name).join(', '))
     );
   }
 
-  lines.push('', `  Full JSON   bna-ui info ${bundle.name} --json`, '');
-  logger.info(lines.join('\n'));
+  lines.push(
+    '',
+    field('Full JSON', theme.code(`bna-ui info ${bundle.name} --json`)),
+    ''
+  );
+  // Emitted as a block rather than through `logger.info`, which would prefix
+  // only the first line with `ℹ` and leave the rest hanging under it.
+  for (const line of lines) logger.plain(line);
 }
