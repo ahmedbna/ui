@@ -23,13 +23,13 @@
 import { createRequire } from 'module';
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
-import { z } from 'zod';
 import {
   fetchAiBundle,
   fetchRegistryIndex,
   resolveRegistryUrl,
   type RegistryIndexItem,
 } from 'bna-ui/registry';
+import { z } from 'zod';
 
 const require = createRequire(import.meta.url);
 const { version } = require('../package.json') as { version: string };
