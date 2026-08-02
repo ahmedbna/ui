@@ -12,7 +12,6 @@ export const doughnutChartRegistry = {
       'react-native-svg',
       'react-native-reanimated',
       'react-native-worklets',
-      'react-native-gesture-handler',
     ],
     registryDependencies: ['text'],
     hooks: ['useColor'],

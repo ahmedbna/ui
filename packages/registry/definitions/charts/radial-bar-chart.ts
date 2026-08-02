@@ -12,7 +12,6 @@ export const radialBarChartRegistry = {
       'react-native-svg',
       'react-native-reanimated',
       'react-native-worklets',
-      'react-native-gesture-handler',
     ],
     registryDependencies: ['text'],
     hooks: ['useColor'],

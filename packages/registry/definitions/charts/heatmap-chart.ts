@@ -12,7 +12,6 @@ export const heatmapChartRegistry = {
       'react-native-svg',
       'react-native-reanimated',
       'react-native-worklets',
-      'react-native-gesture-handler',
     ],
     registryDependencies: [],
     hooks: ['useColor'],

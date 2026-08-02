@@ -8,7 +8,7 @@ export const comboboxRegistry = {
       'A searchable dropdown component that combines an input with a list of options.',
     type: 'registry:ui',
     dependencies: ['lucide-react-native'],
-    registryDependencies: ['text', 'view'],
+    registryDependencies: [],
     hooks: ['useColor'],
     theme: ['globals'],
     files: [

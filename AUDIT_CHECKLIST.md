@@ -235,12 +235,12 @@ the real prop exists.
 
 ## Phase 6 — Registry / dependency hygiene
 
-- [ ] Remove unused `react-native-gesture-handler` from `dependencies` in 14 chart definitions (copy-paste artifact from `line-chart`'s template, the one chart that legitimately uses it): `column`, `stacked-area`, `stacked-bar`, `pie`, `doughnut`, `polar-area`, `radar`, `radial-bar`, `progress-ring`, `scatter`, `bubble`, `candlestick`, `heatmap`, `treemap`
-- [ ] Remove unused `registryDependencies`: `combobox.ts` (declares `text`/`view`, imports RN's `Text`/`View` directly), `carousel.ts` (unused `text`), `scroll-view.ts` (unused `view`)
-- [ ] Add missing `dependencies`: `action-sheet.ts` (`react-native-reanimated`, `react-native-worklets` — P0, see Phase 0), `spinner.ts` (same two), `skeleton.ts` (`react-native-reanimated`)
-- [ ] Add `react-native-worklets` to the manual-install MDX snippet on nearly all 18 chart pages (machine-readable `definitions/charts/*.ts` already list it correctly — only the human-facing docs are wrong, so `bna-ui add` users are unaffected, manual-install users get a broken build)
-- [ ] `definitions/charts/chart-container.ts` — remove unused `expo-image`/`image` dependency (confirmed via the generated build payload — component never imports either)
-- [ ] `definitions/tabs.ts` — `description` field is copy-pasted verbatim from the `view` component; fix
+- [x] Remove unused `react-native-gesture-handler` from `dependencies` in 14 chart definitions (copy-paste artifact from `line-chart`'s template, the one chart that legitimately uses it): `column`, `stacked-area`, `stacked-bar`, `pie`, `doughnut`, `polar-area`, `radar`, `radial-bar`, `progress-ring`, `scatter`, `bubble`, `candlestick`, `heatmap`, `treemap`
+- [x] Remove unused `registryDependencies`: `combobox.ts` (declares `text`/`view`, imports RN's `Text`/`View` directly), `carousel.ts` (unused `text`), `scroll-view.ts` (unused `view`)
+- [x] Add missing `dependencies`: `action-sheet.ts` (`react-native-reanimated`, `react-native-worklets` — P0, see Phase 0), `spinner.ts` (same two), `skeleton.ts` (`react-native-reanimated`)
+- [x] Add `react-native-worklets` to the manual-install MDX snippet on nearly all 18 chart pages (machine-readable `definitions/charts/*.ts` already list it correctly — only the human-facing docs are wrong, so `bna-ui add` users are unaffected, manual-install users get a broken build)
+- [x] `definitions/charts/chart-container.ts` — remove unused `expo-image`/`image` dependency (confirmed via the generated build payload — component never imports either)
+- [x] `definitions/tabs.ts` — `description` field is copy-pasted verbatim from the `view` component; fix
 
 ---
 

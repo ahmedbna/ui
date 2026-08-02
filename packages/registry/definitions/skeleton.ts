@@ -7,7 +7,7 @@ export const skeletonRegistry = {
     description:
       'A placeholder component to show a loading state while content is being fetched.',
     type: 'registry:ui',
-    dependencies: [],
+    dependencies: ['react-native-reanimated'],
     registryDependencies: [],
     hooks: ['useColor'],
     theme: ['globals'],

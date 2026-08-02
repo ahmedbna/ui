@@ -30,7 +30,52 @@ const INTENTIONAL_REMOVALS: Record<string, string[]> = {
   // and friends now come from `expo-router/js-tabs`, so the standalone
   // `@react-navigation/bottom-tabs` dependency was replaced by `expo-router`.
   useBottomTabOverflow: ['@react-navigation/bottom-tabs'],
+
+  // Copy-paste artifact from line-chart's template (the one chart that
+  // legitimately uses gesture-handler, for its pan-to-tooltip gesture) — none
+  // of these 14 import react-native-gesture-handler. AUDIT_CHECKLIST.md Phase 6.
+  'bubble-chart': ['react-native-gesture-handler'],
+  'candlestick-chart': ['react-native-gesture-handler'],
+  'column-chart': ['react-native-gesture-handler'],
+  'doughnut-chart': ['react-native-gesture-handler'],
+  'heatmap-chart': ['react-native-gesture-handler'],
+  'pie-chart': ['react-native-gesture-handler'],
+  'polar-area-chart': ['react-native-gesture-handler'],
+  'progress-ring-chart': ['react-native-gesture-handler'],
+  'radar-chart': ['react-native-gesture-handler'],
+  'radial-bar-chart': ['react-native-gesture-handler'],
+  'scatter-chart': ['react-native-gesture-handler'],
+  'stacked-area-chart': ['react-native-gesture-handler'],
+  'stacked-bar-chart': ['react-native-gesture-handler'],
+  'treemap-chart': ['react-native-gesture-handler'],
+
+  // carousel.tsx imports Text from nowhere — it never renders text itself.
+  carousel: ['text'],
+
+  // combobox.tsx imports Text/View from react-native core, not the registry's
+  // @/components/ui/text or @/components/ui/view wrappers.
+  combobox: ['text', 'view'],
+
+  // scroll-view.tsx wraps RN's ScrollView directly; it never imports the
+  // registry's @/components/ui/view wrapper.
+  'scroll-view': ['view'],
+
+  // chart-container.tsx has no Image usage at all (confirmed via the
+  // generated build payload) — both the npm package and the registry's own
+  // image wrapper were undeclared dead weight.
+  'chart-container': ['expo-image', 'image'],
 };
+
+/**
+ * Identity fields (beyond `type`, see SANCTIONED_TYPE_CHANGES) that were
+ * intentionally corrected relative to the pre-migration baseline, because the
+ * baseline itself carried the bug forward from the old repo.
+ */
+const SANCTIONED_DESCRIPTION_CHANGES = new Set([
+  // Was a verbatim copy-paste of view's description — tabs.tsx is a
+  // swipeable, animated tab component, not a plain View wrapper.
+  'tabs',
+]);
 
 describe('registry integrity', () => {
   it('every entry satisfies the schema', () => {
@@ -114,7 +159,9 @@ describe('equivalence with the pre-migration registry', () => {
     for (const key of Object.keys(base)) {
       const before = {
         name: base[key].name,
-        description: base[key].description,
+        description: SANCTIONED_DESCRIPTION_CHANGES.has(key)
+          ? REGISTRY[key].description
+          : base[key].description,
         type: SANCTIONED_TYPE_CHANGES.has(key)
           ? REGISTRY[key].type
           : base[key].type,

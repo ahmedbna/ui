@@ -12,7 +12,7 @@ export const carouselRegistry = {
       'lucide-react-native',
       'react-native-gesture-handler',
     ],
-    registryDependencies: ['text', 'view'],
+    registryDependencies: ['view'],
     hooks: ['useColor'],
     theme: ['globals'],
     files: [

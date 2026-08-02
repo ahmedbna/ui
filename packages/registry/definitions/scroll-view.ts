@@ -8,7 +8,7 @@ export const scrollViewRegistry = {
       'A scrollable view component that allows content to be scrolled when it exceeds the container size.',
     type: 'registry:ui',
     dependencies: [],
-    registryDependencies: ['view'],
+    registryDependencies: [],
     hooks: [],
     theme: [],
     files: [

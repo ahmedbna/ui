@@ -7,8 +7,8 @@ export const chartContainerRegistry = {
     description:
       'A container component for wrapping charts with title, description, and consistent styling.',
     type: 'registry:ui',
-    dependencies: ['expo-image'],
-    registryDependencies: ['text', 'view', 'image'],
+    dependencies: [],
+    registryDependencies: ['text', 'view'],
     hooks: ['useColor'],
     theme: ['globals'],
     files: [

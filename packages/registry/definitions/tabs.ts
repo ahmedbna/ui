@@ -5,7 +5,7 @@ export const tabsRegistry = {
   tabs: {
     name: 'tabs',
     description:
-      'A foundational View component with transparent background and ref forwarding support.',
+      'A swipeable, animated tabs component with support for scrollable tab lists and gesture-driven content switching.',
     type: 'registry:ui',
     dependencies: [
       'react-native-gesture-handler',
