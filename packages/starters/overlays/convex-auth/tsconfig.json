@@ -1,0 +1,13 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "paths": {
+      "@/*": ["./*"]
+    },
+    // TypeScript 6 no longer pulls every package under node_modules/@types in
+    // automatically, so the jest globals in __tests__ have to be named here.
+    "types": ["jest"]
+  },
+  "include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts"]
+}

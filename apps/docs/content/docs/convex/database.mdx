@@ -1,0 +1,183 @@
+---
+title: Database and schema
+description: The schema both Convex starters ship, defineSchema and defineTable, indexes, validators, and how authorization replaces row level security.
+---
+
+Your schema lives in `convex/schema.ts` as plain TypeScript, validated by
+`v.*` at both write time and the type level. There is no separate migration
+file and no ORM — `_generated/` regenerates from `schema.ts` automatically
+every time `npx convex dev` sees it change.
+
+## The workflow
+
+<Steps>
+
+<Step>Edit `convex/schema.ts`</Step>
+
+Add a field, a table, or an index.
+
+<Step>Save</Step>
+
+`npx convex dev` picks up the change, pushes it to your deployment, and
+regenerates `convex/_generated/` — there is no separate `push` or `generate`
+command to remember.
+
+<Step>Commit the schema and the regenerated types together</Step>
+
+`_generated/` is checked in so a fresh clone and CI both typecheck with no
+live deployment. See [deployment](/docs/convex/deployment) for what CI does
+and does not verify about it.
+
+</Steps>
+
+<Callout title='There is no migration file'>
+  Adding a required field to a table that already has documents fails until
+  every existing row has one. Add it as `v.optional(...)`, backfill with a
+  mutation, then tighten it to required in a later deploy — the same shape as
+  Supabase's "add nullable, backfill, then add the constraint," just enforced
+  by the schema instead of a lock on an `alter table`.
+</Callout>
+
+## Defining tables
+
+```ts title="convex/schema.ts"
+export default defineSchema({
+  tasks: defineTable({
+    text: v.string(),
+    isCompleted: v.boolean(),
+  }),
+});
+```
+
+The auth starter's schema spreads in `@convex-dev/auth`'s own tables and adds
+one more:
+
+```ts title="convex/schema.ts"
+export default defineSchema({
+  ...authTables,
+
+  users: defineTable({
+    email: v.optional(v.string()),
+    phone: v.optional(v.string()),
+    name: v.optional(v.string()),
+    image: v.optional(v.union(v.string(), v.null())),
+    isAnonymous: v.optional(v.boolean()),
+    githubId: v.optional(v.number()),
+    // …
+  })
+    .index('email', ['email'])
+    .index('phone', ['phone']),
+});
+```
+
+`v.optional(...)` is why an anonymous or Apple sign-up — which may supply no
+email at all — does not fail schema validation. `v.union(v.string(), v.null())`
+is how a field can legitimately hold `null` rather than being absent, which
+`v.optional` alone does not allow.
+
+## Indexes
+
+```ts title="convex/schema.ts"
+users: defineTable({ /* … */ }).index('email', ['email']),
+```
+
+```ts title="convex/users.ts"
+const user = await ctx.db
+  .query('users')
+  .withIndex('email', (q) => q.eq('email', args.email))
+  .unique();
+```
+
+A query without a matching index scans every document in the table. There is
+no RLS policy to make this the "common case" the way Supabase's is — you add
+an index because you wrote a `withIndex` query that needs one, not because a
+policy filters on the column.
+
+## Queries and mutations
+
+```ts title="convex/tasks.ts"
+export const list = query({
+  handler: async (ctx) => {
+    return await ctx.db.query('tasks').order('desc').take(50);
+  },
+});
+
+export const add = mutation({
+  args: { text: v.string() },
+  handler: async (ctx, args) => {
+    return await ctx.db.insert('tasks', {
+      text: args.text,
+      isCompleted: false,
+    });
+  },
+});
+```
+
+Queries are read-only and reactive — every subscribed `useQuery` re-renders
+when the data they read changes. Mutations are transactional writes. Anything
+that calls a third-party API or needs a secret is neither — see
+[actions](/docs/convex/actions).
+
+## Authorization lives in the function
+
+Convex has nothing analogous to `enable row level security` — a query
+returns exactly what its handler returns, for any caller who can invoke it.
+The auth starter's user-scoped queries all start the same way:
+
+```ts title="convex/users.ts"
+export const get = query({
+  handler: async (ctx) => {
+    const authId = await getAuthUserId(ctx);
+
+    if (!authId) {
+      throw new Error('Not authenticated');
+    }
+
+    return await ctx.db.get(authId);
+  },
+});
+```
+
+| Concern                     | How Convex handles it                                  |
+| ---------------------------- | -------------------------------------------------------- |
+| "Only the owner can read X"  | Check `getAuthUserId(ctx)` against the row's owner field  |
+| "Only the owner can write X" | Same check, inside the mutation, before the `db.patch`    |
+| "Public read, scoped write"  | A query with no auth check; a mutation with one           |
+
+<Callout title='Forgetting the check fails open, not closed'>
+  A Postgres table with RLS enabled and no policy denies every row — the
+  failure mode is "too locked down." A Convex function with no
+  `getAuthUserId` check simply runs and returns whatever it was coded to
+  return, because there is no enforcement layer underneath it. Read every
+  query and mutation you write as if the RLS backstop does not exist, because
+  it does not.
+</Callout>
+
+## The no-auth starter is different
+
+`convex/tasks.ts` in the plain `convex` overlay has no auth check at all —
+correct for a public demo, wrong the moment you store anything real:
+
+```ts title="convex/tasks.ts"
+export const list = query({
+  handler: async (ctx) => {
+    return await ctx.db.query('tasks').order('desc').take(50);
+  },
+});
+```
+
+Anyone who can reach your deployment's URL can call this exactly as written,
+from `curl`, forever. Add an owner check (or move to the auth starter) before
+putting anything private behind it.
+
+## Realtime is automatic
+
+There is no publication to alter and no replica identity to set. Every
+`useQuery` is a live subscription the moment it runs. See
+[realtime](/docs/convex/realtime).
+
+## Next
+
+- [Realtime](/docs/convex/realtime)
+- [Storage](/docs/convex/storage) · [Actions](/docs/convex/actions)
+- [Convex schema documentation](https://docs.convex.dev/database/schemas)

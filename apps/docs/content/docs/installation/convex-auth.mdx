@@ -193,9 +193,39 @@ npx convex env set AUTH_RESEND_KEY re_your_prod_key --prod
 npx convex deploy
 ```
 
+## Before you ship
+
+<Steps>
+
+<Step>Confirm `SITE_URL` and `EXPO_URL` are set against `--prod`</Step>
+
+Not just dev. Both gate the `redirect` callback above, and the CLI's defaults
+(`http://localhost:3000/`, your dev scheme) are wrong in production.
+
+<Step>Set every provider's credentials against `--prod` too</Step>
+
+`AUTH_RESEND_KEY`, `AUTH_GOOGLE_ID`/`SECRET`, `AUTH_APPLE_ID`/`SECRET` — each
+one, again, with `--prod`.
+
+<Step>Re-read every query and mutation as an attacker</Step>
+
+There is no RLS backstop here. `convex/users.ts` is your entire
+access-control surface — confirm every function that returns or changes user
+data checks `getAuthUserId(ctx)` against the right owner.
+
+<Step>Confirm the production EAS profile points at your prod deployment</Step>
+
+`EXPO_PUBLIC_CONVEX_URL` in the `production` build profile has to be the prod
+deployment's URL, not the dev one you have been testing against.
+
+</Steps>
+
+Full checklist, including EAS and CI: [deployment](/docs/convex/deployment).
+
 ## Next
 
 - [Google OAuth setup](/docs/convex/google)
 - [Apple Sign-In setup](/docs/convex/apple)
 - [Resend email setup](/docs/convex/resend)
+- [Deployment](/docs/convex/deployment) · [Troubleshooting](/docs/convex/troubleshooting)
 - [Convex Auth documentation](https://labs.convex.dev/auth)

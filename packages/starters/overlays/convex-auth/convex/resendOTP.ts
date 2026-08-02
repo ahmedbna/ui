@@ -9,7 +9,9 @@ export const ResendOTP = Email({
   async generateVerificationToken() {
     const random: RandomReader = {
       read(bytes) {
-        crypto.getRandomValues(bytes);
+        // TS 6's DOM lib pins `getRandomValues` to `Uint8Array<ArrayBuffer>`;
+        // `RandomReader.read` is typed as the wider `Uint8Array<ArrayBufferLike>`.
+        crypto.getRandomValues(bytes as Uint8Array<ArrayBuffer>);
       },
     };
 

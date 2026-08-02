@@ -1,0 +1,14 @@
+{
+  "pages": [
+    "auth",
+    "database",
+    "realtime",
+    "storage",
+    "actions",
+    "google",
+    "apple",
+    "resend",
+    "deployment",
+    "troubleshooting"
+  ]
+}

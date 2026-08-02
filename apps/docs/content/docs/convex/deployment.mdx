@@ -1,0 +1,187 @@
+---
+title: Deployment
+description: Ship a Convex-backed Expo app — dev versus prod deployments, EAS build profiles, the two-job CI workflow both starters include, migration safety, and the production checklist.
+---
+
+Two things deploy independently: your Convex functions (`npx convex deploy`)
+and your app (EAS build, or an over-the-air update). Unlike Supabase there is
+no separate migration step — pushing your functions also pushes the current
+`schema.ts`.
+
+## Dev vs. prod deployments
+
+Every Convex project has (at least) two deployments: the **dev** deployment
+`npx convex dev` talks to while you work, and a separate **prod** deployment
+your shipped app should point at. Environment variables are set per
+deployment — `npx convex env set NAME value` targets dev, `--prod` targets
+prod. The [auth installation guide](/docs/installation/convex-auth#production)
+covers pointing `SITE_URL` and `EXPO_URL` at the right one before you ship.
+
+## Environment variables
+
+`EXPO_PUBLIC_` variables are **inlined into the JavaScript bundle at build
+time** — they are not secret, and changing one needs a new build or OTA
+update, not a server restart.
+
+```json title="eas.json"
+{
+  "build": {
+    "preview": {
+      "distribution": "internal",
+      "channel": "preview",
+      "env": {
+        "EXPO_PUBLIC_CONVEX_URL": "https://your-dev-deployment.convex.cloud"
+      }
+    },
+    "production": {
+      "autoIncrement": true,
+      "channel": "production",
+      "env": {
+        "EXPO_PUBLIC_CONVEX_URL": "https://your-prod-deployment.convex.cloud"
+      }
+    }
+  }
+}
+```
+
+<Callout title="Use your prod deployment's URL in the production profile">
+  It is easy to copy the dev URL into every profile because that is the one
+  you have been testing against. A production build pointed at your dev
+  deployment reads and writes data your local `npx convex dev` session also
+  touches — not a security problem the way a leaked secret key is, but a
+  confusing one.
+</Callout>
+
+## Building
+
+```bash
+eas build --platform all --profile preview
+eas build --platform all --profile production
+eas submit --platform ios --profile production
+```
+
+## Over-the-air updates
+
+```bash
+eas update --branch production --message "Fix the reset-password redirect"
+```
+
+OTA updates ship JavaScript only. Changing `scheme` in `app.json` needs a new
+build, and it also means updating `EXPO_URL` on your Convex deployment — see
+[the redirect allow-list](/docs/convex/auth#the-redirect-allow-list).
+
+## The shipped workflow
+
+`.github/workflows/ci.yml` in both starters has two jobs — fewer than
+Supabase's four, and deliberately so.
+
+**`verify`** — `tsc --noEmit`, `expo lint`, `jest`. Runs on every PR, needs no
+live deployment because `convex/_generated/` is checked in.
+
+**`build`** — kicks off an EAS build on merge to `main`.
+
+There is no `types-are-current` job. Supabase's works because `supabase db
+start` spins up a throwaway local Postgres from checked-in migration files —
+nothing needs to be logged in. Convex has no equivalent: `_generated/` is
+produced by `npx convex dev` or `npx convex codegen` talking to an actual
+deployment, and there is no way to regenerate it from schema and function
+source alone without an authenticated session against somewhere. There is
+nothing to regenerate-and-diff in an unauthenticated CI job, so this job is
+dropped rather than faked.
+
+There is also no default **`deploy`** job. Supabase's runs non-interactively
+off an access token every Supabase-scaffolded user already has from creating
+their project. The Convex CLI's own `npx convex dev --once` — what `bna-ui
+convex` itself runs — opens a browser and cannot run in CI at all.
+
+### Deploying for real
+
+```bash
+npx convex deploy
+```
+
+Pushes your current `schema.ts` and functions to your **prod** deployment.
+Run it from your machine, or wire up the optional job below.
+
+### Adding a CI deploy job (optional)
+
+`npx convex deploy` *can* run non-interactively, with a deploy key from your
+dashboard's **Settings → Deploy Keys**:
+
+```yaml title=".github/workflows/ci.yml"
+deploy:
+  name: Deploy Convex functions
+  if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+  needs: [verify]
+  runs-on: ubuntu-latest
+  steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with: { node-version: 22, cache: npm }
+    - run: npm ci
+    - run: npx convex deploy
+      env:
+        CONVEX_DEPLOY_KEY: ${{ secrets.CONVEX_DEPLOY_KEY }}
+```
+
+This is not in the shipped workflow because nothing in the scaffold prompts
+for or sets up that key — add it once you have one, rather than have every
+fresh `git push` fail on a secret that does not exist yet.
+
+## Migration safety
+
+`npx convex deploy` pushes your current schema and functions. It does not
+roll back.
+
+- **Add fields as `v.optional(...)`, backfill with a mutation, then tighten
+  it.** A required field on a table with existing documents fails the deploy
+  until every row has one.
+- **Do not remove a field or function the deployed app still reads.** Deploy
+  the app that stops reading it first.
+- **Deploy functions before the app that needs them.** A new query with old
+  clients is harmless; a client calling a query that no longer exists is a
+  crash.
+
+Assume old versions of your app are live for weeks — your users decide when
+they update, unlike a web deploy.
+
+## Production checklist
+
+<Steps>
+
+<Step>Point `SITE_URL` and `EXPO_URL` at production</Step>
+
+```bash
+npx convex env set SITE_URL https://your-site.com --prod
+npx convex env set EXPO_URL your-scheme:// --prod
+```
+
+<Step>Set every provider's credentials against `--prod` too</Step>
+
+`AUTH_RESEND_KEY`, `AUTH_GOOGLE_ID`/`SECRET`, `AUTH_APPLE_ID`/`SECRET` — each
+one you configured for dev, again with `--prod`.
+
+<Step>Re-read every query and mutation as an attacker</Step>
+
+There is no RLS backstop here. Confirm every function that returns or
+changes user data checks `getAuthUserId(ctx)` against the right owner. See
+[database](/docs/convex/database#authorization-lives-in-the-function).
+
+<Step>Confirm the production EAS profile points at prod</Step>
+
+`EXPO_PUBLIC_CONVEX_URL` in the `production` build profile must be your prod
+deployment's URL, not the dev one you have been testing against.
+
+</Steps>
+
+## Monitoring
+
+The Convex dashboard's **Logs** and **Health** sections cover function
+errors, execution time and scheduled job failures. For the app side,
+`expo-updates` and EAS Insights cover adoption and crashes.
+
+## Next
+
+- [Database and schema](/docs/convex/database)
+- [Troubleshooting](/docs/convex/troubleshooting)
+- [Expo EAS Build docs](https://docs.expo.dev/build/introduction/)

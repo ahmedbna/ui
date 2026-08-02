@@ -1,0 +1,57 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  verify:
+    name: Typecheck, lint, test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      # convex/_generated is checked in, so this passes with no live deployment.
+      # There is no equivalent of Supabase's `types-are-current` job here:
+      # regenerating it requires an authenticated `npx convex dev`/`codegen`
+      # session against a real deployment, which an unauthenticated CI runner
+      # cannot start.
+      - run: npx tsc --noEmit
+      - run: npm run lint
+      - run: npm test
+
+  build:
+    name: EAS build
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    needs: [verify]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          # https://expo.dev/settings/access-tokens
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      - run: npm ci
+      # EXPO_PUBLIC_ variables are baked into the bundle at build time, so they
+      # belong on the EAS build profile (eas.json / EAS environment variables),
+      # not here.
+      - run: eas build --platform all --profile preview --non-interactive --no-wait
+
+  # There is no default `deploy` job. `npx convex dev --once` — what the CLI
+  # itself runs — opens a browser and cannot run non-interactively in CI.
+  # `npx convex deploy` can, but only with a CONVEX_DEPLOY_KEY secret this
+  # scaffold does not set up for you. See /docs/convex/deployment for an
+  # opt-in job to add once you have one.

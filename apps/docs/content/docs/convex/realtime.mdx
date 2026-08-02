@@ -1,0 +1,110 @@
+---
+title: Realtime
+description: Why useQuery needs no subscription setup, adding optimistic updates yourself, reconnect behaviour, offline, and debugging a query that never resolves.
+---
+
+Every Convex query is a live subscription. `useQuery` re-renders whenever
+data it read changes on the server — no publication to enable, no channel to
+open, no `removeChannel` to remember on unmount.
+
+## Subscribing needs nothing extra
+
+```tsx title="app/(tabs)/(home)/index.tsx"
+const tasks = useQuery(api.tasks.list);
+
+if (tasks === undefined) return <Spinner size='lg' variant='circle' />;
+```
+
+`tasks` is `undefined` while the first result is in flight, then stays live
+for the rest of the component's lifetime. Every client with this hook
+mounted re-renders when any mutation touches a document the query read.
+
+<Callout title='This is the one thing you do not have to clean up'>
+  Supabase's `postgres_changes` subscription needs an explicit
+  `removeChannel` on unmount, or a screen that mounts twice double-applies
+  every event. `useQuery` unsubscribes itself when the component unmounts —
+  there is no channel object to hold onto or forget.
+</Callout>
+
+## Optimistic updates
+
+Neither starter uses these — `toggle` and `remove` are plain, awaited
+mutations, and the UI waits for the round trip. Convex supports optimistic
+local updates if you want the mutation to feel instant:
+
+```ts title="Adding this yourself"
+const toggle = useMutation(api.tasks.toggle).withOptimisticUpdate(
+  (localStore, args) => {
+    const tasks = localStore.getQuery(api.tasks.list);
+    if (tasks === undefined) return;
+
+    localStore.setQuery(
+      api.tasks.list,
+      {},
+      tasks.map((t) =>
+        t._id === args.id ? { ...t, isCompleted: !t.isCompleted } : t
+      )
+    );
+  }
+);
+```
+
+The local patch is discarded automatically once the server's real update
+arrives over the subscription — there is no manual reconciliation step like
+Supabase's dedupe-by-id, because Convex already knows which local state
+belongs to which in-flight mutation.
+
+## Reconnecting
+
+`ConvexReactClient` re-establishes the WebSocket itself and resyncs every
+active subscription to a consistent state on reconnect. There is nothing in
+either starter watching connection status, and nothing you need to write for
+the common case — this is unlike Supabase, where a dropped socket needs an
+explicit refetch on the next `SUBSCRIBED` event.
+
+## Offline
+
+Same honesty as Supabase's starters: there is no built-in offline queue.
+
+- Reads render from the last state the client had, so a backgrounded app
+  still shows something.
+- A mutation made with no connection rejects — it does not silently queue.
+- Reconnecting resyncs every active query automatically.
+
+Queued mutations and conflict resolution are a sync layer you would add on
+top, not something either starter picks for you.
+
+## Debugging a stuck subscription
+
+<Steps>
+
+<Step>Confirm the deployment URL</Step>
+
+`EXPO_PUBLIC_CONVEX_URL` in `.env.local` has to match the deployment
+`npx convex dev` is running against — a stale value from switching projects
+is the most common cause of "nothing ever loads."
+
+<Step>Confirm `npx convex dev` is actually running</Step>
+
+Without it, function changes never reach your deployment, and the client has
+nothing to subscribe to.
+
+<Step>Check the dashboard's Logs</Step>
+
+An uncaught error inside a query handler does not surface to the client the
+way you would expect.
+
+</Steps>
+
+<Callout title='A thrown query leaves useQuery at undefined forever'>
+  If a query handler throws, the client does not get an error object back —
+  `useQuery` simply never resolves past `undefined`. There is no
+  client-visible signal that anything is wrong; the only place it shows up is
+  the deployment's function logs.
+</Callout>
+
+## Next
+
+- [Database and schema](/docs/convex/database)
+- [Storage](/docs/convex/storage)
+- [Troubleshooting](/docs/convex/troubleshooting)

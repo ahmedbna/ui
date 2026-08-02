@@ -1,0 +1,152 @@
+---
+title: Troubleshooting
+description: Common failures across auth, the database, realtime and deployment, a FAQ, and a Supabase to Convex migration guide.
+---
+
+## Auth
+
+| Symptom                                          | Usually                                                              |
+| ------------------------------------------------- | ---------------------------------------------------------------------- |
+| OAuth browser closes, nothing happens              | The redirect isn't allow-listed — see [the redirect allow-list](/docs/convex/auth#the-redirect-allow-list) |
+| `Invalid redirectTo URI`                           | Same cause — `EXPO_URL`/`SITE_URL` don't match what `signIn` actually redirected to |
+| Sign-in works in dev, fails after shipping          | Provider credentials or `EXPO_URL`/`SITE_URL` were never set with `--prod` |
+| Password sign-up rejected with no clear reason      | `validatePasswordRequirements` in `convex/auth.ts` throws — the message it throws is what the form shows |
+| Email OTP or password reset does nothing            | `AUTH_RESEND_KEY` is unset — see [Resend](/docs/convex/resend)         |
+| Apple sign-in fails only in production              | Apple requires a deployed HTTPS `.site` URL — see [Apple](/docs/convex/apple) |
+| A user's session never resolves, stuck on `AuthLoading` | Check the dashboard's Logs — a thrown error in `convex/auth.ts` looks like this from the client |
+
+## Database
+
+| Symptom                                     | Usually                                                                 |
+| --------------------------------------------- | -------------------------------------------------------------------------- |
+| Deploy rejected after adding a field           | The field is required (`v.string()`, not `v.optional(v.string())`) and existing documents don't have it |
+| A query returns data it shouldn't               | There is no RLS backstop — the handler itself is missing an owner check, see [authorization](/docs/convex/database#authorization-lives-in-the-function) |
+| A query is slow on a large table                | It's missing a `.withIndex(...)` and is scanning the table                |
+| Types in `_generated/` look stale               | `npx convex dev` isn't running — it regenerates on every schema/function save |
+
+<Steps>
+
+<Step>Confirm the deployment matches your `.env.local`</Step>
+
+`npx convex env list` shows what's set on the deployment your CLI is
+currently pointed at. If it's empty and you expected values, you're probably
+looking at the wrong deployment (dev vs. prod).
+
+<Step>Check the dashboard's Data tab</Step>
+
+Confirms whether the document you expect actually exists, independent of
+whatever your query returns.
+
+<Step>Check the dashboard's Logs</Step>
+
+Query and mutation errors show up here even when the client sees nothing but
+`undefined`.
+
+</Steps>
+
+## Realtime
+
+| Symptom                              | Usually                                                        |
+| --------------------------------------- | ------------------------------------------------------------------ |
+| `useQuery` never resolves past `undefined` | The handler threw — see [debugging a stuck subscription](/docs/convex/realtime#debugging-a-stuck-subscription) |
+| Updates from one device don't reach another | Both need `EXPO_PUBLIC_CONVEX_URL` pointed at the same deployment  |
+| A mutation appears to succeed but nothing changes | Check the mutation actually calls `ctx.db.patch`/`insert` — a no-op handler doesn't error |
+
+## Storage
+
+Not used by either starter, so nothing here is starter-specific yet. The most
+common issue with a hand-rolled upload is forgetting `Content-Type` on the
+`POST` to the generated upload URL — see [storage](/docs/convex/storage).
+
+## Actions
+
+Also not used by either starter. If a package you call from an action fails
+with a missing Node built-in, add `'use node'` to the top of the file — see
+[actions](/docs/convex/actions#reach-for-use-node-only-when-you-need-it).
+
+## FAQ
+
+- **Can I use Convex without `@convex-dev/auth`?** Yes — `npx bna-ui convex
+  --no-auth` skips it entirely. You can also swap in your own auth provider
+  later; nothing about the schema or functions requires this one.
+- **Does Convex have a local dev stack, like `supabase start`?** No. `npx
+  convex dev` talks to a real (free-tier) cloud dev deployment — there is no
+  offline equivalent.
+- **How do I see what's actually stored?** The dashboard's **Data** tab, or
+  `npx convex data <table>` from the CLI.
+- **Can two apps share one Convex deployment?** Yes — it's just an
+  `EXPO_PUBLIC_CONVEX_URL` value. Nothing ties a deployment to one client.
+- **Why does my mutation see stale data from another mutation in the same
+  request?** It shouldn't — mutations are transactional. If this happens,
+  you're probably calling `ctx.runMutation` from inside an action twice
+  without awaiting the first.
+- **Is there a Convex CLI equivalent of `supabase db reset`?** Not quite —
+  there's no seed-and-rebuild-from-scratch command, because there's no local
+  stack to rebuild. Deleting data is a dashboard or `npx convex run` action
+  you write yourself.
+- **How do I run something on a schedule?** `ctx.scheduler.runAfter` for a
+  one-off, `cronJobs()` in `convex/crons.ts` for recurring — see
+  [actions](/docs/convex/actions#scheduling).
+
+## Migrating from Supabase
+
+Both are TypeScript-first backends with realtime queries, so the shapes map
+closely — this is the mirror image of [Supabase's Migrating from Convex
+table](/docs/supabase/troubleshooting#migrating-from-convex).
+
+| Supabase                                            | Convex                        |
+| ------------------------------------------------------ | -------------------------------- |
+| `supabase/migrations/*.sql`                            | `convex/schema.ts`               |
+| `create table …`                                       | `defineTable({...})`             |
+| RLS policies, enforced by Postgres                     | Function-level auth checks       |
+| `select` + a `postgres_changes` subscription           | `useQuery(api.tasks.list)`       |
+| `supabase.from('tasks').insert(...)`                   | `useMutation(api.tasks.add)`     |
+| Direct queries; edge functions for privileged work     | `query` / `mutation`             |
+| Edge function                                          | `action`                          |
+| `auth.uid()` in a policy, `getUser()` in a function     | `getAuthUserId(ctx)`             |
+| `lib/database.types.ts` from `supabase gen types`       | `_generated/api.d.ts`            |
+| `providers/auth-provider.tsx`                          | `ConvexAuthProvider`             |
+
+The real shift is where authorization lives. In Supabase the client talks to
+the database directly, so the check has to be a policy Postgres enforces. In
+Convex you check permissions inside each function — a query that forgot its
+check leaks through one endpoint, not the whole table, but there is no
+database-level backstop if you forget.
+
+Suggested order:
+
+<Steps>
+
+<Step>Translate the schema</Step>
+
+One `defineTable` per migration, keeping the RLS policy's logic in mind for
+the auth checks you'll add to the functions that touch it.
+
+<Step>Move reads</Step>
+
+Each `select` plus subscription becomes a `query` plus `useQuery`. The
+policy's `using` clause becomes an explicit check in the handler.
+
+<Step>Move writes</Step>
+
+Each direct `insert`/`update`/`delete` becomes a `mutation`. The policy's
+`with check` becomes the same explicit check, before the write instead of
+enforced alongside it.
+
+<Step>Move privileged work</Step>
+
+Anything that was an edge function calling third-party APIs or using the
+service-role key becomes an `action`.
+
+<Step>Move auth last</Step>
+
+`AuthProvider` → `ConvexAuthProvider`. Users do not transfer between the two
+systems; plan a re-registration or a scripted import.
+
+</Steps>
+
+## Still stuck
+
+- [Report an issue](https://github.com/ahmedbna/ui/issues)
+- [Convex documentation](https://docs.convex.dev) ·
+  [Convex Auth documentation](https://labs.convex.dev/auth)

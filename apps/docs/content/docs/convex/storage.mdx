@@ -1,0 +1,112 @@
+---
+title: File Storage
+description: Upload files from Expo to Convex's built-in file storage — generating an upload URL, reading files back, authorization, and deletion.
+---
+
+<Callout title='Not shipped in either starter'>
+  Neither the plain nor the auth starter uses Convex file storage — there is
+  no avatar upload or file-picker screen to copy from. This page is a
+  reference for adding it yourself, in the same style as the rest of your
+  schema and functions.
+</Callout>
+
+## Generating an upload URL
+
+Convex file storage is a two-step upload: a mutation hands the client a
+short-lived URL, and the client `POST`s bytes directly to it.
+
+```ts title="convex/files.ts"
+export const generateUploadUrl = mutation({
+  handler: async (ctx) => {
+    return await ctx.storage.generateUploadUrl();
+  },
+});
+```
+
+## Uploading from Expo
+
+```ts
+const uploadUrl = await generateUploadUrl();
+
+const asset = await ImagePicker.launchImageLibraryAsync();
+const body = await fetch(asset.assets[0].uri).then((res) => res.blob());
+
+const result = await fetch(uploadUrl, {
+  method: 'POST',
+  headers: { 'Content-Type': asset.assets[0].mimeType ?? 'image/jpeg' },
+  body,
+});
+
+const { storageId } = await result.json();
+```
+
+`storageId` is what you save — patch it onto a document in a second mutation,
+the same as you would any other field:
+
+```ts title="convex/users.ts"
+export const setAvatar = mutation({
+  args: { storageId: v.id('_storage') },
+  handler: async (ctx, args) => {
+    const userId = await getAuthUserId(ctx);
+    if (!userId) throw new Error('Not authenticated');
+
+    await ctx.db.patch(userId, { avatarStorageId: args.storageId });
+  },
+});
+```
+
+## Reading a file back
+
+```ts title="convex/users.ts"
+export const getAvatarUrl = query({
+  handler: async (ctx) => {
+    const userId = await getAuthUserId(ctx);
+    if (!userId) throw new Error('Not authenticated');
+
+    const user = await ctx.db.get(userId);
+    if (!user?.avatarStorageId) return null;
+
+    return await ctx.storage.getUrl(user.avatarStorageId);
+  },
+});
+```
+
+`getUrl` returns a URL good for the lifetime of the file, not a signed,
+expiring link — there is no separate "public bucket" versus "signed URL"
+distinction the way Supabase Storage has. Access control is whatever your
+query checks before calling it.
+
+## Authorization is still a function check
+
+There is no bucket-level policy language. The same rule from
+[database](/docs/convex/database#authorization-lives-in-the-function) applies:
+whoever can call `getAvatarUrl` gets whatever it returns, so the check has to
+be in the handler, not configured somewhere else.
+
+## Deleting files
+
+```ts title="convex/files.ts"
+export const remove = mutation({
+  args: { storageId: v.id('_storage') },
+  handler: async (ctx, args) => {
+    await ctx.storage.delete(args.storageId);
+  },
+});
+```
+
+Deleting a document that references a file does not delete the file —
+`ctx.storage.delete` has to be called explicitly, the same as Supabase Storage
+objects not cascading from a deleted row. Anything you store per user needs
+the same cleanup on account deletion.
+
+## Larger files
+
+The upload URL approach above handles anything a mobile client can hold in
+memory to `fetch`. Past tens of megabytes, stream the upload in chunks rather
+than buffering the whole blob — the two-step URL pattern stays the same.
+
+## Next
+
+- [Actions](/docs/convex/actions)
+- [Database and schema](/docs/convex/database)
+- [Convex file storage documentation](https://docs.convex.dev/file-storage)

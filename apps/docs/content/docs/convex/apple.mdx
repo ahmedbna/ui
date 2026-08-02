@@ -1,162 +1,60 @@
 ---
 title: Apple
-description: Complete guide to configure Apple OAuth authentication for your Convex application.
+description: Configure Apple as an OAuth provider for the Convex Auth starter — the Service ID, the JWT client secret you have to generate and rotate, and App Store review requirements.
 ---
 
-## Overview
+<Callout title='No localhost testing'>
+  Apple requires a deployed, HTTPS callback — your Convex deployment's
+  `.site` URL already qualifies, so there is no local-testing workaround to
+  reach for here the way there might be with other providers.
+</Callout>
 
-This guide will walk you through setting up Sign in with Apple authentication for your Convex application. By the end of this setup, your users will be able to sign in using their Apple accounts.
+You need a paid [Apple Developer](https://developer.apple.com) account.
 
-**Important Note**: Unlike other providers, Apple doesn't allow you to test your Sign in with Apple integration using an app running on localhost. You'll need to fully deploy your application to a public site with a valid SSL certificate.
+## Configure Apple
 
-## Prerequisites
+<Steps>
 
-Before starting, ensure you have:
+<Step>Create an App ID</Step>
 
-- An Apple Developer account (create one at [Apple Developer](https://developer.apple.com/))
-- A Convex project set up and deployed to production
-- Access to your Convex deployment's HTTP Actions URL
-- A deployed application with a valid SSL certificate (HTTPS required)
+[developer.apple.com](https://developer.apple.com/account) →
+**Certificates, Identifiers & Profiles → Identifiers → +** → **App IDs** →
+**App**. Under **Capabilities**, enable **Sign In with Apple**.
 
-## Step 1: Create an App ID
+<Step>Create a Services ID</Step>
 
-1. Navigate to the [Apple Certificates, Identifiers & Profiles](https://developer.apple.com/account/resources/certificates/list) page
-2. Select **"App IDs"** in the dropdown on the right (if not already selected)
-3. Click the **"+"** button next to Identifiers
+**Identifiers → + → Services IDs**. This is a separate identifier from the
+App ID, and it is the one that becomes your `AUTH_APPLE_ID`.
 
-### Configure App ID
+<Step>Find your Convex HTTP Actions URL</Step>
 
-1. On the Register a New Identifier page, ensure **"App IDs"** is selected
-2. Click **"Continue"**
-3. On the next page, with **"App"** selected, click **"Continue"**
-4. Fill in the required fields:
-   - **Description**: Enter a descriptive name for your app
-   - **Bundle ID**: Choose **"Explicit"** and enter your unique bundle identifier (e.g., `com.yourcompany.yourapp`)
+Convex dashboard → **Settings → URL & Deploy Key**. It ends in `.site`, not
+`.cloud`.
 
-### Enable Sign in with Apple
+<Step>Configure the Services ID</Step>
 
-1. Scroll down to the **Capabilities** section
-2. Find **"Sign In with Apple"** in the list and check the box next to it
-3. Click **"Continue"** and then **"Register"**
+Enable **Sign In with Apple**, then **Configure**:
 
-## Step 2: Create a Service ID
+- **Domains**: the domain portion of your HTTP Actions URL, e.g.
+  `fast-horse-123.convex.site`
+- **Return URLs**: `https://fast-horse-123.convex.site/api/auth/callback/apple`
 
-### Initial Service ID Setup
+<Step>Create a signing key</Step>
 
-1. Back on the Certificates, Identifiers & Profiles page, use the dropdown and select **"Services IDs"**
-2. Click the **"+"** button next to Identifiers
-3. On the Register a New Identifier page, ensure **"Services IDs"** is selected
-4. Click **"Continue"**
+**Keys → +**. Enable **Sign In with Apple**, configure it against your App
+ID, and register. Download the `.p8` file — **Apple lets you download it
+once** — and note the Key ID next to it and your Team ID from the top right
+of the developer portal.
 
-### Configure Service ID
+<Step>Generate the JWT client secret</Step>
 
-1. Fill in the required fields:
-   - **Description**: Enter a description for your service
-   - **Identifier**: Enter a unique identifier (e.g., `com.yourcompany.yourapp.service`)
-2. Click **"Continue"** and then **"Register"**
+Apple does not issue a static secret; you sign one with the `.p8` key:
 
-## Step 3: Create a Key
-
-### Generate Apple Key
-
-1. Click on **"Keys"** in the left navigation menu
-2. Click the **"+"** button next to Keys
-3. Enter a **Key Name** for identification purposes
-
-### Configure Key for Sign in with Apple
-
-1. Scroll down and check the box next to **"Sign In with Apple"**
-2. Click the **"Configure"** button beside it
-3. On the configuration page, select the **App ID** you created earlier as the Primary App ID
-4. Click **"Save"**
-
-### Download and Secure Your Key
-
-1. Back on the Register a New Key page, click **"Continue"**
-2. Click **"Register"**
-3. **Important**: Download the key file (`.p8` format) on the next screen
-4. Store this file securely - Apple only allows you to download it once
-5. Click **"Done"**
-
-## Step 4: Configure Callback URL
-
-### Find Your Convex HTTP Actions URL
-
-1. Open your Convex dashboard
-2. Navigate to **Settings > URL & Deploy Key > Show development credentials**
-3. Note your **HTTP Actions URL** (ends with `.site`, not `.cloud`)
-
-### Configure Service ID for Web Authentication
-
-1. Return to the Certificates, Identifiers & Profiles page
-2. Use the dropdown to select **"Services IDs"**
-3. Click on the **Service ID** you created earlier
-4. Ensure **"Sign In with Apple"** is checked and click **"Configure"**
-
-### Set Up Website URLs
-
-1. In the **Domains and Subdomains** field, enter just the domain portion of your HTTP Actions URL:
-
-   ```
-   fast-horse-123.convex.site
-   ```
-
-2. In the **Return URLs** field, enter your complete callback URL:
-
-   ```
-   https://fast-horse-123.convex.site/api/auth/callback/apple
-   ```
-
-3. Click **"Next"**
-4. Confirm the values are correct and click **"Done"**
-5. Back on the Services ID configuration page, click **"Continue"** and then **"Save"**
-
-## Step 5: Generate Apple Client Secret
-
-### Gather Required Information
-
-You'll need the following information to generate your Apple client secret:
-
-1. **Team ID (Account ID)**: Found in the upper-right corner of Apple Developer Center (10 alphanumeric characters)
-2. **Service ID**: The identifier you created for your service (e.g., `com.yourcompany.yourapp.service`)
-3. **Key ID**: Found in the filename of your downloaded key file (`AuthKey_XXXXXXXXXX.p8`)
-4. **Private Key**: The content of your downloaded `.p8` file
-
-### Generate JWT Secret
-
-Apple requires a signed JWT token as the client secret. You can use various methods to generate this:
-
-#### Method 1: Using Online JWT Generator (Recommended for Development)
-
-Use a secure JWT generator that processes data locally in your browser. The JWT should include:
-
-- **Header**:
-
-  ```json
-  {
-    "alg": "ES256",
-    "kid": "YOUR_KEY_ID"
-  }
-  ```
-
-- **Payload**:
-  ```json
-  {
-    "iss": "YOUR_TEAM_ID",
-    "iat": 1234567890,
-    "exp": 1234567890,
-    "aud": "https://appleid.apple.com",
-    "sub": "YOUR_SERVICE_ID"
-  }
-  ```
-
-#### Method 2: Using Node.js (For Production)
-
-```javascript
+```js
 const jwt = require('jsonwebtoken');
 const fs = require('fs');
 
-const privateKey = fs.readFileSync('path/to/AuthKey_XXXXXXXXXX.p8');
+const privateKey = fs.readFileSync('AuthKey_XXXXXXXXXX.p8');
 
 const token = jwt.sign(
   {
@@ -167,95 +65,74 @@ const token = jwt.sign(
     sub: 'YOUR_SERVICE_ID',
   },
   privateKey,
-  {
-    algorithm: 'ES256',
-    header: {
-      kid: 'YOUR_KEY_ID',
-    },
-  }
+  { algorithm: 'ES256', header: { kid: 'YOUR_KEY_ID' } }
 );
 
 console.log(token);
 ```
 
-**Important**: The client secret is valid for a maximum of 6 months. You'll need to regenerate it periodically.
-
-## Step 6: Set Convex Environment Variables
-
-### Configure Environment Variables
-
-You can set environment variables either via the Convex CLI or through the dashboard.
-
-#### Option 1: Using Convex CLI (Recommended)
-
-Open your terminal in your Convex application directory and run:
+<Step>Set the environment variables</Step>
 
 ```bash
-# Set Apple Service ID (Client ID)
-npx convex env set AUTH_APPLE_ID your_apple_service_id_here
-
-# Set Apple Client Secret (JWT token)
-npx convex env set AUTH_APPLE_SECRET your_generated_jwt_token_here
+npx convex env set AUTH_APPLE_ID your_service_id
+npx convex env set AUTH_APPLE_SECRET your_generated_jwt
 ```
 
-#### Option 2: Using Convex Dashboard
+</Steps>
 
-1. Open your Convex dashboard
-2. Navigate to **Settings > Environment Variables**
-3. Add the following variables:
-   - **Variable Name**: `AUTH_APPLE_ID`, **Value**: Your Apple Service ID
-   - **Variable Name**: `AUTH_APPLE_SECRET`, **Value**: Your generated JWT token
+<Callout title='The secret expires'>
+  Six months, maximum. When it lapses, Apple sign-in stops for everyone with
+  no code change and no deploy to blame. Put a calendar reminder on it the
+  day you set it up.
+</Callout>
 
-**Note**: Apple users can choose to share their name only on the first authentication. The profile configuration above ensures that if the user's name is shared initially, it gets stored and retained for future logins.
+## Test it
 
-## Common Issues and Solutions
+```bash
+npx expo start
+```
 
-### "Invalid Client" Error
+Tap **Login with Apple**. The browser sheet opens; sign in with an Apple ID.
 
-- Verify your Service ID is correctly configured
-- Ensure the client secret JWT is properly formatted and signed
-- Check that the Service ID matches exactly in both Apple Developer Console and environment variables
+## What Apple sends back
 
-### "Invalid Redirect URI"
+Less than Google, and only once. `convex/auth.ts`'s `profile` callback reads
+whatever is present on that first authorization:
 
-- Verify your callback URL exactly matches: `{HTTP_ACTIONS_URL}/api/auth/callback/apple`
-- Ensure you're using the production HTTP Actions URL (not localhost)
-- Confirm the domain is properly configured in the Service ID settings
+```ts title="convex/auth.ts"
+Apple({
+  profile: (appleInfo) => {
+    const name = appleInfo.user
+      ? `${appleInfo.user.name.firstName} ${appleInfo.user.name.lastName}`
+      : undefined;
 
-### "Client Secret Expired"
+    return {
+      id: appleInfo.sub,
+      name: name,
+      email: appleInfo.email,
+    };
+  },
+}),
+```
 
-- Apple client secrets expire after 6 months maximum
-- Generate a new JWT token with updated timestamps
-- Update your `AUTH_APPLE_SECRET` environment variable
+`appleInfo.user` — the name — is only present on the very first sign-in.
+Every subsequent one omits it, so `name` in the returned profile is
+`undefined` from then on. If the user picked **Hide My Email**, `email` is a
+private relay address, not their real one. Capture whatever you need at
+first sign-in; do not build anything that depends on re-reading it later.
 
-### "This App Hasn't Been Verified"
+## When it does not work
 
-- Ensure your app is properly configured in Apple Developer Console
-- For production apps, consider submitting for Apple review
-- Verify all required fields are completed in your App ID configuration
+| What you see                              | Usually                                                           |
+| -------------------------------------------- | ---------------------------------------------------------------------- |
+| `invalid_client`                             | `AUTH_APPLE_ID` is the App ID instead of the Services ID                |
+| `invalid_client` after months of working      | The six-month JWT secret expired                                       |
+| Redirect rejected                            | Return URL in the Services ID doesn't match `/api/auth/callback/apple` |
+| Browser closes, nothing happens              | `EXPO_URL`/`SITE_URL` don't cover the redirect — see [the redirect allow-list](/docs/convex/auth#the-redirect-allow-list) |
+| Name is missing after the first sign-in       | Working as intended — Apple sends it once                              |
 
-### SSL Certificate Issues
+## Next
 
-- Apple requires HTTPS for all production integrations
-- Ensure your deployment URL uses a valid SSL certificate
-- Test your SSL configuration using online SSL checkers
-
-## Security Best Practices
-
-- **Secure Key Storage**: Store your `.p8` private key securely and never commit it to version control
-- **Regular Secret Rotation**: Regenerate your client secret every 6 months or sooner
-- **Environment Isolation**: Use different Apple configurations for development, staging, and production
-- **Audit Trail**: Monitor your Apple Developer Console for any suspicious activity
-- **Backup Keys**: Keep secure backups of your private key files
-
-## Support
-
-For additional help:
-
-- [Convex Auth Documentation](https://labs.convex.dev/auth/config/oauth/apple)
-- [Apple Sign in Documentation](https://developer.apple.com/documentation/sign_in_with_apple)
-- [Apple Developer Support](https://developer.apple.com/support/)
-
----
-
-_Secure Apple authentication for your users! 🍎_
+- [Google](/docs/convex/google) · [Resend](/docs/convex/resend)
+- [Authentication](/docs/convex/auth)
+- [Convex Auth Apple provider docs](https://labs.convex.dev/auth/config/oauth/apple)

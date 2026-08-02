@@ -1,0 +1,108 @@
+---
+title: Actions
+description: When to reach for a Convex action instead of a query or mutation, the Node runtime, calling third-party APIs, and scheduling.
+---
+
+<Callout title='Not shipped as a standalone example'>
+  Neither starter defines an `action`, though the auth starter comes close —
+  `convex/resendOTP.ts` calls the Resend API from inside a provider callback.
+  This page is a reference for the general case.
+</Callout>
+
+Queries and mutations are deterministic and transactional — no `fetch`, no
+`Math.random()`, no Node built-ins. Anything that calls a third-party API,
+needs true randomness, or needs a Node package belongs in an action instead.
+
+## Defining an action
+
+```ts title="convex/tasks.ts"
+export const summarize = action({
+  args: { taskId: v.id('tasks') },
+  handler: async (ctx, args) => {
+    const response = await fetch('https://api.example.com/summarize', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${process.env.SUMMARY_API_KEY}` },
+      body: JSON.stringify({ taskId: args.taskId }),
+    });
+
+    return await response.json();
+  },
+});
+```
+
+Actions run in Convex's default V8-isolate runtime by default — the same
+environment queries and mutations use, with `fetch` available but no Node
+built-ins (`fs`, `crypto`'s Node API, etc.).
+
+## Reach for `'use node'` only when you need it
+
+```ts title="convex/heavyWork.ts"
+'use node';
+
+import sharp from 'sharp';
+// …
+```
+
+Adding `'use node'` at the top of a file switches every action in it to a
+full Node.js runtime, at the cost of a colder start. `convex/resendOTP.ts` in
+the auth starter is the useful contrast: it calls the Resend API with `fetch`
+and generates its OTP with Web Crypto's `crypto.getRandomValues`, both
+available in the default runtime, so it has no `'use node'` directive at all.
+Reach for it only when a package assumes Node — an image-processing library,
+a PDF generator — not by default.
+
+## Actions cannot touch the database directly
+
+```ts
+export const doWork = action({
+  handler: async (ctx) => {
+    const task = await ctx.runQuery(internal.tasks.getInternal, {
+      /* … */
+    });
+    // …call a third-party API with `task`…
+    await ctx.runMutation(internal.tasks.markDone, { id: task._id });
+  },
+});
+```
+
+`ctx.runQuery` / `ctx.runMutation` are the only way an action reads or
+writes — there is no `ctx.db` inside one. `internal.*` (as opposed to
+`api.*`) marks a query or mutation as callable only from other Convex
+functions, not from a client.
+
+## Calling an action from Expo
+
+```ts
+const summarize = useAction(api.tasks.summarize);
+
+await summarize({ taskId });
+```
+
+Same shape as `useMutation`, but without the transactional guarantees — an
+action that partially fails does not roll back what it already did.
+
+## Secrets
+
+```bash
+npx convex env set SUMMARY_API_KEY sk_live_...
+```
+
+Same mechanism already used for `AUTH_RESEND_KEY` and the OAuth provider
+secrets — set once per deployment, read with `process.env` inside the
+function, never shipped to the client.
+
+## Scheduling
+
+```ts
+await ctx.scheduler.runAfter(0, internal.tasks.summarize, { taskId });
+```
+
+For recurring work, `convex/crons.ts` exports a `cronJobs()` registry —
+Convex's equivalent of Supabase's `pg_cron`, running inside your deployment
+rather than the database.
+
+## Next
+
+- [Storage](/docs/convex/storage)
+- [Database and schema](/docs/convex/database)
+- [Convex actions documentation](https://docs.convex.dev/functions/actions)

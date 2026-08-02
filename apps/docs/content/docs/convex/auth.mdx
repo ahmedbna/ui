@@ -1,0 +1,252 @@
+---
+title: Authentication
+description: How the Convex Auth starter persists a session, guards screens, handles OAuth and email OTP — and why authorization lives in the function, not a policy.
+---
+
+The auth starter has four moving parts: a client configured for React Native,
+`@convex-dev/auth`'s own provider that owns session state, a tri-state guard
+that decides what renders, and a check inside every function that decides what
+the database returns. Only the last one is a security boundary.
+
+## The provider
+
+```tsx title="app/_layout.tsx"
+const secureStorage = {
+  getItem: SecureStore.getItemAsync,
+  setItem: SecureStore.setItemAsync,
+  removeItem: SecureStore.deleteItemAsync,
+};
+
+const convex = new ConvexReactClient(process.env.EXPO_PUBLIC_CONVEX_URL!, {
+  unsavedChangesWarning: false,
+});
+
+<ConvexAuthProvider
+  client={convex}
+  storage={
+    Platform.OS === 'android' || Platform.OS === 'ios'
+      ? secureStorage
+      : undefined
+  }
+>
+```
+
+`storage` is `expo-secure-store` on iOS and Android — the Keychain and the
+Keystore respectively. On web, passing `undefined` falls back to the
+provider's own default (`localStorage`).
+
+### Session storage
+
+Supabase's session is a JSON blob several kilobytes wide, which is why that
+starter splits storage across SecureStore and AsyncStorage (see [Supabase's
+auth guide](/docs/supabase/auth#session-storage) if you are comparing the
+two). Convex Auth's session token is compact enough that plain
+`expo-secure-store` is normally sufficient with no splitting.
+
+## Route guards
+
+```tsx title="app/_layout.tsx"
+<ConvexAuthProvider client={convex} storage={secureStorage}>
+  <AuthLoading>
+    <Spinner size='lg' variant='circle' />
+  </AuthLoading>
+  <Unauthenticated>
+    <Auth />
+  </Unauthenticated>
+  <Authenticated>
+    <Stack>{/* your app */}</Stack>
+  </Authenticated>
+</ConvexAuthProvider>
+```
+
+`AuthLoading`, `Unauthenticated` and `Authenticated` are mutually exclusive —
+exactly one renders at a time, so there is no frame where the tabs mount before
+the session has resolved.
+
+<Callout title='Guards are not authorization'>
+  They decide what renders on this device. Anyone can run a modified build
+  that skips straight to `<Stack>`. The check inside each Convex function is
+  what actually stops one user reading another's data, and it runs on
+  Convex's servers where the client cannot argue.
+</Callout>
+
+## Authorization lives in the function
+
+There is no RLS-style policy layer sitting underneath your tables. A query or
+mutation returns exactly what its handler tells it to — the enforcement is
+whatever code you write:
+
+```ts title="convex/users.ts"
+export const get = query({
+  handler: async (ctx) => {
+    const authId = await getAuthUserId(ctx);
+
+    if (!authId) {
+      throw new Error('Not authenticated');
+    }
+
+    return await ctx.db.get(authId);
+  },
+});
+```
+
+<Callout title='Forgetting the check fails open, not closed'>
+  Postgres with RLS enabled and no policy denies every row by default — the
+  failure mode is "too locked down." A Convex function with no
+  `getAuthUserId` check simply runs and returns whatever it was coded to
+  return, because there is no enforcement layer underneath it to fall back
+  on. The failure mode here is silent data exposure, not an error. See
+  [database](/docs/convex/database#authorization-lives-in-the-function) for
+  the same point applied to reads and writes.
+</Callout>
+
+## OAuth
+
+One code path per provider, not a shared abstraction — copy `google.tsx` for a
+fourth:
+
+```tsx title="components/auth/google.tsx"
+const redirectTo = makeRedirectUri();
+
+const { redirect } = await signIn('google', { redirectTo });
+
+if (Platform.OS === 'web') return;
+
+const result = await openAuthSessionAsync(redirect!.toString(), redirectTo);
+
+if (result.type === 'success') {
+  const code = new URL(result.url).searchParams.get('code')!;
+  await signIn('google', { code });
+}
+```
+
+`components/auth/apple.tsx` is the same shape with `'apple'` in place of
+`'google'`. GitHub is configured in `convex/auth.ts` but ships no button —
+model one on `google.tsx` if you want it.
+
+## The redirect allow-list
+
+`signIn`'s `redirect` callback decides which URLs the OAuth flow is allowed to
+send a session back to:
+
+```ts title="convex/auth.ts"
+async redirect({ redirectTo }) {
+  const allowed = isAllowedRedirect(redirectTo, {
+    siteUrl: process.env.SITE_URL,
+    expoUrl: process.env.EXPO_URL,
+  });
+
+  if (allowed) return redirectTo;
+
+  throw new Error(`Invalid redirectTo URI ${redirectTo}`);
+},
+```
+
+```ts title="convex/lib/redirect.ts"
+export function isAllowedRedirect(
+  redirectTo: string,
+  { siteUrl, expoUrl }: { siteUrl?: string; expoUrl?: string }
+): boolean {
+  const isExpoDevUrl = redirectTo.startsWith('exp://');
+  const isExpoProdUrl = !!expoUrl && redirectTo.startsWith(expoUrl);
+  const isSiteUrl = !!siteUrl && redirectTo.startsWith(siteUrl);
+
+  return isExpoDevUrl || isExpoProdUrl || isSiteUrl;
+}
+```
+
+<Callout title='This is a code-level allow-list, not a dashboard field'>
+  Supabase's redirect allow-list is a setting in **Authentication → URL
+  Configuration**. Convex's is these three checks against `EXPO_URL` and
+  `SITE_URL`, set with `npx convex env set`. Change your app's `scheme` in
+  `app.json` and you must update `EXPO_URL` too, or every OAuth sign-in starts
+  failing with no client-visible reason why.
+</Callout>
+
+## Password auth
+
+```ts title="convex/auth.ts"
+Password({
+  profile(params) {
+    return {
+      name: params.name as string,
+      email: params.email as string,
+      gender: params.gender as string,
+    };
+  },
+  reset: ResendOTPPasswordReset,
+  validatePasswordRequirements(password) {
+    if (!password || password.length < 8) {
+      throw new Error('Password must be at least 8 characters long');
+    }
+    if (!/\d/.test(password)) {
+      throw new Error('Password must contain at least one number');
+    }
+    if (!/[a-z]/.test(password)) {
+      throw new Error('Password must contain at least one lowercase letter');
+    }
+    if (!/[A-Z]/.test(password)) {
+      throw new Error('Password must contain at least one uppercase letter');
+    }
+  },
+}),
+```
+
+`components/auth/password.tsx` drives four flows through the same `signIn`
+call, distinguished by `flow`:
+
+| UI step           | `signIn('password', { flow: ... })` |
+| ----------------- | ------------------------------------ |
+| Sign in            | `'signIn'`                           |
+| Sign up             | `'signUp'`                           |
+| Forgot password     | `'reset'` — sends the reset code    |
+| Reset password      | `'reset-verification'` — consumes it |
+
+Edit `validatePasswordRequirements` to change the rule — it throws, and the
+message surfaces directly in the sign-up form.
+
+## Email OTP and password reset
+
+Both the OTP tab and the reset flow send mail through
+[Resend](https://resend.com):
+
+```ts title="convex/resendOTP.ts"
+export const ResendOTP = Email({
+  id: 'resend-otp',
+  apiKey: process.env.AUTH_RESEND_KEY,
+  maxAge: 60 * 15,
+  async sendVerificationRequest({ identifier: email, provider, token }) {
+    // …sends `token` to `email` via the Resend API
+  },
+});
+```
+
+Full setup, including the from-address you need to change before shipping:
+[Resend](/docs/convex/resend).
+
+## Anonymous sign-in
+
+`Anonymous` is first in the `providers` array and needs no configuration —
+`components/auth/auth.tsx`'s **Login anonymously** button just calls
+`signIn('anonymous')`.
+
+## Sign out
+
+```tsx title="components/auth/singout.tsx"
+const { signOut } = useAuthActions();
+
+const handleSignOut = async () => {
+  await signOut();
+  router.dismissAll();
+};
+```
+
+`dismissAll()` clears any modals or nested stacks left mounted from the
+authenticated session before the `Unauthenticated` branch takes over.
+
+## Next
+
+- [Database and schema](/docs/convex/database)
+- [Google](/docs/convex/google) · [Apple](/docs/convex/apple) ·
+  [Resend](/docs/convex/resend)
+- [Troubleshooting](/docs/convex/troubleshooting)

@@ -7,6 +7,7 @@ import { ResendOTPPasswordReset } from './passwordReset';
 import { ResendOTP } from './resendOTP';
 import { query } from './_generated/server';
 import { Anonymous } from '@convex-dev/auth/providers/Anonymous';
+import { isAllowedRedirect } from './lib/redirect';
 
 export const { auth, signIn, signOut, store, isAuthenticated } = convexAuth({
   providers: [
@@ -75,14 +76,12 @@ export const { auth, signIn, signOut, store, isAuthenticated } = convexAuth({
     async redirect({ redirectTo }) {
       console.log('Redirect callback called with:', redirectTo);
 
-      const siteUrl = process.env.SITE_URL!;
-      const expoUrl = process.env.EXPO_URL!; // must be set in .env (bna:// in production)
+      const allowed = isAllowedRedirect(redirectTo, {
+        siteUrl: process.env.SITE_URL,
+        expoUrl: process.env.EXPO_URL, // must be set in .env (bna:// in production)
+      });
 
-      const isExpoDevUrl = redirectTo.startsWith('exp://'); // dev URLs
-      const isExpoProdUrl = redirectTo.startsWith(expoUrl); // uses .env (bna:// in prod)
-      const isSiteUrl = siteUrl && redirectTo.startsWith(siteUrl);
-
-      if (isExpoDevUrl || isExpoProdUrl || isSiteUrl) {
+      if (allowed) {
         console.log('Redirect approved:', redirectTo);
         return redirectTo;
       }

@@ -1,250 +1,113 @@
 ---
 title: Google
-description: Complete guide to configure Google OAuth authentication for your Convex application.
+description: Configure Google as an OAuth provider for the Convex Auth starter — the OAuth client, the .site callback URL, and what to do when the browser comes back to nothing.
 ---
 
-## Overview
+The starter's Google button works as soon as the provider is configured on
+your Convex deployment. No code changes — it shares the browser flow with
+Apple.
 
-This guide will walk you through setting up Google OAuth authentication for your Convex application. By the end of this setup, your users will be able to sign in using their Google accounts.
+## Create the OAuth client
 
-## Prerequisites
+<Steps>
 
-Before starting, ensure you have:
+<Step>Open the Google Cloud console</Step>
 
-- A Google developer account (create one at [Google for Developers](https://developers.google.com/))
-- A Convex project set up and deployed
-- Access to your Convex deployment's HTTP Actions URL
+[console.cloud.google.com](https://console.cloud.google.com) → create or pick
+a project.
 
-## Step 1: Create or Open a Google Cloud Project
+<Step>Configure the consent screen</Step>
 
-1. Navigate to the [Google Auth Platform overview](https://console.developers.google.com/)
-2. Select an existing project or create a new one by clicking **"New Project"**
-3. If creating a new project, provide a project name and click **"Create"**
+**APIs & Services → OAuth consent screen**. Pick **External** unless this is
+a Workspace-only app. Fill in the app name, support email and developer
+contact.
 
-<ImagePreview
-  alt='Google Cloud Console dashboard with New Project button'
-  src='https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/Screenshot 2025-09-10 at 10.30.18 PM.png'
-/>
-<ImagePreview
-  alt='Google Cloud New Project dialog'
-  src='https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/Screenshot 2025-09-10 at 10.35.17 PM.png'
-/>
-<ImagePreview
-  alt='Google Cloud project dashboard'
-  src='https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/Screenshot 2025-09-10 at 10.36.40 PM.png'
-/>
-<ImagePreview
-  alt='Navigating to APIs & Services in the Google Cloud Console'
-  src='https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/Screenshot 2025-09-10 at 10.37.22 PM.png'
-/>
-<ImagePreview
-  alt='Selecting the OAuth consent screen'
-  src='https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/Screenshot 2025-09-10 at 10.37.42 PM.png'
-/>
+While the app is in **Testing**, only accounts you list under **Test users**
+can sign in — everyone else gets "access blocked." Publish before launch.
 
-## Step 2: Configure OAuth Consent Screen
+<Step>Create the credentials</Step>
 
-### Initial Setup
+**APIs & Services → Credentials → Create credentials → OAuth client ID**,
+type **Web application**. Web, not Android or iOS: the browser flow
+authenticates against Convex's HTTP Actions endpoint, which is a web
+endpoint.
 
-1. In your Google Cloud Console, navigate to **APIs & Services > OAuth consent screen**
-2. Click the **"GET STARTED"** button on the **Overview** page
-3. Fill in the required information:
-   - **App name**: Enter the name that will be displayed to users during authentication
-   - **User support email**: Select an email address for user support
-4. Click **"NEXT"**
+<Step>Find your Convex HTTP Actions URL</Step>
 
-<ImagePreview
-  alt='Configuring the OAuth consent screen with user type'
-  src='https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/Screenshot 2025-09-10 at 10.39.12 PM.png'
-/>
-<ImagePreview
-  alt='Editing app registration details for OAuth'
-  src='https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/Screenshot 2025-09-10 at 10.40.15 PM.png'
-/>
-<ImagePreview
-  alt='Configuring scopes for the OAuth consent screen'
-  src='https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/Screenshot 2025-09-10 at 10.41.11 PM.png'
-/>
-<ImagePreview
-  alt='Configuring test users for the OAuth consent screen'
-  src='https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/Screenshot 2025-09-10 at 10.42.16 PM.png'
-/>
+Convex dashboard → **Settings → URL & Deploy Key**. It ends in `.site`, not
+`.cloud` — that second URL is the one your app talks to for queries and
+mutations, and it is not the one Google needs to redirect to.
 
-### Choose App Type
-
-1. Select your app type:
-   - **Internal**: For apps used within your organization only
-   - **External**: For public applications (recommended for most use cases)
-2. Click **"NEXT"**
-
-<ImagePreview
-  alt='OAuth consent screen summary with publishing status'
-  src='https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/Screenshot 2025-09-10 at 10.43.33 PM.png'
-/>
-
-### Contact Information
-
-1. Enter email addresses for **Contact Information** (required for external apps)
-2. Click **"NEXT"**
-3. Review the User Data Policy and check the agreement box
-4. Click **"CONTINUE"**
-5. Click **"CREATE"**
-
-<ImagePreview
-  alt='Adding test user email addresses'
-  src='https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/Screenshot 2025-09-10 at 10.44.08 PM.png'
-/>
-<ImagePreview
-  alt='List of configured test users'
-  src='https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/Screenshot 2025-09-10 at 10.44.34 PM.png'
-/>
-
-### Configure Test Users (External Apps Only)
-
-If you chose **External** app type:
-
-1. Click **"Test users"** in the left navigation menu
-2. Click **"ADD USERS"**
-3. Add email addresses of users who should be able to test your authentication
-4. Click **"SAVE"**
-
-## Step 3: Create OAuth Client Credentials
-
-### Create OAuth Client
-
-1. Navigate to **APIs & Services > Credentials**
-2. Click **"CREATE CREDENTIALS"** and select **"OAuth client ID"**
-3. Choose **"Web application"** as the application type
-4. Enter a name for your OAuth client (for organizational purposes only)
-
-<ImagePreview
-  alt='Credentials page with Create Credentials button'
-  src='https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/Screenshot 2025-09-10 at 10.47.17 PM.png'
-/>
-<ImagePreview
-  alt='Selecting OAuth client ID from dropdown'
-  src='https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/Screenshot 2025-09-10 at 10.48.06 PM.png'
-/>
-<ImagePreview
-  alt='Creating an OAuth client ID with Web application type'
-  src='https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/Screenshot 2025-09-10 at 10.49.50 PM.png'
-/>
-
-### Configure Authorized Origins and Redirect URIs
-
-#### Authorized JavaScript Origins
-
-For development:
+<Step>Add the authorized redirect URI</Step>
 
 ```
-http://localhost:3000
+{HTTP_ACTIONS_URL}/api/auth/callback/google
 ```
 
-For production, add your actual domain:
+For example, if your HTTP Actions URL is `https://fast-horse-123.convex.site`:
 
 ```
-https://yourdomain.com
+https://fast-horse-123.convex.site/api/auth/callback/google
 ```
 
-#### Authorized Redirect URIs
-
-1. **Find your Convex HTTP Actions URL**:
-
-   - Open your Convex dashboard
-   - Navigate to **Settings > URL & Deploy Key > Show development credentials**
-   - Note your HTTP Actions URL (ends with `.site`, not `.cloud`)
-
-2. **Configure the redirect URI**:
-
-   - Format: `{HTTP_ACTIONS_URL}/api/auth/callback/google`
-   - Example: If your actions URL is `https://fast-horse-123.convex.site`, then your redirect URI is:
-
-   ```
-   https://fast-horse-123.convex.site/api/auth/callback/google
-   ```
-
-3. Click **"CREATE"** to save your OAuth client
-
-<ImagePreview
-  alt='Configuring Authorized JavaScript origins'
-  src='https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/Screenshot 2025-09-10 at 11.04.17 PM.png'
-/>
-<ImagePreview
-  alt='Configuring Authorized redirect URIs'
-  src='https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/Screenshot 2025-09-10 at 11.07.09 PM.png'
-/>
-
-## Step 4: Set Convex Environment Variables
-
-### Retrieve OAuth Credentials
-
-1. From the **Credentials** page, click on your newly created OAuth client
-2. Copy the **Client ID** and **Client secret** values
-
-<ImagePreview
-  alt='OAuth credentials list in Google Cloud Console'
-  src='https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/Screenshot 2025-09-10 at 11.09.08 PM.png'
-/>
-<ImagePreview
-  alt='Viewing OAuth Client ID and Client Secret'
-  src='https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/Screenshot 2025-09-10 at 11.12.31 PM.png'
-/>
-
-### Configure Environment Variables
-
-You can set environment variables either via the Convex CLI or through the dashboard.
-
-#### Option 1: Using Convex CLI (Recommended)
-
-Open your terminal in your Convex application directory and run:
+<Step>Set the environment variables</Step>
 
 ```bash
-# Set Google OAuth Client ID
-npx convex env set AUTH_GOOGLE_ID your_google_client_id_here
-
-# Set Google OAuth Client Secret
-npx convex env set AUTH_GOOGLE_SECRET your_google_client_secret_here
+npx convex env set AUTH_GOOGLE_ID your_client_id
+npx convex env set AUTH_GOOGLE_SECRET your_client_secret
 ```
 
-#### Option 2: Using Convex Dashboard
+</Steps>
 
-1. Open your Convex dashboard
-2. Navigate to **Settings > Environment Variables**
-3. Add the following variables:
-   - **Variable Name**: `AUTH_GOOGLE_ID`, **Value**: Your Google Client ID
-   - **Variable Name**: `AUTH_GOOGLE_SECRET`, **Value**: Your Google Client Secret
+<Callout title='.site, not .cloud'>
+  Every Convex deployment has two URLs: `*.convex.cloud` for the client SDK,
+  and `*.convex.site` for HTTP Actions — which is what serves the OAuth
+  callback. Pasting the `.cloud` URL into Google's redirect URI is the single
+  most common cause of `redirect_uri_mismatch` here.
+</Callout>
 
-<ImagePreview
-  alt='Viewing OAuth Client ID and Client Secret'
-  src='https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/Screenshot 2025-09-10 at 11.12.31 PM.png'
-/>
+## Test it
 
-### Common Issues and Solutions
+```bash
+npx expo start
+```
 
-#### "Error 400: redirect_uri_mismatch"
+Tap **Login with Google**. A browser sheet opens, you pick an account, and it
+closes; the session lands and you're routed into the app.
 
-- Verify your redirect URI exactly matches the format: `{HTTP_ACTIONS_URL}/api/auth/callback/google`
-- Ensure you're using the correct HTTP Actions URL (ends with `.site`)
+## What the starter does
 
-#### Environment Variables Not Found
+```tsx title="components/auth/google.tsx"
+const redirectTo = makeRedirectUri();
 
-- Ensure environment variables are set correctly
-- Restart your Convex deployment after setting new environment variables
+const { redirect } = await signIn('google', { redirectTo });
 
-### Security Best Practices
+if (Platform.OS === 'web') return;
 
-- Regularly rotate your OAuth client secrets
-- Monitor your Google Cloud Console for any suspicious activity
-- Use HTTPS in production environments
-- Consider implementing additional security measures like rate limiting
+const result = await openAuthSessionAsync(redirect!.toString(), redirectTo);
 
-## Support
+if (result.type === 'success') {
+  const code = new URL(result.url).searchParams.get('code')!;
+  await signIn('google', { code });
+}
+```
 
-For additional help:
+`signIn('google', { redirectTo })` kicks off the flow and hands back the URL
+to open; the second `signIn` call, with the code Google returned, is what
+actually completes it. See [authentication](/docs/convex/auth#oauth) for how
+Apple reuses the same shape.
 
-- [Convex Auth Documentation](https://labs.convex.dev/auth/config/oauth/google)
-- [Google OAuth Documentation](https://developers.google.com/identity/protocols/oauth2)
+## When it does not work
 
----
+| What you see                                     | Usually                                                             |
+| --------------------------------------------------- | ------------------------------------------------------------------------ |
+| `redirect_uri_mismatch`                              | The `.cloud` URL was used instead of `.site`, or the path has a typo      |
+| Browser closes, nothing happens                      | `EXPO_URL`/`SITE_URL` don't cover the redirect Convex sent back — see [the redirect allow-list](/docs/convex/auth#the-redirect-allow-list) |
+| "Access blocked: app not verified"                   | Consent screen still in Testing and this account isn't a test user       |
+| Works after `npx convex env set`, still fails         | The deployment needs a moment to pick up new env vars — retry once      |
 
-_Secure authentication made simple with Convex Auth! 🚀_
+## Next
+
+- [Apple](/docs/convex/apple) · [Resend](/docs/convex/resend)
+- [Authentication](/docs/convex/auth)
+- [Convex Auth Google provider docs](https://labs.convex.dev/auth/config/oauth/google)
