@@ -36,6 +36,15 @@ jobs:
       - name: Verify registry payload contract
         run: pnpm --filter @bna-ui/registry verify
 
+      # Diffs meta/<name>.ts's documented props against each component's
+      # actual exported prop type. Non-blocking: `meta/` covers 78 components
+      # by hand, and a false positive here shouldn't hold up an unrelated PR.
+      # Read the job summary for findings; promote to a hard failure once the
+      # signal-to-noise ratio has earned it (see AUDIT.md Phase 8).
+      - name: Check meta.ts prop drift
+        continue-on-error: true
+        run: pnpm --filter @bna-ui/registry check-meta-drift
+
       - run: pnpm turbo run typecheck
       - run: pnpm turbo run test
       - run: pnpm turbo run lint

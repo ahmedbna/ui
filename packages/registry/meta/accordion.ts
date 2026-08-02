@@ -46,6 +46,11 @@ export const accordionMeta: ComponentMeta = {
           description:
             'When `type` is `"single"`, allows closing content when clicking trigger for an open item.',
         },
+        {
+          name: 'children',
+          type: 'React.ReactNode',
+          description: 'One or more `AccordionItem` elements.',
+        },
       ],
     },
     {
@@ -56,6 +61,11 @@ export const accordionMeta: ComponentMeta = {
           name: 'value',
           type: 'string',
           description: 'A unique value for the item.',
+        },
+        {
+          name: 'children',
+          type: 'React.ReactNode',
+          description: 'An `AccordionTrigger` and `AccordionContent` pair.',
         },
       ],
     },

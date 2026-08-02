@@ -54,6 +54,12 @@ export const spinnerMeta: ComponentMeta = {
           default: "`'normal'`",
           description: 'Animation speed of the spinner.',
         },
+        {
+          name: 'thickness',
+          type: 'number',
+          description:
+            "Stroke width of the icon used by the `'circle'` variant. Has no effect on other variants.",
+        },
       ],
     },
     {

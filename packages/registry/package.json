@@ -39,6 +39,7 @@
     "test:watch": "vitest",
     "clean": "rm -rf generated dist .turbo",
     "verify": "node scripts/verify-payloads.mjs",
+    "check-meta-drift": "tsx scripts/check-meta-drift.ts",
     "lint": "eslint ."
   },
   "dependencies": {

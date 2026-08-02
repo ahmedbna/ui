@@ -31,6 +31,13 @@ export const skeletonMeta: ComponentMeta = {
           type: 'ViewStyle',
           description: 'Additional styles to apply to the skeleton.',
         },
+        {
+          name: 'variant',
+          type: "'default' | 'rounded'",
+          default: "`'default'`",
+          description:
+            'Corner radius preset: `"default"` uses `CORNERS` (fully rounded), `"rounded"` uses `BORDER_RADIUS` (moderately rounded).',
+        },
       ],
     },
   ],

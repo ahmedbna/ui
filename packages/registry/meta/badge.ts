@@ -36,6 +36,12 @@ export const badgeMeta: ComponentMeta = {
           type: 'TextStyle',
           description: 'Additional styles to apply to the badge text.',
         },
+        {
+          name: 'accessibilityLabel',
+          type: 'string',
+          description:
+            'Accessibility label for screen readers. Defaults to the string/number `children` when omitted.',
+        },
       ],
     },
   ],

@@ -33,6 +33,12 @@ export const toastMeta: ComponentMeta = {
       description: 'The shape passed to `toast(...)`.',
       props: [
         {
+          name: 'id',
+          type: 'string',
+          description:
+            'Unique identifier, auto-generated internally — not something callers of `toast(...)` provide themselves.',
+        },
+        {
           name: 'title',
           type: 'string',
           description: 'Toast title text.',

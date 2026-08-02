@@ -78,6 +78,12 @@ export const colorPickerMeta: ComponentMeta = {
           type: '() => void',
           description: 'Callback fired when the swatch is pressed.',
         },
+        {
+          name: 'accessibilityLabel',
+          type: 'string',
+          description:
+            'Accessibility label for screen readers. Defaults to `"Color swatch {color}"` when omitted.',
+        },
       ],
     },
   ],

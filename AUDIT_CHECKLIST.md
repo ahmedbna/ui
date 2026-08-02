@@ -254,8 +254,8 @@ the real prop exists.
 
 ## Phase 8 — Process
 
-- [ ] Start a changeset practice for `@bna-ui/registry` component changes (today only the `bna-ui` CLI package has an active `.changeset/` history — the component library itself has never been formally versioned)
-- [ ] Add a CI check that diffs each `meta/<name>.ts`'s documented props against the actual component's exported prop type — highest-leverage process fix available; manual spot-checking is what let the Phase 2 drift accumulate undetected across most of the library in the first place
+- [x] Start a changeset practice for `@bna-ui/registry` component changes (today only the `bna-ui` CLI package has an active `.changeset/` history — the component library itself has never been formally versioned)
+- [x] Add a CI check that diffs each `meta/<name>.ts`'s documented props against the actual component's exported prop type — highest-leverage process fix available; manual spot-checking is what let the Phase 2 drift accumulate undetected across most of the library in the first place
 
 ---
 

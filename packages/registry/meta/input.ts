@@ -82,6 +82,13 @@ export const inputMeta: ComponentMeta = {
           default: '`4`',
           description: 'Number of visible text lines. Only used when `type` is `"textarea"`.',
         },
+        {
+          name: 'placeholder',
+          type: 'string',
+          default: "`'Type your message...'` when `type` is `\"textarea\"`",
+          description:
+            'Placeholder text shown when the input is empty. `type="textarea"` falls back to a default when omitted; `type="input"` has no fallback.',
+        },
       ],
     },
     {

@@ -47,6 +47,12 @@ export const checkboxMeta: ComponentMeta = {
           type: 'TextStyle',
           description: 'Additional styles to apply to the label text.',
         },
+        {
+          name: 'accessibilityLabel',
+          type: 'string',
+          description:
+            'Accessibility label for screen readers. Defaults to `label` when omitted.',
+        },
       ],
     },
   ],
