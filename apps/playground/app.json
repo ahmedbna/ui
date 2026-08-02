@@ -32,7 +32,10 @@
         }
       ],
       "expo-video",
-      "expo-audio"
+      "expo-audio",
+      "expo-camera",
+      "expo-image-picker",
+      "expo-media-library"
     ],
     "experiments": {
       "typedRoutes": true

@@ -1,7 +1,8 @@
 import { useColor } from '@/hooks/useColor';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { LayoutChangeEvent, View, ViewStyle } from 'react-native';
 import Animated, {
+  SharedValue,
   useAnimatedProps,
   useSharedValue,
   withTiming,
@@ -18,6 +19,35 @@ import Svg, {
 
 // Animated SVG Components
 const AnimatedPath = Animated.createAnimatedComponent(Path);
+
+type AnimatedAreaProps = {
+  d: string;
+  fill: string;
+  stroke: string;
+  opacityFactor: number;
+  animationProgress: SharedValue<number>;
+};
+
+// Per-item hook must live in its own mounted subcomponent, not in the
+// parent's Array.from(...) render loop — calling useAnimatedProps per loop
+// iteration violates Rules of Hooks the moment seriesCount changes.
+const AnimatedArea = React.memo(
+  ({ d, fill, stroke, opacityFactor, animationProgress }: AnimatedAreaProps) => {
+    const areaAnimatedProps = useAnimatedProps(() => ({
+      opacity: animationProgress.value * opacityFactor,
+    }));
+
+    return (
+      <AnimatedPath
+        d={d}
+        fill={fill}
+        stroke={stroke}
+        strokeWidth={1}
+        animatedProps={areaAnimatedProps}
+      />
+    );
+  }
+);
 
 interface ChartConfig {
   width?: number;
@@ -225,18 +255,14 @@ export const StackedAreaChart = ({
 
           const areaPath = createAreaPath(topPoints, bottomPoints);
 
-          const areaAnimatedProps = useAnimatedProps(() => ({
-            opacity: animationProgress.value * (seriesIndex === 0 ? 1 : 0.7), // Make upper areas slightly transparent
-          }));
-
           return (
-            <AnimatedPath
+            <AnimatedArea
               key={`area-${seriesIndex}`}
               d={areaPath}
               fill={`url(#areaGradient-${seriesIndex})`}
               stroke={seriesColors[seriesIndex]}
-              strokeWidth={1}
-              animatedProps={areaAnimatedProps}
+              opacityFactor={seriesIndex === 0 ? 1 : 0.7} // Make upper areas slightly transparent
+              animationProgress={animationProgress}
             />
           );
         })}

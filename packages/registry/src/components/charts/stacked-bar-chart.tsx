@@ -1,9 +1,10 @@
 // components/charts/stacked-bar-chart.tsx
 
 import { useColor } from '@/hooks/useColor';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { LayoutChangeEvent, View, ViewStyle } from 'react-native';
 import Animated, {
+  SharedValue,
   useAnimatedProps,
   useSharedValue,
   withTiming,
@@ -12,6 +13,81 @@ import Svg, { G, Line, Rect, Text as SvgText } from 'react-native-svg';
 
 // Animated SVG Components
 const AnimatedRect = Animated.createAnimatedComponent(Rect);
+
+type AnimatedHorizontalSegmentProps = {
+  x: number;
+  y: number;
+  barHeight: number;
+  segmentWidth: number;
+  fill: string;
+  animationProgress: SharedValue<number>;
+};
+
+// Per-item hooks must live in their own mounted subcomponent, not in the
+// parent's nested item×value .map() body — calling useAnimatedProps per
+// loop iteration violates Rules of Hooks the moment data changes. Two
+// subcomponents here (horizontal vs vertical branch) since the two modes
+// animate different SVG attributes.
+const AnimatedHorizontalSegment = React.memo(
+  ({
+    x,
+    y,
+    barHeight,
+    segmentWidth,
+    fill,
+    animationProgress,
+  }: AnimatedHorizontalSegmentProps) => {
+    const segmentAnimatedProps = useAnimatedProps(() => ({
+      width: animationProgress.value * segmentWidth,
+    }));
+
+    return (
+      <AnimatedRect
+        x={x}
+        y={y}
+        height={barHeight}
+        fill={fill}
+        rx={2}
+        animatedProps={segmentAnimatedProps}
+      />
+    );
+  }
+);
+
+type AnimatedVerticalSegmentProps = {
+  x: number;
+  barWidth: number;
+  segmentHeight: number;
+  bottomY: number;
+  fill: string;
+  animationProgress: SharedValue<number>;
+};
+
+const AnimatedVerticalSegment = React.memo(
+  ({
+    x,
+    barWidth,
+    segmentHeight,
+    bottomY,
+    fill,
+    animationProgress,
+  }: AnimatedVerticalSegmentProps) => {
+    const segmentAnimatedProps = useAnimatedProps(() => ({
+      height: animationProgress.value * segmentHeight,
+      y: bottomY - animationProgress.value * segmentHeight,
+    }));
+
+    return (
+      <AnimatedRect
+        x={x}
+        width={barWidth}
+        fill={fill}
+        rx={2}
+        animatedProps={segmentAnimatedProps}
+      />
+    );
+  }
+);
 
 interface ChartConfig {
   width?: number;
@@ -141,21 +217,17 @@ export const StackedBarChart = ({
                   const segmentWidth = (value / maxValue) * innerChartWidth;
                   const x = padding + cumulativeWidth;
 
-                  const segmentAnimatedProps = useAnimatedProps(() => ({
-                    width: animationProgress.value * segmentWidth,
-                  }));
-
                   cumulativeWidth += segmentWidth;
 
                   return (
-                    <AnimatedRect
+                    <AnimatedHorizontalSegment
                       key={`segment-${itemIndex}-${valueIndex}`}
                       x={x}
                       y={y}
-                      height={barHeight}
+                      barHeight={barHeight}
+                      segmentWidth={segmentWidth}
                       fill={seriesColors[valueIndex]}
-                      rx={2}
-                      animatedProps={segmentAnimatedProps}
+                      animationProgress={animationProgress}
                     />
                   );
                 })}
@@ -241,27 +313,19 @@ export const StackedBarChart = ({
             <G key={`bar-group-${itemIndex}`}>
               {item.values.map((value, valueIndex) => {
                 const segmentHeight = (value / maxValue) * chartHeight;
-                const y = height - padding - cumulativeHeight - segmentHeight;
-
-                const segmentAnimatedProps = useAnimatedProps(() => ({
-                  height: animationProgress.value * segmentHeight,
-                  y:
-                    height -
-                    padding -
-                    cumulativeHeight -
-                    animationProgress.value * segmentHeight,
-                }));
+                const bottomY = height - padding - cumulativeHeight;
 
                 cumulativeHeight += segmentHeight;
 
                 return (
-                  <AnimatedRect
+                  <AnimatedVerticalSegment
                     key={`segment-${itemIndex}-${valueIndex}`}
                     x={x}
-                    width={barWidth}
+                    barWidth={barWidth}
+                    segmentHeight={segmentHeight}
+                    bottomY={bottomY}
                     fill={seriesColors[valueIndex]}
-                    rx={2}
-                    animatedProps={segmentAnimatedProps}
+                    animationProgress={animationProgress}
                   />
                 );
               })}

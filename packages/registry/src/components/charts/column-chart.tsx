@@ -1,7 +1,8 @@
 import { useColor } from '@/hooks/useColor';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { LayoutChangeEvent, View, ViewStyle } from 'react-native';
 import Animated, {
+  SharedValue,
   useAnimatedProps,
   useSharedValue,
   withTiming,
@@ -10,6 +11,37 @@ import Svg, { G, Rect, Text as SvgText } from 'react-native-svg';
 
 // Animated SVG Components
 const AnimatedRect = Animated.createAnimatedComponent(Rect);
+
+type AnimatedColumnProps = {
+  x: number;
+  y: number;
+  barHeight: number;
+  barWidth: number;
+  fill: string;
+  animationProgress: SharedValue<number>;
+};
+
+// Per-item hook must live in its own mounted subcomponent, not in the
+// parent's .map() body — calling useAnimatedProps per loop iteration
+// violates Rules of Hooks the moment data.length changes.
+const AnimatedColumn = React.memo(
+  ({ x, y, barHeight, barWidth, fill, animationProgress }: AnimatedColumnProps) => {
+    const barAnimatedProps = useAnimatedProps(() => ({
+      width: animationProgress.value * barWidth,
+    }));
+
+    return (
+      <AnimatedRect
+        x={x}
+        y={y}
+        height={barHeight}
+        fill={fill}
+        rx={4}
+        animatedProps={barAnimatedProps}
+      />
+    );
+  }
+);
 
 interface ChartConfig {
   width?: number;
@@ -81,19 +113,15 @@ export const ColumnChart = ({ data, config = {}, style }: Props) => {
           const x = padding;
           const y = padding + index * (barHeight + barSpacing) + barSpacing / 2;
 
-          const barAnimatedProps = useAnimatedProps(() => ({
-            width: animationProgress.value * barWidth,
-          }));
-
           return (
             <G key={`bar-${index}`}>
-              <AnimatedRect
+              <AnimatedColumn
                 x={x}
                 y={y}
-                height={barHeight}
+                barHeight={barHeight}
+                barWidth={barWidth}
                 fill={item.color || primaryColor}
-                rx={4}
-                animatedProps={barAnimatedProps}
+                animationProgress={animationProgress}
               />
 
               {showLabels && (

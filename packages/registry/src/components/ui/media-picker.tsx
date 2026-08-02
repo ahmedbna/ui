@@ -11,6 +11,7 @@ import React, { forwardRef, useEffect, useRef, useState } from 'react';
 import {
   Dimensions,
   FlatList,
+  Linking,
   Modal,
   Pressable,
   View as RNView,
@@ -99,6 +100,7 @@ export const MediaPicker = forwardRef<RNView, MediaPickerProps>(
       MediaLibrary.AssetInfo[]
     >([]);
     const [hasPermission, setHasPermission] = useState<boolean | null>(null);
+    const [canAskAgain, setCanAskAgain] = useState(true);
 
     // Use ref to track previous selectedAssets to avoid unnecessary updates
     const prevSelectedAssetsRef = useRef<MediaAsset[]>(selectedAssets);
@@ -111,11 +113,6 @@ export const MediaPicker = forwardRef<RNView, MediaPickerProps>(
     const primaryColor = useColor('primary');
     const secondary = useColor('secondary');
 
-    // Request permissions on mount
-    useEffect(() => {
-      requestPermissions();
-    }, []);
-
     // Update internal state when selectedAssets prop changes (with proper comparison)
     useEffect(() => {
       // Only update if the arrays are actually different
@@ -125,19 +122,33 @@ export const MediaPicker = forwardRef<RNView, MediaPickerProps>(
       }
     }, [selectedAssets]);
 
-    const requestPermissions = async () => {
+    // Requested lazily, from the picker button press, rather than eagerly on
+    // mount — avoids surfacing the OS permission prompt before the user has
+    // expressed any intent to pick media.
+    const requestPermissions = async (): Promise<{
+      granted: boolean;
+      canAskAgain: boolean;
+    }> => {
       try {
-        const { status } = await MediaLibrary.requestPermissionsAsync();
-        setHasPermission(status === 'granted');
+        const { status, canAskAgain: canAsk } =
+          await MediaLibrary.requestPermissionsAsync();
+        const granted = status === 'granted';
+        setHasPermission(granted);
+        setCanAskAgain(canAsk);
 
-        if (status !== 'granted') {
+        if (!granted) {
           onError?.(
-            'Media library permission is required to access photos and videos'
+            canAsk
+              ? 'Media library permission is required to access photos and videos'
+              : 'Media library permission was denied. Enable it in Settings to continue.'
           );
         }
+
+        return { granted, canAskAgain: canAsk };
       } catch (error) {
         onError?.('Failed to request permissions');
         setHasPermission(false);
+        return { granted: false, canAskAgain: true };
       }
     };
 
@@ -180,8 +191,18 @@ export const MediaPicker = forwardRef<RNView, MediaPickerProps>(
 
     const pickFromGallery = async () => {
       if (!hasPermission) {
-        await requestPermissions();
-        return;
+        if (hasPermission === false && !canAskAgain) {
+          Linking.openSettings();
+          return;
+        }
+
+        const { granted, canAskAgain: canAsk } = await requestPermissions();
+        if (!granted) {
+          if (!canAsk) {
+            Linking.openSettings();
+          }
+          return;
+        }
       }
 
       if (gallery) {
@@ -194,10 +215,10 @@ export const MediaPicker = forwardRef<RNView, MediaPickerProps>(
         const result = await ImagePicker.launchImageLibraryAsync({
           mediaTypes:
             mediaType === 'image'
-              ? ImagePicker.MediaTypeOptions.Images
+              ? ['images']
               : mediaType === 'video'
-                ? ImagePicker.MediaTypeOptions.Videos
-                : ImagePicker.MediaTypeOptions.All,
+                ? ['videos']
+                : ['images', 'videos'],
           allowsMultipleSelection: multiple,
           quality: quality === 'high' ? 1 : quality === 'medium' ? 0.7 : 0.3,
           selectionLimit: multiple ? maxSelection : 1,

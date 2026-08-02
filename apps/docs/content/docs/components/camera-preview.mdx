@@ -31,7 +31,7 @@ npx bna-ui add camera-preview
 <Step>Install the following dependencies:</Step>
 
 ```bash
-npx expo install expo-camera expo-media-library expo-av lucide-react-native
+npx expo install expo-camera expo-media-library lucide-react-native
 ```
 
 <Step>Copy and paste the following code into your project.</Step>
@@ -117,47 +117,16 @@ npx expo install expo-camera expo-media-library expo-av lucide-react-native
 
 ### CameraPreview
 
-The main camera preview component that provides a complete camera experience.
+`CameraPreview` takes **no props**. It's a self-contained, full-screen camera
+screen that hardcodes its own configuration internally (back camera, torch
+and video capture enabled) and manages capture, preview, and save-to-gallery
+state on its own. It composes the registry's own `Camera` and `Video`
+components — there is no `CameraPreviewProps` type, no `onCapture`/`onError`/
+`onPermission` events, and no `MediaDetails` type to import.
 
-| Prop           | Type                                   | Default  | Description                                 |
-| -------------- | -------------------------------------- | -------- | ------------------------------------------- |
-| `onUpload`     | `(media: MediaDetails) => void`        | -        | Custom upload handler for captured media    |
-| `onSave`       | `(media: MediaDetails) => void`        | -        | Custom save handler for captured media      |
-| `facing`       | `'front' \| 'back'`                    | `'back'` | Default camera facing direction             |
-| `enableTorch`  | `boolean`                              | `true`   | Enable flash/torch functionality            |
-| `enableVideo`  | `boolean`                              | `true`   | Enable video recording                      |
-| `showControls` | `boolean`                              | `true`   | Show camera control buttons                 |
-| `maxDuration`  | `number`                               | `60`     | Maximum video recording duration in seconds |
-| `quality`      | `'low' \| 'medium' \| 'high' \| 'max'` | `'high'` | Photo/video quality setting                 |
-| `style`        | `ViewStyle`                            | -        | Additional styles for the container         |
-| `cameraStyle`  | `ViewStyle`                            | -        | Additional styles for the camera view       |
-| `buttonStyle`  | `ViewStyle`                            | -        | Additional styles for control buttons       |
-| `autoSave`     | `boolean`                              | `false`  | Automatically save to gallery after capture |
-| `showPreview`  | `boolean`                              | `true`   | Show preview screen after capture           |
-
-### MediaDetails
-
-The media object structure returned by capture events.
-
-```tsx
-interface MediaDetails {
-  uri: string;
-  type: 'picture' | 'video';
-  timestamp: string;
-  width?: number;
-  height?: number;
-  duration?: number;
-  size?: number;
-}
-```
-
-### Events
-
-| Event          | Type                            | Description                          |
-| -------------- | ------------------------------- | ------------------------------------ |
-| `onCapture`    | `(media: MediaDetails) => void` | Fired when media is captured         |
-| `onError`      | `(error: Error) => void`        | Fired when an error occurs           |
-| `onPermission` | `(granted: boolean) => void`    | Fired when permissions are requested |
+If you need a configurable camera with props and callbacks, use
+[`Camera`](/docs/components/camera) directly and build your own preview flow
+around it.
 
 ## Permissions
 

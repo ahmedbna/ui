@@ -24,7 +24,7 @@ that row has the full prop-level detail, a code sketch, and doc citations.
 
 ## Phase 0 — Stop the bleeding (real bugs, do first)
 
-- [ ] **15 charts — Rules-of-Hooks violation**: `useAnimatedProps`/`useAnimatedStyle`
+- [x] **15 charts — Rules-of-Hooks violation**: `useAnimatedProps`/`useAnimatedStyle`
   called inside a `.map()`/`Array.from()` render loop instead of at a
   subcomponent's top level → extract the per-item render into its own
   subcomponent so the hook runs once per **mounted instance**, not once per
@@ -38,31 +38,31 @@ that row has the full prop-level detail, a code sketch, and doc citations.
   per-item multiplier), `heatmap-chart` (rows×cols — worst overall
   multiplier), `treemap-chart`. Not affected: `progress-ring-chart`,
   `chart-container`.
-- [ ] **`tabs.tsx`**: `allTabContents`, a mutable object, is declared at
+- [x] **`tabs.tsx`**: `allTabContents`, a mutable object, is declared at
   **module scope** and mutated by every mounted instance; live by default
   since `enableSwipe` defaults `true` → move it into component-scoped state
   (`useRef`/context owned by the `Tabs` provider). Two `Tabs` with overlapping
   `value` strings on screen (or a lingering navigator stack) currently corrupt
   each other's content and leak references forever.
-- [ ] **`video.tsx`**: `nativeControls` is destructured with a default but
+- [x] **`video.tsx`**: `nativeControls` is destructured with a default but
   `VideoView` hardcodes `nativeControls={false}` regardless → forward the real
   prop. Separately, exported `VideoRef` documents `play`/`pause`/`seekTo`/etc.
   that are never wired via `useImperativeHandle` (`forwardRef` passes straight
   through to the native view) → implement `useImperativeHandle`, mirroring
   `camera.tsx`'s correct `CameraRef` pattern.
-- [ ] **`definitions/action-sheet.ts`**: has no `dependencies` field at all,
+- [x] **`definitions/action-sheet.ts`**: has no `dependencies` field at all,
   despite `action-sheet.tsx` statically importing `react-native-reanimated`,
   and its `registryDependencies` (`text`,`view`) resolve to empty →
   `bna-ui add action-sheet` ships an unresolvable import on a fresh project.
   Add `dependencies: ['react-native-reanimated', 'react-native-worklets']`.
-- [ ] **`media-picker.tsx`**: uses deprecated `ImagePicker.MediaTypeOptions`
+- [x] **`media-picker.tsx`**: uses deprecated `ImagePicker.MediaTypeOptions`
   enum → migrate to the current `mediaTypes` string-array API. Requests
   permissions eagerly on mount with no `Linking.openSettings()` fallback for
   permanent denial → move to button-press handler + Settings deep-link. Docs
   claim permissions are "automatically requested" but the required `app.json`
   config-plugin entries are confirmed **absent** from `apps/playground/app.json`
   → real first-run iOS crash risk; document the required plugin block.
-- [ ] **`camera-preview.mdx`**: documents ~13 props, a `MediaDetails` type, and
+- [x] **`camera-preview.mdx`**: documents ~13 props, a `MediaDetails` type, and
   3 events on a component that takes **zero props** (confirmed — no
   `CameraPreviewProps` exists) → rewrite the API Reference to state no props.
   Manual-install command installs `expo-av`, removed from the SDK two majors

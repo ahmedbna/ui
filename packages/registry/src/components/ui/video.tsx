@@ -7,6 +7,7 @@ import React, {
   forwardRef,
   useCallback,
   useEffect,
+  useImperativeHandle,
   useRef,
   useState,
 } from 'react';
@@ -172,7 +173,7 @@ const ReanimatedProgress = ({
 };
 
 // --- Main Video Component ---
-export const Video = forwardRef<VideoView, VideoProps>(
+export const Video = forwardRef<VideoRef, VideoProps>(
   (
     {
       source,
@@ -207,6 +208,8 @@ export const Video = forwardRef<VideoView, VideoProps>(
     const [showCustomControls, setShowCustomControls] = useState(false);
     const [isSeeking, setIsSeeking] = useState(false);
 
+    const nativeRef = useRef<VideoView>(null);
+
     const hideControlsTimeout = useRef<ReturnType<typeof setTimeout> | null>(
       null
     );
@@ -232,6 +235,21 @@ export const Video = forwardRef<VideoView, VideoProps>(
     const { isPlaying } = useEvent(player, 'playingChange', {
       isPlaying: player?.playing || false,
     });
+
+    useImperativeHandle(ref, () => ({
+      play: () => player.play(),
+      pause: () => player.pause(),
+      seekTo: (seconds: number) => {
+        player.currentTime = seconds;
+      },
+      setVolume: (volume: number) => {
+        player.volume = volume;
+      },
+      getCurrentTime: () => player.currentTime,
+      getDuration: () => player.duration,
+      isPlaying: () => player.playing,
+      isMuted: () => player.muted,
+    }));
 
     // --- !! EFFECT UPDATED TO RESPECT isSeeking STATE !! ---
     useEffect(() => {
@@ -378,12 +396,12 @@ export const Video = forwardRef<VideoView, VideoProps>(
         style={[styles.container, { backgroundColor: cardColor }, style]}
       >
         <VideoView
-          ref={ref}
+          ref={nativeRef}
           player={player}
           style={styles.video}
           fullscreenOptions={{ enable: allowsFullscreen }}
           allowsPictureInPicture={allowsPictureInPicture}
-          nativeControls={false}
+          nativeControls={nativeControls}
           contentFit={contentFit}
           onFullscreenEnter={() => onFullscreenUpdate?.(true)}
           onFullscreenExit={() => onFullscreenUpdate?.(false)}

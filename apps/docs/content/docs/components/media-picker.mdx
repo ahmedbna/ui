@@ -136,7 +136,20 @@ The MediaPicker component requires the following permissions:
 - **iOS**: `NSPhotoLibraryUsageDescription` in Info.plist
 - **Android**: `READ_EXTERNAL_STORAGE` permission
 
-The component automatically requests these permissions when first used.
+Permission is requested when the picker button is first pressed, not on
+mount. If the user has permanently denied access, pressing the button again
+opens the device Settings app instead of re-prompting.
+
+Add the following plugins to your `app.json` so Expo generates the required
+native permission entries:
+
+```json
+{
+  "expo": {
+    "plugins": ["expo-image-picker", "expo-media-library"]
+  }
+}
+```
 
 ## Features
 

@@ -1,7 +1,8 @@
 import { useColor } from '@/hooks/useColor';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { LayoutChangeEvent, View, ViewStyle } from 'react-native';
 import Animated, {
+  SharedValue,
   useAnimatedProps,
   useSharedValue,
   withDelay,
@@ -11,6 +12,43 @@ import Svg, { G, Rect, Text as SvgText } from 'react-native-svg';
 
 // Animated SVG Components
 const AnimatedRect = Animated.createAnimatedComponent(Rect);
+
+type AnimatedCellProps = {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  fill: string;
+  delay: number;
+  animationProgress: SharedValue<number>;
+};
+
+// Per-item hook must live in its own mounted subcomponent, not in the
+// parent's nested rows×cols .map() body — calling useAnimatedProps per
+// loop iteration violates Rules of Hooks the moment data changes, and this
+// is the worst multiplier in the chart set (one mount per row×col cell).
+const AnimatedCell = React.memo(
+  ({ x, y, width, height, fill, delay, animationProgress }: AnimatedCellProps) => {
+    const cellAnimatedProps = useAnimatedProps(() => ({
+      opacity: withDelay(
+        delay,
+        withTiming(animationProgress.value, { duration: 300 })
+      ),
+    }));
+
+    return (
+      <AnimatedRect
+        x={x}
+        y={y}
+        width={width}
+        height={height}
+        fill={fill}
+        rx={4}
+        animatedProps={cellAnimatedProps}
+      />
+    );
+  }
+);
 
 // Utility functions
 const interpolateColor = (
@@ -167,23 +205,16 @@ export const HeatmapChart = ({ data, config = {}, style }: Props) => {
               colorScale
             );
 
-            const cellAnimatedProps = useAnimatedProps(() => ({
-              opacity: withDelay(
-                (rowIndex * numCols + colIndex) * 50,
-                withTiming(animationProgress.value, { duration: 300 })
-              ),
-            }));
-
             return (
               <G key={`cell-${row}-${col}`}>
-                <AnimatedRect
+                <AnimatedCell
                   x={x}
                   y={y}
                   width={cellWidth}
                   height={cellHeight}
                   fill={cellColor}
-                  rx={4}
-                  animatedProps={cellAnimatedProps}
+                  delay={(rowIndex * numCols + colIndex) * 50}
+                  animationProgress={animationProgress}
                 />
 
                 {showLabels && cellWidth > 30 && cellHeight > 20 && (

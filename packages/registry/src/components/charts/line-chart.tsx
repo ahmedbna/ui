@@ -1,8 +1,9 @@
 import { useColor } from '@/hooks/useColor';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { LayoutChangeEvent, View, ViewStyle } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
+  SharedValue,
   useAnimatedProps,
   useAnimatedStyle,
   useSharedValue,
@@ -90,6 +91,44 @@ const formatNumber = (num: number): string => {
 // Animated SVG Components
 const AnimatedPath = Animated.createAnimatedComponent(Path);
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
+
+type AnimatedPointProps = {
+  x: number;
+  y: number;
+  color: string;
+  index: number;
+  animationProgress: SharedValue<number>;
+};
+
+// Per-item hook must live in its own mounted subcomponent, not in the
+// parent's .map() body — calling useAnimatedProps/useAnimatedStyle per
+// loop iteration violates Rules of Hooks the moment data.length changes.
+const AnimatedPoint = React.memo(
+  ({ x, y, color, index, animationProgress }: AnimatedPointProps) => {
+    const pointAnimatedProps = useAnimatedProps(() => ({
+      opacity: animationProgress.value,
+    }));
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const pointAnimatedStyle = useAnimatedStyle(() => ({
+      transform: [
+        {
+          scale: withDelay(index * 50, withSpring(animationProgress.value)),
+        },
+      ],
+    }));
+
+    return (
+      <AnimatedCircle
+        cx={x}
+        cy={y}
+        r={4}
+        fill={color}
+        animatedProps={pointAnimatedProps}
+      />
+    );
+  }
+);
 
 type Props = {
   data: ChartDataPoint[];
@@ -296,33 +335,16 @@ export const LineChart = ({ data, config = {}, style }: Props) => {
             />
 
             {/* Data points */}
-            {points.map((point, index) => {
-              const pointAnimatedProps = useAnimatedProps(() => ({
-                opacity: animationProgress.value,
-              }));
-
-              const pointAnimatedStyle = useAnimatedStyle(() => ({
-                transform: [
-                  {
-                    scale: withDelay(
-                      index * 50,
-                      withSpring(animationProgress.value)
-                    ),
-                  },
-                ],
-              }));
-
-              return (
-                <AnimatedCircle
-                  key={`point-${index}`}
-                  cx={point.x}
-                  cy={point.y}
-                  r={4}
-                  fill={primaryColor}
-                  animatedProps={pointAnimatedProps}
-                />
-              );
-            })}
+            {points.map((point, index) => (
+              <AnimatedPoint
+                key={`point-${index}`}
+                x={point.x}
+                y={point.y}
+                color={primaryColor}
+                index={index}
+                animationProgress={animationProgress}
+              />
+            ))}
 
             {/* X-axis labels */}
             {showLabels && (

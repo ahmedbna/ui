@@ -2,9 +2,10 @@
 
 import { Text } from '@/components/ui/text';
 import { useColor } from '@/hooks/useColor';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { LayoutChangeEvent, View, ViewStyle } from 'react-native';
 import Animated, {
+  SharedValue,
   useAnimatedProps,
   useSharedValue,
   withTiming,
@@ -13,6 +14,27 @@ import Svg, { G, Path, Text as SvgText } from 'react-native-svg';
 
 // Animated SVG Components
 const AnimatedPath = Animated.createAnimatedComponent(Path);
+
+type AnimatedSliceProps = {
+  d: string;
+  fill: string;
+  animationProgress: SharedValue<number>;
+};
+
+// Per-item hook must live in its own mounted subcomponent, not in the
+// parent's .map() body — calling useAnimatedProps per loop iteration
+// violates Rules of Hooks the moment data.length changes.
+const AnimatedSlice = React.memo(
+  ({ d, fill, animationProgress }: AnimatedSliceProps) => {
+    const sliceAnimatedProps = useAnimatedProps(() => ({
+      opacity: animationProgress.value,
+    }));
+
+    return (
+      <AnimatedPath d={d} fill={fill} animatedProps={sliceAnimatedProps} />
+    );
+  }
+);
 
 interface ChartConfig {
   width?: number;
@@ -114,16 +136,12 @@ export const PieChart = ({ data, config = {}, style }: Props) => {
 
           currentAngle = endAngle;
 
-          const sliceAnimatedProps = useAnimatedProps(() => ({
-            opacity: animationProgress.value,
-          }));
-
           return (
             <G key={`slice-${index}`}>
-              <AnimatedPath
+              <AnimatedSlice
                 d={pathData}
                 fill={item.color || colors[index % colors.length]}
-                animatedProps={sliceAnimatedProps}
+                animationProgress={animationProgress}
               />
 
               {showLabels && (

@@ -1,7 +1,8 @@
 import { useColor } from '@/hooks/useColor';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { LayoutChangeEvent, View, ViewStyle } from 'react-native';
 import Animated, {
+  SharedValue,
   useAnimatedProps,
   useSharedValue,
   withDelay,
@@ -12,6 +13,36 @@ import Svg, { Circle, G, Line, Text as SvgText } from 'react-native-svg';
 
 // Animated SVG Components
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
+
+type AnimatedBubbleProps = {
+  cx: number;
+  cy: number;
+  radius: number;
+  fill: string;
+  index: number;
+  animationProgress: SharedValue<number>;
+};
+
+// Per-item hook must live in its own mounted subcomponent, not in the
+// parent's .map() body — calling useAnimatedProps per loop iteration
+// violates Rules of Hooks the moment data.length changes.
+const AnimatedBubble = React.memo(
+  ({ cx, cy, radius, fill, index, animationProgress }: AnimatedBubbleProps) => {
+    const bubbleAnimatedProps = useAnimatedProps(() => ({
+      opacity: animationProgress.value * 0.7,
+      r: withDelay(index * 100, withSpring(animationProgress.value * radius)),
+    }));
+
+    return (
+      <AnimatedCircle
+        cx={cx}
+        cy={cy}
+        fill={fill}
+        animatedProps={bubbleAnimatedProps}
+      />
+    );
+  }
+);
 
 interface ChartConfig {
   width?: number;
@@ -136,21 +167,15 @@ export const BubbleChart = ({ data, config = {}, style }: Props) => {
 
         {/* Bubbles */}
         {bubbles.map((bubble, index) => {
-          const bubbleAnimatedProps = useAnimatedProps(() => ({
-            opacity: animationProgress.value * 0.7,
-            r: withDelay(
-              index * 100,
-              withSpring(animationProgress.value * bubble.radius)
-            ),
-          }));
-
           return (
             <G key={`bubble-${index}`}>
-              <AnimatedCircle
+              <AnimatedBubble
                 cx={bubble.x}
                 cy={bubble.y}
+                radius={bubble.radius}
                 fill={bubble.color}
-                animatedProps={bubbleAnimatedProps}
+                index={index}
+                animationProgress={animationProgress}
               />
               {showLabels && bubble.label && (
                 <SvgText

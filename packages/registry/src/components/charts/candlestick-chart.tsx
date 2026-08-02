@@ -1,7 +1,8 @@
 import { useColor } from '@/hooks/useColor';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { LayoutChangeEvent, View, ViewStyle } from 'react-native';
 import Animated, {
+  SharedValue,
   useAnimatedProps,
   useSharedValue,
   withTiming,
@@ -11,6 +12,66 @@ import Svg, { G, Line, Rect, Text as SvgText } from 'react-native-svg';
 // Animated SVG Components
 const AnimatedRect = Animated.createAnimatedComponent(Rect);
 const AnimatedLine = Animated.createAnimatedComponent(Line);
+
+type AnimatedCandleProps = {
+  x: number;
+  candleWidth: number;
+  highY: number;
+  lowY: number;
+  bodyTop: number;
+  bodyHeight: number;
+  color: string;
+  animationProgress: SharedValue<number>;
+};
+
+// Per-item hooks must live in their own mounted subcomponent, not in the
+// parent's .map() body — calling useAnimatedProps per loop iteration
+// violates Rules of Hooks the moment data.length changes. Two hooks here
+// (wick + body), both owned by this one subcomponent instance.
+const AnimatedCandle = React.memo(
+  ({
+    x,
+    candleWidth,
+    highY,
+    lowY,
+    bodyTop,
+    bodyHeight,
+    color,
+    animationProgress,
+  }: AnimatedCandleProps) => {
+    const wickAnimatedProps = useAnimatedProps(() => ({
+      y1: highY,
+      y2: lowY,
+      opacity: animationProgress.value,
+    }));
+
+    const bodyAnimatedProps = useAnimatedProps(() => ({
+      height: animationProgress.value * bodyHeight,
+      y: bodyTop,
+      opacity: animationProgress.value,
+    }));
+
+    return (
+      <>
+        <AnimatedLine
+          x1={x + candleWidth / 2}
+          x2={x + candleWidth / 2}
+          stroke={color}
+          strokeWidth={1}
+          animatedProps={wickAnimatedProps}
+        />
+        <AnimatedRect
+          x={x}
+          width={candleWidth}
+          fill={color}
+          stroke={color}
+          strokeWidth={1}
+          animatedProps={bodyAnimatedProps}
+        />
+      </>
+    );
+  }
+);
 
 interface ChartConfig {
   width?: number;
@@ -123,38 +184,17 @@ export const CandlestickChart = ({ data, config = {}, style }: Props) => {
           const bodyTop = Math.min(openY, closeY);
           const bodyHeight = Math.abs(closeY - openY) || 1;
 
-          const wickAnimatedProps = useAnimatedProps(() => ({
-            y1: highY,
-            y2: lowY,
-            opacity: animationProgress.value,
-          }));
-
-          const bodyAnimatedProps = useAnimatedProps(() => ({
-            height: animationProgress.value * bodyHeight,
-            y: bodyTop,
-            opacity: animationProgress.value,
-          }));
-
           return (
             <G key={`candle-${index}`}>
-              {/* High-Low wick */}
-              <AnimatedLine
-                x1={x + candleWidth / 2}
-                x2={x + candleWidth / 2}
-                stroke={color}
-                strokeWidth={1}
-                animatedProps={wickAnimatedProps}
-              />
-
-              {/* Open-Close body */}
-              <AnimatedRect
+              <AnimatedCandle
                 x={x}
-                width={candleWidth}
-                // fill={isBullish ? 'transparent' : color}
-                fill={color}
-                stroke={color}
-                strokeWidth={1}
-                animatedProps={bodyAnimatedProps}
+                candleWidth={candleWidth}
+                highY={highY}
+                lowY={lowY}
+                bodyTop={bodyTop}
+                bodyHeight={bodyHeight}
+                color={color}
+                animationProgress={animationProgress}
               />
 
               {showLabels &&

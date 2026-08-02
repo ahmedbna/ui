@@ -7,6 +7,7 @@ import React, {
   useCallback,
   useContext,
   useEffect,
+  useRef,
   useState,
 } from 'react';
 import {
@@ -38,6 +39,7 @@ interface TabsContextType {
   unregisterTab: (value: string) => void;
   enableSwipe?: boolean;
   navigateToAdjacentTab?: (direction: 'next' | 'prev') => void;
+  contentMap: React.MutableRefObject<Record<string, React.ReactNode>>;
 }
 
 interface TabsProps {
@@ -91,6 +93,9 @@ export function Tabs({
 }: TabsProps) {
   const [internalActiveTab, setInternalActiveTab] = useState(defaultValue);
   const [tabValues, setTabValues] = useState<string[]>([]);
+  // Per-instance carousel content cache — must live here (not module scope)
+  // so two mounted Tabs never share/corrupt each other's content.
+  const contentMap = useRef<Record<string, React.ReactNode>>({});
 
   // Determine if we're in controlled or uncontrolled mode
   const isControlled = value !== undefined;
@@ -161,6 +166,7 @@ export function Tabs({
         unregisterTab,
         enableSwipe,
         navigateToAdjacentTab,
+        contentMap,
       }}
     >
       <View
@@ -184,18 +190,18 @@ interface CarouselTabContentProps {
   style?: ViewStyle;
 }
 
-// Add a ref to track all content components
-let allTabContents: { [key: string]: React.ReactNode } = {};
-
 function CarouselTabContent({
   children,
   value,
   style,
 }: CarouselTabContentProps) {
-  const { activeTab, navigateToAdjacentTab, tabValues } = useTabsContext();
+  const { activeTab, navigateToAdjacentTab, tabValues, contentMap } =
+    useTabsContext();
 
-  // Store this content
-  allTabContents[value] = children;
+  // Store this content in the per-instance map (mutation during render,
+  // matching the ref's intended "always current on next read" semantics —
+  // must not trigger a re-render on write).
+  contentMap.current[value] = children;
 
   // Only render the carousel container for the active tab
   if (activeTab !== value) {
@@ -207,6 +213,7 @@ function CarouselTabContent({
       activeTab={activeTab}
       tabValues={tabValues}
       onSwipe={navigateToAdjacentTab!}
+      contentMap={contentMap}
       style={style}
     />
   );
@@ -216,11 +223,13 @@ function CarouselContainer({
   activeTab,
   tabValues,
   onSwipe,
+  contentMap,
   style,
 }: {
   activeTab: string;
   tabValues: string[];
   onSwipe: (direction: 'next' | 'prev') => void;
+  contentMap: React.MutableRefObject<Record<string, React.ReactNode>>;
   style?: ViewStyle;
 }) {
   const translateX = useSharedValue(0);
@@ -327,7 +336,7 @@ function CarouselContainer({
             ]}
             pointerEvents='none'
           >
-            {allTabContents[previousTab]}
+            {contentMap.current[previousTab]}
           </Animated.View>
         )}
 
@@ -341,7 +350,7 @@ function CarouselContainer({
             containerStyle,
           ]}
         >
-          {allTabContents[activeTab]}
+          {contentMap.current[activeTab]}
         </Animated.View>
 
         {/* Next content */}
@@ -358,7 +367,7 @@ function CarouselContainer({
             ]}
             pointerEvents='none'
           >
-            {allTabContents[nextTab]}
+            {contentMap.current[nextTab]}
           </Animated.View>
         )}
       </View>

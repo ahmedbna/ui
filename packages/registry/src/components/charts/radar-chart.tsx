@@ -1,7 +1,8 @@
 import { useColor } from '@/hooks/useColor';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { LayoutChangeEvent, View, ViewStyle } from 'react-native';
 import Animated, {
+  SharedValue,
   useAnimatedProps,
   useSharedValue,
   withDelay,
@@ -13,6 +14,30 @@ import Svg, { Circle, Line, Path, Text as SvgText } from 'react-native-svg';
 // Animated SVG Components
 const AnimatedPath = Animated.createAnimatedComponent(Path);
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
+
+type AnimatedVertexProps = {
+  cx: number;
+  cy: number;
+  fill: string;
+  index: number;
+  animationProgress: SharedValue<number>;
+};
+
+// Per-item hook must live in its own mounted subcomponent, not in the
+// parent's .map() body — calling useAnimatedProps per loop iteration
+// violates Rules of Hooks the moment data.length changes.
+const AnimatedVertex = React.memo(
+  ({ cx, cy, fill, index, animationProgress }: AnimatedVertexProps) => {
+    const pointAnimatedProps = useAnimatedProps(() => ({
+      opacity: animationProgress.value,
+      r: withDelay(index * 100, withSpring(animationProgress.value * 4)),
+    }));
+
+    return (
+      <AnimatedCircle cx={cx} cy={cy} fill={fill} animatedProps={pointAnimatedProps} />
+    );
+  }
+);
 
 interface ChartConfig {
   width?: number;
@@ -150,22 +175,16 @@ export const RadarChart = ({ data, config = {}, style }: Props) => {
         />
 
         {/* Data points */}
-        {points.map((point, index) => {
-          const pointAnimatedProps = useAnimatedProps(() => ({
-            opacity: animationProgress.value,
-            r: withDelay(index * 100, withSpring(animationProgress.value * 4)),
-          }));
-
-          return (
-            <AnimatedCircle
-              key={`point-${index}`}
-              cx={point.x}
-              cy={point.y}
-              fill={primaryColor}
-              animatedProps={pointAnimatedProps}
-            />
-          );
-        })}
+        {points.map((point, index) => (
+          <AnimatedVertex
+            key={`point-${index}`}
+            cx={point.x}
+            cy={point.y}
+            fill={primaryColor}
+            index={index}
+            animationProgress={animationProgress}
+          />
+        ))}
 
         {/* Labels */}
         {showLabels &&

@@ -1,7 +1,8 @@
 import { useColor } from '@/hooks/useColor';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { LayoutChangeEvent, View, ViewStyle } from 'react-native';
 import Animated, {
+  SharedValue,
   useAnimatedProps,
   useSharedValue,
   withTiming,
@@ -10,6 +11,49 @@ import Svg, { G, Rect, Text as SvgText } from 'react-native-svg';
 
 // Animated SVG Components
 const AnimatedRect = Animated.createAnimatedComponent(Rect);
+
+type AnimatedTreemapRectProps = {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  fill: string;
+  stroke: string;
+  animationProgress: SharedValue<number>;
+};
+
+// Per-item hook must live in its own mounted subcomponent, not in the
+// parent's .map() body — calling useAnimatedProps per loop iteration
+// violates Rules of Hooks the moment the rectangle count changes.
+const AnimatedTreemapRect = React.memo(
+  ({
+    x,
+    y,
+    width,
+    height,
+    fill,
+    stroke,
+    animationProgress,
+  }: AnimatedTreemapRectProps) => {
+    const rectAnimatedProps = useAnimatedProps(() => ({
+      width: animationProgress.value * width,
+      height: animationProgress.value * height,
+      opacity: animationProgress.value,
+    }));
+
+    return (
+      <AnimatedRect
+        x={x}
+        y={y}
+        fill={fill}
+        stroke={stroke}
+        strokeWidth={1}
+        rx={2}
+        animatedProps={rectAnimatedProps}
+      />
+    );
+  }
+);
 
 interface ChartConfig {
   width?: number;
@@ -209,12 +253,6 @@ export const TreeMapChart = ({ data, config = {}, style }: Props) => {
         {rectangles.map((rect, index) => {
           const color = getColor(index, rect.data.color);
 
-          const rectAnimatedProps = useAnimatedProps(() => ({
-            width: animationProgress.value * rect.width,
-            height: animationProgress.value * rect.height,
-            opacity: animationProgress.value,
-          }));
-
           // Determine if text should be light or dark based on background
           const isLightBackground =
             color === '#f59e0b' || color === '#84cc16' || color === '#06b6d4';
@@ -226,14 +264,14 @@ export const TreeMapChart = ({ data, config = {}, style }: Props) => {
 
           return (
             <G key={`rect-${index}`}>
-              <AnimatedRect
+              <AnimatedTreemapRect
                 x={rect.x}
                 y={rect.y}
+                width={rect.width}
+                height={rect.height}
                 fill={color}
                 stroke={backgroundColor}
-                strokeWidth={1}
-                rx={2}
-                animatedProps={rectAnimatedProps}
+                animationProgress={animationProgress}
               />
 
               {showText && (

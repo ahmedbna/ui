@@ -1,8 +1,9 @@
 import { Text } from '@/components/ui/text';
 import { useColor } from '@/hooks/useColor';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { LayoutChangeEvent, View, ViewStyle } from 'react-native';
 import Animated, {
+  SharedValue,
   useAnimatedProps,
   useSharedValue,
   withTiming,
@@ -11,6 +12,33 @@ import Svg, { Circle, G, Path, Text as SvgText } from 'react-native-svg';
 
 // Animated SVG Components
 const AnimatedPath = Animated.createAnimatedComponent(Path);
+
+type AnimatedSliceProps = {
+  d: string;
+  fill: string;
+  animationProgress: SharedValue<number>;
+};
+
+// Per-item hook must live in its own mounted subcomponent, not in the
+// parent's .map() body — calling useAnimatedProps per loop iteration
+// violates Rules of Hooks the moment data.length changes.
+const AnimatedSlice = React.memo(
+  ({ d, fill, animationProgress }: AnimatedSliceProps) => {
+    const sliceAnimatedProps = useAnimatedProps(() => ({
+      opacity: animationProgress.value * 0.8,
+    }));
+
+    return (
+      <AnimatedPath
+        d={d}
+        fill={fill}
+        stroke='white'
+        strokeWidth={1}
+        animatedProps={sliceAnimatedProps}
+      />
+    );
+  }
+);
 
 interface ChartConfig {
   width?: number;
@@ -108,18 +136,12 @@ export const PolarAreaChart = ({ data, config = {}, style }: Props) => {
           const labelX = centerX + labelRadius * Math.cos(labelAngle);
           const labelY = centerY + labelRadius * Math.sin(labelAngle);
 
-          const sliceAnimatedProps = useAnimatedProps(() => ({
-            opacity: animationProgress.value * 0.8,
-          }));
-
           return (
             <G key={`slice-${index}`}>
-              <AnimatedPath
+              <AnimatedSlice
                 d={pathData}
                 fill={item.color || colors[index % colors.length]}
-                stroke='white'
-                strokeWidth={1}
-                animatedProps={sliceAnimatedProps}
+                animationProgress={animationProgress}
               />
 
               {showLabels && (

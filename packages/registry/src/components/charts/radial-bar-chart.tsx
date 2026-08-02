@@ -1,8 +1,9 @@
 import { Text } from '@/components/ui/text';
 import { useColor } from '@/hooks/useColor';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { LayoutChangeEvent, View, ViewStyle } from 'react-native';
 import Animated, {
+  SharedValue,
   useAnimatedProps,
   useSharedValue,
   withTiming,
@@ -17,6 +18,58 @@ import Svg, {
 
 // Animated SVG Components
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
+
+type AnimatedRadialBarProps = {
+  cx: number;
+  cy: number;
+  r: number;
+  stroke: string;
+  strokeWidth: number;
+  circumference: number;
+  progressRatio: number;
+  transform: string;
+  animationProgress: SharedValue<number>;
+};
+
+// Per-item hook must live in its own mounted subcomponent, not in the
+// parent's .map() body — calling useAnimatedProps per loop iteration
+// violates Rules of Hooks the moment data.length changes.
+const AnimatedRadialBar = React.memo(
+  ({
+    cx,
+    cy,
+    r,
+    stroke,
+    strokeWidth,
+    circumference,
+    progressRatio,
+    transform,
+    animationProgress,
+  }: AnimatedRadialBarProps) => {
+    const circleAnimatedProps = useAnimatedProps(() => {
+      const animatedProgress = animationProgress.value * progressRatio;
+      const strokeDashoffset =
+        circumference - animatedProgress * circumference;
+
+      return { strokeDashoffset };
+    });
+
+    return (
+      <AnimatedCircle
+        cx={cx}
+        cy={cy}
+        r={r}
+        stroke={stroke}
+        strokeWidth={strokeWidth}
+        fill='none'
+        strokeLinecap='round'
+        strokeDasharray={circumference}
+        transform={transform}
+        animatedProps={circleAnimatedProps}
+      />
+    );
+  }
+);
 
 interface ChartConfig {
   padding?: number;
@@ -127,18 +180,8 @@ export const RadialBarChart = ({ data, config = {}, style }: Props) => {
             const circumference = 2 * Math.PI * radius;
             const progressRatio = item.value / maxValue;
 
-            const circleAnimatedProps = useAnimatedProps(() => {
-              const animatedProgress = animationProgress.value * progressRatio;
-              const strokeDashoffset =
-                circumference - animatedProgress * circumference;
-
-              return {
-                strokeDashoffset,
-              };
-            });
-
             return (
-              <AnimatedCircle
+              <AnimatedRadialBar
                 key={`radial-${index}`}
                 cx={center}
                 cy={center}
@@ -149,11 +192,10 @@ export const RadialBarChart = ({ data, config = {}, style }: Props) => {
                     : item.color || colors[index % colors.length]
                 }
                 strokeWidth={strokeWidth * 0.8}
-                fill='none'
-                strokeLinecap='round'
-                strokeDasharray={circumference}
+                circumference={circumference}
+                progressRatio={progressRatio}
                 transform={`rotate(-90 ${center} ${center})`}
-                animatedProps={circleAnimatedProps}
+                animationProgress={animationProgress}
               />
             );
           })}
