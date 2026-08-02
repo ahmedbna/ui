@@ -1,5 +1,5 @@
 ---
-title: Google
+title: Google Sign-In
 description: Configure Google as an OAuth provider for the Convex Auth starter — the OAuth client, the .site callback URL, and what to do when the browser comes back to nothing.
 ---
 
@@ -60,10 +60,10 @@ npx convex env set AUTH_GOOGLE_SECRET your_client_secret
 </Steps>
 
 <Callout title='.site, not .cloud'>
-  Every Convex deployment has two URLs: `*.convex.cloud` for the client SDK,
-  and `*.convex.site` for HTTP Actions — which is what serves the OAuth
-  callback. Pasting the `.cloud` URL into Google's redirect URI is the single
-  most common cause of `redirect_uri_mismatch` here.
+  Every Convex deployment has two URLs: `*.convex.cloud` for the client SDK, and
+  `*.convex.site` for HTTP Actions — which is what serves the OAuth callback.
+  Pasting the `.cloud` URL into Google's redirect URI is the single most common
+  cause of `redirect_uri_mismatch` here.
 </Callout>
 
 ## Test it
@@ -99,12 +99,12 @@ Apple reuses the same shape.
 
 ## When it does not work
 
-| What you see                                     | Usually                                                             |
-| --------------------------------------------------- | ------------------------------------------------------------------------ |
-| `redirect_uri_mismatch`                              | The `.cloud` URL was used instead of `.site`, or the path has a typo      |
-| Browser closes, nothing happens                      | `EXPO_URL`/`SITE_URL` don't cover the redirect Convex sent back — see [the redirect allow-list](/docs/convex/auth#the-redirect-allow-list) |
-| "Access blocked: app not verified"                   | Consent screen still in Testing and this account isn't a test user       |
-| Works after `npx convex env set`, still fails         | The deployment needs a moment to pick up new env vars — retry once      |
+| What you see                                  | Usually                                                                                                                                    |
+| --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| `redirect_uri_mismatch`                       | The `.cloud` URL was used instead of `.site`, or the path has a typo                                                                       |
+| Browser closes, nothing happens               | `EXPO_URL`/`SITE_URL` don't cover the redirect Convex sent back — see [the redirect allow-list](/docs/convex/auth#the-redirect-allow-list) |
+| "Access blocked: app not verified"            | Consent screen still in Testing and this account isn't a test user                                                                         |
+| Works after `npx convex env set`, still fails | The deployment needs a moment to pick up new env vars — retry once                                                                         |
 
 ## Next
 

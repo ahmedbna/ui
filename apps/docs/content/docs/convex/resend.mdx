@@ -1,5 +1,5 @@
 ---
-title: Resend
+title: Resend OTP
 description: Configure Resend for email OTP and password reset in the Convex Auth starter — domain verification, the API key, and the from address you have to change.
 ---
 
@@ -69,12 +69,12 @@ closest thing to it: every send, delivered or not, shows up there.
 
 ## When it does not work
 
-| What you see                       | Usually                                                          |
-| ------------------------------------- | ----------------------------------------------------------------- |
-| Email never arrives, no error         | `AUTH_RESEND_KEY` unset, or set on the wrong deployment (dev vs. prod) |
-| Arrives in spam                       | Domain has no SPF/DKIM, or the from address isn't on that domain    |
-| `Could not send email` thrown          | Check the Resend dashboard's Logs for the actual API error         |
-| Works in dev, not after deploying      | `AUTH_RESEND_KEY` was never set with `--prod`                      |
+| What you see                      | Usually                                                                |
+| --------------------------------- | ---------------------------------------------------------------------- |
+| Email never arrives, no error     | `AUTH_RESEND_KEY` unset, or set on the wrong deployment (dev vs. prod) |
+| Arrives in spam                   | Domain has no SPF/DKIM, or the from address isn't on that domain       |
+| `Could not send email` thrown     | Check the Resend dashboard's Logs for the actual API error             |
+| Works in dev, not after deploying | `AUTH_RESEND_KEY` was never set with `--prod`                          |
 
 ## Next
 

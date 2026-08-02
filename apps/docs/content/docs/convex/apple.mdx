@@ -1,12 +1,12 @@
 ---
-title: Apple
+title: Apple Sign-In
 description: Configure Apple as an OAuth provider for the Convex Auth starter — the Service ID, the JWT client secret you have to generate and rotate, and App Store review requirements.
 ---
 
 <Callout title='No localhost testing'>
-  Apple requires a deployed, HTTPS callback — your Convex deployment's
-  `.site` URL already qualifies, so there is no local-testing workaround to
-  reach for here the way there might be with other providers.
+  Apple requires a deployed, HTTPS callback — your Convex deployment's `.site`
+  URL already qualifies, so there is no local-testing workaround to reach for
+  here the way there might be with other providers.
 </Callout>
 
 You need a paid [Apple Developer](https://developer.apple.com) account.
@@ -81,9 +81,9 @@ npx convex env set AUTH_APPLE_SECRET your_generated_jwt
 </Steps>
 
 <Callout title='The secret expires'>
-  Six months, maximum. When it lapses, Apple sign-in stops for everyone with
-  no code change and no deploy to blame. Put a calendar reminder on it the
-  day you set it up.
+  Six months, maximum. When it lapses, Apple sign-in stops for everyone with no
+  code change and no deploy to blame. Put a calendar reminder on it the day you
+  set it up.
 </Callout>
 
 ## Test it
@@ -123,13 +123,13 @@ first sign-in; do not build anything that depends on re-reading it later.
 
 ## When it does not work
 
-| What you see                              | Usually                                                           |
-| -------------------------------------------- | ---------------------------------------------------------------------- |
-| `invalid_client`                             | `AUTH_APPLE_ID` is the App ID instead of the Services ID                |
-| `invalid_client` after months of working      | The six-month JWT secret expired                                       |
-| Redirect rejected                            | Return URL in the Services ID doesn't match `/api/auth/callback/apple` |
-| Browser closes, nothing happens              | `EXPO_URL`/`SITE_URL` don't cover the redirect — see [the redirect allow-list](/docs/convex/auth#the-redirect-allow-list) |
-| Name is missing after the first sign-in       | Working as intended — Apple sends it once                              |
+| What you see                             | Usually                                                                                                                   |
+| ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| `invalid_client`                         | `AUTH_APPLE_ID` is the App ID instead of the Services ID                                                                  |
+| `invalid_client` after months of working | The six-month JWT secret expired                                                                                          |
+| Redirect rejected                        | Return URL in the Services ID doesn't match `/api/auth/callback/apple`                                                    |
+| Browser closes, nothing happens          | `EXPO_URL`/`SITE_URL` don't cover the redirect — see [the redirect allow-list](/docs/convex/auth#the-redirect-allow-list) |
+| Name is missing after the first sign-in  | Working as intended — Apple sends it once                                                                                 |
 
 ## Next
 
