@@ -383,9 +383,7 @@ export function ComboboxList({ children, style }: ComboboxListProps) {
             const label = getLabelFromChildren(itemProps.children);
             const searchText =
               itemProps.searchValue || label || itemProps.value || '';
-            return searchText
-              .toLowerCase()
-              .includes(searchQuery.toLowerCase());
+            return searchText.toLowerCase().includes(searchQuery.toLowerCase());
           }
           return false;
         });

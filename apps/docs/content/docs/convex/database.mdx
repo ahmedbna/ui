@@ -34,8 +34,8 @@ and does not verify about it.
   Adding a required field to a table that already has documents fails until
   every existing row has one. Add it as `v.optional(...)`, backfill with a
   mutation, then tighten it to required in a later deploy — the same shape as
-  Supabase's "add nullable, backfill, then add the constraint," just enforced
-  by the schema instead of a lock on an `alter table`.
+  Supabase's "add nullable, backfill, then add the constraint," just enforced by
+  the schema instead of a lock on an `alter table`.
 </Callout>
 
 ## Defining tables
@@ -138,19 +138,18 @@ export const get = query({
 });
 ```
 
-| Concern                     | How Convex handles it                                  |
+| Concern                      | How Convex handles it                                    |
 | ---------------------------- | -------------------------------------------------------- |
-| "Only the owner can read X"  | Check `getAuthUserId(ctx)` against the row's owner field  |
-| "Only the owner can write X" | Same check, inside the mutation, before the `db.patch`    |
-| "Public read, scoped write"  | A query with no auth check; a mutation with one           |
+| "Only the owner can read X"  | Check `getAuthUserId(ctx)` against the row's owner field |
+| "Only the owner can write X" | Same check, inside the mutation, before the `db.patch`   |
+| "Public read, scoped write"  | A query with no auth check; a mutation with one          |
 
 <Callout title='Forgetting the check fails open, not closed'>
-  A Postgres table with RLS enabled and no policy denies every row — the
-  failure mode is "too locked down." A Convex function with no
-  `getAuthUserId` check simply runs and returns whatever it was coded to
-  return, because there is no enforcement layer underneath it. Read every
-  query and mutation you write as if the RLS backstop does not exist, because
-  it does not.
+  A Postgres table with RLS enabled and no policy denies every row — the failure
+  mode is "too locked down." A Convex function with no `getAuthUserId` check
+  simply runs and returns whatever it was coded to return, because there is no
+  enforcement layer underneath it. Read every query and mutation you write as if
+  the RLS backstop does not exist, because it does not.
 </Callout>
 
 ## The no-auth starter is different

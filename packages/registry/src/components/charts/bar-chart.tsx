@@ -25,7 +25,14 @@ type AnimatedBarProps = {
 // parent's .map() body — calling useAnimatedProps per loop iteration
 // violates Rules of Hooks the moment data.length changes.
 const AnimatedBar = React.memo(
-  ({ x, width, barHeight, bottomY, fill, animationProgress }: AnimatedBarProps) => {
+  ({
+    x,
+    width,
+    barHeight,
+    bottomY,
+    fill,
+    animationProgress,
+  }: AnimatedBarProps) => {
     const barAnimatedProps = useAnimatedProps(() => ({
       height: animationProgress.value * barHeight,
       y: bottomY - animationProgress.value * barHeight,

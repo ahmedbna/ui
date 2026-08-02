@@ -48,8 +48,7 @@ const AnimatedRadialBar = React.memo(
   }: AnimatedRadialBarProps) => {
     const circleAnimatedProps = useAnimatedProps(() => {
       const animatedProgress = animationProgress.value * progressRatio;
-      const strokeDashoffset =
-        circumference - animatedProgress * circumference;
+      const strokeDashoffset = circumference - animatedProgress * circumference;
 
       return { strokeDashoffset };
     });

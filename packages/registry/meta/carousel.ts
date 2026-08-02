@@ -13,7 +13,8 @@ export const carouselMeta: ComponentMeta = {
   types: [
     {
       name: 'Carousel',
-      description: 'The root carousel container, handling scrolling, paging, and auto-play.',
+      description:
+        'The root carousel container, handling scrolling, paging, and auto-play.',
       props: [
         {
           name: 'children',
@@ -37,7 +38,8 @@ export const carouselMeta: ComponentMeta = {
           name: 'showIndicators',
           type: 'boolean',
           default: '`true`',
-          description: 'Whether to render the dot indicators below the carousel.',
+          description:
+            'Whether to render the dot indicators below the carousel.',
         },
         {
           name: 'showArrows',
@@ -49,12 +51,14 @@ export const carouselMeta: ComponentMeta = {
           name: 'loop',
           type: 'boolean',
           default: '`false`',
-          description: 'Whether navigating past the last slide wraps to the first (and vice versa).',
+          description:
+            'Whether navigating past the last slide wraps to the first (and vice versa).',
         },
         {
           name: 'itemWidth',
           type: 'number',
-          description: 'Fixed width per slide. Omit for full-width paging slides.',
+          description:
+            'Fixed width per slide. Omit for full-width paging slides.',
         },
         {
           name: 'spacing',
@@ -110,7 +114,8 @@ export const carouselMeta: ComponentMeta = {
     },
     {
       name: 'CarouselIndicators',
-      description: 'The dot indicators row. Rendered automatically by `Carousel` when `showIndicators` is true — use directly only for a custom layout.',
+      description:
+        'The dot indicators row. Rendered automatically by `Carousel` when `showIndicators` is true — use directly only for a custom layout.',
       props: [
         {
           name: 'total',
@@ -138,7 +143,8 @@ export const carouselMeta: ComponentMeta = {
     },
     {
       name: 'CarouselArrow',
-      description: 'A previous/next arrow button. Rendered automatically by `Carousel` when `showArrows` is true — use directly only for a custom layout.',
+      description:
+        'A previous/next arrow button. Rendered automatically by `Carousel` when `showArrows` is true — use directly only for a custom layout.',
       props: [
         {
           name: 'direction',
@@ -156,7 +162,8 @@ export const carouselMeta: ComponentMeta = {
           name: 'disabled',
           type: 'boolean',
           default: '`false`',
-          description: 'Whether the arrow is disabled (e.g. at the first/last slide when not looping).',
+          description:
+            'Whether the arrow is disabled (e.g. at the first/last slide when not looping).',
         },
         {
           name: 'style',
@@ -167,8 +174,7 @@ export const carouselMeta: ComponentMeta = {
     },
   ],
   accessibility: {
-    summary:
-      'The Carousel component includes accessibility features:',
+    summary: 'The Carousel component includes accessibility features:',
     items: [
       'Dot indicators expose `accessibilityLabel` (e.g. "Go to slide 2 of 5") and `accessibilityState={{ selected }}`',
       'Arrow buttons are labeled "Previous slide"/"Next slide" and report their disabled state',

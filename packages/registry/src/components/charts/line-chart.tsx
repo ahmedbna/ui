@@ -154,9 +154,7 @@ export const LineChart = ({ data, config = {}, style }: Props) => {
   const mutedColor = useColor('mutedForeground');
 
   const animationProgress = useSharedValue(0);
-  const [activePointIndex, setActivePointIndex] = useState<number | null>(
-    null
-  );
+  const [activePointIndex, setActivePointIndex] = useState<number | null>(null);
 
   const handleLayout = (event: LayoutChangeEvent) => {
     const { width: measuredWidth } = event.nativeEvent.layout;

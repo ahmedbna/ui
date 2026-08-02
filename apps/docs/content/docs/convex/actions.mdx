@@ -56,9 +56,7 @@ a PDF generator — not by default.
 ```ts
 export const doWork = action({
   handler: async (ctx) => {
-    const task = await ctx.runQuery(internal.tasks.getInternal, {
-      /* … */
-    });
+    const task = await ctx.runQuery(internal.tasks.getInternal, {/* … */});
     // …call a third-party API with `task`…
     await ctx.runMutation(internal.tasks.markDone, { id: task._id });
   },

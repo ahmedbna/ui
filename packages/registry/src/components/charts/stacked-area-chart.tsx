@@ -32,7 +32,13 @@ type AnimatedAreaProps = {
 // parent's Array.from(...) render loop — calling useAnimatedProps per loop
 // iteration violates Rules of Hooks the moment seriesCount changes.
 const AnimatedArea = React.memo(
-  ({ d, fill, stroke, opacityFactor, animationProgress }: AnimatedAreaProps) => {
+  ({
+    d,
+    fill,
+    stroke,
+    opacityFactor,
+    animationProgress,
+  }: AnimatedAreaProps) => {
     const areaAnimatedProps = useAnimatedProps(() => ({
       opacity: animationProgress.value * opacityFactor,
     }));

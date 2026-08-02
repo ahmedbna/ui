@@ -19,9 +19,7 @@ describe('isAllowedRedirect', () => {
   });
 
   it('allows the configured site URL', () => {
-    expect(isAllowedRedirect('http://localhost:3000/callback', env)).toBe(
-      true
-    );
+    expect(isAllowedRedirect('http://localhost:3000/callback', env)).toBe(true);
   });
 
   it('rejects an arbitrary URL', () => {

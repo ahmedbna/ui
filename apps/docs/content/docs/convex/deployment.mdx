@@ -45,11 +45,10 @@ update, not a server restart.
 ```
 
 <Callout title="Use your prod deployment's URL in the production profile">
-  It is easy to copy the dev URL into every profile because that is the one
-  you have been testing against. A production build pointed at your dev
-  deployment reads and writes data your local `npx convex dev` session also
-  touches — not a security problem the way a leaked secret key is, but a
-  confusing one.
+  It is easy to copy the dev URL into every profile because that is the one you
+  have been testing against. A production build pointed at your dev deployment
+  reads and writes data your local `npx convex dev` session also touches — not a
+  security problem the way a leaked secret key is, but a confusing one.
 </Callout>
 
 ## Building
@@ -105,7 +104,7 @@ Run it from your machine, or wire up the optional job below.
 
 ### Adding a CI deploy job (optional)
 
-`npx convex deploy` *can* run non-interactively, with a deploy key from your
+`npx convex deploy` _can_ run non-interactively, with a deploy key from your
 dashboard's **Settings → Deploy Keys**:
 
 ```yaml title=".github/workflows/ci.yml"

@@ -18,7 +18,8 @@ export const modeToggleMeta: ComponentMeta = {
           name: 'variant',
           type: 'ButtonVariant',
           default: "`'outline'`",
-          description: 'The visual variant passed through to the underlying `Button`.',
+          description:
+            'The visual variant passed through to the underlying `Button`.',
         },
         {
           name: 'size',

@@ -198,7 +198,10 @@ function AndroidActionSheet({
         <Animated.View
           style={[
             styles.sheet,
-            { backgroundColor: cardColor, paddingBottom: Math.max(insets.bottom, 16) },
+            {
+              backgroundColor: cardColor,
+              paddingBottom: Math.max(insets.bottom, 16),
+            },
             sheetAnimatedStyle,
             style,
           ]}

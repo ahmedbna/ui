@@ -22,7 +22,9 @@ export function Alert({ children, variant = 'default', style }: AlertProps) {
   return (
     <View
       accessibilityRole='alert'
-      accessibilityLiveRegion={variant === 'destructive' ? 'assertive' : 'polite'}
+      accessibilityLiveRegion={
+        variant === 'destructive' ? 'assertive' : 'polite'
+      }
       style={[
         {
           padding: BORDER_RADIUS,

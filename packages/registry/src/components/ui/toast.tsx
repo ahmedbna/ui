@@ -117,10 +117,7 @@ export function Toast({
         opacity.value = withTiming(1, { duration: 300 });
         scale.value = withSpring(1, SPRING_CONFIG);
         // CORRECTED LINE: Use withDelay to wrap withTiming
-        contentOpacity.value = withDelay(
-          100,
-          withTiming(1, { duration: 300 })
-        );
+        contentOpacity.value = withDelay(100, withTiming(1, { duration: 300 }));
       }
     } else {
       // If no content, show compact Dynamic Island with icon only

@@ -249,7 +249,13 @@ export const TreeMapChart = ({ data, config = {}, style }: Props) => {
   // full layout (including any recursive children) on every render.
   const rectangles = useMemo(
     () =>
-      squarify(data, padding, padding, chartWidth - padding * 2, height - padding * 2),
+      squarify(
+        data,
+        padding,
+        padding,
+        chartWidth - padding * 2,
+        height - padding * 2
+      ),
     [data, padding, chartWidth, height]
   );
 

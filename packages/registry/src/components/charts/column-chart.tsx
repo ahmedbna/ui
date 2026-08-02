@@ -25,7 +25,14 @@ type AnimatedColumnProps = {
 // parent's .map() body — calling useAnimatedProps per loop iteration
 // violates Rules of Hooks the moment data.length changes.
 const AnimatedColumn = React.memo(
-  ({ x, y, barHeight, barWidth, fill, animationProgress }: AnimatedColumnProps) => {
+  ({
+    x,
+    y,
+    barHeight,
+    barWidth,
+    fill,
+    animationProgress,
+  }: AnimatedColumnProps) => {
     const barAnimatedProps = useAnimatedProps(() => ({
       width: animationProgress.value * barWidth,
     }));

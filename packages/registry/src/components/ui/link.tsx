@@ -4,8 +4,7 @@ import { openBrowserAsync } from 'expo-web-browser';
 import { type ComponentProps } from 'react';
 import { Linking, Platform } from 'react-native';
 
-export interface LinkProps
-  extends Omit<ComponentProps<typeof ERLink>, 'href'> {
+export interface LinkProps extends Omit<ComponentProps<typeof ERLink>, 'href'> {
   href: Href;
   asChild?: boolean;
   browser?: 'in-app' | 'external';

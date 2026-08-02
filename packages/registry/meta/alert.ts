@@ -8,7 +8,7 @@ export const alertMeta: ComponentMeta = {
     import:
       "import {\n  Alert,\n  AlertTitle,\n  AlertDescription,\n  showSuccessAlert,\n  showErrorAlert,\n  showConfirmAlert,\n  showNativeAlert,\n} from '@/components/ui/alert';",
     snippet:
-      "<Alert>\n  <AlertTitle>Attention</AlertTitle>\n  <AlertDescription>\n    This is an important message that appears inline with your content.\n  </AlertDescription>\n</Alert>",
+      '<Alert>\n  <AlertTitle>Attention</AlertTitle>\n  <AlertDescription>\n    This is an important message that appears inline with your content.\n  </AlertDescription>\n</Alert>',
   },
   types: [
     {

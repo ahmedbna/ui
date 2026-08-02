@@ -20,10 +20,10 @@ for the rest of the component's lifetime. Every client with this hook
 mounted re-renders when any mutation touches a document the query read.
 
 <Callout title='This is the one thing you do not have to clean up'>
-  Supabase's `postgres_changes` subscription needs an explicit
-  `removeChannel` on unmount, or a screen that mounts twice double-applies
-  every event. `useQuery` unsubscribes itself when the component unmounts —
-  there is no channel object to hold onto or forget.
+  Supabase's `postgres_changes` subscription needs an explicit `removeChannel`
+  on unmount, or a screen that mounts twice double-applies every event.
+  `useQuery` unsubscribes itself when the component unmounts — there is no
+  channel object to hold onto or forget.
 </Callout>
 
 ## Optimistic updates
@@ -98,9 +98,9 @@ way you would expect.
 
 <Callout title='A thrown query leaves useQuery at undefined forever'>
   If a query handler throws, the client does not get an error object back —
-  `useQuery` simply never resolves past `undefined`. There is no
-  client-visible signal that anything is wrong; the only place it shows up is
-  the deployment's function logs.
+  `useQuery` simply never resolves past `undefined`. There is no client-visible
+  signal that anything is wrong; the only place it shows up is the deployment's
+  function logs.
 </Callout>
 
 ## Next

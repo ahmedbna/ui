@@ -12,7 +12,8 @@ export const toastMeta: ComponentMeta = {
   types: [
     {
       name: 'ToastProvider',
-      description: 'Wraps your app (or a subtree) to enable `useToast()`. Renders active toasts in a top-level overlay.',
+      description:
+        'Wraps your app (or a subtree) to enable `useToast()`. Renders active toasts in a top-level overlay.',
       props: [
         {
           name: 'children',
@@ -24,7 +25,8 @@ export const toastMeta: ComponentMeta = {
           name: 'maxToasts',
           type: 'number',
           default: '`3`',
-          description: 'Maximum number of toasts visible at once; oldest is dropped past this.',
+          description:
+            'Maximum number of toasts visible at once; oldest is dropped past this.',
         },
       ],
     },
@@ -58,12 +60,14 @@ export const toastMeta: ComponentMeta = {
           name: 'duration',
           type: 'number',
           default: '`4000`',
-          description: 'Milliseconds before auto-dismiss. Set to `0` to disable auto-dismiss.',
+          description:
+            'Milliseconds before auto-dismiss. Set to `0` to disable auto-dismiss.',
         },
         {
           name: 'action',
           type: '{ label: string; onPress: () => void }',
-          description: 'An optional action button rendered alongside the dismiss button.',
+          description:
+            'An optional action button rendered alongside the dismiss button.',
         },
       ],
     },
@@ -79,22 +83,26 @@ export const toastMeta: ComponentMeta = {
         {
           name: 'success',
           type: '(title: string, description?: string) => void',
-          description: "Shorthand for `toast({ title, description, variant: 'success' })`.",
+          description:
+            "Shorthand for `toast({ title, description, variant: 'success' })`.",
         },
         {
           name: 'error',
           type: '(title: string, description?: string) => void',
-          description: "Shorthand for `toast({ title, description, variant: 'error' })`.",
+          description:
+            "Shorthand for `toast({ title, description, variant: 'error' })`.",
         },
         {
           name: 'warning',
           type: '(title: string, description?: string) => void',
-          description: "Shorthand for `toast({ title, description, variant: 'warning' })`.",
+          description:
+            "Shorthand for `toast({ title, description, variant: 'warning' })`.",
         },
         {
           name: 'info',
           type: '(title: string, description?: string) => void',
-          description: "Shorthand for `toast({ title, description, variant: 'info' })`.",
+          description:
+            "Shorthand for `toast({ title, description, variant: 'info' })`.",
         },
         {
           name: 'dismiss',

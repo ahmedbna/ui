@@ -28,7 +28,15 @@ type AnimatedCellProps = {
 // loop iteration violates Rules of Hooks the moment data changes, and this
 // is the worst multiplier in the chart set (one mount per row×col cell).
 const AnimatedCell = React.memo(
-  ({ x, y, width, height, fill, delay, animationProgress }: AnimatedCellProps) => {
+  ({
+    x,
+    y,
+    width,
+    height,
+    fill,
+    delay,
+    animationProgress,
+  }: AnimatedCellProps) => {
     const cellAnimatedProps = useAnimatedProps(() => ({
       opacity: withDelay(
         delay,
@@ -176,10 +184,8 @@ export const HeatmapChart = ({ data, config = {}, style }: Props) => {
     const chartHeight = height - padding * 2;
 
     const cellSpacing = 2;
-    const cellWidth =
-      (innerChartWidth - (numCols - 1) * cellSpacing) / numCols;
-    const cellHeight =
-      (chartHeight - (numRows - 1) * cellSpacing) / numRows;
+    const cellWidth = (innerChartWidth - (numCols - 1) * cellSpacing) / numCols;
+    const cellHeight = (chartHeight - (numRows - 1) * cellSpacing) / numRows;
 
     const dataMap = new Map<string, HeatmapDataPoint>();
     data.forEach((point) => {
@@ -260,9 +266,7 @@ export const HeatmapChart = ({ data, config = {}, style }: Props) => {
                 textAnchor='middle'
                 fontSize={Math.min(10, cellWidth / 4)}
                 fill={
-                  cell.value > (minValue + maxValue) / 2
-                    ? '#ffffff'
-                    : textColor
+                  cell.value > (minValue + maxValue) / 2 ? '#ffffff' : textColor
                 }
                 fontWeight='500'
               >

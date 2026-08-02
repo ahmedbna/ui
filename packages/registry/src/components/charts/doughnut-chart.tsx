@@ -20,7 +20,12 @@ type AnimatedSliceProps = {
   animationProgress: SharedValue<number>;
   // A single 100%-share slice makes the arc's start/end points coincide,
   // which SVG's arc command can't draw — render a stroked ring instead.
-  fullRing?: { cx: number; cy: number; meanRadius: number; strokeWidth: number };
+  fullRing?: {
+    cx: number;
+    cy: number;
+    meanRadius: number;
+    strokeWidth: number;
+  };
 };
 
 // Per-item hook must live in its own mounted subcomponent, not in the

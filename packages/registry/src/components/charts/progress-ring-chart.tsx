@@ -98,13 +98,7 @@ export const ProgressRingChart = ({
       <Svg width={size} height={size}>
         <Defs>
           {gradient && (
-            <LinearGradient
-              id={gradientId}
-              x1='0%'
-              y1='0%'
-              x2='100%'
-              y2='0%'
-            >
+            <LinearGradient id={gradientId} x1='0%' y1='0%' x2='100%' y2='0%'>
               <Stop offset='0%' stopColor={primaryColor} stopOpacity='0.3' />
               <Stop offset='100%' stopColor={primaryColor} stopOpacity='1' />
             </LinearGradient>

@@ -1087,7 +1087,10 @@ export function DatePicker(props: DatePickerProps) {
       {error && (
         <Text
           variant='caption'
-          style={[{ color: errorColor, marginTop: 4, marginLeft: 14 }, errorStyle]}
+          style={[
+            { color: errorColor, marginTop: 4, marginLeft: 14 },
+            errorStyle,
+          ]}
         >
           {error}
         </Text>

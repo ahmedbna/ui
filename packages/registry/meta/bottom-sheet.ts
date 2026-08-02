@@ -13,7 +13,8 @@ export const bottomSheetMeta: ComponentMeta = {
   types: [
     {
       name: 'BottomSheet',
-      description: 'A draggable bottom sheet modal with configurable snap points.',
+      description:
+        'A draggable bottom sheet modal with configurable snap points.',
       props: [
         {
           name: 'isVisible',

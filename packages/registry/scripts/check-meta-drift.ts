@@ -40,7 +40,9 @@ const isRestMarker = (name: string) => name.startsWith('...');
 function loadProgram(): ts.Program {
   const configFile = ts.readConfigFile(TSCONFIG, ts.sys.readFile);
   if (configFile.error) {
-    throw new Error(ts.flattenDiagnosticMessageText(configFile.error.messageText, '\n'));
+    throw new Error(
+      ts.flattenDiagnosticMessageText(configFile.error.messageText, '\n')
+    );
   }
   const parsed = ts.parseJsonConfigFileContent(
     configFile.config,
@@ -69,7 +71,9 @@ function findTypeDeclaration(
 }
 
 /** Member names declared directly on the node — no inherited/native props. */
-function ownMemberNames(node: ts.InterfaceDeclaration | ts.TypeAliasDeclaration): Set<string> {
+function ownMemberNames(
+  node: ts.InterfaceDeclaration | ts.TypeAliasDeclaration
+): Set<string> {
   const members = ts.isInterfaceDeclaration(node)
     ? node.members
     : ts.isTypeLiteralNode(node.type)
@@ -77,7 +81,11 @@ function ownMemberNames(node: ts.InterfaceDeclaration | ts.TypeAliasDeclaration)
       : undefined;
   const names = new Set<string>();
   for (const member of members ?? []) {
-    if (ts.isPropertySignature(member) && member.name && ts.isIdentifier(member.name)) {
+    if (
+      ts.isPropertySignature(member) &&
+      member.name &&
+      ts.isIdentifier(member.name)
+    ) {
       names.add(member.name.text);
     }
   }
@@ -90,7 +98,9 @@ function resolvedMemberNames(
   node: ts.InterfaceDeclaration | ts.TypeAliasDeclaration
 ): Set<string> {
   const type = checker.getTypeAtLocation(node);
-  return new Set(checker.getPropertiesOfType(type).map((symbol) => symbol.name));
+  return new Set(
+    checker.getPropertiesOfType(type).map((symbol) => symbol.name)
+  );
 }
 
 interface DriftEntry {
@@ -117,7 +127,8 @@ function main() {
       // export a bare "Props", and the odd meta entry (toast.ts's
       // "ToastData") names an interface directly. Try all three.
       const candidates = [typeDoc.name, `${typeDoc.name}Props`, 'Props'];
-      let declaration: ts.InterfaceDeclaration | ts.TypeAliasDeclaration | undefined;
+      let declaration:
+        ts.InterfaceDeclaration | ts.TypeAliasDeclaration | undefined;
 
       for (const file of entry.files) {
         const absPath = path.join(ROOT, file.path);
@@ -134,7 +145,9 @@ function main() {
       }
 
       if (!declaration) {
-        skipped.push(`${name}: no "${candidates.join('" / "')}" type found in its files`);
+        skipped.push(
+          `${name}: no "${candidates.join('" / "')}" type found in its files`
+        );
         continue;
       }
 
@@ -144,7 +157,9 @@ function main() {
       const resolved = resolvedMemberNames(checker, declaration);
       const own = ownMemberNames(declaration);
 
-      const documentedNotFound = [...documented].filter((n) => !resolved.has(n));
+      const documentedNotFound = [...documented].filter(
+        (n) => !resolved.has(n)
+      );
       const exportedUndocumented = [...own].filter((n) => !documented.has(n));
 
       if (documentedNotFound.length || exportedUndocumented.length) {
@@ -159,7 +174,9 @@ function main() {
   }
 
   if (skipped.length) {
-    console.log(`⚠ ${skipped.length} documented type(s) could not be matched to source:`);
+    console.log(
+      `⚠ ${skipped.length} documented type(s) could not be matched to source:`
+    );
     for (const line of skipped) console.log(`  - ${line}`);
     console.log('');
   }
@@ -170,7 +187,12 @@ function main() {
   }
 
   console.log(`⚠ meta drift: ${drift.length} type(s) with prop mismatches\n`);
-  for (const { component, typeName, documentedNotFound, exportedUndocumented } of drift) {
+  for (const {
+    component,
+    typeName,
+    documentedNotFound,
+    exportedUndocumented,
+  } of drift) {
     console.log(`${component} — ${typeName}`);
     for (const n of documentedNotFound) {
       console.log(`  - documented but not found in source: \`${n}\``);

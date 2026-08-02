@@ -33,7 +33,12 @@ const AnimatedScatterPoint = React.memo(
     }));
 
     return (
-      <AnimatedCircle cx={cx} cy={cy} fill={fill} animatedProps={pointAnimatedProps} />
+      <AnimatedCircle
+        cx={cx}
+        cy={cy}
+        fill={fill}
+        animatedProps={pointAnimatedProps}
+      />
     );
   }
 );

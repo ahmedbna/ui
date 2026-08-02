@@ -25,18 +25,20 @@ export const onboardingMeta: ComponentMeta = {
           name: 'onComplete',
           type: '() => void',
           required: true,
-          description: 'Called when the last step\'s primary button is pressed.',
+          description: "Called when the last step's primary button is pressed.",
         },
         {
           name: 'onSkip',
           type: '() => void',
-          description: 'Called when Skip is pressed. Falls back to `onComplete` if omitted.',
+          description:
+            'Called when Skip is pressed. Falls back to `onComplete` if omitted.',
         },
         {
           name: 'showSkip',
           type: 'boolean',
           default: '`true`',
-          description: 'Whether to show the Skip button (hidden on the last step).',
+          description:
+            'Whether to show the Skip button (hidden on the last step).',
         },
         {
           name: 'showProgress',
@@ -48,7 +50,8 @@ export const onboardingMeta: ComponentMeta = {
           name: 'swipeEnabled',
           type: 'boolean',
           default: '`true`',
-          description: 'Whether steps can be swiped between, in addition to using the buttons.',
+          description:
+            'Whether steps can be swiped between, in addition to using the buttons.',
         },
         {
           name: 'primaryButtonText',
@@ -82,7 +85,8 @@ export const onboardingMeta: ComponentMeta = {
         {
           name: 'children',
           type: 'ReactNode',
-          description: 'Optional extra content rendered below each step\'s text.',
+          description:
+            "Optional extra content rendered below each step's text.",
         },
       ],
     },
@@ -111,12 +115,14 @@ export const onboardingMeta: ComponentMeta = {
         {
           name: 'image',
           type: 'ReactNode',
-          description: 'Optional image content, shown above the text. Takes priority over `icon`.',
+          description:
+            'Optional image content, shown above the text. Takes priority over `icon`.',
         },
         {
           name: 'icon',
           type: 'ReactNode',
-          description: 'Optional icon content, shown above the text when `image` is not set.',
+          description:
+            'Optional icon content, shown above the text when `image` is not set.',
         },
         {
           name: 'backgroundColor',

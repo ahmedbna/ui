@@ -301,8 +301,9 @@ export function useShare() {
         shareData.title = content.title;
       }
 
-      const shareOptions: ShareButtonOptions & Pick<ShareOptions, 'subject'> =
-        { ...options };
+      const shareOptions: ShareButtonOptions & Pick<ShareOptions, 'subject'> = {
+        ...options,
+      };
       if (Platform.OS === 'ios' && content.subject) {
         shareOptions.subject = content.subject;
       }

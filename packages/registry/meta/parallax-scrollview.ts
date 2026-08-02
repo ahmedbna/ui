@@ -13,7 +13,8 @@ export const parallaxScrollviewMeta: ComponentMeta = {
   types: [
     {
       name: 'ParallaxScrollView',
-      description: 'A scroll view with a header image that scales and translates as the user scrolls.',
+      description:
+        'A scroll view with a header image that scales and translates as the user scrolls.',
       props: [
         {
           name: 'children',

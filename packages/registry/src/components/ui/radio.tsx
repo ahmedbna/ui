@@ -120,10 +120,7 @@ export function RadioGroup({
   };
 
   return (
-    <View
-      style={[containerStyle, style]}
-      accessibilityRole='radiogroup'
-    >
+    <View style={[containerStyle, style]} accessibilityRole='radiogroup'>
       {options.map((option) => (
         <RadioButton
           key={option.value}

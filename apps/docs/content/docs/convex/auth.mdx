@@ -92,12 +92,12 @@ export const get = query({
 
 <Callout title='Forgetting the check fails open, not closed'>
   Postgres with RLS enabled and no policy denies every row by default — the
-  failure mode is "too locked down." A Convex function with no
-  `getAuthUserId` check simply runs and returns whatever it was coded to
-  return, because there is no enforcement layer underneath it to fall back
-  on. The failure mode here is silent data exposure, not an error. See
-  [database](/docs/convex/database#authorization-lives-in-the-function) for
-  the same point applied to reads and writes.
+  failure mode is "too locked down." A Convex function with no `getAuthUserId`
+  check simply runs and returns whatever it was coded to return, because there
+  is no enforcement layer underneath it to fall back on. The failure mode here
+  is silent data exposure, not an error. See
+  [database](/docs/convex/database#authorization-lives-in-the-function) for the
+  same point applied to reads and writes.
 </Callout>
 
 ## OAuth
@@ -195,12 +195,12 @@ Password({
 `components/auth/password.tsx` drives four flows through the same `signIn`
 call, distinguished by `flow`:
 
-| UI step           | `signIn('password', { flow: ... })` |
-| ----------------- | ------------------------------------ |
-| Sign in            | `'signIn'`                           |
-| Sign up             | `'signUp'`                           |
-| Forgot password     | `'reset'` — sends the reset code    |
-| Reset password      | `'reset-verification'` — consumes it |
+| UI step         | `signIn('password', { flow: ... })`  |
+| --------------- | ------------------------------------ |
+| Sign in         | `'signIn'`                           |
+| Sign up         | `'signUp'`                           |
+| Forgot password | `'reset'` — sends the reset code     |
+| Reset password  | `'reset-verification'` — consumes it |
 
 Edit `validatePasswordRequirements` to change the rule — it throws, and the
 message surfaces directly in the sign-up form.

@@ -36,7 +36,8 @@ export const comboboxMeta: ComponentMeta = {
           name: 'values',
           type: 'OptionType[]',
           default: '`[]`',
-          description: 'An array of selected option objects (multiple selection).',
+          description:
+            'An array of selected option objects (multiple selection).',
         },
         {
           name: 'onValuesChange',
@@ -138,7 +139,8 @@ export const comboboxMeta: ComponentMeta = {
     },
     {
       name: 'ComboboxList',
-      description: 'A scrollable container for the list of options with filtering capability.',
+      description:
+        'A scrollable container for the list of options with filtering capability.',
       props: [
         {
           name: 'children',
@@ -201,7 +203,8 @@ export const comboboxMeta: ComponentMeta = {
         {
           name: 'onSelect',
           type: '(value: OptionType) => void',
-          description: 'Callback when the item is selected, receiving the full option object.',
+          description:
+            'Callback when the item is selected, receiving the full option object.',
         },
         {
           name: 'disabled',
@@ -212,7 +215,8 @@ export const comboboxMeta: ComponentMeta = {
         {
           name: 'searchValue',
           type: 'string',
-          description: 'A custom string to use for search filtering instead of the label.',
+          description:
+            'A custom string to use for search filtering instead of the label.',
         },
         {
           name: 'style',
