@@ -1,6 +1,6 @@
 import { Text } from '@/components/ui/text';
 import { useColor } from '@/hooks/useColor';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useId, useState } from 'react';
 import { LayoutChangeEvent, View, ViewStyle } from 'react-native';
 import Animated, {
   SharedValue,
@@ -104,6 +104,9 @@ export const RadialBarChart = ({ data, config = {}, style }: Props) => {
   const mutedColor = useColor('mutedForeground');
 
   const animationProgress = useSharedValue(0);
+  // Namespaced so multiple same-config charts on one screen don't collide
+  // on shared literal gradient ids.
+  const gradientIdPrefix = useId();
 
   const handleLayout = (event: LayoutChangeEvent) => {
     const { width, height } = event.nativeEvent.layout;
@@ -124,6 +127,8 @@ export const RadialBarChart = ({ data, config = {}, style }: Props) => {
   if (!data.length) return null;
 
   const maxValue = Math.max(...data.map((d) => d.value));
+  if (maxValue === 0) return null;
+
   const size = containerSize || 200;
   const center = size / 2;
   const maxRadius = (size - padding * 2) / 2;
@@ -159,7 +164,7 @@ export const RadialBarChart = ({ data, config = {}, style }: Props) => {
               data.map((item, index) => (
                 <LinearGradient
                   key={`gradient-${index}`}
-                  id={`radialGradient-${index}`}
+                  id={`radialGradient-${gradientIdPrefix}-${index}`}
                   x1='0%'
                   y1='0%'
                   x2='100%'
@@ -192,7 +197,7 @@ export const RadialBarChart = ({ data, config = {}, style }: Props) => {
                 r={radius}
                 stroke={
                   gradient
-                    ? `url(#radialGradient-${index})`
+                    ? `url(#radialGradient-${gradientIdPrefix}-${index})`
                     : item.color || colors[index % colors.length]
                 }
                 strokeWidth={strokeWidth * 0.8}

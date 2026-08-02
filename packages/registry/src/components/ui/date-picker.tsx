@@ -1084,6 +1084,15 @@ export function DatePicker(props: DatePickerProps) {
         </View>
       </TouchableOpacity>
 
+      {error && (
+        <Text
+          variant='caption'
+          style={[{ color: errorColor, marginTop: 4, marginLeft: 14 }, errorStyle]}
+        >
+          {error}
+        </Text>
+      )}
+
       <BottomSheet
         isVisible={isVisible}
         onClose={() => {

@@ -1,5 +1,6 @@
+import { Text } from '@/components/ui/text';
 import { useColor } from '@/hooks/useColor';
-import { useEffect } from 'react';
+import { useEffect, useId } from 'react';
 import { View, ViewStyle } from 'react-native';
 import Animated, {
   useAnimatedProps,
@@ -50,6 +51,11 @@ export const ProgressRingChart = ({
   const mutedColor = useColor('mutedForeground');
 
   const animationProgress = useSharedValue(0);
+  // Namespaced so multiple same-config rings on one screen don't collide on
+  // a shared literal gradient id.
+  const gradientId = `progressGradient-${useId()}`;
+
+  const clampedProgress = Math.max(0, Math.min(100, progress));
 
   useEffect(() => {
     if (animated) {
@@ -57,22 +63,20 @@ export const ProgressRingChart = ({
     } else {
       animationProgress.value = 1;
     }
-  }, [progress, animated, duration]);
+  }, [clampedProgress, animated, duration]);
 
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
   const center = size / 2;
 
   const progressAnimatedProps = useAnimatedProps(() => {
-    const animatedProgress = animationProgress.value * (progress / 100);
+    const animatedProgress = animationProgress.value * (clampedProgress / 100);
     const strokeDashoffset = circumference - animatedProgress * circumference;
 
     return {
       strokeDashoffset,
     };
   });
-
-  const clampedProgress = Math.max(0, Math.min(100, progress));
 
   return (
     <View
@@ -83,23 +87,19 @@ export const ProgressRingChart = ({
       accessibilityLabel={label}
     >
       {showLabel && label && (
-        <SvgText
-          x={center}
-          y={20}
-          textAnchor='middle'
-          fontSize={14}
-          fill={mutedColor}
-          fontWeight='600'
+        <Text
+          variant='caption'
+          style={{ color: mutedColor, fontWeight: '600', marginBottom: 4 }}
         >
           {label}
-        </SvgText>
+        </Text>
       )}
 
       <Svg width={size} height={size}>
         <Defs>
           {gradient && (
             <LinearGradient
-              id='progressGradient'
+              id={gradientId}
               x1='0%'
               y1='0%'
               x2='100%'
@@ -127,7 +127,7 @@ export const ProgressRingChart = ({
           cx={center}
           cy={center}
           r={radius}
-          stroke={gradient ? 'url(#progressGradient)' : primaryColor}
+          stroke={gradient ? `url(#${gradientId})` : primaryColor}
           strokeWidth={strokeWidth}
           fill='none'
           strokeLinecap='round'
@@ -160,7 +160,7 @@ export const ProgressRingChart = ({
             fill={primaryColor}
             fontWeight='600'
           >
-            {Math.round(progress)}%
+            {Math.round(clampedProgress)}%
           </SvgText>
         )}
       </Svg>

@@ -94,10 +94,12 @@ export const PolarAreaChart = ({ data, config = {}, style }: Props) => {
 
   if (!data.length) return null;
 
+  const maxValue = Math.max(...data.map((d) => d.value));
+  if (maxValue === 0) return null;
+
   const centerX = chartWidth / 2;
   const centerY = height / 2;
   const maxRadius = Math.min(chartWidth, height) / 2 - 20;
-  const maxValue = Math.max(...data.map((d) => d.value));
 
   const angleStep = (2 * Math.PI) / data.length;
 

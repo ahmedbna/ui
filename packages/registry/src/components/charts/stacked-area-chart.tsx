@@ -195,10 +195,13 @@ export const StackedAreaChart = ({
     '#0088fe',
   ];
 
-  const seriesColors =
-    colors.length >= seriesCount
-      ? colors
-      : [...colors, ...defaultColors].slice(0, seriesCount);
+  // Cycle the default palette via modulo past its length instead of
+  // leaving `undefined` colors for series beyond it.
+  const seriesColors = Array.from({ length: seriesCount }, (_, i) =>
+    i < colors.length
+      ? colors[i]
+      : defaultColors[(i - colors.length) % defaultColors.length]
+  );
 
   return (
     <View

@@ -7,7 +7,7 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-import Svg, { G, Rect, Text as SvgText } from 'react-native-svg';
+import Svg, { G, Line, Rect, Text as SvgText } from 'react-native-svg';
 
 // Animated SVG Components
 const AnimatedRect = Animated.createAnimatedComponent(Rect);
@@ -71,6 +71,7 @@ export const BarChart = ({ data, config = {}, style }: Props) => {
   const {
     height = 200,
     padding = 20,
+    showGrid = false,
     showLabels = true,
     animated = true,
     duration = 800,
@@ -102,6 +103,8 @@ export const BarChart = ({ data, config = {}, style }: Props) => {
   if (!data.length) return null;
 
   const maxValue = Math.max(...data.map((d) => d.value));
+  if (maxValue === 0) return null;
+
   const innerChartWidth = chartWidth - padding * 2;
   const chartHeight = height - padding * 2;
   const barWidth = (innerChartWidth / data.length) * 0.8;
@@ -115,6 +118,24 @@ export const BarChart = ({ data, config = {}, style }: Props) => {
       accessibilityLabel={`Bar chart with ${data.length} bars, maximum value ${Math.round(maxValue)}`}
     >
       <Svg width={chartWidth} height={height}>
+        {/* Grid lines */}
+        {showGrid && (
+          <G>
+            {[0, 0.25, 0.5, 0.75, 1].map((ratio, index) => (
+              <Line
+                key={`grid-${index}`}
+                x1={padding}
+                y1={padding + ratio * chartHeight}
+                x2={chartWidth - padding}
+                y2={padding + ratio * chartHeight}
+                stroke={mutedColor}
+                strokeWidth={0.5}
+                opacity={0.3}
+              />
+            ))}
+          </G>
+        )}
+
         {data.map((item, index) => {
           const barHeight = (item.value / maxValue) * chartHeight;
           const x = padding + index * (barWidth + barSpacing) + barSpacing / 2;

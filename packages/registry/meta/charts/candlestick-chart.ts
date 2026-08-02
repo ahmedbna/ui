@@ -115,11 +115,7 @@ export const candlestickChartMeta: ComponentMeta = {
     summary:
       'The CandlestickChart component is built with accessibility in mind:',
     items: [
-      'Semantic SVG structure for screen readers',
-      'Proper contrast ratios for visual elements',
-      'Touch targets meet minimum size requirements',
-      'Supports dynamic text sizing',
-      'Keyboard navigation support (when interactive)',
+      'The chart\'s outer container exposes accessibilityRole="image" with a synthesized summary label (candle count and value range)',
     ],
   },
 };

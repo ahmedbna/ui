@@ -60,7 +60,9 @@ export function ShareButton({
   onShareDismiss,
   showIcon = true,
   iconSize = 18,
+  fallbackMessage,
   validateContent = true,
+  testID,
 }: ShareButtonProps) {
   const primaryColor = useColor('primary');
   const primaryForegroundColor = useColor('primaryForeground');
@@ -98,17 +100,22 @@ export function ShareButton({
       // Build share content object
       const shareContent: any = {};
 
-      if (content.message) shareContent.message = content.message;
+      const message = content.message || fallbackMessage;
+      if (message) shareContent.message = message;
       if (content.url) shareContent.url = content.url;
 
-      // Platform-specific content
-      if (Platform.OS === 'ios') {
-        if (content.title) shareContent.title = content.title;
-        if (content.subject) shareContent.subject = content.subject;
+      // `title` is Android-facing per RN's Share API (iOS ignores it)
+      if (Platform.OS === 'android' && content.title) {
+        shareContent.title = content.title;
       }
 
       // Build share options object
       const shareOptions: ShareOptions = {};
+
+      // `subject` is iOS-facing and belongs on options, not content
+      if (Platform.OS === 'ios' && content.subject) {
+        shareOptions.subject = content.subject;
+      }
 
       if (options) {
         // Android-specific options
@@ -150,6 +157,7 @@ export function ShareButton({
     content,
     options,
     isContentValid,
+    fallbackMessage,
     onShareStart,
     onShareSuccess,
     onShareError,
@@ -223,6 +231,7 @@ export function ShareButton({
       size={size}
       disabled={isButtonDisabled}
       loading={loading}
+      testID={testID}
     >
       {buttonContent()}
     </Button>
@@ -286,12 +295,19 @@ export function useShare() {
       const shareData: any = {};
       if (content.message) shareData.message = content.message;
       if (content.url) shareData.url = content.url;
-      if (Platform.OS === 'ios') {
-        if (content.title) shareData.title = content.title;
-        if (content.subject) shareData.subject = content.subject;
+      // `title` is Android-facing, `subject` is iOS-facing and belongs on
+      // options (not content) — see RN's Share API docs.
+      if (Platform.OS === 'android' && content.title) {
+        shareData.title = content.title;
       }
 
-      return RNShare.share(shareData, options);
+      const shareOptions: ShareButtonOptions & Pick<ShareOptions, 'subject'> =
+        { ...options };
+      if (Platform.OS === 'ios' && content.subject) {
+        shareOptions.subject = content.subject;
+      }
+
+      return RNShare.share(shareData, shareOptions);
     },
     []
   );

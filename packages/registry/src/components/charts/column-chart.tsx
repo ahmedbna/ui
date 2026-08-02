@@ -100,6 +100,8 @@ export const ColumnChart = ({ data, config = {}, style }: Props) => {
   if (!data.length) return null;
 
   const maxValue = Math.max(...data.map((d) => d.value));
+  if (maxValue === 0) return null;
+
   const innerChartWidth = chartWidth - padding * 2;
   const chartHeight = height - padding * 2;
   const barHeight = (chartHeight / data.length) * 0.8;

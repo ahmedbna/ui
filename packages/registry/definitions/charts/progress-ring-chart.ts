@@ -14,7 +14,7 @@ export const progressRingChartRegistry = {
       'react-native-worklets',
       'react-native-gesture-handler',
     ],
-    registryDependencies: [],
+    registryDependencies: ['text'],
     hooks: ['useColor'],
     theme: ['globals'],
     files: [

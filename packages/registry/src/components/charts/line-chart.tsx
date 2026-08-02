@@ -3,9 +3,9 @@ import React, { useEffect, useState } from 'react';
 import { LayoutChangeEvent, View, ViewStyle } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
+  runOnJS,
   SharedValue,
   useAnimatedProps,
-  useAnimatedStyle,
   useSharedValue,
   withDelay,
   withSpring,
@@ -105,24 +105,18 @@ type AnimatedPointProps = {
 // loop iteration violates Rules of Hooks the moment data.length changes.
 const AnimatedPoint = React.memo(
   ({ x, y, color, index, animationProgress }: AnimatedPointProps) => {
+    // Animate the radius (not a style `scale` transform, which would pivot
+    // around the SVG origin rather than the circle's own center) for a
+    // staggered spring pop-in per point.
     const pointAnimatedProps = useAnimatedProps(() => ({
       opacity: animationProgress.value,
-    }));
-
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const pointAnimatedStyle = useAnimatedStyle(() => ({
-      transform: [
-        {
-          scale: withDelay(index * 50, withSpring(animationProgress.value)),
-        },
-      ],
+      r: withDelay(index * 50, withSpring(animationProgress.value * 4)),
     }));
 
     return (
       <AnimatedCircle
         cx={x}
         cy={y}
-        r={4}
         fill={color}
         animatedProps={pointAnimatedProps}
       />
@@ -160,8 +154,9 @@ export const LineChart = ({ data, config = {}, style }: Props) => {
   const mutedColor = useColor('mutedForeground');
 
   const animationProgress = useSharedValue(0);
-  const touchX = useSharedValue(0);
-  const showTooltip = useSharedValue(false);
+  const [activePointIndex, setActivePointIndex] = useState<number | null>(
+    null
+  );
 
   const handleLayout = (event: LayoutChangeEvent) => {
     const { width: measuredWidth } = event.nativeEvent.layout;
@@ -189,9 +184,12 @@ export const LineChart = ({ data, config = {}, style }: Props) => {
   const innerChartWidth = chartWidth - leftPadding - padding;
   const chartHeight = height - padding * 2;
 
-  // Convert data to screen coordinates
+  // Convert data to screen coordinates. A single-point dataset would divide
+  // by zero (data.length - 1 === 0) — center it instead of producing NaN.
   const points = data.map((point, index) => ({
-    x: leftPadding + (index / (data.length - 1)) * innerChartWidth,
+    x:
+      leftPadding +
+      (data.length > 1 ? index / (data.length - 1) : 0.5) * innerChartWidth,
     y: padding + ((maxValue - point.y) / valueRange) * chartHeight,
   }));
 
@@ -222,23 +220,32 @@ export const LineChart = ({ data, config = {}, style }: Props) => {
       : undefined,
   }));
 
-  // Pan gesture using new Gesture API
-  const panGesture = Gesture.Pan()
-    .onStart((event) => {
-      if (interactive) {
-        touchX.value = event.x;
-        showTooltip.value = true;
+  const findNearestPointIndex = (x: number): number => {
+    let nearest = 0;
+    let minDistance = Math.abs(points[0].x - x);
+    for (let i = 1; i < points.length; i++) {
+      const distance = Math.abs(points[i].x - x);
+      if (distance < minDistance) {
+        minDistance = distance;
+        nearest = i;
       }
+    }
+    return nearest;
+  };
+
+  // Pan gesture using new Gesture API. Disabled (not just no-op'd) when
+  // !interactive so it doesn't compete with a parent ScrollView's own pan
+  // recognizer for charts that never use it.
+  const panGesture = Gesture.Pan()
+    .enabled(interactive)
+    .onStart((event) => {
+      runOnJS(setActivePointIndex)(findNearestPointIndex(event.x));
     })
     .onUpdate((event) => {
-      if (interactive) {
-        touchX.value = event.x;
-      }
+      runOnJS(setActivePointIndex)(findNearestPointIndex(event.x));
     })
     .onEnd(() => {
-      if (interactive) {
-        showTooltip.value = false;
-      }
+      runOnJS(setActivePointIndex)(null);
     });
 
   const chartAccessibilityLabel = `Line chart with ${data.length} data points, ranging from ${formatNumber(minValue)} to ${formatNumber(maxValue)}`;
@@ -368,6 +375,40 @@ export const LineChart = ({ data, config = {}, style }: Props) => {
                     {point.label || point.x.toString()}
                   </SvgText>
                 ))}
+              </G>
+            )}
+
+            {/* Interactive tooltip */}
+            {interactive && activePointIndex !== null && (
+              <G>
+                <Line
+                  x1={points[activePointIndex].x}
+                  y1={padding}
+                  x2={points[activePointIndex].x}
+                  y2={height - padding}
+                  stroke={mutedColor}
+                  strokeWidth={1}
+                  strokeDasharray='4 4'
+                  opacity={0.5}
+                />
+                <Circle
+                  cx={points[activePointIndex].x}
+                  cy={points[activePointIndex].y}
+                  r={6}
+                  fill={primaryColor}
+                  stroke='white'
+                  strokeWidth={2}
+                />
+                <SvgText
+                  x={points[activePointIndex].x}
+                  y={Math.max(12, points[activePointIndex].y - 12)}
+                  textAnchor='middle'
+                  fontSize={11}
+                  fontWeight='700'
+                  fill={mutedColor}
+                >
+                  {formatNumber(data[activePointIndex].y)}
+                </SvgText>
               </G>
             )}
           </Svg>

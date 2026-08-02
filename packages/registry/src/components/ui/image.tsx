@@ -42,6 +42,9 @@ export const Image = forwardRef<ExpoImage, ImageProps>(
       height,
       contentFit = 'cover',
       transition = 200,
+      onLoadStart,
+      onLoadEnd,
+      onError,
       ...props
     },
     ref
@@ -93,18 +96,26 @@ export const Image = forwardRef<ExpoImage, ImageProps>(
       containerStyle,
     ];
 
-    const handleLoadStart = () => {
+    // Compose explicitly rather than relying on {...props} spread order —
+    // a consumer's own onLoadStart/onLoadEnd/onError must not silently
+    // replace the internal handler that drives isLoading/hasError.
+    const handleLoadStart: NonNullable<ImageProps['onLoadStart']> = (
+      ...args
+    ) => {
       setIsLoading(true);
       setHasError(false);
+      onLoadStart?.(...args);
     };
 
-    const handleLoadEnd = () => {
+    const handleLoadEnd: NonNullable<ImageProps['onLoadEnd']> = (...args) => {
       setIsLoading(false);
+      onLoadEnd?.(...args);
     };
 
-    const handleError = () => {
+    const handleError: NonNullable<ImageProps['onError']> = (...args) => {
       setIsLoading(false);
       setHasError(true);
+      onError?.(...args);
     };
 
     return (

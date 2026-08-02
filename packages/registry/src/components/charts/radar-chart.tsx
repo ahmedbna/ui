@@ -97,7 +97,9 @@ export const RadarChart = ({ data, config = {}, style }: Props) => {
   const centerX = chartWidth / 2;
   const centerY = height / 2;
   const radius = Math.min(chartWidth, height) / 2 - 40;
-  const maxVal = maxValue || Math.max(...data.map((d) => d.value));
+  // `??` (not `||`) so an explicit maxValue={0} isn't silently discarded.
+  const maxVal = maxValue ?? Math.max(...data.map((d) => d.value));
+  if (maxVal === 0) return null;
 
   // Calculate points for each data point
   const angleStep = (2 * Math.PI) / data.length;

@@ -10,25 +10,41 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-import Svg, { G, Path, Text as SvgText } from 'react-native-svg';
+import Svg, { Circle, G, Path, Text as SvgText } from 'react-native-svg';
 
 // Animated SVG Components
 const AnimatedPath = Animated.createAnimatedComponent(Path);
+const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
 type AnimatedSliceProps = {
   d: string;
   fill: string;
   animationProgress: SharedValue<number>;
+  // A single 100%-share slice makes the arc's start/end points coincide,
+  // which SVG's arc command can't draw — render a plain circle instead.
+  fullCircle?: { cx: number; cy: number; r: number };
 };
 
 // Per-item hook must live in its own mounted subcomponent, not in the
 // parent's .map() body — calling useAnimatedProps per loop iteration
 // violates Rules of Hooks the moment data.length changes.
 const AnimatedSlice = React.memo(
-  ({ d, fill, animationProgress }: AnimatedSliceProps) => {
+  ({ d, fill, animationProgress, fullCircle }: AnimatedSliceProps) => {
     const sliceAnimatedProps = useAnimatedProps(() => ({
       opacity: animationProgress.value,
     }));
+
+    if (fullCircle) {
+      return (
+        <AnimatedCircle
+          cx={fullCircle.cx}
+          cy={fullCircle.cy}
+          r={fullCircle.r}
+          fill={fill}
+          animatedProps={sliceAnimatedProps}
+        />
+      );
+    }
 
     return (
       <AnimatedPath d={d} fill={fill} animatedProps={sliceAnimatedProps} />
@@ -91,6 +107,8 @@ export const PieChart = ({ data, config = {}, style }: Props) => {
   if (!data.length) return null;
 
   const total = data.reduce((sum, item) => sum + item.value, 0);
+  if (total === 0) return null;
+
   const radius = Math.min(chartWidth, height) / 2 - 20;
   const centerX = chartWidth / 2;
   const centerY = height / 2;
@@ -141,12 +159,21 @@ export const PieChart = ({ data, config = {}, style }: Props) => {
 
           currentAngle = endAngle;
 
+          // A single slice spanning the full circle (only one item, or every
+          // other item has a value of 0) has coincident arc start/end points.
+          const isFullCircle = sliceAngle >= 2 * Math.PI - 1e-6;
+
           return (
             <G key={`slice-${index}`}>
               <AnimatedSlice
                 d={pathData}
                 fill={item.color || colors[index % colors.length]}
                 animationProgress={animationProgress}
+                fullCircle={
+                  isFullCircle
+                    ? { cx: centerX, cy: centerY, r: radius }
+                    : undefined
+                }
               />
 
               {showLabels && (

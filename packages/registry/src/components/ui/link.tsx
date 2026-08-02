@@ -129,11 +129,7 @@ export function Link({
 
   // For internal links, use ERLink directly without custom onPress
   return (
-    <ERLink
-      asChild={typeof children === 'string' ? false : true}
-      href={href}
-      {...rest}
-    >
+    <ERLink asChild={asChild} href={href} {...rest}>
       {typeof children === 'string' ? (
         <Text variant='link'>{children}</Text>
       ) : (

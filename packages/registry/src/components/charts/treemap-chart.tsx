@@ -98,12 +98,19 @@ const squarify = (
   if (data.length === 0) return [];
 
   const totalValue = data.reduce((sum, item) => sum + item.value, 0);
-  const normalizedData = data.map((item) => ({
-    ...item,
-    normalizedValue: (item.value / totalValue) * width * height,
-  }));
+  if (totalValue <= 0) return [];
 
-  const rects: TreeMapRect[] = [];
+  // The squarified-treemap algorithm requires items sorted descending by
+  // value before row placement, so each row is filled largest-first —
+  // skipping this produces poor (long, thin) aspect ratios.
+  const normalizedData = [...data]
+    .sort((a, b) => b.value - a.value)
+    .map((item) => ({
+      ...item,
+      normalizedValue: (item.value / totalValue) * width * height,
+    }));
+
+  const layoutRects: TreeMapRect[] = [];
   let remainingData = [...normalizedData];
   let currentX = x;
   let currentY = y;
@@ -157,7 +164,7 @@ const squarify = (
       const rectWidth = vertical ? rowDimension : itemDimension;
       const rectHeight = vertical ? itemDimension : rowDimension;
 
-      rects.push({
+      layoutRects.push({
         x: rectX,
         y: rectY,
         width: rectWidth,
@@ -178,6 +185,27 @@ const squarify = (
     } else {
       currentY += rowDimension;
       remainingHeight -= rowDimension;
+    }
+  }
+
+  // Items with children are containers, not leaves: subdivide their
+  // allotted rect recursively instead of rendering it directly, so nested
+  // data actually affects the layout instead of being silently ignored.
+  const rects: TreeMapRect[] = [];
+  for (const rect of layoutRects) {
+    if (rect.data.children && rect.data.children.length > 0) {
+      rects.push(
+        ...squarify(
+          rect.data.children,
+          rect.x,
+          rect.y,
+          rect.width,
+          rect.height,
+          depth + 1
+        )
+      );
+    } else {
+      rects.push(rect);
     }
   }
 
