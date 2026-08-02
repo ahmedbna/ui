@@ -223,12 +223,12 @@ the real prop exists.
 
 ## Phase 5 — Styling, performance & consistency
 
-- [ ] `React.memo`: `text.tsx`, `view.tsx`, `card.tsx`'s 6 subcomponents (after the `...props` fix in Phase 1), `avatar.tsx`, `skeleton.tsx`, `area-chart.tsx` (cheap pure wrapper) — most-instantiated leaves in the library, currently unmemoized
-- [ ] `useCallback`: `toggle.tsx`'s `ToggleGroup` per-item handlers (currently new closures every render, `React.memo` alone won't help)
-- [ ] `useMemo`: geometry/stacking math across all 18 charts (currently recomputed from scratch every render regardless of whether `data` changed) — highest-value targets: `heatmap-chart.tsx`'s grid rebuild (O(rows×cols)) and `treemap-chart.tsx`'s `squarify()` (O(n²)/level); also `combobox.tsx`'s filter/count and `picker.tsx`'s search filtering
-- [ ] `FlatList`/FlashList migration: `gallery.tsx`'s main thumbnail grid (currently `.map()` in a plain `ScrollView` — backwards, since the _less-visible_ fullscreen viewer already uses `FlatList` correctly); `table.tsx`'s rows when `pagination={false}` (removes the only size guard on a generic data table)
-- [ ] `useWindowDimensions()` replacing module-scope `Dimensions.get('window')` caching (stale after rotation/on foldables): `bottom-sheet.tsx`, `sheet.tsx`, `tabs.tsx`, `carousel.tsx`, `gallery.tsx`, `onboarding.tsx`
-- [ ] `useSafeAreaInsets()` replacing hardcoded offsets: `action-sheet.tsx` (`paddingBottom:34`), `bottom-sheet.tsx` (`paddingBottom:40`), `sheet.tsx` (`paddingTop:90`/`top:50`), `gallery.tsx` (`paddingTop:56`/`paddingBottom:46`) — misplaces content under Expo SDK 57's Android edge-to-edge default and notch/Dynamic-Island devices
+- [x] `React.memo`: `text.tsx`, `view.tsx`, `card.tsx`'s 6 subcomponents (after the `...props` fix in Phase 1), `avatar.tsx`, `skeleton.tsx`, `area-chart.tsx` (cheap pure wrapper) — most-instantiated leaves in the library, currently unmemoized
+- [x] `useCallback`: `toggle.tsx`'s `ToggleGroup` per-item handlers (currently new closures every render, `React.memo` alone won't help)
+- [x] `useMemo`: geometry/stacking math across all 18 charts (currently recomputed from scratch every render regardless of whether `data` changed) — highest-value targets: `heatmap-chart.tsx`'s grid rebuild (O(rows×cols)) and `treemap-chart.tsx`'s `squarify()` (O(n²)/level); also `combobox.tsx`'s filter/count and `picker.tsx`'s search filtering
+- [x] `FlatList`/FlashList migration: `gallery.tsx`'s main thumbnail grid (currently `.map()` in a plain `ScrollView` — backwards, since the _less-visible_ fullscreen viewer already uses `FlatList` correctly); `table.tsx`'s rows when `pagination={false}` (removes the only size guard on a generic data table)
+- [x] `useWindowDimensions()` replacing module-scope `Dimensions.get('window')` caching (stale after rotation/on foldables): `bottom-sheet.tsx`, `sheet.tsx`, `tabs.tsx`, `carousel.tsx`, `gallery.tsx`, `onboarding.tsx`
+- [x] `useSafeAreaInsets()` replacing hardcoded offsets: `action-sheet.tsx` (`paddingBottom:34`), `bottom-sheet.tsx` (`paddingBottom:40`), `sheet.tsx` (`paddingTop:90`/`top:50`), `gallery.tsx` (`paddingTop:56`/`paddingBottom:46`) — misplaces content under Expo SDK 57's Android edge-to-edge default and notch/Dynamic-Island devices
 - [ ] `StyleSheet.create` migration for the inline-style majority (~3/4 of files) — optional, low urgency, a consistency call not a correctness one
 
 ---

@@ -4,9 +4,9 @@ import { useColor } from '@/hooks/useColor';
 import React, { useEffect, useRef, useState } from 'react';
 import {
   AccessibilityInfo,
-  Dimensions,
   ScrollView,
   StyleSheet,
+  useWindowDimensions,
   View,
   ViewStyle,
 } from 'react-native';
@@ -17,8 +17,6 @@ import Animated, {
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated';
-
-const { width: screenWidth } = Dimensions.get('window');
 
 export interface OnboardingStep {
   id: string;
@@ -65,6 +63,7 @@ export function Onboarding({
   style,
   children,
 }: OnboardingProps) {
+  const { width: screenWidth } = useWindowDimensions();
   const [currentStep, setCurrentStep] = useState(0);
   const scrollViewRef = useRef<ScrollView>(null);
   const translateX = useSharedValue(0);
@@ -179,6 +178,7 @@ export function Onboarding({
         key={step.id}
         style={[
           styles.stepContainer,
+          { width: screenWidth },
           { backgroundColor: step.backgroundColor || backgroundColor },
           { opacity: isActive ? 1 : 0.8 },
         ]}
@@ -266,7 +266,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   stepContainer: {
-    width: screenWidth,
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',

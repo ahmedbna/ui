@@ -9,6 +9,7 @@ import React, {
   ReactNode,
   useContext,
   useEffect,
+  useMemo,
   useRef,
   useState,
 } from 'react';
@@ -339,54 +340,62 @@ interface ComboboxListProps {
   style?: ViewStyle;
 }
 
+const countFilteredItems = (nodes: React.ReactNode[]): number => {
+  return nodes.reduce<number>((count, node) => {
+    if (isValidElement(node)) {
+      if (node.type === ComboboxItem) {
+        return count + 1;
+      }
+      if (node.type === ComboboxGroup) {
+        const groupChildren = Children.toArray((node.props as any).children);
+        return count + countFilteredItems(groupChildren);
+      }
+    }
+    return count;
+  }, 0);
+};
+
 export function ComboboxList({ children, style }: ComboboxListProps) {
   const { searchQuery, setFilteredItemsCount } = useCombobox();
 
-  const filteredChildren = Children.toArray(children).filter((child) => {
-    if (!searchQuery) return true;
+  // Filtering walks the whole children tree (and every group's children) —
+  // memoize rather than redoing that walk, plus the item-count reduction
+  // over the result, on every render regardless of whether children or the
+  // query actually changed.
+  const [filteredChildren, itemCount] = useMemo(() => {
+    const filtered = Children.toArray(children).filter((child) => {
+      if (!searchQuery) return true;
 
-    if (isValidElement(child) && child.type === ComboboxItem) {
-      const props = child.props as any;
-      const label = getLabelFromChildren(props.children);
-      const searchText = props.searchValue || label || props.value || '';
-      return searchText.toLowerCase().includes(searchQuery.toLowerCase());
-    }
-
-    if (isValidElement(child) && child.type === ComboboxGroup) {
-      const groupProps = child.props as any;
-      const groupChildren = Children.toArray(groupProps.children);
-
-      return groupChildren.some((groupChild) => {
-        if (isValidElement(groupChild) && groupChild.type === ComboboxItem) {
-          const itemProps = groupChild.props as any;
-          const label = getLabelFromChildren(itemProps.children);
-          const searchText =
-            itemProps.searchValue || label || itemProps.value || '';
-          return searchText.toLowerCase().includes(searchQuery.toLowerCase());
-        }
-        return false;
-      });
-    }
-
-    return true;
-  });
-
-  const countFilteredItems = (nodes: React.ReactNode[]): number => {
-    return nodes.reduce<number>((count, node) => {
-      if (isValidElement(node)) {
-        if (node.type === ComboboxItem) {
-          return count + 1;
-        }
-        if (node.type === ComboboxGroup) {
-          const groupChildren = Children.toArray((node.props as any).children);
-          return count + countFilteredItems(groupChildren);
-        }
+      if (isValidElement(child) && child.type === ComboboxItem) {
+        const props = child.props as any;
+        const label = getLabelFromChildren(props.children);
+        const searchText = props.searchValue || label || props.value || '';
+        return searchText.toLowerCase().includes(searchQuery.toLowerCase());
       }
-      return count;
-    }, 0);
-  };
 
-  const itemCount = countFilteredItems(filteredChildren);
+      if (isValidElement(child) && child.type === ComboboxGroup) {
+        const groupProps = child.props as any;
+        const groupChildren = Children.toArray(groupProps.children);
+
+        return groupChildren.some((groupChild) => {
+          if (isValidElement(groupChild) && groupChild.type === ComboboxItem) {
+            const itemProps = groupChild.props as any;
+            const label = getLabelFromChildren(itemProps.children);
+            const searchText =
+              itemProps.searchValue || label || itemProps.value || '';
+            return searchText
+              .toLowerCase()
+              .includes(searchQuery.toLowerCase());
+          }
+          return false;
+        });
+      }
+
+      return true;
+    });
+
+    return [filtered, countFilteredItems(filtered)] as const;
+  }, [children, searchQuery]);
 
   useEffect(() => {
     setFilteredItemsCount(itemCount);

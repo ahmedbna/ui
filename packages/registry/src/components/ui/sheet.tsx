@@ -6,12 +6,12 @@ import { BORDER_RADIUS, FONT_SIZE } from '@/theme/globals';
 import { X } from 'lucide-react-native';
 import React, { useEffect } from 'react';
 import {
-  Dimensions,
   Modal,
   Platform,
   Pressable,
   StyleSheet,
   TouchableOpacity,
+  useWindowDimensions,
   ViewStyle,
 } from 'react-native';
 import Animated, {
@@ -22,8 +22,7 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-
-const { width: SCREEN_WIDTH } = Dimensions.get('window');
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 type SheetSide = 'left' | 'right';
 
@@ -106,7 +105,9 @@ export function SheetTrigger({ children, asChild }: SheetTriggerProps) {
 
 export function SheetContent({ children, style }: SheetContentProps) {
   const { open, onOpenChange, side } = useSheet();
-  const sheetWidth = Math.min(SCREEN_WIDTH * 0.8, 400);
+  const { width: screenWidth } = useWindowDimensions();
+  const insets = useSafeAreaInsets();
+  const sheetWidth = Math.min(screenWidth * 0.8, 400);
   const [isVisible, setIsVisible] = React.useState(open);
 
   const backgroundColor = useColor('background');
@@ -207,6 +208,7 @@ export function SheetContent({ children, style }: SheetContentProps) {
               styles.closeButton,
               {
                 backgroundColor: backgroundColor,
+                top: insets.top + 10,
                 [side === 'left' ? 'right' : 'left']: 16,
               },
             ]}
@@ -229,7 +231,13 @@ export function SheetContent({ children, style }: SheetContentProps) {
 // Unchanged components below
 
 export function SheetHeader({ children, style }: SheetHeaderProps) {
-  return <View style={[styles.header, style]}>{children}</View>;
+  const insets = useSafeAreaInsets();
+
+  return (
+    <View style={[styles.header, { paddingTop: insets.top + 50 }, style]}>
+      {children}
+    </View>
+  );
 }
 
 export function SheetTitle({ children }: SheetTitleProps) {
@@ -279,7 +287,6 @@ const styles = StyleSheet.create({
   },
   closeButton: {
     position: 'absolute',
-    top: 50,
     zIndex: 1,
     borderRadius: 999, // Make it circular
     width: 32,
@@ -291,7 +298,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    paddingTop: 90,
     paddingHorizontal: 24,
     paddingBottom: 16,
   },

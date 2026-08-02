@@ -4,7 +4,7 @@ import { View } from '@/components/ui/view';
 import { useColor } from '@/hooks/useColor';
 import { CORNERS, FONT_SIZE, HEIGHT } from '@/theme/globals';
 import { LucideProps } from 'lucide-react-native';
-import React from 'react';
+import React, { useCallback } from 'react';
 import { TextStyle, TouchableOpacity, ViewStyle } from 'react-native';
 
 type ToggleVariant = 'default' | 'outline';
@@ -164,6 +164,63 @@ interface ToggleGroupProps {
   orientation?: 'horizontal' | 'vertical';
 }
 
+// Split out and memoized so a selection change only re-renders the affected
+// item, not every item in the group — pointless without a stable onPress
+// identity, which is why ToggleGroup wraps handleItemPress in useCallback.
+const ToggleGroupItemButton = React.memo(function ToggleGroupItemButton({
+  item,
+  pressed,
+  variant,
+  size,
+  disabled,
+  style,
+  onPress,
+}: {
+  item: ToggleGroupItem;
+  pressed: boolean;
+  variant: ToggleGroupVariant;
+  size: ToggleGroupSize;
+  disabled: boolean;
+  style: ViewStyle;
+  onPress: (value: string) => void;
+}) {
+  const primaryColor = useColor('primary');
+  const primaryForegroundColor = useColor('primaryForeground');
+  const secondaryForegroundColor = useColor('secondaryForeground');
+
+  const handlePress = useCallback(() => {
+    onPress(item.value);
+  }, [onPress, item.value]);
+
+  const color = pressed
+    ? primaryForegroundColor
+    : variant === 'outline'
+      ? primaryColor
+      : secondaryForegroundColor;
+
+  return (
+    <Toggle
+      pressed={pressed}
+      onPressedChange={handlePress}
+      variant={variant}
+      size={size}
+      disabled={disabled}
+      style={style}
+    >
+      {item.icon && item.label ? (
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+          <Icon name={item.icon} size={16} strokeWidth={2.5} color={color} />
+          <Text style={{ color }}>{item.label}</Text>
+        </View>
+      ) : item.icon ? (
+        <Icon name={item.icon} size={16} strokeWidth={2.5} color={color} />
+      ) : (
+        <Text style={{ color }}>{item.label}</Text>
+      )}
+    </Toggle>
+  );
+});
+
 export function ToggleGroup({
   type = 'single',
   value,
@@ -176,26 +233,26 @@ export function ToggleGroup({
   orientation = 'horizontal',
 }: ToggleGroupProps) {
   const borderColor = useColor('border');
-  const primaryColor = useColor('primary');
-  const primaryForegroundColor = useColor('primaryForeground');
-  const secondaryForegroundColor = useColor('secondaryForeground');
 
-  const handleItemPress = (itemValue: string) => {
-    if (disabled) return;
+  const handleItemPress = useCallback(
+    (itemValue: string) => {
+      if (disabled) return;
 
-    if (type === 'single') {
-      // Single selection
-      const newValue = value === itemValue ? undefined : itemValue;
-      onValueChange?.(newValue || '');
-    } else {
-      // Multiple selection
-      const currentValues = Array.isArray(value) ? value : [];
-      const newValues = currentValues.includes(itemValue)
-        ? currentValues.filter((v) => v !== itemValue)
-        : [...currentValues, itemValue];
-      onValueChange?.(newValues);
-    }
-  };
+      if (type === 'single') {
+        // Single selection
+        const newValue = value === itemValue ? undefined : itemValue;
+        onValueChange?.(newValue || '');
+      } else {
+        // Multiple selection
+        const currentValues = Array.isArray(value) ? value : [];
+        const newValues = currentValues.includes(itemValue)
+          ? currentValues.filter((v) => v !== itemValue)
+          : [...currentValues, itemValue];
+        onValueChange?.(newValues);
+      }
+    },
+    [disabled, type, value, onValueChange]
+  );
 
   const isItemPressed = (itemValue: string): boolean => {
     if (type === 'single') {
@@ -235,70 +292,16 @@ export function ToggleGroup({
       accessibilityRole={type === 'single' ? 'radiogroup' : undefined}
     >
       {items.map((item, index) => (
-        <Toggle
+        <ToggleGroupItemButton
           key={item.value}
+          item={item}
           pressed={isItemPressed(item.value)}
-          onPressedChange={() => handleItemPress(item.value)}
           variant={variant}
           size={size}
-          disabled={disabled || item.disabled}
+          disabled={disabled || !!item.disabled}
           style={getItemStyle(index)}
-        >
-          {item.icon && item.label ? (
-            <View
-              style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}
-            >
-              <Icon
-                name={item.icon}
-                size={16}
-                strokeWidth={2.5}
-                color={
-                  isItemPressed(item.value)
-                    ? primaryForegroundColor
-                    : variant === 'outline'
-                      ? primaryColor
-                      : secondaryForegroundColor
-                }
-              />
-              <Text
-                style={{
-                  color: isItemPressed(item.value)
-                    ? primaryForegroundColor
-                    : variant === 'outline'
-                      ? primaryColor
-                      : secondaryForegroundColor,
-                }}
-              >
-                {item.label}
-              </Text>
-            </View>
-          ) : item.icon ? (
-            <Icon
-              name={item.icon}
-              size={16}
-              strokeWidth={2.5}
-              color={
-                isItemPressed(item.value)
-                  ? primaryForegroundColor
-                  : variant === 'outline'
-                    ? primaryColor
-                    : secondaryForegroundColor
-              }
-            />
-          ) : (
-            <Text
-              style={{
-                color: isItemPressed(item.value)
-                  ? primaryForegroundColor
-                  : variant === 'outline'
-                    ? primaryColor
-                    : secondaryForegroundColor,
-              }}
-            >
-              {item.label}
-            </Text>
-          )}
-        </Toggle>
+          onPress={handleItemPress}
+        />
       ))}
     </View>
   );

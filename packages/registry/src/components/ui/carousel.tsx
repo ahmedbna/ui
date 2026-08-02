@@ -12,16 +12,14 @@ import React, {
   useState,
 } from 'react';
 import {
-  Dimensions,
   NativeScrollEvent,
   NativeSyntheticEvent,
   ScrollView,
   TouchableOpacity,
+  useWindowDimensions,
   ViewStyle,
 } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
-
-const { width: screenWidth } = Dimensions.get('window');
 
 interface CarouselProps {
   children: React.ReactNode[];
@@ -85,6 +83,7 @@ export const Carousel = forwardRef<CarouselRef, CarouselProps>(
     },
     ref
   ) => {
+    const { width: screenWidth } = useWindowDimensions();
     const scrollViewRef = useRef<ScrollView>(null);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [containerWidth, setContainerWidth] = useState(screenWidth);

@@ -22,6 +22,7 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export interface ActionSheetOption {
   title: string;
@@ -120,6 +121,7 @@ function AndroidActionSheet({
   const [isSheetVisible, setIsSheetVisible] = useState(visible);
   const progress = useSharedValue(0);
   const screenHeight = Dimensions.get('window').height;
+  const insets = useSafeAreaInsets();
 
   const cardColor = useColor('card');
   const textColor = useColor('text');
@@ -196,7 +198,7 @@ function AndroidActionSheet({
         <Animated.View
           style={[
             styles.sheet,
-            { backgroundColor: cardColor },
+            { backgroundColor: cardColor, paddingBottom: Math.max(insets.bottom, 16) },
             sheetAnimatedStyle,
             style,
           ]}
@@ -305,7 +307,6 @@ const styles = StyleSheet.create({
   sheet: {
     borderTopLeftRadius: CORNERS,
     borderTopRightRadius: CORNERS,
-    paddingBottom: 34, // Safe area bottom padding
     maxHeight: '80%',
     elevation: 10,
     shadowColor: '#000',

@@ -7,7 +7,12 @@ export const sheetRegistry = {
     description:
       'A modal component that slides in from the side of the screen, commonly used for navigation menus, filters, and detail views.',
     type: 'registry:ui',
-    dependencies: ['lucide-react-native'],
+    dependencies: [
+      'lucide-react-native',
+      'react-native-reanimated',
+      'react-native-worklets',
+      'react-native-safe-area-context',
+    ],
     registryDependencies: ['button', 'text', 'view'],
     hooks: ['useColor'],
     theme: ['globals'],

@@ -4,7 +4,14 @@ import { View } from '@/components/ui/view';
 import { useColor } from '@/hooks/useColor';
 import { FONT_SIZE } from '@/theme/globals';
 import { ImageProps, ImageSource } from 'expo-image';
-import { createContext, Dispatch, SetStateAction, useContext, useState } from 'react';
+import {
+  createContext,
+  Dispatch,
+  memo,
+  SetStateAction,
+  useContext,
+  useState,
+} from 'react';
 import { TextStyle, ViewStyle } from 'react-native';
 
 type AvatarImageStatus = 'loading' | 'loaded' | 'error';
@@ -34,7 +41,11 @@ interface AvatarProps {
   style?: ViewStyle;
 }
 
-export function Avatar({ children, size = 40, style }: AvatarProps) {
+export const Avatar = memo(function Avatar({
+  children,
+  size = 40,
+  style,
+}: AvatarProps) {
   const [status, setStatus] = useState<AvatarImageStatus>('loading');
 
   return (
@@ -55,14 +66,17 @@ export function Avatar({ children, size = 40, style }: AvatarProps) {
       </View>
     </AvatarContext.Provider>
   );
-}
+});
 
 interface AvatarImageProps {
   source: ImageSource;
   style?: ImageProps['style'];
 }
 
-export function AvatarImage({ source, style }: AvatarImageProps) {
+export const AvatarImage = memo(function AvatarImage({
+  source,
+  style,
+}: AvatarImageProps) {
   const { setStatus } = useAvatarContext();
 
   return (
@@ -77,7 +91,7 @@ export function AvatarImage({ source, style }: AvatarImageProps) {
       }
     />
   );
-}
+});
 
 interface AvatarFallbackProps {
   children: React.ReactNode;
@@ -85,7 +99,7 @@ interface AvatarFallbackProps {
   textStyle?: TextStyle;
 }
 
-export function AvatarFallback({
+export const AvatarFallback = memo(function AvatarFallback({
   children,
   style,
   textStyle,
@@ -123,4 +137,4 @@ export function AvatarFallback({
       </Text>
     </View>
   );
-}
+});

@@ -1,5 +1,5 @@
 import { useColor } from '@/hooks/useColor';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { LayoutChangeEvent, View, ViewStyle } from 'react-native';
 import Animated, {
   SharedValue,
@@ -245,6 +245,14 @@ export const TreeMapChart = ({ data, config = {}, style }: Props) => {
     }
   }, [data, animated, duration]);
 
+  // squarify() is O(n²) per level — memoize rather than recomputing the
+  // full layout (including any recursive children) on every render.
+  const rectangles = useMemo(
+    () =>
+      squarify(data, padding, padding, chartWidth - padding * 2, height - padding * 2),
+    [data, padding, chartWidth, height]
+  );
+
   if (!data.length) return null;
 
   // Generate color palette
@@ -265,15 +273,6 @@ export const TreeMapChart = ({ data, config = {}, style }: Props) => {
     if (customColor) return customColor;
     return colors[index % colors.length];
   };
-
-  // Calculate rectangles
-  const rectangles = squarify(
-    data,
-    padding,
-    padding,
-    chartWidth - padding * 2,
-    height - padding * 2
-  );
 
   return (
     <View

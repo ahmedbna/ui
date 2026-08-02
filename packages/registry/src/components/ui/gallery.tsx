@@ -6,12 +6,11 @@ import { Image } from 'expo-image';
 import { Download, Share, X } from 'lucide-react-native';
 import { memo, useCallback, useEffect, useRef, useState } from 'react';
 import {
-  Dimensions,
   FlatList,
   Modal,
   Pressable,
-  ScrollView,
   StyleSheet,
+  useWindowDimensions,
   View,
 } from 'react-native';
 import {
@@ -25,8 +24,7 @@ import Animated, {
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated';
-
-const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export interface GalleryItem {
   id: string;
@@ -62,12 +60,16 @@ interface UseImageZoomProps {
   enableZoom: boolean;
   onSetCanSwipe: (canSwipe: boolean) => void;
   shouldReset?: boolean; // Indicates if the current image has changed and zoom should reset
+  screenWidth: number;
+  screenHeight: number;
 }
 
 export const useImageZoom = ({
   enableZoom,
   onSetCanSwipe,
   shouldReset = false,
+  screenWidth,
+  screenHeight,
 }: UseImageZoomProps) => {
   // Shared values for animated properties
   const scale = useSharedValue(1);
@@ -142,7 +144,7 @@ export const useImageZoom = ({
 
       return { x: constrainedX, y: constrainedY };
     },
-    []
+    [screenWidth, screenHeight]
   );
 
   // Gesture for double-tapping to zoom in/out
@@ -332,6 +334,8 @@ interface FullscreenImageProps {
   enableZoom: boolean;
   // Callback to inform the parent FlatList whether it should be scrollable
   onSetCanSwipe: (canSwipe: boolean) => void;
+  screenWidth: number;
+  screenHeight: number;
 }
 
 const FullscreenImage = memo(
@@ -341,6 +345,8 @@ const FullscreenImage = memo(
     selectedIndex,
     enableZoom,
     onSetCanSwipe,
+    screenWidth,
+    screenHeight,
   }: FullscreenImageProps) => {
     // Determine if this image is the currently selected one to trigger zoom reset
     const shouldReset = index === selectedIndex;
@@ -349,6 +355,8 @@ const FullscreenImage = memo(
       enableZoom,
       onSetCanSwipe, // Pass the callback to the hook
       shouldReset,
+      screenWidth,
+      screenHeight,
     });
 
     return (
@@ -364,20 +372,36 @@ const FullscreenImage = memo(
         {/* GestureDetector always present if zoom is enabled */}
         {enableZoom ? (
           <GestureDetector gesture={composedGesture}>
-            <Animated.View style={styles.imageContainer}>
+            <Animated.View
+              style={[
+                styles.imageContainer,
+                { width: screenWidth, height: screenHeight },
+              ]}
+            >
               <AnimatedImage
                 source={{ uri: item.uri }}
-                style={[styles.fullscreenImage, animatedImageStyle]}
+                style={[
+                  { width: screenWidth, height: screenHeight },
+                  animatedImageStyle,
+                ]}
                 contentFit='contain'
               />
             </Animated.View>
           </GestureDetector>
         ) : (
           // If zoom is not enabled, render without GestureDetector
-          <Animated.View style={styles.imageContainer}>
+          <Animated.View
+            style={[
+              styles.imageContainer,
+              { width: screenWidth, height: screenHeight },
+            ]}
+          >
             <AnimatedImage
               source={{ uri: item.uri }}
-              style={[styles.fullscreenImage, animatedImageStyle]}
+              style={[
+                { width: screenWidth, height: screenHeight },
+                animatedImageStyle,
+              ]}
               contentFit='contain'
             />
           </Animated.View>
@@ -405,6 +429,8 @@ export function Gallery({
   onShare,
   renderCustomOverlay,
 }: GalleryProps) {
+  const { width: screenWidth, height: screenHeight } = useWindowDimensions();
+  const insets = useSafeAreaInsets();
   // State for the currently selected image index in fullscreen mode
   const [selectedIndex, setSelectedIndex] = useState<number>(-1);
   // State to control modal visibility
@@ -607,9 +633,11 @@ export function Gallery({
         selectedIndex={selectedIndex} // Pass selected index for zoom reset logic
         enableZoom={enableZoom}
         onSetCanSwipe={setFlatListScrollEnabled} // Pass the callback to control parent FlatList's scroll
+        screenWidth={screenWidth}
+        screenHeight={screenHeight}
       />
     ),
-    [enableZoom, selectedIndex]
+    [enableZoom, selectedIndex, screenWidth, screenHeight]
   );
 
   // Render controls for the fullscreen modal (top and bottom bars)
@@ -619,7 +647,12 @@ export function Gallery({
     return (
       <View style={styles.fullscreenControls} pointerEvents='box-none'>
         {/* Top controls (share, download, close) */}
-        <View style={[styles.topControls, { backgroundColor }]}>
+        <View
+          style={[
+            styles.topControls,
+            { backgroundColor, paddingTop: insets.top + 12 },
+          ]}
+        >
           <View style={styles.topRightControls}>
             {enableDownload && onDownload && (
               <Button size='icon' variant='ghost' onPress={handleDownload}>
@@ -639,7 +672,12 @@ export function Gallery({
         </View>
 
         {/* Bottom controls (page, title, description, thumbnails) */}
-        <View style={[styles.bottomControls, { backgroundColor }]}>
+        <View
+          style={[
+            styles.bottomControls,
+            { backgroundColor, paddingBottom: insets.bottom + 16 },
+          ]}
+        >
           {showPages && (
             <Text
               variant='caption'
@@ -729,20 +767,26 @@ export function Gallery({
   return (
     // GestureHandlerRootView is required for React Native Gesture Handler to work
     <GestureHandlerRootView style={{ flex: 1 }}>
-      {/* ScrollView for the main gallery grid */}
-      <ScrollView
+      {/* FlatList for the main gallery grid — the previous plain ScrollView
+          + .map() rendered every item eagerly regardless of scroll
+          position, backwards from the less-visible fullscreen viewer below,
+          which already virtualizes via FlatList. */}
+      <FlatList
+        key={`gallery-${columns}`}
+        data={items}
+        numColumns={columns}
+        renderItem={renderGalleryItem}
+        keyExtractor={(item) => item.id}
         style={[styles.container, { backgroundColor }]}
-        contentContainerStyle={[styles.grid, { gap: spacing }]}
+        contentContainerStyle={{ gap: spacing }}
+        columnWrapperStyle={columns > 1 ? { gap: spacing } : undefined}
         showsVerticalScrollIndicator={false}
         // Measure the container width on layout to calculate item widths dynamically
         onLayout={(event) => {
           const { width } = event.nativeEvent.layout;
           setContainerWidth(width);
         }}
-      >
-        {/* Render each gallery item */}
-        {items.map((item, index) => renderGalleryItem({ item, index }))}
-      </ScrollView>
+      />
 
       {/* Modal for fullscreen image view */}
       <Modal
@@ -790,10 +834,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  grid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-  },
   gridImage: {
     flex: 1,
   },
@@ -810,14 +850,8 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     flex: 1,
-    width: screenWidth,
-    height: screenHeight,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  fullscreenImage: {
-    width: screenWidth,
-    height: screenHeight,
   },
   fullscreenControls: {
     position: 'absolute',
@@ -836,7 +870,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingTop: 56, // Adjust for safe area (notch, status bar)
     paddingHorizontal: 16,
     paddingBottom: 16,
   },
@@ -850,7 +883,6 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     padding: 16,
-    paddingBottom: 46, // Adjust for safe area (home indicator)
   },
   thumbnailContainer: {
     paddingHorizontal: 16,

@@ -5,7 +5,7 @@ import { View } from '@/components/ui/view';
 import { useColor } from '@/hooks/useColor';
 import { BORDER_RADIUS, CORNERS, FONT_SIZE, HEIGHT } from '@/theme/globals';
 import { ChevronDown, LucideProps } from 'lucide-react-native';
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import {
   Modal,
   Pressable,
@@ -98,18 +98,25 @@ export function Picker({
   const normalizedSections: PickerSection[] =
     sections.length > 0 ? sections : [{ options }];
 
-  // Filter sections based on search query
-  const filteredSections =
-    searchable && searchQuery
-      ? normalizedSections
-          .map((section) => ({
-            ...section,
-            options: section.options.filter((option) =>
-              option.label.toLowerCase().includes(searchQuery.toLowerCase())
-            ),
-          }))
-          .filter((section) => section.options.length > 0)
-      : normalizedSections;
+  // Filter sections based on search query — memoized so typing in an
+  // unrelated part of the screen doesn't re-filter every option on every
+  // render. Depends on `sections`/`options` directly rather than
+  // `normalizedSections`, which is a fresh array every render.
+  const filteredSections = useMemo(
+    () =>
+      searchable && searchQuery
+        ? normalizedSections
+            .map((section) => ({
+              ...section,
+              options: section.options.filter((option) =>
+                option.label.toLowerCase().includes(searchQuery.toLowerCase())
+              ),
+            }))
+            .filter((section) => section.options.length > 0)
+        : normalizedSections,
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [searchable, searchQuery, sections, options]
+  );
 
   // Get selected options for display
   const getSelectedOptions = () => {

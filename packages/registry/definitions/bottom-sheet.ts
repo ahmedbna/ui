@@ -12,6 +12,7 @@ export const bottomSheetRegistry = {
       'react-native-gesture-handler',
       'react-native-reanimated',
       'react-native-worklets',
+      'react-native-safe-area-context',
     ],
     registryDependencies: ['text', 'view'],
     hooks: ['useColor', 'useKeyboardHeight'],

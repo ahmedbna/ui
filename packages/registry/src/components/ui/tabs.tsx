@@ -11,10 +11,10 @@ import React, {
   useState,
 } from 'react';
 import {
-  Dimensions,
   ScrollView,
   TextStyle,
   TouchableOpacity,
+  useWindowDimensions,
   ViewStyle,
 } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
@@ -26,8 +26,6 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-
-const { width: screenWidth } = Dimensions.get('window');
 
 // Types
 interface TabsContextType {
@@ -232,6 +230,7 @@ function CarouselContainer({
   contentMap: React.MutableRefObject<Record<string, React.ReactNode>>;
   style?: ViewStyle;
 }) {
+  const { width: screenWidth } = useWindowDimensions();
   const translateX = useSharedValue(0);
   const isGestureActive = useSharedValue(false);
   const currentIndex = tabValues.indexOf(activeTab);

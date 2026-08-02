@@ -1,4 +1,5 @@
 import { LineChart } from '@/components/charts/line-chart';
+import React from 'react';
 import { ViewStyle } from 'react-native';
 
 interface ChartConfig {
@@ -27,7 +28,7 @@ type Props = {
   config?: ChartConfig;
   style?: ViewStyle;
 };
-export const AreaChart = ({ data, config = {}, style }: Props) => {
+export const AreaChart = React.memo(({ data, config = {}, style }: Props) => {
   return (
     <LineChart
       data={data}
@@ -35,4 +36,4 @@ export const AreaChart = ({ data, config = {}, style }: Props) => {
       style={style}
     />
   );
-};
+});

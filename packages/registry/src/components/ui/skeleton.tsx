@@ -17,7 +17,7 @@ interface SkeletonProps {
   variant?: 'default' | 'rounded';
 }
 
-export function Skeleton({
+export const Skeleton = React.memo(function Skeleton({
   width = '100%',
   height = 100,
   style,
@@ -63,4 +63,4 @@ export function Skeleton({
       ]}
     />
   );
-}
+});

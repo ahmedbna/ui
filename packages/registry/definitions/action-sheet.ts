@@ -8,7 +8,11 @@ export const actionSheetRegistry = {
     description:
       'A native-feeling action sheet component that provides a menu of options triggered from the bottom of the screen.',
     type: 'registry:ui',
-    dependencies: ['react-native-reanimated', 'react-native-worklets'],
+    dependencies: [
+      'react-native-reanimated',
+      'react-native-worklets',
+      'react-native-safe-area-context',
+    ],
     registryDependencies: ['text', 'view'],
     hooks: ['useColor'],
     theme: ['globals'],

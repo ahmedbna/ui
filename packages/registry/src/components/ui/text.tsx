@@ -19,7 +19,7 @@ interface TextProps extends RNTextProps {
 
 const headingVariants: TextVariant[] = ['heading', 'title', 'subtitle'];
 
-export const Text = forwardRef<RNText, TextProps>(
+export const Text = React.memo(forwardRef<RNText, TextProps>(
   (
     { variant = 'body', lightColor, darkColor, style, children, ...props },
     ref
@@ -88,4 +88,6 @@ export const Text = forwardRef<RNText, TextProps>(
       </RNText>
     );
   }
-);
+));
+
+Text.displayName = 'Text';

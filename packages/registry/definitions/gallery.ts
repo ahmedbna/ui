@@ -13,6 +13,7 @@ export const galleryRegistry = {
       'react-native-gesture-handler',
       'react-native-reanimated',
       'react-native-worklets',
+      'react-native-safe-area-context',
     ],
     registryDependencies: ['button', 'text'],
     hooks: ['useColor'],

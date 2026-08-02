@@ -5,10 +5,10 @@ import { useColor } from '@/hooks/useColor';
 import { BORDER_RADIUS } from '@/theme/globals';
 import React, { useEffect } from 'react';
 import {
-  Dimensions,
   Modal,
   ScrollView,
   TouchableWithoutFeedback,
+  useWindowDimensions,
   ViewStyle,
 } from 'react-native';
 import {
@@ -23,9 +23,7 @@ import Animated, {
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
-
-const { height: SCREEN_HEIGHT } = Dimensions.get('window');
-const MAX_TRANSLATE_Y = -SCREEN_HEIGHT + 50;
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 type BottomSheetContentProps = {
   children: React.ReactNode;
@@ -34,6 +32,7 @@ type BottomSheetContentProps = {
   rBottomSheetStyle: any;
   cardColor: string;
   mutedColor: string;
+  screenHeight: number;
   onHandlePress?: () => void;
 };
 
@@ -46,16 +45,19 @@ const BottomSheetContent = ({
   rBottomSheetStyle,
   cardColor,
   mutedColor,
+  screenHeight,
   onHandlePress,
 }: BottomSheetContentProps) => {
+  const insets = useSafeAreaInsets();
+
   return (
     <Animated.View
       style={[
         {
-          height: SCREEN_HEIGHT,
+          height: screenHeight,
           width: '100%',
           position: 'absolute',
-          top: SCREEN_HEIGHT,
+          top: screenHeight,
           backgroundColor: cardColor,
           borderTopLeftRadius: BORDER_RADIUS,
           borderTopRightRadius: BORDER_RADIUS,
@@ -102,7 +104,10 @@ const BottomSheetContent = ({
       {/* Content now wrapped in a ScrollView */}
       <ScrollView
         style={{ flex: 1 }}
-        contentContainerStyle={{ padding: 16, paddingBottom: 40 }}
+        contentContainerStyle={{
+          padding: 16,
+          paddingBottom: Math.max(insets.bottom, 16),
+        }}
         keyboardShouldPersistTaps='handled'
         showsVerticalScrollIndicator={false}
       >
@@ -136,6 +141,8 @@ export function BottomSheet({
   const cardColor = useColor('card');
   const mutedColor = useColor('muted');
   const { keyboardHeight, isKeyboardVisible } = useKeyboardHeight();
+  const { height: screenHeight } = useWindowDimensions();
+  const maxTranslateY = -screenHeight + 50;
 
   const translateY = useSharedValue(0);
   const context = useSharedValue({ y: 0 });
@@ -144,7 +151,7 @@ export function BottomSheet({
   // Shared value to hold keyboard height for use in worklets
   const keyboardHeightSV = useSharedValue(0);
 
-  const snapPointsHeights = snapPoints.map((point) => -SCREEN_HEIGHT * point);
+  const snapPointsHeights = snapPoints.map((point) => -screenHeight * point);
   const defaultHeight = snapPointsHeights[0];
 
   const [modalVisible, setModalVisible] = React.useState(false);
@@ -242,7 +249,7 @@ export function BottomSheet({
     })
     .onUpdate((event) => {
       const newY = context.value.y + event.translationY;
-      if (newY <= 0 && newY >= MAX_TRANSLATE_Y) {
+      if (newY <= 0 && newY >= maxTranslateY) {
         translateY.value = newY;
       }
     })
@@ -250,7 +257,7 @@ export function BottomSheet({
       const currentY = translateY.value;
       const velocity = event.velocityY;
 
-      if (velocity > 500 && currentY > -SCREEN_HEIGHT * 0.2) {
+      if (velocity > 500 && currentY > -screenHeight * 0.2) {
         animateClose();
         return;
       }
@@ -307,6 +314,7 @@ export function BottomSheet({
               rBottomSheetStyle={rBottomSheetStyle}
               cardColor={cardColor}
               mutedColor={mutedColor}
+              screenHeight={screenHeight}
               onHandlePress={() => runOnJS(handlePress)()}
             />
           ) : (
@@ -318,6 +326,7 @@ export function BottomSheet({
                 rBottomSheetStyle={rBottomSheetStyle}
                 cardColor={cardColor}
                 mutedColor={mutedColor}
+                screenHeight={screenHeight}
                 onHandlePress={() => runOnJS(handlePress)()}
               />
             </GestureDetector>

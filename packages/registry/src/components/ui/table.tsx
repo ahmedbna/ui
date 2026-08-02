@@ -14,6 +14,7 @@ import {
 } from 'lucide-react-native';
 import React, { useMemo, useState } from 'react';
 import {
+  FlatList,
   ScrollView,
   TextInput,
   TextStyle,
@@ -477,9 +478,15 @@ export function Table<T = any>({
           ) : paginatedData.length === 0 ? (
             renderEmptyState()
           ) : (
-            <ScrollView showsVerticalScrollIndicator={false}>
-              {paginatedData.map((row, index) => renderRow(row, index))}
-            </ScrollView>
+            <FlatList
+              data={paginatedData}
+              keyExtractor={(_, index) => String(index)}
+              renderItem={({ item, index }) => renderRow(item, index)}
+              showsVerticalScrollIndicator={false}
+              // Rows aren't bounded by pageSize when pagination={false} —
+              // without virtualization this was the only size guard missing
+              // from an otherwise generic, potentially large data table.
+            />
           )}
         </View>
       </ScrollView>
