@@ -24,6 +24,10 @@ export const siteConfig = {
       label: 'Convex',
       href: '/docs/convex',
     },
+    {
+      label: 'Supabase',
+      href: '/docs/supabase',
+    },
   ],
 };
 
