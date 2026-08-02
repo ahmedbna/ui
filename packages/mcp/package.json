@@ -1,9 +1,9 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
   "name": "@bna-ui/mcp",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "type": "module",
-  "description": "MCP server for the BNA UI registry \u2014 lets AI assistants browse and read components",
+  "description": "MCP server for the BNA UI registry — lets AI assistants browse and read components",
   "main": "dist/index.js",
   "bin": {
     "bna-ui-mcp": "bin/bna-ui-mcp.js"
