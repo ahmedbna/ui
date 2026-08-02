@@ -71,6 +71,13 @@ The light color scheme provides a clean, modern appearance with high contrast fo
 - `teal`: Communication features (#5AC8FA)
 - `indigo`: System features (#5856D6)
 
+#### Semantic Colors
+
+- `success` / `successForeground`: Status indicators for successful operations (#22c55e)
+- `warning` / `warningForeground`: Status indicators for cautionary states (#f59e0b)
+- `info` / `infoForeground`: Status indicators for informational messages (#3b82f6)
+- `error` / `errorForeground`: Status indicators for failed operations (#ef4444)
+
 ### Dark Mode Colors
 
 The dark color scheme provides a comfortable viewing experience in low-light conditions.
@@ -100,6 +107,13 @@ The dark color scheme provides a comfortable viewing experience in low-light con
 - `purple`: Purple accent (#BF5AF2)
 - `teal`: Communication features (#64D2FF)
 - `indigo`: System features (#5E5CE6)
+
+#### Semantic Colors
+
+- `success` / `successForeground`: Status indicators for successful operations (#16a34a)
+- `warning` / `warningForeground`: Status indicators for cautionary states (#d97706)
+- `info` / `infoForeground`: Status indicators for informational messages (#2563eb)
+- `error` / `errorForeground`: Status indicators for failed operations (#dc2626)
 
 ## API Reference
 
@@ -249,15 +263,25 @@ const styles = StyleSheet.create({
 Use semantic colors for status indicators and system feedback to maintain consistency with platform conventions.
 
 ```tsx
-// ✅ Good - semantic colors
-<Text style={{ color: semanticColors.light.success }}>
+// ✅ Good - semantic colors, resolved for the active theme
+<Text style={{ color: colors.success }}>
   Operation completed successfully
 </Text>
 
-// ❌ Bad - arbitrary green
+// ❌ Bad - arbitrary green, and ignores the active theme
 <Text style={{ color: '#00FF00' }}>
   Operation completed successfully
 </Text>
+```
+
+`success`, `warning`, `info`, and `error` (plus their `*Foreground`
+counterparts) live directly on `Colors.light`/`Colors.dark` alongside every
+other token, so they also work with the `useColor` hook:
+
+```tsx
+import { useColor } from '@/hooks/useColor';
+
+const successColor = useColor('success');
 ```
 
 ### Performance Considerations

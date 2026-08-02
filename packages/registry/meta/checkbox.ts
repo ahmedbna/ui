@@ -13,7 +13,7 @@ export const checkboxMeta: ComponentMeta = {
     {
       name: 'Checkbox',
       description:
-        'A checkbox component that allows users to select or deselect an option.',
+        "A checkbox component that allows users to select or deselect an option. Uses `checked`/`onCheckedChange` (ARIA checkbox semantics) rather than `radio`'s `value`/`onValueChange` or `toggle`'s `pressed`/`onPressedChange` — each naming convention matches its own control's interaction model and is intentional, not an inconsistency.",
       props: [
         {
           name: 'checked',

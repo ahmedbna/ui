@@ -29,7 +29,8 @@ export function Badge({
   const destructiveColor = useColor('destructive');
   const destructiveForegroundColor = useColor('destructiveForeground');
   const borderColor = useColor('border');
-  const successColor = useColor('green');
+  const successColor = useColor('success');
+  const successForegroundColor = useColor('successForeground');
 
   const getBadgeStyle = (): ViewStyle => {
     const baseStyle: ViewStyle = {
@@ -71,6 +72,8 @@ export function Badge({
         return { ...baseTextStyle, color: secondaryForegroundColor };
       case 'destructive':
         return { ...baseTextStyle, color: destructiveForegroundColor };
+      case 'success':
+        return { ...baseTextStyle, color: successForegroundColor };
       case 'outline':
         return { ...baseTextStyle, color: primaryColor };
       default:

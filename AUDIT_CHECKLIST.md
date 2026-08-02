@@ -246,9 +246,9 @@ the real prop exists.
 
 ## Phase 7 — Theme system expansion
 
-- [ ] Merge `semanticColors.light`/`.dark` into `Colors.light`/`.dark` (in `colors.ts`) so `useColor('success', ...)` type-checks and resolves — currently fully orphaned, zero consumers anywhere in the registry. Fix `colors.mdx`'s "Semantic Usage" example, which hardcodes `semanticColors.light.success` and ignores the active theme. Unblocks `badge.tsx`'s `success` variant (currently forced to reuse the iOS-accent `green` token) and `toast.tsx`'s theme wiring (Phase 0/1)
-- [ ] Add a `SPACING` scale (and consider a small font-size scale) to `globals.ts` — currently only 4 scalar constants (`HEIGHT`, `FONT_SIZE`, `BORDER_RADIUS`, `CORNERS`), while `globals.mdx`'s own examples already invent a `spacing`/typography scale that doesn't exist in source
-- [ ] **Deliberate breaking-change decision, not a quiet fix**: reconcile the 3 different controlled-prop naming conventions across `checkbox` (`checked`/`onCheckedChange`), `radio` (`value`/`onValueChange`), and `toggle` (`pressed`/`onPressedChange`) for functionally near-identical controls — highest-effort, most consumer-visible item in this roadmap; version-flag it
+- [x] Merge `semanticColors.light`/`.dark` into `Colors.light`/`.dark` (in `colors.ts`) so `useColor('success', ...)` type-checks and resolves — currently fully orphaned, zero consumers anywhere in the registry. Fix `colors.mdx`'s "Semantic Usage" example, which hardcodes `semanticColors.light.success` and ignores the active theme. Unblocks `badge.tsx`'s `success` variant (currently forced to reuse the iOS-accent `green` token) and `toast.tsx`'s theme wiring (Phase 0/1)
+- [x] Add a `SPACING` scale (and consider a small font-size scale) to `globals.ts` — currently only 4 scalar constants (`HEIGHT`, `FONT_SIZE`, `BORDER_RADIUS`, `CORNERS`), while `globals.mdx`'s own examples already invent a `spacing`/typography scale that doesn't exist in source
+- [x] **Deliberate breaking-change decision, not a quiet fix**: reconcile the 3 different controlled-prop naming conventions across `checkbox` (`checked`/`onCheckedChange`), `radio` (`value`/`onValueChange`), and `toggle` (`pressed`/`onPressedChange`) for functionally near-identical controls — highest-effort, most consumer-visible item in this roadmap; version-flag it
 
 ---
 

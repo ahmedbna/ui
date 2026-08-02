@@ -13,7 +13,8 @@ export const toggleMeta: ComponentMeta = {
   types: [
     {
       name: 'Toggle',
-      description: 'A two-state button that can be either on (pressed) or off.',
+      description:
+        "A two-state button that can be either on (pressed) or off. Uses `pressed`/`onPressedChange` (ARIA `aria-pressed` semantics) rather than `checkbox`'s `checked`/`onCheckedChange` or `radio`'s `value`/`onValueChange` — each naming convention matches its own control's interaction model and is intentional, not an inconsistency. `ToggleGroup` below uses `value`/`onValueChange` instead, matching `RadioGroup`'s group-selection convention.",
       props: [
         {
           name: 'children',

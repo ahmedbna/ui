@@ -13,7 +13,7 @@ export const radioMeta: ComponentMeta = {
     {
       name: 'RadioGroup',
       description:
-        'The main container component that manages a group of radio buttons.',
+        "The main container component that manages a group of radio buttons. Uses `value`/`onValueChange` (matching `ToggleGroup`'s group-selection convention) rather than `checkbox`'s `checked`/`onCheckedChange` or `toggle`'s `pressed`/`onPressedChange` — each naming convention matches its own control's interaction model and is intentional, not an inconsistency.",
       props: [
         {
           name: 'options',

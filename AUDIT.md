@@ -416,6 +416,25 @@ Remove the ~14 unused `react-native-gesture-handler` declarations across charts 
 
 Merge `semanticColors` into `Colors` (or extend `useColor`'s type union) so success/warning/info/error tokens are actually reachable (§3.8) — this unblocks `badge`'s `success` variant and `toast`'s theme-awareness fixes from Phase 3/1. Add a `SPACING` scale (and consider a small font-size scale) to `globals.ts`, matching what its own docs already describe. Reconcile the three different controlled-prop naming conventions across `checkbox`/`switch`/`radio`/`toggle` (§3.5) — likely the single highest-effort, most consumer-visible change in this roadmap, since it touches public prop names; consider it a deliberate, version-flagged decision rather than a quiet fix.
 
+**Resolution, decided during the Phase 0–8 fix pass (AUDIT_CHECKLIST.md):**
+documented as intentional, not renamed. `checkbox`/`radio` use `checked`/
+`onCheckedChange` (ARIA checkbox semantics), `radio`'s group selection and
+`toggle`'s `ToggleGroup` use `value`/`onValueChange` (matching, correct
+group-selection convention shared by both), and `toggle`'s standalone
+`Toggle` uses `pressed`/`onPressedChange` (ARIA `aria-pressed` semantics).
+Each name is independently well-motivated by the control it belongs to —
+this isn't drift, it's three different ARIA vocabularies applied correctly
+to three different interaction models. `packages/registry/package.json` is
+`"version": "0.0.0"` and `"private": true` — never published or semver'd —
+so there is no npm-level breaking-change concern, only source already
+copied into consumer projects by `bna-ui add`, which defaults to skipping
+files that already exist rather than overwriting them; a rename would
+therefore only affect components a consumer hasn't installed yet, for a
+purely cosmetic consistency win, while a permanent dual-prop deprecation
+shim would have to live forever in copied-not-imported source with no
+update channel to ever remove it. See `meta/checkbox.ts`, `meta/radio.ts`,
+and `meta/toggle.ts` for cross-referencing notes on this decision.
+
 ### Phase 8 — Process
 
 Start a changeset practice for `@bna-ui/registry` component changes (today only the CLI package has one) so future component changes are tracked and versioned. Consider a lightweight CI check that diffs each `meta/<name>.ts`'s documented props against the actual component's exported prop type, to prevent the Phase 2 drift from silently recurring — this is the single highest-leverage process fix available, since manual spot-checking is what allowed the drift in §3.4 to accumulate undetected across most of the library.

@@ -72,6 +72,16 @@ const lightColors = {
 
   // Indigo accent for system features
   indigo: '#5856D6',
+
+  // Semantic states
+  success: '#22c55e',
+  successForeground: '#ffffff',
+  warning: '#f59e0b',
+  warningForeground: '#ffffff',
+  info: '#3b82f6',
+  infoForeground: '#ffffff',
+  error: '#ef4444',
+  errorForeground: '#ffffff',
 };
 
 const darkColors = {
@@ -148,6 +158,16 @@ const darkColors = {
 
   // Indigo accent for system features
   indigo: '#5E5CE6',
+
+  // Semantic states
+  success: '#16a34a',
+  successForeground: '#ffffff',
+  warning: '#d97706',
+  warningForeground: '#ffffff',
+  info: '#2563eb',
+  infoForeground: '#ffffff',
+  error: '#dc2626',
+  errorForeground: '#ffffff',
 };
 
 export const Colors = {
@@ -178,28 +198,4 @@ export const withOpacity = (color: string, opacity: number) => {
   }
 
   return color;
-};
-
-// Semantic color mappings for common UI patterns
-export const semanticColors = {
-  light: {
-    success: '#22c55e',
-    successForeground: '#ffffff',
-    warning: '#f59e0b',
-    warningForeground: '#ffffff',
-    info: '#3b82f6',
-    infoForeground: '#ffffff',
-    error: '#ef4444',
-    errorForeground: '#ffffff',
-  },
-  dark: {
-    success: '#16a34a',
-    successForeground: '#ffffff',
-    warning: '#d97706',
-    warningForeground: '#ffffff',
-    info: '#2563eb',
-    infoForeground: '#ffffff',
-    error: '#dc2626',
-    errorForeground: '#ffffff',
-  },
 };

@@ -110,6 +110,28 @@ const pillStyle = {
 };
 ```
 
+### SPACING
+
+A five-step spacing scale for margins, padding, and gaps.
+
+| Key  | Value | Description                             |
+| ---- | ----- | ---------------------------------------- |
+| `xs` | `4`   | Tight spacing, icon gaps                |
+| `sm` | `8`   | Compact spacing between related content |
+| `md` | `16`  | Default spacing between elements        |
+| `lg` | `24`  | Section-level spacing                   |
+| `xl` | `32`  | Large layout spacing                    |
+
+**Usage:**
+
+```tsx
+const cardStyle = {
+  padding: SPACING.md,
+  gap: SPACING.sm,
+  marginBottom: SPACING.lg,
+};
+```
+
 ## Usage Examples
 
 ### Standard Button Component
@@ -282,17 +304,17 @@ const responsiveStyles = {
 These constants form the foundation of your design system and should be used alongside your color system for consistent theming.
 
 ```tsx
-import { HEIGHT, FONT_SIZE, BORDER_RADIUS, CORNERS } from '@/theme/globals';
+import {
+  HEIGHT,
+  FONT_SIZE,
+  BORDER_RADIUS,
+  CORNERS,
+  SPACING,
+} from '@/theme/globals';
 import { Colors } from '@/theme/colors';
 
 export const designSystem = {
-  spacing: {
-    xs: 4,
-    sm: 8,
-    md: 16,
-    lg: 24,
-    xl: 32,
-  },
+  spacing: SPACING,
   sizing: {
     height: HEIGHT,
     borderRadius: BORDER_RADIUS,
