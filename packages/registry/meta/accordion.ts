@@ -46,13 +46,6 @@ export const accordionMeta: ComponentMeta = {
           description:
             'When `type` is `"single"`, allows closing content when clicking trigger for an open item.',
         },
-        {
-          name: 'disabled',
-          type: 'boolean',
-          default: '`false`',
-          description:
-            'When `true`, prevents the user from interacting with the accordion.',
-        },
       ],
     },
     {
@@ -63,13 +56,6 @@ export const accordionMeta: ComponentMeta = {
           name: 'value',
           type: 'string',
           description: 'A unique value for the item.',
-        },
-        {
-          name: 'disabled',
-          type: 'boolean',
-          default: '`false`',
-          description:
-            'When `true`, prevents the user from interacting with the item.',
         },
       ],
     },

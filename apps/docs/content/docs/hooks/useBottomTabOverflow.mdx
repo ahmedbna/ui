@@ -23,11 +23,10 @@ npx bna-ui add useBottomTabOverflow
 
 <Steps>
 
-<Step>Install the following dependencies:</Step>
-
-```bash
-npx expo install @react-navigation/bottom-tabs
-```
+<Step>
+  This hook reads from `expo-router`'s tab context, so no additional
+  dependencies are needed beyond `expo-router` itself.
+</Step>
 
 <Step>Copy and paste the following code into your project.</Step>
 
@@ -56,16 +55,15 @@ Returns the appropriate bottom tab bar height for handling overflow scenarios.
 
 #### Returns
 
-| Type     | Description                                                                                   |
-| -------- | --------------------------------------------------------------------------------------------- |
-| `number` | The bottom tab bar height on iOS, or 0 on Android. Uses `useBottomTabBarHeight()` internally. |
+| Type     | Description                                                                                                    |
+| -------- | ---------------------------------------------------------------------------------------------------------------- |
+| `number` | The bottom tab bar height on iOS, or 0 on Android. Reads `BottomTabBarHeightContext` from `expo-router/js-tabs`. |
 
 ## Platform Behavior
 
 ### iOS
 
-- Returns the actual bottom tab bar height using `@react-navigation/bottom-tabs`
-- Automatically accounts for safe area insets and device-specific measurements
+- Returns the tab bar height from `expo-router`'s `BottomTabBarHeightContext`, falling back to `0` outside a tab navigator
 - Updates dynamically if the tab bar height changes
 
 ### Android
@@ -87,8 +85,7 @@ This hook is particularly useful when you need to:
 
 ### Performance
 
-- The hook is lightweight and safe to use in multiple components
-- Values are cached by React Navigation, so multiple calls don't impact performance
+- The hook is lightweight (a single `useContext` read) and safe to use in multiple components
 - Consider memoizing dependent calculations to avoid unnecessary re-renders
 
 ### Usage Patterns
@@ -158,7 +155,7 @@ export function ScreenWithFAB() {
 
 ## Dependencies
 
-- `@react-navigation/bottom-tabs` - Required for `useBottomTabBarHeight`
+- `expo-router` - Provides `BottomTabBarHeightContext` via `expo-router/js-tabs`
 - `react-native` - Required for Platform detection
 
 ## Accessibility

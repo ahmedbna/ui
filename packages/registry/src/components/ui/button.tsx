@@ -62,6 +62,7 @@ export const Button = forwardRef<View, ButtonProps>(
       loadingVariant = 'default',
       style,
       textStyle,
+      label,
       ...props
     },
     ref
@@ -199,9 +200,7 @@ export const Button = forwardRef<View, ButtonProps>(
     // Trigger haptic feedback
     const triggerHapticFeedback = () => {
       if (haptic && !disabled && !loading) {
-        if (process.env.EXPO_OS === 'ios') {
-          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-        }
+        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
       }
     };
 
@@ -332,6 +331,7 @@ export const Button = forwardRef<View, ButtonProps>(
         style={getPressableStyle()}
         accessibilityRole='button'
         accessibilityState={{ busy: loading, disabled: disabled || loading }}
+        accessibilityLabel={label}
         {...props}
       >
         <Animated.View style={[animatedStyle, buttonStyle, styleWithoutFlex]}>
@@ -371,6 +371,7 @@ export const Button = forwardRef<View, ButtonProps>(
         activeOpacity={0.8}
         accessibilityRole='button'
         accessibilityState={{ busy: loading, disabled: disabled || loading }}
+        accessibilityLabel={label}
         {...props}
       >
         {loading ? (

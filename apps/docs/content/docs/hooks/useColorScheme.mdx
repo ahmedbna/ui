@@ -60,9 +60,9 @@ Returns the user's preferred color scheme with platform-specific optimizations.
 
 #### Returns
 
-| Type                        | Description                                                                                  |
-| --------------------------- | -------------------------------------------------------------------------------------------- |
-| `'light' \| 'dark' \| null` | The current color scheme. Returns `null` if the color scheme cannot be determined initially. |
+| Type                | Description                                                                                                                                                                      |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `'light' \| 'dark'` | The current color scheme. Never `null` — React Native's own `useColorScheme` can return `'unspecified'` (the OS has no preference set), which this hook collapses to `'light'`. |
 
 ## Platform Behavior
 
@@ -116,16 +116,6 @@ This hook is essential for:
 - Building accessible applications with proper contrast ratios
 
 ## Best Practices
-
-### Handling Null Values
-
-Always handle the `null` case, especially during initial renders:
-
-```tsx
-const colorScheme = useColorScheme();
-const isDark = colorScheme === 'dark';
-const backgroundColor = isDark ? '#000' : '#fff';
-```
 
 ### Theme Provider Pattern
 

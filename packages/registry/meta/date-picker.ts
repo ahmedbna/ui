@@ -22,19 +22,22 @@ export const datePickerMeta: ComponentMeta = {
         },
         {
           name: 'value',
-          type: 'Date',
-          description: 'The currently selected date.',
+          type: 'Date | DateRange',
+          description:
+            'The currently selected date. `DateRange` (`{ startDate, endDate }`) when `mode` is `"range"`, otherwise a plain `Date`.',
         },
         {
           name: 'onChange',
-          type: '(date: Date) => void',
-          description: 'Callback fired when the date changes.',
+          type: '(value: Date | undefined) => void | (value: DateRange | undefined) => void',
+          description:
+            'Callback fired when the selection changes. Receives a `DateRange | undefined` when `mode` is `"range"`, otherwise a `Date | undefined`.',
         },
         {
           name: 'mode',
           type: "'date' | 'range' | 'time' | 'datetime'",
           default: "`'date'`",
-          description: 'The picker mode - date only, time only, or both.',
+          description:
+            'The picker mode. `value`/`onChange` switch shape based on this: `DateRange` for `"range"`, `Date` for every other mode.',
         },
         {
           name: 'placeholder',
@@ -89,6 +92,22 @@ export const datePickerMeta: ComponentMeta = {
           name: 'errorStyle',
           type: 'TextStyle',
           description: 'Additional styles for the error text.',
+        },
+      ],
+    },
+    {
+      name: 'DateRange',
+      description: 'The value shape used when `mode` is `"range"`.',
+      props: [
+        {
+          name: 'startDate',
+          type: 'Date | null',
+          description: 'The start of the selected range.',
+        },
+        {
+          name: 'endDate',
+          type: 'Date | null',
+          description: 'The end of the selected range.',
         },
       ],
     },

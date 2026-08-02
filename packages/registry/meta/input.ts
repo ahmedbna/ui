@@ -69,6 +69,19 @@ export const inputMeta: ComponentMeta = {
           default: '`false`',
           description: 'Whether the input is disabled',
         },
+        {
+          name: 'type',
+          type: "'input' | 'textarea'",
+          default: "`'input'`",
+          description:
+            "Switches the layout to a multiline textarea when set to `'textarea'`.",
+        },
+        {
+          name: 'rows',
+          type: 'number',
+          default: '`4`',
+          description: 'Number of visible text lines. Only used when `type` is `"textarea"`.',
+        },
       ],
     },
     {
@@ -143,6 +156,19 @@ export const inputMeta: ComponentMeta = {
           type: 'boolean',
           default: '`false`',
           description: 'Whether the input is disabled',
+        },
+        {
+          name: 'type',
+          type: "'input' | 'textarea'",
+          default: "`'input'`",
+          description:
+            "Switches the layout to a multiline textarea when set to `'textarea'`.",
+        },
+        {
+          name: 'rows',
+          type: 'number',
+          default: '`3`',
+          description: 'Number of visible text lines. Only used when `type` is `"textarea"`.',
         },
       ],
     },

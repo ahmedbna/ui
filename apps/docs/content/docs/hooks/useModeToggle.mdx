@@ -96,7 +96,8 @@ interface UseModeToggleReturn {
 ### System Mode
 
 - Follows the system's color scheme preference
-- Calls `Appearance.setColorScheme(null)` to reset to system default
+- Calls `Appearance.setColorScheme('unspecified')` to reset to system default
+  (React Native 0.86 replaced the old `null` sentinel with `'unspecified'`)
 - `isDark` reflects the actual system preference
 - `currentMode` returns the system's current preference
 

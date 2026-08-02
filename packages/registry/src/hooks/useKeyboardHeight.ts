@@ -109,23 +109,3 @@ export const useKeyboardHeight = (): UseKeyboardHeightReturn => {
     keyboardAnimationDuration,
   };
 };
-
-// Example usage:
-/*
-import useKeyboardHeight from './useKeyboardHeight';
-
-const MyComponent: React.FC = () => {
-  const { keyboardHeight, isKeyboardVisible, keyboardAnimationDuration } = useKeyboardHeight();
-  
-  return (
-    <View style={{ 
-      flex: 1, 
-      paddingBottom: isKeyboardVisible ? keyboardHeight : 0 
-    }}>
-      <Text>Keyboard Height: {keyboardHeight}</Text>
-      <Text>Keyboard Visible: {isKeyboardVisible ? 'Yes' : 'No'}</Text>
-      <Text>Animation Duration: {keyboardAnimationDuration}ms</Text>
-    </View>
-  );
-};
-*/

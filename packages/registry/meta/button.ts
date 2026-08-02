@@ -62,9 +62,22 @@ export const buttonMeta: ComponentMeta = {
           description: 'Whether to enable press animations.',
         },
         {
+          name: 'haptic',
+          type: 'boolean',
+          default: '`true`',
+          description:
+            'Whether to trigger haptic feedback on press (iOS and Android).',
+        },
+        {
           name: 'icon',
           type: 'ComponentType<LucideProps>',
           description: 'Icon component to display before the text.',
+        },
+        {
+          name: 'label',
+          type: 'string',
+          description:
+            'Fallback `accessibilityLabel` for screen readers, useful when `children` is not plain text (e.g. an icon-only button).',
         },
         {
           name: 'style',

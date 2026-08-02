@@ -217,13 +217,13 @@ const getTopPosition = () => {
 
 ### Custom Animations
 
-The component uses React Native Animated API. You can customize animation timing and easing:
+The component is built on `react-native-reanimated`'s `withSpring`. You can customize the spring config by editing the `SPRING_CONFIG` constant in `toast.tsx`:
 
 ```tsx
-Animated.spring(translateY, {
-  toValue: 0,
-  tension: 100, // Custom tension
-  friction: 10, // Custom friction
-  useNativeDriver: true,
-});
+const SPRING_CONFIG = {
+  stiffness: 120, // Custom stiffness
+  damping: 8, // Custom damping
+};
+
+translateY.value = withSpring(0, SPRING_CONFIG);
 ```

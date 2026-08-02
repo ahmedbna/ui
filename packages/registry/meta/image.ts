@@ -21,16 +21,11 @@ export const imageMeta: ComponentMeta = {
           description: 'The image source (required).',
         },
         {
-          name: 'full',
-          type: 'boolean',
-          default: '`true`',
-          description: 'Whether the image should fill its container.',
-        },
-        {
           name: 'variant',
-          type: "'rounded' | 'circle'",
+          type: "'rounded' | 'circle' | 'default'",
           default: "`'rounded'`",
-          description: 'The border radius variant.',
+          description:
+            "The border radius variant. `'default'` applies no border radius.",
         },
         {
           name: 'width',

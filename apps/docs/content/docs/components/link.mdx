@@ -160,6 +160,23 @@ The `href` prop accepts the following formats:
 - **Email links**: `"mailto:user@example.com"`
 - **Phone links**: `"tel:+1234567890"`
 
+`href`'s `Href` type comes directly from `expo-router`. For it to type-check
+internal routes against your app's actual file-based routes (autocomplete and
+compile errors on typos), enable typed routes in `app.json`:
+
+```json
+{
+  "expo": {
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
+```
+
+Without it, `href` still works at runtime — it just widens to `string`,
+losing route-name validation.
+
 ## Browser Behavior
 
 ### In-App Browser (Default)

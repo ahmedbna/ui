@@ -67,6 +67,7 @@ export const FilePicker = forwardRef<FilePickerMethods, FilePickerProps>(
       placeholder = 'Select files',
       disabled = false,
       style = {},
+      showPreview = true,
       showFileInfo = true,
       accessibilityLabel,
       accessibilityHint,
@@ -249,7 +250,7 @@ export const FilePicker = forwardRef<FilePickerMethods, FilePickerProps>(
         </Button>
 
         {/* Selected Files Preview */}
-        {selectedFiles.length > 0 && (
+        {showPreview && selectedFiles.length > 0 && (
           <ScrollView
             style={styles.filesContainer}
             showsVerticalScrollIndicator={false}

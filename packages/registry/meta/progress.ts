@@ -26,7 +26,7 @@ export const progressMeta: ComponentMeta = {
         {
           name: 'height',
           type: 'number',
-          default: '`4`',
+          default: '`HEIGHT` (`48`)',
           description: 'The height of the progress bar in pixels.',
         },
         {
@@ -52,17 +52,21 @@ export const progressMeta: ComponentMeta = {
           description:
             'Whether the progress bar can be interacted with (tap/drag).',
         },
+        {
+          name: 'step',
+          type: 'number',
+          default: '`10`',
+          description:
+            'Amount to adjust `value` by per accessibility increment/decrement action, when `interactive`.',
+        },
       ],
     },
   ],
   accessibility: {
     summary: 'The Progress component is built with accessibility in mind:',
     items: [
-      'Uses semantic structure for screen readers',
-      'Supports gesture-based interaction when interactive',
-      'Proper touch targets for interactive elements',
-      'Smooth animations with reduced motion support',
-      'Clear visual feedback for progress states',
+      'Exposes `accessibilityRole="progressbar"` (or `"adjustable"` when `interactive`) with `accessibilityValue={{ min: 0, max: 100, now: value }}`',
+      'When `interactive`, `accessibilityActions` (increment/decrement) let screen-reader users adjust the value without the drag gesture',
     ],
   },
 };

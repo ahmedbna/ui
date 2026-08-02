@@ -26,10 +26,29 @@ export const tabsMeta: ComponentMeta = {
           description: 'The value of the tab that should be active by default.',
         },
         {
+          name: 'value',
+          type: 'string',
+          description:
+            'The controlled active tab value. When provided, the component becomes controlled and `onValueChange` must be used to update it.',
+        },
+        {
+          name: 'onValueChange',
+          type: '(value: string) => void',
+          description:
+            'Called whenever the active tab changes, whether by press or swipe.',
+        },
+        {
           name: 'orientation',
           type: "'horizontal' | 'vertical'",
           default: "`'horizontal'`",
           description: 'The orientation of the tabs.',
+        },
+        {
+          name: 'enableSwipe',
+          type: 'boolean',
+          default: '`true`',
+          description:
+            'Whether horizontal tabs can be swiped between, in addition to pressing a trigger. Has no effect when `orientation` is `"vertical"`.',
         },
         {
           name: 'style',
@@ -111,11 +130,8 @@ export const tabsMeta: ComponentMeta = {
   accessibility: {
     summary: 'The Tabs component is built with accessibility in mind:',
     items: [
-      'Uses proper ARIA roles and properties for screen readers',
-      'Supports keyboard navigation between tabs',
-      'Active tab is properly announced to screen readers',
-      'Disabled tabs are marked as inaccessible',
-      'Content is properly associated with its trigger',
+      '`TabsList` exposes `accessibilityRole="tablist"`, each `TabsTrigger` exposes `accessibilityRole="tab"` with `accessibilityState={{ selected, disabled }}`',
+      'Disabled tabs report `accessibilityState.disabled` to screen readers',
     ],
   },
 };

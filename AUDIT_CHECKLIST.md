@@ -25,48 +25,48 @@ that row has the full prop-level detail, a code sketch, and doc citations.
 ## Phase 0 — Stop the bleeding (real bugs, do first)
 
 - [x] **15 charts — Rules-of-Hooks violation**: `useAnimatedProps`/`useAnimatedStyle`
-  called inside a `.map()`/`Array.from()` render loop instead of at a
-  subcomponent's top level → extract the per-item render into its own
-  subcomponent so the hook runs once per **mounted instance**, not once per
-  loop iteration. Same shape everywhere, no public `Props` change:
-  `const AnimatedX = ({item, progress}) => { const animatedProps = useAnimatedProps(() => ({...})); return <Animated.Path animatedProps={animatedProps} />; }`
-  Affected: `line-chart` (area-chart inherits it), `stacked-area-chart`,
-  `column-chart`, `stacked-bar-chart` (2 levels nested — worst fragility),
-  `bar-chart`, `pie-chart`, `doughnut-chart`, `polar-area-chart`,
-  `radial-bar-chart`, `radar-chart` (per-vertex only; main-area hook is fine),
-  `scatter-chart`, `bubble-chart`, `candlestick-chart` (2 hooks/candle — worst
-  per-item multiplier), `heatmap-chart` (rows×cols — worst overall
-  multiplier), `treemap-chart`. Not affected: `progress-ring-chart`,
-  `chart-container`.
+      called inside a `.map()`/`Array.from()` render loop instead of at a
+      subcomponent's top level → extract the per-item render into its own
+      subcomponent so the hook runs once per **mounted instance**, not once per
+      loop iteration. Same shape everywhere, no public `Props` change:
+      `const AnimatedX = ({item, progress}) => { const animatedProps = useAnimatedProps(() => ({...})); return <Animated.Path animatedProps={animatedProps} />; }`
+      Affected: `line-chart` (area-chart inherits it), `stacked-area-chart`,
+      `column-chart`, `stacked-bar-chart` (2 levels nested — worst fragility),
+      `bar-chart`, `pie-chart`, `doughnut-chart`, `polar-area-chart`,
+      `radial-bar-chart`, `radar-chart` (per-vertex only; main-area hook is fine),
+      `scatter-chart`, `bubble-chart`, `candlestick-chart` (2 hooks/candle — worst
+      per-item multiplier), `heatmap-chart` (rows×cols — worst overall
+      multiplier), `treemap-chart`. Not affected: `progress-ring-chart`,
+      `chart-container`.
 - [x] **`tabs.tsx`**: `allTabContents`, a mutable object, is declared at
-  **module scope** and mutated by every mounted instance; live by default
-  since `enableSwipe` defaults `true` → move it into component-scoped state
-  (`useRef`/context owned by the `Tabs` provider). Two `Tabs` with overlapping
-  `value` strings on screen (or a lingering navigator stack) currently corrupt
-  each other's content and leak references forever.
+      **module scope** and mutated by every mounted instance; live by default
+      since `enableSwipe` defaults `true` → move it into component-scoped state
+      (`useRef`/context owned by the `Tabs` provider). Two `Tabs` with overlapping
+      `value` strings on screen (or a lingering navigator stack) currently corrupt
+      each other's content and leak references forever.
 - [x] **`video.tsx`**: `nativeControls` is destructured with a default but
-  `VideoView` hardcodes `nativeControls={false}` regardless → forward the real
-  prop. Separately, exported `VideoRef` documents `play`/`pause`/`seekTo`/etc.
-  that are never wired via `useImperativeHandle` (`forwardRef` passes straight
-  through to the native view) → implement `useImperativeHandle`, mirroring
-  `camera.tsx`'s correct `CameraRef` pattern.
+      `VideoView` hardcodes `nativeControls={false}` regardless → forward the real
+      prop. Separately, exported `VideoRef` documents `play`/`pause`/`seekTo`/etc.
+      that are never wired via `useImperativeHandle` (`forwardRef` passes straight
+      through to the native view) → implement `useImperativeHandle`, mirroring
+      `camera.tsx`'s correct `CameraRef` pattern.
 - [x] **`definitions/action-sheet.ts`**: has no `dependencies` field at all,
-  despite `action-sheet.tsx` statically importing `react-native-reanimated`,
-  and its `registryDependencies` (`text`,`view`) resolve to empty →
-  `bna-ui add action-sheet` ships an unresolvable import on a fresh project.
-  Add `dependencies: ['react-native-reanimated', 'react-native-worklets']`.
+      despite `action-sheet.tsx` statically importing `react-native-reanimated`,
+      and its `registryDependencies` (`text`,`view`) resolve to empty →
+      `bna-ui add action-sheet` ships an unresolvable import on a fresh project.
+      Add `dependencies: ['react-native-reanimated', 'react-native-worklets']`.
 - [x] **`media-picker.tsx`**: uses deprecated `ImagePicker.MediaTypeOptions`
-  enum → migrate to the current `mediaTypes` string-array API. Requests
-  permissions eagerly on mount with no `Linking.openSettings()` fallback for
-  permanent denial → move to button-press handler + Settings deep-link. Docs
-  claim permissions are "automatically requested" but the required `app.json`
-  config-plugin entries are confirmed **absent** from `apps/playground/app.json`
-  → real first-run iOS crash risk; document the required plugin block.
+      enum → migrate to the current `mediaTypes` string-array API. Requests
+      permissions eagerly on mount with no `Linking.openSettings()` fallback for
+      permanent denial → move to button-press handler + Settings deep-link. Docs
+      claim permissions are "automatically requested" but the required `app.json`
+      config-plugin entries are confirmed **absent** from `apps/playground/app.json`
+      → real first-run iOS crash risk; document the required plugin block.
 - [x] **`camera-preview.mdx`**: documents ~13 props, a `MediaDetails` type, and
-  3 events on a component that takes **zero props** (confirmed — no
-  `CameraPreviewProps` exists) → rewrite the API Reference to state no props.
-  Manual-install command installs `expo-av`, removed from the SDK two majors
-  ago → replace with `expo-video` in the install snippet.
+      3 events on a component that takes **zero props** (confirmed — no
+      `CameraPreviewProps` exists) → rewrite the API Reference to state no props.
+      Manual-install command installs `expo-av`, removed from the SDK two majors
+      ago → replace with `expo-video` in the install snippet.
 
 ---
 
@@ -79,6 +79,7 @@ synthesized label per chart) → scrolling/misc. Fix the matching false
 the real prop exists.
 
 **Primitives**
+
 - [x] `text.tsx` — default `accessibilityRole="header"` for heading/title/subtitle variants (overridable)
 - [x] `icon.tsx` — default `accessible={false}` (matches meta.ts's existing false "hidden from screen readers by default" claim — make it true)
 - [x] `avatar.tsx` — `accessibilityRole="image"` on `AvatarImage`
@@ -88,6 +89,7 @@ the real prop exists.
 - [x] `badge.tsx` — default `accessibilityLabel` for counter/status usage (low priority)
 
 **Basic form controls** (checkbox/radio also: touch target ~26–34px is under the 44×44 WCAG/HIG minimum — reuses `BORDER_RADIUS` as size, add `hitSlop`; `toggle` already correctly uses `HEIGHT`=48px)
+
 - [x] `checkbox.tsx` — `accessibilityRole="checkbox"` + `accessibilityState={{checked,disabled}}` + `accessibilityLabel` + `hitSlop` to reach 44×44
 - [x] `radio.tsx` — `accessibilityRole="radiogroup"` on the group, `"radio"` + state on each button + `hitSlop`
 - [x] `toggle.tsx` — `accessibilityRole="togglebutton"` + state on `Toggle`; `"radiogroup"` on `ToggleGroup` single mode
@@ -97,13 +99,15 @@ the real prop exists.
 - [x] `searchbar.tsx` — `accessibilityRole="search"`; clear button `accessibilityLabel="Clear search"` + `hitSlop` (currently ~24×24px)
 
 **Complex form inputs**
+
 - [x] `combobox.tsx` — `accessibilityRole="combobox"` + `accessibilityState={{expanded}}` on trigger; `accessibilityState={{selected}}` per item (RN has no native combobox role — documented workaround pattern, cite `react-native-website` accessibility.md)
 - [x] `picker.tsx` — `accessibilityRole="menuitem"` + `accessibilityState={{selected,disabled}}` on option rows; correct the mdx's inflated a11y claim
 - [x] `color-picker.tsx` — currently drag-only, **fully inoperable** via VoiceOver/TalkBack/switch control → add a manual hex `TextInput` fallback + swatch labels (bundle with the Phase 3 re-render fix, same file)
-- [x] `mode-toggle.tsx` — `accessibilityRole` + dynamic `accessibilityLabel={\`Switch to ${isDark?'light':'dark'} theme\`}` on the underlying `Button`
+- [x] `mode-toggle.tsx` — `accessibilityRole` + dynamic `accessibilityLabel={\`Switch to ${isDark?'light':'dark'} theme\`}`on the underlying`Button`
 - [x] `file-picker.tsx` — **no fix needed**: only component in the library with real, working accessibility props — use as the template for the rest
 
 **Buttons / feedback**
+
 - [x] `button.tsx` — `accessibilityRole="button"` + `accessibilityState={{busy:loading, disabled}}`
 - [x] `alert.tsx` — `accessibilityRole="alert"` + `accessibilityLiveRegion` (`'assertive'` for destructive, else `'polite'`)
 - [x] `progress.tsx` — `accessibilityRole={interactive?'adjustable':'progressbar'}` + `accessibilityValue` + `accessibilityActions` when `interactive` (currently a fully functional slider unusable via screen reader)
@@ -112,6 +116,7 @@ the real prop exists.
 - [x] `toast.tsx` — `accessibilityLiveRegion` (auto-dismisses in 4s with zero screen-reader announcement today); gate the swipe/spring animation behind `AccessibilityInfo.isReduceMotionEnabled()`
 
 **Overlays / disclosure**
+
 - [x] `accordion.tsx` — `accessibilityRole="button"` + `accessibilityState={{expanded}}` on trigger; animate the content transition instead of the hard conditional-render snap
 - [x] `action-sheet.tsx` — accessibility props on option rows
 - [x] `alert-dialog.tsx` — `accessibilityViewIsModal` + `accessibilityRole="alert"` on title/description
@@ -122,6 +127,7 @@ the real prop exists.
 - [x] `tabs.tsx` — `accessibilityRole="tablist"`/`"tab"` + state (bundle with the Phase 0 module-scope fix, same file)
 
 **Media / camera** (all currently zero accessibility on icon-only controls, despite meta.ts claiming proper labeling on every one)
+
 - [x] `audio-player.tsx` — accessibility props on the 3 transport buttons
 - [x] `audio-recorder.tsx` — accessibility props on Mic/Stop/Delete/Save
 - [x] `audio-waveform.tsx` — `accessibilityRole="adjustable"` + `accessibilityValue`/`accessibilityActions` (fully seekable via gesture, zero a11y today); enlarge the 3–4px-wide interactive bars via `hitSlop`
@@ -130,13 +136,15 @@ the real prop exists.
 - [x] `video.tsx` — accessibility props on the 3 gesture-tap zones + mute toggle
 
 **Scrolling / misc**
+
 - [x] `avoid-keyboard.tsx` — gate the height animation behind a reduced-motion check (meta.ts claims this exists; it doesn't)
-- [x] `carousel.tsx` — accessibility props on indicators/arrows, e.g. `accessibilityLabel={\`Go to slide ${i+1} of ${total}\`}` + `accessibilityState={{selected}}`
+- [x] `carousel.tsx` — accessibility props on indicators/arrows, e.g. `accessibilityLabel={\`Go to slide ${i+1} of ${total}\`}`+`accessibilityState={{selected}}`
 - [x] `onboarding.tsx` — `AccessibilityInfo.announceForAccessibility` on step change; hide the decorative progress dots from the a11y tree (`accessibilityElementsHidden`)
 - [x] `parallax-scrollview.tsx` — gate the header transform behind `useReducedMotion()`
 - [x] `table.tsx` — `accessibilityLabel` on sortable headers announcing sort direction
 
 **Charts** (native per-datapoint semantics aren't feasible for SVG — one synthesized summary label per chart is the realistic baseline)
+
 - [x] All 16 non-ring charts (`line`, `area`, `stacked-area`, `bar`, `column`, `stacked-bar`, `pie`, `doughnut`, `polar-area`, `radar`, `radial-bar`, `scatter`, `bubble`, `candlestick`, `heatmap`, `treemap`) — add one `accessibilityRole="image"` + synthesized `accessibilityLabel` summarizing the dataset on the chart's outer container
 - [x] `progress-ring-chart.tsx` — **exception**: single scalar value, use full native semantics instead of a summary label: `accessibilityRole="progressbar"` + `accessibilityValue={{min:0,max:100,now:clamped}}`
 - [x] `chart-container.tsx` — `accessibilityRole="header"` on the title
@@ -146,40 +154,47 @@ the real prop exists.
 ## Phase 2 — Documentation drift
 
 **Fabricated props** (documented, don't exist in source — delete from meta.ts or implement for real):
-- [ ] `meta/image.ts` — `full: boolean` doesn't exist; also add the missing real `'default'` variant value
-- [ ] `meta/mode-toggle.ts` — **worst case in the audit**: documents only `style: ViewStyle`, which doesn't exist, while omitting the two real props entirely → delete `style`, add `variant`/`size`
-- [ ] `meta/accordion.ts` — `disabled` on both `Accordion` and `AccordionItem` doesn't exist
-- [ ] `accordion.mdx` — documents web-only DOM `data-state`/`data-disabled` attributes; can't exist in React Native, delete
+
+- [x] `meta/image.ts` — `full: boolean` doesn't exist; also add the missing real `'default'` variant value
+- [x] `meta/mode-toggle.ts` — **worst case in the audit**: documents only `style: ViewStyle`, which doesn't exist, while omitting the two real props entirely → delete `style`, add `variant`/`size`
+- [x] `meta/accordion.ts` — `disabled` on both `Accordion` and `AccordionItem` doesn't exist
+- [x] `accordion.mdx` — documents web-only DOM `data-state`/`data-disabled` attributes; can't exist in React Native, delete
 
 **Real props missing from docs**:
-- [ ] `meta/button.ts` — add real `haptic?: boolean` (extend haptics to Android too — currently iOS-only regardless of the prop); resolve dead `label` prop (wire to `accessibilityLabel` fallback or delete)
-- [ ] `meta/input.ts` — add `type?: 'input'|'textarea'` + `rows?: number` for both `Input` and `GroupedInputItem` (gates the entire textarea path, currently invisible in generated docs)
-- [ ] `meta/bottom-sheet.ts` — has no `types` field at all; add full prop set including `disablePanGesture` (real, used, completely undocumented)
-- [ ] `meta/tabs.ts` — add missing `enableSwipe` (the prop that triggers the Phase 0 module-scope bug), `value`, `onValueChange`
-- [ ] `file-picker.mdx` — add missing `variant?: ButtonVariant` row (13 documented vs 15 real props); wire `showPreview` to actually gate the preview list, or delete the dead prop
-- [ ] `meta/date-picker.ts` — document `value`/`onChange` as `DateRange`/`(DateRange|undefined)=>void` for `mode='range'` (currently only the `Date` shape is documented, despite range being a headline demo)
+
+- [x] `meta/button.ts` — add real `haptic?: boolean` (extend haptics to Android too — currently iOS-only regardless of the prop); resolve dead `label` prop (wire to `accessibilityLabel` fallback or delete)
+- [x] `meta/input.ts` — add `type?: 'input'|'textarea'` + `rows?: number` for both `Input` and `GroupedInputItem` (gates the entire textarea path, currently invisible in generated docs)
+- [x] `meta/bottom-sheet.ts` — has no `types` field at all; add full prop set including `disablePanGesture` (real, used, completely undocumented)
+- [x] `meta/tabs.ts` — add missing `enableSwipe` (the prop that triggers the Phase 0 module-scope bug), `value`, `onValueChange`
+- [x] `file-picker.mdx` — add missing `variant?: ButtonVariant` row (13 documented vs 15 real props); wire `showPreview` to actually gate the preview list, or delete the dead prop
+- [x] `meta/date-picker.ts` — document `value`/`onChange` as `DateRange`/`(DateRange|undefined)=>void` for `mode='range'` (currently only the `Date` shape is documented, despite range being a headline demo)
 
 **`meta.ts` missing `types` entirely** (payload ships with no structured prop data):
-- [ ] `carousel.ts` (0 of 12+ props across 5 interfaces), `onboarding.ts`, `parallax-scrollview.ts`, `view.ts`, `toast.ts`, `input-otp.ts` (currently 12/12 accurate only in hand-written mdx, no sync protection)
+
+- [x] `carousel.ts` (0 of 12+ props across 5 interfaces), `onboarding.ts`, `parallax-scrollview.ts`, `view.ts`, `toast.ts`, `input-otp.ts` (currently 12/12 accurate only in hand-written mdx, no sync protection)
 
 **Wrong documented defaults/types**:
-- [ ] `meta/progress.ts` — `height` default documented as `4`; real default is `HEIGHT` (48) — off by 12x
-- [ ] `useColorScheme.mdx` — Returns table says `'light'|'dark'|null`; verified real signature (RN 0.86.0 source) is strict `'light'|'dark'`, never null → fix table, delete the dead "Handling Null Values" section, explain the `'unspecified'`→`'light'` collapse instead
-- [ ] `useModeToggle.mdx` — "System Mode" section cites `Appearance.setColorScheme(null)`; RN 0.86 has no `null` in the type (source already correctly uses `'unspecified'`) → fix the doc line
+
+- [x] `meta/progress.ts` — `height` default documented as `4`; real default is `HEIGHT` (48) — off by 12x
+- [x] `useColorScheme.mdx` — Returns table says `'light'|'dark'|null`; verified real signature (RN 0.86.0 source) is strict `'light'|'dark'`, never null → fix table, delete the dead "Handling Null Values" section, explain the `'unspecified'`→`'light'` collapse instead
+- [x] `useModeToggle.mdx` — "System Mode" section cites `Appearance.setColorScheme(null)`; RN 0.86 has no `null` in the type (source already correctly uses `'unspecified'`) → fix the doc line
 
 **Wrong install instructions**:
-- [ ] `camera-preview.mdx` — drop `expo-av` (removed from SDK 2 majors ago), see Phase 0
-- [ ] `useBottomTabOverflow.mdx` — remove `@react-navigation/bottom-tabs` install (hook never imports it — reads `BottomTabBarHeightContext` from `expo-router/js-tabs` instead); correct the "uses `useBottomTabBarHeight()` internally" claim
-- [ ] `theme-provider.mdx` — remove `@react-navigation/native` and `react-native-reanimated` from required deps (source imports neither; uses `expo-router/react-navigation`)
+
+- [x] `camera-preview.mdx` — drop `expo-av` (removed from SDK 2 majors ago), see Phase 0
+- [x] `useBottomTabOverflow.mdx` — remove `@react-navigation/bottom-tabs` install (hook never imports it — reads `BottomTabBarHeightContext` from `expo-router/js-tabs` instead); correct the "uses `useBottomTabBarHeight()` internally" claim
+- [x] `theme-provider.mdx` — remove `@react-navigation/native` and `react-native-reanimated` from required deps (source imports neither; uses `expo-router/react-navigation`)
 
 **Doc claims code contradicts**:
-- [ ] `sheet.mdx` — remove "automatically handles safe area insets" claim (false — zero `react-native-safe-area-context` usage today, see Phase 5)
-- [ ] `toast.mdx` — "Custom Animations" section shows legacy `Animated.spring(...)`; component is built on Reanimated's `withSpring` → fix example
-- [ ] `picker.mdx` — stray unclosed code fence at end of file (literal rendering bug)
+
+- [x] `sheet.mdx` — remove "automatically handles safe area insets" claim (false — zero `react-native-safe-area-context` usage today, see Phase 5)
+- [x] `toast.mdx` — "Custom Animations" section shows legacy `Animated.spring(...)`; component is built on Reanimated's `withSpring` → fix example
+- [x] `picker.mdx` — stray unclosed code fence at end of file (literal rendering bug)
 
 **Misc**:
-- [ ] `link.tsx` — export `LinkProps` (currently unexported `type Props`); convert to `interface` for batch consistency; document the `typedRoutes` `app.json` prerequisite
-- [ ] `useKeyboardHeight.ts` — strip the 19-line dead commented-out usage example shipped in source; caveat the landscape-rotation height heuristic (`screenHeight*0.4`, unmeasured) as an approximation, not a supported feature, in the doc
+
+- [x] `link.tsx` — export `LinkProps` (currently unexported `type Props`); convert to `interface` for batch consistency; document the `typedRoutes` `app.json` prerequisite
+- [x] `useKeyboardHeight.ts` — strip the 19-line dead commented-out usage example shipped in source; caveat the landscape-rotation height heuristic (`screenHeight*0.4`, unmeasured) as an approximation, not a supported feature, in the doc
 
 **Clean — no action, use as the model to follow**: `avatar.ts`, `card.ts` (props), `combobox` (hand-written mdx), `picker.ts`, `media-picker.ts`, `alert-dialog.ts`, `popover.ts` (most accurate file in the audit), `gallery.ts`, `table.ts`, `checkbox.ts`, `radio.ts`, `toggle.ts`, `switch.ts`, `searchbar.ts`, `separator.ts`.
 
@@ -206,26 +221,12 @@ the real prop exists.
 
 ---
 
-## Phase 4 — Testing foundation
-
-Zero component-level tests exist anywhere in `packages/registry` today (the one
-existing test validates registry metadata, not behavior). Stand up a component
-test harness (React Native Testing Library or equivalent). Prioritize, in
-order: `date-picker` (1147 lines, discriminated union modes), `tabs` (write
-after the Phase 0 module-scope fix, to lock in correct behavior), `combobox`,
-`camera`/`camera-preview`/`video`, and at least one chart per geometry family
-(`line`, `pie`, `treemap`) to guard against Rules-of-Hooks regressions.
-Accessibility props added in Phase 1 give these tests something concrete to
-assert against.
-
----
-
 ## Phase 5 — Styling, performance & consistency
 
 - [ ] `React.memo`: `text.tsx`, `view.tsx`, `card.tsx`'s 6 subcomponents (after the `...props` fix in Phase 1), `avatar.tsx`, `skeleton.tsx`, `area-chart.tsx` (cheap pure wrapper) — most-instantiated leaves in the library, currently unmemoized
 - [ ] `useCallback`: `toggle.tsx`'s `ToggleGroup` per-item handlers (currently new closures every render, `React.memo` alone won't help)
 - [ ] `useMemo`: geometry/stacking math across all 18 charts (currently recomputed from scratch every render regardless of whether `data` changed) — highest-value targets: `heatmap-chart.tsx`'s grid rebuild (O(rows×cols)) and `treemap-chart.tsx`'s `squarify()` (O(n²)/level); also `combobox.tsx`'s filter/count and `picker.tsx`'s search filtering
-- [ ] `FlatList`/FlashList migration: `gallery.tsx`'s main thumbnail grid (currently `.map()` in a plain `ScrollView` — backwards, since the *less-visible* fullscreen viewer already uses `FlatList` correctly); `table.tsx`'s rows when `pagination={false}` (removes the only size guard on a generic data table)
+- [ ] `FlatList`/FlashList migration: `gallery.tsx`'s main thumbnail grid (currently `.map()` in a plain `ScrollView` — backwards, since the _less-visible_ fullscreen viewer already uses `FlatList` correctly); `table.tsx`'s rows when `pagination={false}` (removes the only size guard on a generic data table)
 - [ ] `useWindowDimensions()` replacing module-scope `Dimensions.get('window')` caching (stale after rotation/on foldables): `bottom-sheet.tsx`, `sheet.tsx`, `tabs.tsx`, `carousel.tsx`, `gallery.tsx`, `onboarding.tsx`
 - [ ] `useSafeAreaInsets()` replacing hardcoded offsets: `action-sheet.tsx` (`paddingBottom:34`), `bottom-sheet.tsx` (`paddingBottom:40`), `sheet.tsx` (`paddingTop:90`/`top:50`), `gallery.tsx` (`paddingTop:56`/`paddingBottom:46`) — misplaces content under Expo SDK 57's Android edge-to-edge default and notch/Dynamic-Island devices
 - [ ] `StyleSheet.create` migration for the inline-style majority (~3/4 of files) — optional, low urgency, a consistency call not a correctness one

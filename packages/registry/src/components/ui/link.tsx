@@ -4,12 +4,13 @@ import { openBrowserAsync } from 'expo-web-browser';
 import { type ComponentProps } from 'react';
 import { Linking, Platform } from 'react-native';
 
-type Props = Omit<ComponentProps<typeof ERLink>, 'href'> & {
+export interface LinkProps
+  extends Omit<ComponentProps<typeof ERLink>, 'href'> {
   href: Href;
   asChild?: boolean;
   browser?: 'in-app' | 'external';
   children: React.ReactNode;
-};
+}
 
 // Helper function to determine if URL is external
 const isExternalUrl = (href: Href): boolean => {
@@ -58,7 +59,7 @@ export function Link({
   children,
   browser = 'in-app',
   ...rest
-}: Props) {
+}: LinkProps) {
   const isExternal = isExternalUrl(href);
 
   const handlePress = async (event: any) => {

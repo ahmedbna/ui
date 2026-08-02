@@ -9,4 +9,19 @@ export const viewMeta: ComponentMeta = {
     snippet:
       '<View style={{ padding: 16 }}>\n  <Text>Content inside view</Text>\n</View>',
   },
+  types: [
+    {
+      name: 'View',
+      description:
+        "A thin wrapper around React Native's `View` that defaults `backgroundColor` to `'transparent'`. Accepts every native `ViewProps` prop and forwards a ref to the underlying `View`.",
+      props: [
+        {
+          name: 'style',
+          type: 'ViewStyle',
+          description:
+            "Additional styles, merged over the `{ backgroundColor: 'transparent' }` default.",
+        },
+      ],
+    },
+  ],
 };

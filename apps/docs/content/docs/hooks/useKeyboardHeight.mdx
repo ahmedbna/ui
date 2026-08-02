@@ -65,7 +65,7 @@ The hook handles platform-specific keyboard events automatically:
 
 - Uses `keyboardWillShow` and `keyboardWillHide` events for smoother animations
 - Provides accurate animation duration from the system
-- Handles landscape mode keyboard height adjustments
+- Approximates landscape mode keyboard height via an unmeasured heuristic (see below)
 - Default animation duration: 250ms
 
 ### Android
@@ -86,14 +86,19 @@ const hideEvent =
 
 ### Screen Rotation Support
 
-The hook automatically handles screen rotation and adjusts keyboard height accordingly:
+On rotation to landscape on iOS, the hook adjusts the reported keyboard
+height using an **unmeasured heuristic** — `screenHeight * 0.4`, capped at
+the last known portrait height — rather than a real measurement from the
+system. Treat it as a rough approximation for that one case, not a fully
+supported feature: it doesn't apply on Android, and it can be off for
+specific devices or third-party keyboards.
 
 ```tsx
-// Automatic landscape keyboard height adjustment on iOS
+// Approximate landscape keyboard height adjustment on iOS only
 if (screenWidth > screenHeight && Platform.OS === 'ios') {
   const estimatedLandscapeHeight = Math.min(
     previousHeightRef.current,
-    screenHeight * 0.4
+    screenHeight * 0.4 // heuristic, not a measured value
   );
   setKeyboardHeight(estimatedLandscapeHeight);
 }
