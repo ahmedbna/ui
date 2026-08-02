@@ -175,6 +175,8 @@ export function CameraPreview() {
                 ]}
                 onPress={handleRetakeMedia}
                 activeOpacity={0.8}
+                accessibilityRole='button'
+                accessibilityLabel='Retake'
               >
                 <X size={24} color={textColor} />
               </TouchableOpacity>
@@ -194,6 +196,8 @@ export function CameraPreview() {
                   ]}
                   onPress={handleSaveToAlbum}
                   activeOpacity={0.8}
+                  accessibilityRole='button'
+                  accessibilityLabel='Save to album'
                 >
                   <Download size={24} color={textColor} />
                 </TouchableOpacity>
@@ -205,6 +209,8 @@ export function CameraPreview() {
                   ]}
                   onPress={handleUploadAction}
                   activeOpacity={0.8}
+                  accessibilityRole='button'
+                  accessibilityLabel='Upload'
                 >
                   <Upload size={24} color={textColor} />
                 </TouchableOpacity>

@@ -293,6 +293,7 @@ export function BottomSheet({
             { flex: 1, backgroundColor: 'rgba(0, 0, 0, 0.8)' },
             rBackdropStyle,
           ]}
+          accessibilityViewIsModal
         >
           <TouchableWithoutFeedback onPress={handleBackdropPress}>
             <Animated.View style={{ flex: 1 }} />

@@ -115,7 +115,12 @@ export const ScatterPlot = ({ data, config = {}, style }: Props) => {
   }));
 
   return (
-    <View style={[{ width: '100%', height }, style]} onLayout={handleLayout}>
+    <View
+      style={[{ width: '100%', height }, style]}
+      onLayout={handleLayout}
+      accessibilityRole='image'
+      accessibilityLabel={`Scatter plot with ${data.length} points, x from ${Math.round(minX)} to ${Math.round(maxX)}, y from ${Math.round(minY)} to ${Math.round(maxY)}`}
+    >
       <Svg width={chartWidth} height={height}>
         {/* Grid lines */}
         {showGrid && (

@@ -12,6 +12,7 @@ interface BadgeProps {
   variant?: BadgeVariant;
   style?: ViewStyle;
   textStyle?: TextStyle;
+  accessibilityLabel?: string;
 }
 
 export function Badge({
@@ -19,6 +20,7 @@ export function Badge({
   variant = 'default',
   style,
   textStyle,
+  accessibilityLabel,
 }: BadgeProps) {
   const primaryColor = useColor('primary');
   const primaryForegroundColor = useColor('primaryForeground');
@@ -76,8 +78,16 @@ export function Badge({
     }
   };
 
+  const defaultAccessibilityLabel =
+    typeof children === 'string' || typeof children === 'number'
+      ? String(children)
+      : undefined;
+
   return (
-    <View style={[getBadgeStyle(), style]}>
+    <View
+      accessibilityLabel={accessibilityLabel ?? defaultAccessibilityLabel}
+      style={[getBadgeStyle(), style]}
+    >
       <Text style={[getTextStyle(), textStyle]}>{children}</Text>
     </View>
   );

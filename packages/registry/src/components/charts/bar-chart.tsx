@@ -108,7 +108,12 @@ export const BarChart = ({ data, config = {}, style }: Props) => {
   const barSpacing = (innerChartWidth / data.length) * 0.2;
 
   return (
-    <View style={[{ width: '100%', height }, style]} onLayout={handleLayout}>
+    <View
+      style={[{ width: '100%', height }, style]}
+      onLayout={handleLayout}
+      accessibilityRole='image'
+      accessibilityLabel={`Bar chart with ${data.length} bars, maximum value ${Math.round(maxValue)}`}
+    >
       <Svg width={chartWidth} height={height}>
         {data.map((item, index) => {
           const barHeight = (item.value / maxValue) * chartHeight;

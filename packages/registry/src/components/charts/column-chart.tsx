@@ -106,7 +106,12 @@ export const ColumnChart = ({ data, config = {}, style }: Props) => {
   const barSpacing = (chartHeight / data.length) * 0.2;
 
   return (
-    <View style={[{ width: '100%', height }, style]} onLayout={handleLayout}>
+    <View
+      style={[{ width: '100%', height }, style]}
+      onLayout={handleLayout}
+      accessibilityRole='image'
+      accessibilityLabel={`Column chart with ${data.length} bars, maximum value ${Math.round(maxValue)}`}
+    >
       <Svg width={chartWidth} height={height}>
         {data.map((item, index) => {
           const barWidth = (item.value / maxValue) * innerChartWidth;

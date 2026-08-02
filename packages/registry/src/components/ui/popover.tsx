@@ -123,12 +123,20 @@ export function PopoverTrigger({
     return React.cloneElement(children, {
       ref: triggerRef,
       onPress: handlePress,
+      accessibilityRole: 'button',
+      accessibilityState: { expanded: isOpen },
       style: [(children.props as any).style, style],
     } as any);
   }
 
   return (
-    <Button ref={triggerRef} style={style} onPress={handlePress}>
+    <Button
+      ref={triggerRef}
+      style={style}
+      onPress={handlePress}
+      accessibilityRole='button'
+      accessibilityState={{ expanded: isOpen }}
+    >
       {children}
     </Button>
   );
@@ -330,6 +338,8 @@ export function PopoverContent({
           ]}
           onLayout={handleContentLayout}
           onStartShouldSetResponder={() => true}
+          accessibilityViewIsModal
+          accessibilityRole='menu'
         >
           {children}
         </View>
@@ -401,12 +411,18 @@ export function PopoverClose({
   if (asChild && React.isValidElement(children)) {
     return React.cloneElement(children, {
       onPress: handlePress,
+      accessibilityRole: 'button',
       style: [(children.props as any).style, style],
     } as any);
   }
 
   return (
-    <TouchableOpacity style={style} onPress={handlePress} activeOpacity={0.7}>
+    <TouchableOpacity
+      style={style}
+      onPress={handlePress}
+      activeOpacity={0.7}
+      accessibilityRole='button'
+    >
       {children}
     </TouchableOpacity>
   );

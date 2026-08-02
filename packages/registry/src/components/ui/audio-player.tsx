@@ -207,6 +207,7 @@ export function AudioPlayer({
             onPress={handleBackFiveSeconds}
             style={styles.controlButton}
             disabled={!player.isLoaded}
+            accessibilityLabel='Rewind 5 seconds'
           >
             <RotateCcw size={18} color={textColor} />
           </Button>
@@ -217,6 +218,7 @@ export function AudioPlayer({
             onPress={handlePlayPause}
             disabled={!player.isLoaded}
             style={styles.playButton}
+            accessibilityLabel={player.playing ? 'Pause' : 'Play'}
           >
             {player.playing ? (
               <Pause size={24} color='white' />
@@ -231,6 +233,7 @@ export function AudioPlayer({
             onPress={handleRestart}
             style={styles.controlButton}
             disabled={!player.isLoaded}
+            accessibilityLabel='Restart'
           >
             <Square fill={textColor} size={18} color={textColor} />
           </Button>

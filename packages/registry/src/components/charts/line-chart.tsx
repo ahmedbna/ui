@@ -241,8 +241,15 @@ export const LineChart = ({ data, config = {}, style }: Props) => {
       }
     });
 
+  const chartAccessibilityLabel = `Line chart with ${data.length} data points, ranging from ${formatNumber(minValue)} to ${formatNumber(maxValue)}`;
+
   return (
-    <View style={[{ width: '100%', height }, style]} onLayout={handleLayout}>
+    <View
+      style={[{ width: '100%', height }, style]}
+      onLayout={handleLayout}
+      accessibilityRole='image'
+      accessibilityLabel={chartAccessibilityLabel}
+    >
       <GestureDetector gesture={panGesture}>
         <Animated.View>
           <Svg width={chartWidth} height={height}>

@@ -1,8 +1,9 @@
 import { Button } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
 import { useColor } from '@/hooks/useColor';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
+  AccessibilityInfo,
   Dimensions,
   ScrollView,
   StyleSheet,
@@ -75,6 +76,15 @@ export function Onboarding({
   const isLastStep = currentStep === steps.length - 1;
   const isFirstStep = currentStep === 0;
 
+  useEffect(() => {
+    const step = steps[currentStep];
+    if (!step) return;
+    AccessibilityInfo.announceForAccessibility(
+      `${step.title}. Step ${currentStep + 1} of ${steps.length}.`
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentStep]);
+
   const handleNext = () => {
     if (isLastStep) {
       onComplete();
@@ -139,7 +149,11 @@ export function Onboarding({
     if (!showProgress) return null;
 
     return (
-      <View style={styles.progressContainer}>
+      <View
+        style={styles.progressContainer}
+        accessibilityElementsHidden
+        importantForAccessibility='no-hide-descendants'
+      >
         {steps.map((_, index) => (
           <View
             key={index}

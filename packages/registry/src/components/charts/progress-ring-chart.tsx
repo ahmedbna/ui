@@ -72,8 +72,16 @@ export const ProgressRingChart = ({
     };
   });
 
+  const clampedProgress = Math.max(0, Math.min(100, progress));
+
   return (
-    <View style={[{ alignItems: 'center' }, style]}>
+    <View
+      style={[{ alignItems: 'center' }, style]}
+      accessible
+      accessibilityRole='progressbar'
+      accessibilityValue={{ min: 0, max: 100, now: clampedProgress }}
+      accessibilityLabel={label}
+    >
       {showLabel && label && (
         <SvgText
           x={center}

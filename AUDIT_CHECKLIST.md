@@ -79,67 +79,67 @@ synthesized label per chart) → scrolling/misc. Fix the matching false
 the real prop exists.
 
 **Primitives**
-- [ ] `text.tsx` — default `accessibilityRole="header"` for heading/title/subtitle variants (overridable)
-- [ ] `icon.tsx` — default `accessible={false}` (matches meta.ts's existing false "hidden from screen readers by default" claim — make it true)
-- [ ] `avatar.tsx` — `accessibilityRole="image"` on `AvatarImage`
-- [ ] `separator.tsx` — `accessibilityElementsHidden` + `importantForAccessibility="no-hide-descendants"` (purely decorative)
-- [ ] `card.tsx` — **blocker first**: none of the 6 subcomponents spread `...props`, add that everywhere; then default `CardTitle` to `accessibilityRole="header"`
-- [ ] `hello-wave.tsx` — `accessibilityLabel="waving hand"` (low priority)
-- [ ] `badge.tsx` — default `accessibilityLabel` for counter/status usage (low priority)
+- [x] `text.tsx` — default `accessibilityRole="header"` for heading/title/subtitle variants (overridable)
+- [x] `icon.tsx` — default `accessible={false}` (matches meta.ts's existing false "hidden from screen readers by default" claim — make it true)
+- [x] `avatar.tsx` — `accessibilityRole="image"` on `AvatarImage`
+- [x] `separator.tsx` — `accessibilityElementsHidden` + `importantForAccessibility="no-hide-descendants"` (purely decorative)
+- [x] `card.tsx` — **blocker first**: none of the 6 subcomponents spread `...props`, add that everywhere; then default `CardTitle` to `accessibilityRole="header"`
+- [x] `hello-wave.tsx` — `accessibilityLabel="waving hand"` (low priority)
+- [x] `badge.tsx` — default `accessibilityLabel` for counter/status usage (low priority)
 
 **Basic form controls** (checkbox/radio also: touch target ~26–34px is under the 44×44 WCAG/HIG minimum — reuses `BORDER_RADIUS` as size, add `hitSlop`; `toggle` already correctly uses `HEIGHT`=48px)
-- [ ] `checkbox.tsx` — `accessibilityRole="checkbox"` + `accessibilityState={{checked,disabled}}` + `accessibilityLabel` + `hitSlop` to reach 44×44
-- [ ] `radio.tsx` — `accessibilityRole="radiogroup"` on the group, `"radio"` + state on each button + `hitSlop`
-- [ ] `toggle.tsx` — `accessibilityRole="togglebutton"` + state on `Toggle`; `"radiogroup"` on `ToggleGroup` single mode
-- [ ] `switch.tsx` — forward `accessibilityLabel={label}` to the native `Switch` (currently unlinked siblings)
-- [ ] `input.tsx` — `accessibilityLabel={label}` on the `TextInput` (currently a sibling `Text`, not programmatically associated)
-- [ ] `input-otp.tsx` — **worse than "missing a role"**: real `TextInput` is hidden off-screen (`left:-9999,opacity:0`), driven by decoy `Pressable` slots with no per-slot label — screen-reader focus ring has no perceivable target. Add `textContentType="oneTimeCode"` + `autoComplete="one-time-code"` (also enables native SMS autofill, currently absent) and per-slot `accessibilityLabel`
-- [ ] `searchbar.tsx` — `accessibilityRole="search"`; clear button `accessibilityLabel="Clear search"` + `hitSlop` (currently ~24×24px)
+- [x] `checkbox.tsx` — `accessibilityRole="checkbox"` + `accessibilityState={{checked,disabled}}` + `accessibilityLabel` + `hitSlop` to reach 44×44
+- [x] `radio.tsx` — `accessibilityRole="radiogroup"` on the group, `"radio"` + state on each button + `hitSlop`
+- [x] `toggle.tsx` — `accessibilityRole="togglebutton"` + state on `Toggle`; `"radiogroup"` on `ToggleGroup` single mode
+- [x] `switch.tsx` — forward `accessibilityLabel={label}` to the native `Switch` (currently unlinked siblings)
+- [x] `input.tsx` — `accessibilityLabel={label}` on the `TextInput` (currently a sibling `Text`, not programmatically associated)
+- [x] `input-otp.tsx` — **worse than "missing a role"**: real `TextInput` is hidden off-screen (`left:-9999,opacity:0`), driven by decoy `Pressable` slots with no per-slot label — screen-reader focus ring has no perceivable target. Add `textContentType="oneTimeCode"` + `autoComplete="one-time-code"` (also enables native SMS autofill, currently absent) and per-slot `accessibilityLabel`
+- [x] `searchbar.tsx` — `accessibilityRole="search"`; clear button `accessibilityLabel="Clear search"` + `hitSlop` (currently ~24×24px)
 
 **Complex form inputs**
-- [ ] `combobox.tsx` — `accessibilityRole="combobox"` + `accessibilityState={{expanded}}` on trigger; `accessibilityState={{selected}}` per item (RN has no native combobox role — documented workaround pattern, cite `react-native-website` accessibility.md)
-- [ ] `picker.tsx` — `accessibilityRole="menuitem"` + `accessibilityState={{selected,disabled}}` on option rows; correct the mdx's inflated a11y claim
-- [ ] `color-picker.tsx` — currently drag-only, **fully inoperable** via VoiceOver/TalkBack/switch control → add a manual hex `TextInput` fallback + swatch labels (bundle with the Phase 3 re-render fix, same file)
-- [ ] `mode-toggle.tsx` — `accessibilityRole` + dynamic `accessibilityLabel={\`Switch to ${isDark?'light':'dark'} theme\`}` on the underlying `Button`
-- [ ] `file-picker.tsx` — **no fix needed**: only component in the library with real, working accessibility props — use as the template for the rest
+- [x] `combobox.tsx` — `accessibilityRole="combobox"` + `accessibilityState={{expanded}}` on trigger; `accessibilityState={{selected}}` per item (RN has no native combobox role — documented workaround pattern, cite `react-native-website` accessibility.md)
+- [x] `picker.tsx` — `accessibilityRole="menuitem"` + `accessibilityState={{selected,disabled}}` on option rows; correct the mdx's inflated a11y claim
+- [x] `color-picker.tsx` — currently drag-only, **fully inoperable** via VoiceOver/TalkBack/switch control → add a manual hex `TextInput` fallback + swatch labels (bundle with the Phase 3 re-render fix, same file)
+- [x] `mode-toggle.tsx` — `accessibilityRole` + dynamic `accessibilityLabel={\`Switch to ${isDark?'light':'dark'} theme\`}` on the underlying `Button`
+- [x] `file-picker.tsx` — **no fix needed**: only component in the library with real, working accessibility props — use as the template for the rest
 
 **Buttons / feedback**
-- [ ] `button.tsx` — `accessibilityRole="button"` + `accessibilityState={{busy:loading, disabled}}`
-- [ ] `alert.tsx` — `accessibilityRole="alert"` + `accessibilityLiveRegion` (`'assertive'` for destructive, else `'polite'`)
-- [ ] `progress.tsx` — `accessibilityRole={interactive?'adjustable':'progressbar'}` + `accessibilityValue` + `accessibilityActions` when `interactive` (currently a fully functional slider unusable via screen reader)
-- [ ] `spinner.tsx` — `accessibilityRole="progressbar"` + `accessibilityLabel` on all 4 exports (`Spinner`/`LoadingOverlay`/`InlineLoader`/`ButtonSpinner`)
-- [ ] `skeleton.tsx` — `accessibilityElementsHidden` + `accessibilityLabel="Loading content"`
-- [ ] `toast.tsx` — `accessibilityLiveRegion` (auto-dismisses in 4s with zero screen-reader announcement today); gate the swipe/spring animation behind `AccessibilityInfo.isReduceMotionEnabled()`
+- [x] `button.tsx` — `accessibilityRole="button"` + `accessibilityState={{busy:loading, disabled}}`
+- [x] `alert.tsx` — `accessibilityRole="alert"` + `accessibilityLiveRegion` (`'assertive'` for destructive, else `'polite'`)
+- [x] `progress.tsx` — `accessibilityRole={interactive?'adjustable':'progressbar'}` + `accessibilityValue` + `accessibilityActions` when `interactive` (currently a fully functional slider unusable via screen reader)
+- [x] `spinner.tsx` — `accessibilityRole="progressbar"` + `accessibilityLabel` on all 4 exports (`Spinner`/`LoadingOverlay`/`InlineLoader`/`ButtonSpinner`)
+- [x] `skeleton.tsx` — `accessibilityElementsHidden` + `accessibilityLabel="Loading content"`
+- [x] `toast.tsx` — `accessibilityLiveRegion` (auto-dismisses in 4s with zero screen-reader announcement today); gate the swipe/spring animation behind `AccessibilityInfo.isReduceMotionEnabled()`
 
 **Overlays / disclosure**
-- [ ] `accordion.tsx` — `accessibilityRole="button"` + `accessibilityState={{expanded}}` on trigger; animate the content transition instead of the hard conditional-render snap
-- [ ] `action-sheet.tsx` — accessibility props on option rows
-- [ ] `alert-dialog.tsx` — `accessibilityViewIsModal` + `accessibilityRole="alert"` on title/description
-- [ ] `bottom-sheet.tsx` — `accessibilityViewIsModal` (no fix exists today — meta.ts's "traps focus" claim is false)
-- [ ] `collapsible.tsx` — `accessibilityRole="button"` + `accessibilityState={{expanded}}`
-- [ ] `popover.tsx` — `accessibilityViewIsModal` + `accessibilityRole="menu"` on content; `"button"` on trigger/close; either implement the claimed Escape-to-close or remove the claim
-- [ ] `sheet.tsx` — `accessibilityLabel="Close"` + role on the icon-only close button; `accessibilityViewIsModal`
-- [ ] `tabs.tsx` — `accessibilityRole="tablist"`/`"tab"` + state (bundle with the Phase 0 module-scope fix, same file)
+- [x] `accordion.tsx` — `accessibilityRole="button"` + `accessibilityState={{expanded}}` on trigger; animate the content transition instead of the hard conditional-render snap
+- [x] `action-sheet.tsx` — accessibility props on option rows
+- [x] `alert-dialog.tsx` — `accessibilityViewIsModal` + `accessibilityRole="alert"` on title/description
+- [x] `bottom-sheet.tsx` — `accessibilityViewIsModal` (no fix exists today — meta.ts's "traps focus" claim is false)
+- [x] `collapsible.tsx` — `accessibilityRole="button"` + `accessibilityState={{expanded}}`
+- [x] `popover.tsx` — `accessibilityViewIsModal` + `accessibilityRole="menu"` on content; `"button"` on trigger/close; either implement the claimed Escape-to-close or remove the claim
+- [x] `sheet.tsx` — `accessibilityLabel="Close"` + role on the icon-only close button; `accessibilityViewIsModal`
+- [x] `tabs.tsx` — `accessibilityRole="tablist"`/`"tab"` + state (bundle with the Phase 0 module-scope fix, same file)
 
 **Media / camera** (all currently zero accessibility on icon-only controls, despite meta.ts claiming proper labeling on every one)
-- [ ] `audio-player.tsx` — accessibility props on the 3 transport buttons
-- [ ] `audio-recorder.tsx` — accessibility props on Mic/Stop/Delete/Save
-- [ ] `audio-waveform.tsx` — `accessibilityRole="adjustable"` + `accessibilityValue`/`accessibilityActions` (fully seekable via gesture, zero a11y today); enlarge the 3–4px-wide interactive bars via `hitSlop`
-- [ ] `camera.tsx` — accessibility props with dynamic labels/state on 9+ icon-only controls
-- [ ] `camera-preview.tsx` — accessibility labels on the 3 floating action buttons
-- [ ] `video.tsx` — accessibility props on the 3 gesture-tap zones + mute toggle
+- [x] `audio-player.tsx` — accessibility props on the 3 transport buttons
+- [x] `audio-recorder.tsx` — accessibility props on Mic/Stop/Delete/Save
+- [x] `audio-waveform.tsx` — `accessibilityRole="adjustable"` + `accessibilityValue`/`accessibilityActions` (fully seekable via gesture, zero a11y today); enlarge the 3–4px-wide interactive bars via `hitSlop`
+- [x] `camera.tsx` — accessibility props with dynamic labels/state on 9+ icon-only controls
+- [x] `camera-preview.tsx` — accessibility labels on the 3 floating action buttons
+- [x] `video.tsx` — accessibility props on the 3 gesture-tap zones + mute toggle
 
 **Scrolling / misc**
-- [ ] `avoid-keyboard.tsx` — gate the height animation behind a reduced-motion check (meta.ts claims this exists; it doesn't)
-- [ ] `carousel.tsx` — accessibility props on indicators/arrows, e.g. `accessibilityLabel={\`Go to slide ${i+1} of ${total}\`}` + `accessibilityState={{selected}}`
-- [ ] `onboarding.tsx` — `AccessibilityInfo.announceForAccessibility` on step change; hide the decorative progress dots from the a11y tree (`accessibilityElementsHidden`)
-- [ ] `parallax-scrollview.tsx` — gate the header transform behind `useReducedMotion()`
-- [ ] `table.tsx` — `accessibilityLabel` on sortable headers announcing sort direction
+- [x] `avoid-keyboard.tsx` — gate the height animation behind a reduced-motion check (meta.ts claims this exists; it doesn't)
+- [x] `carousel.tsx` — accessibility props on indicators/arrows, e.g. `accessibilityLabel={\`Go to slide ${i+1} of ${total}\`}` + `accessibilityState={{selected}}`
+- [x] `onboarding.tsx` — `AccessibilityInfo.announceForAccessibility` on step change; hide the decorative progress dots from the a11y tree (`accessibilityElementsHidden`)
+- [x] `parallax-scrollview.tsx` — gate the header transform behind `useReducedMotion()`
+- [x] `table.tsx` — `accessibilityLabel` on sortable headers announcing sort direction
 
 **Charts** (native per-datapoint semantics aren't feasible for SVG — one synthesized summary label per chart is the realistic baseline)
-- [ ] All 16 non-ring charts (`line`, `area`, `stacked-area`, `bar`, `column`, `stacked-bar`, `pie`, `doughnut`, `polar-area`, `radar`, `radial-bar`, `scatter`, `bubble`, `candlestick`, `heatmap`, `treemap`) — add one `accessibilityRole="image"` + synthesized `accessibilityLabel` summarizing the dataset on the chart's outer container
-- [ ] `progress-ring-chart.tsx` — **exception**: single scalar value, use full native semantics instead of a summary label: `accessibilityRole="progressbar"` + `accessibilityValue={{min:0,max:100,now:clamped}}`
-- [ ] `chart-container.tsx` — `accessibilityRole="header"` on the title
+- [x] All 16 non-ring charts (`line`, `area`, `stacked-area`, `bar`, `column`, `stacked-bar`, `pie`, `doughnut`, `polar-area`, `radar`, `radial-bar`, `scatter`, `bubble`, `candlestick`, `heatmap`, `treemap`) — add one `accessibilityRole="image"` + synthesized `accessibilityLabel` summarizing the dataset on the chart's outer container
+- [x] `progress-ring-chart.tsx` — **exception**: single scalar value, use full native semantics instead of a summary label: `accessibilityRole="progressbar"` + `accessibilityValue={{min:0,max:100,now:clamped}}`
+- [x] `chart-container.tsx` — `accessibilityRole="header"` on the title
 
 ---
 

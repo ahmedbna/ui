@@ -16,6 +16,8 @@ export function Separator({
 
   return (
     <View
+      accessibilityElementsHidden
+      importantForAccessibility='no-hide-descendants'
       style={[
         {
           backgroundColor: borderColor,

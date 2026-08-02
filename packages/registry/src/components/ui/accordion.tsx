@@ -4,6 +4,7 @@ import { View } from '@/components/ui/view';
 import { ChevronRight } from 'lucide-react-native';
 import React, { createContext, useContext, useState } from 'react';
 import { TouchableOpacity } from 'react-native';
+import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 
 // Context for accordion state
 interface AccordionContextType {
@@ -130,6 +131,8 @@ export function AccordionTrigger({ children }: AccordionTriggerProps) {
       }}
       onPress={context.toggle}
       activeOpacity={0.8}
+      accessibilityRole='button'
+      accessibilityState={{ expanded: context.isOpen }}
     >
       <Text variant='subtitle'>{children}</Text>
       <Icon
@@ -160,7 +163,9 @@ export function AccordionContent({ children, style }: AccordionContentProps) {
   }
 
   return (
-    <View
+    <Animated.View
+      entering={FadeIn.duration(200)}
+      exiting={FadeOut.duration(150)}
       style={[
         {
           paddingBottom: 16,
@@ -170,6 +175,6 @@ export function AccordionContent({ children, style }: AccordionContentProps) {
       ]}
     >
       {children}
-    </View>
+    </Animated.View>
   );
 }

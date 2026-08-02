@@ -57,7 +57,10 @@ export function HelloWave({ children = '👋', size = 'md' }: HelloWaveProps) {
 
   return (
     <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-      <Animated.View style={animatedStyle}>
+      <Animated.View
+        style={animatedStyle}
+        accessibilityLabel='waving hand'
+      >
         {typeof children === 'string' ? (
           <Text style={sizeStyle}>{children}</Text>
         ) : (

@@ -117,7 +117,10 @@ export function AlertDialog({
       statusBarTranslucent
       animationType='none'
     >
-      <Animated.View style={[styles.backdrop, rBackdropStyle]}>
+      <Animated.View
+        style={[styles.backdrop, rBackdropStyle]}
+        accessibilityViewIsModal
+      >
         <TouchableWithoutFeedback onPress={handleBackdropPress}>
           <Animated.View style={styles.backdropTouchableArea} />
         </TouchableWithoutFeedback>
@@ -134,9 +137,13 @@ export function AlertDialog({
             >
               {(title || description) && (
                 <CardHeader>
-                  {title ? <CardTitle>{title}</CardTitle> : null}
+                  {title ? (
+                    <CardTitle accessibilityRole='alert'>{title}</CardTitle>
+                  ) : null}
                   {description ? (
-                    <CardDescription>{description}</CardDescription>
+                    <CardDescription accessibilityRole='alert'>
+                      {description}
+                    </CardDescription>
                   ) : null}
                 </CardHeader>
               )}

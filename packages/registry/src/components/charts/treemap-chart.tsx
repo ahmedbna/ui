@@ -248,7 +248,12 @@ export const TreeMapChart = ({ data, config = {}, style }: Props) => {
   );
 
   return (
-    <View style={[{ width: '100%', height }, style]} onLayout={handleLayout}>
+    <View
+      style={[{ width: '100%', height }, style]}
+      onLayout={handleLayout}
+      accessibilityRole='image'
+      accessibilityLabel={`Treemap with ${data.length} top-level items`}
+    >
       <Svg width={chartWidth} height={height}>
         {rectangles.map((rect, index) => {
           const color = getColor(index, rect.data.color);

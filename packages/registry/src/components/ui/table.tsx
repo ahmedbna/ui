@@ -260,6 +260,18 @@ export function Table<T = any>({
           }}
           onPress={() => handleSort(column.id)}
           disabled={!column.sortable || !sortable}
+          accessibilityRole={column.sortable && sortable ? 'button' : undefined}
+          accessibilityLabel={
+            column.sortable && sortable
+              ? `${column.header}, ${
+                  sortState.column === column.id
+                    ? sortState.direction === 'asc'
+                      ? 'sorted ascending'
+                      : 'sorted descending'
+                    : 'not sorted'
+                }`
+              : column.header
+          }
         >
           {column.headerCell ? (
             column.headerCell()

@@ -381,6 +381,7 @@ export function TabsList({ children, style }: TabsListProps) {
 
   return (
     <View
+      accessibilityRole='tablist'
       style={[
         {
           padding: 6,
@@ -460,6 +461,8 @@ export function TabsTrigger({
       onPress={handlePress}
       disabled={disabled}
       activeOpacity={0.8}
+      accessibilityRole='tab'
+      accessibilityState={{ selected: isActive, disabled }}
     >
       {typeof children === 'string' ? (
         <Text style={triggerTextStyle}>{children}</Text>

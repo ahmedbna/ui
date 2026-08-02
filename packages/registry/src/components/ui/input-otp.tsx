@@ -175,6 +175,13 @@ export const InputOTP = forwardRef<InputOTPRef, InputOTPProps>(
           <Pressable
             onPress={handleSlotPress}
             disabled={disabled}
+            accessibilityRole='keyboardkey'
+            accessibilityLabel={
+              hasValue
+                ? `Digit ${index + 1} of ${length}, ${masked ? 'filled' : normalizedValue[index]}`
+                : `Digit ${index + 1} of ${length}, empty`
+            }
+            accessibilityState={{ disabled, selected: isActive }}
             style={[
               {
                 width: 58,
@@ -242,6 +249,8 @@ export const InputOTP = forwardRef<InputOTPRef, InputOTPProps>(
           maxLength={length}
           editable={!disabled}
           selectionColor='transparent'
+          textContentType='oneTimeCode'
+          autoComplete='one-time-code'
           style={{
             position: 'absolute',
             left: -9999,

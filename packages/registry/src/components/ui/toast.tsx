@@ -8,6 +8,7 @@ import React, {
   useState,
 } from 'react';
 import {
+  AccessibilityInfo,
   Dimensions,
   Platform,
   TouchableOpacity,
@@ -70,6 +71,16 @@ export function Toast({
   action,
 }: ToastProps) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [reduceMotion, setReduceMotion] = useState(false);
+
+  useEffect(() => {
+    AccessibilityInfo.isReduceMotionEnabled().then(setReduceMotion);
+    const subscription = AccessibilityInfo.addEventListener(
+      'reduceMotionChanged',
+      setReduceMotion
+    );
+    return () => subscription.remove();
+  }, []);
 
   // Reanimated shared values
   const translateY = useSharedValue(-100);
@@ -95,22 +106,39 @@ export function Toast({
       borderRadius.value = 20;
       setIsExpanded(true);
 
-      // Animate in expanded toast
-      translateY.value = withSpring(0, SPRING_CONFIG);
-      opacity.value = withTiming(1, { duration: 300 });
-      scale.value = withSpring(1, SPRING_CONFIG);
-      // CORRECTED LINE: Use withDelay to wrap withTiming
-      contentOpacity.value = withDelay(100, withTiming(1, { duration: 300 }));
+      if (reduceMotion) {
+        translateY.value = 0;
+        opacity.value = 1;
+        scale.value = 1;
+        contentOpacity.value = 1;
+      } else {
+        // Animate in expanded toast
+        translateY.value = withSpring(0, SPRING_CONFIG);
+        opacity.value = withTiming(1, { duration: 300 });
+        scale.value = withSpring(1, SPRING_CONFIG);
+        // CORRECTED LINE: Use withDelay to wrap withTiming
+        contentOpacity.value = withDelay(
+          100,
+          withTiming(1, { duration: 300 })
+        );
+      }
     } else {
       // If no content, show compact Dynamic Island with icon only
       setIsExpanded(false);
 
-      // Animate in compact toast
-      translateY.value = withSpring(0, SPRING_CONFIG);
-      opacity.value = withTiming(1, { duration: 200 });
-      scale.value = withSpring(1, SPRING_CONFIG);
+      if (reduceMotion) {
+        translateY.value = 0;
+        opacity.value = 1;
+        scale.value = 1;
+      } else {
+        // Animate in compact toast
+        translateY.value = withSpring(0, SPRING_CONFIG);
+        opacity.value = withTiming(1, { duration: 200 });
+        scale.value = withSpring(1, SPRING_CONFIG);
+      }
     }
-  }, []); // This effect should only run once when the toast mounts
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [reduceMotion]); // Re-run if the reduced-motion setting resolves after mount
 
   const getVariantColor = () => {
     switch (variant) {
@@ -145,6 +173,11 @@ export function Toast({
   };
 
   const dismiss = useCallback(() => {
+    if (reduceMotion) {
+      onDismiss(id);
+      return;
+    }
+
     // This function will be called from the UI thread
     const onDismissAction = () => {
       'worklet';
@@ -158,10 +191,13 @@ export function Toast({
       }
     });
     scale.value = withSpring(0.8, SPRING_CONFIG);
-  }, [id, onDismiss]);
+  }, [id, onDismiss, reduceMotion]);
 
   const panGesture = Gesture.Pan()
     .onUpdate((event) => {
+      // Reduced motion: swipe-to-dismiss still works (below), it just
+      // doesn't visually track the finger.
+      if (reduceMotion) return;
       translateX.value = event.translationX;
     })
     .onEnd((event) => {
@@ -171,6 +207,11 @@ export function Toast({
         Math.abs(translationX) > screenWidth * 0.25 ||
         Math.abs(velocityX) > 800
       ) {
+        if (reduceMotion) {
+          runOnJS(onDismiss)(id);
+          return;
+        }
+
         // Dismiss action to be called from the UI thread
         const onDismissAction = () => {
           'worklet';
@@ -187,7 +228,7 @@ export function Toast({
             onDismissAction();
           }
         });
-      } else {
+      } else if (!reduceMotion) {
         // Snap back with spring animation
         translateX.value = withSpring(0, SPRING_CONFIG);
       }
@@ -236,7 +277,13 @@ export function Toast({
 
   return (
     <GestureDetector gesture={panGesture}>
-      <Animated.View style={[toastStyle, animatedContainerStyle]}>
+      <Animated.View
+        style={[toastStyle, animatedContainerStyle]}
+        accessible
+        accessibilityRole='alert'
+        accessibilityLiveRegion='polite'
+        accessibilityLabel={[title, description].filter(Boolean).join('. ')}
+      >
         <Animated.View style={animatedIslandStyle}>
           {/* Compact state - just icon or indicator */}
           {!isExpanded && (

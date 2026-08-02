@@ -49,6 +49,8 @@ export function Skeleton({
 
   return (
     <Animated.View
+      accessibilityElementsHidden
+      accessibilityLabel='Loading content'
       style={[
         {
           width: width as any,

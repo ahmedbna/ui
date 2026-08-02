@@ -46,7 +46,13 @@ export const ModeToggle = ({ variant = 'outline', size = 'icon' }: Props) => {
   });
 
   return (
-    <Button variant={variant} size={size} onPress={toggleMode}>
+    <Button
+      variant={variant}
+      size={size}
+      onPress={toggleMode}
+      accessibilityRole='button'
+      accessibilityLabel={`Switch to ${isDark ? 'light' : 'dark'} theme`}
+    >
       <Animated.View style={animatedStyle}>
         <Icon name={showIcon === 'moon' ? Moon : Sun} size={24} />
       </Animated.View>

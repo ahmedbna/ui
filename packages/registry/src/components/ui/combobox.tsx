@@ -187,6 +187,8 @@ export function ComboboxTrigger({
       onPress={handlePress}
       disabled={disabled}
       activeOpacity={0.7}
+      accessibilityRole='combobox'
+      accessibilityState={{ expanded: isOpen, disabled }}
     >
       <View style={styles.triggerContent}>{children}</View>
       <ChevronDown
@@ -517,6 +519,8 @@ export function ComboboxItem({
       onPress={handleSelect}
       disabled={disabled}
       activeOpacity={0.7}
+      accessibilityRole='menuitem'
+      accessibilityState={{ selected: isSelected, disabled }}
     >
       {typeof children === 'string' ? (
         <Text

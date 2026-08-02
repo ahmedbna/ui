@@ -240,6 +240,9 @@ function AndroidActionSheet({
                 onPress={() => handleOptionPress(option)}
                 disabled={option.disabled}
                 activeOpacity={0.6}
+                accessibilityRole='menuitem'
+                accessibilityState={{ disabled: option.disabled }}
+                accessibilityLabel={option.title}
               >
                 <View style={styles.optionContent}>
                   {option.icon && (
@@ -273,6 +276,8 @@ function AndroidActionSheet({
               style={styles.cancelButton}
               onPress={onClose}
               activeOpacity={0.6}
+              accessibilityRole='button'
+              accessibilityLabel={cancelButtonTitle}
             >
               <Text style={[styles.cancelText, { color: textColor }]}>
                 {cancelButtonTitle}

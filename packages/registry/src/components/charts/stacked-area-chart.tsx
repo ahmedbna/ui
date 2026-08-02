@@ -201,7 +201,12 @@ export const StackedAreaChart = ({
       : [...colors, ...defaultColors].slice(0, seriesCount);
 
   return (
-    <View style={[{ width: '100%', height }, style]} onLayout={handleLayout}>
+    <View
+      style={[{ width: '100%', height }, style]}
+      onLayout={handleLayout}
+      accessibilityRole='image'
+      accessibilityLabel={`Stacked area chart with ${data.length} data points across ${seriesCount} series, maximum value ${Math.round(maxValue)}`}
+    >
       <Svg width={chartWidth} height={height}>
         <Defs>
           {seriesColors.map((color, index) => (

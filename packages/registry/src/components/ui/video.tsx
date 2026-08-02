@@ -412,16 +412,22 @@ export const Video = forwardRef<VideoRef, VideoProps>(
             style={styles.gestureArea}
             onPress={handleLeftDoubleTap}
             activeOpacity={0}
+            accessibilityRole='button'
+            accessibilityLabel={`Rewind ${seekBy} seconds`}
           />
           <TouchableOpacity
             style={styles.gestureAreaCenter}
             onPress={handleSingleTap}
             activeOpacity={0}
+            accessibilityRole='button'
+            accessibilityLabel={isPlaying ? 'Pause' : 'Play'}
           />
           <TouchableOpacity
             style={styles.gestureArea}
             onPress={handleRightDoubleTap}
             activeOpacity={0}
+            accessibilityRole='button'
+            accessibilityLabel={`Forward ${seekBy} seconds`}
           />
         </View>
 
@@ -435,6 +441,8 @@ export const Video = forwardRef<VideoRef, VideoProps>(
                 onPress={toggleMute}
                 style={styles.controlButton}
                 activeOpacity={0.7}
+                accessibilityRole='button'
+                accessibilityLabel={isMuted ? 'Unmute' : 'Mute'}
               >
                 {isMuted ? (
                   <VolumeX size={24} color={textColor} />

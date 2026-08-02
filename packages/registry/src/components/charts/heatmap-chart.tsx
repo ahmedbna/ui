@@ -187,7 +187,12 @@ export const HeatmapChart = ({ data, config = {}, style }: Props) => {
   });
 
   return (
-    <View style={[{ width: '100%', height }, style]} onLayout={handleLayout}>
+    <View
+      style={[{ width: '100%', height }, style]}
+      onLayout={handleLayout}
+      accessibilityRole='image'
+      accessibilityLabel={`Heatmap with ${numRows} rows and ${numCols} columns, values from ${Math.round(minValue)} to ${Math.round(maxValue)}`}
+    >
       <Svg width={chartWidth} height={height}>
         {uniqueRows.map((row, rowIndex) =>
           uniqueCols.map((col, colIndex) => {

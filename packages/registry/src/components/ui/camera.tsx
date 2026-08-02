@@ -500,6 +500,8 @@ export const Camera = forwardRef<CameraRef, CameraProps>(
                           ]}
                           onPress={onClose}
                           activeOpacity={0.7}
+                          accessibilityRole='button'
+                          accessibilityLabel='Close camera'
                         >
                           <X size={24} color={textColor} />
                         </TouchableOpacity>
@@ -518,6 +520,9 @@ export const Camera = forwardRef<CameraRef, CameraProps>(
                         ]}
                         onPress={toggleSettings}
                         activeOpacity={0.7}
+                        accessibilityRole='button'
+                        accessibilityLabel='Camera settings'
+                        accessibilityState={{ expanded: showSettings }}
                       >
                         <Settings size={24} color={textColor} />
                       </TouchableOpacity>
@@ -538,6 +543,9 @@ export const Camera = forwardRef<CameraRef, CameraProps>(
                           showGrid && { backgroundColor: primaryColor },
                         ]}
                         onPress={() => setShowGrid(!showGrid)}
+                        accessibilityRole='button'
+                        accessibilityLabel='Toggle grid overlay'
+                        accessibilityState={{ selected: showGrid }}
                       >
                         <Grid3X3
                           size={20}
@@ -554,6 +562,9 @@ export const Camera = forwardRef<CameraRef, CameraProps>(
                           },
                         ]}
                         onPress={() => setSoundEnabled(!soundEnabled)}
+                        accessibilityRole='button'
+                        accessibilityLabel='Toggle sound'
+                        accessibilityState={{ selected: soundEnabled }}
                       >
                         {soundEnabled ? (
                           <Volume2 size={20} color={cardColor} />
@@ -616,6 +627,11 @@ export const Camera = forwardRef<CameraRef, CameraProps>(
                         ]}
                         onPress={toggleTorch}
                         activeOpacity={0.7}
+                        accessibilityRole='button'
+                        accessibilityLabel={
+                          torch ? 'Turn off flash' : 'Turn on flash'
+                        }
+                        accessibilityState={{ selected: torch }}
                       >
                         {torch ? (
                           <Zap size={24} color={cardColor} />
@@ -631,6 +647,8 @@ export const Camera = forwardRef<CameraRef, CameraProps>(
                       ]}
                       onPress={toggleCameraFacing}
                       activeOpacity={0.7}
+                      accessibilityRole='button'
+                      accessibilityLabel='Switch camera'
                     >
                       <SwitchCamera size={24} color={textColor} />
                     </TouchableOpacity>
@@ -664,6 +682,12 @@ export const Camera = forwardRef<CameraRef, CameraProps>(
                         onPress={toggleMode}
                         disabled={isRecording || isCapturing}
                         activeOpacity={0.7}
+                        accessibilityRole='button'
+                        accessibilityLabel={
+                          mode === 'picture'
+                            ? 'Switch to video mode'
+                            : 'Switch to photo mode'
+                        }
                       >
                         {mode === 'picture' ? (
                           <Video size={24} color={textColor} />
@@ -699,6 +723,14 @@ export const Camera = forwardRef<CameraRef, CameraProps>(
                       }
                       disabled={isCapturing || isTimerActive}
                       activeOpacity={0.8}
+                      accessibilityRole='button'
+                      accessibilityLabel={
+                        mode === 'video'
+                          ? isRecording
+                            ? 'Stop recording'
+                            : 'Start recording'
+                          : 'Take picture'
+                      }
                     >
                       {isCapturing ? (
                         <ActivityIndicator size='small' color={primaryColor} />

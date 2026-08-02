@@ -330,6 +330,8 @@ export const Button = forwardRef<View, ButtonProps>(
         onPressOut={handlePressOut}
         disabled={disabled || loading}
         style={getPressableStyle()}
+        accessibilityRole='button'
+        accessibilityState={{ busy: loading, disabled: disabled || loading }}
         {...props}
       >
         <Animated.View style={[animatedStyle, buttonStyle, styleWithoutFlex]}>
@@ -367,6 +369,8 @@ export const Button = forwardRef<View, ButtonProps>(
         onPress={handleTouchablePress}
         disabled={disabled || loading}
         activeOpacity={0.8}
+        accessibilityRole='button'
+        accessibilityState={{ busy: loading, disabled: disabled || loading }}
         {...props}
       >
         {loading ? (

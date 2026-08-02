@@ -15,6 +15,7 @@ export function Icon({
   color,
   size = 24,
   strokeWidth = 1.8,
+  accessible = false,
   ...rest
 }: Props) {
   const themedColor = useColor('icon', { light: lightColor, dark: darkColor });
@@ -28,6 +29,7 @@ export function Icon({
       size={size}
       strokeWidth={strokeWidth}
       strokeLinecap='round'
+      accessible={accessible}
       {...rest}
     />
   );

@@ -2,14 +2,19 @@ import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
 import { useColor } from '@/hooks/useColor';
 import { BORDER_RADIUS } from '@/theme/globals';
-import { TextStyle, ViewStyle } from 'react-native';
+import {
+  TextProps as RNTextProps,
+  TextStyle,
+  ViewProps as RNViewProps,
+  ViewStyle,
+} from 'react-native';
 
-interface CardProps {
+interface CardProps extends RNViewProps {
   children: React.ReactNode;
   style?: ViewStyle;
 }
 
-export function Card({ children, style }: CardProps) {
+export function Card({ children, style, ...props }: CardProps) {
   const cardColor = useColor('card');
   const foregroundColor = useColor('foreground');
 
@@ -29,27 +34,32 @@ export function Card({ children, style }: CardProps) {
         },
         style,
       ]}
+      {...props}
     >
       {children}
     </View>
   );
 }
 
-interface CardHeaderProps {
+interface CardHeaderProps extends RNViewProps {
   children: React.ReactNode;
   style?: ViewStyle;
 }
 
-export function CardHeader({ children, style }: CardHeaderProps) {
-  return <View style={[{ marginBottom: 8 }, style]}>{children}</View>;
+export function CardHeader({ children, style, ...props }: CardHeaderProps) {
+  return (
+    <View style={[{ marginBottom: 8 }, style]} {...props}>
+      {children}
+    </View>
+  );
 }
 
-interface CardTitleProps {
+interface CardTitleProps extends RNTextProps {
   children: React.ReactNode;
   style?: TextStyle;
 }
 
-export function CardTitle({ children, style }: CardTitleProps) {
+export function CardTitle({ children, style, ...props }: CardTitleProps) {
   return (
     <Text
       variant='title'
@@ -59,40 +69,49 @@ export function CardTitle({ children, style }: CardTitleProps) {
         },
         style,
       ]}
+      {...props}
     >
       {children}
     </Text>
   );
 }
 
-interface CardDescriptionProps {
+interface CardDescriptionProps extends RNTextProps {
   children: React.ReactNode;
   style?: TextStyle;
 }
 
-export function CardDescription({ children, style }: CardDescriptionProps) {
+export function CardDescription({
+  children,
+  style,
+  ...props
+}: CardDescriptionProps) {
   return (
-    <Text variant='caption' style={[style]}>
+    <Text variant='caption' style={[style]} {...props}>
       {children}
     </Text>
   );
 }
 
-interface CardContentProps {
+interface CardContentProps extends RNViewProps {
   children: React.ReactNode;
   style?: ViewStyle;
 }
 
-export function CardContent({ children, style }: CardContentProps) {
-  return <View style={[style]}>{children}</View>;
+export function CardContent({ children, style, ...props }: CardContentProps) {
+  return (
+    <View style={[style]} {...props}>
+      {children}
+    </View>
+  );
 }
 
-interface CardFooterProps {
+interface CardFooterProps extends RNViewProps {
   children: React.ReactNode;
   style?: ViewStyle;
 }
 
-export function CardFooter({ children, style }: CardFooterProps) {
+export function CardFooter({ children, style, ...props }: CardFooterProps) {
   return (
     <View
       style={[
@@ -103,6 +122,7 @@ export function CardFooter({ children, style }: CardFooterProps) {
         },
         style,
       ]}
+      {...props}
     >
       {children}
     </View>

@@ -146,7 +146,12 @@ export const CandlestickChart = ({ data, config = {}, style }: Props) => {
   const candleSpacing = (innerChartWidth / data.length) * 0.4;
 
   return (
-    <View style={[{ width: '100%', height }, style]} onLayout={handleLayout}>
+    <View
+      style={[{ width: '100%', height }, style]}
+      onLayout={handleLayout}
+      accessibilityRole='image'
+      accessibilityLabel={`Candlestick chart with ${data.length} candles, ranging from ${Math.round(minValue)} to ${Math.round(maxValue)}`}
+    >
       <Svg width={chartWidth} height={height}>
         {/* Grid lines */}
         {showGrid && (

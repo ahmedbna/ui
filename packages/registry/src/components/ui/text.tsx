@@ -17,6 +17,8 @@ interface TextProps extends RNTextProps {
   children: React.ReactNode;
 }
 
+const headingVariants: TextVariant[] = ['heading', 'title', 'subtitle'];
+
 export const Text = forwardRef<RNText, TextProps>(
   (
     { variant = 'body', lightColor, darkColor, style, children, ...props },
@@ -24,6 +26,9 @@ export const Text = forwardRef<RNText, TextProps>(
   ) => {
     const textColor = useColor('text', { light: lightColor, dark: darkColor });
     const mutedColor = useColor('textMuted');
+    const defaultAccessibilityRole = headingVariants.includes(variant)
+      ? 'header'
+      : undefined;
 
     const getTextStyle = (): TextStyle => {
       const baseStyle: TextStyle = {
@@ -73,7 +78,12 @@ export const Text = forwardRef<RNText, TextProps>(
     };
 
     return (
-      <RNText ref={ref} style={[getTextStyle(), style]} {...props}>
+      <RNText
+        ref={ref}
+        style={[getTextStyle(), style]}
+        accessibilityRole={defaultAccessibilityRole}
+        {...props}
+      >
         {children}
       </RNText>
     );

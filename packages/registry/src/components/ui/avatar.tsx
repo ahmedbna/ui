@@ -37,7 +37,9 @@ interface AvatarImageProps {
 }
 
 export function AvatarImage({ source, style }: AvatarImageProps) {
-  return <Image source={source} style={[style]} />;
+  return (
+    <Image source={source} style={[style]} accessibilityRole='image' />
+  );
 }
 
 interface AvatarFallbackProps {

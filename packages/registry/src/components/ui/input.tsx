@@ -207,6 +207,7 @@ export const Input = forwardRef<TextInput, InputProps>(
                 onBlur={handleBlur}
                 editable={!disabled}
                 selectionColor={primary}
+                accessibilityLabel={label}
                 {...props}
               />
             </>
@@ -261,6 +262,7 @@ export const Input = forwardRef<TextInput, InputProps>(
                   editable={!disabled}
                   placeholder={placeholder}
                   selectionColor={primary}
+                  accessibilityLabel={label}
                   {...props}
                 />
               </View>
@@ -527,6 +529,7 @@ export const GroupedInputItem = forwardRef<TextInput, GroupedInputItemProps>(
                 selectionColor={primary}
                 onFocus={handleFocus}
                 onBlur={handleBlur}
+                accessibilityLabel={label}
                 {...props}
               />
             </>
@@ -590,6 +593,7 @@ export const GroupedInputItem = forwardRef<TextInput, GroupedInputItemProps>(
                   selectionColor={primary}
                   onFocus={handleFocus}
                   onBlur={handleBlur}
+                  accessibilityLabel={label}
                   {...props}
                 />
               </View>

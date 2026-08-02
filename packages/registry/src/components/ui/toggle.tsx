@@ -129,6 +129,8 @@ export function Toggle({
       onPress={handlePress}
       disabled={disabled}
       activeOpacity={0.8}
+      accessibilityRole='togglebutton'
+      accessibilityState={{ selected: pressed, disabled }}
     >
       {typeof children === 'string' ? (
         <Text style={[finalTextStyle, textStyle]}>{children}</Text>
@@ -228,7 +230,10 @@ export function ToggleGroup({
   };
 
   return (
-    <View style={[containerStyle, style]}>
+    <View
+      style={[containerStyle, style]}
+      accessibilityRole={type === 'single' ? 'radiogroup' : undefined}
+    >
       {items.map((item, index) => (
         <Toggle
           key={item.value}

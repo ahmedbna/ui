@@ -111,7 +111,12 @@ export const PolarAreaChart = ({ data, config = {}, style }: Props) => {
   ];
 
   return (
-    <View style={[{ width: '100%', height }, style]} onLayout={handleLayout}>
+    <View
+      style={[{ width: '100%', height }, style]}
+      onLayout={handleLayout}
+      accessibilityRole='image'
+      accessibilityLabel={`Polar area chart with ${data.length} segments, maximum value ${Math.round(maxValue)}`}
+    >
       <Svg width={chartWidth} height={height}>
         {data.map((item, index) => {
           const angle = index * angleStep - Math.PI / 2;

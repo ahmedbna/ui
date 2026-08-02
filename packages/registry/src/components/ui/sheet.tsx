@@ -199,6 +199,7 @@ export function SheetContent({ children, style }: SheetContentProps) {
             animatedSheetStyle, // Apply the animated style
             style,
           ]}
+          accessibilityViewIsModal
         >
           {/* Close button */}
           <TouchableOpacity
@@ -211,6 +212,8 @@ export function SheetContent({ children, style }: SheetContentProps) {
             ]}
             onPress={handleClose}
             hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+            accessibilityRole='button'
+            accessibilityLabel='Close'
           >
             <X size={20} color={iconColor} />
           </TouchableOpacity>

@@ -107,7 +107,12 @@ export const PieChart = ({ data, config = {}, style }: Props) => {
   ];
 
   return (
-    <View style={[{ width: '100%' }, style]} onLayout={handleLayout}>
+    <View
+      style={[{ width: '100%' }, style]}
+      onLayout={handleLayout}
+      accessibilityRole='image'
+      accessibilityLabel={`Pie chart with ${data.length} slices, total ${Math.round(total)}`}
+    >
       <Svg width={chartWidth} height={height}>
         {data.map((item, index) => {
           const sliceAngle = (item.value / total) * 2 * Math.PI;

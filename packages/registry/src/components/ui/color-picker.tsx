@@ -1,13 +1,14 @@
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
 import { useColor } from '@/hooks/useColor';
-import { BORDER_RADIUS, CORNERS, HEIGHT } from '@/theme/globals';
+import { BORDER_RADIUS, CORNERS, FONT_SIZE, HEIGHT } from '@/theme/globals';
 import { LinearGradient as ExpoLinearGradient } from 'expo-linear-gradient';
 import React, { useCallback, useEffect, useState } from 'react';
 import {
   Dimensions,
   Modal,
   StyleSheet,
+  TextInput,
   TouchableOpacity,
   ViewStyle,
 } from 'react-native';
@@ -73,7 +74,17 @@ const rgbToHex = (r: number, g: number, b: number) => {
 };
 
 const hexToRgb = (hex: string) => {
-  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  let normalized = hex.replace('#', '');
+  if (normalized.length === 3) {
+    normalized = normalized
+      .split('')
+      .map((c) => c + c)
+      .join('');
+  } else if (normalized.length === 8) {
+    // Drop the alpha channel — this picker has no alpha concept downstream.
+    normalized = normalized.slice(0, 6);
+  }
+  const result = /^([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(normalized);
   return result
     ? {
         r: parseInt(result[1], 16),
@@ -82,6 +93,9 @@ const hexToRgb = (hex: string) => {
       }
     : { r: 0, g: 0, b: 0 };
 };
+
+const isValidHex = (hex: string) =>
+  /^#?([a-f\d]{3}|[a-f\d]{6}|[a-f\d]{8})$/i.test(hex);
 
 const rgbToHsv = (r: number, g: number, b: number) => {
   r /= 255;
@@ -116,6 +130,7 @@ interface ColorSwatchProps {
   size?: number;
   style?: ViewStyle;
   onPress?: () => void;
+  accessibilityLabel?: string;
 }
 
 export const ColorSwatch: React.FC<ColorSwatchProps> = ({
@@ -123,6 +138,7 @@ export const ColorSwatch: React.FC<ColorSwatchProps> = ({
   size = 32,
   style,
   onPress,
+  accessibilityLabel,
 }) => {
   const borderColor = useColor('border');
 
@@ -141,6 +157,8 @@ export const ColorSwatch: React.FC<ColorSwatchProps> = ({
         style,
       ]}
       activeOpacity={onPress ? 0.8 : 1}
+      accessibilityRole={onPress ? 'button' : 'image'}
+      accessibilityLabel={accessibilityLabel ?? `Color swatch ${color}`}
     />
   );
 };
@@ -165,6 +183,7 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [currentColor, setCurrentColor] = useState(value);
   const [pureHueColor, setPureHueColor] = useState('#ff0000');
+  const [hexInput, setHexInput] = useState(value);
 
   const backgroundColor = useColor('background');
   const card = useColor('card');
@@ -206,39 +225,45 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({
       const pureRgb = hsvToRgb(hsv.h, 1, 1);
       const pureHex = rgbToHex(pureRgb.r, pureRgb.g, pureRgb.b);
       setPureHueColor(pureHex);
+      setHexInput(currentColor);
     }
   }, [isModalVisible, currentColor]);
 
-  // Hue bar gesture using new Gesture API
-  const hueGesture = Gesture.Pan().onUpdate((event) => {
-    const newX = Math.max(
-      0,
-      Math.min(PICKER_SIZE - KNOB_SIZE, event.x - KNOB_SIZE / 2)
-    );
-    const newHue = (newX / (PICKER_SIZE - KNOB_SIZE)) * 360;
-    hue.value = newHue;
-    runOnJS(updateColor)(newHue, saturation.value, brightness.value);
-  });
+  // Dragging previously called runOnJS(updateColor) on every pan frame,
+  // forcing a full JS re-render per touch-move. Live visuals (preview swatch
+  // + knob positions) now derive purely from shared values on the UI
+  // thread; the JS-side state commit (currentColor, onColorChange) happens
+  // once, on gesture end.
+  const hueGesture = Gesture.Pan()
+    .onUpdate((event) => {
+      const newX = Math.max(
+        0,
+        Math.min(PICKER_SIZE - KNOB_SIZE, event.x - KNOB_SIZE / 2)
+      );
+      hue.value = (newX / (PICKER_SIZE - KNOB_SIZE)) * 360;
+    })
+    .onEnd(() => {
+      runOnJS(updateColor)(hue.value, saturation.value, brightness.value);
+    });
 
   // Saturation/Brightness picker gesture using new Gesture API
-  const pickerGesture = Gesture.Pan().onUpdate((event) => {
-    const newX = Math.max(
-      0,
-      Math.min(PICKER_SIZE - KNOB_SIZE, event.x - KNOB_SIZE / 2)
-    );
-    const newY = Math.max(
-      0,
-      Math.min(PICKER_SIZE - KNOB_SIZE, event.y - KNOB_SIZE / 2)
-    );
+  const pickerGesture = Gesture.Pan()
+    .onUpdate((event) => {
+      const newX = Math.max(
+        0,
+        Math.min(PICKER_SIZE - KNOB_SIZE, event.x - KNOB_SIZE / 2)
+      );
+      const newY = Math.max(
+        0,
+        Math.min(PICKER_SIZE - KNOB_SIZE, event.y - KNOB_SIZE / 2)
+      );
 
-    const newSaturation = newX / (PICKER_SIZE - KNOB_SIZE);
-    const newBrightness = 1 - newY / (PICKER_SIZE - KNOB_SIZE);
-
-    saturation.value = newSaturation;
-    brightness.value = newBrightness;
-
-    runOnJS(updateColor)(hue.value, newSaturation, newBrightness);
-  });
+      saturation.value = newX / (PICKER_SIZE - KNOB_SIZE);
+      brightness.value = 1 - newY / (PICKER_SIZE - KNOB_SIZE);
+    })
+    .onEnd(() => {
+      runOnJS(updateColor)(hue.value, saturation.value, brightness.value);
+    });
 
   const hueKnobStyle = useAnimatedStyle(() => ({
     transform: [{ translateX: (hue.value / 360) * (PICKER_SIZE - KNOB_SIZE) }],
@@ -250,6 +275,31 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({
       { translateY: (1 - brightness.value) * (PICKER_SIZE - KNOB_SIZE) },
     ],
   }));
+
+  // Live preview swatch, driven entirely on the UI thread so dragging never
+  // triggers a JS re-render — hsvToRgb is auto-workletized by the Reanimated
+  // Babel plugin since it's referenced from inside this worklet.
+  const previewAnimatedStyle = useAnimatedStyle(() => {
+    const rgb = hsvToRgb(hue.value, saturation.value, brightness.value);
+    return {
+      backgroundColor: `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`,
+    };
+  });
+
+  const handleHexSubmit = useCallback(() => {
+    if (!isValidHex(hexInput)) {
+      setHexInput(currentColor);
+      return;
+    }
+
+    const normalized = hexInput.startsWith('#') ? hexInput : `#${hexInput}`;
+    const rgb = hexToRgb(normalized);
+    const hsv = rgbToHsv(rgb.r, rgb.g, rgb.b);
+    hue.value = hsv.h;
+    saturation.value = hsv.s;
+    brightness.value = hsv.v;
+    updateColor(hsv.h, hsv.s, hsv.v);
+  }, [hexInput, currentColor, updateColor]);
 
   const handleColorSelect = () => {
     onColorSelect?.(currentColor);
@@ -267,6 +317,7 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({
         color={currentColor}
         size={swatchSize}
         onPress={disabled ? undefined : () => setIsModalVisible(true)}
+        accessibilityLabel={`Selected color ${currentColor}. Opens color picker.`}
       />
 
       <Modal
@@ -288,16 +339,19 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({
 
           <View style={styles.content}>
             {/* Color Preview */}
-            <View
-              style={{
-                height: 80,
-                width: '100%',
-                alignItems: 'center',
-                marginBottom: 30,
-                justifyContent: 'center',
-                borderRadius: BORDER_RADIUS,
-                backgroundColor: currentColor,
-              }}
+            <Animated.View
+              style={[
+                {
+                  height: 80,
+                  width: '100%',
+                  alignItems: 'center',
+                  marginBottom: 16,
+                  justifyContent: 'center',
+                  borderRadius: BORDER_RADIUS,
+                },
+                previewAnimatedStyle,
+              ]}
+              accessibilityLabel={`Color preview: ${currentColor}`}
             >
               <Text
                 variant='caption'
@@ -305,7 +359,36 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({
               >
                 {currentColor.toUpperCase()}
               </Text>
-            </View>
+            </Animated.View>
+
+            {/* Manual hex entry — the drag-only pickers below are not
+                operable via VoiceOver/TalkBack/switch control, so this is
+                the accessible path to picking an exact color. */}
+            <TextInput
+              value={hexInput}
+              onChangeText={setHexInput}
+              onSubmitEditing={handleHexSubmit}
+              onBlur={handleHexSubmit}
+              autoCapitalize='none'
+              autoCorrect={false}
+              maxLength={9}
+              placeholder='#RRGGBB'
+              placeholderTextColor={textColor}
+              accessibilityLabel='Hex color code'
+              accessibilityHint='Enter a hex color code, for example RRGGBB'
+              style={{
+                width: '100%',
+                marginBottom: 24,
+                paddingHorizontal: 16,
+                height: HEIGHT,
+                borderRadius: CORNERS,
+                borderWidth: 1,
+                borderColor,
+                color: textColor,
+                fontSize: FONT_SIZE,
+                textAlign: 'center',
+              }}
+            />
 
             {/* Saturation/Brightness Picker */}
             <View style={styles.pickerContainer}>

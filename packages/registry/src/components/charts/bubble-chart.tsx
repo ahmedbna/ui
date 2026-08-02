@@ -135,7 +135,12 @@ export const BubbleChart = ({ data, config = {}, style }: Props) => {
   }));
 
   return (
-    <View style={[{ width: '100%', height }, style]} onLayout={handleLayout}>
+    <View
+      style={[{ width: '100%', height }, style]}
+      onLayout={handleLayout}
+      accessibilityRole='image'
+      accessibilityLabel={`Bubble chart with ${data.length} bubbles, x from ${Math.round(minX)} to ${Math.round(maxX)}, y from ${Math.round(minY)} to ${Math.round(maxY)}`}
+    >
       <Svg width={chartWidth} height={height}>
         {/* Grid lines */}
         {showGrid && (

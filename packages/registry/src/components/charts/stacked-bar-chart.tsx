@@ -186,7 +186,12 @@ export const StackedBarChart = ({
     const barSpacing = (chartHeight / data.length) * 0.2;
 
     return (
-      <View style={[{ width: '100%', height }, style]} onLayout={handleLayout}>
+      <View
+        style={[{ width: '100%', height }, style]}
+        onLayout={handleLayout}
+        accessibilityRole='image'
+        accessibilityLabel={`Horizontal stacked bar chart with ${data.length} bars across ${seriesCount} series, maximum total ${Math.round(maxValue)}`}
+      >
         <Svg width={chartWidth} height={height}>
           {/* Grid lines */}
           {showGrid && (
@@ -283,7 +288,12 @@ export const StackedBarChart = ({
   const barSpacing = (innerChartWidth / data.length) * 0.2;
 
   return (
-    <View style={[{ width: '100%', height }, style]} onLayout={handleLayout}>
+    <View
+      style={[{ width: '100%', height }, style]}
+      onLayout={handleLayout}
+      accessibilityRole='image'
+      accessibilityLabel={`Stacked bar chart with ${data.length} bars across ${seriesCount} series, maximum total ${Math.round(maxValue)}`}
+    >
       <Svg width={chartWidth} height={height}>
         {/* Grid lines */}
         {showGrid && (

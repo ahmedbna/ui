@@ -21,6 +21,8 @@ export function Collapsible({
         }}
         onPress={() => setIsOpen((value) => !value)}
         activeOpacity={0.8}
+        accessibilityRole='button'
+        accessibilityState={{ expanded: isOpen }}
       >
         <Icon
           name={ChevronRight}

@@ -171,6 +171,7 @@ export function AudioWaveform({
 
   const panGesture = Gesture.Pan()
     .enabled(interactive)
+    .hitSlop({ top: 12, bottom: 12 })
     .onStart((event) => {
       if (onSeekStart) runOnJS(onSeekStart)();
       runOnJS(handleSeek)(event.x);
@@ -182,10 +183,43 @@ export function AudioWaveform({
       if (onSeekEnd) runOnJS(onSeekEnd)();
     });
 
+  const handleAccessibilityAction = (event: {
+    nativeEvent: { actionName: string };
+  }) => {
+    if (!interactive || !onSeek) return;
+    const clampedProgress = Math.max(0, Math.min(100, progress));
+    switch (event.nativeEvent.actionName) {
+      case 'increment':
+        onSeek(Math.min(100, clampedProgress + 5));
+        break;
+      case 'decrement':
+        onSeek(Math.max(0, clampedProgress - 5));
+        break;
+    }
+  };
+
   return (
     <View style={[styles.container, { height }, style]}>
       <GestureDetector gesture={panGesture}>
-        <View style={[styles.waveform, { width: totalWidth }]}>
+        <View
+          style={[styles.waveform, { width: totalWidth }]}
+          accessible={interactive}
+          accessibilityRole={interactive ? 'adjustable' : undefined}
+          accessibilityValue={
+            interactive
+              ? { min: 0, max: 100, now: Math.round(progress) }
+              : undefined
+          }
+          accessibilityActions={
+            interactive
+              ? [
+                  { name: 'increment', label: 'increment' },
+                  { name: 'decrement', label: 'decrement' },
+                ]
+              : undefined
+          }
+          onAccessibilityAction={handleAccessibilityAction}
+        >
           {/* FIX: We now map over the data array and pass the value to each Bar */}
           {waveformData.map((value, index) => {
             const progressRatio = progress / 100;

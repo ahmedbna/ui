@@ -495,6 +495,10 @@ export function CarouselIndicators({
             borderRadius: 999,
             backgroundColor: index === current ? primaryColor : secondaryColor,
           }}
+          hitSlop={{ top: 12, bottom: 12, left: 8, right: 8 }}
+          accessibilityRole='button'
+          accessibilityLabel={`Go to slide ${index + 1} of ${total}`}
+          accessibilityState={{ selected: index === current }}
         />
       ))}
     </View>
@@ -525,6 +529,11 @@ export function CarouselArrow({
         style,
       ]}
       activeOpacity={0.7}
+      accessibilityRole='button'
+      accessibilityLabel={
+        direction === 'left' ? 'Previous slide' : 'Next slide'
+      }
+      accessibilityState={{ disabled }}
     >
       <BlurView
         tint='systemChromeMaterial' // or "light"/"dark" depending on theme

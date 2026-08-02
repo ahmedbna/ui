@@ -311,7 +311,11 @@ export function Spinner({
   };
 
   return (
-    <View style={[containerStyle, style]}>
+    <View
+      style={[containerStyle, style]}
+      accessibilityRole='progressbar'
+      accessibilityLabel={label || 'Loading'}
+    >
       {renderSpinner()}
       {(showLabel || label) && (
         <Text

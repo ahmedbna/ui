@@ -115,6 +115,7 @@ export function SearchBar({
         placeholderTextColor={muted}
         value={displayValue}
         onChangeText={handleTextChange}
+        accessibilityRole='search'
         {...props}
       />
 
@@ -138,6 +139,9 @@ export function SearchBar({
             opacity: 0.6,
           }}
           activeOpacity={0.7}
+          hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+          accessibilityRole='button'
+          accessibilityLabel='Clear search'
         >
           <Icon name={X} size={16} color={cardColor} strokeWidth={2} />
         </TouchableOpacity>

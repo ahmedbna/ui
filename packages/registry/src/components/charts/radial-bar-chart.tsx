@@ -139,7 +139,11 @@ export const RadialBarChart = ({ data, config = {}, style }: Props) => {
   ];
 
   return (
-    <View style={[{ width: '100%' }, style]}>
+    <View
+      style={[{ width: '100%' }, style]}
+      accessibilityRole='image'
+      accessibilityLabel={`Radial bar chart with ${data.length} bars, maximum value ${Math.round(maxValue)}`}
+    >
       <View
         style={{
           width: '100%',

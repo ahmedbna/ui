@@ -19,6 +19,8 @@ interface ProgressProps {
   onSeekStart?: () => void;
   onSeekEnd?: () => void;
   interactive?: boolean;
+  /** Amount to adjust by per accessibility increment/decrement action */
+  step?: number;
 }
 
 export function Progress({
@@ -29,6 +31,7 @@ export function Progress({
   onSeekStart,
   onSeekEnd,
   interactive = false,
+  step = 10,
 }: ProgressProps) {
   const primaryColor = useColor('primary');
   const mutedColor = useColor('muted');
@@ -48,6 +51,20 @@ export function Progress({
   const updateValue = (newValue: number) => {
     const clamped = Math.max(0, Math.min(100, newValue));
     onValueChange?.(clamped);
+  };
+
+  const handleAccessibilityAction = (event: {
+    nativeEvent: { actionName: string };
+  }) => {
+    if (!interactive) return;
+    switch (event.nativeEvent.actionName) {
+      case 'increment':
+        updateValue(clampedValue + step);
+        break;
+      case 'decrement':
+        updateValue(clampedValue - step);
+        break;
+    }
   };
 
   const handleSeekStart = () => {
@@ -126,7 +143,18 @@ export function Progress({
   if (interactive) {
     return (
       <GestureDetector gesture={combinedGesture}>
-        <Animated.View style={containerStyle} onLayout={onLayout}>
+        <Animated.View
+          style={containerStyle}
+          onLayout={onLayout}
+          accessible
+          accessibilityRole='adjustable'
+          accessibilityValue={{ min: 0, max: 100, now: clampedValue }}
+          accessibilityActions={[
+            { name: 'increment', label: 'increment' },
+            { name: 'decrement', label: 'decrement' },
+          ]}
+          onAccessibilityAction={handleAccessibilityAction}
+        >
           <Animated.View
             style={[
               {
@@ -143,7 +171,13 @@ export function Progress({
   }
 
   return (
-    <View style={containerStyle} onLayout={onLayout}>
+    <View
+      style={containerStyle}
+      onLayout={onLayout}
+      accessible
+      accessibilityRole='progressbar'
+      accessibilityValue={{ min: 0, max: 100, now: clampedValue }}
+    >
       <Animated.View
         style={[
           {

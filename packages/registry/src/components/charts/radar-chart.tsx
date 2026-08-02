@@ -129,7 +129,12 @@ export const RadarChart = ({ data, config = {}, style }: Props) => {
   }));
 
   return (
-    <View style={[{ width: '100%', height }, style]} onLayout={handleLayout}>
+    <View
+      style={[{ width: '100%', height }, style]}
+      onLayout={handleLayout}
+      accessibilityRole='image'
+      accessibilityLabel={`Radar chart with ${data.length} axes, maximum value ${Math.round(maxVal)}`}
+    >
       <Svg width={chartWidth} height={height}>
         {/* Grid circles */}
         {[0.2, 0.4, 0.6, 0.8, 1].map((ratio, index) => (

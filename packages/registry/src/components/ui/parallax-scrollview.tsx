@@ -6,6 +6,7 @@ import Animated, {
   interpolate,
   useAnimatedRef,
   useAnimatedStyle,
+  useReducedMotion,
   useScrollViewOffset,
 } from 'react-native-reanimated';
 
@@ -23,7 +24,12 @@ export function ParallaxScrollView({
   const scrollRef = useAnimatedRef<Animated.ScrollView>();
   const scrollOffset = useScrollViewOffset(scrollRef);
   const bottom = useBottomTabOverflow();
+  const reduceMotion = useReducedMotion();
   const headerAnimatedStyle = useAnimatedStyle(() => {
+    if (reduceMotion) {
+      return { transform: [{ translateY: 0 }, { scale: 1 }] };
+    }
+
     return {
       transform: [
         {

@@ -185,6 +185,8 @@ export function Picker({
           opacity: option.disabled ? 0.3 : 1,
         }}
         disabled={option.disabled}
+        accessibilityRole='menuitem'
+        accessibilityState={{ selected: isSelected, disabled: option.disabled }}
       >
         <View
           style={{

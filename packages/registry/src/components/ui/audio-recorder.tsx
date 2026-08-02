@@ -321,6 +321,7 @@ export function AudioRecorder({
               size='icon'
               onPress={handleDeleteRecording}
               style={styles.controlButton}
+              accessibilityLabel='Delete recording'
             >
               <Trash2 size={20} color={redColor} />
             </Button>
@@ -329,6 +330,7 @@ export function AudioRecorder({
               variant='default'
               onPress={handleSaveRecording}
               style={[styles.saveButton, { backgroundColor: greenColor }]}
+              accessibilityLabel='Save recording'
             >
               <Download size={20} color='white' />
               <Text style={{ color: 'white', marginLeft: 8 }}>Save</Text>
@@ -399,6 +401,7 @@ export function AudioRecorder({
                   size='lg'
                   onPress={handleStartRecording}
                   style={[styles.recordButton, { backgroundColor: redColor }]}
+                  accessibilityLabel='Start recording'
                 >
                   <Mic size={32} color='white' />
                 </Button>
@@ -411,6 +414,7 @@ export function AudioRecorder({
                 size='lg'
                 onPress={handleStopRecording}
                 style={[styles.stopButton, { backgroundColor: redColor }]}
+                accessibilityLabel='Stop recording'
               >
                 <Square size={32} fill='white' color='white' />
               </Button>

@@ -183,11 +183,10 @@ export const popoverMeta: ComponentMeta = {
   accessibility: {
     summary: 'The Popover component is built with accessibility in mind:',
     items: [
-      'Proper focus management when opening and closing',
-      'Keyboard navigation support (Escape to close)',
-      'Screen reader compatible with proper ARIA attributes',
-      'Touch-friendly interaction areas',
-      "Respects user's motion preferences",
+      'Content is marked accessibilityViewIsModal with accessibilityRole="menu", scoping VoiceOver/TalkBack to it while open',
+      'Trigger and close controls expose accessibilityRole="button" and accessibilityState={{ expanded }}',
+      'Tap-outside-to-dismiss via the backdrop for an easy close gesture',
+      "Touch-friendly interaction areas via the underlying Button component's sizing",
     ],
   },
 };

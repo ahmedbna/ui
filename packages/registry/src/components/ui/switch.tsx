@@ -51,6 +51,7 @@ export function Switch({ label, error, labelStyle, ...props }: SwitchProps) {
         <RNSwitch
           trackColor={{ false: mutedColor, true: '#7DD87D' }}
           thumbColor={props.value ? '#ffffff' : '#f4f3f4'}
+          accessibilityLabel={label}
           {...props}
         />
       </View>

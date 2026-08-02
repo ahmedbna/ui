@@ -13,6 +13,7 @@ interface CheckboxProps {
   disabled?: boolean;
   labelStyle?: TextStyle;
   onCheckedChange: (checked: boolean) => void;
+  accessibilityLabel?: string;
 }
 
 export function Checkbox({
@@ -22,6 +23,7 @@ export function Checkbox({
   label,
   labelStyle,
   onCheckedChange,
+  accessibilityLabel,
 }: CheckboxProps) {
   const primary = useColor('primary');
   const primaryForegroundColor = useColor('primaryForeground');
@@ -38,6 +40,10 @@ export function Checkbox({
       }}
       onPress={() => !disabled && onCheckedChange(!checked)}
       disabled={disabled}
+      hitSlop={{ top: 9, bottom: 9, left: 9, right: 9 }}
+      accessibilityRole='checkbox'
+      accessibilityState={{ checked, disabled }}
+      accessibilityLabel={accessibilityLabel ?? label}
     >
       <View
         style={{

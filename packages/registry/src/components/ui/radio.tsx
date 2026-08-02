@@ -85,6 +85,10 @@ export function RadioButton({
       onPress={onPress}
       disabled={isDisabled}
       activeOpacity={0.7}
+      hitSlop={{ top: 9, bottom: 9, left: 9, right: 9 }}
+      accessibilityRole='radio'
+      accessibilityState={{ checked: selected, disabled: isDisabled }}
+      accessibilityLabel={option.label}
     >
       <View style={radioButtonStyle}>
         <View style={innerCircleStyle} />
@@ -116,7 +120,10 @@ export function RadioGroup({
   };
 
   return (
-    <View style={[containerStyle, style]}>
+    <View
+      style={[containerStyle, style]}
+      accessibilityRole='radiogroup'
+    >
       {options.map((option) => (
         <RadioButton
           key={option.value}
