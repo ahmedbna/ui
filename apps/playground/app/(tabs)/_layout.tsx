@@ -1,8 +1,8 @@
 import { Icon } from '@/components/ui/icon';
 import { useColor } from '@/hooks/useColor';
+import { triggerHaptic } from '@/hooks/useHaptics';
 import { PlatformPressable } from 'expo-router/react-navigation';
 import { BlurView } from 'expo-blur';
-import * as Haptics from 'expo-haptics';
 import { Tabs } from 'expo-router';
 import {
   ChartCandlestick,
@@ -26,10 +26,11 @@ export default function TabLayout() {
           <PlatformPressable
             {...props}
             onPressIn={(ev) => {
-              if (process.env.EXPO_OS === 'ios') {
-                // Add a soft haptic feedback when pressing down on the tabs.
-                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-              }
+              // A soft haptic when pressing down on the tabs. The hook picks
+              // the right native API per platform, so this is no longer gated
+              // to iOS. Module-level function rather than the hook: this is a
+              // render prop, not a component body.
+              triggerHaptic('impact-light');
               props.onPressIn?.(ev);
             }}
           />

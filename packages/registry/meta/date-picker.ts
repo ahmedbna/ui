@@ -16,6 +16,13 @@ export const datePickerMeta: ComponentMeta = {
         'The main date picker component that handles date and time selection.',
       props: [
         {
+          name: 'haptic',
+          type: 'boolean',
+          default: '`true`',
+          description:
+            'Whether to trigger haptic feedback while navigating and selecting — a tick per month or time step, a selection per date, and a success notification on confirm.',
+        },
+        {
           name: 'label',
           type: 'string',
           description: 'Label text displayed above the picker.',

@@ -16,6 +16,13 @@ export const collapsibleMeta: ComponentMeta = {
         'An expandable/collapsible container component that shows or hides its content.',
       props: [
         {
+          name: 'haptic',
+          type: 'boolean',
+          default: '`true`',
+          description:
+            'Whether to trigger haptic feedback when the content expands or collapses.',
+        },
+        {
           name: 'title',
           type: 'string',
           description: 'The title text displayed in the header.',

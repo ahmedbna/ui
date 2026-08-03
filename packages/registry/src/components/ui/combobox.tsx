@@ -1,4 +1,5 @@
 import { useColor } from '@/hooks/useColor';
+import { useHaptics } from '@/hooks/useHaptics';
 import { BORDER_RADIUS, CORNERS, FONT_SIZE, HEIGHT } from '@/theme/globals';
 import { ChevronDown } from 'lucide-react-native';
 import React, {
@@ -59,6 +60,7 @@ interface ComboboxContextType {
   setValues: (options: OptionType[]) => void;
   filteredItemsCount: number;
   setFilteredItemsCount: (count: number) => void;
+  haptic: boolean;
 }
 
 const ComboboxContext = createContext<ComboboxContextType | undefined>(
@@ -81,6 +83,7 @@ interface ComboboxProps {
   multiple?: boolean;
   values?: OptionType[];
   onValuesChange?: (options: OptionType[]) => void;
+  haptic?: boolean;
 }
 
 export function Combobox({
@@ -91,6 +94,7 @@ export function Combobox({
   multiple = false,
   values = [],
   onValuesChange,
+  haptic = true,
 }: ComboboxProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -135,6 +139,7 @@ export function Combobox({
         setValues,
         filteredItemsCount,
         setFilteredItemsCount,
+        haptic,
       }}
     >
       {children}
@@ -153,11 +158,13 @@ export function ComboboxTrigger({
   style,
   error = false,
 }: ComboboxTriggerProps) {
-  const { setIsOpen, setTriggerLayout, disabled, isOpen } = useCombobox();
+  const { setIsOpen, setTriggerLayout, disabled, isOpen, haptic } =
+    useCombobox();
   const triggerRef = useRef<React.ComponentRef<typeof TouchableOpacity>>(null);
   const cardColor = useColor('card');
   const destructiveColor = useColor('destructive');
   const mutedColor = useColor('textMuted');
+  const feedback = useHaptics(haptic);
 
   const measureTrigger = () => {
     if (triggerRef.current) {
@@ -169,6 +176,7 @@ export function ComboboxTrigger({
 
   const handlePress = () => {
     if (disabled) return;
+    feedback('impact-light');
     measureTrigger();
     setIsOpen(true);
   };
@@ -491,9 +499,11 @@ export function ComboboxItem({
     multiple,
     values: selectedValues,
     value: selectedValue,
+    haptic,
   } = useCombobox();
   const textColor = useColor('text');
   const primaryColor = useColor('primary');
+  const feedback = useHaptics(haptic);
 
   const isSelected = multiple
     ? selectedValues.some((v) => v.value === itemValue)
@@ -501,6 +511,12 @@ export function ComboboxItem({
 
   const handleSelect = () => {
     if (disabled) return;
+
+    // Multi-select rows toggle, single-select rows pick — they should not feel
+    // the same.
+    feedback(
+      multiple ? (isSelected ? 'toggle-off' : 'toggle-on') : 'selection'
+    );
 
     const label = getLabelFromChildren(children);
     const selectedOption: OptionType = { value: itemValue, label };

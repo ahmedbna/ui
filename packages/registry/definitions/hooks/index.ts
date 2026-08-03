@@ -65,6 +65,21 @@ export const hooksRegistry = {
     ],
   },
 
+  useHaptics: {
+    name: 'useHaptics',
+    description:
+      'Semantic haptic feedback that routes each intent to the right native API per platform — performAndroidHapticsAsync on Android rather than the Vibrator-simulated impact APIs Expo discourages.',
+    type: 'registry:hook',
+    dependencies: ['expo-haptics'],
+    files: [
+      {
+        type: 'registry:hook',
+        path: 'src/hooks/useHaptics.ts',
+        target: 'hooks/useHaptics.ts',
+      },
+    ],
+  },
+
   useColor: {
     name: 'useColor',
     description: 'useColor',

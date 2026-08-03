@@ -17,6 +17,13 @@ export const toggleMeta: ComponentMeta = {
         "A two-state button that can be either on (pressed) or off. Uses `pressed`/`onPressedChange` (ARIA `aria-pressed` semantics) rather than `checkbox`'s `checked`/`onCheckedChange` or `radio`'s `value`/`onValueChange` — each naming convention matches its own control's interaction model and is intentional, not an inconsistency. `ToggleGroup` below uses `value`/`onValueChange` instead, matching `RadioGroup`'s group-selection convention.",
       props: [
         {
+          name: 'haptic',
+          type: 'boolean',
+          default: '`true`',
+          description:
+            'Whether to trigger haptic feedback when the toggle is pressed.',
+        },
+        {
           name: 'children',
           type: 'ReactNode',
           description: 'The content to display inside the toggle.',
@@ -66,6 +73,13 @@ export const toggleMeta: ComponentMeta = {
       name: 'ToggleGroup',
       description: 'A set of two-state buttons that can be toggled on or off.',
       props: [
+        {
+          name: 'haptic',
+          type: 'boolean',
+          default: '`true`',
+          description:
+            'Whether to trigger haptic feedback when an item is pressed. Forwarded to each item so a press is felt exactly once.',
+        },
         {
           name: 'type',
           type: "'single' | 'multiple'",

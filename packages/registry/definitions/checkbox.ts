@@ -9,7 +9,7 @@ export const checkboxRegistry = {
     type: 'registry:ui',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['text', 'view'],
-    hooks: ['useColor'],
+    hooks: ['useColor', 'useHaptics'],
     theme: ['globals'],
     files: [
       {

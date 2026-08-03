@@ -5,6 +5,7 @@ import { ScrollView } from '@/components/ui/scroll-view';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
 import { useColor } from '@/hooks/useColor';
+import { useHaptics } from '@/hooks/useHaptics';
 import { BORDER_RADIUS, CORNERS, FONT_SIZE, HEIGHT } from '@/theme/globals';
 import {
   Calendar,
@@ -37,6 +38,7 @@ interface BaseDatePickerProps {
   variant?: 'filled' | 'outline' | 'group';
   labelStyle?: TextStyle;
   errorStyle?: TextStyle;
+  haptic?: boolean;
 }
 
 interface DatePickerPropsRange extends BaseDatePickerProps {
@@ -100,11 +102,14 @@ export function DatePicker(props: DatePickerProps) {
     variant = 'filled',
     labelStyle,
     errorStyle,
+    haptic = true,
   } = props;
 
   const mode = props.mode || 'date';
   const value = props.value;
   const onChange = props.onChange;
+
+  const feedback = useHaptics(haptic);
 
   const { isVisible, open, close } = useBottomSheet();
 
@@ -314,6 +319,8 @@ export function DatePicker(props: DatePickerProps) {
     // Check if date is disabled
     if (isDateDisabled(selectedDate)) return;
 
+    feedback('selection');
+
     // If no start date or both dates are selected, start fresh
     if (!tempRange.startDate || (tempRange.startDate && tempRange.endDate)) {
       setTempRange({
@@ -355,6 +362,10 @@ export function DatePicker(props: DatePickerProps) {
     // Check if date is disabled
     if (isDateDisabled(newDate)) return;
 
+    // Range mode returns above, so this only fires for the leaf case and never
+    // doubles up with handleRangeSelect.
+    feedback('selection');
+
     setCurrentDate(newDate);
 
     if (mode === 'date') {
@@ -366,12 +377,14 @@ export function DatePicker(props: DatePickerProps) {
   };
 
   const handleTimeChange = (hours: number, minutes: number) => {
+    feedback('tick');
     const newDate = new Date(currentDate);
     newDate.setHours(hours, minutes, 0, 0);
     setCurrentDate(newDate);
   };
 
   const navigateMonth = (direction: 'prev' | 'next') => {
+    feedback('tick');
     const newDate = new Date(currentDate);
     if (direction === 'prev') {
       newDate.setMonth(newDate.getMonth() - 1);
@@ -382,6 +395,7 @@ export function DatePicker(props: DatePickerProps) {
   };
 
   const handleMonthSelect = (monthIndex: number) => {
+    feedback('selection');
     const newDate = new Date(currentDate);
     newDate.setMonth(monthIndex);
     setCurrentDate(newDate);
@@ -389,6 +403,7 @@ export function DatePicker(props: DatePickerProps) {
   };
 
   const handleYearSelect = (year: number) => {
+    feedback('selection');
     const newDate = new Date(currentDate);
     newDate.setFullYear(year);
     setCurrentDate(newDate);
@@ -396,6 +411,7 @@ export function DatePicker(props: DatePickerProps) {
   };
 
   const handleConfirm = () => {
+    feedback('success');
     if (mode === 'range') {
       (onChange as (value: DateRange | undefined) => void)?.(tempRange);
     } else {
@@ -996,6 +1012,7 @@ export function DatePicker(props: DatePickerProps) {
   };
 
   const handleOpenPicker = () => {
+    feedback('impact-light');
     setCurrentDate(new Date());
     setViewMode('date');
     setShowMonthPicker(false);
@@ -1147,7 +1164,13 @@ export function DatePicker(props: DatePickerProps) {
                 Next
               </Button>
             ) : (
-              <Button onPress={handleConfirm} style={{ flex: 1 }}>
+              <Button
+                onPress={handleConfirm}
+                // handleConfirm fires a success notification, so the button's
+                // own light impact would land on top of it.
+                haptic={false}
+                style={{ flex: 1 }}
+              >
                 Done
               </Button>
             )}

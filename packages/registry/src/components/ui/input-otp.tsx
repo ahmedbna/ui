@@ -1,5 +1,6 @@
 import { Text } from '@/components/ui/text';
 import { useColor } from '@/hooks/useColor';
+import { useHaptics } from '@/hooks/useHaptics';
 import { CORNERS, FONT_SIZE } from '@/theme/globals';
 import React, {
   forwardRef,
@@ -47,6 +48,8 @@ export interface InputOTPProps extends Omit<
   separator?: React.ReactNode;
   /** Whether to show cursor in active slot */
   showCursor?: boolean;
+  /** Whether to trigger haptic feedback when the code is complete */
+  haptic?: boolean;
 }
 
 export interface InputOTPRef {
@@ -71,6 +74,7 @@ export const InputOTP = forwardRef<InputOTPRef, InputOTPProps>(
       masked = false,
       separator,
       showCursor = true,
+      haptic = true,
       onFocus,
       onBlur,
       ...textInputProps
@@ -80,6 +84,7 @@ export const InputOTP = forwardRef<InputOTPRef, InputOTPProps>(
     const [isFocused, setIsFocused] = useState(false);
     const [activeIndex, setActiveIndex] = useState(0);
     const inputRef = useRef<TextInput>(null);
+    const feedback = useHaptics(haptic);
 
     // Theme colors
     const cardColor = useColor('card');
@@ -116,12 +121,16 @@ export const InputOTP = forwardRef<InputOTPRef, InputOTPProps>(
         onChangeText?.(limitedText);
         setActiveIndex(Math.min(limitedText.length, length - 1));
 
-        // Call onComplete when OTP is fully entered
+        // Call onComplete when OTP is fully entered.
+        // Deliberately the only haptic here: the system keyboard already emits
+        // its own key click, so a per-keystroke buzz would double up on the one
+        // interaction the user repeats `length` times.
         if (limitedText.length === length) {
+          feedback('success');
           onComplete?.(limitedText);
         }
       },
-      [length, onChangeText, onComplete]
+      [length, onChangeText, onComplete, feedback]
     );
 
     const handleKeyPress = useCallback(

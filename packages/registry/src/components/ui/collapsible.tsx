@@ -1,6 +1,7 @@
 import { Icon } from '@/components/ui/icon';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
+import { useHaptics } from '@/hooks/useHaptics';
 import { ChevronRight } from 'lucide-react-native';
 import { PropsWithChildren, useState } from 'react';
 import { TouchableOpacity } from 'react-native';
@@ -8,8 +9,15 @@ import { TouchableOpacity } from 'react-native';
 export function Collapsible({
   children,
   title,
-}: PropsWithChildren & { title: string }) {
+  haptic = true,
+}: PropsWithChildren & { title: string; haptic?: boolean }) {
   const [isOpen, setIsOpen] = useState(false);
+  const feedback = useHaptics(haptic);
+
+  const handlePress = () => {
+    feedback(isOpen ? 'toggle-off' : 'toggle-on');
+    setIsOpen((value) => !value);
+  };
 
   return (
     <View>
@@ -19,7 +27,7 @@ export function Collapsible({
           alignItems: 'center',
           gap: 6,
         }}
-        onPress={() => setIsOpen((value) => !value)}
+        onPress={handlePress}
         activeOpacity={0.8}
         accessibilityRole='button'
         accessibilityState={{ expanded: isOpen }}

@@ -9,7 +9,7 @@ export const switchRegistry = {
     type: 'registry:ui',
     dependencies: [],
     registryDependencies: ['text', 'view'],
-    hooks: ['useColor'],
+    hooks: ['useColor', 'useHaptics'],
     theme: [],
     files: [
       {

@@ -16,6 +16,13 @@ export const pickerMeta: ComponentMeta = {
         'The main picker component that displays options in a modal.',
       props: [
         {
+          name: 'haptic',
+          type: 'boolean',
+          default: '`true`',
+          description:
+            'Whether to trigger haptic feedback when the picker opens and when an option is selected.',
+        },
+        {
           name: 'options',
           type: 'PickerOption[]',
           default: '`[]`',

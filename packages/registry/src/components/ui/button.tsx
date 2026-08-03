@@ -2,8 +2,8 @@ import { Icon } from '@/components/ui/icon';
 import { ButtonSpinner, SpinnerVariant } from '@/components/ui/spinner';
 import { Text } from '@/components/ui/text';
 import { useColor } from '@/hooks/useColor';
+import { useHaptics } from '@/hooks/useHaptics';
 import { CORNERS, FONT_SIZE, HEIGHT } from '@/theme/globals';
-import * as Haptics from 'expo-haptics';
 import { LucideProps } from 'lucide-react-native';
 import { forwardRef } from 'react';
 import {
@@ -67,6 +67,7 @@ export const Button = forwardRef<View, ButtonProps>(
     },
     ref
   ) => {
+    const feedback = useHaptics(haptic);
     const primaryColor = useColor('primary');
     const primaryForegroundColor = useColor('primaryForeground');
     const secondaryColor = useColor('secondary');
@@ -199,14 +200,17 @@ export const Button = forwardRef<View, ButtonProps>(
 
     // Trigger haptic feedback
     const triggerHapticFeedback = () => {
-      if (haptic && !disabled && !loading) {
-        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+      if (!disabled && !loading) {
+        feedback('impact-light');
       }
     };
 
-    // Improved animation handlers for liquid glass effect
+    // Improved animation handlers for liquid glass effect.
+    // These are deliberately not worklets: Pressable dispatches them on the JS
+    // thread, and both the haptic call and `props.onPressIn` are JS-only.
+    // Writing to a shared value from JS is fine — Reanimated still runs the
+    // spring on the UI thread.
     const handlePressIn = (ev?: any) => {
-      'worklet';
       // Trigger haptic feedback
       triggerHapticFeedback();
 
@@ -228,7 +232,6 @@ export const Button = forwardRef<View, ButtonProps>(
     };
 
     const handlePressOut = (ev?: any) => {
-      'worklet';
       // Return to original size with smooth spring
       scale.value = withSpring(1, {
         damping: 20,

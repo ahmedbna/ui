@@ -16,6 +16,13 @@ export const switchMeta: ComponentMeta = {
         'A toggle switch component with optional label and error states.',
       props: [
         {
+          name: 'haptic',
+          type: 'boolean',
+          default: '`true`',
+          description:
+            'Whether to trigger haptic feedback when the switch is toggled.',
+        },
+        {
           name: 'label',
           type: 'string',
           description: 'Optional label text for the switch.',

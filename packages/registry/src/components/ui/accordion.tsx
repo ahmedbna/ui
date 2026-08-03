@@ -1,6 +1,7 @@
 import { Icon } from '@/components/ui/icon';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
+import { useHaptics } from '@/hooks/useHaptics';
 import { ChevronRight } from 'lucide-react-native';
 import React, { createContext, useContext, useState } from 'react';
 import { TouchableOpacity } from 'react-native';
@@ -12,6 +13,7 @@ interface AccordionContextType {
   collapsible?: boolean;
   value?: string | string[];
   onValueChange?: (value: string | string[]) => void;
+  haptic?: boolean;
 }
 
 const AccordionContext = createContext<AccordionContextType | null>(null);
@@ -24,6 +26,7 @@ interface AccordionProps {
   value?: string | string[];
   onValueChange?: (value: string | string[]) => void;
   children: React.ReactNode;
+  haptic?: boolean;
 }
 
 export function Accordion({
@@ -33,6 +36,7 @@ export function Accordion({
   value: controlledValue,
   onValueChange,
   children,
+  haptic = true,
 }: AccordionProps) {
   const [internalValue, setInternalValue] = useState<string | string[]>(
     defaultValue || (type === 'multiple' ? [] : '')
@@ -54,6 +58,7 @@ export function Accordion({
         collapsible,
         value,
         onValueChange: handleValueChange,
+        haptic,
       }}
     >
       <View style={{ width: '100%' }}>{children}</View>
@@ -69,6 +74,9 @@ interface AccordionItemProps {
 
 export function AccordionItem({ value, children }: AccordionItemProps) {
   const context = useContext(AccordionContext);
+  // Called before the guard below so the hook order stays stable.
+  const feedback = useHaptics(context?.haptic ?? true);
+
   if (!context) {
     throw new Error('AccordionItem must be used within an Accordion');
   }
@@ -81,9 +89,16 @@ export function AccordionItem({ value, children }: AccordionItemProps) {
     if (!context.onValueChange) return;
 
     if (context.type === 'single') {
-      const newValue = isOpen && context.collapsible ? '' : value;
+      // A non-collapsible single accordion keeps the open item open, so tapping
+      // it changes nothing and must not feel like it did.
+      const willClose = isOpen && !!context.collapsible;
+      if (!isOpen || willClose) {
+        feedback(willClose ? 'toggle-off' : 'toggle-on');
+      }
+      const newValue = willClose ? '' : value;
       context.onValueChange(newValue);
     } else {
+      feedback(isOpen ? 'toggle-off' : 'toggle-on');
       const currentValues = Array.isArray(context.value) ? context.value : [];
       const newValue = isOpen
         ? currentValues.filter((v) => v !== value)

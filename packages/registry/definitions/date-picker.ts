@@ -16,7 +16,7 @@ export const datePickerRegistry = {
       'text',
       'view',
     ],
-    hooks: ['useColor'],
+    hooks: ['useColor', 'useHaptics'],
     theme: ['globals'],
     files: [
       {

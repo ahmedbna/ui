@@ -13,7 +13,7 @@ export const accordionRegistry = {
       'react-native-worklets',
     ],
     registryDependencies: ['text', 'view', 'icon'],
-    hooks: [],
+    hooks: ['useHaptics'],
     theme: [],
     files: [
       {

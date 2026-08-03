@@ -16,6 +16,13 @@ export const checkboxMeta: ComponentMeta = {
         "A checkbox component that allows users to select or deselect an option. Uses `checked`/`onCheckedChange` (ARIA checkbox semantics) rather than `radio`'s `value`/`onValueChange` or `toggle`'s `pressed`/`onPressedChange` — each naming convention matches its own control's interaction model and is intentional, not an inconsistency.",
       props: [
         {
+          name: 'haptic',
+          type: 'boolean',
+          default: '`true`',
+          description:
+            'Whether to trigger haptic feedback when the checkbox is toggled.',
+        },
+        {
           name: 'checked',
           type: 'boolean',
           description: 'Whether the checkbox is checked.',

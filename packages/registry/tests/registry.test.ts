@@ -20,6 +20,12 @@ const INTENTIONAL_REMOVALS: Record<string, string[]> = {
   // and the demo actually uses React Native's ActivityIndicator.
   'audio-recorder-cloud': ['loading-spinner'],
 
+  // button.tsx no longer imports expo-haptics directly — it goes through
+  // `@/hooks/useHaptics`, which declares the package itself. The dependency
+  // still reaches button's payload through the hook closure, which the
+  // "button payload" test below asserts.
+  button: ['expo-haptics'],
+
   // popover.tsx imports Reanimated zero times — it positions itself with
   // `ref.measure()` and `Dimensions.get()`. The declaration was stale. Pruned
   // during the SDK 57 upgrade so the entry doesn't inherit Reanimated 4's new
@@ -146,8 +152,14 @@ describe('equivalence with the pre-migration registry', () => {
    * there was no setter for the override to go through. It has to be its own
    * entry rather than part of `theme-provider`: `useColorScheme` reads it, and
    * `theme-provider` already depends on `useColorScheme`.
+   *
+   * `useHaptics` centralises the per-platform haptics branch that button used
+   * to inline. It has to be a shared hook rather than a copy in each component
+   * because Android needs `performAndroidHapticsAsync` where iOS and web need
+   * `impactAsync`/`notificationAsync`/`selectionAsync`, and thirteen
+   * components now fire feedback.
    */
-  const SANCTIONED_ADDITIONS = new Set(['mode-provider']);
+  const SANCTIONED_ADDITIONS = new Set(['mode-provider', 'useHaptics']);
 
   it('has exactly the same set of entries', () => {
     const added = Object.keys(REGISTRY).filter(
@@ -320,6 +332,25 @@ describe('generated payloads', () => {
     for (const file of payload!.files) {
       expect(file.content.length, file.target).toBeGreaterThan(0);
     }
+    // Reaches the payload through the useHaptics hook rather than button's own
+    // `dependencies` — see INTENTIONAL_REMOVALS above.
+    expect(payload!.dependencies).toContain('expo-haptics');
+  });
+
+  it('a hook injects its npm dependency into a component that never declared it', async () => {
+    // collapsible declares no npm dependencies of its own; everything it
+    // installs arrives through the closure. If `expandClosure` ever stopped
+    // walking `hooks`, users would get a component importing a package their
+    // project was never told to install.
+    const payload = await getPayload('collapsible');
+    expect(payload).not.toBeNull();
+
+    const targets = payload!.files.map((f) => f.target);
+    expect(targets).toContain('hooks/useHaptics.ts');
+    expect(targets).toContain('components/ui/collapsible.tsx');
+    expect(targets.indexOf('hooks/useHaptics.ts')).toBeLessThan(
+      targets.indexOf('components/ui/collapsible.tsx')
+    );
     expect(payload!.dependencies).toContain('expo-haptics');
   });
 

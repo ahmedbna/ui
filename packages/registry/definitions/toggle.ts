@@ -9,7 +9,7 @@ export const toggleRegistry = {
     type: 'registry:ui',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['text', 'view', 'icon'],
-    hooks: ['useColor'],
+    hooks: ['useColor', 'useHaptics'],
     theme: ['globals'],
     files: [
       {

@@ -14,7 +14,7 @@ export const actionSheetRegistry = {
       'react-native-safe-area-context',
     ],
     registryDependencies: ['text', 'view'],
-    hooks: ['useColor'],
+    hooks: ['useColor', 'useHaptics'],
     theme: ['globals'],
     files: [
       {

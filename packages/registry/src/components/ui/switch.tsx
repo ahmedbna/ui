@@ -1,6 +1,7 @@
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
 import { useColor } from '@/hooks/useColor';
+import { useHaptics } from '@/hooks/useHaptics';
 import React from 'react';
 import {
   Switch as RNSwitch,
@@ -12,12 +13,29 @@ interface SwitchProps extends RNSwitchProps {
   label?: string;
   error?: string;
   labelStyle?: TextStyle;
+  haptic?: boolean;
 }
 
-export function Switch({ label, error, labelStyle, ...props }: SwitchProps) {
+export function Switch({
+  label,
+  error,
+  labelStyle,
+  haptic = true,
+  onValueChange,
+  ...props
+}: SwitchProps) {
   const mutedColor = useColor('muted');
   const primary = useColor('primary');
   const danger = useColor('red');
+  const feedback = useHaptics(haptic);
+
+  const handleValueChange = React.useCallback(
+    (value: boolean) => {
+      feedback(value ? 'toggle-on' : 'toggle-off');
+      onValueChange?.(value);
+    },
+    [feedback, onValueChange]
+  );
 
   return (
     <View style={{ marginBottom: 8 }}>
@@ -53,6 +71,7 @@ export function Switch({ label, error, labelStyle, ...props }: SwitchProps) {
           thumbColor={props.value ? '#ffffff' : '#f4f3f4'}
           accessibilityLabel={label}
           {...props}
+          onValueChange={handleValueChange}
         />
       </View>
 

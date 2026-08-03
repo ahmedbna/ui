@@ -1,6 +1,7 @@
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
 import { useColor } from '@/hooks/useColor';
+import { useHaptics } from '@/hooks/useHaptics';
 import { BORDER_RADIUS, FONT_SIZE } from '@/theme/globals';
 import React, { useEffect, useState } from 'react';
 import {
@@ -40,6 +41,7 @@ interface ActionSheetProps {
   options: ActionSheetOption[];
   cancelButtonTitle?: string;
   style?: ViewStyle;
+  haptic?: boolean;
 }
 
 export function ActionSheet({
@@ -50,7 +52,11 @@ export function ActionSheet({
   options,
   cancelButtonTitle = 'Cancel',
   style,
+  haptic = true,
 }: ActionSheetProps) {
+  // Called above the platform branch below so the hook order stays stable.
+  const feedback = useHaptics(haptic);
+
   // Use iOS native ActionSheet on iOS
   if (Platform.OS === 'ios') {
     useEffect(() => {
@@ -80,13 +86,25 @@ export function ActionSheet({
           },
           (buttonIndex) => {
             if (buttonIndex < optionTitles.length) {
+              // ActionSheetIOS emits no haptic of its own.
+              feedback(
+                options[buttonIndex].destructive ? 'warning' : 'selection'
+              );
               options[buttonIndex].onPress();
             }
             onClose();
           }
         );
       }
-    }, [visible, title, message, options, cancelButtonTitle, onClose]);
+    }, [
+      visible,
+      title,
+      message,
+      options,
+      cancelButtonTitle,
+      onClose,
+      feedback,
+    ]);
 
     // Return null for iOS as we use the native ActionSheet
     return null;
@@ -103,6 +121,7 @@ export function ActionSheet({
         options,
         cancelButtonTitle,
         style,
+        haptic,
       }}
     />
   );
@@ -117,8 +136,10 @@ function AndroidActionSheet({
   options,
   cancelButtonTitle,
   style,
+  haptic = true,
 }: ActionSheetProps) {
   const [isSheetVisible, setIsSheetVisible] = useState(visible);
+  const feedback = useHaptics(haptic);
   const progress = useSharedValue(0);
   const screenHeight = Dimensions.get('window').height;
   const insets = useSafeAreaInsets();
@@ -165,11 +186,13 @@ function AndroidActionSheet({
 
   const handleOptionPress = (option: ActionSheetOption) => {
     if (!option.disabled) {
+      feedback(option.destructive ? 'warning' : 'selection');
       option.onPress();
       onClose();
     }
   };
 
+  // Dismissing is not a selection, so it stays silent.
   const handleBackdropPress = () => {
     onClose();
   };

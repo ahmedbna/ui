@@ -13,7 +13,7 @@ export const tabsRegistry = {
       'react-native-worklets',
     ],
     registryDependencies: ['text', 'view'],
-    hooks: ['useColor'],
+    hooks: ['useColor', 'useHaptics'],
     theme: ['globals'],
     files: [
       {

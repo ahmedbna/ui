@@ -17,6 +17,13 @@ export const comboboxMeta: ComponentMeta = {
         'The root component that manages state and context for all child components. Operates on an `OptionType` object (`{ value: string; label: string }`) for its state.',
       props: [
         {
+          name: 'haptic',
+          type: 'boolean',
+          default: '`true`',
+          description:
+            'Whether to trigger haptic feedback when the combobox opens and when an item is selected.',
+        },
+        {
           name: 'children',
           type: 'ReactNode',
           description: 'The combobox components.',

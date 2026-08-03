@@ -16,6 +16,13 @@ export const radioMeta: ComponentMeta = {
         "The main container component that manages a group of radio buttons. Uses `value`/`onValueChange` (matching `ToggleGroup`'s group-selection convention) rather than `checkbox`'s `checked`/`onCheckedChange` or `toggle`'s `pressed`/`onPressedChange` — each naming convention matches its own control's interaction model and is intentional, not an inconsistency.",
       props: [
         {
+          name: 'haptic',
+          type: 'boolean',
+          default: '`true`',
+          description:
+            'Whether to trigger haptic feedback when an option is selected. Forwarded to every `RadioButton` in the group.',
+        },
+        {
           name: 'options',
           type: 'RadioOption[]',
           description: 'Array of radio button options.',
@@ -63,6 +70,13 @@ export const radioMeta: ComponentMeta = {
       name: 'RadioButton',
       description: 'Individual radio button component for custom layouts.',
       props: [
+        {
+          name: 'haptic',
+          type: 'boolean',
+          default: '`true`',
+          description:
+            'Whether to trigger haptic feedback when the option is selected. Re-selecting the active option stays silent.',
+        },
         {
           name: 'option',
           type: 'RadioOption',

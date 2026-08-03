@@ -17,6 +17,13 @@ export const inputOtpMeta: ComponentMeta = {
         'A one-time-password / verification-code input rendered as a row of digit slots, backed by a single hidden `TextInput`. Extends `TextInputProps` (except `style`, `value`, `onChangeText`).',
       props: [
         {
+          name: 'haptic',
+          type: 'boolean',
+          default: '`true`',
+          description:
+            'Whether to trigger a success haptic once the full code has been entered. Individual keystrokes stay silent, since the system keyboard already provides its own feedback.',
+        },
+        {
           name: 'length',
           type: 'number',
           default: '`6`',

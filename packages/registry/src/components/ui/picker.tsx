@@ -3,6 +3,7 @@ import { ScrollView } from '@/components/ui/scroll-view';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
 import { useColor } from '@/hooks/useColor';
+import { useHaptics } from '@/hooks/useHaptics';
 import { BORDER_RADIUS, CORNERS, FONT_SIZE, HEIGHT } from '@/theme/globals';
 import { ChevronDown, LucideProps } from 'lucide-react-native';
 import React, { useMemo, useState } from 'react';
@@ -53,6 +54,7 @@ interface PickerProps {
   modalTitle?: string;
   searchable?: boolean;
   searchPlaceholder?: string;
+  haptic?: boolean;
 }
 
 export function Picker({
@@ -77,9 +79,11 @@ export function Picker({
   modalTitle,
   searchable = false,
   searchPlaceholder = 'Search options...',
+  haptic = true,
 }: PickerProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const feedback = useHaptics(haptic);
 
   // Move ALL theme color hooks to the top level
   const borderColor = useColor('border');
@@ -133,14 +137,25 @@ export function Picker({
 
   const handleSelect = (optionValue: string) => {
     if (multiple) {
-      const newValues = values.includes(optionValue)
+      // Multi-select rows behave like checkboxes, so they get toggle feedback
+      // rather than the one-shot selection tick.
+      const isSelected = values.includes(optionValue);
+      feedback(isSelected ? 'toggle-off' : 'toggle-on');
+      const newValues = isSelected
         ? values.filter((v) => v !== optionValue)
         : [...values, optionValue];
       onValuesChange?.(newValues);
     } else {
+      feedback('selection');
       onValueChange?.(optionValue);
       setIsOpen(false);
     }
+  };
+
+  const handleOpen = () => {
+    if (disabled) return;
+    feedback('impact-light');
+    setIsOpen(true);
   };
 
   const getDisplayText = () => {
@@ -233,7 +248,7 @@ export function Picker({
     <>
       <TouchableOpacity
         style={[triggerStyle, style]}
-        onPress={() => !disabled && setIsOpen(true)}
+        onPress={handleOpen}
         disabled={disabled}
         activeOpacity={0.8}
       >

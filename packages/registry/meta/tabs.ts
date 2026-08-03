@@ -16,6 +16,13 @@ export const tabsMeta: ComponentMeta = {
       description: 'The root container for the tabs component.',
       props: [
         {
+          name: 'haptic',
+          type: 'boolean',
+          default: '`true`',
+          description:
+            'Whether to trigger haptic feedback when the active tab changes, by tap or by swipe. Programmatic changes stay silent.',
+        },
+        {
           name: 'children',
           type: 'ReactNode',
           description: 'The tabs list and content components.',

@@ -15,6 +15,13 @@ export const modeToggleMeta: ComponentMeta = {
         'An animated button that toggles between light and dark themes. The component uses the `Button` component internally, so it inherits button styling and behavior.',
       props: [
         {
+          name: 'haptic',
+          type: 'boolean',
+          default: '`true`',
+          description:
+            'Whether to trigger haptic feedback on press. Forwarded to the underlying `Button`.',
+        },
+        {
           name: 'variant',
           type: 'ButtonVariant',
           default: "`'outline'`",

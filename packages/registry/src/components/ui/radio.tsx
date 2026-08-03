@@ -1,5 +1,6 @@
 import { Text } from '@/components/ui/text';
 import { useColor } from '@/hooks/useColor';
+import { useHaptics } from '@/hooks/useHaptics';
 import { BORDER_RADIUS, CORNERS, FONT_SIZE } from '@/theme/globals';
 import React from 'react';
 import { TextStyle, TouchableOpacity, View, ViewStyle } from 'react-native';
@@ -19,6 +20,7 @@ interface RadioGroupProps {
   style?: ViewStyle;
   optionStyle?: ViewStyle;
   labelStyle?: TextStyle;
+  haptic?: boolean;
 }
 
 interface RadioButtonProps {
@@ -28,6 +30,7 @@ interface RadioButtonProps {
   disabled?: boolean;
   style?: ViewStyle;
   labelStyle?: TextStyle;
+  haptic?: boolean;
 }
 
 export function RadioButton({
@@ -37,13 +40,23 @@ export function RadioButton({
   disabled = false,
   style,
   labelStyle,
+  haptic = true,
 }: RadioButtonProps) {
   const primaryColor = useColor('primary');
   const borderColor = useColor('border');
   const textColor = useColor('text');
   const mutedColor = useColor('textMuted');
+  const feedback = useHaptics(haptic);
 
   const isDisabled = disabled || option.disabled;
+
+  // Re-tapping the option that is already selected is a no-op, so it should not
+  // feel like one. RadioGroup deliberately does not fire its own — this is the
+  // single source of feedback for the interaction.
+  const handlePress = () => {
+    if (!selected) feedback('selection');
+    onPress();
+  };
 
   const radioButtonStyle: ViewStyle = {
     width: BORDER_RADIUS,
@@ -82,7 +95,7 @@ export function RadioButton({
   return (
     <TouchableOpacity
       style={[containerStyle, style]}
-      onPress={onPress}
+      onPress={handlePress}
       disabled={isDisabled}
       activeOpacity={0.7}
       hitSlop={{ top: 9, bottom: 9, left: 9, right: 9 }}
@@ -107,6 +120,7 @@ export function RadioGroup({
   style,
   optionStyle,
   labelStyle,
+  haptic = true,
 }: RadioGroupProps) {
   const containerStyle: ViewStyle = {
     flexDirection: orientation === 'horizontal' ? 'row' : 'column',
@@ -130,6 +144,7 @@ export function RadioGroup({
           disabled={disabled}
           style={optionStyle}
           labelStyle={labelStyle}
+          haptic={haptic}
         />
       ))}
     </View>

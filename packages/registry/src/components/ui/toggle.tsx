@@ -2,6 +2,7 @@ import { Icon } from '@/components/ui/icon';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
 import { useColor } from '@/hooks/useColor';
+import { useHaptics } from '@/hooks/useHaptics';
 import { CORNERS, FONT_SIZE, HEIGHT } from '@/theme/globals';
 import { LucideProps } from 'lucide-react-native';
 import React, { useCallback } from 'react';
@@ -19,6 +20,7 @@ interface ToggleProps {
   disabled?: boolean;
   style?: ViewStyle;
   textStyle?: TextStyle;
+  haptic?: boolean;
 }
 
 export function Toggle({
@@ -30,15 +32,21 @@ export function Toggle({
   disabled = false,
   style,
   textStyle,
+  haptic = true,
 }: ToggleProps) {
   const primaryColor = useColor('primary');
   const primaryForegroundColor = useColor('primaryForeground');
   const secondaryColor = useColor('secondary');
   const secondaryForegroundColor = useColor('secondaryForeground');
   const borderColor = useColor('border');
+  const feedback = useHaptics(haptic);
 
+  // The single source of haptic feedback for toggles: ToggleGroup and
+  // ToggleGroupItemButton forward `haptic` down rather than firing their own,
+  // so a grouped item still buzzes exactly once.
   const handlePress = () => {
     if (!disabled) {
+      feedback(pressed ? 'toggle-off' : 'toggle-on');
       onPressedChange?.(!pressed);
     }
   };
@@ -162,6 +170,7 @@ interface ToggleGroupProps {
   disabled?: boolean;
   style?: ViewStyle;
   orientation?: 'horizontal' | 'vertical';
+  haptic?: boolean;
 }
 
 // Split out and memoized so a selection change only re-renders the affected
@@ -175,6 +184,7 @@ const ToggleGroupItemButton = React.memo(function ToggleGroupItemButton({
   disabled,
   style,
   onPress,
+  haptic,
 }: {
   item: ToggleGroupItem;
   pressed: boolean;
@@ -183,6 +193,7 @@ const ToggleGroupItemButton = React.memo(function ToggleGroupItemButton({
   disabled: boolean;
   style: ViewStyle;
   onPress: (value: string) => void;
+  haptic: boolean;
 }) {
   const primaryColor = useColor('primary');
   const primaryForegroundColor = useColor('primaryForeground');
@@ -206,6 +217,7 @@ const ToggleGroupItemButton = React.memo(function ToggleGroupItemButton({
       size={size}
       disabled={disabled}
       style={style}
+      haptic={haptic}
     >
       {item.icon && item.label ? (
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
@@ -231,6 +243,7 @@ export function ToggleGroup({
   disabled = false,
   style,
   orientation = 'horizontal',
+  haptic = true,
 }: ToggleGroupProps) {
   const borderColor = useColor('border');
 
@@ -301,6 +314,7 @@ export function ToggleGroup({
           disabled={disabled || !!item.disabled}
           style={getItemStyle(index)}
           onPress={handleItemPress}
+          haptic={haptic}
         />
       ))}
     </View>

@@ -16,6 +16,13 @@ export const accordionMeta: ComponentMeta = {
       description: 'Contains all the parts of a collapsible accordion.',
       props: [
         {
+          name: 'haptic',
+          type: 'boolean',
+          default: '`true`',
+          description:
+            'Whether to trigger haptic feedback when an item expands or collapses.',
+        },
+        {
           name: 'type',
           type: "'single' | 'multiple'",
           description:

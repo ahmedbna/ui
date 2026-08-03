@@ -13,9 +13,14 @@ import Animated, {
 type Props = {
   variant?: ButtonVariant;
   size?: ButtonSize;
+  haptic?: boolean;
 };
 
-export const ModeToggle = ({ variant = 'outline', size = 'icon' }: Props) => {
+export const ModeToggle = ({
+  variant = 'outline',
+  size = 'icon',
+  haptic = true,
+}: Props) => {
   const { toggleMode, isDark } = useModeToggle();
   const rotation = useSharedValue(0);
   const scale = useSharedValue(1);
@@ -50,6 +55,7 @@ export const ModeToggle = ({ variant = 'outline', size = 'icon' }: Props) => {
       variant={variant}
       size={size}
       onPress={toggleMode}
+      haptic={haptic}
       accessibilityRole='button'
       accessibilityLabel={`Switch to ${isDark ? 'light' : 'dark'} theme`}
     >

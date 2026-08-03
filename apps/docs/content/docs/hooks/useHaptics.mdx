@@ -1,0 +1,140 @@
+---
+title: useHaptics
+description: Semantic haptic feedback that routes each intent to the right native API per platform, using performAndroidHapticsAsync on Android instead of the Vibrator-simulated impact APIs.
+---
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx bna-ui add useHaptics
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name='useHaptics' title='hooks/useHaptics.ts' />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+<Usage name='useHaptics' />
+
+You describe what the haptic is _for_ — a selection, a toggle, a success — and
+the hook picks the API. Every component in this library that has a `haptic`
+prop is built on it, so you rarely call it directly unless you are building
+your own control.
+
+```tsx
+import { useHaptics } from '@/hooks/useHaptics';
+
+export function Stepper({ value, onChange, haptic = true }) {
+  const feedback = useHaptics(haptic);
+
+  return (
+    <Button
+      haptic={false}
+      onPress={() => {
+        feedback('tick');
+        onChange(value + 1);
+      }}
+    >
+      +
+    </Button>
+  );
+}
+```
+
+## API Reference
+
+### useHaptics
+
+```tsx
+const feedback = useHaptics(enabled?: boolean);
+```
+
+Returns a stable trigger `(intent?: HapticIntent) => void` that does nothing
+while `enabled` is `false`. Its identity only changes when `enabled` does, so
+it is safe in a `useCallback` dependency array and will not defeat a
+`React.memo` boundary.
+
+| Parameter | Type      | Default | Description                                                    |
+| --------- | --------- | ------- | -------------------------------------------------------------- |
+| `enabled` | `boolean` | `true`  | Whether the returned trigger fires. Pass a `haptic` prop here. |
+
+### triggerHaptic
+
+```tsx
+triggerHaptic(intent?: HapticIntent): void;
+```
+
+The module-level equivalent, for call sites that are not component bodies — a
+render prop, a handler defined outside a component, a `runOnJS` target.
+
+Both are fire-and-forget: they never throw and never reject. A device with no
+taptic engine, or a build where the native module is missing, must not be able
+to take a press handler down with it.
+
+## Platform Differences
+
+iOS and web share one API surface. Web is not a no-op — Expo drives the
+[Web Vibration API](https://caniuse.com/vibration) there, falling back to an
+iOS-Safari switch-element trick.
+
+Android is the reason this hook exists. `impactAsync` and `notificationAsync`
+are simulated on Android with the raw
+[`Vibrator`](https://developer.android.com/reference/android/os/Vibrator)
+service, which Expo explicitly does not recommend: it is a coarse timed buzz,
+nothing like a native Android control.
+[`performAndroidHapticsAsync`](https://docs.expo.dev/versions/latest/sdk/haptics/#hapticsperformandroidhapticsasynctype)
+goes through `View.performHapticFeedback` instead — the same engine those
+controls use.
+
+| Intent          | iOS &amp; Web                | Android        |
+| --------------- | ---------------------------- | -------------- |
+| `selection`     | `selectionAsync()`           | `Segment_Tick` |
+| `tick`          | `selectionAsync()`           | `Clock_Tick`   |
+| `toggle-on`     | `impactAsync(Light)`         | `Toggle_On`    |
+| `toggle-off`    | `impactAsync(Light)`         | `Toggle_Off`   |
+| `impact-light`  | `impactAsync(Light)`         | `Virtual_Key`  |
+| `impact-medium` | `impactAsync(Medium)`        | `Long_Press`   |
+| `success`       | `notificationAsync(Success)` | `Confirm`      |
+| `warning`       | `notificationAsync(Warning)` | `Reject`       |
+| `error`         | `notificationAsync(Error)`   | `Reject`       |
+
+`tick` maps to `Clock_Tick` rather than `Segment_Frequent_Tick` deliberately:
+the latter is documented as possibly producing no vibration at all on devices
+that cannot make a suitably soft one, which would silently drop repeated ticks
+on cheaper actuators.
+
+## When feedback is silent
+
+Haptics can be unavailable for reasons that are not bugs:
+
+- **Android** — the user turned off Settings → Sound &amp; vibration →
+  Vibration &amp; haptics → Touch feedback. `performHapticFeedback` is then
+  suppressed system-wide.
+- **iOS** — Low Power Mode is on, the user disabled the Taptic Engine, or the
+  camera or dictation is active (iOS silences haptics to protect both).
+- **Web** — the browser does not support the Vibration API, the device has no
+  vibration hardware, or the tab is backgrounded.
+- **Any platform** — the component was given `haptic={false}`.

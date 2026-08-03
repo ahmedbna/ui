@@ -9,7 +9,7 @@ export const collapsibleRegistry = {
     type: 'registry:ui',
     dependencies: ['lucide-react-native'],
     registryDependencies: ['icon', 'text', 'view'],
-    hooks: [],
+    hooks: ['useHaptics'],
     theme: [],
     files: [
       {

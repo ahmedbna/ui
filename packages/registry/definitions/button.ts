@@ -9,13 +9,15 @@ export const buttonRegistry = {
       'A versatile button component with multiple variants, sizes, and interactive animations.',
     type: 'registry:ui',
     dependencies: [
-      'expo-haptics',
+      // expo-haptics is not listed here: button reaches it through the
+      // useHaptics hook, which declares it. The closure flattens it back into
+      // this payload's dependencies.
       'lucide-react-native',
       'react-native-reanimated',
       'react-native-worklets',
     ],
     registryDependencies: ['text', 'icon', 'spinner'],
-    hooks: ['useColor'],
+    hooks: ['useColor', 'useHaptics'],
     theme: ['globals'],
     files: [
       {

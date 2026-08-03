@@ -1,6 +1,7 @@
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
 import { useColor } from '@/hooks/useColor';
+import { useHaptics } from '@/hooks/useHaptics';
 import { BORDER_RADIUS, CORNERS, FONT_SIZE, HEIGHT } from '@/theme/globals';
 import React, {
   createContext,
@@ -38,6 +39,7 @@ interface TabsContextType {
   enableSwipe?: boolean;
   navigateToAdjacentTab?: (direction: 'next' | 'prev') => void;
   contentMap: React.MutableRefObject<Record<string, React.ReactNode>>;
+  haptic?: boolean;
 }
 
 interface TabsProps {
@@ -48,6 +50,7 @@ interface TabsProps {
   orientation?: 'horizontal' | 'vertical';
   style?: ViewStyle;
   enableSwipe?: boolean;
+  haptic?: boolean;
 }
 
 interface TabsListProps {
@@ -88,7 +91,9 @@ export function Tabs({
   orientation = 'horizontal',
   style,
   enableSwipe = true,
+  haptic = true,
 }: TabsProps) {
+  const feedback = useHaptics(haptic);
   const [internalActiveTab, setInternalActiveTab] = useState(defaultValue);
   const [tabValues, setTabValues] = useState<string[]>([]);
   // Per-instance carousel content cache — must live here (not module scope)
@@ -147,10 +152,15 @@ export function Tabs({
 
       const nextTab = tabValues[nextIndex];
       if (nextTab) {
+        // Fires here rather than in the pan gesture's onEnd, which is a worklet
+        // on the UI thread — this runs on JS via the existing runOnJS hop. It
+        // is also not in setActiveTab, which programmatic/controlled updates
+        // also go through.
+        feedback('selection');
         setActiveTab(nextTab);
       }
     },
-    [tabValues, activeTab, setActiveTab]
+    [tabValues, activeTab, setActiveTab, feedback]
   );
 
   return (
@@ -165,6 +175,7 @@ export function Tabs({
         enableSwipe,
         navigateToAdjacentTab,
         contentMap,
+        haptic,
       }}
     >
       <View
@@ -412,9 +423,16 @@ export function TabsTrigger({
   style,
   textStyle,
 }: TabsTriggerProps) {
-  const { activeTab, setActiveTab, orientation, registerTab, unregisterTab } =
-    useTabsContext();
+  const {
+    activeTab,
+    setActiveTab,
+    orientation,
+    registerTab,
+    unregisterTab,
+    haptic,
+  } = useTabsContext();
   const isActive = activeTab === value;
+  const feedback = useHaptics(haptic ?? true);
 
   // Register/unregister tab for swipe navigation
   useEffect(() => {
@@ -428,6 +446,7 @@ export function TabsTrigger({
 
   const handlePress = () => {
     if (!disabled) {
+      if (!isActive) feedback('selection');
       setActiveTab(value);
     }
   };
