@@ -24,9 +24,8 @@ export const pieChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0363-pie-chart-demo.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0363-pie-chart-demo.MOV',
+      light: 'https://ui.ahmedbna.com/0363-pie-chart-demo.MOV',
+      dark: 'https://ui.ahmedbna.com/0363-pie-chart-demo.MOV',
     },
   },
 
@@ -46,9 +45,8 @@ export const pieChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0363-pie-chart-demo.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0363-pie-chart-demo.MOV',
+      light: 'https://ui.ahmedbna.com/0363-pie-chart-demo.MOV',
+      dark: 'https://ui.ahmedbna.com/0363-pie-chart-demo.MOV',
     },
   },
 
@@ -67,9 +65,8 @@ export const pieChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0364-pie-chart-sample.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0364-pie-chart-sample.MOV',
+      light: 'https://ui.ahmedbna.com/0364-pie-chart-sample.MOV',
+      dark: 'https://ui.ahmedbna.com/0364-pie-chart-sample.MOV',
     },
   },
 
@@ -88,9 +85,8 @@ export const pieChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0365-pie-chart-styled.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0365-pie-chart-styled.MOV',
+      light: 'https://ui.ahmedbna.com/0365-pie-chart-styled.MOV',
+      dark: 'https://ui.ahmedbna.com/0365-pie-chart-styled.MOV',
     },
   },
 
@@ -109,9 +105,8 @@ export const pieChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0366-pie-chart-large.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0366-pie-chart-large.MOV',
+      light: 'https://ui.ahmedbna.com/0366-pie-chart-large.MOV',
+      dark: 'https://ui.ahmedbna.com/0366-pie-chart-large.MOV',
     },
   },
 };

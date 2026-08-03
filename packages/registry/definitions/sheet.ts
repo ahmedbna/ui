@@ -24,9 +24,8 @@ export const sheetRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0268-sheet-demo.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0268-sheet-demo.MP4',
+      light: 'https://ui.ahmedbna.com/0268-sheet-demo.MP4',
+      dark: 'https://ui.ahmedbna.com/0268-sheet-demo.MP4',
     },
   },
 
@@ -46,9 +45,8 @@ export const sheetRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0268-sheet-demo.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0268-sheet-demo.MP4',
+      light: 'https://ui.ahmedbna.com/0268-sheet-demo.MP4',
+      dark: 'https://ui.ahmedbna.com/0268-sheet-demo.MP4',
     },
   },
 
@@ -67,9 +65,8 @@ export const sheetRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0269-sheet-left.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0269-sheet-left.MP4',
+      light: 'https://ui.ahmedbna.com/0269-sheet-left.MP4',
+      dark: 'https://ui.ahmedbna.com/0269-sheet-left.MP4',
     },
   },
 
@@ -89,9 +86,8 @@ export const sheetRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0270-sheet-navigation.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0270-sheet-navigation.MP4',
+      light: 'https://ui.ahmedbna.com/0270-sheet-navigation.MP4',
+      dark: 'https://ui.ahmedbna.com/0270-sheet-navigation.MP4',
     },
   },
 
@@ -110,9 +106,8 @@ export const sheetRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0271-sheet-form.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0271-sheet-form.MP4',
+      light: 'https://ui.ahmedbna.com/0271-sheet-form.MP4',
+      dark: 'https://ui.ahmedbna.com/0271-sheet-form.MP4',
     },
   },
 
@@ -132,9 +127,8 @@ export const sheetRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0272-sheet-filter.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0272-sheet-filter.MP4',
+      light: 'https://ui.ahmedbna.com/0272-sheet-filter.MP4',
+      dark: 'https://ui.ahmedbna.com/0272-sheet-filter.MP4',
     },
   },
 };

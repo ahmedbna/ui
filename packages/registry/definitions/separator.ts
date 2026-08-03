@@ -18,9 +18,8 @@ export const separatorRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0255-separator-demo.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0255-separator-demo.PNG',
+      light: 'https://ui.ahmedbna.com/0255-separator-demo.PNG',
+      dark: 'https://ui.ahmedbna.com/0255-separator-demo.PNG',
     },
   },
 
@@ -40,9 +39,8 @@ export const separatorRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0255-separator-demo.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0255-separator-demo.PNG',
+      light: 'https://ui.ahmedbna.com/0255-separator-demo.PNG',
+      dark: 'https://ui.ahmedbna.com/0255-separator-demo.PNG',
     },
   },
 
@@ -62,9 +60,8 @@ export const separatorRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0256-separator-vertical.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0256-separator-vertical.PNG',
+      light: 'https://ui.ahmedbna.com/0256-separator-vertical.PNG',
+      dark: 'https://ui.ahmedbna.com/0256-separator-vertical.PNG',
     },
   },
 
@@ -84,9 +81,8 @@ export const separatorRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0257-separator-thickness.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0257-separator-thickness.PNG',
+      light: 'https://ui.ahmedbna.com/0257-separator-thickness.PNG',
+      dark: 'https://ui.ahmedbna.com/0257-separator-thickness.PNG',
     },
   },
 
@@ -106,9 +102,8 @@ export const separatorRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0258-separator-colors.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0258-separator-colors.PNG',
+      light: 'https://ui.ahmedbna.com/0258-separator-colors.PNG',
+      dark: 'https://ui.ahmedbna.com/0258-separator-colors.PNG',
     },
   },
 
@@ -128,9 +123,8 @@ export const separatorRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0259-separator-spacing.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0259-separator-spacing.PNG',
+      light: 'https://ui.ahmedbna.com/0259-separator-spacing.PNG',
+      dark: 'https://ui.ahmedbna.com/0259-separator-spacing.PNG',
     },
   },
 };

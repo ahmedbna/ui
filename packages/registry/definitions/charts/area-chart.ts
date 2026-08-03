@@ -25,9 +25,8 @@ export const areaChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0330-area-chart-demo.mov',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0330-area-chart-demo.mov',
+      light: 'https://ui.ahmedbna.com/0330-area-chart-demo.mov',
+      dark: 'https://ui.ahmedbna.com/0330-area-chart-demo.mov',
     },
   },
 
@@ -47,9 +46,8 @@ export const areaChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0330-area-chart-demo.mov',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0330-area-chart-demo.mov',
+      light: 'https://ui.ahmedbna.com/0330-area-chart-demo.mov',
+      dark: 'https://ui.ahmedbna.com/0330-area-chart-demo.mov',
     },
   },
 
@@ -68,9 +66,8 @@ export const areaChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0331-area-chart-interactive.mov',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0331-area-chart-interactive.mov',
+      light: 'https://ui.ahmedbna.com/0331-area-chart-interactive.mov',
+      dark: 'https://ui.ahmedbna.com/0331-area-chart-interactive.mov',
     },
   },
 
@@ -89,9 +86,8 @@ export const areaChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0332-area-chart-styled.mov',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0332-area-chart-styled.mov',
+      light: 'https://ui.ahmedbna.com/0332-area-chart-styled.mov',
+      dark: 'https://ui.ahmedbna.com/0332-area-chart-styled.mov',
     },
   },
 
@@ -110,9 +106,8 @@ export const areaChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0333-area-chart-large.mov',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0333-area-chart-large.mov',
+      light: 'https://ui.ahmedbna.com/0333-area-chart-large.mov',
+      dark: 'https://ui.ahmedbna.com/0333-area-chart-large.mov',
     },
   },
 };

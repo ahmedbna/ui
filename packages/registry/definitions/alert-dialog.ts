@@ -20,9 +20,8 @@ export const alertDialogRegistry = {
     ],
     preview: {
       // todo: prepare preview videos
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0014-alert-dialog-demo.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0014-alert-dialog-demo.MP4',
+      light: 'https://ui.ahmedbna.com/0014-alert-dialog-demo.MP4',
+      dark: 'https://ui.ahmedbna.com/0014-alert-dialog-demo.MP4',
     },
   },
 
@@ -43,9 +42,8 @@ export const alertDialogRegistry = {
     ],
     preview: {
       // todo: prepare preview videos
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0014-alert-dialog-demo.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0014-alert-dialog-demo.MP4',
+      light: 'https://ui.ahmedbna.com/0014-alert-dialog-demo.MP4',
+      dark: 'https://ui.ahmedbna.com/0014-alert-dialog-demo.MP4',
     },
   },
 
@@ -66,9 +64,8 @@ export const alertDialogRegistry = {
     ],
     preview: {
       // todo: prepare preview videos
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0015-alert-dialog-destructive.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0015-alert-dialog-destructive.MP4',
+      light: 'https://ui.ahmedbna.com/0015-alert-dialog-destructive.MP4',
+      dark: 'https://ui.ahmedbna.com/0015-alert-dialog-destructive.MP4',
     },
   },
 
@@ -89,9 +86,8 @@ export const alertDialogRegistry = {
     ],
     preview: {
       // todo: prepare preview videos
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/alert-dialog-custom.mov',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/alert-dialog-custom-dark.mov',
+      light: 'https://ui.ahmedbna.com/alert-dialog-custom.mov',
+      dark: 'https://ui.ahmedbna.com/alert-dialog-custom-dark.mov',
     },
   },
 };

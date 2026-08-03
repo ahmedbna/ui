@@ -26,7 +26,7 @@ Copy labels: **A** `expo/` working · **B** `expo/templates/` · **C** `cli/temp
 | `demo/alert-dialog/alert-dialog-{demo,custom,destructive}.tsx` | **C**  | B uses `export default` (the registry pipeline requires named exports) and wraps in playground-only `<View style={{padding:20}}>`.                                                                                 |
 | `demo/bottom-sheet/bottom-sheet-form.tsx`                      | **C**  | B contains unfinished scratch work — literal `{/* --- START: Changes --- */}` markers and `// Import these` comments. Not shippable. See follow-up 1.                                                              |
 | `demo/charts/column-chart/column-chart-styled.tsx`             | **B**  | C imports `useColor` and **never uses it** — dead import in a shipped demo.                                                                                                                                        |
-| `demo/video/video-demo.tsx`                                    | **B**  | C's video `uri` is `https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/` — a **directory, not a video file**. The shipped video demo is broken today; B has the working sample URL.                                  |
+| `demo/video/video-demo.tsx`                                    | **B**  | C's video `uri` is `https://ui.ahmedbna.com/` — a **directory, not a video file**. The shipped video demo is broken today; B has the working sample URL.                                                           |
 
 The last two are live bugs in what users currently receive from `bna-ui add`. The migration fixes both.
 

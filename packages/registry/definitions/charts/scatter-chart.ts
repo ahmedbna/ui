@@ -24,9 +24,8 @@ export const scatterChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0383-scatter-chart-demo.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0383-scatter-chart-demo.MOV',
+      light: 'https://ui.ahmedbna.com/0383-scatter-chart-demo.MOV',
+      dark: 'https://ui.ahmedbna.com/0383-scatter-chart-demo.MOV',
     },
   },
 
@@ -46,9 +45,8 @@ export const scatterChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0383-scatter-chart-demo.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0383-scatter-chart-demo.MOV',
+      light: 'https://ui.ahmedbna.com/0383-scatter-chart-demo.MOV',
+      dark: 'https://ui.ahmedbna.com/0383-scatter-chart-demo.MOV',
     },
   },
 
@@ -67,9 +65,8 @@ export const scatterChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0384-scatter-chart-sample.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0384-scatter-chart-sample.MOV',
+      light: 'https://ui.ahmedbna.com/0384-scatter-chart-sample.MOV',
+      dark: 'https://ui.ahmedbna.com/0384-scatter-chart-sample.MOV',
     },
   },
 
@@ -88,9 +85,8 @@ export const scatterChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0385-scatter-chart-styled.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0385-scatter-chart-styled.MOV',
+      light: 'https://ui.ahmedbna.com/0385-scatter-chart-styled.MOV',
+      dark: 'https://ui.ahmedbna.com/0385-scatter-chart-styled.MOV',
     },
   },
 
@@ -109,9 +105,8 @@ export const scatterChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0386-scatter-chart-large.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0386-scatter-chart-large.MOV',
+      light: 'https://ui.ahmedbna.com/0386-scatter-chart-large.MOV',
+      dark: 'https://ui.ahmedbna.com/0386-scatter-chart-large.MOV',
     },
   },
 };

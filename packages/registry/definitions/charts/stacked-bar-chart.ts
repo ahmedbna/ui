@@ -24,9 +24,8 @@ export const stackedBarChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0391-stacked-bar-chart-demo.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0391-stacked-bar-chart-demo.MOV',
+      light: 'https://ui.ahmedbna.com/0391-stacked-bar-chart-demo.MOV',
+      dark: 'https://ui.ahmedbna.com/0391-stacked-bar-chart-demo.MOV',
     },
   },
 
@@ -47,9 +46,8 @@ export const stackedBarChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0391-stacked-bar-chart-demo.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0391-stacked-bar-chart-demo.MOV',
+      light: 'https://ui.ahmedbna.com/0391-stacked-bar-chart-demo.MOV',
+      dark: 'https://ui.ahmedbna.com/0391-stacked-bar-chart-demo.MOV',
     },
   },
 
@@ -70,9 +68,8 @@ export const stackedBarChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0392-stacked-bar-chart-horizontal.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0392-stacked-bar-chart-horizontal.MOV',
+      light: 'https://ui.ahmedbna.com/0392-stacked-bar-chart-horizontal.MOV',
+      dark: 'https://ui.ahmedbna.com/0392-stacked-bar-chart-horizontal.MOV',
     },
   },
 
@@ -94,9 +91,8 @@ export const stackedBarChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0393-stacked-bar-chart-styled.mov',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0393-stacked-bar-chart-styled.mov',
+      light: 'https://ui.ahmedbna.com/0393-stacked-bar-chart-styled.mov',
+      dark: 'https://ui.ahmedbna.com/0393-stacked-bar-chart-styled.mov',
     },
   },
 
@@ -117,9 +113,8 @@ export const stackedBarChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0394-stacked-bar-chart-large.mov',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0394-stacked-bar-chart-large.mov',
+      light: 'https://ui.ahmedbna.com/0394-stacked-bar-chart-large.mov',
+      dark: 'https://ui.ahmedbna.com/0394-stacked-bar-chart-large.mov',
     },
   },
 };

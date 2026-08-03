@@ -19,9 +19,8 @@ export const parallaxScrollViewRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0205-parallax-scrollview-demo.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0205-parallax-scrollview-demo.MP4',
+      light: 'https://ui.ahmedbna.com/0205-parallax-scrollview-demo.MP4',
+      dark: 'https://ui.ahmedbna.com/0205-parallax-scrollview-demo.MP4',
     },
   },
 
@@ -42,9 +41,8 @@ export const parallaxScrollViewRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0205-parallax-scrollview-demo.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0205-parallax-scrollview-demo.MP4',
+      light: 'https://ui.ahmedbna.com/0205-parallax-scrollview-demo.MP4',
+      dark: 'https://ui.ahmedbna.com/0205-parallax-scrollview-demo.MP4',
     },
   },
 
@@ -66,8 +64,8 @@ export const parallaxScrollViewRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0206-parallax-scrollview-custom-height.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0206-parallax-scrollview-custom-height.MP4',
+        'https://ui.ahmedbna.com/0206-parallax-scrollview-custom-height.MP4',
+      dark: 'https://ui.ahmedbna.com/0206-parallax-scrollview-custom-height.MP4',
     },
   },
 
@@ -89,9 +87,8 @@ export const parallaxScrollViewRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0207-parallax-scrollview-gradient.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0207-parallax-scrollview-gradient.MP4',
+      light: 'https://ui.ahmedbna.com/0207-parallax-scrollview-gradient.MP4',
+      dark: 'https://ui.ahmedbna.com/0207-parallax-scrollview-gradient.MP4',
     },
   },
 
@@ -119,9 +116,8 @@ export const parallaxScrollViewRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0208-parallax-scrollview-profile.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0208-parallax-scrollview-profile.MP4',
+      light: 'https://ui.ahmedbna.com/0208-parallax-scrollview-profile.MP4',
+      dark: 'https://ui.ahmedbna.com/0208-parallax-scrollview-profile.MP4',
     },
   },
 
@@ -143,9 +139,8 @@ export const parallaxScrollViewRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0209-parallax-scrollview-article.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0209-parallax-scrollview-article.MP4',
+      light: 'https://ui.ahmedbna.com/0209-parallax-scrollview-article.MP4',
+      dark: 'https://ui.ahmedbna.com/0209-parallax-scrollview-article.MP4',
     },
   },
 
@@ -166,9 +161,8 @@ export const parallaxScrollViewRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0210-parallax-scrollview-product.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0210-parallax-scrollview-product.MP4',
+      light: 'https://ui.ahmedbna.com/0210-parallax-scrollview-product.MP4',
+      dark: 'https://ui.ahmedbna.com/0210-parallax-scrollview-product.MP4',
     },
   },
 };

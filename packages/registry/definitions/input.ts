@@ -19,9 +19,8 @@ export const inputRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0175-input-demo.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0175-input-demo.MP4',
+      light: 'https://ui.ahmedbna.com/0175-input-demo.MP4',
+      dark: 'https://ui.ahmedbna.com/0175-input-demo.MP4',
     },
   },
 
@@ -42,9 +41,8 @@ export const inputRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0175-input-demo.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0175-input-demo.MP4',
+      light: 'https://ui.ahmedbna.com/0175-input-demo.MP4',
+      dark: 'https://ui.ahmedbna.com/0175-input-demo.MP4',
     },
   },
 
@@ -65,9 +63,8 @@ export const inputRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0176-input-icons.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0176-input-icons.MP4',
+      light: 'https://ui.ahmedbna.com/0176-input-icons.MP4',
+      dark: 'https://ui.ahmedbna.com/0176-input-icons.MP4',
     },
   },
 
@@ -88,9 +85,8 @@ export const inputRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0177-input-variants.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0177-input-variants.MP4',
+      light: 'https://ui.ahmedbna.com/0177-input-variants.MP4',
+      dark: 'https://ui.ahmedbna.com/0177-input-variants.MP4',
     },
   },
 
@@ -111,9 +107,8 @@ export const inputRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0178-input-validation.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0178-input-validation.MP4',
+      light: 'https://ui.ahmedbna.com/0178-input-validation.MP4',
+      dark: 'https://ui.ahmedbna.com/0178-input-validation.MP4',
     },
   },
 
@@ -135,9 +130,8 @@ export const inputRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0179-input-right-components.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0179-input-right-components.MP4',
+      light: 'https://ui.ahmedbna.com/0179-input-right-components.MP4',
+      dark: 'https://ui.ahmedbna.com/0179-input-right-components.MP4',
     },
   },
 
@@ -158,9 +152,8 @@ export const inputRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0180-input-disabled.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0180-input-disabled.PNG',
+      light: 'https://ui.ahmedbna.com/0180-input-disabled.PNG',
+      dark: 'https://ui.ahmedbna.com/0180-input-disabled.PNG',
     },
   },
 
@@ -181,9 +174,8 @@ export const inputRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0181-input-grouped.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0181-input-grouped.MP4',
+      light: 'https://ui.ahmedbna.com/0181-input-grouped.MP4',
+      dark: 'https://ui.ahmedbna.com/0181-input-grouped.MP4',
     },
   },
 
@@ -204,9 +196,8 @@ export const inputRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0182-input-form.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0182-input-form.MP4',
+      light: 'https://ui.ahmedbna.com/0182-input-form.MP4',
+      dark: 'https://ui.ahmedbna.com/0182-input-form.MP4',
     },
   },
 };

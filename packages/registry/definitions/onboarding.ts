@@ -23,9 +23,8 @@ export const onboardingRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0198-onboarding-demo.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0198-onboarding-demo.MP4',
+      light: 'https://ui.ahmedbna.com/0198-onboarding-demo.MP4',
+      dark: 'https://ui.ahmedbna.com/0198-onboarding-demo.MP4',
     },
   },
 
@@ -46,9 +45,8 @@ export const onboardingRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0198-onboarding-demo.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0198-onboarding-demo.MP4',
+      light: 'https://ui.ahmedbna.com/0198-onboarding-demo.MP4',
+      dark: 'https://ui.ahmedbna.com/0198-onboarding-demo.MP4',
     },
   },
 
@@ -68,9 +66,8 @@ export const onboardingRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0199-onboarding-images.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0199-onboarding-images.MP4',
+      light: 'https://ui.ahmedbna.com/0199-onboarding-images.MP4',
+      dark: 'https://ui.ahmedbna.com/0199-onboarding-images.MP4',
     },
   },
 
@@ -90,9 +87,8 @@ export const onboardingRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0200-onboarding-styled.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0200-onboarding-styled.MP4',
+      light: 'https://ui.ahmedbna.com/0200-onboarding-styled.MP4',
+      dark: 'https://ui.ahmedbna.com/0200-onboarding-styled.MP4',
     },
   },
 
@@ -112,9 +108,8 @@ export const onboardingRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0201-onboarding-no-skip.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0201-onboarding-no-skip.MP4',
+      light: 'https://ui.ahmedbna.com/0201-onboarding-no-skip.MP4',
+      dark: 'https://ui.ahmedbna.com/0201-onboarding-no-skip.MP4',
     },
   },
 
@@ -134,9 +129,8 @@ export const onboardingRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0202-onboarding-no-swipe.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0202-onboarding-no-swipe.MP4',
+      light: 'https://ui.ahmedbna.com/0202-onboarding-no-swipe.MP4',
+      dark: 'https://ui.ahmedbna.com/0202-onboarding-no-swipe.MP4',
     },
   },
 
@@ -156,9 +150,8 @@ export const onboardingRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0203-onboarding-custom-buttons.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0203-onboarding-custom-buttons.MP4',
+      light: 'https://ui.ahmedbna.com/0203-onboarding-custom-buttons.MP4',
+      dark: 'https://ui.ahmedbna.com/0203-onboarding-custom-buttons.MP4',
     },
   },
 
@@ -177,9 +170,8 @@ export const onboardingRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0204-onboarding-hook.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0204-onboarding-hook.MP4',
+      light: 'https://ui.ahmedbna.com/0204-onboarding-hook.MP4',
+      dark: 'https://ui.ahmedbna.com/0204-onboarding-hook.MP4',
     },
   },
 };

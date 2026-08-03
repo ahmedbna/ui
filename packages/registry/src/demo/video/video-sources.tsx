@@ -7,7 +7,7 @@ export function VideoSources() {
   const videoSources = [
     {
       title: 'MP4 Source',
-      uri: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/',
+      uri: 'https://ui.ahmedbna.com/',
     },
     {
       title: 'Alternative MP4',

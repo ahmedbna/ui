@@ -24,9 +24,8 @@ export const polarAreaChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0367-polar-area-chart-demo.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0367-polar-area-chart-demo.MOV',
+      light: 'https://ui.ahmedbna.com/0367-polar-area-chart-demo.MOV',
+      dark: 'https://ui.ahmedbna.com/0367-polar-area-chart-demo.MOV',
     },
   },
 
@@ -47,9 +46,8 @@ export const polarAreaChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0367-polar-area-chart-demo.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0367-polar-area-chart-demo.MOV',
+      light: 'https://ui.ahmedbna.com/0367-polar-area-chart-demo.MOV',
+      dark: 'https://ui.ahmedbna.com/0367-polar-area-chart-demo.MOV',
     },
   },
 
@@ -69,9 +67,8 @@ export const polarAreaChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0368-polar-area-chart-sample.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0368-polar-area-chart-sample.MOV',
+      light: 'https://ui.ahmedbna.com/0368-polar-area-chart-sample.MOV',
+      dark: 'https://ui.ahmedbna.com/0368-polar-area-chart-sample.MOV',
     },
   },
 
@@ -91,9 +88,8 @@ export const polarAreaChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0369-polar-area-chart-styled.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0369-polar-area-chart-styled.MOV',
+      light: 'https://ui.ahmedbna.com/0369-polar-area-chart-styled.MOV',
+      dark: 'https://ui.ahmedbna.com/0369-polar-area-chart-styled.MOV',
     },
   },
 
@@ -113,9 +109,8 @@ export const polarAreaChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0370-polar-area-chart-large.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0370-polar-area-chart-large.MOV',
+      light: 'https://ui.ahmedbna.com/0370-polar-area-chart-large.MOV',
+      dark: 'https://ui.ahmedbna.com/0370-polar-area-chart-large.MOV',
     },
   },
 };

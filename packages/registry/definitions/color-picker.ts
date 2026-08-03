@@ -25,9 +25,8 @@ export const colorPickerRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0115-color-picker-demo.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0115-color-picker-demo.MP4',
+      light: 'https://ui.ahmedbna.com/0115-color-picker-demo.MP4',
+      dark: 'https://ui.ahmedbna.com/0115-color-picker-demo.MP4',
     },
   },
 
@@ -47,9 +46,8 @@ export const colorPickerRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0115-color-picker-demo.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0115-color-picker-demo.MP4',
+      light: 'https://ui.ahmedbna.com/0115-color-picker-demo.MP4',
+      dark: 'https://ui.ahmedbna.com/0115-color-picker-demo.MP4',
     },
   },
 
@@ -69,9 +67,8 @@ export const colorPickerRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0116-color-picker-sizes.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0116-color-picker-sizes.MP4',
+      light: 'https://ui.ahmedbna.com/0116-color-picker-sizes.MP4',
+      dark: 'https://ui.ahmedbna.com/0116-color-picker-sizes.MP4',
     },
   },
 
@@ -91,9 +88,8 @@ export const colorPickerRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0117-color-picker-colors.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0117-color-picker-colors.MP4',
+      light: 'https://ui.ahmedbna.com/0117-color-picker-colors.MP4',
+      dark: 'https://ui.ahmedbna.com/0117-color-picker-colors.MP4',
     },
   },
 
@@ -113,9 +109,8 @@ export const colorPickerRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0118-color-picker-disabled.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0118-color-picker-disabled.MP4',
+      light: 'https://ui.ahmedbna.com/0118-color-picker-disabled.MP4',
+      dark: 'https://ui.ahmedbna.com/0118-color-picker-disabled.MP4',
     },
   },
 
@@ -135,9 +130,8 @@ export const colorPickerRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0119-color-swatch-demo.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0119-color-swatch-demo.MP4',
+      light: 'https://ui.ahmedbna.com/0119-color-swatch-demo.MP4',
+      dark: 'https://ui.ahmedbna.com/0119-color-swatch-demo.MP4',
     },
   },
 
@@ -156,9 +150,8 @@ export const colorPickerRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0120-color-picker-styled.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0120-color-picker-styled.MP4',
+      light: 'https://ui.ahmedbna.com/0120-color-picker-styled.MP4',
+      dark: 'https://ui.ahmedbna.com/0120-color-picker-styled.MP4',
     },
   },
 
@@ -177,9 +170,8 @@ export const colorPickerRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0121-color-picker-palette.mov',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0121-color-picker-palette.mov',
+      light: 'https://ui.ahmedbna.com/0121-color-picker-palette.mov',
+      dark: 'https://ui.ahmedbna.com/0121-color-picker-palette.mov',
     },
   },
 
@@ -198,9 +190,8 @@ export const colorPickerRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0122-color-picker-labeled.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0122-color-picker-labeled.MP4',
+      light: 'https://ui.ahmedbna.com/0122-color-picker-labeled.MP4',
+      dark: 'https://ui.ahmedbna.com/0122-color-picker-labeled.MP4',
     },
   },
 };

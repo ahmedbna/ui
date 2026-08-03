@@ -19,9 +19,8 @@ export const alertRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0016-alert-demo.mov',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0016-alert-demo.mov',
+      light: 'https://ui.ahmedbna.com/0016-alert-demo.mov',
+      dark: 'https://ui.ahmedbna.com/0016-alert-demo.mov',
     },
   },
 
@@ -41,9 +40,8 @@ export const alertRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0016-alert-demo.mov',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0016-alert-demo.mov',
+      light: 'https://ui.ahmedbna.com/0016-alert-demo.mov',
+      dark: 'https://ui.ahmedbna.com/0016-alert-demo.mov',
     },
   },
 
@@ -63,9 +61,8 @@ export const alertRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0017-alert-three-button-demo.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0017-alert-three-button-demo.MP4',
+      light: 'https://ui.ahmedbna.com/0017-alert-three-button-demo.MP4',
+      dark: 'https://ui.ahmedbna.com/0017-alert-three-button-demo.MP4',
     },
   },
 
@@ -85,9 +82,8 @@ export const alertRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0018-alert-success-demo.mov',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0018-alert-success-demo.mov',
+      light: 'https://ui.ahmedbna.com/0018-alert-success-demo.mov',
+      dark: 'https://ui.ahmedbna.com/0018-alert-success-demo.mov',
     },
   },
 
@@ -107,9 +103,8 @@ export const alertRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0019-alert-error-demo.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0019-alert-error-demo.MP4',
+      light: 'https://ui.ahmedbna.com/0019-alert-error-demo.MP4',
+      dark: 'https://ui.ahmedbna.com/0019-alert-error-demo.MP4',
     },
   },
 
@@ -129,9 +124,8 @@ export const alertRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0020-alert-confirm-demo.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0020-alert-confirm-demo.MP4',
+      light: 'https://ui.ahmedbna.com/0020-alert-confirm-demo.MP4',
+      dark: 'https://ui.ahmedbna.com/0020-alert-confirm-demo.MP4',
     },
   },
 
@@ -151,9 +145,8 @@ export const alertRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0021-alert-custom-demo.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0021-alert-custom-demo.MP4',
+      light: 'https://ui.ahmedbna.com/0021-alert-custom-demo.MP4',
+      dark: 'https://ui.ahmedbna.com/0021-alert-custom-demo.MP4',
     },
   },
 
@@ -173,9 +166,8 @@ export const alertRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0022-alert-visual-demo.mov',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0022-alert-visual-demo.mov',
+      light: 'https://ui.ahmedbna.com/0022-alert-visual-demo.mov',
+      dark: 'https://ui.ahmedbna.com/0022-alert-visual-demo.mov',
     },
   },
 
@@ -195,9 +187,8 @@ export const alertRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0022-alert-visual-demo.mov',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0022-alert-visual-demo.mov',
+      light: 'https://ui.ahmedbna.com/0022-alert-visual-demo.mov',
+      dark: 'https://ui.ahmedbna.com/0022-alert-visual-demo.mov',
     },
   },
 
@@ -217,9 +208,8 @@ export const alertRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0023-alert-advanced-demo.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0023-alert-advanced-demo.MP4',
+      light: 'https://ui.ahmedbna.com/0023-alert-advanced-demo.MP4',
+      dark: 'https://ui.ahmedbna.com/0023-alert-advanced-demo.MP4',
     },
   },
 };

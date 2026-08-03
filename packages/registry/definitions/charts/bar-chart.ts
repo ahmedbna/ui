@@ -24,9 +24,8 @@ export const barChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0334-bar-chart-demo.mov',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0334-bar-chart-demo.mov',
+      light: 'https://ui.ahmedbna.com/0334-bar-chart-demo.mov',
+      dark: 'https://ui.ahmedbna.com/0334-bar-chart-demo.mov',
     },
   },
 
@@ -46,9 +45,8 @@ export const barChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0334-bar-chart-demo.mov',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0334-bar-chart-demo.mov',
+      light: 'https://ui.ahmedbna.com/0334-bar-chart-demo.mov',
+      dark: 'https://ui.ahmedbna.com/0334-bar-chart-demo.mov',
     },
   },
 
@@ -68,9 +66,8 @@ export const barChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0335-bar-chart-sample.mov',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0335-bar-chart-sample.mov',
+      light: 'https://ui.ahmedbna.com/0335-bar-chart-sample.mov',
+      dark: 'https://ui.ahmedbna.com/0335-bar-chart-sample.mov',
     },
   },
 
@@ -90,9 +87,8 @@ export const barChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0336-bar-chart-minimal.mov',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0336-bar-chart-minimal.mov',
+      light: 'https://ui.ahmedbna.com/0336-bar-chart-minimal.mov',
+      dark: 'https://ui.ahmedbna.com/0336-bar-chart-minimal.mov',
     },
   },
 };

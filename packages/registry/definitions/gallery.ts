@@ -26,9 +26,8 @@ export const galleryRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0145-gallery-demo.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0145-gallery-demo.MP4',
+      light: 'https://ui.ahmedbna.com/0145-gallery-demo.MP4',
+      dark: 'https://ui.ahmedbna.com/0145-gallery-demo.MP4',
     },
   },
 
@@ -49,9 +48,8 @@ export const galleryRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0145-gallery-demo.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0145-gallery-demo.MP4',
+      light: 'https://ui.ahmedbna.com/0145-gallery-demo.MP4',
+      dark: 'https://ui.ahmedbna.com/0145-gallery-demo.MP4',
     },
   },
 
@@ -70,9 +68,8 @@ export const galleryRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0146-gallery-grid.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0146-gallery-grid.MP4',
+      light: 'https://ui.ahmedbna.com/0146-gallery-grid.MP4',
+      dark: 'https://ui.ahmedbna.com/0146-gallery-grid.MP4',
     },
   },
 
@@ -91,9 +88,8 @@ export const galleryRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0147-gallery-info.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0147-gallery-info.MP4',
+      light: 'https://ui.ahmedbna.com/0147-gallery-info.MP4',
+      dark: 'https://ui.ahmedbna.com/0147-gallery-info.MP4',
     },
   },
 
@@ -112,9 +108,8 @@ export const galleryRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0148-gallery-layouts.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0148-gallery-layouts.MP4',
+      light: 'https://ui.ahmedbna.com/0148-gallery-layouts.MP4',
+      dark: 'https://ui.ahmedbna.com/0148-gallery-layouts.MP4',
     },
   },
 
@@ -133,9 +128,8 @@ export const galleryRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0149-gallery-controls.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0149-gallery-controls.MP4',
+      light: 'https://ui.ahmedbna.com/0149-gallery-controls.MP4',
+      dark: 'https://ui.ahmedbna.com/0149-gallery-controls.MP4',
     },
   },
 
@@ -154,9 +148,8 @@ export const galleryRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0150-gallery-overlay.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0150-gallery-overlay.MP4',
+      light: 'https://ui.ahmedbna.com/0150-gallery-overlay.MP4',
+      dark: 'https://ui.ahmedbna.com/0150-gallery-overlay.MP4',
     },
   },
 };

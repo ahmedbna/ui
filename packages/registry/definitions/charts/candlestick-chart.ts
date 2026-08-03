@@ -24,9 +24,8 @@ export const candlestickChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0341-candlestick-chart-demo.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0341-candlestick-chart-demo.MP4',
+      light: 'https://ui.ahmedbna.com/0341-candlestick-chart-demo.MP4',
+      dark: 'https://ui.ahmedbna.com/0341-candlestick-chart-demo.MP4',
     },
   },
 
@@ -48,9 +47,8 @@ export const candlestickChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0341-candlestick-chart-demo.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0341-candlestick-chart-demo.MP4',
+      light: 'https://ui.ahmedbna.com/0341-candlestick-chart-demo.MP4',
+      dark: 'https://ui.ahmedbna.com/0341-candlestick-chart-demo.MP4',
     },
   },
 
@@ -71,9 +69,8 @@ export const candlestickChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0342-candlestick-chart-sample.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0342-candlestick-chart-sample.MP4',
+      light: 'https://ui.ahmedbna.com/0342-candlestick-chart-sample.MP4',
+      dark: 'https://ui.ahmedbna.com/0342-candlestick-chart-sample.MP4',
     },
   },
 
@@ -94,9 +91,8 @@ export const candlestickChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0343-candlestick-chart-styled.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0343-candlestick-chart-styled.MP4',
+      light: 'https://ui.ahmedbna.com/0343-candlestick-chart-styled.MP4',
+      dark: 'https://ui.ahmedbna.com/0343-candlestick-chart-styled.MP4',
     },
   },
 
@@ -117,9 +113,8 @@ export const candlestickChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0344-candlestick-chart-minimal.mov',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0344-candlestick-chart-minimal.mov',
+      light: 'https://ui.ahmedbna.com/0344-candlestick-chart-minimal.mov',
+      dark: 'https://ui.ahmedbna.com/0344-candlestick-chart-minimal.mov',
     },
   },
 };

@@ -27,9 +27,8 @@ export const buttonRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0073-button-demo.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0073-button-demo.MP4',
+      light: 'https://ui.ahmedbna.com/0073-button-demo.MP4',
+      dark: 'https://ui.ahmedbna.com/0073-button-demo.MP4',
     },
   },
 
@@ -49,9 +48,8 @@ export const buttonRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0073-button-demo.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0073-button-demo.MP4',
+      light: 'https://ui.ahmedbna.com/0073-button-demo.MP4',
+      dark: 'https://ui.ahmedbna.com/0073-button-demo.MP4',
     },
   },
 
@@ -71,9 +69,8 @@ export const buttonRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0074-button-variants.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0074-button-variants.MP4',
+      light: 'https://ui.ahmedbna.com/0074-button-variants.MP4',
+      dark: 'https://ui.ahmedbna.com/0074-button-variants.MP4',
     },
   },
 
@@ -93,9 +90,8 @@ export const buttonRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0075-button-sizes.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0075-button-sizes.MP4',
+      light: 'https://ui.ahmedbna.com/0075-button-sizes.MP4',
+      dark: 'https://ui.ahmedbna.com/0075-button-sizes.MP4',
     },
   },
 
@@ -115,9 +111,8 @@ export const buttonRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0076-button-with-icons.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0076-button-with-icons.MP4',
+      light: 'https://ui.ahmedbna.com/0076-button-with-icons.MP4',
+      dark: 'https://ui.ahmedbna.com/0076-button-with-icons.MP4',
     },
   },
 
@@ -137,9 +132,8 @@ export const buttonRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0077-button-icon-only.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0077-button-icon-only.MP4',
+      light: 'https://ui.ahmedbna.com/0077-button-icon-only.MP4',
+      dark: 'https://ui.ahmedbna.com/0077-button-icon-only.MP4',
     },
   },
 
@@ -159,9 +153,8 @@ export const buttonRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0078-button-loading.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0078-button-loading.MP4',
+      light: 'https://ui.ahmedbna.com/0078-button-loading.MP4',
+      dark: 'https://ui.ahmedbna.com/0078-button-loading.MP4',
     },
   },
 
@@ -181,9 +174,8 @@ export const buttonRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0079-button-disabled.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0079-button-disabled.MP4',
+      light: 'https://ui.ahmedbna.com/0079-button-disabled.MP4',
+      dark: 'https://ui.ahmedbna.com/0079-button-disabled.MP4',
     },
   },
 
@@ -203,9 +195,8 @@ export const buttonRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0080-button-custom.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0080-button-custom.MP4',
+      light: 'https://ui.ahmedbna.com/0080-button-custom.MP4',
+      dark: 'https://ui.ahmedbna.com/0080-button-custom.MP4',
     },
   },
 
@@ -225,9 +216,8 @@ export const buttonRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0081-button-animation.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0081-button-animation.MP4',
+      light: 'https://ui.ahmedbna.com/0081-button-animation.MP4',
+      dark: 'https://ui.ahmedbna.com/0081-button-animation.MP4',
     },
   },
 };

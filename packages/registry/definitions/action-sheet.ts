@@ -24,9 +24,8 @@ export const actionSheetRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0007-action-sheet-demo.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0007-action-sheet-demo.MP4',
+      light: 'https://ui.ahmedbna.com/0007-action-sheet-demo.MP4',
+      dark: 'https://ui.ahmedbna.com/0007-action-sheet-demo.MP4',
     },
   },
 
@@ -46,9 +45,8 @@ export const actionSheetRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0007-action-sheet-demo.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0007-action-sheet-demo.MP4',
+      light: 'https://ui.ahmedbna.com/0007-action-sheet-demo.MP4',
+      dark: 'https://ui.ahmedbna.com/0007-action-sheet-demo.MP4',
     },
   },
 
@@ -68,9 +66,8 @@ export const actionSheetRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0008-action-sheet-icons.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0008-action-sheet-icons.MP4',
+      light: 'https://ui.ahmedbna.com/0008-action-sheet-icons.MP4',
+      dark: 'https://ui.ahmedbna.com/0008-action-sheet-icons.MP4',
     },
   },
 
@@ -91,9 +88,8 @@ export const actionSheetRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0009-action-sheet-destructive.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0009-action-sheet-destructive.MP4',
+      light: 'https://ui.ahmedbna.com/0009-action-sheet-destructive.MP4',
+      dark: 'https://ui.ahmedbna.com/0009-action-sheet-destructive.MP4',
     },
   },
 
@@ -113,9 +109,8 @@ export const actionSheetRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0010-action-sheet-disabled.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0010-action-sheet-disabled.MP4',
+      light: 'https://ui.ahmedbna.com/0010-action-sheet-disabled.MP4',
+      dark: 'https://ui.ahmedbna.com/0010-action-sheet-disabled.MP4',
     },
   },
 
@@ -135,9 +130,8 @@ export const actionSheetRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0011-action-sheet-styled.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0011-action-sheet-styled.MP4',
+      light: 'https://ui.ahmedbna.com/0011-action-sheet-styled.MP4',
+      dark: 'https://ui.ahmedbna.com/0011-action-sheet-styled.MP4',
     },
   },
 
@@ -157,9 +151,8 @@ export const actionSheetRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0012-action-sheet-long.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0012-action-sheet-long.MP4',
+      light: 'https://ui.ahmedbna.com/0012-action-sheet-long.MP4',
+      dark: 'https://ui.ahmedbna.com/0012-action-sheet-long.MP4',
     },
   },
 
@@ -179,9 +172,8 @@ export const actionSheetRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0013-action-sheet-hook.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0013-action-sheet-hook.MP4',
+      light: 'https://ui.ahmedbna.com/0013-action-sheet-hook.MP4',
+      dark: 'https://ui.ahmedbna.com/0013-action-sheet-hook.MP4',
     },
   },
 };

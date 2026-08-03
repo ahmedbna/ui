@@ -19,9 +19,8 @@ export const skeletonRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0273-skeleton-demo.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0273-skeleton-demo.MP4',
+      light: 'https://ui.ahmedbna.com/0273-skeleton-demo.MP4',
+      dark: 'https://ui.ahmedbna.com/0273-skeleton-demo.MP4',
     },
   },
 
@@ -41,9 +40,8 @@ export const skeletonRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0273-skeleton-demo.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0273-skeleton-demo.MP4',
+      light: 'https://ui.ahmedbna.com/0273-skeleton-demo.MP4',
+      dark: 'https://ui.ahmedbna.com/0273-skeleton-demo.MP4',
     },
   },
 
@@ -63,9 +61,8 @@ export const skeletonRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0274-skeleton-sizes.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0274-skeleton-sizes.MP4',
+      light: 'https://ui.ahmedbna.com/0274-skeleton-sizes.MP4',
+      dark: 'https://ui.ahmedbna.com/0274-skeleton-sizes.MP4',
     },
   },
 
@@ -84,9 +81,8 @@ export const skeletonRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0275-skeleton-card.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0275-skeleton-card.MP4',
+      light: 'https://ui.ahmedbna.com/0275-skeleton-card.MP4',
+      dark: 'https://ui.ahmedbna.com/0275-skeleton-card.MP4',
     },
   },
 
@@ -105,9 +101,8 @@ export const skeletonRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0276-skeleton-profile.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0276-skeleton-profile.MP4',
+      light: 'https://ui.ahmedbna.com/0276-skeleton-profile.MP4',
+      dark: 'https://ui.ahmedbna.com/0276-skeleton-profile.MP4',
     },
   },
 
@@ -126,9 +121,8 @@ export const skeletonRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0277-skeleton-list.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0277-skeleton-list.MP4',
+      light: 'https://ui.ahmedbna.com/0277-skeleton-list.MP4',
+      dark: 'https://ui.ahmedbna.com/0277-skeleton-list.MP4',
     },
   },
 
@@ -147,9 +141,8 @@ export const skeletonRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0278-skeleton-shapes.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0278-skeleton-shapes.MP4',
+      light: 'https://ui.ahmedbna.com/0278-skeleton-shapes.MP4',
+      dark: 'https://ui.ahmedbna.com/0278-skeleton-shapes.MP4',
     },
   },
 };

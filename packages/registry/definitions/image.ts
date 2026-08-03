@@ -19,9 +19,8 @@ export const imageRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0159-image-demo.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0159-image-demo.PNG',
+      light: 'https://ui.ahmedbna.com/0159-image-demo.PNG',
+      dark: 'https://ui.ahmedbna.com/0159-image-demo.PNG',
     },
   },
 
@@ -41,9 +40,8 @@ export const imageRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0159-image-demo.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0159-image-demo.PNG',
+      light: 'https://ui.ahmedbna.com/0159-image-demo.PNG',
+      dark: 'https://ui.ahmedbna.com/0159-image-demo.PNG',
     },
   },
 
@@ -63,9 +61,8 @@ export const imageRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0160-image-variants.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0160-image-variants.PNG',
+      light: 'https://ui.ahmedbna.com/0160-image-variants.PNG',
+      dark: 'https://ui.ahmedbna.com/0160-image-variants.PNG',
     },
   },
 
@@ -85,9 +82,8 @@ export const imageRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0161-image-sizes.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0161-image-sizes.PNG',
+      light: 'https://ui.ahmedbna.com/0161-image-sizes.PNG',
+      dark: 'https://ui.ahmedbna.com/0161-image-sizes.PNG',
     },
   },
 
@@ -107,9 +103,8 @@ export const imageRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0162-image-loading.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0162-image-loading.MP4',
+      light: 'https://ui.ahmedbna.com/0162-image-loading.MP4',
+      dark: 'https://ui.ahmedbna.com/0162-image-loading.MP4',
     },
   },
 
@@ -128,9 +123,8 @@ export const imageRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0163-image-error.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0163-image-error.PNG',
+      light: 'https://ui.ahmedbna.com/0163-image-error.PNG',
+      dark: 'https://ui.ahmedbna.com/0163-image-error.PNG',
     },
   },
 
@@ -149,9 +143,8 @@ export const imageRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0164-image-gallery.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0164-image-gallery.PNG',
+      light: 'https://ui.ahmedbna.com/0164-image-gallery.PNG',
+      dark: 'https://ui.ahmedbna.com/0164-image-gallery.PNG',
     },
   },
 
@@ -170,9 +163,8 @@ export const imageRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0165-image-responsive.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0165-image-responsive.PNG',
+      light: 'https://ui.ahmedbna.com/0165-image-responsive.PNG',
+      dark: 'https://ui.ahmedbna.com/0165-image-responsive.PNG',
     },
   },
 
@@ -191,9 +183,8 @@ export const imageRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0166-image-content-fit.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0166-image-content-fit.PNG',
+      light: 'https://ui.ahmedbna.com/0166-image-content-fit.PNG',
+      dark: 'https://ui.ahmedbna.com/0166-image-content-fit.PNG',
     },
   },
 };

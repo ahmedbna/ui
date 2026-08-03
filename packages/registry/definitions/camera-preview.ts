@@ -31,9 +31,8 @@ export const cameraPreviewRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0082-camera-preview-demo.mov',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0082-camera-preview-demo.mov',
+      light: 'https://ui.ahmedbna.com/0082-camera-preview-demo.mov',
+      dark: 'https://ui.ahmedbna.com/0082-camera-preview-demo.mov',
     },
   },
 
@@ -53,9 +52,8 @@ export const cameraPreviewRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0082-camera-preview-demo.mov',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0082-camera-preview-demo.mov',
+      light: 'https://ui.ahmedbna.com/0082-camera-preview-demo.mov',
+      dark: 'https://ui.ahmedbna.com/0082-camera-preview-demo.mov',
     },
   },
 };

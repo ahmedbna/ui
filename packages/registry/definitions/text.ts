@@ -19,9 +19,8 @@ export const textRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0303-text-demo.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0303-text-demo.PNG',
+      light: 'https://ui.ahmedbna.com/0303-text-demo.PNG',
+      dark: 'https://ui.ahmedbna.com/0303-text-demo.PNG',
     },
   },
 
@@ -41,9 +40,8 @@ export const textRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0303-text-demo.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0303-text-demo.PNG',
+      light: 'https://ui.ahmedbna.com/0303-text-demo.PNG',
+      dark: 'https://ui.ahmedbna.com/0303-text-demo.PNG',
     },
   },
 
@@ -62,9 +60,8 @@ export const textRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0304-text-variants.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0304-text-variants.PNG',
+      light: 'https://ui.ahmedbna.com/0304-text-variants.PNG',
+      dark: 'https://ui.ahmedbna.com/0304-text-variants.PNG',
     },
   },
 
@@ -83,9 +80,8 @@ export const textRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0305-text-colors.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0305-text-colors.PNG',
+      light: 'https://ui.ahmedbna.com/0305-text-colors.PNG',
+      dark: 'https://ui.ahmedbna.com/0305-text-colors.PNG',
     },
   },
 };

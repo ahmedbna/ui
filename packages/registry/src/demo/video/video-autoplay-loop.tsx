@@ -5,7 +5,7 @@ export function VideoAutoplayLoop() {
   return (
     <Video
       source={{
-        uri: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/',
+        uri: 'https://ui.ahmedbna.com/',
       }}
       style={{
         width: '100%',

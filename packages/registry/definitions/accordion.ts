@@ -23,9 +23,8 @@ export const accordionRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0001-accordion-demo.mov',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0001-accordion-demo.mov',
+      light: 'https://ui.ahmedbna.com/0001-accordion-demo.mov',
+      dark: 'https://ui.ahmedbna.com/0001-accordion-demo.mov',
     },
   },
 
@@ -45,9 +44,8 @@ export const accordionRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0001-accordion-demo.mov',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0001-accordion-demo.mov',
+      light: 'https://ui.ahmedbna.com/0001-accordion-demo.mov',
+      dark: 'https://ui.ahmedbna.com/0001-accordion-demo.mov',
     },
   },
 
@@ -67,9 +65,8 @@ export const accordionRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0001-accordion-demo.mov',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0001-accordion-demo.mov',
+      light: 'https://ui.ahmedbna.com/0001-accordion-demo.mov',
+      dark: 'https://ui.ahmedbna.com/0001-accordion-demo.mov',
     },
   },
 
@@ -90,9 +87,8 @@ export const accordionRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0002-accordion-multiple.mov',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0002-accordion-multiple.mov',
+      light: 'https://ui.ahmedbna.com/0002-accordion-multiple.mov',
+      dark: 'https://ui.ahmedbna.com/0002-accordion-multiple.mov',
     },
   },
 
@@ -112,9 +108,8 @@ export const accordionRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0003-accordion-controlled.mov',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0003-accordion-controlled.mov',
+      light: 'https://ui.ahmedbna.com/0003-accordion-controlled.mov',
+      dark: 'https://ui.ahmedbna.com/0003-accordion-controlled.mov',
     },
   },
 
@@ -135,9 +130,8 @@ export const accordionRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0004-accordion-faq.mov',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0004-accordion-faq.mov',
+      light: 'https://ui.ahmedbna.com/0004-accordion-faq.mov',
+      dark: 'https://ui.ahmedbna.com/0004-accordion-faq.mov',
     },
   },
 
@@ -157,9 +151,8 @@ export const accordionRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0005-accordion-non-collapsible.mov',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0005-accordion-non-collapsible.mov',
+      light: 'https://ui.ahmedbna.com/0005-accordion-non-collapsible.mov',
+      dark: 'https://ui.ahmedbna.com/0005-accordion-non-collapsible.mov',
     },
   },
 
@@ -179,9 +172,8 @@ export const accordionRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0006-accordion-styled.mov',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0006-accordion-styled.mov',
+      light: 'https://ui.ahmedbna.com/0006-accordion-styled.mov',
+      dark: 'https://ui.ahmedbna.com/0006-accordion-styled.mov',
     },
   },
 };

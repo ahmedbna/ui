@@ -19,9 +19,8 @@ export const iconRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0152-icon-demo.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0152-icon-demo.PNG',
+      light: 'https://ui.ahmedbna.com/0152-icon-demo.PNG',
+      dark: 'https://ui.ahmedbna.com/0152-icon-demo.PNG',
     },
   },
 
@@ -41,9 +40,8 @@ export const iconRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0152-icon-demo.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0152-icon-demo.PNG',
+      light: 'https://ui.ahmedbna.com/0152-icon-demo.PNG',
+      dark: 'https://ui.ahmedbna.com/0152-icon-demo.PNG',
     },
   },
 
@@ -63,9 +61,8 @@ export const iconRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0153-icon-sizes.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0153-icon-sizes.PNG',
+      light: 'https://ui.ahmedbna.com/0153-icon-sizes.PNG',
+      dark: 'https://ui.ahmedbna.com/0153-icon-sizes.PNG',
     },
   },
 
@@ -85,9 +82,8 @@ export const iconRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0154-icon-colors.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0154-icon-colors.PNG',
+      light: 'https://ui.ahmedbna.com/0154-icon-colors.PNG',
+      dark: 'https://ui.ahmedbna.com/0154-icon-colors.PNG',
     },
   },
 
@@ -107,9 +103,8 @@ export const iconRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0155-icon-stroke.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0155-icon-stroke.PNG',
+      light: 'https://ui.ahmedbna.com/0155-icon-stroke.PNG',
+      dark: 'https://ui.ahmedbna.com/0155-icon-stroke.PNG',
     },
   },
 
@@ -129,9 +124,8 @@ export const iconRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0156-icon-interactive.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0156-icon-interactive.PNG',
+      light: 'https://ui.ahmedbna.com/0156-icon-interactive.PNG',
+      dark: 'https://ui.ahmedbna.com/0156-icon-interactive.PNG',
     },
   },
 
@@ -151,9 +145,8 @@ export const iconRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0157-icon-grid.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0157-icon-grid.PNG',
+      light: 'https://ui.ahmedbna.com/0157-icon-grid.PNG',
+      dark: 'https://ui.ahmedbna.com/0157-icon-grid.PNG',
     },
   },
 
@@ -173,9 +166,8 @@ export const iconRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0158-icon-themed.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0158-icon-themed.PNG',
+      light: 'https://ui.ahmedbna.com/0158-icon-themed.PNG',
+      dark: 'https://ui.ahmedbna.com/0158-icon-themed.PNG',
     },
   },
 };

@@ -24,9 +24,8 @@ export const doughnutChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0351-doughnut-chart-demo.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0351-doughnut-chart-demo.MOV',
+      light: 'https://ui.ahmedbna.com/0351-doughnut-chart-demo.MOV',
+      dark: 'https://ui.ahmedbna.com/0351-doughnut-chart-demo.MOV',
     },
   },
 
@@ -47,9 +46,8 @@ export const doughnutChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0351-doughnut-chart-demo.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0351-doughnut-chart-demo.MOV',
+      light: 'https://ui.ahmedbna.com/0351-doughnut-chart-demo.MOV',
+      dark: 'https://ui.ahmedbna.com/0351-doughnut-chart-demo.MOV',
     },
   },
 
@@ -69,9 +67,8 @@ export const doughnutChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0352-doughnut-chart-sample.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0352-doughnut-chart-sample.MOV',
+      light: 'https://ui.ahmedbna.com/0352-doughnut-chart-sample.MOV',
+      dark: 'https://ui.ahmedbna.com/0352-doughnut-chart-sample.MOV',
     },
   },
 
@@ -91,9 +88,8 @@ export const doughnutChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0353-doughnut-chart-styled.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0353-doughnut-chart-styled.MOV',
+      light: 'https://ui.ahmedbna.com/0353-doughnut-chart-styled.MOV',
+      dark: 'https://ui.ahmedbna.com/0353-doughnut-chart-styled.MOV',
     },
   },
 
@@ -113,9 +109,8 @@ export const doughnutChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0354-doughnut-chart-large.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0354-doughnut-chart-large.MOV',
+      light: 'https://ui.ahmedbna.com/0354-doughnut-chart-large.MOV',
+      dark: 'https://ui.ahmedbna.com/0354-doughnut-chart-large.MOV',
     },
   },
 };

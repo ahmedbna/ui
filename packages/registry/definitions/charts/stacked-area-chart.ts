@@ -24,9 +24,8 @@ export const stackedAreaChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0387-stacked-area-chart-demo.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0387-stacked-area-chart-demo.MOV',
+      light: 'https://ui.ahmedbna.com/0387-stacked-area-chart-demo.MOV',
+      dark: 'https://ui.ahmedbna.com/0387-stacked-area-chart-demo.MOV',
     },
   },
 
@@ -48,9 +47,8 @@ export const stackedAreaChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0387-stacked-area-chart-demo.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0387-stacked-area-chart-demo.MOV',
+      light: 'https://ui.ahmedbna.com/0387-stacked-area-chart-demo.MOV',
+      dark: 'https://ui.ahmedbna.com/0387-stacked-area-chart-demo.MOV',
     },
   },
 
@@ -70,9 +68,8 @@ export const stackedAreaChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0388-stacked-area-chart-sample.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0388-stacked-area-chart-sample.MOV',
+      light: 'https://ui.ahmedbna.com/0388-stacked-area-chart-sample.MOV',
+      dark: 'https://ui.ahmedbna.com/0388-stacked-area-chart-sample.MOV',
     },
   },
 
@@ -93,9 +90,8 @@ export const stackedAreaChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0389-stacked-area-chart-styled.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0389-stacked-area-chart-styled.MOV',
+      light: 'https://ui.ahmedbna.com/0389-stacked-area-chart-styled.MOV',
+      dark: 'https://ui.ahmedbna.com/0389-stacked-area-chart-styled.MOV',
     },
   },
 
@@ -115,9 +111,8 @@ export const stackedAreaChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0390-stacked-area-chart-large.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0390-stacked-area-chart-large.MOV',
+      light: 'https://ui.ahmedbna.com/0390-stacked-area-chart-large.MOV',
+      dark: 'https://ui.ahmedbna.com/0390-stacked-area-chart-large.MOV',
     },
   },
 };

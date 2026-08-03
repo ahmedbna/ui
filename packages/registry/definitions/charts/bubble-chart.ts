@@ -24,9 +24,8 @@ export const bubbleChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0337-bubble-chart-demo.mov',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0337-bubble-chart-demo.mov',
+      light: 'https://ui.ahmedbna.com/0337-bubble-chart-demo.mov',
+      dark: 'https://ui.ahmedbna.com/0337-bubble-chart-demo.mov',
     },
   },
 
@@ -46,9 +45,8 @@ export const bubbleChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0337-bubble-chart-demo.mov',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0337-bubble-chart-demo.mov',
+      light: 'https://ui.ahmedbna.com/0337-bubble-chart-demo.mov',
+      dark: 'https://ui.ahmedbna.com/0337-bubble-chart-demo.mov',
     },
   },
 
@@ -68,9 +66,8 @@ export const bubbleChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0338-bubble-chart-sample.mov',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0338-bubble-chart-sample.mov',
+      light: 'https://ui.ahmedbna.com/0338-bubble-chart-sample.mov',
+      dark: 'https://ui.ahmedbna.com/0338-bubble-chart-sample.mov',
     },
   },
 
@@ -90,9 +87,8 @@ export const bubbleChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0339-bubble-chart-styled.mov',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0339-bubble-chart-styled.mov',
+      light: 'https://ui.ahmedbna.com/0339-bubble-chart-styled.mov',
+      dark: 'https://ui.ahmedbna.com/0339-bubble-chart-styled.mov',
     },
   },
 
@@ -112,9 +108,8 @@ export const bubbleChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0340-bubble-chart-minimal.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0340-bubble-chart-minimal.MP4',
+      light: 'https://ui.ahmedbna.com/0340-bubble-chart-minimal.MP4',
+      dark: 'https://ui.ahmedbna.com/0340-bubble-chart-minimal.MP4',
     },
   },
 };

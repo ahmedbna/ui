@@ -24,9 +24,8 @@ export const radialBarChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0379-radial-bar-chart-demo.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0379-radial-bar-chart-demo.MOV',
+      light: 'https://ui.ahmedbna.com/0379-radial-bar-chart-demo.MOV',
+      dark: 'https://ui.ahmedbna.com/0379-radial-bar-chart-demo.MOV',
     },
   },
 
@@ -47,9 +46,8 @@ export const radialBarChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0379-radial-bar-chart-demo.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0379-radial-bar-chart-demo.MOV',
+      light: 'https://ui.ahmedbna.com/0379-radial-bar-chart-demo.MOV',
+      dark: 'https://ui.ahmedbna.com/0379-radial-bar-chart-demo.MOV',
     },
   },
 
@@ -69,9 +67,8 @@ export const radialBarChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0380-radial-bar-chart-sample.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0380-radial-bar-chart-sample.MOV',
+      light: 'https://ui.ahmedbna.com/0380-radial-bar-chart-sample.MOV',
+      dark: 'https://ui.ahmedbna.com/0380-radial-bar-chart-sample.MOV',
     },
   },
 
@@ -91,9 +88,8 @@ export const radialBarChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0381-radial-bar-chart-gradient.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0381-radial-bar-chart-gradient.MOV',
+      light: 'https://ui.ahmedbna.com/0381-radial-bar-chart-gradient.MOV',
+      dark: 'https://ui.ahmedbna.com/0381-radial-bar-chart-gradient.MOV',
     },
   },
 
@@ -113,9 +109,8 @@ export const radialBarChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0382-radial-bar-chart-large.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0382-radial-bar-chart-large.MOV',
+      light: 'https://ui.ahmedbna.com/0382-radial-bar-chart-large.MOV',
+      dark: 'https://ui.ahmedbna.com/0382-radial-bar-chart-large.MOV',
     },
   },
 };

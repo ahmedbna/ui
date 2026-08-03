@@ -19,9 +19,8 @@ export const chartContainerRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0345-chart-container-demo.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0345-chart-container-demo.MOV',
+      light: 'https://ui.ahmedbna.com/0345-chart-container-demo.MOV',
+      dark: 'https://ui.ahmedbna.com/0345-chart-container-demo.MOV',
     },
   },
 
@@ -41,9 +40,8 @@ export const chartContainerRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0345-chart-container-demo.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0345-chart-container-demo.MOV',
+      light: 'https://ui.ahmedbna.com/0345-chart-container-demo.MOV',
+      dark: 'https://ui.ahmedbna.com/0345-chart-container-demo.MOV',
     },
   },
 
@@ -63,9 +61,8 @@ export const chartContainerRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0346-chart-container-styled.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0346-chart-container-styled.MOV',
+      light: 'https://ui.ahmedbna.com/0346-chart-container-styled.MOV',
+      dark: 'https://ui.ahmedbna.com/0346-chart-container-styled.MOV',
     },
   },
 };

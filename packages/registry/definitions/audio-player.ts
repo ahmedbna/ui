@@ -20,9 +20,8 @@ export const audioPlayerRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0024-audio-player-demo.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0024-audio-player-demo.MP4',
+      light: 'https://ui.ahmedbna.com/0024-audio-player-demo.MP4',
+      dark: 'https://ui.ahmedbna.com/0024-audio-player-demo.MP4',
     },
   },
 
@@ -42,9 +41,8 @@ export const audioPlayerRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0024-audio-player-demo.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0024-audio-player-demo.MP4',
+      light: 'https://ui.ahmedbna.com/0024-audio-player-demo.MP4',
+      dark: 'https://ui.ahmedbna.com/0024-audio-player-demo.MP4',
     },
   },
 
@@ -64,9 +62,8 @@ export const audioPlayerRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0025-audio-player-minimal.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0025-audio-player-minimal.MP4',
+      light: 'https://ui.ahmedbna.com/0025-audio-player-minimal.MP4',
+      dark: 'https://ui.ahmedbna.com/0025-audio-player-minimal.MP4',
     },
   },
 
@@ -86,9 +83,8 @@ export const audioPlayerRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0026-audio-player-waveform.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0026-audio-player-waveform.MP4',
+      light: 'https://ui.ahmedbna.com/0026-audio-player-waveform.MP4',
+      dark: 'https://ui.ahmedbna.com/0026-audio-player-waveform.MP4',
     },
   },
 
@@ -108,9 +104,8 @@ export const audioPlayerRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0027-audio-player-progress.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0027-audio-player-progress.MP4',
+      light: 'https://ui.ahmedbna.com/0027-audio-player-progress.MP4',
+      dark: 'https://ui.ahmedbna.com/0027-audio-player-progress.MP4',
     },
   },
 
@@ -130,9 +125,8 @@ export const audioPlayerRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0028-audio-player-autoplay.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0028-audio-player-autoplay.MP4',
+      light: 'https://ui.ahmedbna.com/0028-audio-player-autoplay.MP4',
+      dark: 'https://ui.ahmedbna.com/0028-audio-player-autoplay.MP4',
     },
   },
 
@@ -152,9 +146,8 @@ export const audioPlayerRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0029-audio-player-styled.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0029-audio-player-styled.MP4',
+      light: 'https://ui.ahmedbna.com/0029-audio-player-styled.MP4',
+      dark: 'https://ui.ahmedbna.com/0029-audio-player-styled.MP4',
     },
   },
 
@@ -175,9 +168,8 @@ export const audioPlayerRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0030-audio-player-music.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0030-audio-player-music.MP4',
+      light: 'https://ui.ahmedbna.com/0030-audio-player-music.MP4',
+      dark: 'https://ui.ahmedbna.com/0030-audio-player-music.MP4',
     },
   },
 };

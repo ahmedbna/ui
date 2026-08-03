@@ -18,9 +18,8 @@ export const badgeRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0058-badge-demo.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0058-badge-demo.PNG',
+      light: 'https://ui.ahmedbna.com/0058-badge-demo.PNG',
+      dark: 'https://ui.ahmedbna.com/0058-badge-demo.PNG',
     },
   },
 
@@ -40,9 +39,8 @@ export const badgeRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0058-badge-demo.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0058-badge-demo.PNG',
+      light: 'https://ui.ahmedbna.com/0058-badge-demo.PNG',
+      dark: 'https://ui.ahmedbna.com/0058-badge-demo.PNG',
     },
   },
 
@@ -62,9 +60,8 @@ export const badgeRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0059-badge-icons.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0059-badge-icons.PNG',
+      light: 'https://ui.ahmedbna.com/0059-badge-icons.PNG',
+      dark: 'https://ui.ahmedbna.com/0059-badge-icons.PNG',
     },
   },
 
@@ -84,9 +81,8 @@ export const badgeRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0060-badge-notifications.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0060-badge-notifications.PNG',
+      light: 'https://ui.ahmedbna.com/0060-badge-notifications.PNG',
+      dark: 'https://ui.ahmedbna.com/0060-badge-notifications.PNG',
     },
   },
 
@@ -106,9 +102,8 @@ export const badgeRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0061-badge-styled.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0061-badge-styled.PNG',
+      light: 'https://ui.ahmedbna.com/0061-badge-styled.PNG',
+      dark: 'https://ui.ahmedbna.com/0061-badge-styled.PNG',
     },
   },
 
@@ -128,9 +123,8 @@ export const badgeRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0062-badge-interactive.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0062-badge-interactive.PNG',
+      light: 'https://ui.ahmedbna.com/0062-badge-interactive.PNG',
+      dark: 'https://ui.ahmedbna.com/0062-badge-interactive.PNG',
     },
   },
 
@@ -150,9 +144,8 @@ export const badgeRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0063-badge-sizes.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0063-badge-sizes.PNG',
+      light: 'https://ui.ahmedbna.com/0063-badge-sizes.PNG',
+      dark: 'https://ui.ahmedbna.com/0063-badge-sizes.PNG',
     },
   },
 
@@ -172,9 +165,8 @@ export const badgeRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0064-badge-status.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0064-badge-status.PNG',
+      light: 'https://ui.ahmedbna.com/0064-badge-status.PNG',
+      dark: 'https://ui.ahmedbna.com/0064-badge-status.PNG',
     },
   },
 };

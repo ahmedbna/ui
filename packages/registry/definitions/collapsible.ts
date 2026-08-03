@@ -19,9 +19,8 @@ export const collapsibleRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0110-collapsible-demo.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0110-collapsible-demo.MP4',
+      light: 'https://ui.ahmedbna.com/0110-collapsible-demo.MP4',
+      dark: 'https://ui.ahmedbna.com/0110-collapsible-demo.MP4',
     },
   },
 
@@ -41,9 +40,8 @@ export const collapsibleRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0110-collapsible-demo.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0110-collapsible-demo.MP4',
+      light: 'https://ui.ahmedbna.com/0110-collapsible-demo.MP4',
+      dark: 'https://ui.ahmedbna.com/0110-collapsible-demo.MP4',
     },
   },
 
@@ -63,9 +61,8 @@ export const collapsibleRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0111-collapsible-multiple.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0111-collapsible-multiple.MP4',
+      light: 'https://ui.ahmedbna.com/0111-collapsible-multiple.MP4',
+      dark: 'https://ui.ahmedbna.com/0111-collapsible-multiple.MP4',
     },
   },
 
@@ -85,9 +82,8 @@ export const collapsibleRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0112-collapsible-nested.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0112-collapsible-nested.MP4',
+      light: 'https://ui.ahmedbna.com/0112-collapsible-nested.MP4',
+      dark: 'https://ui.ahmedbna.com/0112-collapsible-nested.MP4',
     },
   },
 
@@ -107,9 +103,8 @@ export const collapsibleRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0113-collapsible-with-content.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0113-collapsible-with-content.MP4',
+      light: 'https://ui.ahmedbna.com/0113-collapsible-with-content.MP4',
+      dark: 'https://ui.ahmedbna.com/0113-collapsible-with-content.MP4',
     },
   },
 
@@ -129,9 +124,8 @@ export const collapsibleRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0114-collapsible-faq.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0114-collapsible-faq.MP4',
+      light: 'https://ui.ahmedbna.com/0114-collapsible-faq.MP4',
+      dark: 'https://ui.ahmedbna.com/0114-collapsible-faq.MP4',
     },
   },
 };

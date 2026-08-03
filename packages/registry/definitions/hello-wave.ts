@@ -19,9 +19,8 @@ export const helloWaveRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0151-hello-wave-demo.mov',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0151-hello-wave-demo.mov',
+      light: 'https://ui.ahmedbna.com/0151-hello-wave-demo.mov',
+      dark: 'https://ui.ahmedbna.com/0151-hello-wave-demo.mov',
     },
   },
 
@@ -41,9 +40,8 @@ export const helloWaveRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0151-hello-wave-demo.mov',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0151-hello-wave-demo.mov',
+      light: 'https://ui.ahmedbna.com/0151-hello-wave-demo.mov',
+      dark: 'https://ui.ahmedbna.com/0151-hello-wave-demo.mov',
     },
   },
 };

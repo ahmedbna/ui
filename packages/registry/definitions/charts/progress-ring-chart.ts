@@ -24,9 +24,8 @@ export const progressRingChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0371-progress-ring-chart-demo.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0371-progress-ring-chart-demo.MOV',
+      light: 'https://ui.ahmedbna.com/0371-progress-ring-chart-demo.MOV',
+      dark: 'https://ui.ahmedbna.com/0371-progress-ring-chart-demo.MOV',
     },
   },
 
@@ -47,9 +46,8 @@ export const progressRingChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0371-progress-ring-chart-demo.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0371-progress-ring-chart-demo.MOV',
+      light: 'https://ui.ahmedbna.com/0371-progress-ring-chart-demo.MOV',
+      dark: 'https://ui.ahmedbna.com/0371-progress-ring-chart-demo.MOV',
     },
   },
 
@@ -69,9 +67,8 @@ export const progressRingChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0372-progress-ring-chart-sample.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0372-progress-ring-chart-sample.MOV',
+      light: 'https://ui.ahmedbna.com/0372-progress-ring-chart-sample.MOV',
+      dark: 'https://ui.ahmedbna.com/0372-progress-ring-chart-sample.MOV',
     },
   },
 
@@ -91,9 +88,8 @@ export const progressRingChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0373-progress-ring-chart-styled.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0373-progress-ring-chart-styled.MOV',
+      light: 'https://ui.ahmedbna.com/0373-progress-ring-chart-styled.MOV',
+      dark: 'https://ui.ahmedbna.com/0373-progress-ring-chart-styled.MOV',
     },
   },
 
@@ -113,9 +109,8 @@ export const progressRingChartRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0374-progress-ring-chart-large.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0374-progress-ring-chart-large.MOV',
+      light: 'https://ui.ahmedbna.com/0374-progress-ring-chart-large.MOV',
+      dark: 'https://ui.ahmedbna.com/0374-progress-ring-chart-large.MOV',
     },
   },
 };

@@ -19,9 +19,8 @@ export const cardRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0090-card-demo.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0090-card-demo.PNG',
+      light: 'https://ui.ahmedbna.com/0090-card-demo.PNG',
+      dark: 'https://ui.ahmedbna.com/0090-card-demo.PNG',
     },
   },
 
@@ -41,9 +40,8 @@ export const cardRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0090-card-demo.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0090-card-demo.PNG',
+      light: 'https://ui.ahmedbna.com/0090-card-demo.PNG',
+      dark: 'https://ui.ahmedbna.com/0090-card-demo.PNG',
     },
   },
 
@@ -63,9 +61,8 @@ export const cardRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0091-card-simple.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0091-card-simple.PNG',
+      light: 'https://ui.ahmedbna.com/0091-card-simple.PNG',
+      dark: 'https://ui.ahmedbna.com/0091-card-simple.PNG',
     },
   },
 
@@ -85,9 +82,8 @@ export const cardRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0092-card-with-image.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0092-card-with-image.PNG',
+      light: 'https://ui.ahmedbna.com/0092-card-with-image.PNG',
+      dark: 'https://ui.ahmedbna.com/0092-card-with-image.PNG',
     },
   },
 
@@ -107,9 +103,8 @@ export const cardRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0093-card-with-form.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0093-card-with-form.PNG',
+      light: 'https://ui.ahmedbna.com/0093-card-with-form.PNG',
+      dark: 'https://ui.ahmedbna.com/0093-card-with-form.PNG',
     },
   },
 
@@ -129,9 +124,8 @@ export const cardRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0094-card-stats.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0094-card-stats.PNG',
+      light: 'https://ui.ahmedbna.com/0094-card-stats.PNG',
+      dark: 'https://ui.ahmedbna.com/0094-card-stats.PNG',
     },
   },
 
@@ -151,9 +145,8 @@ export const cardRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0095-card-notification.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0095-card-notification.PNG',
+      light: 'https://ui.ahmedbna.com/0095-card-notification.PNG',
+      dark: 'https://ui.ahmedbna.com/0095-card-notification.PNG',
     },
   },
 
@@ -173,9 +166,8 @@ export const cardRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0096-card-pricing.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0096-card-pricing.PNG',
+      light: 'https://ui.ahmedbna.com/0096-card-pricing.PNG',
+      dark: 'https://ui.ahmedbna.com/0096-card-pricing.PNG',
     },
   },
 };

@@ -19,9 +19,8 @@ export const pickerRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0211-picker-demo.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0211-picker-demo.MP4',
+      light: 'https://ui.ahmedbna.com/0211-picker-demo.MP4',
+      dark: 'https://ui.ahmedbna.com/0211-picker-demo.MP4',
     },
   },
 
@@ -41,9 +40,8 @@ export const pickerRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0211-picker-demo.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0211-picker-demo.MP4',
+      light: 'https://ui.ahmedbna.com/0211-picker-demo.MP4',
+      dark: 'https://ui.ahmedbna.com/0211-picker-demo.MP4',
     },
   },
 
@@ -62,9 +60,8 @@ export const pickerRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0212-picker-sections.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0212-picker-sections.MP4',
+      light: 'https://ui.ahmedbna.com/0212-picker-sections.MP4',
+      dark: 'https://ui.ahmedbna.com/0212-picker-sections.MP4',
     },
   },
 
@@ -83,9 +80,8 @@ export const pickerRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0213-picker-multiple.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0213-picker-multiple.MP4',
+      light: 'https://ui.ahmedbna.com/0213-picker-multiple.MP4',
+      dark: 'https://ui.ahmedbna.com/0213-picker-multiple.MP4',
     },
   },
 
@@ -104,9 +100,8 @@ export const pickerRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0214-picker-searchable.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0214-picker-searchable.MP4',
+      light: 'https://ui.ahmedbna.com/0214-picker-searchable.MP4',
+      dark: 'https://ui.ahmedbna.com/0214-picker-searchable.MP4',
     },
   },
 
@@ -125,9 +120,8 @@ export const pickerRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0215-picker-variants.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0215-picker-variants.MP4',
+      light: 'https://ui.ahmedbna.com/0215-picker-variants.MP4',
+      dark: 'https://ui.ahmedbna.com/0215-picker-variants.MP4',
     },
   },
 
@@ -147,9 +141,8 @@ export const pickerRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0216-picker-styled.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0216-picker-styled.MP4',
+      light: 'https://ui.ahmedbna.com/0216-picker-styled.MP4',
+      dark: 'https://ui.ahmedbna.com/0216-picker-styled.MP4',
     },
   },
 
@@ -168,9 +161,8 @@ export const pickerRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0217-picker-form.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0217-picker-form.MP4',
+      light: 'https://ui.ahmedbna.com/0217-picker-form.MP4',
+      dark: 'https://ui.ahmedbna.com/0217-picker-form.MP4',
     },
   },
 
@@ -190,9 +182,8 @@ export const pickerRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0218-picker-advanced.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0218-picker-advanced.MP4',
+      light: 'https://ui.ahmedbna.com/0218-picker-advanced.MP4',
+      dark: 'https://ui.ahmedbna.com/0218-picker-advanced.MP4',
     },
   },
 };

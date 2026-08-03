@@ -23,9 +23,8 @@ export const spinnerRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0279-spinner-demo.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0279-spinner-demo.MP4',
+      light: 'https://ui.ahmedbna.com/0279-spinner-demo.MP4',
+      dark: 'https://ui.ahmedbna.com/0279-spinner-demo.MP4',
     },
   },
 
@@ -45,9 +44,8 @@ export const spinnerRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0279-spinner-demo.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0279-spinner-demo.MP4',
+      light: 'https://ui.ahmedbna.com/0279-spinner-demo.MP4',
+      dark: 'https://ui.ahmedbna.com/0279-spinner-demo.MP4',
     },
   },
 
@@ -68,9 +66,8 @@ export const spinnerRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0280-spinner-variants.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0280-spinner-variants.MP4',
+      light: 'https://ui.ahmedbna.com/0280-spinner-variants.MP4',
+      dark: 'https://ui.ahmedbna.com/0280-spinner-variants.MP4',
     },
   },
 
@@ -90,9 +87,8 @@ export const spinnerRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0281-spinner-sizes.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0281-spinner-sizes.MP4',
+      light: 'https://ui.ahmedbna.com/0281-spinner-sizes.MP4',
+      dark: 'https://ui.ahmedbna.com/0281-spinner-sizes.MP4',
     },
   },
 
@@ -112,9 +108,8 @@ export const spinnerRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0282-spinner-labels.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0282-spinner-labels.MP4',
+      light: 'https://ui.ahmedbna.com/0282-spinner-labels.MP4',
+      dark: 'https://ui.ahmedbna.com/0282-spinner-labels.MP4',
     },
   },
 
@@ -135,9 +130,8 @@ export const spinnerRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0283-spinner-speeds.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0283-spinner-speeds.MP4',
+      light: 'https://ui.ahmedbna.com/0283-spinner-speeds.MP4',
+      dark: 'https://ui.ahmedbna.com/0283-spinner-speeds.MP4',
     },
   },
 
@@ -157,9 +151,8 @@ export const spinnerRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0284-spinner-colors.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0284-spinner-colors.MP4',
+      light: 'https://ui.ahmedbna.com/0284-spinner-colors.MP4',
+      dark: 'https://ui.ahmedbna.com/0284-spinner-colors.MP4',
     },
   },
 
@@ -179,9 +172,8 @@ export const spinnerRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0285-spinner-overlay.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0285-spinner-overlay.MP4',
+      light: 'https://ui.ahmedbna.com/0285-spinner-overlay.MP4',
+      dark: 'https://ui.ahmedbna.com/0285-spinner-overlay.MP4',
     },
   },
 
@@ -201,9 +193,8 @@ export const spinnerRegistry = {
       },
     ],
     preview: {
-      light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0286-spinner-inline.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0286-spinner-inline.MP4',
+      light: 'https://ui.ahmedbna.com/0286-spinner-inline.MP4',
+      dark: 'https://ui.ahmedbna.com/0286-spinner-inline.MP4',
     },
   },
 };
