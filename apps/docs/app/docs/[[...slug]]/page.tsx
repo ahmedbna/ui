@@ -9,10 +9,8 @@ import {
 import { findNeighbour } from 'fumadocs-core/page-tree';
 import { source } from '@/lib/source';
 import { siteConfig } from '@/lib/config';
-import {
-  getPageMarkdownText,
-  registryNameForPage,
-} from '@/lib/llm/to-markdown';
+import { registryNameForPage } from '@/lib/llm/to-markdown';
+import { markdownUrl } from '@/lib/llm/url';
 import { DocsTableOfContents } from '@/components/docs-toc';
 import { DocsCopyPage } from '@/components/docs-copy-page';
 import { DocsPageLinks } from '@/components/docs-page-links';
@@ -109,11 +107,14 @@ export default async function Page(props: {
 
   const links = doc.links;
 
-  // Rendered at build time — this page is `force-static`, so the Markdown is
-  // baked into the HTML and "Copy Page" needs no request.
-  const markdown = await getPageMarkdownText(page);
+  // "Copy Page" fetches the Markdown build on click rather than receiving it as
+  // a prop. Both consumers below only ever read it inside a click handler, and
+  // passing the string to two separate client components made React serialise
+  // the whole thing twice into the flight payload — on the larger pages that was
+  // ~110 KB of the HTML, repeated again in the RSC payload, for a button most
+  // visitors never press. The page it fetches is already a static file.
   const actions = {
-    markdown,
+    mdUrl: markdownUrl(page.url),
     url: `${siteConfig.url}${page.url}`,
     name: registryNameForPage(page.slugs),
   };

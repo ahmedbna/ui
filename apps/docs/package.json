@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "clean": "rm -rf .next .source public/r public/skills public/AGENTS.md .turbo",
+    "clean": "rm -rf .next out .source public/r public/skills public/AGENTS.md .turbo",
     "postinstall": "fumadocs-mdx"
   },
   "dependencies": {

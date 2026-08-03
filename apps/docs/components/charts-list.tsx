@@ -25,7 +25,7 @@ export function ChartsList() {
           className='px-3 text-start justify-start font-medium'
           key={component.$id}
         >
-          <Link key={component.$id} href={component.url}>
+          <Link key={component.$id} href={component.url} prefetch={false}>
             {component.name}
           </Link>
         </Button>

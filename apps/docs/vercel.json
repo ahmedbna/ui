@@ -2,7 +2,34 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "buildCommand": "cd ../.. && pnpm turbo run build --filter=docs",
   "installCommand": "cd ../.. && pnpm install --frozen-lockfile",
-  "outputDirectory": ".next",
+  "outputDirectory": "out",
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/components",
+      "destination": "/docs/components",
+      "permanent": true
+    },
+    {
+      "source": "/docs/primitives/:path*",
+      "destination": "/docs/components/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/docs/convex/installation",
+      "destination": "/docs/installation/convex-auth",
+      "permanent": true
+    },
+    {
+      "source": "/docs/hooks/useThemeColor",
+      "destination": "/docs/hooks/useColor",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    { "source": "/docs.md", "destination": "/llms/index.md" },
+    { "source": "/docs/:path(.*).md", "destination": "/llms/:path.md" }
+  ],
   "headers": [
     {
       "source": "/_next/static/(.*)",
@@ -25,6 +52,16 @@
     },
     {
       "source": "/docs/:path(.*).md",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=300, stale-while-revalidate=86400"
+        },
+        { "key": "Access-Control-Allow-Origin", "value": "*" }
+      ]
+    },
+    {
+      "source": "/llms/(.*)",
       "headers": [
         {
           "key": "Cache-Control",

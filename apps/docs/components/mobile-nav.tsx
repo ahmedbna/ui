@@ -138,6 +138,7 @@ function MobileLink({
   return (
     <Link
       href={href}
+      prefetch={false}
       onClick={() => {
         router.push(href.toString());
         onOpenChange?.(false);

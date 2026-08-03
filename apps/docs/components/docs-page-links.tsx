@@ -13,11 +13,15 @@ import { useCopyToClipboard } from '@/hooks/use-copy-to-clipboard';
 import { AI_TARGETS, type PromptContext } from '@/components/ai-targets';
 
 export function DocsPageLinks({
-  markdown,
+  mdUrl,
   className,
   ...ctx
-}: PromptContext & { markdown: string; className?: string }) {
+}: PromptContext & { mdUrl: string; className?: string }) {
   const { copyToClipboard, isCopied } = useCopyToClipboard();
+  const fetchMarkdown = React.useCallback(
+    () => fetch(mdUrl).then((res) => res.text()),
+    [mdUrl]
+  );
 
   return (
     <div className={cn('flex flex-col gap-3 px-8', className)}>
@@ -25,7 +29,7 @@ export function DocsPageLinks({
         <li>
           <button
             type='button'
-            onClick={() => copyToClipboard(markdown)}
+            onClick={() => copyToClipboard(fetchMarkdown)}
             className='hover:text-foreground inline-flex cursor-pointer items-center gap-2 transition-colors'
           >
             {isCopied ? (

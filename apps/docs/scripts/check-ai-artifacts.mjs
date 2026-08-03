@@ -6,8 +6,8 @@
  * drops its subtree; a renamed registry entry silently empties a code block. The
  * only thing that notices is a model reading `.md` a week later.
  *
- * Runs after `next build`, over the prerendered bodies in `.next/server/app`,
- * so it checks exactly what gets deployed rather than re-deriving it.
+ * Runs after `next build`, over the exported files in `out/`, so it checks
+ * exactly what gets deployed rather than re-deriving it.
  *
  * Sibling of `check-mdx-references.mjs`, same shape: collect everything, print
  * it all, exit 1.
@@ -18,7 +18,7 @@ import { createRequire } from 'node:module';
 
 const require = createRequire(import.meta.url);
 const ROOT = path.join(import.meta.dirname, '..');
-const APP = path.join(ROOT, '.next', 'server', 'app');
+const OUT = path.join(ROOT, 'out');
 const CONTENT = path.join(ROOT, 'content', 'docs');
 
 const INDEX = path.join(
@@ -81,10 +81,11 @@ async function main() {
 
   // --- every page produced a Markdown build -------------------------------
   const pages = await walk(CONTENT, (name) => name.endsWith('.mdx'));
-  const bodies = [
-    ...(await walk(path.join(APP, 'llms'), (name) => name.endsWith('.body'))),
-    path.join(APP, 'llms.body'),
-  ];
+  // The docs index is `llms/index.md`, so the walk already covers it — under
+  // `output: 'export'` there is no separate top-level body file to add.
+  const bodies = await walk(path.join(OUT, 'llms'), (name) =>
+    name.endsWith('.md')
+  );
 
   if (bodies.length !== pages.length) {
     errors.push(
@@ -95,7 +96,7 @@ async function main() {
 
   // --- each build is complete and clean -----------------------------------
   for (const file of bodies) {
-    const rel = path.relative(APP, file);
+    const rel = path.relative(OUT, file);
     let markdown;
     try {
       markdown = await fs.readFile(file, 'utf8');
@@ -123,7 +124,7 @@ async function main() {
   // The whole point of the Markdown build: `<ComponentPreview>` and
   // `<ComponentSource>` expand to real code rather than to nothing.
   for (const section of ['components', 'charts', 'hooks', 'theme']) {
-    const dir = path.join(APP, 'llms', section);
+    const dir = path.join(OUT, 'llms', section);
     let files;
     try {
       files = await fs.readdir(dir);
@@ -131,8 +132,8 @@ async function main() {
       continue;
     }
 
-    for (const file of files.filter((name) => name.endsWith('.body'))) {
-      const name = file.replace(/\.body$/, '');
+    for (const file of files.filter((name) => name.endsWith('.md'))) {
+      const name = file.replace(/\.md$/, '');
       const entry = entries.get(name);
       if (!entry) continue;
 
@@ -196,7 +197,7 @@ async function main() {
   }
 
   // --- llms.txt points at pages that exist --------------------------------
-  const llms = await fs.readFile(path.join(APP, 'llms.txt.body'), 'utf8');
+  const llms = await fs.readFile(path.join(OUT, 'llms.txt'), 'utf8');
   const urls = [...llms.matchAll(/\]\((https?:\/\/[^)]*\/docs[^)]*)\)/g)].map(
     (match) => match[1]
   );

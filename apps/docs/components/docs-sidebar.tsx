@@ -36,7 +36,9 @@ export function DocsSidebar({
                 asChild
                 className='text-muted-foreground hover:text-foreground font-medium transition-colors'
               >
-                <Link href={item.index.url}>{item.name}</Link>
+                <Link href={item.index.url} prefetch={false}>
+                  {item.name}
+                </Link>
               </SidebarGroupLabel>
             ) : (
               <SidebarGroupLabel className='text-muted-foreground font-medium'>
@@ -55,7 +57,16 @@ export function DocsSidebar({
                             isActive={item.url === pathname}
                             className='data-[active=true]:bg-accent data-[active=true]:border-accent 3xl:fixed:w-full 3xl:fixed:max-w-48 relative h-[30px] w-fit overflow-visible border border-transparent text-[0.8rem] font-medium after:absolute after:inset-x-0 after:-inset-y-1 after:z-0 after:rounded-md'
                           >
-                            <Link href={item.url}>{item.name}</Link>
+                            {/* This sidebar renders the entire page tree — ~122
+                                links, permanently on screen. Left to prefetch,
+                                every one pulls its own RSC payload (~250 KB
+                                each) just for being in the viewport, and the
+                                router cache expires them every 5 minutes so a
+                                browsing session keeps re-fetching. Navigation
+                                is fast enough without it. */}
+                            <Link href={item.url} prefetch={false}>
+                              {item.name}
+                            </Link>
                           </SidebarMenuButton>
                         </SidebarMenuItem>
                       )

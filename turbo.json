@@ -11,6 +11,7 @@
         "generated/**",
         ".next/**",
         "!.next/cache/**",
+        "out/**",
         "public/r/**",
         "public/skills/**",
         "public/AGENTS.md"

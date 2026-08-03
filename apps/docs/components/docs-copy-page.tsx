@@ -3,10 +3,11 @@
 /**
  * "Copy Page" plus the AI handoff menu, in the docs page header.
  *
- * The primary action copies the page's Markdown build — the same text served at
- * `<url>.md` — so pasting into any chat window carries the component source with
- * it. The chevron opens the same target list rendered by `DocsPageLinks`; both
- * read `AI_TARGETS`, so a new target appears in both places at once.
+ * The primary action copies the page's Markdown build — fetched from `<url>.md`
+ * on click, rather than shipped in the payload — so pasting into any chat window
+ * carries the component source with it. The chevron opens the same target list
+ * rendered by `DocsPageLinks`; both read `AI_TARGETS`, so a new target appears
+ * in both places at once.
  */
 import * as React from 'react';
 import { IconCheck, IconChevronDown, IconCopy } from '@tabler/icons-react';
@@ -30,10 +31,14 @@ import {
 import { Separator } from '@/components/ui/separator';
 
 export function DocsCopyPage({
-  markdown,
+  mdUrl,
   ...ctx
-}: PromptContext & { markdown: string }) {
+}: PromptContext & { mdUrl: string }) {
   const { copyToClipboard, isCopied } = useCopyToClipboard();
+  const fetchMarkdown = React.useCallback(
+    () => fetch(mdUrl).then((res) => res.text()),
+    [mdUrl]
+  );
 
   const trigger = (
     <Button
@@ -54,7 +59,7 @@ export function DocsCopyPage({
           variant='secondary'
           size='sm'
           className='h-8 shadow-none md:h-7 md:text-[0.8rem]'
-          onClick={() => copyToClipboard(markdown)}
+          onClick={() => copyToClipboard(fetchMarkdown)}
         >
           {isCopied ? <IconCheck /> : <IconCopy />}
           Copy Page

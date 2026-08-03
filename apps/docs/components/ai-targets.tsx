@@ -14,16 +14,14 @@
 import * as React from 'react';
 import { IconBrandGithubCopilot, IconWind } from '@tabler/icons-react';
 
+import { markdownUrl } from '@/lib/llm/url';
+
 export type PromptContext = {
   /** Absolute URL of the documentation page. */
   url: string;
   /** Registry entry name, when the page documents one. */
   name?: string;
 };
-
-export function markdownUrl(url: string): string {
-  return `${url}.md`;
-}
 
 export function buildPrompt(ctx: PromptContext, extra?: string): string {
   const install = ctx.name
