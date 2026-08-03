@@ -1,6 +1,12 @@
 // src/commands/add.ts
 import path from 'path';
-import { DEFAULT_ALIASES, applyAliases, readConfig } from '../utils/config.js';
+import {
+  DEFAULT_ALIASES,
+  applyAliases,
+  normalizeAliases,
+  readConfig,
+  rewriteImports,
+} from '../utils/config.js';
 import {
   checkExistingDependencies,
   installPackageDependencies,
@@ -40,10 +46,37 @@ export async function addCommand(
 ): Promise<void> {
   try {
     const projectPath = process.cwd();
-    await assertUsableProject(projectPath);
-
     const config = await readConfig(projectPath);
+    const { aliasRoot, source: aliasRootSource } = await assertUsableProject(
+      projectPath,
+      config?.baseDir
+    );
+
+    // Registry targets are relative to wherever `@/` points, not to the project
+    // root — the imports inside every shipped file are frozen to `@/...` before
+    // the CLI ever sees them. A project mapping `@/*` to `./src/*` therefore
+    // installs into `src/`.
+    const installRoot = path.join(projectPath, aliasRoot);
+    const { aliases, legacy } = normalizeAliases(config?.aliases, aliasRoot);
+
     const registryUrl = resolveRegistryUrl(options.registry, config?.registry);
+
+    if (aliasRoot) {
+      logger.info(
+        `Installing into ${theme.code(`${aliasRoot}/`)} ${theme.dim(
+          aliasRootSource === 'components.json'
+            ? '(baseDir in components.json)'
+            : `(${aliasRootSource} maps @/* there)`
+        )}`
+      );
+    }
+
+    if (legacy.length > 0) {
+      logger.warn(
+        `components.json aliases (${legacy.join(', ')}) are read as relative to ${theme.code('@/')}, ` +
+          `so the leading ${theme.code(`${aliasRoot}/`)} in them is ignored. Drop it to silence this.`
+      );
+    }
 
     if (components.length === 0) {
       components = await selectComponentsInteractively(registryUrl);
@@ -74,9 +107,18 @@ export async function addCommand(
         // so first-write-wins vs last-write-wins is immaterial here.
         for (const file of payload.files) {
           // Remapped once, here, so conflict detection, the dry run and the
-          // write all agree on where a file is going.
-          const target = applyAliases(file.target, config?.aliases);
-          if (!files.has(target)) files.set(target, { ...file, target });
+          // write all agree on where a file is going. Content is repointed at
+          // the same time, or a relocated file would import its siblings from
+          // where they used to live.
+          const target = applyAliases(file.target, aliases);
+          assertInside(installRoot, target);
+          if (!files.has(target)) {
+            files.set(target, {
+              ...file,
+              target,
+              content: rewriteImports(file.content, aliases),
+            });
+          }
         }
       }
       spinner.stop();
@@ -100,8 +142,29 @@ export async function addCommand(
     // Conflict handling, on the files actually about to be written.
     const conflicts: string[] = [];
     for (const target of files.keys()) {
-      if (await fileExists(path.join(projectPath, target))) {
+      if (await fileExists(path.join(installRoot, target))) {
         conflicts.push(target);
+      }
+    }
+
+    // Before the alias root was honoured, `add` wrote to the project root. Any
+    // files left there are now orphaned — outside `@/`, and never touched again
+    // by this command. Say so once, rather than let the user wonder why editing
+    // them changes nothing.
+    if (aliasRoot) {
+      const stale = path.join(
+        projectPath,
+        applyAliases('components/ui', config?.aliases)
+      );
+      const current = path.join(
+        installRoot,
+        applyAliases('components/ui', aliases)
+      );
+      if (stale !== current && (await fileExists(stale))) {
+        logger.warn(
+          `${theme.code(path.relative(projectPath, stale))} is outside your ${theme.code('@/')} alias root — ` +
+            'it predates this CLI honouring the root, and nothing there is updated any more. Move it or delete it.'
+        );
       }
     }
 
@@ -113,6 +176,7 @@ export async function addCommand(
         targets: [...files.keys()],
         packageDeps,
         conflicts,
+        aliasRoot,
       });
       return;
     }
@@ -120,9 +184,14 @@ export async function addCommand(
     const skip = new Set<string>();
     let overwriteAll = options.overwrite || false;
 
+    // Targets are `@/`-relative; every path shown to the user is from the
+    // project root, so it matches what they see in their editor.
+    const display = (target: string) =>
+      aliasRoot ? `${aliasRoot}/${target}` : target;
+
     if (conflicts.length > 0 && !overwriteAll) {
       logger.warn('The following files already exist:');
-      conflicts.forEach((file) => logger.plain(`  ${file}`));
+      conflicts.forEach((file) => logger.plain(`  ${display(file)}`));
 
       if (!options.yes) {
         const choice = await select<
@@ -145,7 +214,7 @@ export async function addCommand(
         } else if (choice === 'individual') {
           for (const target of conflicts) {
             const shouldOverwrite = await confirm({
-              message: `Overwrite ${target}?`,
+              message: `Overwrite ${display(target)}?`,
               default: false,
             });
             if (!shouldOverwrite) skip.add(target);
@@ -181,7 +250,7 @@ export async function addCommand(
     const writeSpinner = createSpinner('Writing components...').start();
     try {
       for (const file of toWrite) {
-        const dest = path.join(projectPath, file.target);
+        const dest = path.join(installRoot, file.target);
         await createDirectory(path.dirname(dest));
         await writeFile(dest, file.content);
       }
@@ -213,9 +282,9 @@ export async function addCommand(
     }
 
     // Read from the config rather than hardcoded: a project that relocated its
-    // components would otherwise be told the wrong import path.
-    const componentsAlias =
-      config?.aliases?.components ?? DEFAULT_ALIASES.components;
+    // components would otherwise be told the wrong import path. Normalised, so
+    // it names the specifier that now actually resolves.
+    const componentsAlias = aliases?.components ?? DEFAULT_ALIASES.components;
     logger.newline();
     logger.info(
       `Import from ${theme.code(`@/${componentsAlias}/ui`)} — docs at https://ui.ahmedbna.com/docs/components`
@@ -227,16 +296,34 @@ export async function addCommand(
   }
 }
 
+/**
+ * Guards against a payload target escaping the install root.
+ *
+ * The registry types `target` as a bare string, so nothing upstream stops a
+ * `../` from turning `add` into an arbitrary write. Checked while resolving,
+ * before any dependency is installed.
+ */
+function assertInside(installRoot: string, target: string): void {
+  const dest = path.resolve(installRoot, target);
+  if (dest !== installRoot && !dest.startsWith(installRoot + path.sep)) {
+    throw new CliError(`The registry asked to write outside your project.`, {
+      hint: `Refusing to write ${target}. Please report this at https://github.com/ahmedbna/ui/issues.`,
+    });
+  }
+}
+
 function reportDryRun({
   resolvedNames,
   targets,
   packageDeps,
   conflicts,
+  aliasRoot,
 }: {
   resolvedNames: Set<string>;
   targets: string[];
   packageDeps: Set<string>;
   conflicts: string[];
+  aliasRoot: string;
 }): void {
   const existing = new Set(conflicts);
 
@@ -251,7 +338,10 @@ function reportDryRun({
     // Marked rather than omitted: what `add` would do to a file that already
     // exists depends on --overwrite, and the dry run should show both.
     const note = existing.has(target) ? theme.dim('  (already exists)') : '';
-    logger.plain(`    ${theme.code(target)}${note}`);
+    // Shown from the project root, which is what the write does — a dry run
+    // that printed a different path than the one it would write is worthless.
+    const shown = aliasRoot ? `${aliasRoot}/${target}` : target;
+    logger.plain(`    ${theme.code(shown)}${note}`);
   }
 
   if (packageDeps.size > 0) {

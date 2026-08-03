@@ -37,6 +37,10 @@ Every file BNA UI installs imports through `@/…`, so this has to exist first:
 }
 ```
 
+This is also what tells the CLI where files go. If your app lives under `src/`,
+map the alias there — `"@/*": ["./src/*"]` — and `add` installs into
+`src/components/ui/…` to match.
+
 <Step>Add any component</Step>
 
 ```bash

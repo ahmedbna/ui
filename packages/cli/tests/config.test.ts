@@ -6,7 +6,9 @@ import {
   CONFIG_FILENAME,
   DEFAULT_ALIASES,
   applyAliases,
+  normalizeAliases,
   readConfig,
+  rewriteImports,
   writeConfig,
 } from '../src/utils/config.js';
 import { resolveRegistryUrl } from '../src/utils/registry-client.js';
@@ -45,14 +47,14 @@ describe('applyAliases', () => {
   it('remaps only the leading segment', () => {
     // `ui/` belongs to the registry's own layout, not to the alias.
     expect(
-      applyAliases('components/ui/button.tsx', { components: 'src/components' })
-    ).toBe('src/components/ui/button.tsx');
+      applyAliases('components/ui/button.tsx', { components: 'ui-kit' })
+    ).toBe('ui-kit/ui/button.tsx');
   });
 
   it('leaves kinds with no alias alone', () => {
-    expect(
-      applyAliases('hooks/useColor.ts', { components: 'src/components' })
-    ).toBe('hooks/useColor.ts');
+    expect(applyAliases('hooks/useColor.ts', { components: 'ui-kit' })).toBe(
+      'hooks/useColor.ts'
+    );
   });
 
   it('is a no-op without a config, and for the defaults', () => {
@@ -65,9 +67,86 @@ describe('applyAliases', () => {
   });
 
   it('ignores an unknown leading segment', () => {
+    expect(applyAliases('app/_layout.tsx', { components: 'ui-kit' })).toBe(
+      'app/_layout.tsx'
+    );
+  });
+});
+
+describe('normalizeAliases', () => {
+  it('strips an alias root a pre-existing config already spelled out', () => {
+    // Written when the CLI ignored the `@/*` mapping, so it named the full
+    // project-relative path. Honouring it literally would nest twice.
+    const { aliases, legacy } = normalizeAliases(
+      { components: 'src/components', hooks: 'src/hooks' },
+      'src'
+    );
+
+    expect(aliases).toEqual({ components: 'components', hooks: 'hooks' });
+    expect(legacy).toEqual(['components', 'hooks']);
+  });
+
+  it('leaves values that only look like the root alone', () => {
+    // `src` is not `src/`, so there is no redundant prefix to drop.
+    const { aliases, legacy } = normalizeAliases({ components: 'src' }, 'src');
+    expect(aliases).toEqual({ components: 'src' });
+    expect(legacy).toEqual([]);
+  });
+
+  it('is a no-op at the project root, and without a config', () => {
+    expect(normalizeAliases({ components: 'src/components' }, '')).toEqual({
+      aliases: { components: 'src/components' },
+      legacy: [],
+    });
+    expect(normalizeAliases(undefined, 'src')).toEqual({
+      aliases: undefined,
+      legacy: [],
+    });
+  });
+});
+
+describe('rewriteImports', () => {
+  const source = [
+    "import { Text } from '@/components/ui/text';",
+    "import { useColor } from '@/hooks/useColor';",
+    'export const Button = () => null;',
+  ].join('\n');
+
+  it('returns the registry content untouched for the defaults', () => {
+    // Byte-identical, not merely equal: the common path must not reformat what
+    // the registry served.
+    expect(rewriteImports(source, { ...DEFAULT_ALIASES })).toBe(source);
+    expect(rewriteImports(source, undefined)).toBe(source);
+  });
+
+  it('repoints only the kinds that were aliased', () => {
+    expect(rewriteImports(source, { components: 'ui-kit' })).toBe(
+      [
+        "import { Text } from '@/ui-kit/ui/text';",
+        "import { useColor } from '@/hooks/useColor';",
+        'export const Button = () => null;',
+      ].join('\n')
+    );
+  });
+
+  it('does not rescan a value that collides with another kind', () => {
+    // One pass: `components` becomes `hooks`, and that result is not then
+    // treated as a `hooks` import and remapped again.
+    expect(rewriteImports(source, { components: 'hooks', hooks: 'lib' })).toBe(
+      [
+        "import { Text } from '@/hooks/ui/text';",
+        "import { useColor } from '@/lib/useColor';",
+        'export const Button = () => null;',
+      ].join('\n')
+    );
+  });
+
+  it('handles double quotes and dynamic imports', () => {
     expect(
-      applyAliases('app/_layout.tsx', { components: 'src/components' })
-    ).toBe('app/_layout.tsx');
+      rewriteImports('const m = await import("@/theme/globals");', {
+        theme: 'styles',
+      })
+    ).toBe('const m = await import("@/styles/globals");');
   });
 });
 

@@ -18,11 +18,22 @@ export interface ComponentsConfig {
   /** Registry to fetch from. Overridden by `--registry`. */
   registry?: string;
   /**
-   * Where each kind of file lands, relative to the project root.
+   * The directory `@/` points at, relative to the project root.
+   *
+   * Normally read from `tsconfig.json`'s `@/*` mapping. Set this only when that
+   * reading is wrong — an alias declared in an extended base config, say.
+   */
+  baseDir?: string;
+  /**
+   * Where each kind of file lands, relative to the `@/` alias root.
    *
    * Registry payloads carry a `target` like `components/ui/button.tsx`. These
-   * remap the leading directory, so a project that keeps its UI under `src/`
-   * does not have to move files after every `add`.
+   * remap the leading directory — and `add` rewrites the matching import
+   * specifiers in the copied source, so the files still resolve afterwards.
+   *
+   * Note these are *not* project-root-relative. In a project whose `@/*` maps
+   * to `./src/*`, components already land under `src/`; naming this
+   * `src/components` would nest them twice.
    */
   aliases?: {
     components?: string;
@@ -41,6 +52,10 @@ export const DEFAULT_ALIASES = {
   theme: 'theme',
   lib: 'lib',
 } as const;
+
+export type AliasKind = keyof typeof DEFAULT_ALIASES;
+
+const ALIAS_KINDS = Object.keys(DEFAULT_ALIASES) as AliasKind[];
 
 export function configPath(projectPath: string): string {
   return path.join(projectPath, CONFIG_FILENAME);
@@ -74,11 +89,82 @@ export async function writeConfig(
 }
 
 /**
+ * Drops a redundant alias root from alias values written before they were
+ * `@/`-relative.
+ *
+ * `{ components: 'src/components' }` in a project whose `@/*` maps to `./src/*`
+ * meant "put components under src/" when the CLI ignored that mapping. Now that
+ * it does not, honouring the value literally would nest them twice. Reports the
+ * kinds it touched so the caller can say so once.
+ */
+export function normalizeAliases(
+  aliases: ComponentsConfig['aliases'],
+  aliasRoot: string
+): { aliases: ComponentsConfig['aliases']; legacy: AliasKind[] } {
+  if (!aliases || !aliasRoot) return { aliases, legacy: [] };
+
+  const prefix = `${aliasRoot}/`;
+  const normalized: ComponentsConfig['aliases'] = {};
+  const legacy: AliasKind[] = [];
+
+  for (const kind of ALIAS_KINDS) {
+    const value = aliases[kind];
+    if (value === undefined) continue;
+
+    if (value.startsWith(prefix)) {
+      normalized[kind] = value.slice(prefix.length);
+      legacy.push(kind);
+    } else {
+      normalized[kind] = value;
+    }
+  }
+
+  return { aliases: normalized, legacy };
+}
+
+/**
+ * The import specifiers a shipped file can make, anchored on the opening quote.
+ *
+ * The registry freezes these at build time (`fixImport` in its `build.ts`), so
+ * relocating a file without rewriting them leaves it importing a path that no
+ * longer exists.
+ */
+const IMPORT_SPECIFIER = /(['"])@\/(components|hooks|providers|theme|lib)\//g;
+
+/**
+ * Repoints a file's own imports at the project's aliases.
+ *
+ * One pass, so a value that happens to equal another kind's default —
+ * `{ components: 'hooks' }` — is written in and never rescanned.
+ */
+export function rewriteImports(
+  content: string,
+  aliases: ComponentsConfig['aliases']
+): string {
+  if (!aliases) return content;
+
+  const remapped = new Map<string, string>();
+  for (const kind of ALIAS_KINDS) {
+    const value = aliases[kind];
+    if (value && value !== DEFAULT_ALIASES[kind]) remapped.set(kind, value);
+  }
+  // The overwhelmingly common case: nothing to do, and the content stays the
+  // exact string the registry served.
+  if (remapped.size === 0) return content;
+
+  return content.replace(IMPORT_SPECIFIER, (match, quote: string, kind) => {
+    const alias = remapped.get(kind as string);
+    return alias ? `${quote}@/${alias}/` : match;
+  });
+}
+
+/**
  * Rewrites a payload's target through the project's aliases.
  *
  * Only the first path segment is remapped, and only when it is one we know:
  * `components/ui/button.tsx` follows `aliases.components`, but the `ui/`
- * beneath it is part of the registry's own layout and stays put.
+ * beneath it is part of the registry's own layout and stays put. The result is
+ * relative to the `@/` alias root, not to the project root.
  */
 export function applyAliases(
   target: string,

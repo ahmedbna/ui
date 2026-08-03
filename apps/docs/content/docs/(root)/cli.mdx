@@ -306,23 +306,45 @@ defaults. It exists so you stop repeating yourself.
 {
   "registry": "https://ui.ahmedbna.com/r",
   "aliases": {
-    "components": "src/components",
-    "hooks": "src/hooks",
-    "theme": "src/theme"
+    "components": "ui-kit"
   },
   "packageManager": "pnpm"
 }
 ```
 
-| Key              | Effect                                                           |
-| ---------------- | ---------------------------------------------------------------- |
-| `registry`       | Where `add`, `list`, `search` and `info` fetch from              |
-| `aliases`        | Where each kind of file is written, relative to the project root |
-| `packageManager` | Which manager installs npm dependencies                          |
+| Key              | Effect                                                          |
+| ---------------- | --------------------------------------------------------------- |
+| `registry`       | Where `add`, `list`, `search` and `info` fetch from             |
+| `aliases`        | Where each kind of file is written, relative to the `@/` root   |
+| `baseDir`        | Overrides where `@/` points, when the tsconfig reading is wrong |
+| `packageManager` | Which manager installs npm dependencies                         |
 
-With the aliases above, `add button` writes `src/components/ui/button.tsx`
-rather than `components/ui/button.tsx`. Only the leading segment is remapped —
+### Where files land
+
+`add` writes relative to whatever your `tsconfig.json` maps `@/*` onto — the
+same alias every installed file imports through. Nothing to configure:
+
+| `"@/*"` in your tsconfig | `add button` writes            |
+| ------------------------ | ------------------------------ |
+| `["./*"]`                | `components/ui/button.tsx`     |
+| `["./src/*"]`            | `src/components/ui/button.tsx` |
+
+`baseUrl` is honoured, and `jsconfig.json` works the same way. Set `baseDir` to
+override the detection — useful when the alias is declared in a base config you
+`extends` rather than in the project's own tsconfig.
+
+### Aliases
+
+`aliases` moves a kind of file to a different directory _inside_ `@/`, and `add`
+rewrites the matching import specifiers in the source it copies so everything
+still resolves. With the config above, `add button` writes `ui-kit/ui/button.tsx`
+and its imports read `@/ui-kit/ui/text`. Only the leading segment is remapped —
 the `ui/` beneath it is part of the registry's own layout.
+
+Note these are relative to the `@/` root, not to the project root. In an app
+whose `@/*` maps to `./src/*`, components already land under `src/` — writing
+`"components": "src/components"` would nest them twice, so `add` ignores the
+redundant prefix and tells you to drop it.
 
 ## Examples
 
