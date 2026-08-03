@@ -57,7 +57,28 @@ beforeEach(async () => {
       2
     )
   );
+  // Ordinary dotfiles npm publishes untouched: they must arrive as-is, at the
+  // root and nested. `.DS_Store` is the one dotfile that must not.
+  await fs.mkdir(path.join(start, '.vscode'), { recursive: true });
+  await fs.writeFile(path.join(start, '.vscode', 'settings.json'), '{}\n');
+  await fs.writeFile(path.join(start, '.watchmanconfig'), '{}\n');
+  await fs.writeFile(path.join(start, '.DS_Store'), 'finder junk\n');
+  await fs.writeFile(
+    path.join(start, 'app', '.DS_Store'),
+    'nested finder junk\n'
+  );
+
   await fs.writeFile(path.join(start, 'gitignore'), 'node_modules\n');
+  await fs.writeFile(path.join(start, 'npmrc'), 'node-linker=hoisted\n');
+  await fs.writeFile(path.join(start, 'npmignore'), '*.log\n');
+  await fs.writeFile(
+    path.join(start, '.yarnrc.yml'),
+    'nodeLinker: node-modules\n'
+  );
+  await fs.writeFile(
+    path.join(start, 'pnpm-workspace.yaml'),
+    'nodeLinker: hoisted\n'
+  );
   await fs.writeFile(path.join(start, 'env.example'), 'API_URL=\n');
   await fs.writeFile(
     path.join(start, 'github', 'workflows', 'ci.yml'),
@@ -115,15 +136,87 @@ describe('runScaffold', () => {
   });
 
   it('restores dot-less files npm refuses to publish', async () => {
-    // npm strips `.gitignore` from tarballs, so starters ship it dot-less.
-    // Every scaffolded project having no .gitignore was a real shipped bug.
+    // npm deletes .gitignore, .npmrc and .npmignore from a tarball, so starters
+    // ship them dot-less. Every scaffolded project having no .gitignore was a
+    // real shipped bug — these three must arrive dotted, and the dot-less
+    // original must not be left lying beside them.
+    await runScaffold(baseConfig, 'my-app', { skipInstall: true });
+    const projectPath = path.join(workdir, 'my-app');
+
+    for (const [dotless, dotted] of [
+      ['gitignore', '.gitignore'],
+      ['npmrc', '.npmrc'],
+      ['npmignore', '.npmignore'],
+    ]) {
+      await expect(
+        fs.access(path.join(projectPath, dotted))
+      ).resolves.toBeUndefined();
+      await expect(
+        fs.access(path.join(projectPath, dotless))
+      ).rejects.toThrow();
+    }
+
+    expect(
+      await fs.readFile(path.join(projectPath, '.gitignore'), 'utf8')
+    ).toContain('node_modules');
+  });
+
+  it('copies ordinary dotfiles, at the root and nested', async () => {
+    // Only the names in SKIP_SEGMENTS are dropped. A starter is free to ship
+    // `.vscode/` or `.watchmanconfig`, and npm publishes both untouched — it
+    // strips only .gitignore, .npmrc, .npmignore and .DS_Store.
+    await runScaffold(baseConfig, 'my-app', { skipInstall: true });
+    const projectPath = path.join(workdir, 'my-app');
+
+    expect(
+      await fs.readFile(path.join(projectPath, '.watchmanconfig'), 'utf8')
+    ).toBe('{}\n');
+    expect(
+      await fs.readFile(
+        path.join(projectPath, '.vscode', 'settings.json'),
+        'utf8'
+      )
+    ).toBe('{}\n');
+  });
+
+  it('never copies .DS_Store', async () => {
+    // The CLI is run straight from a checkout by CI and by the registry testing
+    // flow, where npm's tarball stripping is not there to save us.
+    await runScaffold(baseConfig, 'my-app', { skipInstall: true });
+    const projectPath = path.join(workdir, 'my-app');
+
+    await expect(
+      fs.access(path.join(projectPath, '.DS_Store'))
+    ).rejects.toThrow();
+    await expect(
+      fs.access(path.join(projectPath, 'app', '.DS_Store'))
+    ).rejects.toThrow();
+  });
+
+  it('gives yarn 2+ a node_modules install, not Plug n Play', async () => {
+    // Yarn 2+ defaults to PnP: a .pnp.cjs resolver and no node_modules at all.
+    // Metro reads node_modules off disk and has no PnP resolver, so a PnP
+    // project cannot bundle.
     await runScaffold(baseConfig, 'my-app', { skipInstall: true });
     expect(
-      await fs.readFile(path.join(workdir, 'my-app', '.gitignore'), 'utf8')
-    ).toContain('node_modules');
-    await expect(
-      fs.access(path.join(workdir, 'my-app', 'gitignore'))
-    ).rejects.toThrow();
+      await fs.readFile(path.join(workdir, 'my-app', '.yarnrc.yml'), 'utf8')
+    ).toContain('nodeLinker: node-modules');
+  });
+
+  it('carries pnpm onto the hoisted linker', async () => {
+    // Expo needs a flat node_modules; pnpm's default isolated layout leaves
+    // `expo start` unable to resolve metro-runtime's empty module. Both files
+    // ship because pnpm 11 reads only the YAML and pnpm 10.15 only the .npmrc,
+    // and the .npmrc has to survive the dot-less rename to be read at all.
+    await runScaffold(baseConfig, 'my-app', { skipInstall: true });
+    const projectPath = path.join(workdir, 'my-app');
+
+    expect(
+      await fs.readFile(path.join(projectPath, '.npmrc'), 'utf8')
+    ).toContain('node-linker=hoisted');
+    expect(
+      await fs.readFile(path.join(projectPath, 'pnpm-workspace.yaml'), 'utf8')
+    ).toContain('nodeLinker: hoisted');
   });
 
   it('copies nested files', async () => {

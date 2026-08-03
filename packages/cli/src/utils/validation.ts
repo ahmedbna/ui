@@ -65,6 +65,7 @@ export function validateCurrentDirectory(): {
     'LICENSE',
     '.DS_Store',
     '.npmrc',
+    '.npmignore',
     '.yarnrc',
     '.yarnrc.yml',
     'pnpm-workspace.yaml',

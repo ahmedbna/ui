@@ -1,0 +1,11 @@
+# Expo assumes a flat node_modules. Metro resolves its own empty module out of
+# metro-config's require paths, autolinking walks node_modules by hand, and
+# `expo-router/entry` is resolved from the project root — pnpm's default
+# isolated linker breaks all three, and `expo start` dies on an unresolvable
+# metro-runtime/src/modules/empty-module.js before it ever serves a bundle.
+#
+# pnpm 11 ignores this file for everything but auth and registry settings, so
+# the same setting ships in pnpm-workspace.yaml as `nodeLinker`. Both are here
+# because pnpm 10.15 and older read only this one. npm, yarn and bun are flat
+# already and ignore it.
+node-linker=hoisted

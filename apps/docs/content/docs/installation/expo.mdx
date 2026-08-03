@@ -69,6 +69,13 @@ npx bna-ui add
 | `--skip-install`                  | Scaffold without installing npm packages |
 | `--npm` `--yarn` `--pnpm` `--bun` | Force a package manager                  |
 
+## pnpm
+
+Scaffolds come with an `.npmrc` and a `pnpm-workspace.yaml` pinning pnpm to the
+hoisted linker. Expo needs a flat `node_modules`, and pnpm's default isolated
+layout leaves `expo start` unable to resolve `metro-runtime`. Keep both files —
+[details](/docs/cli#pnpm).
+
 ## Next
 
 - [Browse the components](/docs/components)

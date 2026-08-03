@@ -12,6 +12,12 @@ npx expo start
 
 Then press `i` for iOS, `a` for Android, or `w` for web.
 
+Expo needs a flat `node_modules` — Metro and autolinking both read it off disk.
+Two of the config files here exist only to guarantee one: `.npmrc` plus
+`pnpm-workspace.yaml` keep pnpm off its isolated layout, and `.yarnrc.yml` keeps
+yarn 2+ off Plug'n'Play. npm and bun need neither. Delete them only if you are
+prepared to fix Metro resolution yourself.
+
 ## What's in here
 
 ```

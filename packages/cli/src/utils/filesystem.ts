@@ -19,18 +19,25 @@ import { CliError } from './errors.js';
  * refuses to publish them verbatim, and restored to their real name on
  * scaffold.
  *
- * npm strips `.gitignore` from tarballs entirely, so shipping one as-is meant
- * every `bna-ui init` produced a project with no `.gitignore` at all.
+ * npm deletes exactly four names from a tarball, at any depth and without
+ * warning: `.gitignore`, `.npmrc`, `.npmignore` and `.DS_Store`. Shipping one
+ * as-is meant every `bna-ui init` produced a project with no `.gitignore` at
+ * all. The first three are wanted in a scaffold and are mapped here; `.DS_Store`
+ * is never wanted and is in the skip list below instead.
  *
  * `github` has a second reason: the skip list below drops anything named
  * `.git`, which a literal `.github/` would trip. Storing it dot-less gets it
- * past the skip, and this map puts the dot back.
+ * past the skip, and this map puts the dot back. `env.example` survives npm
+ * untouched and is here only so starters keep one convention.
  *
- * Top-level only — every entry here sits at the root of a scaffold.
+ * Top-level only — every entry here sits at the root of a scaffold. A nested
+ * `.gitignore` would still be stripped with no way back, which is why the
+ * starters build refuses to publish one (see `assertPublishable`).
  */
 const RENAME_ON_SCAFFOLD: Record<string, string> = {
   gitignore: '.gitignore',
   npmrc: '.npmrc',
+  npmignore: '.npmignore',
   'env.example': '.env.example',
   github: '.github',
 };
@@ -42,8 +49,23 @@ const RENAME_ON_SCAFFOLD: Record<string, string> = {
  * `/node_modules|\.git|dist|build/` test ran against the entire relative path,
  * so a perfectly ordinary `app/(tabs)/dashboard/` or `components/rebuild.tsx`
  * was silently dropped from the scaffold.
+ *
+ * `.DS_Store` is here for the local path only. npm strips it from tarballs, so
+ * a published scaffold could never carry one — but the CLI is also run straight
+ * from a checkout (CI's e2e job, and the registry testing flow in CLAUDE.md),
+ * and a maintainer who opened `packages/starters/` in Finder would otherwise
+ * stamp their Finder state into every project scaffolded from it.
+ *
+ * Every *other* dotfile is copied. Only names listed here are dropped, so a
+ * starter is free to ship `.vscode/`, `.watchmanconfig` or `.editorconfig`.
  */
-const SKIP_SEGMENTS = new Set(['node_modules', '.git', 'dist', 'build']);
+const SKIP_SEGMENTS = new Set([
+  'node_modules',
+  '.git',
+  'dist',
+  'build',
+  '.DS_Store',
+]);
 
 export async function pathExists(target: string): Promise<boolean> {
   try {

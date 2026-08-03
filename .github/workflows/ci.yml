@@ -94,6 +94,8 @@ jobs:
           cd app
           test -f .gitignore || { echo "::error::init produced no .gitignore"; exit 1; }
           test -f components.json || { echo "::error::init produced no components.json"; exit 1; }
+          test -f .npmrc || { echo "::error::init produced no .npmrc"; exit 1; }
+          test -f pnpm-workspace.yaml || { echo "::error::init produced no pnpm-workspace.yaml"; exit 1; }
 
           bna add button --registry http://localhost:4321/r --yes
 
@@ -154,8 +156,22 @@ jobs:
           grep -q 'sb://' sb/supabase/config.toml \
             || { echo "::error::config.toml scheme was not rewritten"; exit 1; }
 
+          bna convex cxa --skip-convex --skip-install
           bna supabase sba --skip-supabase --skip-install
           test -f sba/app/\(auth\)/sign-in.tsx || { echo "::error::auth scaffold missing sign-in"; exit 1; }
+
+          # Every overlay replaces package.json wholesale and two of them ship
+          # their own `gitignore`, so a base file surviving into the variants is
+          # not something to assume — the linker config is what makes the
+          # project installable at all, and .DS_Store is never the user's to
+          # receive.
+          for p in cx cxa sb sba; do
+            for f in .gitignore .npmrc .yarnrc.yml pnpm-workspace.yaml components.json; do
+              test -f "$p/$f" || { echo "::error::$p is missing $f"; exit 1; }
+            done
+            test -z "$(find "$p" -name .DS_Store -print -quit)" \
+              || { echo "::error::$p carries a .DS_Store"; exit 1; }
+          done
 
       # The scaffold and the registry source have to target the same SDK. They
       # drifted apart once already — starters on SDK 54 while the components
@@ -221,6 +237,72 @@ jobs:
             if (bad) { console.error(\`\${bad} unresolved imports\`); process.exit(1); }
             console.log(\`ok — \${files.length} installed files, all imports resolve\`);
           "
+
+  # Every scaffold in every other job passes `--skip-install`, so until this one
+  # nothing had ever installed a scaffold or bundled it — a project could be
+  # unbuildable by every package manager and CI would stay green.
+  #
+  # It was added after `pnpm dlx bna-ui init` was reported producing an app whose
+  # Metro could not resolve `metro-runtime/src/modules/empty-module.js` while npm
+  # worked. That exact failure did not reproduce on pnpm 10.15 or 11.18, but
+  # running the matrix turned up a different one that was entirely real: yarn 2+
+  # defaults to Plug'n'Play and installs *no* node_modules, which Metro cannot
+  # read at all. A pnpm-only job would have missed it, so every manager the CLI
+  # can drive gets a leg here.
+  #
+  # Each leg asserts the layout first — one readable line — then bundles, which
+  # is what actually exercises resolution end to end.
+  cli-install:
+    name: Scaffold installs and bundles under ${{ matrix.manager }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        manager: [npm, pnpm, yarn, bun]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - uses: oven-sh/setup-bun@v2
+        if: matrix.manager == 'bun'
+
+      - name: Use yarn 2+, not classic
+        if: matrix.manager == 'yarn'
+        run: corepack enable && corepack prepare yarn@stable --activate
+
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm turbo run build --filter=bna-ui
+
+      - name: Scaffold with a real ${{ matrix.manager }} install
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/e2e-install && cd /tmp/e2e-install
+          node "$GITHUB_WORKSPACE/packages/cli/bin/bna-ui.js" \
+            init app --${{ matrix.manager }}
+
+          cd app
+          # The dot-less rename is the only reason these reach a user at all —
+          # npm deletes .gitignore and .npmrc from the tarball.
+          for f in .gitignore .npmrc pnpm-workspace.yaml .yarnrc.yml components.json; do
+            test -f "$f" || { echo "::error::scaffold is missing $f"; exit 1; }
+          done
+          test ! -e .DS_Store || { echo "::error::.DS_Store was copied into the scaffold"; exit 1; }
+
+          # Every manager must produce a real, flat node_modules: Metro reads it
+          # off disk and understands neither pnpm's isolated store nor yarn PnP.
+          test ! -e .pnp.cjs \
+            || { echo "::error::yarn installed Plug'n'Play — Metro cannot resolve through it"; exit 1; }
+          test -f node_modules/metro-runtime/src/modules/empty-module.js \
+            || { echo "::error::node_modules is not flat under ${{ matrix.manager }}"; exit 1; }
+
+      - name: Metro bundles the scaffold
+        working-directory: /tmp/e2e-install/app
+        env:
+          EXPO_NO_TELEMETRY: '1'
+        run: npx expo export --platform ios
 
   # `bunx --bun bna-ui …` runs the CLI under Bun, not Node, and every job above
   # invokes it with `node`. That gap shipped: `bna-ui@2.0.5` scaffolded via

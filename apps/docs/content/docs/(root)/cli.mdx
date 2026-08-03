@@ -425,3 +425,53 @@ Without a flag the CLI works it out, in this order:
 4. npm.
 
 The scaffold commands print which one they picked.
+
+### Why scaffolds pin a linker
+
+Metro and React Native's autolinking both read `node_modules` off disk, so Expo
+needs a real, flat one. Two package managers do not give it one by default, and
+scaffolds ship the config that fixes each.
+
+### yarn
+
+Yarn 2+ installs [Plug'n'Play](https://yarnpkg.com/features/pnp) by default — a
+`.pnp.cjs` resolver and no `node_modules` directory at all, which Metro cannot
+read. Scaffolds ship:
+
+```yaml title=".yarnrc.yml"
+nodeLinker: node-modules
+```
+
+Yarn 1.x is flat already and ignores this file.
+
+### pnpm
+
+Scaffolds ship an `.npmrc` and a `pnpm-workspace.yaml` that both pin pnpm to the
+hoisted linker:
+
+```ini title=".npmrc"
+node-linker=hoisted
+```
+
+```yaml title="pnpm-workspace.yaml"
+nodeLinker: hoisted
+```
+
+Expo needs a flat `node_modules` — Metro resolves its own empty module out of
+`metro-config`'s require paths, and React Native's autolinking walks
+`node_modules` by hand. Under pnpm's default isolated layout `expo start` fails
+with `Unable to resolve module …/metro-runtime/src/modules/empty-module.js`.
+Both files ship because pnpm 11 reads settings only from `pnpm-workspace.yaml`
+while pnpm 10.15 and older read only `.npmrc`.
+
+If you have a project scaffolded before this landed, add both files and
+reinstall. Clear Metro's cache on the first run — switching an existing project
+from the isolated layout to the hoisted one turns `node_modules/react-native`
+from a symlink into a real directory, and a warm cache fails on the change with
+`TreeFS: Could not add directory node_modules/react-native`:
+
+```bash
+rm -rf node_modules pnpm-lock.yaml
+pnpm install
+npx expo start --clear
+```

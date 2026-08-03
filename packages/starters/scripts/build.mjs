@@ -26,9 +26,64 @@ async function loadRegistry() {
   return { REGISTRY, resolveAllDependencies };
 }
 
+/**
+ * Finder droppings. Silently excluded rather than reported, because macOS
+ * recreates one every time anyone so much as opens `packages/starters/` — a
+ * build that failed on it would fail for reasons the maintainer did not cause
+ * and cannot durably fix. A `.DS_Store` also records the *device's* view of a
+ * folder, so it is never something to hand to a user.
+ *
+ * The CLI's own copy skips it too (SKIP_SEGMENTS in filesystem.ts), so this is
+ * belt and braces: dropping it here keeps it out of the published tarball, and
+ * the skip list keeps it out of scaffolds made from a local checkout.
+ */
+const NEVER_COPY = new Set(['.DS_Store']);
+
 async function copyDir(src, dest) {
   await fs.mkdir(dest, { recursive: true });
-  await fs.cp(src, dest, { recursive: true });
+  await fs.cp(src, dest, {
+    recursive: true,
+    filter: (from) => !NEVER_COPY.has(path.basename(from)),
+  });
+}
+
+/**
+ * Names npm deletes from a tarball, at any depth and without warning, that a
+ * scaffold nonetheless needs.
+ *
+ * A starter carrying one of these publishes fine and then arrives at the user
+ * missing the file — which is exactly how every scaffolded project once shipped
+ * with no `.gitignore`. The CLI restores each from a dot-less name via
+ * RENAME_ON_SCAFFOLD, so the fix is always "rename it", which is why this is a
+ * hard failure and `.DS_Store` above is not.
+ */
+const STRIPPED_BY_NPM = new Set(['.gitignore', '.npmrc', '.npmignore']);
+
+/** Every other dotfile survives npm and is copied verbatim — see filesystem.ts. */
+async function assertPublishable(dir, name) {
+  const offenders = [];
+
+  const walk = async (current) => {
+    for (const entry of await fs.readdir(current, { withFileTypes: true })) {
+      const full = path.join(current, entry.name);
+      if (STRIPPED_BY_NPM.has(entry.name)) {
+        offenders.push(path.relative(dir, full));
+      }
+      if (entry.isDirectory()) await walk(full);
+    }
+  };
+  await walk(dir);
+
+  if (offenders.length) {
+    throw new Error(
+      `starter "${name}" ships ${offenders.length} file(s) npm strips from the ` +
+        `tarball, so users would never receive them:\n` +
+        offenders.map((f) => `    ${f}`).join('\n') +
+        `\n  Store them dot-less (\`gitignore\`, \`npmrc\`, \`npmignore\`) — the ` +
+        `CLI restores the leading dot on scaffold. Top-level only; see ` +
+        `RENAME_ON_SCAFFOLD.`
+    );
+  }
 }
 
 /**
@@ -99,7 +154,11 @@ async function buildOverlay(name, config, registry) {
   // still override one of them.
   const { entries } = await materialize(name, out, config, registry);
 
-  await fs.cp(path.join(ROOT, overlay), out, { recursive: true, force: true });
+  await fs.cp(path.join(ROOT, overlay), out, {
+    recursive: true,
+    force: true,
+    filter: (from) => !NEVER_COPY.has(path.basename(from)),
+  });
 
   const count = async (dir) => {
     let n = 0;
@@ -116,6 +175,7 @@ async function main() {
 
   for (const [name, config] of Object.entries(starters)) {
     const { entries, written } = await buildStarter(name, config, registry);
+    await assertPublishable(path.join(DIST, name), name);
     console.log(
       `✔ starter "${name}": ${written} files from ${entries} registry entries`
     );
@@ -123,6 +183,7 @@ async function main() {
 
   for (const [name, config] of Object.entries(overlays)) {
     const { files, entries } = await buildOverlay(name, config, registry);
+    await assertPublishable(path.join(DIST, name), name);
     console.log(
       `✔ starter "${name}": ${files} files (${config.base} + overlay` +
         `${entries ? ` + ${entries} registry entries` : ''})`

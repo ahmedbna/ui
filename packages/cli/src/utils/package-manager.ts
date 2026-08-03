@@ -1,7 +1,8 @@
 import { execSync } from 'child_process';
 import { detect, getUserAgent } from 'package-manager-detector';
+import { CliError } from './errors.js';
 import { logger } from './logger.js';
-import { createSpinner, failSpinner, succeedSpinner } from './theme.js';
+import { createSpinner, failSpinner, succeedSpinner, theme } from './theme.js';
 
 export type PackageManager = 'npm' | 'yarn' | 'pnpm' | 'bun';
 
@@ -97,6 +98,25 @@ export function getRunCommand(
   }
 }
 
+/**
+ * What the package manager itself said, if anything.
+ *
+ * `execSync` runs with `stdio: 'pipe'` so the spinner is not fighting an
+ * install's progress output for the same line, which means the only account of
+ * *why* an install failed is on the thrown error. npm and pnpm both put the
+ * diagnosis on stderr; bun puts some of it on stdout.
+ */
+function childOutput(error: unknown): string {
+  const { stderr, stdout } = (error ?? {}) as {
+    stderr?: Buffer | string;
+    stdout?: Buffer | string;
+  };
+  return [stderr, stdout]
+    .map((stream) => stream?.toString().trim())
+    .filter(Boolean)
+    .join('\n');
+}
+
 export async function installDependencies(
   projectPath: string,
   packageManager: PackageManager
@@ -115,9 +135,20 @@ export async function installDependencies(
     });
     succeedSpinner(spinner, 'Dependencies installed successfully!');
   } catch (error) {
-    failSpinner(spinner, 'Failed to install dependencies');
-    logger.error('Installation error:', error);
-    throw error;
+    failSpinner(spinner, `\`${installCommand}\` failed`);
+
+    // The project is already on disk and every file is correct — only the
+    // install did not finish. Printing what the package manager said, rather
+    // than a raw Error object, is the difference between a fixable message and
+    // a stack trace: this is the path a registry outage, a peer conflict or a
+    // read-only cache surfaces on.
+    const output = childOutput(error);
+    if (output) logger.plain(theme.dim(output));
+
+    throw new CliError(`Could not install dependencies in ${projectPath}.`, {
+      hint: `Run \`${installCommand}\` there to see the full output.`,
+      cause: error,
+    });
   }
 }
 
