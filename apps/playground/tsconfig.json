@@ -12,6 +12,7 @@
       ],
       "@/demo/*": ["../../packages/registry/src/demo/*"],
       "@/hooks/*": ["../../packages/registry/src/hooks/*"],
+      "@/providers/*": ["../../packages/registry/src/providers/*"],
       "@/theme/*": ["../../packages/registry/src/theme/*"],
       "@/*": ["./*"]
     }

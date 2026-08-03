@@ -25,8 +25,8 @@ export const bubbleChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 15-40-44_1.mov',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 15-40-44_1.mov',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0337-bubble-chart-demo.mov',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0337-bubble-chart-demo.mov',
     },
   },
 
@@ -47,8 +47,8 @@ export const bubbleChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 15-40-44_1.mov',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 15-40-44_1.mov',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0337-bubble-chart-demo.mov',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0337-bubble-chart-demo.mov',
     },
   },
 
@@ -69,8 +69,8 @@ export const bubbleChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 15-41-01_1.mov',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 15-41-01_1.mov',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0338-bubble-chart-sample.mov',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0338-bubble-chart-sample.mov',
     },
   },
 
@@ -91,8 +91,8 @@ export const bubbleChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 15-41-57_1.mov',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 15-41-57_1.mov',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0339-bubble-chart-styled.mov',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0339-bubble-chart-styled.mov',
     },
   },
 
@@ -113,8 +113,8 @@ export const bubbleChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 15-42-15_1.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 15-42-15_1.MP4',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0340-bubble-chart-minimal.MP4',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0340-bubble-chart-minimal.MP4',
     },
   },
 };

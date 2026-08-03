@@ -25,8 +25,8 @@ export const pieChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 44.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 44.MOV',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0363-pie-chart-demo.MOV',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0363-pie-chart-demo.MOV',
     },
   },
 
@@ -47,8 +47,8 @@ export const pieChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 44.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 44.MOV',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0363-pie-chart-demo.MOV',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0363-pie-chart-demo.MOV',
     },
   },
 
@@ -68,8 +68,8 @@ export const pieChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 43.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 43.MOV',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0364-pie-chart-sample.MOV',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0364-pie-chart-sample.MOV',
     },
   },
 
@@ -89,8 +89,8 @@ export const pieChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 42.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 42.MOV',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0365-pie-chart-styled.MOV',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0365-pie-chart-styled.MOV',
     },
   },
 
@@ -110,8 +110,8 @@ export const pieChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 41.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 41.MOV',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0366-pie-chart-large.MOV',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0366-pie-chart-large.MOV',
     },
   },
 };

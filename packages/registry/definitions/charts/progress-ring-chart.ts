@@ -25,8 +25,8 @@ export const progressRingChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 36.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 36.MOV',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0371-progress-ring-chart-demo.MOV',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0371-progress-ring-chart-demo.MOV',
     },
   },
 
@@ -48,8 +48,8 @@ export const progressRingChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 36.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 36.MOV',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0371-progress-ring-chart-demo.MOV',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0371-progress-ring-chart-demo.MOV',
     },
   },
 
@@ -70,8 +70,8 @@ export const progressRingChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 35.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 35.MOV',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0372-progress-ring-chart-sample.MOV',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0372-progress-ring-chart-sample.MOV',
     },
   },
 
@@ -92,8 +92,8 @@ export const progressRingChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 34.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 34.MOV',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0373-progress-ring-chart-styled.MOV',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0373-progress-ring-chart-styled.MOV',
     },
   },
 
@@ -114,8 +114,8 @@ export const progressRingChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 33.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 33.MOV',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0374-progress-ring-chart-large.MOV',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0374-progress-ring-chart-large.MOV',
     },
   },
 };

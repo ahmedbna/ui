@@ -125,6 +125,8 @@ export const componentRegistrySchema = z.object({
   /** Other registry entries this one composes. */
   registryDependencies: z.array(z.string()).optional(),
   hooks: z.array(z.string()).optional(),
+  /** React context providers, e.g. `mode`. Named entries, like `theme`. */
+  providers: z.array(z.string()).optional(),
   theme: z.array(z.string()).optional(),
   files: z.array(componentFileSchema).min(1),
   preview: previewSchema.optional(),

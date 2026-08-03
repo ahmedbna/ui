@@ -3,12 +3,13 @@ import { ToastProvider } from '@/components/ui/toast';
 import { View } from '@/components/ui/view';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { AuthProvider, useAuth } from '@/providers/auth-provider';
+import { ThemeProvider } from '@/providers/theme-provider';
 import { Colors } from '@/theme/colors';
-import { ThemeProvider } from '@/theme/theme-provider';
 import { osName } from 'expo-device';
 import { isLiquidGlassAvailable } from 'expo-glass-effect';
 import * as NavigationBar from 'expo-navigation-bar';
 import { Stack } from 'expo-router';
+import * as SecureStore from 'expo-secure-store';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { setBackgroundColorAsync } from 'expo-system-ui';
@@ -112,7 +113,17 @@ function RootNavigator() {
   );
 }
 
-export default function RootLayout() {
+/**
+ * Status bar, Android navigation bar and root background, kept in step with the
+ * theme.
+ *
+ * A component rather than inline in `RootLayout` so `useColorScheme()` resolves
+ * *inside* `ThemeProvider`. Read above it and this would see the OS scheme
+ * rather than the user's choice — which on native the global `Appearance`
+ * override happens to paper over, but on web would leave the system chrome
+ * stuck on the system theme.
+ */
+function SystemChrome() {
   const colorScheme = useColorScheme() || 'light';
 
   useEffect(() => {
@@ -131,9 +142,18 @@ export default function RootLayout() {
   }, [colorScheme]);
 
   return (
+    <StatusBar style={colorScheme === 'dark' ? 'light' : 'dark'} animated />
+  );
+}
+
+export default function RootLayout() {
+  return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <ThemeProvider>
-        <StatusBar style={colorScheme === 'dark' ? 'light' : 'dark'} animated />
+      {/* `storage` makes the light/dark choice survive a restart. SecureStore
+          has no web implementation, so on web this degrades to no persistence
+          rather than erroring — the toggle itself still works there. */}
+      <ThemeProvider storage={SecureStore}>
+        <SystemChrome />
 
         <AuthProvider>
           <ToastProvider>

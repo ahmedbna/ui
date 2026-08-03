@@ -25,8 +25,8 @@ export const treemapChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/treemap-demo.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/treemap-demo.MP4',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0395-treemap-chart-demo.MP4',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0395-treemap-chart-demo.MP4',
     },
   },
 
@@ -47,8 +47,8 @@ export const treemapChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/treemap-demo.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/treemap-demo.MP4',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0395-treemap-chart-demo.MP4',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0395-treemap-chart-demo.MP4',
     },
   },
 
@@ -68,8 +68,8 @@ export const treemapChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/treemap-sample.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/treemap-sample.MP4',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0396-treemap-chart-sample.MP4',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0396-treemap-chart-sample.MP4',
     },
   },
 
@@ -89,8 +89,8 @@ export const treemapChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/treemap-styled.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/treemap-styled.MP4',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0397-treemap-chart-styled.MP4',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0397-treemap-chart-styled.MP4',
     },
   },
 
@@ -110,8 +110,8 @@ export const treemapChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/treemap-large.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/treemap-large.MP4',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0398-treemap-chart-large.MP4',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0398-treemap-chart-large.MP4',
     },
   },
 };

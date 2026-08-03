@@ -36,6 +36,7 @@
     "expo-media-library": "~57.0.3",
     "expo-navigation-bar": "~57.0.2",
     "expo-router": "~57.0.8",
+    "expo-secure-store": "~57.0.1",
     "expo-splash-screen": "~57.0.5",
     "expo-status-bar": "~57.0.1",
     "expo-symbols": "~57.0.1",

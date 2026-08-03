@@ -19,8 +19,9 @@ export const cardRegistry = {
       },
     ],
     preview: {
-      light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5489.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5489.PNG',
+      light:
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0090-card-demo.PNG',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0090-card-demo.PNG',
     },
   },
 
@@ -40,8 +41,9 @@ export const cardRegistry = {
       },
     ],
     preview: {
-      light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5489.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5489.PNG',
+      light:
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0090-card-demo.PNG',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0090-card-demo.PNG',
     },
   },
 
@@ -61,8 +63,9 @@ export const cardRegistry = {
       },
     ],
     preview: {
-      light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5490.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5490.PNG',
+      light:
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0091-card-simple.PNG',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0091-card-simple.PNG',
     },
   },
 
@@ -82,8 +85,9 @@ export const cardRegistry = {
       },
     ],
     preview: {
-      light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5492.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5492.PNG',
+      light:
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0092-card-with-image.PNG',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0092-card-with-image.PNG',
     },
   },
 
@@ -103,8 +107,9 @@ export const cardRegistry = {
       },
     ],
     preview: {
-      light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5493.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5493.PNG',
+      light:
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0093-card-with-form.PNG',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0093-card-with-form.PNG',
     },
   },
 
@@ -124,8 +129,9 @@ export const cardRegistry = {
       },
     ],
     preview: {
-      light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5494.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5494.PNG',
+      light:
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0094-card-stats.PNG',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0094-card-stats.PNG',
     },
   },
 
@@ -145,8 +151,9 @@ export const cardRegistry = {
       },
     ],
     preview: {
-      light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5495.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5495.PNG',
+      light:
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0095-card-notification.PNG',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0095-card-notification.PNG',
     },
   },
 
@@ -166,8 +173,9 @@ export const cardRegistry = {
       },
     ],
     preview: {
-      light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5496.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5496.PNG',
+      light:
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0096-card-pricing.PNG',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0096-card-pricing.PNG',
     },
   },
 };

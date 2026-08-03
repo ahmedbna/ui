@@ -1,3 +1,7 @@
+/**
+ * Palette and layout data. The providers that *read* it live in
+ * `definitions/providers/`.
+ */
 export const themeRegistry = {
   colors: {
     name: 'colors',
@@ -23,22 +27,6 @@ export const themeRegistry = {
         type: 'registry:theme',
         path: 'src/theme/globals.ts',
         target: 'theme/globals.ts',
-      },
-    ],
-  },
-
-  'theme-provider': {
-    name: 'theme-provider',
-    description: 'Theme Provider',
-    type: 'registry:theme',
-    dependencies: ['expo-router'],
-    hooks: ['useColorScheme'],
-    theme: ['colors'],
-    files: [
-      {
-        type: 'registry:theme',
-        path: 'src/theme/theme-provider.tsx',
-        target: 'theme/theme-provider.tsx',
       },
     ],
   },

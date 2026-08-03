@@ -20,8 +20,8 @@ export const helloWaveRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-01-2025 07-12-54_1.mov',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-01-2025 07-12-54_1.mov',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0151-hello-wave-demo.mov',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0151-hello-wave-demo.mov',
     },
   },
 
@@ -42,8 +42,8 @@ export const helloWaveRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-01-2025 07-12-54_1.mov',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-01-2025 07-12-54_1.mov',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0151-hello-wave-demo.mov',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0151-hello-wave-demo.mov',
     },
   },
 };

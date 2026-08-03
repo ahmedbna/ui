@@ -25,8 +25,8 @@ export const heatmapChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 52.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 52.MOV',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0355-heatmap-chart-demo.MOV',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0355-heatmap-chart-demo.MOV',
     },
   },
 
@@ -47,8 +47,8 @@ export const heatmapChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 52.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 52.MOV',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0355-heatmap-chart-demo.MOV',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0355-heatmap-chart-demo.MOV',
     },
   },
 
@@ -68,8 +68,8 @@ export const heatmapChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 51.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 51.MOV',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0356-heatmap-chart-sample.MOV',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0356-heatmap-chart-sample.MOV',
     },
   },
 
@@ -89,8 +89,8 @@ export const heatmapChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 50.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 50.MOV',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0357-heatmap-chart-styled.MOV',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0357-heatmap-chart-styled.MOV',
     },
   },
 
@@ -110,8 +110,8 @@ export const heatmapChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 49.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 49.MOV',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0358-heatmap-chart-large.MOV',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0358-heatmap-chart-large.MOV',
     },
   },
 };

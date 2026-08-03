@@ -18,8 +18,9 @@ export const badgeRegistry = {
       },
     ],
     preview: {
-      light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5453.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5453.PNG',
+      light:
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0058-badge-demo.PNG',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0058-badge-demo.PNG',
     },
   },
 
@@ -39,8 +40,9 @@ export const badgeRegistry = {
       },
     ],
     preview: {
-      light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5453.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5453.PNG',
+      light:
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0058-badge-demo.PNG',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0058-badge-demo.PNG',
     },
   },
 
@@ -60,8 +62,9 @@ export const badgeRegistry = {
       },
     ],
     preview: {
-      light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5454.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5454.PNG',
+      light:
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0059-badge-icons.PNG',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0059-badge-icons.PNG',
     },
   },
 
@@ -81,8 +84,9 @@ export const badgeRegistry = {
       },
     ],
     preview: {
-      light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5455.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5455.PNG',
+      light:
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0060-badge-notifications.PNG',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0060-badge-notifications.PNG',
     },
   },
 
@@ -102,8 +106,9 @@ export const badgeRegistry = {
       },
     ],
     preview: {
-      light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5456.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5456.PNG',
+      light:
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0061-badge-styled.PNG',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0061-badge-styled.PNG',
     },
   },
 
@@ -123,8 +128,9 @@ export const badgeRegistry = {
       },
     ],
     preview: {
-      light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5457.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5457.PNG',
+      light:
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0062-badge-interactive.PNG',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0062-badge-interactive.PNG',
     },
   },
 
@@ -144,8 +150,9 @@ export const badgeRegistry = {
       },
     ],
     preview: {
-      light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5458.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5458.PNG',
+      light:
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0063-badge-sizes.PNG',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0063-badge-sizes.PNG',
     },
   },
 
@@ -165,8 +172,9 @@ export const badgeRegistry = {
       },
     ],
     preview: {
-      light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5460.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5460.PNG',
+      light:
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0064-badge-status.PNG',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0064-badge-status.PNG',
     },
   },
 };

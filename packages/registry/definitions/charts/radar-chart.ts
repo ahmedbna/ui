@@ -25,8 +25,8 @@ export const radarChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 32.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 32.MOV',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0375-radar-chart-demo.MOV',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0375-radar-chart-demo.MOV',
     },
   },
 
@@ -47,8 +47,8 @@ export const radarChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 32.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 32.MOV',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0375-radar-chart-demo.MOV',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0375-radar-chart-demo.MOV',
     },
   },
 
@@ -68,8 +68,8 @@ export const radarChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 31.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 31.MOV',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0376-radar-chart-sample.MOV',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0376-radar-chart-sample.MOV',
     },
   },
 
@@ -89,8 +89,8 @@ export const radarChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 59.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 59.MOV',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0377-radar-chart-styled.MOV',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0377-radar-chart-styled.MOV',
     },
   },
 
@@ -110,8 +110,8 @@ export const radarChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 29.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 29.MOV',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0378-radar-chart-large.MOV',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0378-radar-chart-large.MOV',
     },
   },
 };

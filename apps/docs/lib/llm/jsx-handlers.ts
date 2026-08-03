@@ -380,7 +380,7 @@ const blockquoteOf: Handler = async (node, ctx, walk) => [
   } as RootContent,
 ];
 
-/** `<ComponentsList/>`, `<ChartsList/>`, `<HooksList/>`, `<ThemeList/>` */
+/** `<ComponentsList/>`, `<ChartsList/>`, `<HooksList/>`, `<ThemeList/>`, `<ProvidersList/>` */
 function pageTreeList(id: string): Handler {
   return async (_node, ctx) => {
     const folder = source.pageTree.children.find(
@@ -599,6 +599,7 @@ const HANDLERS: Record<string, Handler> = {
   ChartsList: pageTreeList('charts'),
   HooksList: pageTreeList('hooks'),
   ThemeList: pageTreeList('theme'),
+  ProvidersList: pageTreeList('providers'),
 
   Image: image,
   ImagePreview: image,

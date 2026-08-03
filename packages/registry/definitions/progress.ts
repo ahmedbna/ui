@@ -23,8 +23,9 @@ export const progressRegistry = {
       },
     ],
     preview: {
-      light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5657.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5657.PNG',
+      light:
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0226-progress-demo.PNG',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0226-progress-demo.PNG',
     },
   },
 
@@ -44,8 +45,9 @@ export const progressRegistry = {
       },
     ],
     preview: {
-      light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5657.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5657.PNG',
+      light:
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0226-progress-demo.PNG',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0226-progress-demo.PNG',
     },
   },
 
@@ -66,8 +68,8 @@ export const progressRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-01-2025 09-38-30_1.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-01-2025 09-38-30_1.MP4',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0227-progress-interactive.MP4',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0227-progress-interactive.MP4',
     },
   },
 
@@ -86,8 +88,9 @@ export const progressRegistry = {
       },
     ],
     preview: {
-      light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5660.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5660.PNG',
+      light:
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0228-progress-heights.PNG',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0228-progress-heights.PNG',
     },
   },
 
@@ -106,8 +109,9 @@ export const progressRegistry = {
       },
     ],
     preview: {
-      light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5661.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5661.PNG',
+      light:
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0229-progress-labels.PNG',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0229-progress-labels.PNG',
     },
   },
 
@@ -127,8 +131,8 @@ export const progressRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-01-2025 09-39-51_1.mov',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-01-2025 09-39-51_1.mov',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0230-progress-animated.mov',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0230-progress-animated.mov',
     },
   },
 
@@ -148,8 +152,8 @@ export const progressRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-01-2025 09-40-29_1.mov',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-01-2025 09-40-29_1.mov',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0231-progress-media.mov',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0231-progress-media.mov',
     },
   },
 
@@ -169,8 +173,8 @@ export const progressRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-01-2025 09-42-04_1.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-01-2025 09-42-04_1.MP4',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0232-progress-steps.MP4',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0232-progress-steps.MP4',
     },
   },
 };

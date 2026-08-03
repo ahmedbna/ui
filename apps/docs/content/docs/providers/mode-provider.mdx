@@ -1,0 +1,149 @@
+---
+title: ModeProvider
+description: Holds the app-wide light, dark or system theme mode, resolves it to a concrete color scheme, and optionally persists it.
+---
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx bna-ui add mode-provider
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>This file has no dependencies beyond React and React Native.</Step>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name='mode-provider' title='providers/mode-provider.tsx' />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+[`ThemeProvider`](/docs/providers/theme-provider) mounts this for you, so most apps
+never import it directly — and every scaffold from `npx bna-ui init` is already
+set up. Mount it yourself only if you are not using `ThemeProvider`:
+
+```tsx
+import { ModeProvider } from '@/providers/mode-provider';
+
+export default function RootLayout() {
+  return (
+    <ModeProvider>
+      <Stack />
+    </ModeProvider>
+  );
+}
+```
+
+Everything below it — [`useColorScheme`](/docs/hooks/useColorScheme),
+[`useColor`](/docs/hooks/useColor), and therefore every component in the
+library — resolves its colors through this provider.
+
+### Persisting the Choice
+
+Pass any key/value store. `expo-secure-store` — what every scaffold from
+`npx bna-ui init` uses — already matches the shape:
+
+```tsx
+import * as SecureStore from 'expo-secure-store';
+import { ThemeProvider } from '@/providers/theme-provider';
+
+export default function RootLayout() {
+  return (
+    <ThemeProvider storage={SecureStore}>
+      <Stack />
+    </ThemeProvider>
+  );
+}
+```
+
+SecureStore has no web implementation, so on web this degrades to no persistence
+rather than erroring — the toggle itself still works there. Reach for
+`AsyncStorage` instead if persisting on web matters more to you than using the
+store the scaffolds already depend on.
+
+The mode is restored once on mount and written on every change. Nothing is
+persisted unless you pass `storage`, which is why this file adds no
+dependencies — you choose the storage engine, and apps that do not want one do
+not pay for it. A missing, malformed or unreadable value falls back to
+`defaultMode`, and a store that throws — including one that is simply
+unavailable on the current platform — is swallowed, so persistence can never
+block startup.
+
+## API Reference
+
+<ApiReference name='mode-provider' />
+
+### ModeStorage
+
+```tsx
+type ModeStorage = {
+  getItem: (key: string) => string | null | Promise<string | null>;
+  setItem: (key: string, value: string) => void | Promise<void>;
+};
+```
+
+Deliberately the smallest surface that does the job, and sync-or-async on both
+methods, so `expo-secure-store` (sync `getItem`/`setItem`), `AsyncStorage`
+(promise-returning) and MMKV adapters all satisfy it with no shim.
+
+## How It Works
+
+The provider keeps the requested `mode` in state and derives `scheme` from it —
+resolving `'system'` against React Native's `useColorScheme()`. Reading `scheme`
+rather than re-deriving from `mode` matters: outside system mode there is no
+meaningful system value to fall back to.
+
+On native, `setMode` additionally mirrors the choice into React Native's global
+`Appearance`, so UI that sits _above_ this provider follows too — the status
+bar, the Android navigation bar, native sheet presentation, and root layouts
+that read the OS scheme to color system chrome.
+
+That call is feature-detected. `Appearance.setColorScheme` landed in React
+Native 0.73 and react-native-web has never implemented it — on web `Appearance`
+is read-only, offering `getColorScheme` and `addChangeListener` and no setter.
+The context is what drives the theme there, which is why the toggle works on
+web at all.
+
+## Why Not Local State
+
+The mode used to live in `useModeToggle` as local `useState` next to a global
+`Appearance.setColorScheme` call. Half the state was per-component and half was
+app-wide, which broke in three ways:
+
+- **On web, nothing happened.** There was no setter to write the override
+  through, so pressing the toggle changed the icon and left every color alone.
+- **Remounting reset the cycle.** Navigate away from a screen holding the
+  toggle and back, and `mode` returned to `'system'` while the app stayed dark —
+  so the next press jumped to the wrong mode.
+- **Two toggles disagreed.** Each call site had its own independent `mode`.
+
+Moving the state into context fixes all three, and makes persistence a single
+prop rather than a hook every app has to write for itself.
+
+## Related
+
+- [`useModeToggle`](/docs/hooks/useModeToggle) - Cycles light → dark → system
+- [`ThemeProvider`](/docs/providers/theme-provider) - Mounts this provider for you
+- [`useColorScheme`](/docs/hooks/useColorScheme) - Reads the resolved scheme
+- [`ModeToggle`](/docs/components/mode-toggle) - The animated toggle button

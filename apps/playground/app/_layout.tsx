@@ -4,7 +4,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import 'react-native-reanimated';
 
 import { ToastProvider } from '@/components/ui/toast';
-import { ThemeProvider } from '@/theme/theme-provider';
+import { ThemeProvider } from '@/providers/theme-provider';
 
 export default function RootLayout() {
   return (

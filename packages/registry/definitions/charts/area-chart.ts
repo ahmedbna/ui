@@ -26,8 +26,8 @@ export const areaChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 15-15-47_1.mov',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 15-15-47_1.mov',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0330-area-chart-demo.mov',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0330-area-chart-demo.mov',
     },
   },
 
@@ -48,8 +48,8 @@ export const areaChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 15-15-47_1.mov',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 15-15-47_1.mov',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0330-area-chart-demo.mov',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0330-area-chart-demo.mov',
     },
   },
 
@@ -69,8 +69,8 @@ export const areaChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 15-17-36_1.mov',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 15-17-36_1.mov',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0331-area-chart-interactive.mov',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0331-area-chart-interactive.mov',
     },
   },
 
@@ -90,8 +90,8 @@ export const areaChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 15-19-54_1.mov',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 15-19-54_1.mov',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0332-area-chart-styled.mov',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0332-area-chart-styled.mov',
     },
   },
 
@@ -111,8 +111,8 @@ export const areaChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 16.mov',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 16.mov',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0333-area-chart-large.mov',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0333-area-chart-large.mov',
     },
   },
 };

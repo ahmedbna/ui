@@ -5,101 +5,103 @@ import { IPhonePreview } from '@/components/iphone-preview';
 const items = [
   {
     light:
-      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-01-2025 02-51-01_1.MP4',
-    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-01-2025 02-51-01_1.MP4',
+      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0146-gallery-grid.MP4',
+    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0146-gallery-grid.MP4',
   },
   {
     light:
-      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_06-30-2025 23-14-20_1.MP4',
-    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_06-30-2025 23-14-20_1.MP4',
+      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0103-carousel-manual.MP4',
+    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0103-carousel-manual.MP4',
   },
   {
     light:
-      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-01-2025 01-09-54_1.MP4',
-    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-01-2025 01-09-54_1.MP4',
+      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0132-date-picker-datetime.MP4',
+    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0132-date-picker-datetime.MP4',
   },
   {
     light:
-      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-01-2025 08-33-25_1.MP4',
-    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-01-2025 08-33-25_1.MP4',
+      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0205-parallax-scrollview-demo.MP4',
+    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0205-parallax-scrollview-demo.MP4',
   },
   {
     light:
-      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_06-29-2025 20-13-01_1.MP4',
-    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_06-29-2025 20-13-01_1.MP4',
+      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0030-audio-player-music.MP4',
+    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0030-audio-player-music.MP4',
   },
   {
     light:
-      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_06-29-2025 23-00-33_1.MP4',
-    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_06-29-2025 23-00-33_1.MP4',
+      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0069-bottom-sheet-list.MP4',
+    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0069-bottom-sheet-list.MP4',
   },
   {
     light:
-      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-01-2025 09-23-30_1.MP4',
-    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-01-2025 09-23-30_1.MP4',
-  },
-  {
-    light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5449.PNG',
-    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5449.PNG',
-  },
-  {
-    light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5494.PNG',
-    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5494.PNG',
+      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0225-popover-menu.MP4',
+    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0225-popover-menu.MP4',
   },
   {
     light:
-      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_06-30-2025 01-48-08_1.mov',
-    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_06-30-2025 01-48-08_1.mov',
+      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0048-avatar-styled.PNG',
+    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0048-avatar-styled.PNG',
   },
   {
     light:
-      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_06-30-2025 23-22-23_1.MP4',
-    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_06-30-2025 23-22-23_1.MP4',
+      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0094-card-stats.PNG',
+    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0094-card-stats.PNG',
   },
   {
     light:
-      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_06-30-2025 23-30-31_1.MP4',
-    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_06-30-2025 23-30-31_1.MP4',
+      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0083-camera-demo.mov',
+    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0083-camera-demo.mov',
   },
   {
     light:
-      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-01-2025 06-34-14_1.MP4',
-    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-01-2025 06-34-14_1.MP4',
+      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0116-color-picker-sizes.MP4',
+    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0116-color-picker-sizes.MP4',
   },
   {
     light:
-      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-01-2025 07-20-37_1.MP4',
-    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-01-2025 07-20-37_1.MP4',
+      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0123-combobox-demo.MP4',
+    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0123-combobox-demo.MP4',
   },
   {
     light:
-      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-01-2025 06-33-17_1.MP4',
-    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-01-2025 06-33-17_1.MP4',
+      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0167-input-otp-demo.MP4',
+    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0167-input-otp-demo.MP4',
   },
   {
     light:
-      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-01-2025 11-10-10_1.MP4',
-    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-01-2025 11-10-10_1.MP4',
+      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0198-onboarding-demo.MP4',
+    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0198-onboarding-demo.MP4',
   },
   {
     light:
-      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-02-2025 06-25-51_1.MP4',
-    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-02-2025 06-25-51_1.MP4',
+      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0182-input-form.MP4',
+    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0182-input-form.MP4',
   },
   {
     light:
-      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-01-2025 10-43-03_1.MP4',
-    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-01-2025 10-43-03_1.MP4',
+      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0293-table-demo.MP4',
+    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0293-table-demo.MP4',
   },
   {
     light:
-      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-01-2025 10-49-03_1.MP4',
-    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-01-2025 10-49-03_1.MP4',
+      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0307-toast-variants.MP4',
+    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0307-toast-variants.MP4',
   },
   {
     light:
-      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-02-2025 06-18-46_1.MP4',
-    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-02-2025 06-18-46_1.MP4',
+      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0275-skeleton-card.MP4',
+    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0275-skeleton-card.MP4',
+  },
+  {
+    light:
+      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0284-spinner-colors.MP4',
+    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0284-spinner-colors.MP4',
+  },
+  {
+    light:
+      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0299-tabs-demo.MP4',
+    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0299-tabs-demo.MP4',
   },
 ];
 

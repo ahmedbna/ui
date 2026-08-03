@@ -21,8 +21,8 @@ export const alertDialogRegistry = {
     preview: {
       // todo: prepare preview videos
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_09-05-2025 15-56-08_1.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_09-05-2025 15-56-08_1.MP4',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0014-alert-dialog-demo.MP4',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0014-alert-dialog-demo.MP4',
     },
   },
 
@@ -44,8 +44,8 @@ export const alertDialogRegistry = {
     preview: {
       // todo: prepare preview videos
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_09-05-2025 15-56-08_1.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_09-05-2025 15-56-08_1.MP4',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0014-alert-dialog-demo.MP4',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0014-alert-dialog-demo.MP4',
     },
   },
 
@@ -67,8 +67,8 @@ export const alertDialogRegistry = {
     preview: {
       // todo: prepare preview videos
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_09-05-2025 15-56-47_1.MP4',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_09-05-2025 15-56-47_1.MP4',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0015-alert-dialog-destructive.MP4',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0015-alert-dialog-destructive.MP4',
     },
   },
 

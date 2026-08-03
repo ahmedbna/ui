@@ -26,6 +26,11 @@ const INTENTIONAL_REMOVALS: Record<string, string[]> = {
   // `react-native-worklets` requirement for a dependency it never had.
   popover: ['react-native-reanimated'],
 
+  // The hook no longer imports `@/hooks/useColorScheme`. It reads the resolved
+  // scheme off the mode context instead, which is the single source of truth
+  // for the toggle on every platform — see `providers/mode-provider.tsx`.
+  useModeToggle: ['useColorScheme'],
+
   // SDK 56 forked React Navigation into Expo Router: `useBottomTabBarHeight`
   // and friends now come from `expo-router/js-tabs`, so the standalone
   // `@react-navigation/bottom-tabs` dependency was replaced by `expo-router`.
@@ -131,8 +136,27 @@ describe('registry integrity', () => {
 describe('equivalence with the pre-migration registry', () => {
   const base = baseline as Record<string, any>;
 
+  /**
+   * Entries added since the baseline was taken.
+   *
+   * `mode` extracts the light/dark/system state out of `useModeToggle`, which
+   * held it in local `useState` alongside a global `Appearance.setColorScheme`
+   * call. That split state desynced across toggle instances on native, and did
+   * nothing at all on web — react-native-web's `Appearance` is read-only, so
+   * there was no setter for the override to go through. It has to be its own
+   * entry rather than part of `theme-provider`: `useColorScheme` reads it, and
+   * `theme-provider` already depends on `useColorScheme`.
+   */
+  const SANCTIONED_ADDITIONS = new Set(['mode-provider']);
+
   it('has exactly the same set of entries', () => {
-    expect(Object.keys(REGISTRY).sort()).toEqual(Object.keys(base).sort());
+    const added = Object.keys(REGISTRY).filter(
+      (key) => !(key in base) && !SANCTIONED_ADDITIONS.has(key)
+    );
+    expect(added).toEqual([]);
+
+    const removed = Object.keys(base).filter((key) => !(key in REGISTRY));
+    expect(removed).toEqual([]);
   });
 
   /**
@@ -153,10 +177,26 @@ describe('equivalence with the pre-migration registry', () => {
     'combobox-search',
   ]);
 
+  /**
+   * Entries whose files moved to a different folder on purpose.
+   *
+   * `theme/` held both palette data (`colors`, `globals`) and a React provider.
+   * Providers now live under `providers/`, so the folder a file sits in says
+   * what kind of thing it is. This changes the `@/…` specifier consumers import
+   * through, which is why it ships as a breaking release rather than quietly.
+   */
+  const SANCTIONED_FILE_MOVES: Record<string, [from: string, to: string]> = {
+    'theme-provider': ['theme/', 'providers/'],
+  };
+
   it('identity fields are unchanged, modulo the templates/ -> src/ path move', () => {
     const diffs: string[] = [];
 
     for (const key of Object.keys(base)) {
+      const move = SANCTIONED_FILE_MOVES[key];
+      const relocate = (value: string) =>
+        move ? value.replace(move[0], move[1]) : value;
+
       const before = {
         name: base[key].name,
         description: SANCTIONED_DESCRIPTION_CHANGES.has(key)
@@ -167,11 +207,13 @@ describe('equivalence with the pre-migration registry', () => {
           : base[key].type,
         category: base[key].category,
         preview: base[key].preview,
-        // Sanctioned mechanical changes: the registry package root moved, and
-        // the mistyped demos above were retyped on their files too.
+        // Sanctioned mechanical changes: the registry package root moved, the
+        // mistyped demos above were retyped on their files too, and the entries
+        // in SANCTIONED_FILE_MOVES changed folder.
         files: base[key].files.map((f: any) => ({
           ...f,
-          path: f.path.replace(/^templates\//, 'src/'),
+          path: relocate(f.path.replace(/^templates\//, 'src/')),
+          target: relocate(f.target),
           type: SANCTIONED_TYPE_CHANGES.has(key) ? 'registry:example' : f.type,
         })),
       };
@@ -234,7 +276,8 @@ describe('equivalence with the pre-migration registry', () => {
 });
 
 describe('payload self-containment', () => {
-  const LOCAL_IMPORT = /from '@\/((?:components|hooks|theme)\/[\w/-]+)'/g;
+  const LOCAL_IMPORT =
+    /from '@\/((?:components|hooks|theme|providers)\/[\w/-]+)'/g;
 
   it('every payload ships every module its files import', async () => {
     const violations: string[] = [];

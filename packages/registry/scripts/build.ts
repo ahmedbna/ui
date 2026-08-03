@@ -226,11 +226,17 @@ async function validate(registry: Registry) {
         );
       }
     }
-    // `hooks` and `theme` name registry entries too — they are just declared in
-    // separate fields. Validate them the same way so a typo can't slip through.
+    // `hooks`, `providers` and `theme` name registry entries too — they are just
+    // declared in separate fields. Validate them the same way so a typo can't
+    // slip through.
     for (const hook of entry.hooks ?? []) {
       if (!registry[hook]) {
         fail(`"${key}": hooks references unknown entry "${hook}"`);
+      }
+    }
+    for (const provider of entry.providers ?? []) {
+      if (!registry[provider]) {
+        fail(`"${key}": providers references unknown entry "${provider}"`);
       }
     }
     for (const theme of entry.theme ?? []) {
@@ -253,7 +259,7 @@ async function validate(registry: Registry) {
 
 /**
  * The full set of entries a consumer needs for `name`: its registryDependencies
- * closure, plus the hook and theme entries those declare. Hooks and theme live
+ * closure, plus the hook, provider and theme entries those declare. Those live
  * in their own fields rather than in registryDependencies, but the consumer
  * needs their files just the same — folding them in here is what lets
  * `bna-ui add <name>` be a single request.
@@ -263,16 +269,17 @@ function expandClosure(registry: Registry, name: string): string[] {
   const visiting = new Set<string>();
   const done = new Set<string>();
 
-  // Depth-first over the union of registryDependencies, hooks and theme, so a
-  // hook that itself pulls a hook and a theme file (useColor -> useColorScheme,
-  // colors) is fully expanded. Expanding only one level shipped payloads whose
-  // files imported things the payload did not contain.
+  // Depth-first over the union of registryDependencies, hooks, providers and
+  // theme, so a hook that itself pulls a hook and a theme file (useColor ->
+  // useColorScheme, colors) is fully expanded. Expanding only one level shipped
+  // payloads whose files imported things the payload did not contain.
   const visit = (n: string) => {
     if (done.has(n) || visiting.has(n) || !registry[n]) return;
     visiting.add(n);
 
     const entry = registry[n];
     for (const dep of entry.hooks ?? []) visit(dep);
+    for (const dep of entry.providers ?? []) visit(dep);
     for (const dep of entry.theme ?? []) visit(dep);
     for (const dep of entry.registryDependencies ?? []) visit(dep);
 

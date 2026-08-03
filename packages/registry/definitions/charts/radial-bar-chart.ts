@@ -25,8 +25,8 @@ export const radialBarChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 61.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 61.MOV',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0379-radial-bar-chart-demo.MOV',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0379-radial-bar-chart-demo.MOV',
     },
   },
 
@@ -48,8 +48,8 @@ export const radialBarChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 61.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 61.MOV',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0379-radial-bar-chart-demo.MOV',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0379-radial-bar-chart-demo.MOV',
     },
   },
 
@@ -70,8 +70,8 @@ export const radialBarChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 27.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 27.MOV',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0380-radial-bar-chart-sample.MOV',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0380-radial-bar-chart-sample.MOV',
     },
   },
 
@@ -92,8 +92,8 @@ export const radialBarChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 26.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 26.MOV',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0381-radial-bar-chart-gradient.MOV',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0381-radial-bar-chart-gradient.MOV',
     },
   },
 
@@ -114,8 +114,8 @@ export const radialBarChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 30.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 30.MOV',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0382-radial-bar-chart-large.MOV',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0382-radial-bar-chart-large.MOV',
     },
   },
 };

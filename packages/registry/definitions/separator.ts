@@ -18,8 +18,9 @@ export const separatorRegistry = {
       },
     ],
     preview: {
-      light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5781.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5781.PNG',
+      light:
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0255-separator-demo.PNG',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0255-separator-demo.PNG',
     },
   },
 
@@ -39,8 +40,9 @@ export const separatorRegistry = {
       },
     ],
     preview: {
-      light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5781.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5781.PNG',
+      light:
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0255-separator-demo.PNG',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0255-separator-demo.PNG',
     },
   },
 
@@ -60,8 +62,9 @@ export const separatorRegistry = {
       },
     ],
     preview: {
-      light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5782.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5782.PNG',
+      light:
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0256-separator-vertical.PNG',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0256-separator-vertical.PNG',
     },
   },
 
@@ -81,8 +84,9 @@ export const separatorRegistry = {
       },
     ],
     preview: {
-      light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5783.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5783.PNG',
+      light:
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0257-separator-thickness.PNG',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0257-separator-thickness.PNG',
     },
   },
 
@@ -102,8 +106,9 @@ export const separatorRegistry = {
       },
     ],
     preview: {
-      light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5784.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5784.PNG',
+      light:
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0258-separator-colors.PNG',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0258-separator-colors.PNG',
     },
   },
 
@@ -123,8 +128,9 @@ export const separatorRegistry = {
       },
     ],
     preview: {
-      light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5785.PNG',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/IMG_5785.PNG',
+      light:
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0259-separator-spacing.PNG',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0259-separator-spacing.PNG',
     },
   },
 };

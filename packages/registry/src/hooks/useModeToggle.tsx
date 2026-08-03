@@ -1,23 +1,34 @@
-import { useColorScheme } from '@/hooks/useColorScheme';
-import { useState, useEffect } from 'react';
-import { Appearance, ColorSchemeName, Platform } from 'react-native';
-
-type Mode = 'light' | 'dark' | 'system';
+import { Mode, useModeContext } from '@/providers/mode-provider';
 
 interface UseModeToggleReturn {
   isDark: boolean;
   mode: Mode;
   setMode: (mode: Mode) => void;
-  currentMode: ColorSchemeName;
+  currentMode: 'light' | 'dark';
   toggleMode: () => void;
 }
 
+/**
+ * Reads and writes the app-wide theme mode held by `ModeProvider`.
+ *
+ * The mode deliberately lives in context rather than in this hook: it used to
+ * be local `useState` paired with a global `Appearance.setColorScheme` call, so
+ * remounting the toggle reset the cycle to `'system'` while the app stayed
+ * dark, and two toggles on screen disagreed. Sharing the state also makes the
+ * toggle work on web, where `Appearance` is read-only.
+ */
 export function useModeToggle(): UseModeToggleReturn {
-  const [mode, setModeState] = useState<Mode>('system');
-  const colorScheme = useColorScheme();
+  const context = useModeContext();
 
-  // Calculate isDark based on mode and system preference
-  const isDark = mode === 'system' ? colorScheme === 'dark' : mode === 'dark';
+  if (!context) {
+    throw new Error(
+      'useModeToggle requires a <ModeProvider>. Wrap your app in the ' +
+        '<ThemeProvider> in providers/theme-provider, which mounts one, or ' +
+        'mount <ModeProvider> from providers/mode-provider yourself.'
+    );
+  }
+
+  const { mode, setMode, scheme } = context;
 
   const toggleMode = () => {
     switch (mode) {
@@ -33,57 +44,11 @@ export function useModeToggle(): UseModeToggleReturn {
     }
   };
 
-  const setMode = (newMode: Mode) => {
-    setModeState(newMode);
-
-    // Only use Appearance.setColorScheme on native platforms
-    if (Platform.OS !== 'web') {
-      if (newMode === 'system') {
-        // RN 0.86 replaced `null` ("follow the system") with `'unspecified'`.
-        Appearance.setColorScheme('unspecified');
-      } else {
-        Appearance.setColorScheme(newMode);
-      }
-    } else {
-      // For web, update the root HTML element
-      if (typeof document !== 'undefined') {
-        const root = document.documentElement;
-
-        if (newMode === 'system') {
-          // Remove override and let CSS media query handle it
-          root.classList.remove('light', 'dark');
-          root.removeAttribute('data-theme');
-        } else {
-          // Set explicit theme
-          root.classList.remove('light', 'dark');
-          root.classList.add(newMode);
-          root.setAttribute('data-theme', newMode);
-        }
-      }
-    }
-  };
-
-  // Sync web theme with mode changes
-  useEffect(() => {
-    if (Platform.OS === 'web' && typeof document !== 'undefined') {
-      const root = document.documentElement;
-
-      if (mode === 'system') {
-        root.classList.remove('light', 'dark');
-        root.removeAttribute('data-theme');
-      } else {
-        root.classList.remove('light', 'dark');
-        root.classList.add(mode);
-        root.setAttribute('data-theme', mode);
-      }
-    }
-  }, [mode, colorScheme]); // Re-run when mode or system preference changes
-
   return {
-    isDark,
+    isDark: scheme === 'dark',
     mode,
     setMode,
-    currentMode: mode === 'system' ? colorScheme : mode,
+    currentMode: scheme,
     toggleMode,
   };
 }

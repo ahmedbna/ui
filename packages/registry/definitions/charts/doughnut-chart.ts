@@ -25,8 +25,8 @@ export const doughnutChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 56.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 56.MOV',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0351-doughnut-chart-demo.MOV',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0351-doughnut-chart-demo.MOV',
     },
   },
 
@@ -48,8 +48,8 @@ export const doughnutChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 56.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 56.MOV',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0351-doughnut-chart-demo.MOV',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0351-doughnut-chart-demo.MOV',
     },
   },
 
@@ -70,8 +70,8 @@ export const doughnutChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 55.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 55.MOV',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0352-doughnut-chart-sample.MOV',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0352-doughnut-chart-sample.MOV',
     },
   },
 
@@ -92,8 +92,8 @@ export const doughnutChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 54.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 54.MOV',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0353-doughnut-chart-styled.MOV',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0353-doughnut-chart-styled.MOV',
     },
   },
 
@@ -114,8 +114,8 @@ export const doughnutChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 53.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 53.MOV',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0354-doughnut-chart-large.MOV',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0354-doughnut-chart-large.MOV',
     },
   },
 };

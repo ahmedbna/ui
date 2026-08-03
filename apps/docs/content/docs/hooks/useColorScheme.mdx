@@ -24,9 +24,12 @@ npx bna-ui add useColorScheme
 <Steps>
 
 <Step>
-  This hook uses React Native's built-in functionality, so no additional
-  dependencies are needed.
+  This hook reads the theme mode from `ModeProvider`. Install it first:
 </Step>
+
+```bash
+npx bna-ui add mode-provider
+```
 
 <Step>Copy and paste the following code into your project.</Step>
 
@@ -56,7 +59,12 @@ npx bna-ui add useColorScheme
 
 ### useColorScheme
 
-Returns the user's preferred color scheme with platform-specific optimizations.
+Returns the color scheme the app should render as, with platform-specific
+optimizations.
+
+A mounted [`ModeProvider`](/docs/providers/mode-provider) wins — that is how an in-app
+light/dark toggle repaints your components on every platform. With no provider
+mounted this is simply the OS scheme, so the hook works standalone.
 
 #### Returns
 

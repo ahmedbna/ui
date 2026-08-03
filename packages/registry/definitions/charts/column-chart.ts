@@ -25,8 +25,8 @@ export const columnChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 19 5.46.51 PM.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 19 5.46.51 PM.MOV',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0347-column-chart-demo.MOV',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0347-column-chart-demo.MOV',
     },
   },
 
@@ -47,8 +47,8 @@ export const columnChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 19 5.46.51 PM.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 19 5.46.51 PM.MOV',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0347-column-chart-demo.MOV',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0347-column-chart-demo.MOV',
     },
   },
 
@@ -68,8 +68,8 @@ export const columnChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 17 5.46.52 PM.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 17 5.46.52 PM.MOV',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0348-column-chart-sample.MOV',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0348-column-chart-sample.MOV',
     },
   },
 
@@ -89,8 +89,8 @@ export const columnChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 18 5.46.51 PM.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 18 5.46.51 PM.MOV',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0349-column-chart-styled.MOV',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0349-column-chart-styled.MOV',
     },
   },
 
@@ -110,8 +110,8 @@ export const columnChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-14-2025 17-50-19_1.mov',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-14-2025 17-50-19_1.mov',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0350-column-chart-large.mov',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0350-column-chart-large.mov',
     },
   },
 };

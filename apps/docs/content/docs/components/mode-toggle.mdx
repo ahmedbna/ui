@@ -31,7 +31,7 @@ npx bna-ui add mode-toggle
 <Step>Install the following dependencies:</Step>
 
 ```bash
-npx expo install react-native-reanimated lucide-react-native
+npx expo install react-native-reanimated react-native-worklets lucide-react-native
 ```
 
 <Step>Copy and paste the following code into your project.</Step>
@@ -80,17 +80,18 @@ npx expo install react-native-reanimated lucide-react-native
 
 ## Theme Integration
 
-The ModeToggle requires:
-
-- `useModeToggle` hook for theme switching logic
-- Theme context that provides `isDark` state
-- `toggleMode` function to change themes
-
-Example theme hook:
+The component is a thin shell over the
+[`useModeToggle`](/docs/hooks/useModeToggle) hook — it takes `isDark` to pick
+the icon and `toggleMode` for the press handler, and owns nothing else:
 
 ```tsx
 const { toggleMode, isDark } = useModeToggle();
 ```
+
+That hook reads the mode from [`ModeProvider`](/docs/providers/mode-provider), so a provider
+has to be mounted above the toggle or it throws. Wrapping your app in
+[`ThemeProvider`](/docs/providers/theme-provider) is enough — it mounts one — and
+every scaffold from `npx bna-ui init` already does.
 
 ## Performance
 
@@ -108,11 +109,11 @@ The component is optimized for smooth animations:
 ## Integration Example
 
 ```tsx
-// App.tsx
+// app/_layout.tsx
 import { ModeToggle } from '@/components/ui/mode-toggle';
-import { ThemeProvider } from '@/context/theme';
+import { ThemeProvider } from '@/providers/theme-provider';
 
-export default function App() {
+export default function RootLayout() {
   return (
     <ThemeProvider>
       <View style={styles.header}>
@@ -125,6 +126,9 @@ export default function App() {
 }
 ```
 
+Add `storage={SecureStore}` to `ThemeProvider` to have the choice survive a
+restart — see [`ModeProvider`](/docs/providers/mode-provider).
+
 ## Dependencies
 
 The component requires these utilities to function:
@@ -132,4 +136,4 @@ The component requires these utilities to function:
 - `useModeToggle`: Hook for theme switching logic
 - `Button`: Base button component
 - `Icon`: Themed icon wrapper
-- Theme context with `isDark` and `toggleMode`
+- `ModeProvider`: Holds the mode, mounted for you by `ThemeProvider`

@@ -1,11 +1,12 @@
 import { ToastProvider } from '@/components/ui/toast';
 import { useColorScheme } from '@/hooks/useColorScheme';
+import { ThemeProvider } from '@/providers/theme-provider';
 import { Colors } from '@/theme/colors';
-import { ThemeProvider } from '@/theme/theme-provider';
 import { osName } from 'expo-device';
 import { isLiquidGlassAvailable } from 'expo-glass-effect';
 import * as NavigationBar from 'expo-navigation-bar';
 import { Stack } from 'expo-router';
+import * as SecureStore from 'expo-secure-store';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { setBackgroundColorAsync } from 'expo-system-ui';
@@ -20,6 +21,25 @@ SplashScreen.setOptions({
 });
 
 export default function RootLayout() {
+  return (
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      {/* `storage` makes the light/dark choice survive a restart. SecureStore
+          has no web implementation, so on web this degrades to no persistence
+          rather than erroring — the toggle itself still works there. */}
+      <ThemeProvider storage={SecureStore}>
+        <RootNavigator />
+      </ThemeProvider>
+    </GestureHandlerRootView>
+  );
+}
+
+/**
+ * Split out so `useColorScheme()` resolves *inside* `ThemeProvider`. Read above
+ * it and this would see the OS scheme rather than the user's choice — which on
+ * native the global `Appearance` override happens to paper over, but on web
+ * would leave the sheet's colors stuck on the system theme.
+ */
+function RootNavigator() {
   const colorScheme = useColorScheme() || 'light';
 
   useEffect(() => {
@@ -38,56 +58,54 @@ export default function RootLayout() {
   }, [colorScheme]);
 
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <ThemeProvider>
-        <StatusBar style={colorScheme === 'dark' ? 'light' : 'dark'} animated />
+    <>
+      <StatusBar style={colorScheme === 'dark' ? 'light' : 'dark'} animated />
 
-        <ToastProvider>
-          <Stack screenOptions={{ headerShown: false }}>
-            <Stack.Screen name='(tabs)' options={{ headerShown: false }} />
+      <ToastProvider>
+        <Stack screenOptions={{ headerShown: false }}>
+          <Stack.Screen name='(tabs)' options={{ headerShown: false }} />
 
-            <Stack.Screen
-              name='sheet'
-              options={{
-                headerShown: false,
-                sheetGrabberVisible: true,
-                sheetAllowedDetents: [0.4, 0.7, 1],
-                contentStyle: {
-                  backgroundColor: isLiquidGlassAvailable()
+          <Stack.Screen
+            name='sheet'
+            options={{
+              headerShown: false,
+              sheetGrabberVisible: true,
+              sheetAllowedDetents: [0.4, 0.7, 1],
+              contentStyle: {
+                backgroundColor: isLiquidGlassAvailable()
+                  ? 'transparent'
+                  : colorScheme === 'dark'
+                    ? Colors.dark.card
+                    : Colors.light.card,
+              },
+              headerTransparent: Platform.OS === 'ios' ? true : false,
+              headerLargeTitle: false,
+              title: '',
+              presentation:
+                Platform.OS === 'ios'
+                  ? isLiquidGlassAvailable() && osName !== 'iPadOS'
+                    ? 'formSheet'
+                    : 'modal'
+                  : 'modal',
+              sheetInitialDetentIndex: 0,
+              headerStyle: {
+                backgroundColor:
+                  Platform.OS === 'ios'
                     ? 'transparent'
                     : colorScheme === 'dark'
                       ? Colors.dark.card
                       : Colors.light.card,
-                },
-                headerTransparent: Platform.OS === 'ios' ? true : false,
-                headerLargeTitle: false,
-                title: '',
-                presentation:
-                  Platform.OS === 'ios'
-                    ? isLiquidGlassAvailable() && osName !== 'iPadOS'
-                      ? 'formSheet'
-                      : 'modal'
-                    : 'modal',
-                sheetInitialDetentIndex: 0,
-                headerStyle: {
-                  backgroundColor:
-                    Platform.OS === 'ios'
-                      ? 'transparent'
-                      : colorScheme === 'dark'
-                        ? Colors.dark.card
-                        : Colors.light.card,
-                },
-                headerBlurEffect: isLiquidGlassAvailable()
-                  ? undefined
-                  : colorScheme === 'dark'
-                    ? 'dark'
-                    : 'light',
-              }}
-            />
-            <Stack.Screen name='+not-found' />
-          </Stack>
-        </ToastProvider>
-      </ThemeProvider>
-    </GestureHandlerRootView>
+              },
+              headerBlurEffect: isLiquidGlassAvailable()
+                ? undefined
+                : colorScheme === 'dark'
+                  ? 'dark'
+                  : 'light',
+            }}
+          />
+          <Stack.Screen name='+not-found' />
+        </Stack>
+      </ToastProvider>
+    </>
   );
 }

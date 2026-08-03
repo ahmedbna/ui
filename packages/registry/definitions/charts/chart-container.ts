@@ -20,8 +20,8 @@ export const chartContainerRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 15-47-37_1.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 15-47-37_1.MOV',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0345-chart-container-demo.MOV',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0345-chart-container-demo.MOV',
     },
   },
 
@@ -42,8 +42,8 @@ export const chartContainerRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 15-47-37_1.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 15-47-37_1.MOV',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0345-chart-container-demo.MOV',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0345-chart-container-demo.MOV',
     },
   },
 
@@ -64,8 +64,8 @@ export const chartContainerRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 16 5.41.34 PM.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 16 5.41.34 PM.MOV',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0346-chart-container-styled.MOV',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0346-chart-container-styled.MOV',
     },
   },
 };

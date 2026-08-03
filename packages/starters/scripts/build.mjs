@@ -46,6 +46,7 @@ async function materialize(name, out, config, registry) {
   for (const entry of [
     ...(config.components ?? []),
     ...(config.hooks ?? []),
+    ...(config.providers ?? []),
     ...(config.theme ?? []),
   ]) {
     if (!REGISTRY[entry]) {
@@ -56,6 +57,7 @@ async function materialize(name, out, config, registry) {
     for (const dep of resolveAllDependencies(entry)) {
       wanted.add(dep);
       for (const h of REGISTRY[dep].hooks ?? []) wanted.add(h);
+      for (const p of REGISTRY[dep].providers ?? []) wanted.add(p);
       for (const t of REGISTRY[dep].theme ?? []) wanted.add(t);
     }
   }

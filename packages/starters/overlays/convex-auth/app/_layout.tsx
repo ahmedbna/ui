@@ -2,8 +2,8 @@ import { Auth } from '@/components/auth/auth';
 import { Spinner } from '@/components/ui/spinner';
 import { View } from '@/components/ui/view';
 import { useColorScheme } from '@/hooks/useColorScheme';
+import { ThemeProvider } from '@/providers/theme-provider';
 import { Colors } from '@/theme/colors';
-import { ThemeProvider } from '@/theme/theme-provider';
 import { ConvexAuthProvider } from '@convex-dev/auth/react';
 import {
   Authenticated,
@@ -40,6 +40,25 @@ const convex = new ConvexReactClient(process.env.EXPO_PUBLIC_CONVEX_URL!, {
 });
 
 export default function RootLayout() {
+  return (
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      {/* `storage` makes the light/dark choice survive a restart. SecureStore
+          has no web implementation, so on web this degrades to no persistence
+          rather than erroring — the toggle itself still works there. */}
+      <ThemeProvider storage={SecureStore}>
+        <RootNavigator />
+      </ThemeProvider>
+    </GestureHandlerRootView>
+  );
+}
+
+/**
+ * Split out so `useColorScheme()` resolves *inside* `ThemeProvider`. Read above
+ * it and this would see the OS scheme rather than the user's choice — which on
+ * native the global `Appearance` override happens to paper over, but on web
+ * would leave the sheet's colors stuck on the system theme.
+ */
+function RootNavigator() {
   const colorScheme = useColorScheme() || 'light';
 
   useEffect(() => {
@@ -58,79 +77,77 @@ export default function RootLayout() {
   }, [colorScheme]);
 
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <ThemeProvider>
-        <StatusBar style={colorScheme === 'dark' ? 'light' : 'dark'} animated />
+    <>
+      <StatusBar style={colorScheme === 'dark' ? 'light' : 'dark'} animated />
 
-        <ConvexAuthProvider
-          client={convex}
-          storage={
-            Platform.OS === 'android' || Platform.OS === 'ios'
-              ? secureStorage
-              : undefined
-          }
-        >
-          <AuthLoading>
-            <View
-              style={{
-                flex: 1,
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
-              <Spinner size='lg' variant='circle' />
-            </View>
-          </AuthLoading>
-          <Unauthenticated>
-            <Auth />
-          </Unauthenticated>
-          <Authenticated>
-            <Stack screenOptions={{ headerShown: false }}>
-              <Stack.Screen name='(tabs)' options={{ headerShown: false }} />
+      <ConvexAuthProvider
+        client={convex}
+        storage={
+          Platform.OS === 'android' || Platform.OS === 'ios'
+            ? secureStorage
+            : undefined
+        }
+      >
+        <AuthLoading>
+          <View
+            style={{
+              flex: 1,
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <Spinner size='lg' variant='circle' />
+          </View>
+        </AuthLoading>
+        <Unauthenticated>
+          <Auth />
+        </Unauthenticated>
+        <Authenticated>
+          <Stack screenOptions={{ headerShown: false }}>
+            <Stack.Screen name='(tabs)' options={{ headerShown: false }} />
 
-              <Stack.Screen
-                name='sheet'
-                options={{
-                  headerShown: false,
-                  sheetGrabberVisible: true,
-                  sheetAllowedDetents: [0.4, 0.7, 1],
-                  contentStyle: {
-                    backgroundColor: isLiquidGlassAvailable()
+            <Stack.Screen
+              name='sheet'
+              options={{
+                headerShown: false,
+                sheetGrabberVisible: true,
+                sheetAllowedDetents: [0.4, 0.7, 1],
+                contentStyle: {
+                  backgroundColor: isLiquidGlassAvailable()
+                    ? 'transparent'
+                    : colorScheme === 'dark'
+                      ? Colors.dark.card
+                      : Colors.light.card,
+                },
+                headerTransparent: Platform.OS === 'ios' ? true : false,
+                headerLargeTitle: false,
+                title: '',
+                presentation:
+                  Platform.OS === 'ios'
+                    ? isLiquidGlassAvailable() && osName !== 'iPadOS'
+                      ? 'formSheet'
+                      : 'modal'
+                    : 'modal',
+                sheetInitialDetentIndex: 0,
+                headerStyle: {
+                  backgroundColor:
+                    Platform.OS === 'ios'
                       ? 'transparent'
                       : colorScheme === 'dark'
                         ? Colors.dark.card
                         : Colors.light.card,
-                  },
-                  headerTransparent: Platform.OS === 'ios' ? true : false,
-                  headerLargeTitle: false,
-                  title: '',
-                  presentation:
-                    Platform.OS === 'ios'
-                      ? isLiquidGlassAvailable() && osName !== 'iPadOS'
-                        ? 'formSheet'
-                        : 'modal'
-                      : 'modal',
-                  sheetInitialDetentIndex: 0,
-                  headerStyle: {
-                    backgroundColor:
-                      Platform.OS === 'ios'
-                        ? 'transparent'
-                        : colorScheme === 'dark'
-                          ? Colors.dark.card
-                          : Colors.light.card,
-                  },
-                  headerBlurEffect: isLiquidGlassAvailable()
-                    ? undefined
-                    : colorScheme === 'dark'
-                      ? 'dark'
-                      : 'light',
-                }}
-              />
-              <Stack.Screen name='+not-found' />
-            </Stack>
-          </Authenticated>
-        </ConvexAuthProvider>
-      </ThemeProvider>
-    </GestureHandlerRootView>
+                },
+                headerBlurEffect: isLiquidGlassAvailable()
+                  ? undefined
+                  : colorScheme === 'dark'
+                    ? 'dark'
+                    : 'light',
+              }}
+            />
+            <Stack.Screen name='+not-found' />
+          </Stack>
+        </Authenticated>
+      </ConvexAuthProvider>
+    </>
   );
 }

@@ -18,6 +18,7 @@
       "@/components/*": ["./src/components/*"],
       "@/demo/*": ["./src/demo/*"],
       "@/hooks/*": ["./src/hooks/*"],
+      "@/providers/*": ["./src/providers/*"],
       "@/theme/*": ["./src/theme/*"]
     }
   },

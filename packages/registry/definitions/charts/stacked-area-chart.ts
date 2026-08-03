@@ -25,8 +25,8 @@ export const stackedAreaChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 20.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 20.MOV',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0387-stacked-area-chart-demo.MOV',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0387-stacked-area-chart-demo.MOV',
     },
   },
 
@@ -49,8 +49,8 @@ export const stackedAreaChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 20.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 20.MOV',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0387-stacked-area-chart-demo.MOV',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0387-stacked-area-chart-demo.MOV',
     },
   },
 
@@ -71,8 +71,8 @@ export const stackedAreaChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 24.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 24.MOV',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0388-stacked-area-chart-sample.MOV',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0388-stacked-area-chart-sample.MOV',
     },
   },
 
@@ -94,8 +94,8 @@ export const stackedAreaChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 25.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 25.MOV',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0389-stacked-area-chart-styled.MOV',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0389-stacked-area-chart-styled.MOV',
     },
   },
 
@@ -116,8 +116,8 @@ export const stackedAreaChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 21.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 21.MOV',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0390-stacked-area-chart-large.MOV',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0390-stacked-area-chart-large.MOV',
     },
   },
 };

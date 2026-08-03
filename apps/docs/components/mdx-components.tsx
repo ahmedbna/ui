@@ -13,6 +13,7 @@ import { Accessibility, ApiReference, Usage } from '@/components/api-reference';
 import { ComponentsList } from '@/components/components-list';
 import { ChartsList } from '@/components/charts-list';
 import { ThemeList } from '@/components/theme-list';
+import { ProvidersList } from '@/components/providers-list';
 import { HooksList } from '@/components/hooks-list';
 import { CopyButton } from '@/components/copy-button';
 import { getIconForLanguageExtension } from '@/components/icons';
@@ -351,6 +352,7 @@ export const mdxComponents = {
   ChartsList,
   HooksList,
   ThemeList,
+  ProvidersList,
   ExamplesGrid,
   ImagePreview,
   Link: ({ className, ...props }: React.ComponentProps<typeof Link>) => (

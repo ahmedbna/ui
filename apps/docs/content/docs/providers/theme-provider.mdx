@@ -23,15 +23,21 @@ npx bna-ui add theme-provider
 
 <Steps>
 
+<Step>This component mounts `ModeProvider`. Install it first:</Step>
+
+```bash
+npx bna-ui add mode-provider
+```
+
 <Step>
-  This component only uses `expo-router/react-navigation` (re-exporting
+  Beyond that it only uses `expo-router/react-navigation` (re-exporting
   `ThemeProvider`, `DefaultTheme`, and `DarkTheme`), so no additional
   dependencies are needed beyond `expo-router` itself.
 </Step>
 
 <Step>Copy and paste the following code into your project.</Step>
 
-<ComponentSource name='theme-provider' title='theme/theme-provider.tsx' />
+<ComponentSource name='theme-provider' title='providers/theme-provider.tsx' />
 
 <Step>Update the import paths to match your project setup.</Step>
 
@@ -48,7 +54,7 @@ npx bna-ui add theme-provider
 Wrap your app with the `ThemeProvider` at the root level, typically in your `App.tsx` or `_layout.tsx` file.
 
 ```tsx
-import { ThemeProvider } from '@/theme/theme-provider';
+import { ThemeProvider } from '@/providers/theme-provider';
 import { NavigationContainer } from '@react-navigation/native';
 
 export default function App() {
@@ -65,7 +71,7 @@ export default function App() {
 ### With Expo Router
 
 ```tsx
-import { ThemeProvider } from '@/theme/theme-provider';
+import { ThemeProvider } from '@/providers/theme-provider';
 import { Stack } from 'expo-router';
 
 export default function RootLayout() {
@@ -88,9 +94,14 @@ The main provider component that manages theme state and React Navigation themin
 
 #### Props
 
-| Prop       | Type              | Required | Description                                    |
-| ---------- | ----------------- | -------- | ---------------------------------------------- |
-| `children` | `React.ReactNode` | Yes      | Child components to be wrapped by the provider |
+| Prop          | Type                            | Required | Description                                                                                                                              |
+| ------------- | ------------------------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `children`    | `React.ReactNode`               | Yes      | Child components to be wrapped by the provider                                                                                           |
+| `storage`     | `ModeStorage`                   | No       | Key/value store used to persist the mode, sync or async. `expo-secure-store` and `AsyncStorage` both fit as-is. Omit and the mode resets |
+| `storageKey`  | `string`                        | No       | Key the mode is persisted under. Defaults to `bna-ui.mode`                                                                               |
+| `defaultMode` | `'light' \| 'dark' \| 'system'` | No       | Mode used before anything is restored from storage. Defaults to `system`                                                                 |
+
+The last three are forwarded straight to [`ModeProvider`](/docs/providers/mode-provider).
 
 #### Returns
 
@@ -100,10 +111,13 @@ Provides themed React Navigation context to all child components.
 
 The `ThemeProvider` automatically:
 
-1. **Detects System Theme**: Uses the `useColorScheme` hook to detect the current system color scheme (light/dark)
-2. **Creates Custom Themes**: Builds React Navigation themes using your custom color system
-3. **Provides Theme Context**: Makes the theme available to all React Navigation components
-4. **Handles Theme Changes**: Automatically updates when the system theme changes
+1. **Mounts `ModeProvider`**: Holds the app-wide light/dark/system mode, so
+   [`useModeToggle`](/docs/hooks/useModeToggle) works anywhere below it
+2. **Resolves the Theme**: Uses the `useColorScheme` hook, which prefers that
+   mode over the raw system scheme
+3. **Creates Custom Themes**: Builds React Navigation themes using your custom color system
+4. **Provides Theme Context**: Makes the theme available to all React Navigation components
+5. **Handles Theme Changes**: Automatically updates when the system theme changes
 
 ### Theme Mapping
 
@@ -148,7 +162,7 @@ const customDarkTheme = {
 ### Basic App Structure
 
 ```tsx
-import { ThemeProvider } from '@/theme/theme-provider';
+import { ThemeProvider } from '@/providers/theme-provider';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { HomeScreen } from '@/screens/HomeScreen';
@@ -173,7 +187,7 @@ export default function App() {
 ### With Bottom Tab Navigation
 
 ```tsx
-import { ThemeProvider } from '@/theme/theme-provider';
+import { ThemeProvider } from '@/providers/theme-provider';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { HomeScreen } from '@/screens/HomeScreen';
@@ -256,7 +270,7 @@ export function CustomScreen() {
 You can extend the theme provider to include additional theme properties:
 
 ```tsx
-import { ThemeProvider as BaseThemeProvider } from '@/theme/theme-provider';
+import { ThemeProvider as BaseThemeProvider } from '@/providers/theme-provider';
 import { createContext, useContext } from 'react';
 
 const CustomThemeContext = createContext({});
@@ -291,7 +305,7 @@ export const useCustomTheme = () => useContext(CustomThemeContext);
 ### Theme-Aware StatusBar
 
 ```tsx
-import { ThemeProvider } from '@/theme/theme-provider';
+import { ThemeProvider } from '@/providers/theme-provider';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { StatusBar } from 'expo-status-bar';
 
@@ -405,7 +419,7 @@ export function BadThemeProvider({ children }) {
 ### React Native Elements
 
 ```tsx
-import { ThemeProvider } from '@/theme/theme-provider';
+import { ThemeProvider } from '@/providers/theme-provider';
 import { ThemeProvider as ElementsThemeProvider } from 'react-native-elements';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { Colors } from '@/theme/colors';
@@ -440,7 +454,7 @@ export function CombinedThemeProvider({ children }) {
 import styled, {
   ThemeProvider as StyledThemeProvider,
 } from 'styled-components/native';
-import { ThemeProvider } from '@/theme/theme-provider';
+import { ThemeProvider } from '@/providers/theme-provider';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { Colors } from '@/theme/colors';
 

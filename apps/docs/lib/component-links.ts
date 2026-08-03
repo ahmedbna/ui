@@ -19,6 +19,7 @@ const SECTIONS: Array<[prefix: string, section: string]> = [
   ['components/charts/', 'charts'],
   ['components/ui/', 'components'],
   ['hooks/', 'hooks'],
+  ['providers/', 'providers'],
   ['theme/', 'theme'],
 ];
 

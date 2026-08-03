@@ -11,7 +11,8 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 
 const DIR = path.join(import.meta.dirname, '..', 'generated', 'r');
-const LOCAL_IMPORT = /from '@\/((?:components|hooks|theme)\/[\w/-]+)'/g;
+const LOCAL_IMPORT =
+  /from '@\/((?:components|hooks|theme|providers)\/[\w/-]+)'/g;
 
 const errors = [];
 

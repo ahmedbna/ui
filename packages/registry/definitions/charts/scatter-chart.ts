@@ -25,8 +25,8 @@ export const scatterChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 48.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 48.MOV',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0383-scatter-chart-demo.MOV',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0383-scatter-chart-demo.MOV',
     },
   },
 
@@ -47,8 +47,8 @@ export const scatterChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 48.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 48.MOV',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0383-scatter-chart-demo.MOV',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0383-scatter-chart-demo.MOV',
     },
   },
 
@@ -68,8 +68,8 @@ export const scatterChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 23.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 23.MOV',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0384-scatter-chart-sample.MOV',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0384-scatter-chart-sample.MOV',
     },
   },
 
@@ -89,8 +89,8 @@ export const scatterChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 22.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 22.MOV',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0385-scatter-chart-styled.MOV',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0385-scatter-chart-styled.MOV',
     },
   },
 
@@ -110,8 +110,8 @@ export const scatterChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 39.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 39.MOV',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0386-scatter-chart-large.MOV',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0386-scatter-chart-large.MOV',
     },
   },
 };

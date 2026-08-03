@@ -26,7 +26,13 @@ import { transformTree } from '@/lib/llm/jsx-handlers';
 type DocsPage = NonNullable<ReturnType<typeof source.getPage>>;
 
 /** Sections whose page slug is also a registry entry name. */
-const REGISTRY_SECTIONS = new Set(['components', 'charts', 'hooks', 'theme']);
+const REGISTRY_SECTIONS = new Set([
+  'components',
+  'charts',
+  'hooks',
+  'providers',
+  'theme',
+]);
 
 const FRONTMATTER = /^---\r?\n[\s\S]*?\r?\n---\r?\n?/;
 

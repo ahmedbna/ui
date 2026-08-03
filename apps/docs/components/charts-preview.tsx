@@ -5,105 +5,106 @@ import { IPhonePreview } from '@/components/iphone-preview';
 const items = [
   {
     light:
-      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 21.MOV',
-    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 21.MOV',
-  },
-  {
-    light: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/treemap-large.MP4',
-    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/treemap-large.MP4',
+      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0390-stacked-area-chart-large.MOV',
+    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0390-stacked-area-chart-large.MOV',
   },
   {
     light:
-      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-14-2025 17-50-19_1.mov',
-    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-14-2025 17-50-19_1.mov',
+      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0398-treemap-chart-large.MP4',
+    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0398-treemap-chart-large.MP4',
   },
   {
     light:
-      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 49.MOV',
-    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 49.MOV',
+      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0350-column-chart-large.mov',
+    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0350-column-chart-large.mov',
   },
   {
     light:
-      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 51.MOV',
-    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 51.MOV',
+      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0358-heatmap-chart-large.MOV',
+    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0358-heatmap-chart-large.MOV',
   },
   {
     light:
-      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 15-40-44_1.mov',
-    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 15-40-44_1.mov',
+      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0356-heatmap-chart-sample.MOV',
+    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0356-heatmap-chart-sample.MOV',
   },
   {
     light:
-      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 15-56-05_1.mov',
-    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 15-56-05_1.mov',
+      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0337-bubble-chart-demo.mov',
+    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0337-bubble-chart-demo.mov',
   },
   {
     light:
-      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 26.MOV',
-    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 26.MOV',
+      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0394-stacked-bar-chart-large.mov',
+    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0394-stacked-bar-chart-large.mov',
   },
   {
     light:
-      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 16.mov',
-    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 16.mov',
+      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0381-radial-bar-chart-gradient.MOV',
+    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0381-radial-bar-chart-gradient.MOV',
   },
   {
     light:
-      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 53.MOV',
-    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 53.MOV',
+      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0333-area-chart-large.mov',
+    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0333-area-chart-large.mov',
   },
   {
     light:
-      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 15-22-22_1.mov',
-    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 15-22-22_1.mov',
+      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0354-doughnut-chart-large.MOV',
+    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0354-doughnut-chart-large.MOV',
   },
   {
     light:
-      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 15-42-29_1.MP4',
-    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 15-42-29_1.MP4',
+      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0334-bar-chart-demo.mov',
+    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0334-bar-chart-demo.mov',
+  },
+  {
+    light:
+      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0341-candlestick-chart-demo.MP4',
+    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0341-candlestick-chart-demo.MP4',
   },
 
   {
     light:
-      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 37.MOV',
-    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 37.MOV',
+      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0370-polar-area-chart-large.MOV',
+    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0370-polar-area-chart-large.MOV',
   },
   {
     light:
-      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 33.MOV',
-    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 33.MOV',
+      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0374-progress-ring-chart-large.MOV',
+    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0374-progress-ring-chart-large.MOV',
   },
   {
     light:
-      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 32.MOV',
-    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 32.MOV',
-  },
-
-  {
-    light:
-      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 39.MOV',
-    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 39.MOV',
+      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0375-radar-chart-demo.MOV',
+    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0375-radar-chart-demo.MOV',
   },
 
   {
     light:
-      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 15-47-37_1 9.19.10 PM.mov',
-    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 15-47-37_1 9.19.10 PM.mov',
+      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0386-scatter-chart-large.MOV',
+    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0386-scatter-chart-large.MOV',
+  },
+
+  {
+    light:
+      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0393-stacked-bar-chart-styled.mov',
+    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0393-stacked-bar-chart-styled.mov',
   },
   {
     light:
-      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 27.MOV',
-    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 27.MOV',
+      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0380-radial-bar-chart-sample.MOV',
+    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0380-radial-bar-chart-sample.MOV',
   },
   {
     light:
-      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 41.MOV',
-    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 41.MOV',
+      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0366-pie-chart-large.MOV',
+    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0366-pie-chart-large.MOV',
   },
   {
     light:
-      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 46.MOV',
-    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 46.MOV',
+      'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0361-line-chart-styled.MOV',
+    dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0361-line-chart-styled.MOV',
   },
 ];
 

@@ -27,6 +27,7 @@ export interface ComponentsConfig {
   aliases?: {
     components?: string;
     hooks?: string;
+    providers?: string;
     theme?: string;
     lib?: string;
   };
@@ -36,6 +37,7 @@ export interface ComponentsConfig {
 export const DEFAULT_ALIASES = {
   components: 'components',
   hooks: 'hooks',
+  providers: 'providers',
   theme: 'theme',
   lib: 'lib',
 } as const;

@@ -18,6 +18,7 @@ export const hooksRegistry = {
     description: 'useColorScheme',
     type: 'registry:hook',
     dependencies: [],
+    providers: ['mode-provider'],
     files: [
       {
         type: 'registry:hook',
@@ -52,7 +53,9 @@ export const hooksRegistry = {
     description: 'useModeToggle',
     type: 'registry:hook',
     dependencies: [],
-    hooks: ['useColorScheme'],
+    // The scheme now reaches this hook through the mode context rather than
+    // `useColorScheme`, which it no longer imports.
+    providers: ['mode-provider'],
     files: [
       {
         type: 'registry:hook',

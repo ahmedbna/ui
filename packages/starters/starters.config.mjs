@@ -24,7 +24,8 @@ export const starters = {
       'view',
     ],
     hooks: ['useColor', 'useColorScheme', 'useKeyboardHeight', 'useModeToggle'],
-    theme: ['colors', 'globals', 'theme-provider'],
+    providers: ['mode-provider', 'theme-provider'],
+    theme: ['colors', 'globals'],
   },
 };
 
@@ -37,8 +38,8 @@ export const starters = {
  * `app.json` and `package.json`, so chaining them would buy a couple of shared
  * files at the cost of a build-order dependency between overlays.
  *
- * An overlay may also declare `components` / `hooks` / `theme`, pulled from the
- * registry exactly as `starters` above. That is for entries the base does not
+ * An overlay may also declare `components` / `hooks` / `providers` / `theme`,
+ * pulled from the registry exactly as `starters` above. That is for entries the base does not
  * ship: putting them in `start` would bloat every other scaffold, and checking
  * them into the overlay would reintroduce the hand-synced copies this package
  * exists to remove.

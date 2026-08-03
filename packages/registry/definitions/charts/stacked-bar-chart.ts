@@ -25,8 +25,8 @@ export const stackedBarChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 28.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 28.MOV',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0391-stacked-bar-chart-demo.MOV',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0391-stacked-bar-chart-demo.MOV',
     },
   },
 
@@ -48,8 +48,8 @@ export const stackedBarChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 28.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 28.MOV',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0391-stacked-bar-chart-demo.MOV',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0391-stacked-bar-chart-demo.MOV',
     },
   },
 
@@ -71,8 +71,8 @@ export const stackedBarChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 60.MOV',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 60.MOV',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0392-stacked-bar-chart-horizontal.MOV',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0392-stacked-bar-chart-horizontal.MOV',
     },
   },
 
@@ -95,8 +95,8 @@ export const stackedBarChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 15-47-37_1 9.19.10 PM.mov',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 15-47-37_1 9.19.10 PM.mov',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0393-stacked-bar-chart-styled.mov',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0393-stacked-bar-chart-styled.mov',
     },
   },
 
@@ -118,8 +118,8 @@ export const stackedBarChartRegistry = {
     ],
     preview: {
       light:
-        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 15-56-05_1.mov',
-      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/ScreenRecording_07-12-2025 15-56-05_1.mov',
+        'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0394-stacked-bar-chart-large.mov',
+      dark: 'https://cdn.jsdelivr.net/gh/ahmedbna/bna-ui-demo/0394-stacked-bar-chart-large.mov',
     },
   },
 };
