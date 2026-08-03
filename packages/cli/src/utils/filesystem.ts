@@ -5,6 +5,10 @@
  * `ensureDir`, `copy`, `move`, `remove`, `pathExists`, `readJson`, `writeJson` —
  * has a native equivalent on the supported Node range, so it and its three
  * transitive dependencies are gone.
+ *
+ * Only the most basic primitives, at that. `copy` is hand-rolled below rather
+ * than delegated to `fs.cp`, because this module has to run under Bun as well
+ * as Node — see `copyDir`.
  */
 import fs from 'fs/promises';
 import path from 'path';
@@ -18,9 +22,9 @@ import { CliError } from './errors.js';
  * npm strips `.gitignore` from tarballs entirely, so shipping one as-is meant
  * every `bna-ui init` produced a project with no `.gitignore` at all.
  *
- * `github` has a second reason: the copy filter below skips anything under a
- * `.git` directory, which a literal `.github/` would trip. Storing it dot-less
- * gets it past the filter, and this map puts the dot back.
+ * `github` has a second reason: the skip list below drops anything named
+ * `.git`, which a literal `.github/` would trip. Storing it dot-less gets it
+ * past the skip, and this map puts the dot back.
  *
  * Top-level only — every entry here sits at the root of a scaffold.
  */
@@ -31,23 +35,15 @@ const RENAME_ON_SCAFFOLD: Record<string, string> = {
   github: '.github',
 };
 
-/** Build artefacts and VCS internals that must never land in a new project. */
-const SKIP_SEGMENTS = new Set(['node_modules', '.git', 'dist', 'build']);
-
 /**
- * True when any path segment is one we refuse to copy.
+ * Build artefacts and VCS internals that must never land in a new project.
  *
- * Matched per segment rather than as a substring: the previous
- * `/node_modules|\.git|dist|build/` test ran against the whole relative path,
+ * Matched against a whole path segment, never as a substring: the original
+ * `/node_modules|\.git|dist|build/` test ran against the entire relative path,
  * so a perfectly ordinary `app/(tabs)/dashboard/` or `components/rebuild.tsx`
  * was silently dropped from the scaffold.
  */
-function shouldSkip(relativePath: string): boolean {
-  if (!relativePath) return false;
-  return relativePath
-    .split(path.sep)
-    .some((segment) => SKIP_SEGMENTS.has(segment));
-}
+const SKIP_SEGMENTS = new Set(['node_modules', '.git', 'dist', 'build']);
 
 export async function pathExists(target: string): Promise<boolean> {
   try {
@@ -56,6 +52,55 @@ export async function pathExists(target: string): Promise<boolean> {
   } catch {
     return false;
   }
+}
+
+/**
+ * Copies one directory tree, applying the skip list and the top-level renames.
+ *
+ * Deliberately hand-rolled on `readdir`/`mkdir`/`copyFile` rather than
+ * `fs.cp(…, { recursive: true, filter })`. `fs.cp` is the obvious call, but its
+ * `filter` callback has to re-enter JS for every entry, and runtimes that
+ * implement `node:fs` natively have not always carried it — Bun, which `bunx
+ * --bun bna-ui init` runs the CLI under, either threw or silently ignored the
+ * filter depending on the release. Ignoring it is the worse outcome: this list
+ * is the only thing keeping `node_modules` out of a fresh project. The four
+ * primitives below have been present in every Node and Bun release.
+ *
+ * A scaffold is 44–91 files, so awaiting a directory's entries together is all
+ * the parallelism this needs.
+ */
+async function copyDir(
+  src: string,
+  dest: string,
+  depth: number
+): Promise<void> {
+  await fs.mkdir(dest, { recursive: true });
+
+  const entries = await fs.readdir(src, { withFileTypes: true });
+
+  await Promise.all(
+    entries.map(async (entry) => {
+      if (SKIP_SEGMENTS.has(entry.name)) return;
+
+      // Renames are top-level only, and keyed on the *source* name — `github`
+      // has not become `.github` yet, so it is still past the `.git` skip above.
+      const target =
+        depth === 0
+          ? (RENAME_ON_SCAFFOLD[entry.name] ?? entry.name)
+          : entry.name;
+
+      const from = path.join(src, entry.name);
+      const to = path.join(dest, target);
+
+      if (entry.isDirectory()) {
+        await copyDir(from, to, depth + 1);
+      } else if (entry.isSymbolicLink()) {
+        await fs.symlink(await fs.readlink(from), to);
+      } else {
+        await fs.copyFile(from, to);
+      }
+    })
+  );
 }
 
 export async function copyTemplate(
@@ -69,22 +114,15 @@ export async function copyTemplate(
   }
 
   try {
-    await fs.mkdir(targetPath, { recursive: true });
-    await fs.cp(templatePath, targetPath, {
-      recursive: true,
-      filter: (src) => !shouldSkip(path.relative(templatePath, src)),
-    });
-
-    for (const [from, to] of Object.entries(RENAME_ON_SCAFFOLD)) {
-      const src = path.join(targetPath, from);
-      if (await pathExists(src)) {
-        await fs.rename(src, path.join(targetPath, to));
-      }
-    }
+    await copyDir(templatePath, targetPath, 0);
   } catch (error) {
     if (error instanceof CliError) throw error;
     throw new CliError('Could not copy the project template.', {
       cause: error,
+      // A missing `fs` primitive is the runtime's doing, not the template's.
+      hint: process.versions.bun
+        ? 'Running under Bun. Try `bun upgrade`, or drop `--bun` from `bunx` to scaffold with Node.'
+        : undefined,
     });
   }
 }

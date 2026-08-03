@@ -33,11 +33,18 @@ beforeEach(async () => {
   cwd = process.cwd();
   workdir = await fs.mkdtemp(path.join(os.tmpdir(), 'bna-scaffold-'));
 
-  // A minimal stand-in for a real starter: package.json, app.json, a dot-less
-  // gitignore, and a nested file to prove the tree is copied whole.
+  // A minimal stand-in for a real starter: package.json, app.json, the dot-less
+  // files npm refuses to publish, a nested file to prove the tree is copied
+  // whole, and the two shapes the skip list has to tell apart — a real
+  // `node_modules/`, and paths that merely *contain* a skipped word.
   templates = path.join(workdir, 'templates');
   const start = path.join(templates, 'start');
-  await fs.mkdir(path.join(start, 'app'), { recursive: true });
+  await fs.mkdir(path.join(start, 'app', '(tabs)'), { recursive: true });
+  await fs.mkdir(path.join(start, 'components'), { recursive: true });
+  await fs.mkdir(path.join(start, 'node_modules', 'left-pad'), {
+    recursive: true,
+  });
+  await fs.mkdir(path.join(start, 'github', 'workflows'), { recursive: true });
   await fs.writeFile(
     path.join(start, 'package.json'),
     JSON.stringify({ name: 'bna', version: '1.0.0' }, null, 2)
@@ -51,9 +58,26 @@ beforeEach(async () => {
     )
   );
   await fs.writeFile(path.join(start, 'gitignore'), 'node_modules\n');
+  await fs.writeFile(path.join(start, 'env.example'), 'API_URL=\n');
+  await fs.writeFile(
+    path.join(start, 'github', 'workflows', 'ci.yml'),
+    'name: CI\n'
+  );
   await fs.writeFile(
     path.join(start, 'app', '_layout.tsx'),
     'export default null;\n'
+  );
+  await fs.writeFile(
+    path.join(start, 'app', '(tabs)', 'dashboard.tsx'),
+    'export default null;\n'
+  );
+  await fs.writeFile(
+    path.join(start, 'components', 'rebuild.tsx'),
+    'export default null;\n'
+  );
+  await fs.writeFile(
+    path.join(start, 'node_modules', 'left-pad', 'index.js'),
+    'module.exports = null;\n'
   );
 
   vi.stubEnv('BNA_UI_TEMPLATES', templates);
@@ -106,6 +130,50 @@ describe('runScaffold', () => {
     await runScaffold(baseConfig, 'my-app', { skipInstall: true });
     await expect(
       fs.access(path.join(workdir, 'my-app', 'app', '_layout.tsx'))
+    ).resolves.toBeUndefined();
+  });
+
+  it('renames a dot-less directory, not just dot-less files', async () => {
+    // Only `gitignore` was covered, and it is a file. `github` -> `.github` is
+    // a directory rename, and the only command that exercises it in CI is
+    // `bna-ui supabase`.
+    await runScaffold(baseConfig, 'my-app', { skipInstall: true });
+
+    const projectPath = path.join(workdir, 'my-app');
+    expect(
+      await fs.readFile(
+        path.join(projectPath, '.github', 'workflows', 'ci.yml'),
+        'utf8'
+      )
+    ).toContain('name: CI');
+    expect(
+      await fs.readFile(path.join(projectPath, '.env.example'), 'utf8')
+    ).toContain('API_URL=');
+    await expect(fs.access(path.join(projectPath, 'github'))).rejects.toThrow();
+    await expect(
+      fs.access(path.join(projectPath, 'env.example'))
+    ).rejects.toThrow();
+  });
+
+  it('drops build artefacts and VCS internals', async () => {
+    await runScaffold(baseConfig, 'my-app', { skipInstall: true });
+    await expect(
+      fs.access(path.join(workdir, 'my-app', 'node_modules'))
+    ).rejects.toThrow();
+  });
+
+  it('keeps paths that merely contain a skipped word', async () => {
+    // The skip list is matched per path segment. Matched as a substring — as it
+    // was once — `components/rebuild.tsx` hits `build` and `app/(tabs)/` is
+    // fine, but any future `.../dist-tags/` style path would vanish silently.
+    await runScaffold(baseConfig, 'my-app', { skipInstall: true });
+
+    const projectPath = path.join(workdir, 'my-app');
+    await expect(
+      fs.access(path.join(projectPath, 'components', 'rebuild.tsx'))
+    ).resolves.toBeUndefined();
+    await expect(
+      fs.access(path.join(projectPath, 'app', '(tabs)', 'dashboard.tsx'))
     ).resolves.toBeUndefined();
   });
 

@@ -28,10 +28,27 @@ function cacheFile(): string {
 }
 
 /**
+ * Markers for a runner that re-resolves the package on every invocation.
+ *
+ * `npx` also covers npm's `_npx` cache directory, `--bunx` is the directory
+ * `bunx` installs into (`/tmp/bna-ui@latest--bunx/`), and `dlx` covers both
+ * `pnpm dlx` and `yarn dlx`.
+ */
+const EPHEMERAL_RUNNERS = ['npx', '--bunx', 'dlx'];
+
+/**
  * Whether it is worth asking npm at all.
  *
- * `npx` resolves the latest version on every run, so telling those users to
- * update is noise — the notice is for global and project-local installs.
+ * `npx` and friends resolve the latest version on every run, so telling those
+ * users to update is noise — the notice is for global and project-local
+ * installs.
+ *
+ * Only `npm_config_user_agent` and `npm_execpath` used to be consulted, and
+ * `bunx` sets neither. So `bunx --bun bna-ui init` — the documented way to run
+ * this under bun — ended every scaffold with a banner telling the user to
+ * `npm install -g bna-ui@latest`, which was both pointless and the wrong
+ * package manager. `process.argv[1]` is the signal that actually survives:
+ * every one of these runners executes the CLI out of a path it names.
  */
 function shouldCheck(): boolean {
   if (process.env.NO_UPDATE_NOTIFIER) return false;
@@ -40,9 +57,16 @@ function shouldCheck(): boolean {
   // Only a terminal can act on it.
   if (!process.stdout.isTTY) return false;
 
-  const agent = process.env.npm_config_user_agent ?? '';
-  const execPath = process.env.npm_execpath ?? '';
-  if (agent.includes('npx') || execPath.includes('npx')) return false;
+  const haystack = [
+    process.env.npm_config_user_agent,
+    process.env.npm_execpath,
+    process.argv[1],
+  ]
+    .filter(Boolean)
+    .join(' ');
+  if (EPHEMERAL_RUNNERS.some((marker) => haystack.includes(marker))) {
+    return false;
+  }
 
   return true;
 }

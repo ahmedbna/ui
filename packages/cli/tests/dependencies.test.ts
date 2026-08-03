@@ -3,6 +3,7 @@ import os from 'os';
 import path from 'path';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import {
+  buildInstallCommand,
   checkExistingDependencies,
   getDependencyInfo,
   isExpoProject,
@@ -89,5 +90,53 @@ describe('project inspection', () => {
       missing: ['expo-haptics'],
       existing: ['@expo/vector-icons'],
     });
+  });
+});
+
+describe('buildInstallCommand', () => {
+  const expo = { isDev: false, isExpo: true };
+  const plain = { isDev: false, isExpo: false };
+
+  it('pins to the SDK with `expo install` in an Expo project', () => {
+    expect(buildInstallCommand(['expo-camera'], 'npm', expo)).toBe(
+      'npx expo install expo-camera'
+    );
+  });
+
+  // `bunx --bun bna-ui add camera` never touches Node, so a machine with bun
+  // and no Node had no `npx` to call — `add` resolved every file it was about
+  // to write and then died on the install.
+  it('launches expo through bunx for a bun project', () => {
+    expect(buildInstallCommand(['expo-camera'], 'bun', expo)).toBe(
+      'bunx expo install expo-camera'
+    );
+  });
+
+  it('leaves the other managers on npx, which ships with Node', () => {
+    for (const manager of ['npm', 'pnpm', 'yarn'] as const) {
+      expect(buildInstallCommand(['expo-camera'], manager, expo)).toMatch(
+        /^npx expo install/
+      );
+    }
+  });
+
+  it('falls back to the package manager outside an Expo project', () => {
+    expect(buildInstallCommand(['zod'], 'bun', plain)).toBe('bun add zod');
+    expect(buildInstallCommand(['zod'], 'pnpm', plain)).toBe('pnpm add zod');
+    expect(buildInstallCommand(['zod'], 'npm', plain)).toBe('npm install zod');
+  });
+
+  // `expo install` has no dev-dependency mode, so dev installs always go
+  // through the package manager regardless of project type.
+  it('never routes a dev dependency through expo install', () => {
+    expect(
+      buildInstallCommand(['typescript'], 'bun', { isDev: true, isExpo: true })
+    ).toBe('bun add -D typescript');
+  });
+
+  it('passes every package in one command', () => {
+    expect(
+      buildInstallCommand(['expo-camera', 'expo-media-library'], 'bun', expo)
+    ).toBe('bunx expo install expo-camera expo-media-library');
   });
 });

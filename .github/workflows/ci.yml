@@ -221,3 +221,121 @@ jobs:
             if (bad) { console.error(\`\${bad} unresolved imports\`); process.exit(1); }
             console.log(\`ok — \${files.length} installed files, all imports resolve\`);
           "
+
+  # `bunx --bun bna-ui …` runs the CLI under Bun, not Node, and every job above
+  # invokes it with `node`. That gap shipped: `bna-ui@2.0.5` scaffolded via
+  # fs-extra, whose `copy()` calls `fs.opendir`, which Bun did not implement —
+  # so `init` died on a TypeError for every bun user while CI stayed green.
+  #
+  # The old leg of the matrix is the point of it: it predates several `node:fs`
+  # additions, so reaching for one fails here rather than on a user's machine.
+  cli-bun:
+    name: CLI under Bun ${{ matrix.bun }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        bun: ['latest', '1.1.0']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: ${{ matrix.bun }}
+
+      # Built with Node — only the CLI's own runtime is under test here.
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm turbo run build --filter=bna-ui
+
+      - name: Scaffold under the Bun runtime
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/e2e-bun && cd /tmp/e2e-bun
+          bun "$GITHUB_WORKSPACE/packages/cli/bin/bna-ui.js" init app --skip-install
+
+          cd app
+          test -f .gitignore     || { echo "::error::the dot-less rename did not run"; exit 1; }
+          test -f components.json || { echo "::error::init produced no components.json"; exit 1; }
+          test -f app/_layout.tsx || { echo "::error::nested files were not copied"; exit 1; }
+          test ! -d node_modules  || { echo "::error::the skip list was not honoured"; exit 1; }
+
+      # The backend scaffolds are the ones carrying a `github/` directory and an
+      # `env.example`, so they cover the directory rename `init` never touches.
+      - name: Scaffold a backend variant under the Bun runtime
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/e2e-bun-backends && cd /tmp/e2e-bun-backends
+          bun "$GITHUB_WORKSPACE/packages/cli/bin/bna-ui.js" \
+            supabase sb --no-auth --skip-supabase --skip-install
+
+          test -f sb/.env.example || { echo "::error::env.example was not renamed"; exit 1; }
+          test -d sb/.github      || { echo "::error::github was not renamed"; exit 1; }
+
+      # Node and Bun must produce byte-identical trees. Both runs scaffold a
+      # project named `app`, so even the stamped identity matches and any
+      # difference is a real divergence between the two runtimes.
+      - name: Bun and Node scaffold identically
+        run: |
+          set -euo pipefail
+          cd /tmp/e2e-bun
+          mv app bun-app
+          node "$GITHUB_WORKSPACE/packages/cli/bin/bna-ui.js" init app --skip-install
+          diff -r bun-app app
+
+      # `add` is the other half of the CLI, and it writes files too — the same
+      # class of bug lands there as a component that silently never arrives.
+      # `generated/r/` is what the docs site publishes as `/r`, so serving it
+      # directly skips building the whole site for four requests.
+      - name: Serve the registry
+        run: |
+          python3 -m http.server 4321 \
+            --directory "$GITHUB_WORKSPACE/packages/registry/generated" &
+          for i in $(seq 1 30); do
+            curl -sf http://localhost:4321/r/index.json > /dev/null && break
+            sleep 1
+          done
+
+      - name: Add a component and a chart under the Bun runtime
+        run: |
+          set -euo pipefail
+          cd /tmp/e2e-bun/app
+          export BNA_UI_REGISTRY=http://localhost:4321/r
+
+          # Neither pulls an npm package the scaffold lacks, so this stays
+          # offline after the fetch — no install subprocess involved.
+          bun "$GITHUB_WORKSPACE/packages/cli/bin/bna-ui.js" add alert area-chart --yes
+
+          test -f components/ui/alert.tsx \
+            || { echo "::error::add wrote no component"; exit 1; }
+          test -f components/charts/area-chart.tsx \
+            || { echo "::error::add wrote no chart"; exit 1; }
+          test -f components/charts/line-chart.tsx \
+            || { echo "::error::the chart's registry dependency was not written"; exit 1; }
+
+          # The payload's `@/…` specifiers are frozen at registry build time; a
+          # truncated or re-encoded write shows up here first.
+          grep -q "from '@/hooks/useColor'" components/ui/alert.tsx \
+            || { echo "::error::alert.tsx did not survive the write intact"; exit 1; }
+
+      # The discovery commands share the registry client and its `~/.cache`
+      # writes, so they exercise the JSON read/write path `add` depends on.
+      - name: Discovery commands under the Bun runtime
+        run: |
+          set -euo pipefail
+          cd /tmp/e2e-bun/app
+          export BNA_UI_REGISTRY=http://localhost:4321/r
+          bna() { bun "$GITHUB_WORKSPACE/packages/cli/bin/bna-ui.js" "$@"; }
+
+          bna list --type chart | grep -q area-chart
+          bna search button | grep -q button
+          bna info button --json | node -e "
+            let s=''; process.stdin.on('data',d=>s+=d).on('end',()=>{
+              if (JSON.parse(s).name !== 'button') { console.error('::error::info returned the wrong bundle'); process.exit(1); }
+            })"
+          bna add avatar --dry-run < /dev/null | grep -q 'Dry run'
+          test ! -f components/ui/avatar.tsx \
+            || { echo '::error::--dry-run wrote a file'; exit 1; }

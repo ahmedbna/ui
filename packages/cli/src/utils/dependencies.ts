@@ -75,16 +75,10 @@ async function installDeps(
       return dep.version === 'latest' ? dep.name : `${dep.name}@${dep.version}`;
     });
 
-    // Registry entries declare bare package names, which a plain install
-    // resolves to `latest`. In an Expo app that is wrong the moment a new SDK
-    // ships: `expo-camera@latest` targets the newest SDK, not the one the
-    // project is on. `expo install` pins each package to the project's SDK and
-    // passes anything it doesn't recognise through to the package manager, so
-    // prefer it whenever the target is an Expo project.
-    const installCmd =
-      !isDev && isExpoProject(targetPath)
-        ? `npx expo install ${packages.join(' ')}`
-        : getPackageInstallCommand(packageManager, packages, isDev);
+    const installCmd = buildInstallCommand(packages, packageManager, {
+      isDev,
+      isExpo: isExpoProject(targetPath),
+    });
 
     logger.debug(`Running: ${installCmd}`);
 
@@ -100,6 +94,40 @@ async function installDeps(
     logger.error('Installation error:', error);
     throw error;
   }
+}
+
+/**
+ * The exact command that installs `packages`.
+ *
+ * Registry entries declare bare package names, which a plain install resolves
+ * to `latest`. In an Expo app that is wrong the moment a new SDK ships:
+ * `expo-camera@latest` targets the newest SDK, not the one the project is on.
+ * `expo install` pins each package to the project's SDK and passes anything it
+ * doesn't recognise through to the package manager, so it is preferred whenever
+ * the target is an Expo project.
+ *
+ * Which runner launches it used to be a hardcoded `npx`, which assumes Node is
+ * on the machine. That holds for npm, yarn and pnpm — all three are Node
+ * programs, so `npx` came with them. Bun is not: it is its own runtime,
+ * `bunx --bun bna-ui add camera` never goes near Node, and a bun-only
+ * environment has no `npx` to call. `add` resolved every file it was about to
+ * write and then died on the install. So bun, and only bun, gets `bunx`:
+ * `pnpm dlx` and `yarn dlx` exist too, but `yarn dlx` is Berry-only and
+ * swapping a working `npx` for them buys nothing.
+ *
+ * Pure and exported because the failure it guards against needs a machine with
+ * bun and no Node, which no test environment reproduces.
+ */
+export function buildInstallCommand(
+  packages: string[],
+  packageManager: PackageManager,
+  { isDev, isExpo }: { isDev: boolean; isExpo: boolean }
+): string {
+  if (!isDev && isExpo) {
+    const runner = packageManager === 'bun' ? 'bunx' : 'npx';
+    return `${runner} expo install ${packages.join(' ')}`;
+  }
+  return getPackageInstallCommand(packageManager, packages, isDev);
 }
 
 function getPackageInstallCommand(
