@@ -1,5 +1,194 @@
 # bna-ui
 
+## 4.1.0
+
+### Minor Changes
+
+- [`fd48918`](https://github.com/ahmedbna/ui/commit/fd4891814433e7421ddef9096fc355043d117718) Thanks [@ahmedbna](https://github.com/ahmedbna)! - Fix the theme mode toggle, and move the providers out of `theme/`.
+
+  ## The toggle
+
+  A report claimed `Appearance.setColorScheme` does not exist in React Native.
+  On native it does — it landed in React Native 0.73, and `'unspecified'` (the
+  value `useModeToggle` passed for system mode) is correct for the 0.86 the
+  registry targets. But the reporter was right about **web**: react-native-web's
+  `Appearance` exposes `getColorScheme` and `addChangeListener` and no setter.
+
+  `useModeToggle` already branched on that, writing `class`/`data-theme` onto
+  `document.documentElement` instead — dead code, since nothing in the registry
+  ships CSS or reads those attributes. Colors resolve through `useColor` →
+  `Colors[useColorScheme()]`, which on web reads `prefers-color-scheme`. Pressing
+  `ModeToggle` on web animated the icon and changed nothing else.
+
+  The mode also lived in the hook's own `useState` while the `Appearance`
+  override was global, so the two halves disagreed: remounting a screen reset the
+  cycle to `'system'` while the app stayed dark, and two toggles on screen each
+  tracked their own mode.
+
+  **New**
+
+  - `providers/mode-provider.tsx` — `ModeProvider` holds the mode app-wide and resolves it
+    to a scheme. `useColorScheme` (both the native and `.web.ts` variants) prefers
+    it, so an in-app toggle repaints components on every platform.
+  - Optional persistence via a `storage` prop taking any `{ getItem, setItem }`
+    store, sync or async — `expo-secure-store` and `AsyncStorage` both fit with no
+    adapter. No new npm dependency in the registry, and the hand-rolled wrapper the
+    docs used to prescribe is gone.
+  - `ThemeProvider` mounts `ModeProvider` and forwards `storage`, `storageKey`
+    and `defaultMode`, so apps still mount exactly one provider.
+
+  `Appearance.setColorScheme` is still called on native — it is what makes the
+  status bar, the Android navigation bar and root layouts above the provider
+  follow the toggle — but it is now feature-detected rather than assumed.
+
+  ## The move
+
+  `theme/` held both design tokens and a React provider. Providers now live in
+  `providers/`, alongside the `providers/` folder the auth scaffolds already used,
+  so the folder a file sits in says what kind of thing it is:
+
+  - `theme/theme-provider.tsx` → `providers/theme-provider.tsx`
+  - `theme/mode.tsx` → `providers/mode-provider.tsx`
+
+  `theme/` keeps `colors.ts` and `globals.ts`. Definitions gained a `providers`
+  dependency field beside `hooks` and `theme`; payloads are unaffected, so older
+  CLIs read the new registry unchanged.
+
+  ## Breaking
+  - **`@/theme/theme-provider` is now `@/providers/theme-provider`.** Projects
+    that already installed it must move the file and update their imports, or
+    re-run `bna-ui add theme-provider` and delete the old copy. Docs moved to
+    `/docs/providers/*` to match.
+  - `useModeToggle` requires a `ModeProvider` above it and throws with a message
+    naming the fix if there is none. Apps wrapped in `ThemeProvider` — every
+    `bna-ui init` scaffold among them — need no change.
+  - `useModeToggle().currentMode` is typed `'light' | 'dark'` instead of
+    `ColorSchemeName`. The runtime value is unchanged; it never could be
+    `'unspecified'` or `null`.
+
+  ## Scaffolds
+
+  All five starters now persist the theme with `expo-secure-store`, and their root
+  layouts were split so the code reading `useColorScheme()` renders _inside_
+  `ThemeProvider` — previously it sat above, which native's global `Appearance`
+  override papered over but left the sheet colors on web stuck on the OS scheme.
+  SecureStore has no web implementation, so persistence there degrades to a no-op
+  rather than an error.
+
+  The CLI learned a `providers` alias in `components.json`, defaulting to
+  `providers`. Existing configs without the key still resolve correctly.
+
+- [`20c69d4`](https://github.com/ahmedbna/ui/commit/20c69d457d61402d6c26e57cc31ef331093cfd16) Thanks [@ahmedbna](https://github.com/ahmedbna)! - Install relative to the project's `@/*` alias, so apps with a `src/` directory
+  get their components in the right place.
+
+  `add` wrote every file relative to the project root. In a project mapping
+  `@/*` onto `./src/*` — the layout Expo's own docs suggest — `add button`
+  produced `components/ui/button.tsx` at the root, outside the alias space the
+  app resolves through, and nothing imported.
+
+  The mapping was already being read, but only to check the `@/*` key existed;
+  its value was ignored, making `["./*"]` and `["./src/*"]` indistinguishable.
+  That was the wrong reading of what a registry target is. The registry freezes
+  every internal import to `@/components/…`, `@/hooks/…`, `@/theme/…` and
+  `@/providers/…` at build time, so a target like `components/ui/button.tsx` has
+  always described a path **relative to wherever `@/` points**, not to the
+  project root.
+
+  So the CLI now resolves that root and installs beneath it:
+
+  | `"@/*"` in your tsconfig | `add button` writes            |
+  | ------------------------ | ------------------------------ |
+  | `["./*"]`                | `components/ui/button.tsx`     |
+  | `["./src/*"]`            | `src/components/ui/button.tsx` |
+
+  `baseUrl` is honoured, `jsconfig.json` works the same way, and a mapping that
+  climbs out of the project is refused rather than followed. Projects at the root
+  — every `bna-ui init` scaffold among them — get byte-identical output to
+  before.
+
+  Conflict detection, the `--dry-run` listing and the overwrite prompts all moved
+  with the write, so every path shown is the path used.
+
+  ## Aliases now work
+
+  `aliases` in `components.json` relocated files but nothing rewrote the frozen
+  `@/…` specifiers inside them, so any non-default value produced components that
+  could not resolve. `add` now rewrites those imports as it copies, and the
+  feature does what it always claimed:
+
+  ```json
+  { "aliases": { "components": "ui-kit" } }
+  ```
+
+  writes `ui-kit/ui/button.tsx` importing `@/ui-kit/ui/text`.
+
+  **Alias values are relative to the `@/` root, not the project root.** A config
+  written against the old docs — `"components": "src/components"` in an app whose
+  `@/*` already maps to `./src/*` — would now nest twice, so `add` drops the
+  redundant prefix, installs where it did before, and prints a warning naming the
+  keys to shorten. It also flags a `components/` left at the project root by an
+  earlier install, which is outside `@/` and no longer updated.
+
+  ## Also
+  - New `baseDir` in `components.json` overrides the detection, for an alias
+    declared in a base config you `extends`.
+  - `add` refuses a payload target that resolves outside the install root. The
+    registry types `target` as an unconstrained string, so nothing upstream
+    stopped a `../` from escaping.
+  - The "no `@/*` alias" error now shows both the root and `src/` shapes.
+
+### Patch Changes
+
+- [`922f924`](https://github.com/ahmedbna/ui/commit/922f9242aa05870df6b2167399fd922ebfe4e028) Thanks [@ahmedbna](https://github.com/ahmedbna)! - Scaffolds now install a real, flat `node_modules` under every package manager.
+
+  Metro and React Native's autolinking both read `node_modules` off disk, and two
+  package managers do not provide one by default:
+
+  - **pnpm** defaults to the isolated linker. Scaffolds ship an `.npmrc`
+    (`node-linker=hoisted`) and a `pnpm-workspace.yaml` (`nodeLinker: hoisted`) —
+    both, because pnpm 11 reads settings only from `pnpm-workspace.yaml` while
+    pnpm 10.15 and older read only `.npmrc`. Reported as `expo start` failing on
+    an unresolvable `metro-runtime/src/modules/empty-module.js` where npm worked.
+  - **yarn 2+** defaults to Plug'n'Play and installs no `node_modules` at all, so
+    Metro could not bundle a yarn scaffold. Scaffolds ship a `.yarnrc.yml`
+    (`nodeLinker: node-modules`). Yarn 1.x is flat already and ignores it.
+
+  `init`, `convex` and `supabase` now install and bundle under npm, pnpm, yarn and
+  bun alike, each covered by a CI leg that installs for real and runs a Metro
+  bundle.
+
+  `.DS_Store` is no longer copied into a scaffold, and the starters build now
+  fails on any file npm silently strips from the tarball (`.gitignore`, `.npmrc`,
+  `.npmignore`, `.DS_Store`) rather than shipping a scaffold missing it.
+
+  A failed dependency install now prints what the package manager actually said
+  and the command to re-run, instead of dumping a raw `Error` object.
+
+- [`0780314`](https://github.com/ahmedbna/ui/commit/0780314e2d583e95ca2f0c961bbd0480c036f931) Thanks [@ahmedbna](https://github.com/ahmedbna)! - Fix `bunx --bun bna-ui init`, which died with `TypeError: fs.opendir is not a
+function` before writing a single file.
+
+  `copyTemplate` no longer calls `fs.cp(…, { filter })`. `fs.cp`'s filter callback
+  has to re-enter JS for every entry, and runtimes that implement `node:fs`
+  natively have not always carried it — so under Bun the scaffold either threw or,
+  worse, silently ignored the filter and copied `node_modules` into the new
+  project. The copy is now an explicit walk over `readdir`/`mkdir`/`copyFile`,
+  primitives present in every Node and Bun release, and the dot-less renames
+  (`gitignore` → `.gitignore`, `github` → `.github`) happen during it. CI now
+  scaffolds under Bun on two versions and diffs the result against Node's.
+
+  `add` had a second Bun gap behind the same symptom. Installing a component's
+  npm dependencies in an Expo project shells out to `expo install`, and the runner
+  was a hardcoded `npx`. That holds for npm, yarn and pnpm — all three are Node
+  programs that bring `npx` with them — but Bun is its own runtime, so
+  `bunx --bun bna-ui add camera` on a machine without Node resolved every file it
+  was about to write and then died with `npx: command not found`. A bun project
+  now launches it with `bunx`.
+
+  The update notifier also no longer fires under `bunx`, `pnpm dlx` or `yarn dlx`.
+  It only ever recognised `npx`, so every `bunx bna-ui init` finished by
+  suggesting `npm install -g bna-ui@latest` — a package `bunx` had just resolved
+  to latest, with the wrong package manager.
+
 ## 4.0.0
 
 ### Major Changes
