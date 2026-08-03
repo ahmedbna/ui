@@ -1,44 +1,170 @@
 ---
 title: Google Sign-In
-description: Configure Google as an OAuth provider for the Convex Auth starter — the OAuth client, the .site callback URL, and what to do when the browser comes back to nothing.
+description: Step-by-step guide to configuring Google as an OAuth provider for the Convex Auth starter — the Cloud project, the consent screen, the OAuth client, the .site callback URL, and what to do when the browser comes back to nothing.
 ---
 
 The starter's Google button works as soon as the provider is configured on
 your Convex deployment. No code changes — it shares the browser flow with
 Apple.
 
+## Before you start
+
+- A Google account. Any account works; you do not need a paid plan or a
+  verified domain to sign in during development.
+- A Convex deployment, so you have an HTTP Actions URL to point Google at.
+  `npx convex dev --once` is enough — see the
+  [auth installation guide](/docs/installation/convex-auth).
+
 ## Create the OAuth client
 
 <Steps>
 
-<Step>Open the Google Cloud console</Step>
+<Step>Create or select a Google Cloud project</Step>
 
-[console.cloud.google.com](https://console.cloud.google.com) → create or pick
-a project.
+1. Open the [Google Cloud console](https://console.cloud.google.com) and click
+   **Select a project** in the top bar.
+2. Click **New project** in the dialog.
+3. Give the project a name. This one is internal — your users never see it.
+4. Click **Create** and wait for it to finish provisioning.
+5. Click **Select a project** again.
+6. Pick the project you just created.
 
-<Step>Configure the consent screen</Step>
+<ImagePreview
+  alt='Google Cloud console welcome page with the Select a project button highlighted'
+  src='https://demo.ahmedbna.com/0409-google-oauth-setup-01.png'
+/>
+<ImagePreview
+  alt='Select a project dialog with the New project button highlighted'
+  src='https://demo.ahmedbna.com/0410-google-oauth-setup-02.png'
+/>
+<ImagePreview
+  alt='New Project form with the project name filled in and the Create button highlighted'
+  src='https://demo.ahmedbna.com/0411-google-oauth-setup-03.png'
+/>
+<ImagePreview
+  alt='Back on the welcome page, opening the project picker again'
+  src='https://demo.ahmedbna.com/0412-google-oauth-setup-04.png'
+/>
+<ImagePreview
+  alt='Selecting the newly created project from the Recent tab'
+  src='https://demo.ahmedbna.com/0413-google-oauth-setup-05.png'
+/>
 
-**APIs & Services → OAuth consent screen**. Pick **External** unless this is
-a Workspace-only app. Fill in the app name, support email and developer
-contact.
+<Step>Open the Google Auth Platform</Step>
 
-While the app is in **Testing**, only accounts you list under **Test users**
-can sign in — everyone else gets "access blocked." Publish before launch.
+7. From **Quick access**, click **APIs & Services**.
+8. In the left navigation, click **OAuth consent screen**.
+9. Click **Get started**.
 
-<Step>Create the credentials</Step>
+<ImagePreview
+  alt='Project dashboard with the APIs and Services quick-access card highlighted'
+  src='https://demo.ahmedbna.com/0414-google-oauth-setup-06.png'
+/>
+<ImagePreview
+  alt='APIs and Services with OAuth consent screen highlighted in the left navigation'
+  src='https://demo.ahmedbna.com/0415-google-oauth-setup-07.png'
+/>
+<ImagePreview
+  alt='Google Auth Platform not configured yet, with the Get started button highlighted'
+  src='https://demo.ahmedbna.com/0416-google-oauth-setup-08.png'
+/>
 
-**APIs & Services → Credentials → Create credentials → OAuth client ID**,
-type **Web application**. Web, not Android or iOS: the browser flow
-authenticates against Convex's HTTP Actions endpoint, which is a web
-endpoint.
+<Step>Fill in the app information</Step>
+
+10. **App name** — this one _is_ shown to users on the consent screen.
+11. **User support email** — pick one from the dropdown.
+12. Click **Next**.
+
+<ImagePreview
+  alt='Project configuration step 1, App Information, with app name and support email'
+  src='https://demo.ahmedbna.com/0417-google-oauth-setup-09.png'
+/>
+
+<Step>Choose the audience</Step>
+
+13. Pick **External** unless this is a Workspace-only app. **Internal** is
+    limited to accounts in your organization.
+14. Click **Next**.
+
+<ImagePreview
+  alt='Project configuration step 2, Audience, with External selected'
+  src='https://demo.ahmedbna.com/0418-google-oauth-setup-10.png'
+/>
+
+<Callout title='External apps start in Testing'>
+  While the app is in **Testing**, only accounts you list under **Audience →
+  Test users** can sign in — everyone else gets "access blocked." Add your own
+  account there before you try the flow, and publish the app before you launch.
+</Callout>
+
+<Step>Add contact information and create the configuration</Step>
+
+15. Enter one or more email addresses. Google uses these to notify you about
+    project changes.
+16. Click **Next**.
+17. Check **I agree to the Google API Services: User Data Policy**.
+18. Click **Continue**.
+19. Click **Create**.
+
+<ImagePreview
+  alt='Project configuration step 3, Contact Information, with an email address entered'
+  src='https://demo.ahmedbna.com/0419-google-oauth-setup-11.png'
+/>
+<ImagePreview
+  alt='Project configuration step 4, Finish, with the policy agreement checked and Create highlighted'
+  src='https://demo.ahmedbna.com/0420-google-oauth-setup-12.png'
+/>
+
+<Step>Create the OAuth client</Step>
+
+20. In the left navigation, click **Clients**.
+21. Click **Create client**.
+22. Set **Application type** to **Web application**. Web, not Android or iOS:
+    the browser flow authenticates against Convex's HTTP Actions endpoint,
+    which is a web endpoint.
+23. Give the client a name. This one is only used to identify it in the
+    console.
+
+<ImagePreview
+  alt='OAuth Overview after configuration, with Clients highlighted in the left navigation'
+  src='https://demo.ahmedbna.com/0421-google-oauth-setup-13.png'
+/>
+<ImagePreview
+  alt='Empty Clients list with the Create client button highlighted'
+  src='https://demo.ahmedbna.com/0422-google-oauth-setup-14.png'
+/>
+<ImagePreview
+  alt='Create OAuth client ID form with Web application selected and a name entered'
+  src='https://demo.ahmedbna.com/0423-google-oauth-setup-15.png'
+/>
 
 <Step>Find your Convex HTTP Actions URL</Step>
 
-Convex dashboard → **Settings → URL & Deploy Key**. It ends in `.site`, not
-`.cloud` — that second URL is the one your app talks to for queries and
-mutations, and it is not the one Google needs to redirect to.
+Leave that tab open and switch to the Convex dashboard.
+
+24. Open **Settings**.
+25. Open **URL & Deploy Key**.
+26. Copy the **HTTP Actions URL**. It ends in `.site`.
+
+<ImagePreview
+  alt='Convex deployment settings showing the HTTP Actions URL ending in .site'
+  src='https://demo.ahmedbna.com/0424-google-oauth-setup-16.png'
+/>
+
+<Callout title='.site, not .cloud'>
+  Every Convex deployment has two URLs: `*.convex.cloud` for the client SDK, and
+  `*.convex.site` for HTTP Actions — which is what serves the OAuth callback.
+  Pasting the `.cloud` URL into Google's redirect URI is the single most common
+  cause of `redirect_uri_mismatch` here.
+</Callout>
 
 <Step>Add the authorized redirect URI</Step>
+
+Back in the Google console:
+
+27. Under **Authorized redirect URIs**, click **Add URI**.
+28. Paste the HTTP Actions URL and append `/api/auth/callback/google`.
+29. Click **Create**.
 
 ```
 {HTTP_ACTIONS_URL}/api/auth/callback/google
@@ -50,21 +176,74 @@ For example, if your HTTP Actions URL is `https://fast-horse-123.convex.site`:
 https://fast-horse-123.convex.site/api/auth/callback/google
 ```
 
+**Authorized JavaScript origins** can stay empty. The starter's flow never
+calls Google from a browser origin you control — it hands off to Convex's
+`.site` endpoint, which is already covered by the redirect URI.
+
+<ImagePreview
+  alt='Authorized redirect URIs with the Convex callback URL pasted in'
+  src='https://demo.ahmedbna.com/0425-google-oauth-setup-17.png'
+/>
+
+<Step>Copy the client ID and secret</Step>
+
+30. Copy the **Client ID** from the confirmation dialog, then click **OK**.
+31. Back on the **Clients** list, click the client you just made.
+32. Under **Client secrets**, use the existing secret or click **Add secret**.
+33. Copy the **Client secret**.
+
+Google no longer lets you view a secret after you leave the page, so copy it
+now — if you lose it, add a new one and delete the old.
+
+<ImagePreview
+  alt='OAuth client created dialog showing the Client ID'
+  src='https://demo.ahmedbna.com/0426-google-oauth-setup-18.png'
+/>
+<ImagePreview
+  alt='OAuth 2.0 Client IDs list with the new client listed'
+  src='https://demo.ahmedbna.com/0427-google-oauth-setup-19.png'
+/>
+<ImagePreview
+  alt='Client detail page with the Client secrets panel and Add secret button'
+  src='https://demo.ahmedbna.com/0428-google-oauth-setup-20.png'
+/>
+
 <Step>Set the environment variables</Step>
+
+From your project directory:
 
 ```bash
 npx convex env set AUTH_GOOGLE_ID your_client_id
 npx convex env set AUTH_GOOGLE_SECRET your_client_secret
 ```
 
+34. Or paste them into the Convex dashboard under **Settings → Environment
+    Variables** and click **Save All**.
+
+<ImagePreview
+  alt='Convex Environment Variables panel with AUTH_GOOGLE_ID and AUTH_GOOGLE_SECRET'
+  src='https://demo.ahmedbna.com/0429-google-oauth-setup-21.png'
+/>
+
 </Steps>
 
-<Callout title='.site, not .cloud'>
-  Every Convex deployment has two URLs: `*.convex.cloud` for the client SDK, and
-  `*.convex.site` for HTTP Actions — which is what serves the OAuth callback.
-  Pasting the `.cloud` URL into Google's redirect URI is the single most common
-  cause of `redirect_uri_mismatch` here.
-</Callout>
+## The deep-link scheme
+
+One more variable, and the one people forget: `EXPO_URL` is your app's
+deep-link scheme, and it is what lets Convex redirect back _into the app_ after
+Google hands the browser back. It has to match the `scheme` in your `app.json`.
+
+```bash
+npx convex env set EXPO_URL my-app://
+```
+
+<ImagePreview
+  alt='Convex Environment Variables panel with EXPO_URL set to the app scheme'
+  src='https://demo.ahmedbna.com/0430-google-oauth-setup-22.png'
+/>
+
+Without it the browser sheet closes and nothing happens — see
+[the redirect allow-list](/docs/convex/auth#the-redirect-allow-list).
 
 ## Test it
 
@@ -99,12 +278,13 @@ Apple reuses the same shape.
 
 ## When it does not work
 
-| What you see                                  | Usually                                                                                                                                    |
-| --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| `redirect_uri_mismatch`                       | The `.cloud` URL was used instead of `.site`, or the path has a typo                                                                       |
-| Browser closes, nothing happens               | `EXPO_URL`/`SITE_URL` don't cover the redirect Convex sent back — see [the redirect allow-list](/docs/convex/auth#the-redirect-allow-list) |
-| "Access blocked: app not verified"            | Consent screen still in Testing and this account isn't a test user                                                                         |
-| Works after `npx convex env set`, still fails | The deployment needs a moment to pick up new env vars — retry once                                                                         |
+| What you see                                   | Usually                                                                                                                                    |
+| ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| `redirect_uri_mismatch`                        | The `.cloud` URL was used instead of `.site`, or the path has a typo                                                                       |
+| Browser closes, nothing happens                | `EXPO_URL`/`SITE_URL` don't cover the redirect Convex sent back — see [the redirect allow-list](/docs/convex/auth#the-redirect-allow-list) |
+| "Access blocked: app not verified"             | Consent screen still in Testing and this account isn't a test user                                                                         |
+| Works after `npx convex env set`, still fails  | The deployment needs a moment to pick up new env vars — retry once                                                                         |
+| Nothing changed after editing the OAuth client | Google warns it can take 5 minutes to a few hours for client settings to propagate                                                         |
 
 ## Next
 

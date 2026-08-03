@@ -1,6 +1,6 @@
 ---
 title: Apple Sign-In
-description: Configure Apple as an OAuth provider for the Convex Auth starter — the Service ID, the JWT client secret you have to generate and rotate, and App Store review requirements.
+description: Step-by-step guide to configuring Apple as an OAuth provider for the Convex Auth starter — the App ID, the Services ID, the signing key, and the JWT client secret you have to generate and rotate.
 ---
 
 <Callout title='No localhost testing'>
@@ -9,7 +9,14 @@ description: Configure Apple as an OAuth provider for the Convex Auth starter �
   here the way there might be with other providers.
 </Callout>
 
-You need a paid [Apple Developer](https://developer.apple.com) account.
+## Before you start
+
+- A paid [Apple Developer](https://developer.apple.com) account. Sign in with
+  Apple is not available on a free account.
+- A Convex deployment, so you have an HTTP Actions URL to point Apple at.
+- Two identifiers, not one. Apple needs an **App ID** _and_ a **Services ID**,
+  and it is the Services ID — not the App ID — that becomes your
+  `AUTH_APPLE_ID`. Getting these backwards is the most common failure here.
 
 ## Configure Apple
 
@@ -17,38 +24,85 @@ You need a paid [Apple Developer](https://developer.apple.com) account.
 
 <Step>Create an App ID</Step>
 
-[developer.apple.com](https://developer.apple.com/account) →
-**Certificates, Identifiers & Profiles → Identifiers → +** → **App IDs** →
-**App**. Under **Capabilities**, enable **Sign In with Apple**.
+1. Go to [Certificates, Identifiers & Profiles](https://developer.apple.com/account/resources/certificates/list).
+2. Select **Identifiers** in the sidebar, make sure **App IDs** is selected in
+   the dropdown on the right, and click the **+** button.
+3. On the Register a New Identifier page, keep **App IDs** selected and click
+   **Continue**.
+4. With **App** selected, click **Continue**.
+5. Fill in **Description**, and set **Bundle ID** to **Explicit** with your
+   app's identifier — e.g. `com.yourcompany.yourapp`. It must match the
+   `ios.bundleIdentifier` in your `app.json`.
+6. Scroll to **Capabilities** and check **Sign In with Apple**.
+7. Click **Continue**, then **Register**.
 
 <Step>Create a Services ID</Step>
 
-**Identifiers → + → Services IDs**. This is a separate identifier from the
-App ID, and it is the one that becomes your `AUTH_APPLE_ID`.
-
-<Step>Find your Convex HTTP Actions URL</Step>
-
-Convex dashboard → **Settings → URL & Deploy Key**. It ends in `.site`, not
-`.cloud`.
-
-<Step>Configure the Services ID</Step>
-
-Enable **Sign In with Apple**, then **Configure**:
-
-- **Domains**: the domain portion of your HTTP Actions URL, e.g.
-  `fast-horse-123.convex.site`
-- **Return URLs**: `https://fast-horse-123.convex.site/api/auth/callback/apple`
+1. Back on Certificates, Identifiers & Profiles, switch the dropdown to
+   **Services IDs** and click **+**.
+2. Keep **Services IDs** selected and click **Continue**.
+3. Fill in **Description** and **Identifier** — e.g.
+   `com.yourcompany.yourapp.service`. This identifier is what you will set as
+   `AUTH_APPLE_ID`, so it must be different from the App ID above.
+4. Click **Continue**, then **Register**.
 
 <Step>Create a signing key</Step>
 
-**Keys → +**. Enable **Sign In with Apple**, configure it against your App
-ID, and register. Download the `.p8` file — **Apple lets you download it
-once** — and note the Key ID next to it and your Team ID from the top right
-of the developer portal.
+1. Click **Keys** in the sidebar, then **+**.
+2. Give the key a name.
+3. Check **Sign In with Apple** and click **Configure** beside it.
+4. Select the **App ID** you created as the Primary App ID, and click **Save**.
+5. Click **Continue**, then **Register**.
+6. Download the `.p8` file.
+7. Note the **Key ID** shown next to it, and your **Team ID** from the top
+   right of the developer portal.
+
+<Callout title='One download, no second chance'>
+  Apple lets you download a signing key exactly once. Store the `.p8` somewhere
+  safe and out of version control — if you lose it you have to revoke the key
+  and create a new one.
+</Callout>
+
+<Step>Find your Convex HTTP Actions URL</Step>
+
+In the Convex dashboard, open **Settings → URL & Deploy Key** and copy the
+**HTTP Actions URL**. It ends in `.site`, not `.cloud` — the `.cloud` URL is
+what your app talks to for queries and mutations, and it is not what Apple
+redirects to.
+
+<Step>Configure the Services ID for web authentication</Step>
+
+1. Return to **Identifiers**, switch the dropdown to **Services IDs**, and
+   click the Services ID you created.
+2. Make sure **Sign In with Apple** is checked and click **Configure**.
+3. Set the **Primary App ID** to your App ID.
+4. In **Domains and Subdomains**, enter just the domain portion of your HTTP
+   Actions URL — no scheme, no path:
+
+   ```
+   fast-horse-123.convex.site
+   ```
+
+5. In **Return URLs**, enter the full callback URL:
+
+   ```
+   https://fast-horse-123.convex.site/api/auth/callback/apple
+   ```
+
+6. Click **Next**, confirm the values, and click **Done**.
+7. Back on the Services ID page, click **Continue**, then **Save**.
 
 <Step>Generate the JWT client secret</Step>
 
-Apple does not issue a static secret; you sign one with the `.p8` key:
+Apple does not issue a static secret. You sign one yourself with the `.p8`
+key, using four pieces of information:
+
+| Value           | Where it comes from                                    |
+| --------------- | ------------------------------------------------------ |
+| **Team ID**     | Top right of the Apple Developer portal, 10 characters |
+| **Services ID** | The identifier from step 2, e.g. `com.you.app.service` |
+| **Key ID**      | In the filename of the key, `AuthKey_XXXXXXXXXX.p8`    |
+| **Private key** | The contents of the `.p8` file                         |
 
 ```js
 const jwt = require('jsonwebtoken');
@@ -71,12 +125,18 @@ const token = jwt.sign(
 console.log(token);
 ```
 
+Sign it locally. The `.p8` is a private key: pasting it into an online JWT
+generator hands whoever runs that page the ability to authenticate as your app.
+
 <Step>Set the environment variables</Step>
 
 ```bash
 npx convex env set AUTH_APPLE_ID your_service_id
 npx convex env set AUTH_APPLE_SECRET your_generated_jwt
 ```
+
+Or add them in the Convex dashboard under **Settings → Environment
+Variables**. Set them on your production deployment too, with `--prod`.
 
 </Steps>
 

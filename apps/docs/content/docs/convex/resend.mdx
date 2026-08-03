@@ -1,32 +1,100 @@
 ---
 title: Resend OTP
-description: Configure Resend for email OTP and password reset in the Convex Auth starter — domain verification, the API key, and the from address you have to change.
+description: Step-by-step guide to configuring Resend for email OTP and password reset in the Convex Auth starter — the account, domain verification, the API key, and the from address you have to change.
 ---
 
 Two flows in the starter send mail through [Resend](https://resend.com): the
 email OTP tab, and the password-reset code.
 
+## Before you start
+
+- A [Resend](https://resend.com) account. The free tier is enough to test with.
+- A domain you own, with access to its DNS records. You can create an API key
+  and send to your own address without one, but you cannot send to anyone else
+  until a domain is verified.
+
 ## Set it up
 
 <Steps>
 
-<Step>Create a Resend account and verify a domain</Step>
+<Step>Create a Resend account</Step>
 
-[resend.com](https://resend.com) → **Domains → Add Domain**. Add the SPF and
-DKIM records it gives you to your DNS, and a DMARC record if you want one:
+Sign up at [resend.com](https://resend.com) and confirm your email address.
+The onboarding checklist that greets you covers exactly two things — adding an
+API key and sending a test email — and you will do both below.
 
-```
-Name: @              Type: TXT   Value: v=spf1 include:_spf.resend.com ~all
-Name: resend._domainkey  Type: TXT   Value: [provided by Resend]
-Name: _dmarc          Type: TXT   Value: v=DMARC1; p=quarantine; rua=mailto:dmarc@yourdomain.com
-```
+<ImagePreview
+  alt='Resend onboarding checklist: add an API key and send your first email'
+  src='https://demo.ahmedbna.com/0434-resend-setup-04.png'
+/>
+<ImagePreview
+  alt='Resend onboarding checklist with both steps completed'
+  src='https://demo.ahmedbna.com/0435-resend-setup-05.png'
+/>
 
-Verification can take a few minutes to 24 hours.
+<Step>Add your domain</Step>
+
+1. Click **Domains** in the left sidebar.
+2. Click **Add Domain**.
+3. Enter the domain or subdomain you want to send from, pick the region
+   closest to your users, and click **Add Domain**.
+
+A subdomain like `mail.yourdomain.com` is worth considering: it keeps the
+sending reputation of your transactional mail separate from whatever else uses
+the root domain.
+
+<ImagePreview
+  alt='Empty Resend Domains page with the Add Domain button highlighted'
+  src='https://demo.ahmedbna.com/0436-resend-setup-06.png'
+/>
+<ImagePreview
+  alt='Add Domain form with a domain name and region selected'
+  src='https://demo.ahmedbna.com/0437-resend-setup-07.png'
+/>
+
+<Step>Add the DNS records</Step>
+
+Resend generates the records for you — an `MX` and two `TXT` records for DKIM
+and SPF, marked **Required**, plus an optional `TXT` record for DMARC. Copy
+each one into your DNS provider exactly as shown; do not retype the values.
+
+Then click **I've added the records**. Verification usually lands in a few
+minutes, but DNS propagation can take up to 24 hours.
+
+<ImagePreview
+  alt='Resend DNS Records panel showing the required DKIM/SPF records and the optional DMARC record'
+  src='https://demo.ahmedbna.com/0438-resend-setup-08.png'
+/>
+
+<Callout title='DMARC is optional but worth it'>
+  Resend marks DMARC "Recommended" rather than "Required" — mail sends without
+  it. Adding a policy like `v=DMARC1; p=quarantine;
+  rua=mailto:dmarc@yourdomain.com` tells receiving servers what to do with mail
+  that fails SPF or DKIM, which is what keeps you out of spam folders as your
+  volume grows.
+</Callout>
 
 <Step>Create an API key</Step>
 
-**API Keys → Create API Key**, full access. Copy it immediately — Resend
-shows it once.
+1. Click **API Keys** in the left sidebar.
+2. Click **Create API Key**.
+3. Name it something you'll recognise later, leave **Permission** on **Full
+   access**, and scope it to your domain if you want to restrict it.
+4. Click **Add**.
+5. Copy the key. Resend shows it once and never again.
+
+<ImagePreview
+  alt='Resend API Keys page with the Create API Key button highlighted'
+  src='https://demo.ahmedbna.com/0431-resend-setup-01.png'
+/>
+<ImagePreview
+  alt='Add API Key dialog with a name, Full access permission and domain scope'
+  src='https://demo.ahmedbna.com/0432-resend-setup-02.png'
+/>
+<ImagePreview
+  alt='View API Key dialog warning that the key is only shown once'
+  src='https://demo.ahmedbna.com/0433-resend-setup-03.png'
+/>
 
 <Step>Set it on your Convex deployment</Step>
 
@@ -34,11 +102,20 @@ shows it once.
 npx convex env set AUTH_RESEND_KEY re_your_key_here
 ```
 
+Or add `AUTH_RESEND_KEY` in the Convex dashboard under **Settings →
+Environment Variables**.
+
 <Step>Use separate keys for dev and prod</Step>
+
+`npx convex env set` writes to your development deployment. Production is a
+separate deployment with its own environment, so set it there too:
 
 ```bash
 npx convex env set AUTH_RESEND_KEY re_prod_key_here --prod
 ```
+
+Separate keys mean you can revoke one without taking the other down, and the
+Resend logs tell you which environment a send came from.
 
 </Steps>
 
@@ -60,6 +137,10 @@ Try the OTP tab and the forgot-password flow. Without `AUTH_RESEND_KEY` set,
 both fail — the sign-up and sign-in flows in the password tab work regardless,
 since they don't send mail.
 
+Then open **Logs** in the Resend dashboard. Every send shows up there, whether
+it was delivered, bounced or rejected, along with the API error if there was
+one.
+
 ## No local mail catcher
 
 Supabase's local stack ships Inbucket, which catches every message instead
@@ -75,6 +156,7 @@ closest thing to it: every send, delivered or not, shows up there.
 | Arrives in spam                   | Domain has no SPF/DKIM, or the from address isn't on that domain       |
 | `Could not send email` thrown     | Check the Resend dashboard's Logs for the actual API error             |
 | Works in dev, not after deploying | `AUTH_RESEND_KEY` was never set with `--prod`                          |
+| Domain stuck on "Pending"         | DNS hasn't propagated yet, or a record was retyped instead of pasted   |
 
 ## Next
 
