@@ -34,7 +34,7 @@ export function DocsSidebar({
             {item.type === 'folder' && item.index ? (
               <SidebarGroupLabel
                 asChild
-                className='text-muted-foreground font-medium'
+                className='text-muted-foreground hover:text-foreground font-medium transition-colors'
               >
                 <Link href={item.index.url}>{item.name}</Link>
               </SidebarGroupLabel>

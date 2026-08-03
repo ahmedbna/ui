@@ -1,4 +1,6 @@
 {
+  "title": "About",
+  "pagesIndex": "about",
   "pages": [
     "index",
     "cli",
@@ -7,7 +9,6 @@
     "mcp",
     "agents",
     "skills",
-    "shadcn",
-    "about"
+    "shadcn"
   ]
 }

@@ -26,7 +26,7 @@ export function DocsPageLinks({
           <button
             type='button'
             onClick={() => copyToClipboard(markdown)}
-            className='hover:text-foreground inline-flex items-center gap-2 transition-colors'
+            className='hover:text-foreground inline-flex cursor-pointer items-center gap-2 transition-colors'
           >
             {isCopied ? (
               <IconCheck className='size-4' />
