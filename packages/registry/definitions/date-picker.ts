@@ -26,8 +26,8 @@ export const datePickerRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0130-date-picker-demo.MP4',
-      dark: 'https://ui.ahmedbna.com/0130-date-picker-demo.MP4',
+      light: 'https://demo.ahmedbna.com/0130-date-picker-demo.MP4',
+      dark: 'https://demo.ahmedbna.com/0130-date-picker-demo.MP4',
     },
   },
 
@@ -47,8 +47,8 @@ export const datePickerRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0130-date-picker-demo.MP4',
-      dark: 'https://ui.ahmedbna.com/0130-date-picker-demo.MP4',
+      light: 'https://demo.ahmedbna.com/0130-date-picker-demo.MP4',
+      dark: 'https://demo.ahmedbna.com/0130-date-picker-demo.MP4',
     },
   },
 
@@ -68,8 +68,8 @@ export const datePickerRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0131-date-picker-time.MP4',
-      dark: 'https://ui.ahmedbna.com/0131-date-picker-time.MP4',
+      light: 'https://demo.ahmedbna.com/0131-date-picker-time.MP4',
+      dark: 'https://demo.ahmedbna.com/0131-date-picker-time.MP4',
     },
   },
 
@@ -89,8 +89,8 @@ export const datePickerRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0132-date-picker-datetime.MP4',
-      dark: 'https://ui.ahmedbna.com/0132-date-picker-datetime.MP4',
+      light: 'https://demo.ahmedbna.com/0132-date-picker-datetime.MP4',
+      dark: 'https://demo.ahmedbna.com/0132-date-picker-datetime.MP4',
     },
   },
 
@@ -109,8 +109,8 @@ export const datePickerRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0133-date-picker-range.MP4',
-      dark: 'https://ui.ahmedbna.com/0133-date-picker-range.MP4',
+      light: 'https://demo.ahmedbna.com/0133-date-picker-range.MP4',
+      dark: 'https://demo.ahmedbna.com/0133-date-picker-range.MP4',
     },
   },
 
@@ -130,8 +130,8 @@ export const datePickerRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0134-date-picker-constraints.MP4',
-      dark: 'https://ui.ahmedbna.com/0134-date-picker-constraints.MP4',
+      light: 'https://demo.ahmedbna.com/0134-date-picker-constraints.MP4',
+      dark: 'https://demo.ahmedbna.com/0134-date-picker-constraints.MP4',
     },
   },
 
@@ -151,8 +151,8 @@ export const datePickerRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0135-date-picker-variants.MP4',
-      dark: 'https://ui.ahmedbna.com/0135-date-picker-variants.MP4',
+      light: 'https://demo.ahmedbna.com/0135-date-picker-variants.MP4',
+      dark: 'https://demo.ahmedbna.com/0135-date-picker-variants.MP4',
     },
   },
 
@@ -172,8 +172,8 @@ export const datePickerRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0136-date-picker-formats.MP4',
-      dark: 'https://ui.ahmedbna.com/0136-date-picker-formats.MP4',
+      light: 'https://demo.ahmedbna.com/0136-date-picker-formats.MP4',
+      dark: 'https://demo.ahmedbna.com/0136-date-picker-formats.MP4',
     },
   },
 
@@ -193,8 +193,8 @@ export const datePickerRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0137-date-picker-form.MP4',
-      dark: 'https://ui.ahmedbna.com/0137-date-picker-form.MP4',
+      light: 'https://demo.ahmedbna.com/0137-date-picker-form.MP4',
+      dark: 'https://demo.ahmedbna.com/0137-date-picker-form.MP4',
     },
   },
 };

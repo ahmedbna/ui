@@ -24,8 +24,8 @@ export const stackedAreaChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0387-stacked-area-chart-demo.MOV',
-      dark: 'https://ui.ahmedbna.com/0387-stacked-area-chart-demo.MOV',
+      light: 'https://demo.ahmedbna.com/0387-stacked-area-chart-demo.MOV',
+      dark: 'https://demo.ahmedbna.com/0387-stacked-area-chart-demo.MOV',
     },
   },
 
@@ -47,8 +47,8 @@ export const stackedAreaChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0387-stacked-area-chart-demo.MOV',
-      dark: 'https://ui.ahmedbna.com/0387-stacked-area-chart-demo.MOV',
+      light: 'https://demo.ahmedbna.com/0387-stacked-area-chart-demo.MOV',
+      dark: 'https://demo.ahmedbna.com/0387-stacked-area-chart-demo.MOV',
     },
   },
 
@@ -68,8 +68,8 @@ export const stackedAreaChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0388-stacked-area-chart-sample.MOV',
-      dark: 'https://ui.ahmedbna.com/0388-stacked-area-chart-sample.MOV',
+      light: 'https://demo.ahmedbna.com/0388-stacked-area-chart-sample.MOV',
+      dark: 'https://demo.ahmedbna.com/0388-stacked-area-chart-sample.MOV',
     },
   },
 
@@ -90,8 +90,8 @@ export const stackedAreaChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0389-stacked-area-chart-styled.MOV',
-      dark: 'https://ui.ahmedbna.com/0389-stacked-area-chart-styled.MOV',
+      light: 'https://demo.ahmedbna.com/0389-stacked-area-chart-styled.MOV',
+      dark: 'https://demo.ahmedbna.com/0389-stacked-area-chart-styled.MOV',
     },
   },
 
@@ -111,8 +111,8 @@ export const stackedAreaChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0390-stacked-area-chart-large.MOV',
-      dark: 'https://ui.ahmedbna.com/0390-stacked-area-chart-large.MOV',
+      light: 'https://demo.ahmedbna.com/0390-stacked-area-chart-large.MOV',
+      dark: 'https://demo.ahmedbna.com/0390-stacked-area-chart-large.MOV',
     },
   },
 };

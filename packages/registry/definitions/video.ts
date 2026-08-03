@@ -19,8 +19,8 @@ export const videoRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0321-video-demo.MP4',
-      dark: 'https://ui.ahmedbna.com/0321-video-demo.MP4',
+      light: 'https://demo.ahmedbna.com/0321-video-demo.MP4',
+      dark: 'https://demo.ahmedbna.com/0321-video-demo.MP4',
     },
   },
 
@@ -40,8 +40,8 @@ export const videoRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0321-video-demo.MP4',
-      dark: 'https://ui.ahmedbna.com/0321-video-demo.MP4',
+      light: 'https://demo.ahmedbna.com/0321-video-demo.MP4',
+      dark: 'https://demo.ahmedbna.com/0321-video-demo.MP4',
     },
   },
 
@@ -61,8 +61,8 @@ export const videoRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0322-video-native-controls.MP4',
-      dark: 'https://ui.ahmedbna.com/0322-video-native-controls.MP4',
+      light: 'https://demo.ahmedbna.com/0322-video-native-controls.MP4',
+      dark: 'https://demo.ahmedbna.com/0322-video-native-controls.MP4',
     },
   },
 
@@ -82,8 +82,8 @@ export const videoRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0323-video-custom-controls.MP4',
-      dark: 'https://ui.ahmedbna.com/0323-video-custom-controls.MP4',
+      light: 'https://demo.ahmedbna.com/0323-video-custom-controls.MP4',
+      dark: 'https://demo.ahmedbna.com/0323-video-custom-controls.MP4',
     },
   },
 
@@ -103,8 +103,8 @@ export const videoRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0324-video-subtitles.MP4',
-      dark: 'https://ui.ahmedbna.com/0324-video-subtitles.MP4',
+      light: 'https://demo.ahmedbna.com/0324-video-subtitles.MP4',
+      dark: 'https://demo.ahmedbna.com/0324-video-subtitles.MP4',
     },
   },
 
@@ -124,8 +124,8 @@ export const videoRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0325-video-autoplay-loop.MP4',
-      dark: 'https://ui.ahmedbna.com/0325-video-autoplay-loop.MP4',
+      light: 'https://demo.ahmedbna.com/0325-video-autoplay-loop.MP4',
+      dark: 'https://demo.ahmedbna.com/0325-video-autoplay-loop.MP4',
     },
   },
 
@@ -145,8 +145,8 @@ export const videoRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0326-video-sources.MP4',
-      dark: 'https://ui.ahmedbna.com/0326-video-sources.MP4',
+      light: 'https://demo.ahmedbna.com/0326-video-sources.MP4',
+      dark: 'https://demo.ahmedbna.com/0326-video-sources.MP4',
     },
   },
 
@@ -166,8 +166,8 @@ export const videoRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0327-video-gestures.MP4',
-      dark: 'https://ui.ahmedbna.com/0327-video-gestures.MP4',
+      light: 'https://demo.ahmedbna.com/0327-video-gestures.MP4',
+      dark: 'https://demo.ahmedbna.com/0327-video-gestures.MP4',
     },
   },
 
@@ -187,8 +187,8 @@ export const videoRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0328-video-content-fit.mov',
-      dark: 'https://ui.ahmedbna.com/0328-video-content-fit.mov',
+      light: 'https://demo.ahmedbna.com/0328-video-content-fit.mov',
+      dark: 'https://demo.ahmedbna.com/0328-video-content-fit.mov',
     },
   },
 };

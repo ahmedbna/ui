@@ -23,8 +23,8 @@ export const progressRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0226-progress-demo.PNG',
-      dark: 'https://ui.ahmedbna.com/0226-progress-demo.PNG',
+      light: 'https://demo.ahmedbna.com/0226-progress-demo.PNG',
+      dark: 'https://demo.ahmedbna.com/0226-progress-demo.PNG',
     },
   },
 
@@ -44,8 +44,8 @@ export const progressRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0226-progress-demo.PNG',
-      dark: 'https://ui.ahmedbna.com/0226-progress-demo.PNG',
+      light: 'https://demo.ahmedbna.com/0226-progress-demo.PNG',
+      dark: 'https://demo.ahmedbna.com/0226-progress-demo.PNG',
     },
   },
 
@@ -65,8 +65,8 @@ export const progressRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0227-progress-interactive.MP4',
-      dark: 'https://ui.ahmedbna.com/0227-progress-interactive.MP4',
+      light: 'https://demo.ahmedbna.com/0227-progress-interactive.MP4',
+      dark: 'https://demo.ahmedbna.com/0227-progress-interactive.MP4',
     },
   },
 
@@ -85,8 +85,8 @@ export const progressRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0228-progress-heights.PNG',
-      dark: 'https://ui.ahmedbna.com/0228-progress-heights.PNG',
+      light: 'https://demo.ahmedbna.com/0228-progress-heights.PNG',
+      dark: 'https://demo.ahmedbna.com/0228-progress-heights.PNG',
     },
   },
 
@@ -105,8 +105,8 @@ export const progressRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0229-progress-labels.PNG',
-      dark: 'https://ui.ahmedbna.com/0229-progress-labels.PNG',
+      light: 'https://demo.ahmedbna.com/0229-progress-labels.PNG',
+      dark: 'https://demo.ahmedbna.com/0229-progress-labels.PNG',
     },
   },
 
@@ -125,8 +125,8 @@ export const progressRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0230-progress-animated.mov',
-      dark: 'https://ui.ahmedbna.com/0230-progress-animated.mov',
+      light: 'https://demo.ahmedbna.com/0230-progress-animated.mov',
+      dark: 'https://demo.ahmedbna.com/0230-progress-animated.mov',
     },
   },
 
@@ -145,8 +145,8 @@ export const progressRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0231-progress-media.mov',
-      dark: 'https://ui.ahmedbna.com/0231-progress-media.mov',
+      light: 'https://demo.ahmedbna.com/0231-progress-media.mov',
+      dark: 'https://demo.ahmedbna.com/0231-progress-media.mov',
     },
   },
 
@@ -165,8 +165,8 @@ export const progressRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0232-progress-steps.MP4',
-      dark: 'https://ui.ahmedbna.com/0232-progress-steps.MP4',
+      light: 'https://demo.ahmedbna.com/0232-progress-steps.MP4',
+      dark: 'https://demo.ahmedbna.com/0232-progress-steps.MP4',
     },
   },
 };

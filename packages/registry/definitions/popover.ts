@@ -19,8 +19,8 @@ export const popoverRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0219-popover-demo.MP4',
-      dark: 'https://ui.ahmedbna.com/0219-popover-demo.MP4',
+      light: 'https://demo.ahmedbna.com/0219-popover-demo.MP4',
+      dark: 'https://demo.ahmedbna.com/0219-popover-demo.MP4',
     },
   },
 
@@ -40,8 +40,8 @@ export const popoverRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0219-popover-demo.MP4',
-      dark: 'https://ui.ahmedbna.com/0219-popover-demo.MP4',
+      light: 'https://demo.ahmedbna.com/0219-popover-demo.MP4',
+      dark: 'https://demo.ahmedbna.com/0219-popover-demo.MP4',
     },
   },
 
@@ -61,8 +61,8 @@ export const popoverRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0220-popover-positioning.MP4',
-      dark: 'https://ui.ahmedbna.com/0220-popover-positioning.MP4',
+      light: 'https://demo.ahmedbna.com/0220-popover-positioning.MP4',
+      dark: 'https://demo.ahmedbna.com/0220-popover-positioning.MP4',
     },
   },
 
@@ -82,8 +82,8 @@ export const popoverRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0221-popover-alignment.MP4',
-      dark: 'https://ui.ahmedbna.com/0221-popover-alignment.MP4',
+      light: 'https://demo.ahmedbna.com/0221-popover-alignment.MP4',
+      dark: 'https://demo.ahmedbna.com/0221-popover-alignment.MP4',
     },
   },
 
@@ -103,8 +103,8 @@ export const popoverRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0222-popover-controlled.MP4',
-      dark: 'https://ui.ahmedbna.com/0222-popover-controlled.MP4',
+      light: 'https://demo.ahmedbna.com/0222-popover-controlled.MP4',
+      dark: 'https://demo.ahmedbna.com/0222-popover-controlled.MP4',
     },
   },
 
@@ -124,8 +124,8 @@ export const popoverRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0223-popover-custom.MP4',
-      dark: 'https://ui.ahmedbna.com/0223-popover-custom.MP4',
+      light: 'https://demo.ahmedbna.com/0223-popover-custom.MP4',
+      dark: 'https://demo.ahmedbna.com/0223-popover-custom.MP4',
     },
   },
 
@@ -145,8 +145,8 @@ export const popoverRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0224-popover-form.MP4',
-      dark: 'https://ui.ahmedbna.com/0224-popover-form.MP4',
+      light: 'https://demo.ahmedbna.com/0224-popover-form.MP4',
+      dark: 'https://demo.ahmedbna.com/0224-popover-form.MP4',
     },
   },
 
@@ -166,8 +166,8 @@ export const popoverRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0225-popover-menu.MP4',
-      dark: 'https://ui.ahmedbna.com/0225-popover-menu.MP4',
+      light: 'https://demo.ahmedbna.com/0225-popover-menu.MP4',
+      dark: 'https://demo.ahmedbna.com/0225-popover-menu.MP4',
     },
   },
 };

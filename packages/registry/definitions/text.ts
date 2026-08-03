@@ -19,8 +19,8 @@ export const textRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0303-text-demo.PNG',
-      dark: 'https://ui.ahmedbna.com/0303-text-demo.PNG',
+      light: 'https://demo.ahmedbna.com/0303-text-demo.PNG',
+      dark: 'https://demo.ahmedbna.com/0303-text-demo.PNG',
     },
   },
 
@@ -40,8 +40,8 @@ export const textRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0303-text-demo.PNG',
-      dark: 'https://ui.ahmedbna.com/0303-text-demo.PNG',
+      light: 'https://demo.ahmedbna.com/0303-text-demo.PNG',
+      dark: 'https://demo.ahmedbna.com/0303-text-demo.PNG',
     },
   },
 
@@ -60,8 +60,8 @@ export const textRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0304-text-variants.PNG',
-      dark: 'https://ui.ahmedbna.com/0304-text-variants.PNG',
+      light: 'https://demo.ahmedbna.com/0304-text-variants.PNG',
+      dark: 'https://demo.ahmedbna.com/0304-text-variants.PNG',
     },
   },
 
@@ -80,8 +80,8 @@ export const textRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0305-text-colors.PNG',
-      dark: 'https://ui.ahmedbna.com/0305-text-colors.PNG',
+      light: 'https://demo.ahmedbna.com/0305-text-colors.PNG',
+      dark: 'https://demo.ahmedbna.com/0305-text-colors.PNG',
     },
   },
 };

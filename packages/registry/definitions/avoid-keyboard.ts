@@ -19,8 +19,8 @@ export const avoidKeyboardRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0052-avoid-keyboard-demo.MP4',
-      dark: 'https://ui.ahmedbna.com/0052-avoid-keyboard-demo.MP4',
+      light: 'https://demo.ahmedbna.com/0052-avoid-keyboard-demo.MP4',
+      dark: 'https://demo.ahmedbna.com/0052-avoid-keyboard-demo.MP4',
     },
   },
 
@@ -41,8 +41,8 @@ export const avoidKeyboardRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0052-avoid-keyboard-demo.MP4',
-      dark: 'https://ui.ahmedbna.com/0052-avoid-keyboard-demo.MP4',
+      light: 'https://demo.ahmedbna.com/0052-avoid-keyboard-demo.MP4',
+      dark: 'https://demo.ahmedbna.com/0052-avoid-keyboard-demo.MP4',
     },
   },
 
@@ -63,8 +63,8 @@ export const avoidKeyboardRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0053-avoid-keyboard-offset.MP4',
-      dark: 'https://ui.ahmedbna.com/0053-avoid-keyboard-offset.MP4',
+      light: 'https://demo.ahmedbna.com/0053-avoid-keyboard-offset.MP4',
+      dark: 'https://demo.ahmedbna.com/0053-avoid-keyboard-offset.MP4',
     },
   },
 
@@ -85,8 +85,8 @@ export const avoidKeyboardRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0054-avoid-keyboard-duration.MP4',
-      dark: 'https://ui.ahmedbna.com/0054-avoid-keyboard-duration.MP4',
+      light: 'https://demo.ahmedbna.com/0054-avoid-keyboard-duration.MP4',
+      dark: 'https://demo.ahmedbna.com/0054-avoid-keyboard-duration.MP4',
     },
   },
 
@@ -107,8 +107,8 @@ export const avoidKeyboardRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0055-avoid-keyboard-chat.MP4',
-      dark: 'https://ui.ahmedbna.com/0055-avoid-keyboard-chat.MP4',
+      light: 'https://demo.ahmedbna.com/0055-avoid-keyboard-chat.MP4',
+      dark: 'https://demo.ahmedbna.com/0055-avoid-keyboard-chat.MP4',
     },
   },
 
@@ -129,8 +129,8 @@ export const avoidKeyboardRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0056-avoid-keyboard-form.MP4',
-      dark: 'https://ui.ahmedbna.com/0056-avoid-keyboard-form.MP4',
+      light: 'https://demo.ahmedbna.com/0056-avoid-keyboard-form.MP4',
+      dark: 'https://demo.ahmedbna.com/0056-avoid-keyboard-form.MP4',
     },
   },
 
@@ -151,8 +151,8 @@ export const avoidKeyboardRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0057-avoid-keyboard-playground.MP4',
-      dark: 'https://ui.ahmedbna.com/0057-avoid-keyboard-playground.MP4',
+      light: 'https://demo.ahmedbna.com/0057-avoid-keyboard-playground.MP4',
+      dark: 'https://demo.ahmedbna.com/0057-avoid-keyboard-playground.MP4',
     },
   },
 };

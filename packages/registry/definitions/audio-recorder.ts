@@ -18,8 +18,8 @@ export const audioRecorderRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0031-audio-recorder-demo.MP4',
-      dark: 'https://ui.ahmedbna.com/0031-audio-recorder-demo.MP4',
+      light: 'https://demo.ahmedbna.com/0031-audio-recorder-demo.MP4',
+      dark: 'https://demo.ahmedbna.com/0031-audio-recorder-demo.MP4',
     },
   },
 
@@ -40,8 +40,8 @@ export const audioRecorderRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0031-audio-recorder-demo.MP4',
-      dark: 'https://ui.ahmedbna.com/0031-audio-recorder-demo.MP4',
+      light: 'https://demo.ahmedbna.com/0031-audio-recorder-demo.MP4',
+      dark: 'https://demo.ahmedbna.com/0031-audio-recorder-demo.MP4',
     },
   },
 
@@ -61,8 +61,8 @@ export const audioRecorderRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0032-audio-recorder-voice.MP4',
-      dark: 'https://ui.ahmedbna.com/0032-audio-recorder-voice.MP4',
+      light: 'https://demo.ahmedbna.com/0032-audio-recorder-voice.MP4',
+      dark: 'https://demo.ahmedbna.com/0032-audio-recorder-voice.MP4',
     },
   },
 
@@ -82,8 +82,8 @@ export const audioRecorderRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0033-audio-recorder-hq.MP4',
-      dark: 'https://ui.ahmedbna.com/0033-audio-recorder-hq.MP4',
+      light: 'https://demo.ahmedbna.com/0033-audio-recorder-hq.MP4',
+      dark: 'https://demo.ahmedbna.com/0033-audio-recorder-hq.MP4',
     },
   },
 
@@ -103,8 +103,8 @@ export const audioRecorderRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0034-audio-recorder-minimal.MP4',
-      dark: 'https://ui.ahmedbna.com/0034-audio-recorder-minimal.MP4',
+      light: 'https://demo.ahmedbna.com/0034-audio-recorder-minimal.MP4',
+      dark: 'https://demo.ahmedbna.com/0034-audio-recorder-minimal.MP4',
     },
   },
 
@@ -124,8 +124,8 @@ export const audioRecorderRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0035-audio-recorder-styled.MP4',
-      dark: 'https://ui.ahmedbna.com/0035-audio-recorder-styled.MP4',
+      light: 'https://demo.ahmedbna.com/0035-audio-recorder-styled.MP4',
+      dark: 'https://demo.ahmedbna.com/0035-audio-recorder-styled.MP4',
     },
   },
 
@@ -145,8 +145,8 @@ export const audioRecorderRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0036-audio-recorder-callbacks.MP4',
-      dark: 'https://ui.ahmedbna.com/0036-audio-recorder-callbacks.MP4',
+      light: 'https://demo.ahmedbna.com/0036-audio-recorder-callbacks.MP4',
+      dark: 'https://demo.ahmedbna.com/0036-audio-recorder-callbacks.MP4',
     },
   },
 
@@ -166,8 +166,8 @@ export const audioRecorderRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0037-audio-recorder-cloud.MP4',
-      dark: 'https://ui.ahmedbna.com/0037-audio-recorder-cloud.MP4',
+      light: 'https://demo.ahmedbna.com/0037-audio-recorder-cloud.MP4',
+      dark: 'https://demo.ahmedbna.com/0037-audio-recorder-cloud.MP4',
     },
   },
 
@@ -187,8 +187,8 @@ export const audioRecorderRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0038-audio-recorder-interview.MP4',
-      dark: 'https://ui.ahmedbna.com/0038-audio-recorder-interview.MP4',
+      light: 'https://demo.ahmedbna.com/0038-audio-recorder-interview.MP4',
+      dark: 'https://demo.ahmedbna.com/0038-audio-recorder-interview.MP4',
     },
   },
 };

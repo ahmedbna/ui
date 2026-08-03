@@ -25,8 +25,8 @@ export const lineChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0359-line-chart-demo.MOV',
-      dark: 'https://ui.ahmedbna.com/0359-line-chart-demo.MOV',
+      light: 'https://demo.ahmedbna.com/0359-line-chart-demo.MOV',
+      dark: 'https://demo.ahmedbna.com/0359-line-chart-demo.MOV',
     },
   },
 
@@ -46,8 +46,8 @@ export const lineChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0359-line-chart-demo.MOV',
-      dark: 'https://ui.ahmedbna.com/0359-line-chart-demo.MOV',
+      light: 'https://demo.ahmedbna.com/0359-line-chart-demo.MOV',
+      dark: 'https://demo.ahmedbna.com/0359-line-chart-demo.MOV',
     },
   },
 
@@ -67,8 +67,8 @@ export const lineChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0360-line-chart-interactive.MOV',
-      dark: 'https://ui.ahmedbna.com/0360-line-chart-interactive.MOV',
+      light: 'https://demo.ahmedbna.com/0360-line-chart-interactive.MOV',
+      dark: 'https://demo.ahmedbna.com/0360-line-chart-interactive.MOV',
     },
   },
 
@@ -88,8 +88,8 @@ export const lineChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0361-line-chart-styled.MOV',
-      dark: 'https://ui.ahmedbna.com/0361-line-chart-styled.MOV',
+      light: 'https://demo.ahmedbna.com/0361-line-chart-styled.MOV',
+      dark: 'https://demo.ahmedbna.com/0361-line-chart-styled.MOV',
     },
   },
 
@@ -109,8 +109,8 @@ export const lineChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0362-line-chart-minimal.MOV',
-      dark: 'https://ui.ahmedbna.com/0362-line-chart-minimal.MOV',
+      light: 'https://demo.ahmedbna.com/0362-line-chart-minimal.MOV',
+      dark: 'https://demo.ahmedbna.com/0362-line-chart-minimal.MOV',
     },
   },
 };

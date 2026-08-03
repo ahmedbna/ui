@@ -19,8 +19,8 @@ export const radioRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0233-radio-demo.MP4',
-      dark: 'https://ui.ahmedbna.com/0233-radio-demo.MP4',
+      light: 'https://demo.ahmedbna.com/0233-radio-demo.MP4',
+      dark: 'https://demo.ahmedbna.com/0233-radio-demo.MP4',
     },
   },
 
@@ -40,8 +40,8 @@ export const radioRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0233-radio-demo.MP4',
-      dark: 'https://ui.ahmedbna.com/0233-radio-demo.MP4',
+      light: 'https://demo.ahmedbna.com/0233-radio-demo.MP4',
+      dark: 'https://demo.ahmedbna.com/0233-radio-demo.MP4',
     },
   },
 
@@ -61,8 +61,8 @@ export const radioRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0234-radio-horizontal.MP4',
-      dark: 'https://ui.ahmedbna.com/0234-radio-horizontal.MP4',
+      light: 'https://demo.ahmedbna.com/0234-radio-horizontal.MP4',
+      dark: 'https://demo.ahmedbna.com/0234-radio-horizontal.MP4',
     },
   },
 
@@ -82,8 +82,8 @@ export const radioRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0235-radio-disabled.MP4',
-      dark: 'https://ui.ahmedbna.com/0235-radio-disabled.MP4',
+      light: 'https://demo.ahmedbna.com/0235-radio-disabled.MP4',
+      dark: 'https://demo.ahmedbna.com/0235-radio-disabled.MP4',
     },
   },
 
@@ -103,8 +103,8 @@ export const radioRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0236-radio-styled.MP4',
-      dark: 'https://ui.ahmedbna.com/0236-radio-styled.MP4',
+      light: 'https://demo.ahmedbna.com/0236-radio-styled.MP4',
+      dark: 'https://demo.ahmedbna.com/0236-radio-styled.MP4',
     },
   },
 
@@ -124,8 +124,8 @@ export const radioRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0237-radio-form.MP4',
-      dark: 'https://ui.ahmedbna.com/0237-radio-form.MP4',
+      light: 'https://demo.ahmedbna.com/0237-radio-form.MP4',
+      dark: 'https://demo.ahmedbna.com/0237-radio-form.MP4',
     },
   },
 
@@ -145,8 +145,8 @@ export const radioRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0238-radio-large.MP4',
-      dark: 'https://ui.ahmedbna.com/0238-radio-large.MP4',
+      light: 'https://demo.ahmedbna.com/0238-radio-large.MP4',
+      dark: 'https://demo.ahmedbna.com/0238-radio-large.MP4',
     },
   },
 
@@ -166,8 +166,8 @@ export const radioRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0239-radio-single.MP4',
-      dark: 'https://ui.ahmedbna.com/0239-radio-single.MP4',
+      light: 'https://demo.ahmedbna.com/0239-radio-single.MP4',
+      dark: 'https://demo.ahmedbna.com/0239-radio-single.MP4',
     },
   },
 };

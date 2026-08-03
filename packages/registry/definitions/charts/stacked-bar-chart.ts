@@ -24,8 +24,8 @@ export const stackedBarChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0391-stacked-bar-chart-demo.MOV',
-      dark: 'https://ui.ahmedbna.com/0391-stacked-bar-chart-demo.MOV',
+      light: 'https://demo.ahmedbna.com/0391-stacked-bar-chart-demo.MOV',
+      dark: 'https://demo.ahmedbna.com/0391-stacked-bar-chart-demo.MOV',
     },
   },
 
@@ -46,8 +46,8 @@ export const stackedBarChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0391-stacked-bar-chart-demo.MOV',
-      dark: 'https://ui.ahmedbna.com/0391-stacked-bar-chart-demo.MOV',
+      light: 'https://demo.ahmedbna.com/0391-stacked-bar-chart-demo.MOV',
+      dark: 'https://demo.ahmedbna.com/0391-stacked-bar-chart-demo.MOV',
     },
   },
 
@@ -68,8 +68,8 @@ export const stackedBarChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0392-stacked-bar-chart-horizontal.MOV',
-      dark: 'https://ui.ahmedbna.com/0392-stacked-bar-chart-horizontal.MOV',
+      light: 'https://demo.ahmedbna.com/0392-stacked-bar-chart-horizontal.MOV',
+      dark: 'https://demo.ahmedbna.com/0392-stacked-bar-chart-horizontal.MOV',
     },
   },
 
@@ -91,8 +91,8 @@ export const stackedBarChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0393-stacked-bar-chart-styled.mov',
-      dark: 'https://ui.ahmedbna.com/0393-stacked-bar-chart-styled.mov',
+      light: 'https://demo.ahmedbna.com/0393-stacked-bar-chart-styled.mov',
+      dark: 'https://demo.ahmedbna.com/0393-stacked-bar-chart-styled.mov',
     },
   },
 
@@ -113,8 +113,8 @@ export const stackedBarChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0394-stacked-bar-chart-large.mov',
-      dark: 'https://ui.ahmedbna.com/0394-stacked-bar-chart-large.mov',
+      light: 'https://demo.ahmedbna.com/0394-stacked-bar-chart-large.mov',
+      dark: 'https://demo.ahmedbna.com/0394-stacked-bar-chart-large.mov',
     },
   },
 };

@@ -24,8 +24,8 @@ export const pieChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0363-pie-chart-demo.MOV',
-      dark: 'https://ui.ahmedbna.com/0363-pie-chart-demo.MOV',
+      light: 'https://demo.ahmedbna.com/0363-pie-chart-demo.MOV',
+      dark: 'https://demo.ahmedbna.com/0363-pie-chart-demo.MOV',
     },
   },
 
@@ -45,8 +45,8 @@ export const pieChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0363-pie-chart-demo.MOV',
-      dark: 'https://ui.ahmedbna.com/0363-pie-chart-demo.MOV',
+      light: 'https://demo.ahmedbna.com/0363-pie-chart-demo.MOV',
+      dark: 'https://demo.ahmedbna.com/0363-pie-chart-demo.MOV',
     },
   },
 
@@ -65,8 +65,8 @@ export const pieChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0364-pie-chart-sample.MOV',
-      dark: 'https://ui.ahmedbna.com/0364-pie-chart-sample.MOV',
+      light: 'https://demo.ahmedbna.com/0364-pie-chart-sample.MOV',
+      dark: 'https://demo.ahmedbna.com/0364-pie-chart-sample.MOV',
     },
   },
 
@@ -85,8 +85,8 @@ export const pieChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0365-pie-chart-styled.MOV',
-      dark: 'https://ui.ahmedbna.com/0365-pie-chart-styled.MOV',
+      light: 'https://demo.ahmedbna.com/0365-pie-chart-styled.MOV',
+      dark: 'https://demo.ahmedbna.com/0365-pie-chart-styled.MOV',
     },
   },
 
@@ -105,8 +105,8 @@ export const pieChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0366-pie-chart-large.MOV',
-      dark: 'https://ui.ahmedbna.com/0366-pie-chart-large.MOV',
+      light: 'https://demo.ahmedbna.com/0366-pie-chart-large.MOV',
+      dark: 'https://demo.ahmedbna.com/0366-pie-chart-large.MOV',
     },
   },
 };

@@ -24,8 +24,8 @@ export const columnChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0347-column-chart-demo.MOV',
-      dark: 'https://ui.ahmedbna.com/0347-column-chart-demo.MOV',
+      light: 'https://demo.ahmedbna.com/0347-column-chart-demo.MOV',
+      dark: 'https://demo.ahmedbna.com/0347-column-chart-demo.MOV',
     },
   },
 
@@ -45,8 +45,8 @@ export const columnChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0347-column-chart-demo.MOV',
-      dark: 'https://ui.ahmedbna.com/0347-column-chart-demo.MOV',
+      light: 'https://demo.ahmedbna.com/0347-column-chart-demo.MOV',
+      dark: 'https://demo.ahmedbna.com/0347-column-chart-demo.MOV',
     },
   },
 
@@ -65,8 +65,8 @@ export const columnChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0348-column-chart-sample.MOV',
-      dark: 'https://ui.ahmedbna.com/0348-column-chart-sample.MOV',
+      light: 'https://demo.ahmedbna.com/0348-column-chart-sample.MOV',
+      dark: 'https://demo.ahmedbna.com/0348-column-chart-sample.MOV',
     },
   },
 
@@ -85,8 +85,8 @@ export const columnChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0349-column-chart-styled.MOV',
-      dark: 'https://ui.ahmedbna.com/0349-column-chart-styled.MOV',
+      light: 'https://demo.ahmedbna.com/0349-column-chart-styled.MOV',
+      dark: 'https://demo.ahmedbna.com/0349-column-chart-styled.MOV',
     },
   },
 
@@ -105,8 +105,8 @@ export const columnChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0350-column-chart-large.mov',
-      dark: 'https://ui.ahmedbna.com/0350-column-chart-large.mov',
+      light: 'https://demo.ahmedbna.com/0350-column-chart-large.mov',
+      dark: 'https://demo.ahmedbna.com/0350-column-chart-large.mov',
     },
   },
 };

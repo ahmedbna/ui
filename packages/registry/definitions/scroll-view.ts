@@ -19,8 +19,8 @@ export const scrollViewRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0240-scroll-view-demo.MP4',
-      dark: 'https://ui.ahmedbna.com/0240-scroll-view-demo.MP4',
+      light: 'https://demo.ahmedbna.com/0240-scroll-view-demo.MP4',
+      dark: 'https://demo.ahmedbna.com/0240-scroll-view-demo.MP4',
     },
   },
 
@@ -40,8 +40,8 @@ export const scrollViewRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0240-scroll-view-demo.MP4',
-      dark: 'https://ui.ahmedbna.com/0240-scroll-view-demo.MP4',
+      light: 'https://demo.ahmedbna.com/0240-scroll-view-demo.MP4',
+      dark: 'https://demo.ahmedbna.com/0240-scroll-view-demo.MP4',
     },
   },
 
@@ -61,8 +61,8 @@ export const scrollViewRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0241-scroll-view-vertical.MP4',
-      dark: 'https://ui.ahmedbna.com/0241-scroll-view-vertical.MP4',
+      light: 'https://demo.ahmedbna.com/0241-scroll-view-vertical.MP4',
+      dark: 'https://demo.ahmedbna.com/0241-scroll-view-vertical.MP4',
     },
   },
 
@@ -82,8 +82,8 @@ export const scrollViewRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0242-scroll-view-horizontal.MP4',
-      dark: 'https://ui.ahmedbna.com/0242-scroll-view-horizontal.MP4',
+      light: 'https://demo.ahmedbna.com/0242-scroll-view-horizontal.MP4',
+      dark: 'https://demo.ahmedbna.com/0242-scroll-view-horizontal.MP4',
     },
   },
 
@@ -103,8 +103,8 @@ export const scrollViewRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0243-scroll-view-nested.MP4',
-      dark: 'https://ui.ahmedbna.com/0243-scroll-view-nested.MP4',
+      light: 'https://demo.ahmedbna.com/0243-scroll-view-nested.MP4',
+      dark: 'https://demo.ahmedbna.com/0243-scroll-view-nested.MP4',
     },
   },
 
@@ -124,8 +124,8 @@ export const scrollViewRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0244-scroll-view-refresh.MP4',
-      dark: 'https://ui.ahmedbna.com/0244-scroll-view-refresh.MP4',
+      light: 'https://demo.ahmedbna.com/0244-scroll-view-refresh.MP4',
+      dark: 'https://demo.ahmedbna.com/0244-scroll-view-refresh.MP4',
     },
   },
 
@@ -145,8 +145,8 @@ export const scrollViewRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0245-scroll-view-styled.MP4',
-      dark: 'https://ui.ahmedbna.com/0245-scroll-view-styled.MP4',
+      light: 'https://demo.ahmedbna.com/0245-scroll-view-styled.MP4',
+      dark: 'https://demo.ahmedbna.com/0245-scroll-view-styled.MP4',
     },
   },
 
@@ -166,8 +166,8 @@ export const scrollViewRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0246-scroll-view-indicators.MP4',
-      dark: 'https://ui.ahmedbna.com/0246-scroll-view-indicators.MP4',
+      light: 'https://demo.ahmedbna.com/0246-scroll-view-indicators.MP4',
+      dark: 'https://demo.ahmedbna.com/0246-scroll-view-indicators.MP4',
     },
   },
 
@@ -187,8 +187,8 @@ export const scrollViewRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0247-scroll-view-inset.MP4',
-      dark: 'https://ui.ahmedbna.com/0247-scroll-view-inset.MP4',
+      light: 'https://demo.ahmedbna.com/0247-scroll-view-inset.MP4',
+      dark: 'https://demo.ahmedbna.com/0247-scroll-view-inset.MP4',
     },
   },
 };

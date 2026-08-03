@@ -23,8 +23,8 @@ export const modeToggleRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0197-mode-toggle-demo.MP4',
-      dark: 'https://ui.ahmedbna.com/0197-mode-toggle-demo.MP4',
+      light: 'https://demo.ahmedbna.com/0197-mode-toggle-demo.MP4',
+      dark: 'https://demo.ahmedbna.com/0197-mode-toggle-demo.MP4',
     },
   },
 
@@ -44,8 +44,8 @@ export const modeToggleRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0197-mode-toggle-demo.MP4',
-      dark: 'https://ui.ahmedbna.com/0197-mode-toggle-demo.MP4',
+      light: 'https://demo.ahmedbna.com/0197-mode-toggle-demo.MP4',
+      dark: 'https://demo.ahmedbna.com/0197-mode-toggle-demo.MP4',
     },
   },
 };

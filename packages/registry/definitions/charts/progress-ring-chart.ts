@@ -24,8 +24,8 @@ export const progressRingChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0371-progress-ring-chart-demo.MOV',
-      dark: 'https://ui.ahmedbna.com/0371-progress-ring-chart-demo.MOV',
+      light: 'https://demo.ahmedbna.com/0371-progress-ring-chart-demo.MOV',
+      dark: 'https://demo.ahmedbna.com/0371-progress-ring-chart-demo.MOV',
     },
   },
 
@@ -46,8 +46,8 @@ export const progressRingChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0371-progress-ring-chart-demo.MOV',
-      dark: 'https://ui.ahmedbna.com/0371-progress-ring-chart-demo.MOV',
+      light: 'https://demo.ahmedbna.com/0371-progress-ring-chart-demo.MOV',
+      dark: 'https://demo.ahmedbna.com/0371-progress-ring-chart-demo.MOV',
     },
   },
 
@@ -67,8 +67,8 @@ export const progressRingChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0372-progress-ring-chart-sample.MOV',
-      dark: 'https://ui.ahmedbna.com/0372-progress-ring-chart-sample.MOV',
+      light: 'https://demo.ahmedbna.com/0372-progress-ring-chart-sample.MOV',
+      dark: 'https://demo.ahmedbna.com/0372-progress-ring-chart-sample.MOV',
     },
   },
 
@@ -88,8 +88,8 @@ export const progressRingChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0373-progress-ring-chart-styled.MOV',
-      dark: 'https://ui.ahmedbna.com/0373-progress-ring-chart-styled.MOV',
+      light: 'https://demo.ahmedbna.com/0373-progress-ring-chart-styled.MOV',
+      dark: 'https://demo.ahmedbna.com/0373-progress-ring-chart-styled.MOV',
     },
   },
 
@@ -109,8 +109,8 @@ export const progressRingChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0374-progress-ring-chart-large.MOV',
-      dark: 'https://ui.ahmedbna.com/0374-progress-ring-chart-large.MOV',
+      light: 'https://demo.ahmedbna.com/0374-progress-ring-chart-large.MOV',
+      dark: 'https://demo.ahmedbna.com/0374-progress-ring-chart-large.MOV',
     },
   },
 };

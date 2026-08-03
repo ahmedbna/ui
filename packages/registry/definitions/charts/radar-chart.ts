@@ -24,8 +24,8 @@ export const radarChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0375-radar-chart-demo.MOV',
-      dark: 'https://ui.ahmedbna.com/0375-radar-chart-demo.MOV',
+      light: 'https://demo.ahmedbna.com/0375-radar-chart-demo.MOV',
+      dark: 'https://demo.ahmedbna.com/0375-radar-chart-demo.MOV',
     },
   },
 
@@ -45,8 +45,8 @@ export const radarChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0375-radar-chart-demo.MOV',
-      dark: 'https://ui.ahmedbna.com/0375-radar-chart-demo.MOV',
+      light: 'https://demo.ahmedbna.com/0375-radar-chart-demo.MOV',
+      dark: 'https://demo.ahmedbna.com/0375-radar-chart-demo.MOV',
     },
   },
 
@@ -65,8 +65,8 @@ export const radarChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0376-radar-chart-sample.MOV',
-      dark: 'https://ui.ahmedbna.com/0376-radar-chart-sample.MOV',
+      light: 'https://demo.ahmedbna.com/0376-radar-chart-sample.MOV',
+      dark: 'https://demo.ahmedbna.com/0376-radar-chart-sample.MOV',
     },
   },
 
@@ -85,8 +85,8 @@ export const radarChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0377-radar-chart-styled.MOV',
-      dark: 'https://ui.ahmedbna.com/0377-radar-chart-styled.MOV',
+      light: 'https://demo.ahmedbna.com/0377-radar-chart-styled.MOV',
+      dark: 'https://demo.ahmedbna.com/0377-radar-chart-styled.MOV',
     },
   },
 
@@ -105,8 +105,8 @@ export const radarChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0378-radar-chart-large.MOV',
-      dark: 'https://ui.ahmedbna.com/0378-radar-chart-large.MOV',
+      light: 'https://demo.ahmedbna.com/0378-radar-chart-large.MOV',
+      dark: 'https://demo.ahmedbna.com/0378-radar-chart-large.MOV',
     },
   },
 };

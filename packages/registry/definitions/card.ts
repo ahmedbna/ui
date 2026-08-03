@@ -19,8 +19,8 @@ export const cardRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0090-card-demo.PNG',
-      dark: 'https://ui.ahmedbna.com/0090-card-demo.PNG',
+      light: 'https://demo.ahmedbna.com/0090-card-demo.PNG',
+      dark: 'https://demo.ahmedbna.com/0090-card-demo.PNG',
     },
   },
 
@@ -40,8 +40,8 @@ export const cardRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0090-card-demo.PNG',
-      dark: 'https://ui.ahmedbna.com/0090-card-demo.PNG',
+      light: 'https://demo.ahmedbna.com/0090-card-demo.PNG',
+      dark: 'https://demo.ahmedbna.com/0090-card-demo.PNG',
     },
   },
 
@@ -61,8 +61,8 @@ export const cardRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0091-card-simple.PNG',
-      dark: 'https://ui.ahmedbna.com/0091-card-simple.PNG',
+      light: 'https://demo.ahmedbna.com/0091-card-simple.PNG',
+      dark: 'https://demo.ahmedbna.com/0091-card-simple.PNG',
     },
   },
 
@@ -82,8 +82,8 @@ export const cardRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0092-card-with-image.PNG',
-      dark: 'https://ui.ahmedbna.com/0092-card-with-image.PNG',
+      light: 'https://demo.ahmedbna.com/0092-card-with-image.PNG',
+      dark: 'https://demo.ahmedbna.com/0092-card-with-image.PNG',
     },
   },
 
@@ -103,8 +103,8 @@ export const cardRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0093-card-with-form.PNG',
-      dark: 'https://ui.ahmedbna.com/0093-card-with-form.PNG',
+      light: 'https://demo.ahmedbna.com/0093-card-with-form.PNG',
+      dark: 'https://demo.ahmedbna.com/0093-card-with-form.PNG',
     },
   },
 
@@ -124,8 +124,8 @@ export const cardRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0094-card-stats.PNG',
-      dark: 'https://ui.ahmedbna.com/0094-card-stats.PNG',
+      light: 'https://demo.ahmedbna.com/0094-card-stats.PNG',
+      dark: 'https://demo.ahmedbna.com/0094-card-stats.PNG',
     },
   },
 
@@ -145,8 +145,8 @@ export const cardRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0095-card-notification.PNG',
-      dark: 'https://ui.ahmedbna.com/0095-card-notification.PNG',
+      light: 'https://demo.ahmedbna.com/0095-card-notification.PNG',
+      dark: 'https://demo.ahmedbna.com/0095-card-notification.PNG',
     },
   },
 
@@ -166,8 +166,8 @@ export const cardRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0096-card-pricing.PNG',
-      dark: 'https://ui.ahmedbna.com/0096-card-pricing.PNG',
+      light: 'https://demo.ahmedbna.com/0096-card-pricing.PNG',
+      dark: 'https://demo.ahmedbna.com/0096-card-pricing.PNG',
     },
   },
 };

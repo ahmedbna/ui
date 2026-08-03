@@ -19,8 +19,8 @@ export const tableRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0293-table-demo.MP4',
-      dark: 'https://ui.ahmedbna.com/0293-table-demo.MP4',
+      light: 'https://demo.ahmedbna.com/0293-table-demo.MP4',
+      dark: 'https://demo.ahmedbna.com/0293-table-demo.MP4',
     },
   },
 
@@ -40,8 +40,8 @@ export const tableRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0293-table-demo.MP4',
-      dark: 'https://ui.ahmedbna.com/0293-table-demo.MP4',
+      light: 'https://demo.ahmedbna.com/0293-table-demo.MP4',
+      dark: 'https://demo.ahmedbna.com/0293-table-demo.MP4',
     },
   },
 
@@ -60,8 +60,8 @@ export const tableRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0294-table-sortable.MP4',
-      dark: 'https://ui.ahmedbna.com/0294-table-sortable.MP4',
+      light: 'https://demo.ahmedbna.com/0294-table-sortable.MP4',
+      dark: 'https://demo.ahmedbna.com/0294-table-sortable.MP4',
     },
   },
 
@@ -80,8 +80,8 @@ export const tableRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0295-table-custom-cells.MP4',
-      dark: 'https://ui.ahmedbna.com/0295-table-custom-cells.MP4',
+      light: 'https://demo.ahmedbna.com/0295-table-custom-cells.MP4',
+      dark: 'https://demo.ahmedbna.com/0295-table-custom-cells.MP4',
     },
   },
 
@@ -100,8 +100,8 @@ export const tableRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0296-table-pagination.MP4',
-      dark: 'https://ui.ahmedbna.com/0296-table-pagination.MP4',
+      light: 'https://demo.ahmedbna.com/0296-table-pagination.MP4',
+      dark: 'https://demo.ahmedbna.com/0296-table-pagination.MP4',
     },
   },
 
@@ -120,8 +120,8 @@ export const tableRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0297-table-search.MP4',
-      dark: 'https://ui.ahmedbna.com/0297-table-search.MP4',
+      light: 'https://demo.ahmedbna.com/0297-table-search.MP4',
+      dark: 'https://demo.ahmedbna.com/0297-table-search.MP4',
     },
   },
 
@@ -140,8 +140,8 @@ export const tableRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0298-table-loading.MP4',
-      dark: 'https://ui.ahmedbna.com/0298-table-loading.MP4',
+      light: 'https://demo.ahmedbna.com/0298-table-loading.MP4',
+      dark: 'https://demo.ahmedbna.com/0298-table-loading.MP4',
     },
   },
 };

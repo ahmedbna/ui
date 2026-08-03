@@ -24,8 +24,8 @@ export const doughnutChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0351-doughnut-chart-demo.MOV',
-      dark: 'https://ui.ahmedbna.com/0351-doughnut-chart-demo.MOV',
+      light: 'https://demo.ahmedbna.com/0351-doughnut-chart-demo.MOV',
+      dark: 'https://demo.ahmedbna.com/0351-doughnut-chart-demo.MOV',
     },
   },
 
@@ -46,8 +46,8 @@ export const doughnutChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0351-doughnut-chart-demo.MOV',
-      dark: 'https://ui.ahmedbna.com/0351-doughnut-chart-demo.MOV',
+      light: 'https://demo.ahmedbna.com/0351-doughnut-chart-demo.MOV',
+      dark: 'https://demo.ahmedbna.com/0351-doughnut-chart-demo.MOV',
     },
   },
 
@@ -67,8 +67,8 @@ export const doughnutChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0352-doughnut-chart-sample.MOV',
-      dark: 'https://ui.ahmedbna.com/0352-doughnut-chart-sample.MOV',
+      light: 'https://demo.ahmedbna.com/0352-doughnut-chart-sample.MOV',
+      dark: 'https://demo.ahmedbna.com/0352-doughnut-chart-sample.MOV',
     },
   },
 
@@ -88,8 +88,8 @@ export const doughnutChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0353-doughnut-chart-styled.MOV',
-      dark: 'https://ui.ahmedbna.com/0353-doughnut-chart-styled.MOV',
+      light: 'https://demo.ahmedbna.com/0353-doughnut-chart-styled.MOV',
+      dark: 'https://demo.ahmedbna.com/0353-doughnut-chart-styled.MOV',
     },
   },
 
@@ -109,8 +109,8 @@ export const doughnutChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0354-doughnut-chart-large.MOV',
-      dark: 'https://ui.ahmedbna.com/0354-doughnut-chart-large.MOV',
+      light: 'https://demo.ahmedbna.com/0354-doughnut-chart-large.MOV',
+      dark: 'https://demo.ahmedbna.com/0354-doughnut-chart-large.MOV',
     },
   },
 };

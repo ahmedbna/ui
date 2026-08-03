@@ -24,8 +24,8 @@ export const toastRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0306-toast-demo.MP4',
-      dark: 'https://ui.ahmedbna.com/0306-toast-demo.MP4',
+      light: 'https://demo.ahmedbna.com/0306-toast-demo.MP4',
+      dark: 'https://demo.ahmedbna.com/0306-toast-demo.MP4',
     },
   },
 
@@ -45,8 +45,8 @@ export const toastRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0306-toast-demo.MP4',
-      dark: 'https://ui.ahmedbna.com/0306-toast-demo.MP4',
+      light: 'https://demo.ahmedbna.com/0306-toast-demo.MP4',
+      dark: 'https://demo.ahmedbna.com/0306-toast-demo.MP4',
     },
   },
 
@@ -67,8 +67,8 @@ export const toastRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0307-toast-variants.MP4',
-      dark: 'https://ui.ahmedbna.com/0307-toast-variants.MP4',
+      light: 'https://demo.ahmedbna.com/0307-toast-variants.MP4',
+      dark: 'https://demo.ahmedbna.com/0307-toast-variants.MP4',
     },
   },
 
@@ -88,8 +88,8 @@ export const toastRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0308-toast-actions.MP4',
-      dark: 'https://ui.ahmedbna.com/0308-toast-actions.MP4',
+      light: 'https://demo.ahmedbna.com/0308-toast-actions.MP4',
+      dark: 'https://demo.ahmedbna.com/0308-toast-actions.MP4',
     },
   },
 
@@ -109,8 +109,8 @@ export const toastRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0309-toast-duration.MP4',
-      dark: 'https://ui.ahmedbna.com/0309-toast-duration.MP4',
+      light: 'https://demo.ahmedbna.com/0309-toast-duration.MP4',
+      dark: 'https://demo.ahmedbna.com/0309-toast-duration.MP4',
     },
   },
 
@@ -130,8 +130,8 @@ export const toastRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0310-toast-multiple.MP4',
-      dark: 'https://ui.ahmedbna.com/0310-toast-multiple.MP4',
+      light: 'https://demo.ahmedbna.com/0310-toast-multiple.MP4',
+      dark: 'https://demo.ahmedbna.com/0310-toast-multiple.MP4',
     },
   },
 
@@ -151,8 +151,8 @@ export const toastRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0311-toast-compact.MP4',
-      dark: 'https://ui.ahmedbna.com/0311-toast-compact.MP4',
+      light: 'https://demo.ahmedbna.com/0311-toast-compact.MP4',
+      dark: 'https://demo.ahmedbna.com/0311-toast-compact.MP4',
     },
   },
 };

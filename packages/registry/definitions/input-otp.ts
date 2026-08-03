@@ -18,8 +18,8 @@ export const inputOtpRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0167-input-otp-demo.MP4',
-      dark: 'https://ui.ahmedbna.com/0167-input-otp-demo.MP4',
+      light: 'https://demo.ahmedbna.com/0167-input-otp-demo.MP4',
+      dark: 'https://demo.ahmedbna.com/0167-input-otp-demo.MP4',
     },
   },
 
@@ -39,8 +39,8 @@ export const inputOtpRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0167-input-otp-demo.MP4',
-      dark: 'https://ui.ahmedbna.com/0167-input-otp-demo.MP4',
+      light: 'https://demo.ahmedbna.com/0167-input-otp-demo.MP4',
+      dark: 'https://demo.ahmedbna.com/0167-input-otp-demo.MP4',
     },
   },
 
@@ -60,8 +60,8 @@ export const inputOtpRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0168-input-otp-lengths.MP4',
-      dark: 'https://ui.ahmedbna.com/0168-input-otp-lengths.MP4',
+      light: 'https://demo.ahmedbna.com/0168-input-otp-lengths.MP4',
+      dark: 'https://demo.ahmedbna.com/0168-input-otp-lengths.MP4',
     },
   },
 
@@ -81,8 +81,8 @@ export const inputOtpRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0169-input-otp-separator.MP4',
-      dark: 'https://ui.ahmedbna.com/0169-input-otp-separator.MP4',
+      light: 'https://demo.ahmedbna.com/0169-input-otp-separator.MP4',
+      dark: 'https://demo.ahmedbna.com/0169-input-otp-separator.MP4',
     },
   },
 
@@ -101,8 +101,8 @@ export const inputOtpRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0170-input-otp-masked.MP4',
-      dark: 'https://ui.ahmedbna.com/0170-input-otp-masked.MP4',
+      light: 'https://demo.ahmedbna.com/0170-input-otp-masked.MP4',
+      dark: 'https://demo.ahmedbna.com/0170-input-otp-masked.MP4',
     },
   },
 
@@ -121,8 +121,8 @@ export const inputOtpRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0171-input-otp-error.MP4',
-      dark: 'https://ui.ahmedbna.com/0171-input-otp-error.MP4',
+      light: 'https://demo.ahmedbna.com/0171-input-otp-error.MP4',
+      dark: 'https://demo.ahmedbna.com/0171-input-otp-error.MP4',
     },
   },
 
@@ -141,8 +141,8 @@ export const inputOtpRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0172-input-otp-disabled.MP4',
-      dark: 'https://ui.ahmedbna.com/0172-input-otp-disabled.MP4',
+      light: 'https://demo.ahmedbna.com/0172-input-otp-disabled.MP4',
+      dark: 'https://demo.ahmedbna.com/0172-input-otp-disabled.MP4',
     },
   },
 
@@ -161,8 +161,8 @@ export const inputOtpRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0173-input-otp-styled.MP4',
-      dark: 'https://ui.ahmedbna.com/0173-input-otp-styled.MP4',
+      light: 'https://demo.ahmedbna.com/0173-input-otp-styled.MP4',
+      dark: 'https://demo.ahmedbna.com/0173-input-otp-styled.MP4',
     },
   },
 
@@ -181,8 +181,8 @@ export const inputOtpRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0174-input-otp-no-cursor.MP4',
-      dark: 'https://ui.ahmedbna.com/0174-input-otp-no-cursor.MP4',
+      light: 'https://demo.ahmedbna.com/0174-input-otp-no-cursor.MP4',
+      dark: 'https://demo.ahmedbna.com/0174-input-otp-no-cursor.MP4',
     },
   },
 };

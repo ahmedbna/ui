@@ -24,8 +24,8 @@ export const mediaPickerRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0190-media-picker-demo.MP4',
-      dark: 'https://ui.ahmedbna.com/0190-media-picker-demo.MP4',
+      light: 'https://demo.ahmedbna.com/0190-media-picker-demo.MP4',
+      dark: 'https://demo.ahmedbna.com/0190-media-picker-demo.MP4',
     },
   },
 
@@ -45,8 +45,8 @@ export const mediaPickerRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0190-media-picker-demo.MP4',
-      dark: 'https://ui.ahmedbna.com/0190-media-picker-demo.MP4',
+      light: 'https://demo.ahmedbna.com/0190-media-picker-demo.MP4',
+      dark: 'https://demo.ahmedbna.com/0190-media-picker-demo.MP4',
     },
   },
 
@@ -67,8 +67,8 @@ export const mediaPickerRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0191-media-picker-images.MP4',
-      dark: 'https://ui.ahmedbna.com/0191-media-picker-images.MP4',
+      light: 'https://demo.ahmedbna.com/0191-media-picker-images.MP4',
+      dark: 'https://demo.ahmedbna.com/0191-media-picker-images.MP4',
     },
   },
 
@@ -89,8 +89,8 @@ export const mediaPickerRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0192-media-picker-videos.MP4',
-      dark: 'https://ui.ahmedbna.com/0192-media-picker-videos.MP4',
+      light: 'https://demo.ahmedbna.com/0192-media-picker-videos.MP4',
+      dark: 'https://demo.ahmedbna.com/0192-media-picker-videos.MP4',
     },
   },
 
@@ -111,8 +111,8 @@ export const mediaPickerRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0193-media-picker-multiple.MP4',
-      dark: 'https://ui.ahmedbna.com/0193-media-picker-multiple.MP4',
+      light: 'https://demo.ahmedbna.com/0193-media-picker-multiple.MP4',
+      dark: 'https://demo.ahmedbna.com/0193-media-picker-multiple.MP4',
     },
   },
 
@@ -133,8 +133,8 @@ export const mediaPickerRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0194-media-picker-gallery.MP4',
-      dark: 'https://ui.ahmedbna.com/0194-media-picker-gallery.MP4',
+      light: 'https://demo.ahmedbna.com/0194-media-picker-gallery.MP4',
+      dark: 'https://demo.ahmedbna.com/0194-media-picker-gallery.MP4',
     },
   },
 
@@ -155,8 +155,8 @@ export const mediaPickerRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0195-media-picker-preview.MP4',
-      dark: 'https://ui.ahmedbna.com/0195-media-picker-preview.MP4',
+      light: 'https://demo.ahmedbna.com/0195-media-picker-preview.MP4',
+      dark: 'https://demo.ahmedbna.com/0195-media-picker-preview.MP4',
     },
   },
 
@@ -177,8 +177,8 @@ export const mediaPickerRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0196-media-picker-quality.MP4',
-      dark: 'https://ui.ahmedbna.com/0196-media-picker-quality.MP4',
+      light: 'https://demo.ahmedbna.com/0196-media-picker-quality.MP4',
+      dark: 'https://demo.ahmedbna.com/0196-media-picker-quality.MP4',
     },
   },
 };

@@ -23,8 +23,8 @@ export const cameraRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0083-camera-demo.mov',
-      dark: 'https://ui.ahmedbna.com/0083-camera-demo.mov',
+      light: 'https://demo.ahmedbna.com/0083-camera-demo.mov',
+      dark: 'https://demo.ahmedbna.com/0083-camera-demo.mov',
     },
   },
 
@@ -44,8 +44,8 @@ export const cameraRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0083-camera-demo.mov',
-      dark: 'https://ui.ahmedbna.com/0083-camera-demo.mov',
+      light: 'https://demo.ahmedbna.com/0083-camera-demo.mov',
+      dark: 'https://demo.ahmedbna.com/0083-camera-demo.mov',
     },
   },
 
@@ -65,8 +65,8 @@ export const cameraRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0084-camera-custom-controls.MP4',
-      dark: 'https://ui.ahmedbna.com/0084-camera-custom-controls.MP4',
+      light: 'https://demo.ahmedbna.com/0084-camera-custom-controls.MP4',
+      dark: 'https://demo.ahmedbna.com/0084-camera-custom-controls.MP4',
     },
   },
 
@@ -86,8 +86,8 @@ export const cameraRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0085-camera-picture-only.MP4',
-      dark: 'https://ui.ahmedbna.com/0085-camera-picture-only.MP4',
+      light: 'https://demo.ahmedbna.com/0085-camera-picture-only.MP4',
+      dark: 'https://demo.ahmedbna.com/0085-camera-picture-only.MP4',
     },
   },
 
@@ -107,8 +107,8 @@ export const cameraRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0086-camera-video.MP4',
-      dark: 'https://ui.ahmedbna.com/0086-camera-video.MP4',
+      light: 'https://demo.ahmedbna.com/0086-camera-video.MP4',
+      dark: 'https://demo.ahmedbna.com/0086-camera-video.MP4',
     },
   },
 
@@ -128,8 +128,8 @@ export const cameraRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0087-camera-timer.MP4',
-      dark: 'https://ui.ahmedbna.com/0087-camera-timer.MP4',
+      light: 'https://demo.ahmedbna.com/0087-camera-timer.MP4',
+      dark: 'https://demo.ahmedbna.com/0087-camera-timer.MP4',
     },
   },
 
@@ -149,8 +149,8 @@ export const cameraRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0088-camera-zoom.MP4',
-      dark: 'https://ui.ahmedbna.com/0088-camera-zoom.MP4',
+      light: 'https://demo.ahmedbna.com/0088-camera-zoom.MP4',
+      dark: 'https://demo.ahmedbna.com/0088-camera-zoom.MP4',
     },
   },
 
@@ -170,8 +170,8 @@ export const cameraRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0089-camera-settings.MP4',
-      dark: 'https://ui.ahmedbna.com/0089-camera-settings.MP4',
+      light: 'https://demo.ahmedbna.com/0089-camera-settings.MP4',
+      dark: 'https://demo.ahmedbna.com/0089-camera-settings.MP4',
     },
   },
 };

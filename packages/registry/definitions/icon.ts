@@ -19,8 +19,8 @@ export const iconRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0152-icon-demo.PNG',
-      dark: 'https://ui.ahmedbna.com/0152-icon-demo.PNG',
+      light: 'https://demo.ahmedbna.com/0152-icon-demo.PNG',
+      dark: 'https://demo.ahmedbna.com/0152-icon-demo.PNG',
     },
   },
 
@@ -40,8 +40,8 @@ export const iconRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0152-icon-demo.PNG',
-      dark: 'https://ui.ahmedbna.com/0152-icon-demo.PNG',
+      light: 'https://demo.ahmedbna.com/0152-icon-demo.PNG',
+      dark: 'https://demo.ahmedbna.com/0152-icon-demo.PNG',
     },
   },
 
@@ -61,8 +61,8 @@ export const iconRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0153-icon-sizes.PNG',
-      dark: 'https://ui.ahmedbna.com/0153-icon-sizes.PNG',
+      light: 'https://demo.ahmedbna.com/0153-icon-sizes.PNG',
+      dark: 'https://demo.ahmedbna.com/0153-icon-sizes.PNG',
     },
   },
 
@@ -82,8 +82,8 @@ export const iconRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0154-icon-colors.PNG',
-      dark: 'https://ui.ahmedbna.com/0154-icon-colors.PNG',
+      light: 'https://demo.ahmedbna.com/0154-icon-colors.PNG',
+      dark: 'https://demo.ahmedbna.com/0154-icon-colors.PNG',
     },
   },
 
@@ -103,8 +103,8 @@ export const iconRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0155-icon-stroke.PNG',
-      dark: 'https://ui.ahmedbna.com/0155-icon-stroke.PNG',
+      light: 'https://demo.ahmedbna.com/0155-icon-stroke.PNG',
+      dark: 'https://demo.ahmedbna.com/0155-icon-stroke.PNG',
     },
   },
 
@@ -124,8 +124,8 @@ export const iconRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0156-icon-interactive.PNG',
-      dark: 'https://ui.ahmedbna.com/0156-icon-interactive.PNG',
+      light: 'https://demo.ahmedbna.com/0156-icon-interactive.PNG',
+      dark: 'https://demo.ahmedbna.com/0156-icon-interactive.PNG',
     },
   },
 
@@ -145,8 +145,8 @@ export const iconRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0157-icon-grid.PNG',
-      dark: 'https://ui.ahmedbna.com/0157-icon-grid.PNG',
+      light: 'https://demo.ahmedbna.com/0157-icon-grid.PNG',
+      dark: 'https://demo.ahmedbna.com/0157-icon-grid.PNG',
     },
   },
 
@@ -166,8 +166,8 @@ export const iconRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0158-icon-themed.PNG',
-      dark: 'https://ui.ahmedbna.com/0158-icon-themed.PNG',
+      light: 'https://demo.ahmedbna.com/0158-icon-themed.PNG',
+      dark: 'https://demo.ahmedbna.com/0158-icon-themed.PNG',
     },
   },
 };

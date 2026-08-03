@@ -24,8 +24,8 @@ export const sheetRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0268-sheet-demo.MP4',
-      dark: 'https://ui.ahmedbna.com/0268-sheet-demo.MP4',
+      light: 'https://demo.ahmedbna.com/0268-sheet-demo.MP4',
+      dark: 'https://demo.ahmedbna.com/0268-sheet-demo.MP4',
     },
   },
 
@@ -45,8 +45,8 @@ export const sheetRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0268-sheet-demo.MP4',
-      dark: 'https://ui.ahmedbna.com/0268-sheet-demo.MP4',
+      light: 'https://demo.ahmedbna.com/0268-sheet-demo.MP4',
+      dark: 'https://demo.ahmedbna.com/0268-sheet-demo.MP4',
     },
   },
 
@@ -65,8 +65,8 @@ export const sheetRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0269-sheet-left.MP4',
-      dark: 'https://ui.ahmedbna.com/0269-sheet-left.MP4',
+      light: 'https://demo.ahmedbna.com/0269-sheet-left.MP4',
+      dark: 'https://demo.ahmedbna.com/0269-sheet-left.MP4',
     },
   },
 
@@ -86,8 +86,8 @@ export const sheetRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0270-sheet-navigation.MP4',
-      dark: 'https://ui.ahmedbna.com/0270-sheet-navigation.MP4',
+      light: 'https://demo.ahmedbna.com/0270-sheet-navigation.MP4',
+      dark: 'https://demo.ahmedbna.com/0270-sheet-navigation.MP4',
     },
   },
 
@@ -106,8 +106,8 @@ export const sheetRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0271-sheet-form.MP4',
-      dark: 'https://ui.ahmedbna.com/0271-sheet-form.MP4',
+      light: 'https://demo.ahmedbna.com/0271-sheet-form.MP4',
+      dark: 'https://demo.ahmedbna.com/0271-sheet-form.MP4',
     },
   },
 
@@ -127,8 +127,8 @@ export const sheetRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0272-sheet-filter.MP4',
-      dark: 'https://ui.ahmedbna.com/0272-sheet-filter.MP4',
+      light: 'https://demo.ahmedbna.com/0272-sheet-filter.MP4',
+      dark: 'https://demo.ahmedbna.com/0272-sheet-filter.MP4',
     },
   },
 };

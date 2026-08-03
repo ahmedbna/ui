@@ -24,8 +24,8 @@ export const heatmapChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0355-heatmap-chart-demo.MOV',
-      dark: 'https://ui.ahmedbna.com/0355-heatmap-chart-demo.MOV',
+      light: 'https://demo.ahmedbna.com/0355-heatmap-chart-demo.MOV',
+      dark: 'https://demo.ahmedbna.com/0355-heatmap-chart-demo.MOV',
     },
   },
 
@@ -45,8 +45,8 @@ export const heatmapChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0355-heatmap-chart-demo.MOV',
-      dark: 'https://ui.ahmedbna.com/0355-heatmap-chart-demo.MOV',
+      light: 'https://demo.ahmedbna.com/0355-heatmap-chart-demo.MOV',
+      dark: 'https://demo.ahmedbna.com/0355-heatmap-chart-demo.MOV',
     },
   },
 
@@ -65,8 +65,8 @@ export const heatmapChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0356-heatmap-chart-sample.MOV',
-      dark: 'https://ui.ahmedbna.com/0356-heatmap-chart-sample.MOV',
+      light: 'https://demo.ahmedbna.com/0356-heatmap-chart-sample.MOV',
+      dark: 'https://demo.ahmedbna.com/0356-heatmap-chart-sample.MOV',
     },
   },
 
@@ -85,8 +85,8 @@ export const heatmapChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0357-heatmap-chart-styled.MOV',
-      dark: 'https://ui.ahmedbna.com/0357-heatmap-chart-styled.MOV',
+      light: 'https://demo.ahmedbna.com/0357-heatmap-chart-styled.MOV',
+      dark: 'https://demo.ahmedbna.com/0357-heatmap-chart-styled.MOV',
     },
   },
 
@@ -105,8 +105,8 @@ export const heatmapChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0358-heatmap-chart-large.MOV',
-      dark: 'https://ui.ahmedbna.com/0358-heatmap-chart-large.MOV',
+      light: 'https://demo.ahmedbna.com/0358-heatmap-chart-large.MOV',
+      dark: 'https://demo.ahmedbna.com/0358-heatmap-chart-large.MOV',
     },
   },
 };

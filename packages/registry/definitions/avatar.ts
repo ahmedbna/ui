@@ -18,8 +18,8 @@ export const avatarRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0045-avatar-demo.PNG',
-      dark: 'https://ui.ahmedbna.com/0045-avatar-demo.PNG',
+      light: 'https://demo.ahmedbna.com/0045-avatar-demo.PNG',
+      dark: 'https://demo.ahmedbna.com/0045-avatar-demo.PNG',
     },
   },
 
@@ -39,8 +39,8 @@ export const avatarRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0045-avatar-demo.PNG',
-      dark: 'https://ui.ahmedbna.com/0045-avatar-demo.PNG',
+      light: 'https://demo.ahmedbna.com/0045-avatar-demo.PNG',
+      dark: 'https://demo.ahmedbna.com/0045-avatar-demo.PNG',
     },
   },
 
@@ -60,8 +60,8 @@ export const avatarRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0046-avatar-sizes.PNG',
-      dark: 'https://ui.ahmedbna.com/0046-avatar-sizes.PNG',
+      light: 'https://demo.ahmedbna.com/0046-avatar-sizes.PNG',
+      dark: 'https://demo.ahmedbna.com/0046-avatar-sizes.PNG',
     },
   },
 
@@ -81,8 +81,8 @@ export const avatarRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0047-avatar-fallback.PNG',
-      dark: 'https://ui.ahmedbna.com/0047-avatar-fallback.PNG',
+      light: 'https://demo.ahmedbna.com/0047-avatar-fallback.PNG',
+      dark: 'https://demo.ahmedbna.com/0047-avatar-fallback.PNG',
     },
   },
 
@@ -102,8 +102,8 @@ export const avatarRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0048-avatar-styled.PNG',
-      dark: 'https://ui.ahmedbna.com/0048-avatar-styled.PNG',
+      light: 'https://demo.ahmedbna.com/0048-avatar-styled.PNG',
+      dark: 'https://demo.ahmedbna.com/0048-avatar-styled.PNG',
     },
   },
 
@@ -123,8 +123,8 @@ export const avatarRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0049-avatar-group.PNG',
-      dark: 'https://ui.ahmedbna.com/0049-avatar-group.PNG',
+      light: 'https://demo.ahmedbna.com/0049-avatar-group.PNG',
+      dark: 'https://demo.ahmedbna.com/0049-avatar-group.PNG',
     },
   },
 
@@ -144,8 +144,8 @@ export const avatarRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0050-avatar-status.PNG',
-      dark: 'https://ui.ahmedbna.com/0050-avatar-status.PNG',
+      light: 'https://demo.ahmedbna.com/0050-avatar-status.PNG',
+      dark: 'https://demo.ahmedbna.com/0050-avatar-status.PNG',
     },
   },
 
@@ -165,8 +165,8 @@ export const avatarRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0051-avatar-bordered.PNG',
-      dark: 'https://ui.ahmedbna.com/0051-avatar-bordered.PNG',
+      light: 'https://demo.ahmedbna.com/0051-avatar-bordered.PNG',
+      dark: 'https://demo.ahmedbna.com/0051-avatar-bordered.PNG',
     },
   },
 };

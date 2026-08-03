@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     siteName: 'BNA UI',
     images: [
       {
-        url: 'https://ui.ahmedbna.com/bna-ui-header.png',
+        url: 'https://demo.ahmedbna.com/bna-ui-header.png',
         width: 1200,
         height: 630,
         alt: 'BNA UI - Expo React Native UI Components Library',
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     title: 'BNA UI - Expo React Native UI Components Library',
     description:
       'Beautiful, accessible Expo React Native UI components that work seamlessly across iOS and Android. Build stunning mobile apps faster.',
-    images: ['https://ui.ahmedbna.com/bna-ui-header.png'],
+    images: ['https://demo.ahmedbna.com/bna-ui-header.png'],
     creator: '@ahmedbnaa',
     site: '@ahmedbnaa',
   },
@@ -74,7 +74,7 @@ export const metadata: Metadata = {
     'apple-mobile-web-app-status-bar-style': 'default',
 
     // Microsoft specific
-    'msapplication-TileImage': 'https://ui.ahmedbna.com/bna-ui-header.png',
+    'msapplication-TileImage': 'https://demo.ahmedbna.com/bna-ui-header.png',
     'msapplication-TileColor': '#000000',
 
     // Theme colors

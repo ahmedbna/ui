@@ -23,8 +23,8 @@ export const carouselRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0097-carousel-demo.MP4',
-      dark: 'https://ui.ahmedbna.com/0097-carousel-demo.MP4',
+      light: 'https://demo.ahmedbna.com/0097-carousel-demo.MP4',
+      dark: 'https://demo.ahmedbna.com/0097-carousel-demo.MP4',
     },
   },
 
@@ -44,8 +44,8 @@ export const carouselRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0097-carousel-demo.MP4',
-      dark: 'https://ui.ahmedbna.com/0097-carousel-demo.MP4',
+      light: 'https://demo.ahmedbna.com/0097-carousel-demo.MP4',
+      dark: 'https://demo.ahmedbna.com/0097-carousel-demo.MP4',
     },
   },
 
@@ -65,8 +65,8 @@ export const carouselRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0098-carousel-arrows.MP4',
-      dark: 'https://ui.ahmedbna.com/0098-carousel-arrows.MP4',
+      light: 'https://demo.ahmedbna.com/0098-carousel-arrows.MP4',
+      dark: 'https://demo.ahmedbna.com/0098-carousel-arrows.MP4',
     },
   },
 
@@ -86,8 +86,8 @@ export const carouselRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0099-carousel-custom-width.MP4',
-      dark: 'https://ui.ahmedbna.com/0099-carousel-custom-width.MP4',
+      light: 'https://demo.ahmedbna.com/0099-carousel-custom-width.MP4',
+      dark: 'https://demo.ahmedbna.com/0099-carousel-custom-width.MP4',
     },
   },
 
@@ -108,8 +108,8 @@ export const carouselRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0100-carousel-images.MP4',
-      dark: 'https://ui.ahmedbna.com/0100-carousel-images.MP4',
+      light: 'https://demo.ahmedbna.com/0100-carousel-images.MP4',
+      dark: 'https://demo.ahmedbna.com/0100-carousel-images.MP4',
     },
   },
 
@@ -129,8 +129,8 @@ export const carouselRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0101-carousel-cards.MP4',
-      dark: 'https://ui.ahmedbna.com/0101-carousel-cards.MP4',
+      light: 'https://demo.ahmedbna.com/0101-carousel-cards.MP4',
+      dark: 'https://demo.ahmedbna.com/0101-carousel-cards.MP4',
     },
   },
 
@@ -150,8 +150,8 @@ export const carouselRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0102-carousel-no-indicators.MP4',
-      dark: 'https://ui.ahmedbna.com/0102-carousel-no-indicators.MP4',
+      light: 'https://demo.ahmedbna.com/0102-carousel-no-indicators.MP4',
+      dark: 'https://demo.ahmedbna.com/0102-carousel-no-indicators.MP4',
     },
   },
 
@@ -171,8 +171,8 @@ export const carouselRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0103-carousel-manual.MP4',
-      dark: 'https://ui.ahmedbna.com/0103-carousel-manual.MP4',
+      light: 'https://demo.ahmedbna.com/0103-carousel-manual.MP4',
+      dark: 'https://demo.ahmedbna.com/0103-carousel-manual.MP4',
     },
   },
 };

@@ -19,8 +19,8 @@ export const comboboxRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0123-combobox-demo.MP4',
-      dark: 'https://ui.ahmedbna.com/0123-combobox-demo.MP4',
+      light: 'https://demo.ahmedbna.com/0123-combobox-demo.MP4',
+      dark: 'https://demo.ahmedbna.com/0123-combobox-demo.MP4',
     },
   },
 
@@ -40,8 +40,8 @@ export const comboboxRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0123-combobox-demo.MP4',
-      dark: 'https://ui.ahmedbna.com/0123-combobox-demo.MP4',
+      light: 'https://demo.ahmedbna.com/0123-combobox-demo.MP4',
+      dark: 'https://demo.ahmedbna.com/0123-combobox-demo.MP4',
     },
   },
 
@@ -60,8 +60,8 @@ export const comboboxRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0124-combobox-groups.MP4',
-      dark: 'https://ui.ahmedbna.com/0124-combobox-groups.MP4',
+      light: 'https://demo.ahmedbna.com/0124-combobox-groups.MP4',
+      dark: 'https://demo.ahmedbna.com/0124-combobox-groups.MP4',
     },
   },
   'combobox-multiple': {
@@ -79,8 +79,8 @@ export const comboboxRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0125-combobox-multiple.MP4',
-      dark: 'https://ui.ahmedbna.com/0125-combobox-multiple.MP4',
+      light: 'https://demo.ahmedbna.com/0125-combobox-multiple.MP4',
+      dark: 'https://demo.ahmedbna.com/0125-combobox-multiple.MP4',
     },
   },
   'combobox-disabled': {
@@ -98,8 +98,8 @@ export const comboboxRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0126-combobox-disabled.MP4',
-      dark: 'https://ui.ahmedbna.com/0126-combobox-disabled.MP4',
+      light: 'https://demo.ahmedbna.com/0126-combobox-disabled.MP4',
+      dark: 'https://demo.ahmedbna.com/0126-combobox-disabled.MP4',
     },
   },
   'combobox-search': {
@@ -117,8 +117,8 @@ export const comboboxRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0127-combobox-search.MP4',
-      dark: 'https://ui.ahmedbna.com/0127-combobox-search.MP4',
+      light: 'https://demo.ahmedbna.com/0127-combobox-search.MP4',
+      dark: 'https://demo.ahmedbna.com/0127-combobox-search.MP4',
     },
   },
   'combobox-form': {
@@ -136,8 +136,8 @@ export const comboboxRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0128-combobox-form.MP4',
-      dark: 'https://ui.ahmedbna.com/0128-combobox-form.MP4',
+      light: 'https://demo.ahmedbna.com/0128-combobox-form.MP4',
+      dark: 'https://demo.ahmedbna.com/0128-combobox-form.MP4',
     },
   },
   'combobox-large': {
@@ -155,8 +155,8 @@ export const comboboxRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0129-combobox-large.MP4',
-      dark: 'https://ui.ahmedbna.com/0129-combobox-large.MP4',
+      light: 'https://demo.ahmedbna.com/0129-combobox-large.MP4',
+      dark: 'https://demo.ahmedbna.com/0129-combobox-large.MP4',
     },
   },
 };

@@ -1,6 +1,6 @@
 # BNA UI 🚀
 
-![BNA UI Header](https://ui.ahmedbna.com/bna-ui-header.png)
+![BNA UI Header](https://demo.ahmedbna.com/bna-ui-header.png)
 
 **B**uild **N**ative **A**pps - A powerful CLI for creating Expo React Native applications with a beautiful UI component library.
 

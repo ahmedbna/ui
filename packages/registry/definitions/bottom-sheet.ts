@@ -25,8 +25,8 @@ export const bottomSheetRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0065-bottom-sheet-demo.MP4',
-      dark: 'https://ui.ahmedbna.com/0065-bottom-sheet-demo.MP4',
+      light: 'https://demo.ahmedbna.com/0065-bottom-sheet-demo.MP4',
+      dark: 'https://demo.ahmedbna.com/0065-bottom-sheet-demo.MP4',
     },
   },
 
@@ -46,8 +46,8 @@ export const bottomSheetRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0065-bottom-sheet-demo.MP4',
-      dark: 'https://ui.ahmedbna.com/0065-bottom-sheet-demo.MP4',
+      light: 'https://demo.ahmedbna.com/0065-bottom-sheet-demo.MP4',
+      dark: 'https://demo.ahmedbna.com/0065-bottom-sheet-demo.MP4',
     },
   },
 
@@ -67,8 +67,8 @@ export const bottomSheetRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0066-bottom-sheet-title.MP4',
-      dark: 'https://ui.ahmedbna.com/0066-bottom-sheet-title.MP4',
+      light: 'https://demo.ahmedbna.com/0066-bottom-sheet-title.MP4',
+      dark: 'https://demo.ahmedbna.com/0066-bottom-sheet-title.MP4',
     },
   },
 
@@ -88,8 +88,8 @@ export const bottomSheetRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0067-bottom-sheet-snap-points.MP4',
-      dark: 'https://ui.ahmedbna.com/0067-bottom-sheet-snap-points.MP4',
+      light: 'https://demo.ahmedbna.com/0067-bottom-sheet-snap-points.MP4',
+      dark: 'https://demo.ahmedbna.com/0067-bottom-sheet-snap-points.MP4',
     },
   },
 
@@ -109,8 +109,8 @@ export const bottomSheetRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0068-bottom-sheet-form.MP4',
-      dark: 'https://ui.ahmedbna.com/0068-bottom-sheet-form.MP4',
+      light: 'https://demo.ahmedbna.com/0068-bottom-sheet-form.MP4',
+      dark: 'https://demo.ahmedbna.com/0068-bottom-sheet-form.MP4',
     },
   },
 
@@ -130,8 +130,8 @@ export const bottomSheetRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0069-bottom-sheet-list.MP4',
-      dark: 'https://ui.ahmedbna.com/0069-bottom-sheet-list.MP4',
+      light: 'https://demo.ahmedbna.com/0069-bottom-sheet-list.MP4',
+      dark: 'https://demo.ahmedbna.com/0069-bottom-sheet-list.MP4',
     },
   },
 
@@ -151,8 +151,8 @@ export const bottomSheetRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0070-bottom-sheet-no-dismiss.MP4',
-      dark: 'https://ui.ahmedbna.com/0070-bottom-sheet-no-dismiss.MP4',
+      light: 'https://demo.ahmedbna.com/0070-bottom-sheet-no-dismiss.MP4',
+      dark: 'https://demo.ahmedbna.com/0070-bottom-sheet-no-dismiss.MP4',
     },
   },
 
@@ -172,8 +172,8 @@ export const bottomSheetRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0071-bottom-sheet-styled.MP4',
-      dark: 'https://ui.ahmedbna.com/0071-bottom-sheet-styled.MP4',
+      light: 'https://demo.ahmedbna.com/0071-bottom-sheet-styled.MP4',
+      dark: 'https://demo.ahmedbna.com/0071-bottom-sheet-styled.MP4',
     },
   },
 
@@ -192,8 +192,8 @@ export const bottomSheetRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0072-bottom-sheet-menu.MP4',
-      dark: 'https://ui.ahmedbna.com/0072-bottom-sheet-menu.MP4',
+      light: 'https://demo.ahmedbna.com/0072-bottom-sheet-menu.MP4',
+      dark: 'https://demo.ahmedbna.com/0072-bottom-sheet-menu.MP4',
     },
   },
 };

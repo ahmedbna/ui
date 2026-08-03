@@ -19,8 +19,8 @@ export const searchbarRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0248-searchbar-demo.MP4',
-      dark: 'https://ui.ahmedbna.com/0248-searchbar-demo.MP4',
+      light: 'https://demo.ahmedbna.com/0248-searchbar-demo.MP4',
+      dark: 'https://demo.ahmedbna.com/0248-searchbar-demo.MP4',
     },
   },
 
@@ -40,8 +40,8 @@ export const searchbarRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0248-searchbar-demo.MP4',
-      dark: 'https://ui.ahmedbna.com/0248-searchbar-demo.MP4',
+      light: 'https://demo.ahmedbna.com/0248-searchbar-demo.MP4',
+      dark: 'https://demo.ahmedbna.com/0248-searchbar-demo.MP4',
     },
   },
 
@@ -61,8 +61,8 @@ export const searchbarRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0249-searchbar-loading.MP4',
-      dark: 'https://ui.ahmedbna.com/0249-searchbar-loading.MP4',
+      light: 'https://demo.ahmedbna.com/0249-searchbar-loading.MP4',
+      dark: 'https://demo.ahmedbna.com/0249-searchbar-loading.MP4',
     },
   },
 
@@ -82,8 +82,8 @@ export const searchbarRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0250-searchbar-icons.MP4',
-      dark: 'https://ui.ahmedbna.com/0250-searchbar-icons.MP4',
+      light: 'https://demo.ahmedbna.com/0250-searchbar-icons.MP4',
+      dark: 'https://demo.ahmedbna.com/0250-searchbar-icons.MP4',
     },
   },
 
@@ -103,8 +103,8 @@ export const searchbarRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0251-searchbar-suggestions.MP4',
-      dark: 'https://ui.ahmedbna.com/0251-searchbar-suggestions.MP4',
+      light: 'https://demo.ahmedbna.com/0251-searchbar-suggestions.MP4',
+      dark: 'https://demo.ahmedbna.com/0251-searchbar-suggestions.MP4',
     },
   },
 
@@ -124,8 +124,8 @@ export const searchbarRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0252-searchbar-styled.MP4',
-      dark: 'https://ui.ahmedbna.com/0252-searchbar-styled.MP4',
+      light: 'https://demo.ahmedbna.com/0252-searchbar-styled.MP4',
+      dark: 'https://demo.ahmedbna.com/0252-searchbar-styled.MP4',
     },
   },
 
@@ -145,8 +145,8 @@ export const searchbarRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0253-searchbar-no-clear.MP4',
-      dark: 'https://ui.ahmedbna.com/0253-searchbar-no-clear.MP4',
+      light: 'https://demo.ahmedbna.com/0253-searchbar-no-clear.MP4',
+      dark: 'https://demo.ahmedbna.com/0253-searchbar-no-clear.MP4',
     },
   },
 
@@ -166,8 +166,8 @@ export const searchbarRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0254-searchbar-instant.MP4',
-      dark: 'https://ui.ahmedbna.com/0254-searchbar-instant.MP4',
+      light: 'https://demo.ahmedbna.com/0254-searchbar-instant.MP4',
+      dark: 'https://demo.ahmedbna.com/0254-searchbar-instant.MP4',
     },
   },
 };

@@ -19,8 +19,8 @@ export const filePickerRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0138-file-picker-demo.MP4',
-      dark: 'https://ui.ahmedbna.com/0138-file-picker-demo.MP4',
+      light: 'https://demo.ahmedbna.com/0138-file-picker-demo.MP4',
+      dark: 'https://demo.ahmedbna.com/0138-file-picker-demo.MP4',
     },
   },
 
@@ -40,8 +40,8 @@ export const filePickerRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0138-file-picker-demo.MP4',
-      dark: 'https://ui.ahmedbna.com/0138-file-picker-demo.MP4',
+      light: 'https://demo.ahmedbna.com/0138-file-picker-demo.MP4',
+      dark: 'https://demo.ahmedbna.com/0138-file-picker-demo.MP4',
     },
   },
 
@@ -60,8 +60,8 @@ export const filePickerRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0139-file-picker-images.MP4',
-      dark: 'https://ui.ahmedbna.com/0139-file-picker-images.MP4',
+      light: 'https://demo.ahmedbna.com/0139-file-picker-images.MP4',
+      dark: 'https://demo.ahmedbna.com/0139-file-picker-images.MP4',
     },
   },
 
@@ -80,8 +80,8 @@ export const filePickerRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0140-file-picker-single.MP4',
-      dark: 'https://ui.ahmedbna.com/0140-file-picker-single.MP4',
+      light: 'https://demo.ahmedbna.com/0140-file-picker-single.MP4',
+      dark: 'https://demo.ahmedbna.com/0140-file-picker-single.MP4',
     },
   },
 
@@ -100,8 +100,8 @@ export const filePickerRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0141-file-picker-validation.MP4',
-      dark: 'https://ui.ahmedbna.com/0141-file-picker-validation.MP4',
+      light: 'https://demo.ahmedbna.com/0141-file-picker-validation.MP4',
+      dark: 'https://demo.ahmedbna.com/0141-file-picker-validation.MP4',
     },
   },
 
@@ -120,8 +120,8 @@ export const filePickerRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0142-file-picker-styled.MP4',
-      dark: 'https://ui.ahmedbna.com/0142-file-picker-styled.MP4',
+      light: 'https://demo.ahmedbna.com/0142-file-picker-styled.MP4',
+      dark: 'https://demo.ahmedbna.com/0142-file-picker-styled.MP4',
     },
   },
 
@@ -140,8 +140,8 @@ export const filePickerRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0143-file-picker-controlled.MP4',
-      dark: 'https://ui.ahmedbna.com/0143-file-picker-controlled.MP4',
+      light: 'https://demo.ahmedbna.com/0143-file-picker-controlled.MP4',
+      dark: 'https://demo.ahmedbna.com/0143-file-picker-controlled.MP4',
     },
   },
 
@@ -160,8 +160,8 @@ export const filePickerRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0144-file-picker-info.MP4',
-      dark: 'https://ui.ahmedbna.com/0144-file-picker-info.MP4',
+      light: 'https://demo.ahmedbna.com/0144-file-picker-info.MP4',
+      dark: 'https://demo.ahmedbna.com/0144-file-picker-info.MP4',
     },
   },
 };

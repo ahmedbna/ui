@@ -19,8 +19,8 @@ export const linkRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0183-link-demo.MP4',
-      dark: 'https://ui.ahmedbna.com/0183-link-demo.MP4',
+      light: 'https://demo.ahmedbna.com/0183-link-demo.MP4',
+      dark: 'https://demo.ahmedbna.com/0183-link-demo.MP4',
     },
   },
 
@@ -40,8 +40,8 @@ export const linkRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0183-link-demo.MP4',
-      dark: 'https://ui.ahmedbna.com/0183-link-demo.MP4',
+      light: 'https://demo.ahmedbna.com/0183-link-demo.MP4',
+      dark: 'https://demo.ahmedbna.com/0183-link-demo.MP4',
     },
   },
 
@@ -61,8 +61,8 @@ export const linkRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0184-link-external.MP4',
-      dark: 'https://ui.ahmedbna.com/0184-link-external.MP4',
+      light: 'https://demo.ahmedbna.com/0184-link-external.MP4',
+      dark: 'https://demo.ahmedbna.com/0184-link-external.MP4',
     },
   },
 
@@ -82,8 +82,8 @@ export const linkRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0185-link-browser.MP4',
-      dark: 'https://ui.ahmedbna.com/0185-link-browser.MP4',
+      light: 'https://demo.ahmedbna.com/0185-link-browser.MP4',
+      dark: 'https://demo.ahmedbna.com/0185-link-browser.MP4',
     },
   },
 
@@ -103,8 +103,8 @@ export const linkRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0186-link-custom.MP4',
-      dark: 'https://ui.ahmedbna.com/0186-link-custom.MP4',
+      light: 'https://demo.ahmedbna.com/0186-link-custom.MP4',
+      dark: 'https://demo.ahmedbna.com/0186-link-custom.MP4',
     },
   },
 
@@ -124,8 +124,8 @@ export const linkRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0187-link-types.MP4',
-      dark: 'https://ui.ahmedbna.com/0187-link-types.MP4',
+      light: 'https://demo.ahmedbna.com/0187-link-types.MP4',
+      dark: 'https://demo.ahmedbna.com/0187-link-types.MP4',
     },
   },
 
@@ -145,8 +145,8 @@ export const linkRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0188-link-styled.MP4',
-      dark: 'https://ui.ahmedbna.com/0188-link-styled.MP4',
+      light: 'https://demo.ahmedbna.com/0188-link-styled.MP4',
+      dark: 'https://demo.ahmedbna.com/0188-link-styled.MP4',
     },
   },
 
@@ -166,8 +166,8 @@ export const linkRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0189-link-buttons.MP4',
-      dark: 'https://ui.ahmedbna.com/0189-link-buttons.MP4',
+      light: 'https://demo.ahmedbna.com/0189-link-buttons.MP4',
+      dark: 'https://demo.ahmedbna.com/0189-link-buttons.MP4',
     },
   },
 };

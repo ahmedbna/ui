@@ -19,8 +19,8 @@ export const viewRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0329-view-demo.PNG',
-      dark: 'https://ui.ahmedbna.com/0329-view-demo.PNG',
+      light: 'https://demo.ahmedbna.com/0329-view-demo.PNG',
+      dark: 'https://demo.ahmedbna.com/0329-view-demo.PNG',
     },
   },
 
@@ -40,8 +40,8 @@ export const viewRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0329-view-demo.PNG',
-      dark: 'https://ui.ahmedbna.com/0329-view-demo.PNG',
+      light: 'https://demo.ahmedbna.com/0329-view-demo.PNG',
+      dark: 'https://demo.ahmedbna.com/0329-view-demo.PNG',
     },
   },
 };

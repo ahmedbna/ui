@@ -24,8 +24,8 @@ export const treemapChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0395-treemap-chart-demo.MP4',
-      dark: 'https://ui.ahmedbna.com/0395-treemap-chart-demo.MP4',
+      light: 'https://demo.ahmedbna.com/0395-treemap-chart-demo.MP4',
+      dark: 'https://demo.ahmedbna.com/0395-treemap-chart-demo.MP4',
     },
   },
 
@@ -45,8 +45,8 @@ export const treemapChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0395-treemap-chart-demo.MP4',
-      dark: 'https://ui.ahmedbna.com/0395-treemap-chart-demo.MP4',
+      light: 'https://demo.ahmedbna.com/0395-treemap-chart-demo.MP4',
+      dark: 'https://demo.ahmedbna.com/0395-treemap-chart-demo.MP4',
     },
   },
 
@@ -65,8 +65,8 @@ export const treemapChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0396-treemap-chart-sample.MP4',
-      dark: 'https://ui.ahmedbna.com/0396-treemap-chart-sample.MP4',
+      light: 'https://demo.ahmedbna.com/0396-treemap-chart-sample.MP4',
+      dark: 'https://demo.ahmedbna.com/0396-treemap-chart-sample.MP4',
     },
   },
 
@@ -85,8 +85,8 @@ export const treemapChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0397-treemap-chart-styled.MP4',
-      dark: 'https://ui.ahmedbna.com/0397-treemap-chart-styled.MP4',
+      light: 'https://demo.ahmedbna.com/0397-treemap-chart-styled.MP4',
+      dark: 'https://demo.ahmedbna.com/0397-treemap-chart-styled.MP4',
     },
   },
 
@@ -105,8 +105,8 @@ export const treemapChartRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0398-treemap-chart-large.MP4',
-      dark: 'https://ui.ahmedbna.com/0398-treemap-chart-large.MP4',
+      light: 'https://demo.ahmedbna.com/0398-treemap-chart-large.MP4',
+      dark: 'https://demo.ahmedbna.com/0398-treemap-chart-large.MP4',
     },
   },
 };

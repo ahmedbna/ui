@@ -19,8 +19,8 @@ export const audioWaveformRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0039-audio-waveform-demo.MP4',
-      dark: 'https://ui.ahmedbna.com/0039-audio-waveform-demo.MP4',
+      light: 'https://demo.ahmedbna.com/0039-audio-waveform-demo.MP4',
+      dark: 'https://demo.ahmedbna.com/0039-audio-waveform-demo.MP4',
     },
   },
 
@@ -41,8 +41,8 @@ export const audioWaveformRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0039-audio-waveform-demo.MP4',
-      dark: 'https://ui.ahmedbna.com/0039-audio-waveform-demo.MP4',
+      light: 'https://demo.ahmedbna.com/0039-audio-waveform-demo.MP4',
+      dark: 'https://demo.ahmedbna.com/0039-audio-waveform-demo.MP4',
     },
   },
 
@@ -63,8 +63,8 @@ export const audioWaveformRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0040-audio-waveform-recording.MP4',
-      dark: 'https://ui.ahmedbna.com/0040-audio-waveform-recording.MP4',
+      light: 'https://demo.ahmedbna.com/0040-audio-waveform-recording.MP4',
+      dark: 'https://demo.ahmedbna.com/0040-audio-waveform-recording.MP4',
     },
   },
 
@@ -85,8 +85,8 @@ export const audioWaveformRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0041-audio-waveform-interactive.MP4',
-      dark: 'https://ui.ahmedbna.com/0041-audio-waveform-interactive.MP4',
+      light: 'https://demo.ahmedbna.com/0041-audio-waveform-interactive.MP4',
+      dark: 'https://demo.ahmedbna.com/0041-audio-waveform-interactive.MP4',
     },
   },
 
@@ -107,8 +107,8 @@ export const audioWaveformRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0042-audio-waveform-styled.MP4',
-      dark: 'https://ui.ahmedbna.com/0042-audio-waveform-styled.MP4',
+      light: 'https://demo.ahmedbna.com/0042-audio-waveform-styled.MP4',
+      dark: 'https://demo.ahmedbna.com/0042-audio-waveform-styled.MP4',
     },
   },
 
@@ -129,8 +129,8 @@ export const audioWaveformRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0043-audio-waveform-realtime.MP4',
-      dark: 'https://ui.ahmedbna.com/0043-audio-waveform-realtime.MP4',
+      light: 'https://demo.ahmedbna.com/0043-audio-waveform-realtime.MP4',
+      dark: 'https://demo.ahmedbna.com/0043-audio-waveform-realtime.MP4',
     },
   },
 
@@ -151,8 +151,8 @@ export const audioWaveformRegistry = {
       },
     ],
     preview: {
-      light: 'https://ui.ahmedbna.com/0044-audio-waveform-compact.MP4',
-      dark: 'https://ui.ahmedbna.com/0044-audio-waveform-compact.MP4',
+      light: 'https://demo.ahmedbna.com/0044-audio-waveform-compact.MP4',
+      dark: 'https://demo.ahmedbna.com/0044-audio-waveform-compact.MP4',
     },
   },
 };
