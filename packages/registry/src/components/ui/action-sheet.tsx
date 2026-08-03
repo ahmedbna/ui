@@ -1,7 +1,7 @@
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
 import { useColor } from '@/hooks/useColor';
-import { CORNERS, FONT_SIZE } from '@/theme/globals';
+import { BORDER_RADIUS, FONT_SIZE } from '@/theme/globals';
 import React, { useEffect, useState } from 'react';
 import {
   ActionSheetIOS,
@@ -308,8 +308,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   sheet: {
-    borderTopLeftRadius: CORNERS,
-    borderTopRightRadius: CORNERS,
+    borderTopLeftRadius: BORDER_RADIUS,
+    borderTopRightRadius: BORDER_RADIUS,
     maxHeight: '80%',
     elevation: 10,
     shadowColor: '#000',

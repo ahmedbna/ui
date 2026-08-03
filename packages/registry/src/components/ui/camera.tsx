@@ -406,7 +406,11 @@ export const Camera = forwardRef<CameraRef, CameraProps>(
     if (!permission.granted) {
       return (
         <View
-          style={[styles.permissionContainer, { backgroundColor: cardColor }]}
+          style={[
+            styles.permissionContainer,
+            { backgroundColor: cardColor },
+            style,
+          ]}
         >
           <CameraIcon
             size={36}
@@ -995,9 +999,11 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   permissionContainer: {
+    flex: 1,
     gap: 16,
     padding: 32,
     borderRadius: BORDER_RADIUS,
+    justifyContent: 'center',
     alignItems: 'center',
   },
   permissionIcon: {
