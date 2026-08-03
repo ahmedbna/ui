@@ -76,11 +76,27 @@ jobs:
       # Serve the generated payloads exactly as the docs site will, then drive
       # the real CLI against them. This is the only check that exercises the
       # fetch path end to end.
+      #
+      # The log redirect is not cosmetic: a backgrounded server that still holds
+      # the step's stdout is at the mercy of the runner closing that pipe when
+      # the step ends. And the wait loop has to *assert* — it used to fall
+      # through after 30 tries, so a registry that never came up left this step
+      # green and surfaced two steps later as an unexplained CLI fetch error.
       - name: Serve the registry
         run: |
-          npx --yes serve apps/docs/public -l 4321 &
+          set -euo pipefail
+          nohup npx --yes serve apps/docs/public -l 4321 \
+            > /tmp/registry-server.log 2>&1 &
+          disown
+
           for i in $(seq 1 30); do
-            curl -sf http://localhost:4321/r/index.json > /dev/null && break
+            curl -sf http://127.0.0.1:4321/r/index.json > /dev/null && break
+            if [ "$i" = 30 ]; then
+              curl -v http://127.0.0.1:4321/r/index.json || true
+              cat /tmp/registry-server.log || true
+              echo "::error::the registry never came up on 127.0.0.1:4321"
+              exit 1
+            fi
             sleep 1
           done
 
@@ -97,7 +113,7 @@ jobs:
           test -f .npmrc || { echo "::error::init produced no .npmrc"; exit 1; }
           test -f pnpm-workspace.yaml || { echo "::error::init produced no pnpm-workspace.yaml"; exit 1; }
 
-          bna add button --registry http://localhost:4321/r --yes
+          bna add button --registry http://127.0.0.1:4321/r --yes
 
           # `add` must refuse to write into a project whose imports cannot
           # resolve; the components it writes all import through `@/…`.
@@ -108,7 +124,7 @@ jobs:
             fs.writeFileSync('tsconfig.alias-removed.json', JSON.stringify(c, null, 2));
           "
           mv tsconfig.json tsconfig.keep.json && mv tsconfig.alias-removed.json tsconfig.json
-          if bna add avatar --registry http://localhost:4321/r --yes 2>/dev/null; then
+          if bna add avatar --registry http://127.0.0.1:4321/r --yes 2>/dev/null; then
             echo "::error::add succeeded without an @/* path alias"; exit 1
           fi
           mv tsconfig.keep.json tsconfig.json
@@ -120,7 +136,7 @@ jobs:
           set -euo pipefail
           bna() { node "$GITHUB_WORKSPACE/packages/cli/bin/bna-ui.js" "$@"; }
           cd /tmp/e2e/app
-          export BNA_UI_REGISTRY=http://localhost:4321/r
+          export BNA_UI_REGISTRY=http://127.0.0.1:4321/r
 
           bna add avatar --dry-run < /dev/null | grep -q 'Dry run'
           test ! -f components/ui/avatar.tsx || { echo "::error::--dry-run wrote a file"; exit 1; }
@@ -237,6 +253,11 @@ jobs:
             if (bad) { console.error(\`\${bad} unresolved imports\`); process.exit(1); }
             console.log(\`ok — \${files.length} installed files, all imports resolve\`);
           "
+
+      # Whatever the CLI could not fetch, the server's own account of it is here.
+      - name: Registry server log
+        if: failure()
+        run: cat /tmp/registry-server.log || true
 
   # Every scaffold in every other job passes `--skip-install`, so until this one
   # nothing had ever installed a scaffold or bundled it — a project could be
@@ -372,20 +393,48 @@ jobs:
       # class of bug lands there as a component that silently never arrives.
       # `generated/r/` is what the docs site publishes as `/r`, so serving it
       # directly skips building the whole site for four requests.
+      #
+      # `add alert` here died on a transport error the CLI could only report as
+      # "could not reach the registry", because the wait loop below used to fall
+      # through instead of failing and nothing recorded what the server did. The
+      # shape it runs in now removes every variable at once: `--bind 127.0.0.1`
+      # and a literal address everywhere it is consumed, so `localhost`
+      # resolving to `::1` cannot matter; `--protocol HTTP/1.1` so responses are
+      # not connection-close HTTP/1.0 replies a pooling client has to guess at;
+      # and a log file rather than the step's stdout, which the runner closes
+      # the moment this step ends.
       - name: Serve the registry
         run: |
-          python3 -m http.server 4321 \
-            --directory "$GITHUB_WORKSPACE/packages/registry/generated" &
+          set -euo pipefail
+          nohup python3 -m http.server 4321 \
+            --bind 127.0.0.1 \
+            --protocol HTTP/1.1 \
+            --directory "$GITHUB_WORKSPACE/packages/registry/generated" \
+            > /tmp/registry-server.log 2>&1 &
+          disown
+
           for i in $(seq 1 30); do
-            curl -sf http://localhost:4321/r/index.json > /dev/null && break
+            curl -sf http://127.0.0.1:4321/r/index.json > /dev/null && break
+            if [ "$i" = 30 ]; then
+              curl -v http://127.0.0.1:4321/r/index.json || true
+              cat /tmp/registry-server.log || true
+              echo "::error::the registry never came up on 127.0.0.1:4321"
+              exit 1
+            fi
             sleep 1
           done
+
+          # The payload the next step asks for, confirmed served from here. If
+          # this passes and the CLI still cannot fetch it, the fault is in the
+          # CLI under Bun rather than in this harness.
+          curl -sf http://127.0.0.1:4321/r/alert.json > /dev/null \
+            || { echo "::error::alert.json is not being served"; exit 1; }
 
       - name: Add a component and a chart under the Bun runtime
         run: |
           set -euo pipefail
           cd /tmp/e2e-bun/app
-          export BNA_UI_REGISTRY=http://localhost:4321/r
+          export BNA_UI_REGISTRY=http://127.0.0.1:4321/r
 
           # Neither pulls an npm package the scaffold lacks, so this stays
           # offline after the fetch — no install subprocess involved.
@@ -409,7 +458,7 @@ jobs:
         run: |
           set -euo pipefail
           cd /tmp/e2e-bun/app
-          export BNA_UI_REGISTRY=http://localhost:4321/r
+          export BNA_UI_REGISTRY=http://127.0.0.1:4321/r
           bna() { bun "$GITHUB_WORKSPACE/packages/cli/bin/bna-ui.js" "$@"; }
 
           bna list --type chart | grep -q area-chart
@@ -421,3 +470,8 @@ jobs:
           bna add avatar --dry-run < /dev/null | grep -q 'Dry run'
           test ! -f components/ui/avatar.tsx \
             || { echo '::error::--dry-run wrote a file'; exit 1; }
+
+      # Whatever the CLI could not fetch, the server's own account of it is here.
+      - name: Registry server log
+        if: failure()
+        run: cat /tmp/registry-server.log || true

@@ -5,6 +5,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import {
   getInstallCommand,
   getRunCommand,
+  installEnv,
   resolvePackageManager,
 } from '../src/utils/package-manager.js';
 
@@ -100,5 +101,24 @@ describe('command builders', () => {
     expect(getRunCommand('yarn', 'start')).toBe('yarn start');
     expect(getRunCommand('pnpm', 'start')).toBe('pnpm start');
     expect(getRunCommand('bun', 'start')).toBe('bun run start');
+  });
+});
+
+describe('installEnv', () => {
+  it('lets yarn write the lockfile it is about to create', () => {
+    // Yarn 2+ reads CI as a request for an immutable install, and a project
+    // `init` has just written has no lockfile to be immutable against — every
+    // `bna-ui init --yarn` on a runner died on YN0028.
+    vi.stubEnv('CI', 'true');
+    expect(installEnv('yarn')).toMatchObject({
+      YARN_ENABLE_IMMUTABLE_INSTALLS: 'false',
+    });
+  });
+
+  it('inherits the ambient environment for every other manager', () => {
+    // `undefined` is execSync's own default, so these spawn exactly as before.
+    expect(installEnv('npm')).toBeUndefined();
+    expect(installEnv('pnpm')).toBeUndefined();
+    expect(installEnv('bun')).toBeUndefined();
   });
 });

@@ -31,7 +31,19 @@ jobs:
           registry-url: https://registry.npmjs.org
 
       - run: pnpm install --frozen-lockfile
-      - run: pnpm turbo run build --filter=bna-ui
+
+      # Both publishable packages, not just the CLI, and this is now the only
+      # thing that builds them — neither carries a `prepublishOnly` any more.
+      #
+      # `--filter` selects a package and its *dependencies*, never its
+      # dependents, so filtering on `bna-ui` alone left `@bna-ui/mcp` unbuilt
+      # and leaning entirely on its own hook. changesets publishes in parallel,
+      # and the CLI's hook opened with `rm -rf dist` — which is the file
+      # `@bna-ui/mcp` type-checks `bna-ui/registry` against, so its `tsc` would
+      # intermittently die on TS2307 mid-publish. Turbo already knows
+      # `@bna-ui/mcp#build` comes after `bna-ui#build`; letting it do the
+      # ordering, once, removes the race outright.
+      - run: pnpm turbo run build --filter=bna-ui --filter=@bna-ui/mcp
 
       # Opens/updates a "Version Packages" PR; publishes when that PR lands.
       #
@@ -47,5 +59,14 @@ jobs:
           title: 'chore: version packages'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Both spellings are load-bearing and neither substitutes for the
+          # other: `changesets/action` checks the literal `NPM_TOKEN` to decide
+          # whether to write an authenticated .npmrc, while `NODE_AUTH_TOKEN` is
+          # what setup-node's `registry-url` .npmrc interpolates. With only the
+          # latter set, the action reported "No NPM_TOKEN found" and fell
+          # through to an OIDC path this toolchain cannot use — pnpm 10.15 and
+          # npm 10.9 both predate trusted publishing — so `pnpm publish` reached
+          # the registry unauthenticated and got ENEEDAUTH.
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_CONFIG_PROVENANCE: true

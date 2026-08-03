@@ -3,7 +3,7 @@ import { execSync } from 'child_process';
 import fs from 'fs';
 import path from 'path';
 import { logger } from './logger.js';
-import { PackageManager } from './package-manager.js';
+import { installEnv, PackageManager } from './package-manager.js';
 import { createSpinner, failSpinner, succeedSpinner } from './theme.js';
 
 /** Local shape for a package to install; the registry ships plain strings. */
@@ -85,6 +85,7 @@ async function installDeps(
     execSync(installCmd, {
       cwd: targetPath,
       stdio: 'pipe',
+      env: installEnv(packageManager),
       timeout: 300000,
     });
 

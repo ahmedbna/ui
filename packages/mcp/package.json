@@ -14,7 +14,7 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "clean": "rm -rf dist .turbo",
-    "prepublishOnly": "pnpm build"
+    "prepack": "test -d dist || { echo 'dist/ is missing — run `pnpm build` first'; exit 1; }"
   },
   "keywords": [
     "mcp",

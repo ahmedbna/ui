@@ -26,7 +26,7 @@
     "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,mjs,cjs,json,md,mdx,yml,yaml}\"",
     "changeset": "changeset",
     "version-packages": "changeset version && pnpm install --lockfile-only",
-    "release": "turbo run build --filter=bna-ui && changeset publish"
+    "release": "turbo run build --filter=bna-ui --filter=@bna-ui/mcp && changeset publish"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.5.1",

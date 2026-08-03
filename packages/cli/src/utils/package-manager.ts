@@ -82,6 +82,27 @@ export function getInstallCommand(packageManager: PackageManager): string {
   }
 }
 
+/**
+ * The environment an install subprocess runs in.
+ *
+ * Yarn 2+ turns `enableImmutableInstalls` on whenever `CI` is set, and an
+ * immutable install refuses to create or modify a lockfile. But a project
+ * `init` has just scaffolded has no lockfile at all — the very install being
+ * refused is the one that would write it — so `bna-ui init --yarn` failed with
+ * YN0028 on every CI runner and inside every container, and `bna-ui add`'s
+ * `yarn add` hit the same guard for the same reason.
+ *
+ * Only yarn is touched: npm, pnpm and bun all create a missing lockfile without
+ * complaint, and nothing here should be quietly relaxing a user's `--frozen`
+ * intent for a manager that never had a problem.
+ */
+export function installEnv(
+  packageManager: PackageManager
+): typeof process.env | undefined {
+  if (packageManager !== 'yarn') return undefined;
+  return { ...process.env, YARN_ENABLE_IMMUTABLE_INSTALLS: 'false' };
+}
+
 export function getRunCommand(
   packageManager: PackageManager,
   script: string
@@ -131,6 +152,7 @@ export async function installDependencies(
     execSync(installCommand, {
       cwd: projectPath,
       stdio: 'pipe',
+      env: installEnv(packageManager),
       timeout: 300000, // 5 minutes timeout
     });
     succeedSpinner(spinner, 'Dependencies installed successfully!');

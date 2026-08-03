@@ -29,7 +29,7 @@
     "test:watch": "vitest",
     "lint": "eslint .",
     "clean": "rm -rf dist .turbo",
-    "prepublishOnly": "pnpm build"
+    "prepack": "test -d dist/templates || { echo 'dist/ is missing — run `pnpm build` first'; exit 1; }"
   },
   "keywords": [
     "react-native",
