@@ -1,8 +1,85 @@
 # bna-ui
 
-## 4.1.0
+## 3.0.0
 
-### Minor Changes
+First release since 2.0.5. The repository passed through 3.0.0, 4.0.0 and 4.1.0
+during development and none of them were ever published, so everything those
+versions described ships here — together with three fixes that had not been
+released at all.
+
+### Major Changes
+
+- [`8442a00`](https://github.com/ahmedbna/ui/commit/8442a003bfb307da44718d745234e35014720cc7) Thanks [@ahmedbna](https://github.com/ahmedbna)! - Fetch components from the registry instead of bundling them.
+
+  `bna-ui add` now resolves components from `https://ui.ahmedbna.com/r` at runtime
+  rather than from templates shipped inside the package. The tarball drops from
+  ~10.7 MB to ~1.7 MB, and new components become available without a CLI release.
+  `init` and `convex` are unchanged — their scaffolds are still bundled and work
+  offline.
+
+  Fixes shipped alongside:
+
+  - `add` now installs every file a component imports. Previously `add button`
+    wrote `hooks/useColor.ts` without `hooks/useColorScheme.ts` or
+    `theme/colors.ts`, so the result did not compile. 126 registry entries were
+    under-declaring their dependencies.
+  - `init` produced projects with no `.gitignore`, because npm strips that file
+    from published tarballs.
+  - `--version` reported `1.0.0` regardless of the installed version.
+  - `useModeToggle` computed `isDark` from the system colour scheme, so explicitly
+    choosing light or dark had no effect; it also now handles web.
+  - Timer refs typed as `useRef<number>` failed to compile in any project with
+    `@types/node` in scope.
+  - The `video` demo pointed at a directory URL instead of a video file.
+
+  New: `--registry <url>` and `BNA_UI_REGISTRY` to point at an alternate registry,
+  plus an on-disk ETag cache so repeat installs work offline.
+
+- [`7ecac9e`](https://github.com/ahmedbna/ui/commit/7ecac9ea2ce41f2634ed9ce6fac6db53e51fbcab) Thanks [@ahmedbna](https://github.com/ahmedbna)! - Rebuild the CLI's visual identity around #FAD40B, cut the install to a fifth of
+  its size, and collapse the duplicated scaffold commands.
+
+  **Breaking**
+
+  - **Node.js 22.12 or newer is required.** Node 20 reached end of life on
+    2026-04-30, and chalk 6 and commander 15 both require 22+.
+  - **`bna-ui mcp` now runs `@bna-ui/mcp`.** The documented
+    `claude mcp add bna-ui -- npx -y bna-ui mcp` keeps working unchanged; the
+    server was moved into its own package so the MCP SDK's HTTP and SSE transport
+    dependencies — 93 packages and 24 MB it never used — stop being downloaded by
+    every `npx bna-ui add`. What `add` installs went from 156 packages / 38 MB to
+    50 packages / 8.8 MB.
+  - **`-t, --template` has been removed.** It was registered on `init`, `convex`
+    and `supabase` with a default of `default` and read by none of them, so
+    passing it silently did nothing. It is now an unknown-option error.
+
+  **Added**
+
+  - `bna-ui list` and `bna-ui search <query>`. Discovering a component name
+    previously meant running `add` with no arguments and scrolling a checkbox of
+    80+ entries. Both also surface hooks, charts and theme entries, which `add`'s
+    picker filters out.
+  - `components.json`, written by `init` and entirely optional. Holds the registry
+    URL, per-kind install aliases, and the package manager.
+  - An update notifier, skipped under npx, CI, a non-TTY and `NO_UPDATE_NOTIFIER`.
+  - `--verbose` on every command, and worked examples in every `--help`.
+
+  **Fixed**
+
+  - Ctrl-C at a prompt printed `An error occurred: ExitPromptError` and exited 1.
+    It is now a clean cancellation.
+  - `--dry-run` prompted about file conflicts, so it could not be used from a
+    script.
+  - `add` did not check for the `@/*` path alias, so it wrote components whose
+    imports could not resolve, with nothing pointing back at the command.
+  - `add` inside a pnpm or yarn project could install with npm; the package
+    manager is now detected from the lockfile too.
+  - Errors printed raw `Error` objects and stack traces instead of a message and
+    a fix.
+  - The scaffold copy filter matched `dist` and `build` anywhere in a path rather
+    than per segment, silently dropping files like `components/rebuild.tsx`.
+  - Warnings went to stdout, which corrupted the MCP server's JSON-RPC channel.
+  - The install line printed a bare `yarn` where the shared helper prints
+    `yarn install`.
 
 - [`fd48918`](https://github.com/ahmedbna/ui/commit/fd4891814433e7421ddef9096fc355043d117718) Thanks [@ahmedbna](https://github.com/ahmedbna)! - Fix the theme mode toggle, and move the providers out of `theme/`.
 
@@ -78,6 +155,8 @@
   The CLI learned a `providers` alias in `components.json`, defaulting to
   `providers`. Existing configs without the key still resolve correctly.
 
+### Minor Changes
+
 - [`20c69d4`](https://github.com/ahmedbna/ui/commit/20c69d457d61402d6c26e57cc31ef331093cfd16) Thanks [@ahmedbna](https://github.com/ahmedbna)! - Install relative to the project's `@/*` alias, so apps with a `src/` directory
   get their components in the right place.
 
@@ -137,109 +216,42 @@
     stopped a `../` from escaping.
   - The "no `@/*` alias" error now shows both the root and `src/` shapes.
 
-### Patch Changes
+- [`24e3faf`](https://github.com/ahmedbna/ui/commit/24e3faf6ae3cbc45c7744197c219176702efaa7d) Thanks [@ahmedbna](https://github.com/ahmedbna)! - Add `bna-ui firebase` — two Expo + Firebase starters, with and without auth.
 
-- [`922f924`](https://github.com/ahmedbna/ui/commit/922f9242aa05870df6b2167399fd922ebfe4e028) Thanks [@ahmedbna](https://github.com/ahmedbna)! - Scaffolds now install a real, flat `node_modules` under every package manager.
+  Firebase was the one backend of the three with no path into a BNA project. The
+  new command mirrors `convex` and `supabase`: `npx bna-ui firebase my-app`
+  scaffolds the auth variant, `--no-auth` the backend-only one, and
+  `--skip-firebase` skips the interactive setup entirely.
 
-  Metro and React Native's autolinking both read `node_modules` off disk, and two
-  package managers do not provide one by default:
+  Both use the **`firebase` JS SDK**, not `@react-native-firebase`, so the config
+  comes from `EXPO_PUBLIC_*` variables exactly as Supabase's does and everything
+  except OAuth runs in Expo Go — no config plugin, no `google-services.json`, no
+  development build to get started.
 
-  - **pnpm** defaults to the isolated linker. Scaffolds ship an `.npmrc`
-    (`node-linker=hoisted`) and a `pnpm-workspace.yaml` (`nodeLinker: hoisted`) —
-    both, because pnpm 11 reads settings only from `pnpm-workspace.yaml` while
-    pnpm 10.15 and older read only `.npmrc`. Reported as `expo start` failing on
-    an unresolvable `metro-runtime/src/modules/empty-module.js` where npm worked.
-  - **yarn 2+** defaults to Plug'n'Play and installs no `node_modules` at all, so
-    Metro could not bundle a yarn scaffold. Scaffolds ship a `.yarnrc.yml`
-    (`nodeLinker: node-modules`). Yarn 1.x is flat already and ignores it.
+  `start-firebase` ships Cloud Firestore with a live task list, Cloud Storage with
+  real upload progress (`uploadBytesResumable`, which Supabase's `upload()` cannot
+  report), security rules, and index definitions. `start-firebase-auth` adds
+  email/password, Google and Apple sign-in, onboarding, avatars and client-side
+  account deletion, with every document scoped to its owner.
 
-  `init`, `convex` and `supabase` now install and bundle under npm, pnpm, yarn and
-  bun alike, each covered by a CI leg that installs for real and runs a Metro
-  bundle.
+  Both also ship `rules-tests/` — the security rules executed against the
+  emulator, which is the only place the real boundary gets tested. The client
+  SDK's local cache accepts writes the server would reject.
 
-  `.DS_Store` is no longer copied into a scaffold, and the starters build now
-  fails on any file npm silently strips from the tarball (`.gitignore`, `.npmrc`,
-  `.npmignore`, `.DS_Store`) rather than shipping a scaffold missing it.
+  After copying files the command asks for the six web-config values — deriving
+  `authDomain` and `storageBucket` from the project ID as overridable defaults,
+  since projects created before October 2024 still use `.appspot.com` — writes
+  `.env.local`, sets the default project in `.firebaserc`, and deploys the rules
+  and indexes when `firebase-tools` is present. Every step degrades to printed
+  commands rather than failing.
 
-  A failed dependency install now prints what the package manager actually said
-  and the command to re-run, instead of dumping a raw `Error` object.
-
-- [`0780314`](https://github.com/ahmedbna/ui/commit/0780314e2d583e95ca2f0c961bbd0480c036f931) Thanks [@ahmedbna](https://github.com/ahmedbna)! - Fix `bunx --bun bna-ui init`, which died with `TypeError: fs.opendir is not a
-function` before writing a single file.
-
-  `copyTemplate` no longer calls `fs.cp(…, { filter })`. `fs.cp`'s filter callback
-  has to re-enter JS for every entry, and runtimes that implement `node:fs`
-  natively have not always carried it — so under Bun the scaffold either threw or,
-  worse, silently ignored the filter and copied `node_modules` into the new
-  project. The copy is now an explicit walk over `readdir`/`mkdir`/`copyFile`,
-  primitives present in every Node and Bun release, and the dot-less renames
-  (`gitignore` → `.gitignore`, `github` → `.github`) happen during it. CI now
-  scaffolds under Bun on two versions and diffs the result against Node's.
-
-  `add` had a second Bun gap behind the same symptom. Installing a component's
-  npm dependencies in an Expo project shells out to `expo install`, and the runner
-  was a hardcoded `npx`. That holds for npm, yarn and pnpm — all three are Node
-  programs that bring `npx` with them — but Bun is its own runtime, so
-  `bunx --bun bna-ui add camera` on a machine without Node resolved every file it
-  was about to write and then died with `npx: command not found`. A bun project
-  now launches it with `bunx`.
-
-  The update notifier also no longer fires under `bunx`, `pnpm dlx` or `yarn dlx`.
-  It only ever recognised `npx`, so every `bunx bna-ui init` finished by
-  suggesting `npm install -g bna-ui@latest` — a package `bunx` had just resolved
-  to latest, with the wrong package manager.
-
-## 4.0.0
-
-### Major Changes
-
-- [`7ecac9e`](https://github.com/ahmedbna/ui/commit/7ecac9ea2ce41f2634ed9ce6fac6db53e51fbcab) Thanks [@ahmedbna](https://github.com/ahmedbna)! - Rebuild the CLI's visual identity around #FAD40B, cut the install to a fifth of
-  its size, and collapse the duplicated scaffold commands.
-
-  **Breaking**
-
-  - **Node.js 22.12 or newer is required.** Node 20 reached end of life on
-    2026-04-30, and chalk 6 and commander 15 both require 22+.
-  - **`bna-ui mcp` now runs `@bna-ui/mcp`.** The documented
-    `claude mcp add bna-ui -- npx -y bna-ui mcp` keeps working unchanged; the
-    server was moved into its own package so the MCP SDK's HTTP and SSE transport
-    dependencies — 93 packages and 24 MB it never used — stop being downloaded by
-    every `npx bna-ui add`. What `add` installs went from 156 packages / 38 MB to
-    50 packages / 8.8 MB.
-  - **`-t, --template` has been removed.** It was registered on `init`, `convex`
-    and `supabase` with a default of `default` and read by none of them, so
-    passing it silently did nothing. It is now an unknown-option error.
-
-  **Added**
-
-  - `bna-ui list` and `bna-ui search <query>`. Discovering a component name
-    previously meant running `add` with no arguments and scrolling a checkbox of
-    80+ entries. Both also surface hooks, charts and theme entries, which `add`'s
-    picker filters out.
-  - `components.json`, written by `init` and entirely optional. Holds the registry
-    URL, per-kind install aliases, and the package manager.
-  - An update notifier, skipped under npx, CI, a non-TTY and `NO_UPDATE_NOTIFIER`.
-  - `--verbose` on every command, and worked examples in every `--help`.
-
-  **Fixed**
-
-  - Ctrl-C at a prompt printed `An error occurred: ExitPromptError` and exited 1.
-    It is now a clean cancellation.
-  - `--dry-run` prompted about file conflicts, so it could not be used from a
-    script.
-  - `add` did not check for the `@/*` path alias, so it wrote components whose
-    imports could not resolve, with nothing pointing back at the command.
-  - `add` inside a pnpm or yarn project could install with npm; the package
-    manager is now detected from the lockfile too.
-  - Errors printed raw `Error` objects and stack traces instead of a message and
-    a fix.
-  - The scaffold copy filter matched `dist` and `build` anywhere in a path rather
-    than per segment, silently dropping files like `components/rebuild.tsx`.
-  - Warnings went to stdout, which corrupted the MCP server's JSON-RPC channel.
-  - The install line printed a bare `yarn` where the shared helper prints
-    `yarn install`.
-
-### Minor Changes
+  Three things Firebase genuinely cannot do that the Supabase starter can, all
+  documented rather than papered over: there is no email OTP (Firebase has only
+  SMS), no GitHub provider (the token exchange needs a client secret that cannot
+  ship in a bundle), and Google and Apple need a development build, because
+  `signInWithPopup` throws on React Native and `expo-auth-session`'s proxy was
+  removed in SDK 48. With no client IDs configured the OAuth buttons render
+  nothing at all rather than failing when pressed.
 
 - [`8a71548`](https://github.com/ahmedbna/ui/commit/8a7154843a3dc6b3f0718cc4fd5dd6cc24e96901) Thanks [@ahmedbna](https://github.com/ahmedbna)! - Add `bna-ui mcp` and `bna-ui info`.
 
@@ -298,38 +310,6 @@ function` before writing a single file.
   `expo-navigation-bar` 57 replaced `setButtonStyleAsync` with `setStyle`. Both
   threw at runtime.
 
-## 3.0.0
-
-### Major Changes
-
-- [`8442a00`](https://github.com/ahmedbna/ui/commit/8442a003bfb307da44718d745234e35014720cc7) Thanks [@ahmedbna](https://github.com/ahmedbna)! - Fetch components from the registry instead of bundling them.
-
-  `bna-ui add` now resolves components from `https://ui.ahmedbna.com/r` at runtime
-  rather than from templates shipped inside the package. The tarball drops from
-  ~10.7 MB to ~1.7 MB, and new components become available without a CLI release.
-  `init` and `convex` are unchanged — their scaffolds are still bundled and work
-  offline.
-
-  Fixes shipped alongside:
-
-  - `add` now installs every file a component imports. Previously `add button`
-    wrote `hooks/useColor.ts` without `hooks/useColorScheme.ts` or
-    `theme/colors.ts`, so the result did not compile. 126 registry entries were
-    under-declaring their dependencies.
-  - `init` produced projects with no `.gitignore`, because npm strips that file
-    from published tarballs.
-  - `--version` reported `1.0.0` regardless of the installed version.
-  - `useModeToggle` computed `isDark` from the system colour scheme, so explicitly
-    choosing light or dark had no effect; it also now handles web.
-  - Timer refs typed as `useRef<number>` failed to compile in any project with
-    `@types/node` in scope.
-  - The `video` demo pointed at a directory URL instead of a video file.
-
-  New: `--registry <url>` and `BNA_UI_REGISTRY` to point at an alternate registry,
-  plus an on-disk ETag cache so repeat installs work offline.
-
-### Minor Changes
-
 - [`763de39`](https://github.com/ahmedbna/ui/commit/763de396f3347f854cae26a3259cc43009b8fd23) Thanks [@ahmedbna](https://github.com/ahmedbna)! - Target Expo SDK 57 (React Native 0.86), and install dependencies with `expo install` in Expo projects.
 
   Registry entries declare bare package names, which the CLI previously handed to
@@ -346,3 +326,95 @@ function` before writing a single file.
   every `add`.
 
   The bundled `init` and `convex` scaffolds now generate Expo SDK 57 projects.
+
+### Patch Changes
+
+- [`922f924`](https://github.com/ahmedbna/ui/commit/922f9242aa05870df6b2167399fd922ebfe4e028) Thanks [@ahmedbna](https://github.com/ahmedbna)! - Scaffolds now install a real, flat `node_modules` under every package manager.
+
+  Metro and React Native's autolinking both read `node_modules` off disk, and two
+  package managers do not provide one by default:
+
+  - **pnpm** defaults to the isolated linker. Scaffolds ship an `.npmrc`
+    (`node-linker=hoisted`) and a `pnpm-workspace.yaml` (`nodeLinker: hoisted`) —
+    both, because pnpm 11 reads settings only from `pnpm-workspace.yaml` while
+    pnpm 10.15 and older read only `.npmrc`. Reported as `expo start` failing on
+    an unresolvable `metro-runtime/src/modules/empty-module.js` where npm worked.
+  - **yarn 2+** defaults to Plug'n'Play and installs no `node_modules` at all, so
+    Metro could not bundle a yarn scaffold. Scaffolds ship a `.yarnrc.yml`
+    (`nodeLinker: node-modules`). Yarn 1.x is flat already and ignores it.
+
+  `init`, `convex` and `supabase` now install and bundle under npm, pnpm, yarn and
+  bun alike, each covered by a CI leg that installs for real and runs a Metro
+  bundle.
+
+  `.DS_Store` is no longer copied into a scaffold, and the starters build now
+  fails on any file npm silently strips from the tarball (`.gitignore`, `.npmrc`,
+  `.npmignore`, `.DS_Store`) rather than shipping a scaffold missing it.
+
+  A failed dependency install now prints what the package manager actually said
+  and the command to re-run, instead of dumping a raw `Error` object.
+
+- [`0780314`](https://github.com/ahmedbna/ui/commit/0780314e2d583e95ca2f0c961bbd0480c036f931) Thanks [@ahmedbna](https://github.com/ahmedbna)! - Fix `bunx --bun bna-ui init`, which died with `TypeError: fs.opendir is not a
+function` before writing a single file.
+
+  `copyTemplate` no longer calls `fs.cp(…, { filter })`. `fs.cp`'s filter callback
+  has to re-enter JS for every entry, and runtimes that implement `node:fs`
+  natively have not always carried it — so under Bun the scaffold either threw or,
+  worse, silently ignored the filter and copied `node_modules` into the new
+  project. The copy is now an explicit walk over `readdir`/`mkdir`/`copyFile`,
+  primitives present in every Node and Bun release, and the dot-less renames
+  (`gitignore` → `.gitignore`, `github` → `.github`) happen during it. CI now
+  scaffolds under Bun on two versions and diffs the result against Node's.
+
+  `add` had a second Bun gap behind the same symptom. Installing a component's
+  npm dependencies in an Expo project shells out to `expo install`, and the runner
+  was a hardcoded `npx`. That holds for npm, yarn and pnpm — all three are Node
+  programs that bring `npx` with them — but Bun is its own runtime, so
+  `bunx --bun bna-ui add camera` on a machine without Node resolved every file it
+  was about to write and then died with `npx: command not found`. A bun project
+  now launches it with `bunx`.
+
+  The update notifier also no longer fires under `bunx`, `pnpm dlx` or `yarn dlx`.
+  It only ever recognised `npx`, so every `bunx bna-ui init` finished by
+  suggesting `npm install -g bna-ui@latest` — a package `bunx` had just resolved
+  to latest, with the wrong package manager.
+
+- [`dcc09a4`](https://github.com/ahmedbna/ui/commit/dcc09a4f771a902ea7f05517d044a8a463078c46) Thanks [@ahmedbna](https://github.com/ahmedbna)! - Scaffold `react-native-gesture-handler@~3.1.0`, the version Expo SDK 57 expects.
+
+  Expo moved SDK 57's recommended range from `~2.32.0` to `~3.1.0` server-side, so
+  every project the starters produced failed `npx expo install --check` and
+  `expo-doctor` on a clean scaffold:
+
+  ```
+  The following packages should be updated for best compatibility with the installed expo version:
+    react-native-gesture-handler@2.32.0 - expected version: ~3.1.0
+  ```
+
+  All nine pins move together — the playground, the registry's dev dependency and
+  the seven starter/overlay `package.json` files — so the components keep being
+  built and shipped against the same version a scaffolded app installs.
+
+  No component source changed. The registry only ever used the modern gesture API
+  (`Gesture`, `GestureDetector`, `GestureHandlerRootView`), all of which v3 keeps;
+  the legacy `*GestureHandler` components v3 removed were never used here.
+
+- [`147ca1f`](https://github.com/ahmedbna/ui/commit/147ca1f10d90092f543858067dcc6073821a51ce) Thanks [@ahmedbna](https://github.com/ahmedbna)! - Let yarn write the lockfile it is being asked to create.
+
+  Yarn 2+ turns `enableImmutableInstalls` on whenever `CI` is set, and an
+  immutable install refuses to create or modify a lockfile. A project `init` has
+  just scaffolded has no lockfile at all — the very install being refused is the
+  one that would write it — so `bna-ui init --yarn` died on every CI runner and
+  inside every container:
+
+  ```
+  ➤ YN0028: The lockfile would have been created by this install, which is
+            explicitly forbidden.
+  ✗ Could not install dependencies in /tmp/e2e-install/app.
+  ```
+
+  `bna-ui add` hit the same guard through `yarn add`, for the same reason.
+
+  Both install paths now spawn yarn with `YARN_ENABLE_IMMUTABLE_INSTALLS=false`.
+  Only yarn is touched — npm, pnpm and bun all create a missing lockfile without
+  complaint, and nothing here should be quietly relaxing a `--frozen` intent for a
+  manager that never had a problem.
