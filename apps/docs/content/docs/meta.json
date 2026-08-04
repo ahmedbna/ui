@@ -3,11 +3,11 @@
   "pages": [
     "(root)",
     "installation",
+    "components",
+    "charts",
     "convex",
     "supabase",
     "firebase",
-    "components",
-    "charts",
     "hooks",
     "providers",
     "theme"
