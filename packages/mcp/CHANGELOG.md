@@ -1,15 +1,13 @@
 # @bna-ui/mcp
 
-## 1.0.0 — prepared, not yet published
+## 1.0.0
 
-The package existed in the repository at 1.0.0, 1.1.0 and 1.1.1 while the CLI was
-being reworked, and none of those reached npm. This will be the first version
-anyone can install, but it is held back until the `@bna-ui` org exists on npm — a
-publish token cannot create one, and a scoped publish that 404s mid-release would
-take the CLI's publish down with it.
+First published release. The package existed in the repository at 1.0.0, 1.1.0 and
+1.1.1 while the CLI was being reworked; none of those reached npm, so this is the
+first version anyone can install.
 
 `bna-ui mcp` resolves this package with `npx` at runtime rather than bundling it,
-so `bna-ui@3.0.0` picks it up the moment it lands; no CLI release is needed.
+so `bna-ui@3.0.0` — already published — picks it up with no CLI release.
 
 ### Major Changes
 
