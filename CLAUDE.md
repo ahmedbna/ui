@@ -114,6 +114,18 @@ Docs deploys before a CLI release, always. An older CLI reads newer registry
 entries fine; the reverse ships a CLI asking for components the registry lacks.
 Vercel builds `apps/docs` from this repo, which publishes `public/r/`.
 
+`.github/workflows/release.yml` publishes over npm trusted publishing (OIDC) —
+there is no npm token in CI. Two consequences:
+
+- **A brand-new package cannot be released by CI.** npmjs.com only attaches a
+  trusted publisher to a package that already exists, so version one goes out by
+  hand (`pnpm publish --otp <code>`, never `npm publish` — only pnpm rewrites
+  `workspace:*` to a real version in the tarball), and the trusted publisher is
+  configured afterwards. CI takes over from the second version on.
+- **pnpm stays on 10.x.** changesets shells out to `pnpm publish`, which
+  delegates the upload to the global `npm` only through pnpm 10; pnpm 11
+  publishes natively and currently fails under OIDC.
+
 ### Theming
 
 `packages/registry/src/theme/` — `colors.ts` (semantic tokens, iOS accent

@@ -10,6 +10,8 @@ build/
 out/
 .turbo/
 *.tsbuildinfo
+# `pnpm pack` artifacts — releases publish from CI, never from a committed tarball
+*.tgz
 
 # generated registry payloads (emitted by packages/registry)
 apps/docs/public/r/

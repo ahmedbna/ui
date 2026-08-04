@@ -45,6 +45,22 @@ jobs:
       # ordering, once, removes the race outright.
       - run: pnpm turbo run build --filter=bna-ui --filter=@bna-ui/mcp
 
+      # Publishing runs on npm trusted publishing (OIDC), so there is no npm
+      # token in this workflow at all — see the comment on the changesets step.
+      # That needs npm >= 11.5.1, and the runner's Node 22 ships 10.9.
+      #
+      # It has to be the *global* npm, not a devDependency: changesets shells
+      # out to `pnpm publish` (it detects pnpm-lock.yaml), and through pnpm 10.x
+      # `pnpm publish` still delegates the upload to whatever `npm` is on PATH.
+      # That delegation is what makes OIDC reachable at all here, and it is why
+      # `packageManager` must stay on pnpm 10 — pnpm 11 publishes natively and
+      # currently 404s under OIDC (pnpm/pnpm#11513). Bumping pnpm to 11 without
+      # revisiting this breaks releases.
+      - name: Install an npm that can do trusted publishing
+        run: |
+          npm install -g npm@latest
+          npm --version
+
       # Opens/updates a "Version Packages" PR; publishes when that PR lands.
       #
       # Ordering note: the docs site (which serves /r/*.json) deploys from this
@@ -59,14 +75,21 @@ jobs:
           title: 'chore: version packages'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # Both spellings are load-bearing and neither substitutes for the
-          # other: `changesets/action` checks the literal `NPM_TOKEN` to decide
-          # whether to write an authenticated .npmrc, while `NODE_AUTH_TOKEN` is
-          # what setup-node's `registry-url` .npmrc interpolates. With only the
-          # latter set, the action reported "No NPM_TOKEN found" and fell
-          # through to an OIDC path this toolchain cannot use — pnpm 10.15 and
-          # npm 10.9 both predate trusted publishing — so `pnpm publish` reached
-          # the registry unauthenticated and got ENEEDAUTH.
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          # No NPM_TOKEN / NODE_AUTH_TOKEN on purpose. `changesets/action`
+          # checks the literal `NPM_TOKEN` to decide whether to write an
+          # authenticated .npmrc; with it unset the action logs "No NPM_TOKEN
+          # found" and falls through to OIDC, which is now the intended path.
+          # Auth comes from `id-token: write` above plus a trusted publisher
+          # configured on npmjs.com for each package, pinned to this repo and
+          # to this filename — renaming this file revokes publishing rights.
+          #
+          # The one thing OIDC cannot do is create a package that does not
+          # exist yet (npm/cli#8544): npmjs.com only lets you attach a trusted
+          # publisher to an existing package. The first version of any new
+          # `@bna-ui/*` package must go out manually — `pnpm publish --otp` —
+          # and get its trusted publisher afterwards. Skipping that is what
+          # made `@bna-ui/mcp@1.0.0` fail here with a bare E404 on PUT.
+          #
+          # Provenance is documented as automatic under trusted publishing, but
+          # is cheap to keep explicit and has been reported as still necessary.
           NPM_CONFIG_PROVENANCE: true
