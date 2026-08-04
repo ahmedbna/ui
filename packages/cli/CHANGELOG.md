@@ -1,5 +1,88 @@
 # bna-ui
 
+## 4.2.0
+
+### Minor Changes
+
+- [`24e3faf`](https://github.com/ahmedbna/ui/commit/24e3faf6ae3cbc45c7744197c219176702efaa7d) Thanks [@ahmedbna](https://github.com/ahmedbna)! - Add `bna-ui firebase` — two Expo + Firebase starters, with and without auth.
+
+  Firebase was the one backend of the three with no path into a BNA project. The
+  new command mirrors `convex` and `supabase`: `npx bna-ui firebase my-app`
+  scaffolds the auth variant, `--no-auth` the backend-only one, and
+  `--skip-firebase` skips the interactive setup entirely.
+
+  Both use the **`firebase` JS SDK**, not `@react-native-firebase`, so the config
+  comes from `EXPO_PUBLIC_*` variables exactly as Supabase's does and everything
+  except OAuth runs in Expo Go — no config plugin, no `google-services.json`, no
+  development build to get started.
+
+  `start-firebase` ships Cloud Firestore with a live task list, Cloud Storage with
+  real upload progress (`uploadBytesResumable`, which Supabase's `upload()` cannot
+  report), security rules, and index definitions. `start-firebase-auth` adds
+  email/password, Google and Apple sign-in, onboarding, avatars and client-side
+  account deletion, with every document scoped to its owner.
+
+  Both also ship `rules-tests/` — the security rules executed against the
+  emulator, which is the only place the real boundary gets tested. The client
+  SDK's local cache accepts writes the server would reject.
+
+  After copying files the command asks for the six web-config values — deriving
+  `authDomain` and `storageBucket` from the project ID as overridable defaults,
+  since projects created before October 2024 still use `.appspot.com` — writes
+  `.env.local`, sets the default project in `.firebaserc`, and deploys the rules
+  and indexes when `firebase-tools` is present. Every step degrades to printed
+  commands rather than failing.
+
+  Three things Firebase genuinely cannot do that the Supabase starter can, all
+  documented rather than papered over: there is no email OTP (Firebase has only
+  SMS), no GitHub provider (the token exchange needs a client secret that cannot
+  ship in a bundle), and Google and Apple need a development build, because
+  `signInWithPopup` throws on React Native and `expo-auth-session`'s proxy was
+  removed in SDK 48. With no client IDs configured the OAuth buttons render
+  nothing at all rather than failing when pressed.
+
+### Patch Changes
+
+- [`dcc09a4`](https://github.com/ahmedbna/ui/commit/dcc09a4f771a902ea7f05517d044a8a463078c46) Thanks [@ahmedbna](https://github.com/ahmedbna)! - Scaffold `react-native-gesture-handler@~3.1.0`, the version Expo SDK 57 expects.
+
+  Expo moved SDK 57's recommended range from `~2.32.0` to `~3.1.0` server-side, so
+  every project the starters produced failed `npx expo install --check` and
+  `expo-doctor` on a clean scaffold:
+
+  ```
+  The following packages should be updated for best compatibility with the installed expo version:
+    react-native-gesture-handler@2.32.0 - expected version: ~3.1.0
+  ```
+
+  All nine pins move together — the playground, the registry's dev dependency and
+  the seven starter/overlay `package.json` files — so the components keep being
+  built and shipped against the same version a scaffolded app installs.
+
+  No component source changed. The registry only ever used the modern gesture API
+  (`Gesture`, `GestureDetector`, `GestureHandlerRootView`), all of which v3 keeps;
+  the legacy `*GestureHandler` components v3 removed were never used here.
+
+- [`147ca1f`](https://github.com/ahmedbna/ui/commit/147ca1f10d90092f543858067dcc6073821a51ce) Thanks [@ahmedbna](https://github.com/ahmedbna)! - Let yarn write the lockfile it is being asked to create.
+
+  Yarn 2+ turns `enableImmutableInstalls` on whenever `CI` is set, and an
+  immutable install refuses to create or modify a lockfile. A project `init` has
+  just scaffolded has no lockfile at all — the very install being refused is the
+  one that would write it — so `bna-ui init --yarn` died on every CI runner and
+  inside every container:
+
+  ```
+  ➤ YN0028: The lockfile would have been created by this install, which is
+            explicitly forbidden.
+  ✗ Could not install dependencies in /tmp/e2e-install/app.
+  ```
+
+  `bna-ui add` hit the same guard through `yarn add`, for the same reason.
+
+  Both install paths now spawn yarn with `YARN_ENABLE_IMMUTABLE_INSTALLS=false`.
+  Only yarn is touched — npm, pnpm and bun all create a missing lockfile without
+  complaint, and nothing here should be quietly relaxing a `--frozen` intent for a
+  manager that never had a problem.
+
 ## 4.1.0
 
 ### Minor Changes

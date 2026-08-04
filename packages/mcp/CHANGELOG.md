@@ -1,5 +1,12 @@
 # @bna-ui/mcp
 
+## 1.1.2
+
+### Patch Changes
+
+- Updated dependencies [[`dcc09a4`](https://github.com/ahmedbna/ui/commit/dcc09a4f771a902ea7f05517d044a8a463078c46), [`24e3faf`](https://github.com/ahmedbna/ui/commit/24e3faf6ae3cbc45c7744197c219176702efaa7d), [`147ca1f`](https://github.com/ahmedbna/ui/commit/147ca1f10d90092f543858067dcc6073821a51ce)]:
+  - bna-ui@4.2.0
+
 ## 1.1.1
 
 ### Patch Changes
