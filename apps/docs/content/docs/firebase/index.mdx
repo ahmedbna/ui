@@ -1,0 +1,191 @@
+---
+title: Firebase
+description: A React Native starter with BNA UI components and a Firebase backend — Cloud Firestore, Cloud Storage, Authentication and security rules with tests, with or without sign-in.
+---
+
+[Firebase](https://firebase.google.com) is Google's app platform: a document
+database that streams changes to every listener, object storage, an
+authentication service with a dozen providers, and a rules language that runs on
+Google's servers rather than in your app.
+
+BNA UI ships two Firebase scaffolds: one with a backend and no sign-in, one with
+authentication and the screens already built. Both use the **`firebase` JS
+SDK**, so they run in Expo Go — no config plugin, no `google-services.json`, no
+development build to get started.
+
+<div className='mt-6 grid gap-4 sm:grid-cols-2 sm:gap-6'>
+  <LinkedCard
+    href='/docs/installation/firebase'
+    className='items-start gap-1 p-6 text-sm sm:p-6'
+  >
+    <img
+      src='/images/firebase.svg'
+      alt='Firebase'
+      className='mb-2 size-8 rounded-none object-contain'
+    />
+    <div className='font-medium'>Expo + Firebase</div>
+    <div className='text-muted-foreground leading-relaxed'>
+      Firestore, Cloud Storage, rules and rules tests. No sign-in.
+    </div>
+  </LinkedCard>
+
+  <LinkedCard
+    href='/docs/installation/firebase-auth'
+    className='items-start gap-1 p-6 text-sm sm:p-6'
+  >
+    <img
+      src='/images/firebase.svg'
+      alt='Firebase'
+      className='mb-2 size-8 rounded-none object-contain'
+    />
+    <div className='font-medium'>Expo + Firebase + Auth</div>
+    <div className='text-muted-foreground leading-relaxed'>
+      Password, Google and Apple, with owner-scoped documents.
+    </div>
+  </LinkedCard>
+</div>
+
+## The auth starter
+
+Built around the same principles as the rest of BNA UI:
+
+- **Open Code:** the authentication screens, the hooks and the security rules
+  are copied into your project, not imported from a package.
+- **Mobile-First:** flows designed for React Native, with the persisted user
+  encrypted in the platform keychain.
+- **Cross-Platform:** iOS, Android and web, from one code path.
+- **Secure by default:** every document scoped to `request.auth.uid`, enforced
+  by Google — not by what the client asks for.
+
+### Sign-in methods
+
+| Method             | Mechanism                                            | Ships with a screen    | Expo Go |
+| ------------------ | ---------------------------------------------------- | ---------------------- | ------- |
+| Email + password   | `signInWithEmailAndPassword`                         | Yes                    | Yes     |
+| Password reset     | `sendPasswordResetEmail`                             | Yes                    | Yes     |
+| Email verification | `sendEmailVerification`                              | Card in Settings       | Yes     |
+| Google             | `expo-auth-session` → `signInWithCredential`         | Yes                    | **No**  |
+| Apple              | `expo-apple-authentication` → `signInWithCredential` | Yes                    | **No**  |
+| Email link         | `sendSignInLinkToEmail`                              | Yes, hidden by default | **No**  |
+
+<Callout title='Two providers, not six'>
+  There is no email OTP — Firebase Authentication has no six-digit email code at
+  all, only SMS. And there is no GitHub: obtaining a GitHub access token
+  requires a client secret, which cannot ship in an app bundle. Supabase does
+  that exchange on its own servers; Firebase expects you to run one.
+</Callout>
+
+### What lands in your project
+
+```
+lib/
+├── firebase.ts             the client — app, auth, Firestore, Storage
+├── large-secure-store.ts   AES-256 persistence for the auth record
+├── documents.ts            snapshot → plain object, as pure functions
+├── auth-link.ts            the action-link parser, as a pure function
+└── errors.ts               Firebase error code → prose
+providers/auth-provider.tsx user, profile, deep links
+app/(auth)/                 five screens
+app/(onboarding)/           intro carousel + profile setup
+firestore.rules             owner-only, with no catch-all match
+storage.rules               avatars/<uid>/… and files/<uid>/…
+rules-tests/                the rules, executed against the emulator
+```
+
+### The two layers of access control
+
+The route guards in `app/_layout.tsx` decide what renders:
+
+```tsx title="app/_layout.tsx"
+<Stack.Protected guard={!signedIn}>
+  <Stack.Screen name='(auth)' />
+</Stack.Protected>
+<Stack.Protected guard={signedIn && !needsOnboarding}>
+  <Stack.Screen name='(tabs)' />
+</Stack.Protected>
+```
+
+The security rules decide what Firestore will actually return:
+
+```
+match /tasks/{taskId} {
+  allow read: if isOwner(resource.data.ownerId);
+}
+```
+
+Only the second is a security boundary. The first is there so users are not
+looking at empty screens.
+
+### The rule that catches everyone
+
+**Firestore evaluates a read rule against the query, not against the documents
+it would return.** It refuses any query it cannot prove in advance is limited to
+documents the rule allows:
+
+```ts
+// permission-denied, even signed in
+query(collection(db, 'tasks'), orderBy('createdAt', 'desc'));
+
+// fine
+query(collection(db, 'tasks'), where('ownerId', '==', uid));
+```
+
+A Postgres RLS policy does the opposite: the filter is optional and the policy
+quietly narrows the result. If you are moving between the Supabase and Firebase
+starters, this is the difference that will bite you.
+[Security rules](/docs/firebase/rules) covers it properly.
+
+### Reading the signed-in user
+
+```tsx
+import { useAuth } from '@/providers/auth-provider';
+
+const { user, profile, loading, signOut } = useAuth();
+```
+
+`profile` is the `users/{uid}` document, kept current over an `onSnapshot`
+subscription. `user` is the Firebase `User` record. There is no `session` —
+Firebase has no session object.
+
+## Environment
+
+| Variable                          | Where it lives | Set by            | Used for            |
+| --------------------------------- | -------------- | ----------------- | ------------------- |
+| `EXPO_PUBLIC_FIREBASE_API_KEY`    | `.env.local`   | `bna-ui firebase` | Building the client |
+| `EXPO_PUBLIC_FIREBASE_PROJECT_ID` | `.env.local`   | `bna-ui firebase` | Building the client |
+| `EXPO_PUBLIC_FIREBASE_APP_ID`     | `.env.local`   | `bna-ui firebase` | Building the client |
+| `EXPO_PUBLIC_GOOGLE_*_CLIENT_ID`  | `.env.local`   | You               | Google sign-in      |
+| `EXPO_PUBLIC_FIREBASE_LINK_URL`   | `.env.local`   | You               | Email links         |
+| `GOOGLE_APPLICATION_CREDENTIALS`  | CI             | You               | Deploying rules     |
+
+<Callout title='A Firebase web config is public by design'>
+  Unlike a Supabase key, these values identify your project rather than granting
+  access to it — Google publishes them in the console for you to paste into a
+  web page. What actually guards your data is `firestore.rules` and
+  `storage.rules`. What must never appear in `.env.local` is a service account
+  JSON, an Admin SDK private key, or an OAuth client secret.
+</Callout>
+
+Provider credentials — the Apple team key, SMTP settings, OAuth secrets — live
+in the Firebase console, not in any file in your repository.
+
+## Guides
+
+- [Firestore](/docs/firebase/firestore) — the data model, queries, indexes and
+  what `serverTimestamp()` does locally
+- [Security rules](/docs/firebase/rules) — the query-scoping rule, the Storage
+  `delete` trap, and how to test both
+- [Authentication](/docs/firebase/auth) — persistence, route guards, deep links
+  and account deletion
+- [Google](/docs/firebase/google) · [Apple](/docs/firebase/apple) ·
+  [Email and links](/docs/firebase/email)
+- [Realtime](/docs/firebase/realtime) · [Storage](/docs/firebase/storage)
+- [Deployment](/docs/firebase/deployment) — EAS, CI/CD, and the production
+  checklist
+- [Troubleshooting](/docs/firebase/troubleshooting) — and a Supabase → Firebase
+  migration guide
+
+## Learn more
+
+- [Firebase documentation](https://firebase.google.com/docs)
+- [Report an issue](https://github.com/ahmedbna/ui/issues)

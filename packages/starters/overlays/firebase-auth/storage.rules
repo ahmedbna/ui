@@ -1,0 +1,52 @@
+rules_version = '2';
+
+// The uid in the path is load-bearing, exactly the way
+// `(storage.foldername(name))[1] = auth.uid()::text` is in a Supabase storage
+// policy. hooks/useAvatarUpload.ts writes to `avatars/${user.uid}/avatar.<ext>`
+// for this reason and nothing else.
+//
+// One Storage-specific trap worth knowing: `write` means create + update +
+// delete, and on a delete `request.resource` is null. So a rule shaped like
+//
+//     allow write: if isOwner(userId) && request.resource.size < N;
+//
+// silently denies every delete — null has no `.size`. The methods are split out
+// below so each one says what it actually means.
+
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    function isOwner(uid) {
+      return request.auth != null && request.auth.uid == uid;
+    }
+
+    match /avatars/{userId}/{fileName} {
+      // Public, like the `avatars` bucket in a Supabase project — an avatar
+      // shows up next to a name, and signing every one of those URLs is a lot
+      // of round trips for a picture of a face.
+      //
+      // Note that `getDownloadURL()` hands out a capability URL carrying an
+      // access token. Tightening this rule later does NOT invalidate a URL
+      // already in the wild; rotate the object's download token in the console
+      // for that.
+      allow read: if true;
+
+      allow create, update: if isOwner(userId)
+        && request.resource.size < 2 * 1024 * 1024
+        && request.resource.contentType.matches('image/(jpeg|png|webp)');
+
+      // Separate, because request.resource is null on a delete.
+      allow delete: if isOwner(userId);
+    }
+
+    match /files/{userId}/{fileName} {
+      // Private, unlike avatars: only the owner may read.
+      allow read: if isOwner(userId);
+
+      allow create, update: if isOwner(userId)
+        && request.resource.size < 10 * 1024 * 1024;
+
+      allow delete: if isOwner(userId);
+    }
+  }
+}

@@ -1,0 +1,91 @@
+rules_version = '2';
+
+// The real access control for this app.
+//
+// Your Firebase config ships inside the app bundle, so these rules — not the
+// client code — are what stands between a user and someone else's data. The
+// route guards in app/_layout.tsx are a convenience; this file is the boundary.
+//
+// The one thing to internalise, especially coming from Postgres row level
+// security: **a read rule is evaluated against the QUERY, not against the
+// documents it would return.** Firestore refuses any query it cannot prove in
+// advance is limited to documents the rule allows. So a query without
+// `where('ownerId', '==', uid)` fails outright with permission-denied — it does
+// not quietly return fewer rows the way an RLS policy would. That is why
+// hooks/useTasks.ts and the search screen both carry that filter, and why
+// removing it breaks the screen rather than leaking data.
+//
+// Run these: `npm run rules:test`.
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(uid) {
+      return signedIn() && request.auth.uid == uid;
+    }
+
+    function isValidTask(data) {
+      return data.keys().hasOnly(['text', 'isComplete', 'createdAt', 'searchTokens', 'ownerId'])
+        && data.text is string
+        && data.text.size() > 0
+        && data.text.size() <= 500
+        && data.isComplete is bool
+        && data.searchTokens is list
+        && data.searchTokens.size() <= 20;
+    }
+
+    match /users/{userId} {
+      // The document id IS the uid, which is what lets this be checked without
+      // reading the document first.
+      allow get: if isOwner(userId);
+
+      // No `list`. Nothing in the app queries this collection, and allowing it
+      // would let any signed-in user enumerate every account.
+
+      // `onboarded == false` on create means a client cannot sign up already
+      // onboarded and skip the flow.
+      allow create: if isOwner(userId)
+                    && request.resource.data.onboarded == false
+                    && request.resource.data.keys().hasOnly(
+                         ['email', 'displayName', 'photoURL', 'onboarded', 'createdAt', 'updatedAt']);
+
+      // `diff().affectedKeys().hasOnly()` is the Firestore way to say "these
+      // fields and no others" — the equivalent of leaving a column out of an
+      // UPDATE policy. `email` is absent on purpose: it mirrors the Firebase
+      // Auth record, and letting the client edit it here would put the two out
+      // of step with nothing to reconcile them.
+      allow update: if isOwner(userId)
+                    && request.resource.data.diff(resource.data).affectedKeys()
+                         .hasOnly(['displayName', 'photoURL', 'onboarded', 'updatedAt']);
+
+      allow delete: if isOwner(userId);
+    }
+
+    match /tasks/{taskId} {
+      // See the note at the top: on a single `get` this is checked against the
+      // document, but on a query it is checked against the query.
+      allow read: if isOwner(resource.data.ownerId);
+
+      allow create: if isOwner(request.resource.data.ownerId)
+                    && isValidTask(request.resource.data)
+                    && request.resource.data.createdAt == request.time;
+
+      // Both sides checked: `resource` stops you editing someone else's task,
+      // `request.resource` stops you handing yours to someone else.
+      allow update: if isOwner(resource.data.ownerId)
+                    && request.resource.data.ownerId == resource.data.ownerId
+                    && request.resource.data.createdAt == resource.data.createdAt
+                    && isValidTask(request.resource.data);
+
+      allow delete: if isOwner(resource.data.ownerId);
+    }
+
+    // Deliberately no `match /{document=**}`. Anything not named above is
+    // denied — the Firestore equivalent of leaving RLS on with no policy, and
+    // the single most common way a Firebase project leaks.
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "storage": {
+    "rules": "storage.rules"
+  },
+  "//hosting": [
+    "Only needed for email-link sign-in and in-app password reset. Firebase",
+    "mints those action links on a Hosting domain — Dynamic Links shut down in",
+    "August 2025, so a Hosting domain plus Universal Links / App Links is the",
+    "supported way to get the link back into the app. Run",
+    "`firebase deploy --only hosting` and see the README's 'Email links' section."
+  ],
+  "hosting": {
+    "public": "public",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+  },
+  "emulators": {
+    "auth": { "port": 9099 },
+    "firestore": { "port": 8080 },
+    "storage": { "port": 9199 },
+    "ui": { "enabled": true, "port": 4000 },
+    "singleProjectMode": true
+  }
+}

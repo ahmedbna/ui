@@ -1,0 +1,54 @@
+rules_version = '2';
+
+// ⚠️  Every rule below is open.
+//
+// Your Firebase API key ships inside the app bundle — that is what
+// EXPO_PUBLIC_ means — so anyone with the app can read, create and delete
+// every task here. That is a deliberate choice for a public demo and the
+// wrong shape for real data.
+//
+// Read https://ui.ahmedbna.com/docs/firebase/rules before you point this at
+// anything you care about, or start from the auth variant instead, where
+// every document is scoped to its owner:
+//
+//     npx bna-ui firebase my-app
+//
+// These are not the Console's 30-day "test mode" rules, on purpose: those
+// expire into permission-denied on day 31, and a demo that breaks on a timer
+// teaches the wrong lesson. These are honestly open and say so.
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isValidTask(data) {
+      return data.keys().hasOnly(['text', 'isComplete', 'createdAt', 'searchTokens'])
+        && data.text is string
+        && data.text.size() > 0
+        && data.text.size() <= 500
+        && data.isComplete is bool
+        && data.searchTokens is list
+        && data.searchTokens.size() <= 20;
+    }
+
+    match /tasks/{taskId} {
+      allow read: if true;
+
+      // `== request.time` is what forces serverTimestamp(): a client cannot
+      // forge a creation time, which is the one thing worth pinning down even
+      // when everything else is open. Write a literal date here and the
+      // create is rejected.
+      allow create: if isValidTask(request.resource.data)
+                    && request.resource.data.createdAt == request.time;
+
+      // createdAt is immutable after the fact, for the same reason.
+      allow update: if isValidTask(request.resource.data)
+                    && request.resource.data.createdAt == resource.data.createdAt;
+
+      allow delete: if true;
+    }
+
+    // Deliberately no `match /{document=**}`. Anything not named above is
+    // denied — the Firestore equivalent of leaving RLS on with no policy, and
+    // the single most common way a Firebase project leaks.
+  }
+}

@@ -1,0 +1,26 @@
+rules_version = '2';
+
+// Open, like firestore.rules, and for the same reasons. See the note there.
+//
+// One Storage-specific trap worth knowing: `write` means create + update +
+// delete, and on a delete `request.resource` is null. So a rule shaped like
+//
+//     allow write: if request.resource.size < 5 * 1024 * 1024;
+//
+// silently denies every delete — null has no `.size`. The methods are split
+// out below so each one says what it actually means.
+
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /uploads/{fileName} {
+      allow read: if true;
+
+      allow create: if request.resource.size < 5 * 1024 * 1024
+                    && request.resource.contentType.matches('image/(jpeg|png|webp|gif)');
+
+      // No update and no delete: with no signed-in user there is no way to
+      // tell whose object is whose, so nobody may overwrite or remove one.
+      // The auth variant scopes both to the uid in the path instead.
+    }
+  }
+}

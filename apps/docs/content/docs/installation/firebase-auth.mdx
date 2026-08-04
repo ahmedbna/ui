@@ -1,0 +1,318 @@
+---
+title: Expo + Firebase + Auth
+description: Scaffold an Expo app with BNA UI, Firebase Authentication, Cloud Firestore scoped per user, Cloud Storage avatars, and security rules with tests that run them.
+---
+
+## Create the app
+
+```bash
+npx bna-ui firebase my-app
+```
+
+This is the default. Add `--no-auth` for
+[the backend-only starter](/docs/installation/firebase).
+
+The CLI asks for your Firebase web config, writes `.env.local`, sets the default
+project in `.firebaserc`, and deploys the security rules and indexes if
+`firebase-tools` is installed.
+
+<Callout title='Two things to do in the console first'>
+  Create a project with a **Web** app added to it, enable Firestore, Storage and
+  Authentication from the Build menu, then turn on **Email/Password** under
+  Authentication → Sign-in method. That is the only provider the app needs to
+  run.
+</Callout>
+
+## Run it
+
+```bash
+cd my-app
+npm start
+```
+
+Email and password sign-in, Firestore and Storage all work in Expo Go. Google
+and Apple do not — see below.
+
+<Callout type='warn' title='Deploy the rules and indexes first'>
+  Every query in this starter is scoped with `where('ownerId', '==', uid)`,
+  which needs a composite index. Until `firebase deploy --only
+  firestore,storage` runs, the task list shows an error rather than data.
+</Callout>
+
+## What you get
+
+```
+providers/auth-provider.tsx  onAuthStateChanged + users/{uid} listener + deep links
+app/_layout.tsx              three Stack.Protected groups
+app/(auth)/                  five screens
+app/(onboarding)/            intro carousel + profile setup
+lib/
+├── firebase.ts              app + auth (persisted) + Firestore + Storage
+├── large-secure-store.ts    AES-256, because Firebase's user record exceeds 2 KB
+├── documents.ts             pure: snapshot → plain object, byNewest, tokenize
+├── auth-link.ts             pure: parse an incoming Firebase action URL
+└── errors.ts                pure: Firebase error code → prose
+hooks/                       useTasks, useProfile, useAvatarUpload, useDeleteAccount
+firestore.rules              owner-only
+storage.rules                avatars/<uid>/… and files/<uid>/…
+rules-tests/                 the rules, executed against the emulator
+```
+
+## Sign-in methods
+
+| Method             | Expo Go | Ships with a screen    | Setup                              |
+| ------------------ | ------- | ---------------------- | ---------------------------------- |
+| Email + password   | Yes     | Yes                    | Enable the provider                |
+| Password reset     | Yes     | Yes                    | None — uses Firebase's hosted page |
+| Email verification | Yes     | Card in Settings       | None                               |
+| Google             | **No**  | Yes                    | Three OAuth client IDs             |
+| Apple              | **No**  | Yes                    | Enable the provider; iOS only      |
+| Email link         | **No**  | Yes, hidden by default | A Hosting link domain              |
+
+Two things the [Supabase auth starter](/docs/installation/supabase-auth) has
+that this one cannot:
+
+- **No email OTP.** Firebase Authentication has no six-digit email code. Its
+  only OTP is SMS, which needs a browser-only reCAPTCHA verifier and costs money
+  per message. There is no `verify-otp.tsx` here as a result.
+- **No GitHub.** `GithubAuthProvider.credential` needs an access token obtained
+  with a client _secret_, which cannot ship in an app bundle. Supabase performs
+  that exchange on its own servers; Firebase expects you to.
+
+### Why Google and Apple need a development build
+
+`signInWithPopup` and `signInWithRedirect` throw
+`auth/operation-not-supported-in-this-environment` on React Native, so the only
+route is a native ID token fed to `signInWithCredential`. And
+`expo-auth-session`'s hosted proxy was removed in SDK 48, so under Expo Go the
+redirect is `exp://…`, which no Google OAuth client type accepts.
+
+```bash
+npx expo run:ios      # or run:android, or an EAS development build
+```
+
+With no client IDs set, `components/auth/oauth-buttons.tsx` renders **nothing at
+all** — including the "or" separator. A missing client ID is never a runtime
+error and never a button that fails when pressed.
+
+See [Google](/docs/firebase/google) and [Apple](/docs/firebase/apple).
+
+## How the guards work
+
+```tsx title="app/_layout.tsx"
+<Stack.Protected guard={!signedIn}>
+  <Stack.Screen name='(auth)' />
+</Stack.Protected>
+<Stack.Protected guard={needsOnboarding}>
+  <Stack.Screen name='(onboarding)' />
+</Stack.Protected>
+<Stack.Protected guard={signedIn && !needsOnboarding}>
+  <Stack.Screen name='(tabs)' />
+</Stack.Protected>
+```
+
+`Stack.Protected` unmounts the screens whose guard is false, so with no signed-in
+user there is no navigation path into `(tabs)` at all — deep link or otherwise.
+
+But the guards are a **convenience, not the boundary**. `firestore.rules` says
+the same thing server-side, where a modified client cannot argue:
+
+```
+match /tasks/{taskId} {
+  allow read: if isOwner(resource.data.ownerId);
+}
+```
+
+### The thing that surprises people
+
+**A read rule is evaluated against the query, not against the documents it would
+return.** Firestore refuses any query it cannot prove in advance is limited to
+documents the rule allows. So this fails with `permission-denied` even for a
+signed-in user:
+
+```ts
+query(collection(db, 'tasks'), orderBy('createdAt', 'desc'));
+```
+
+It does not quietly return only your own rows the way a Postgres RLS policy
+would. That is why `hooks/useTasks.ts` and the search screen both carry
+`where('ownerId', '==', uid)`, and why removing it breaks the screen outright
+rather than leaking data.
+
+This is the single most valuable thing to know when moving between the Supabase
+and Firebase starters. The rules tests assert it directly.
+
+## Session storage
+
+Firebase writes one JSON blob per user under
+`firebase:authUser:<apiKey>:[DEFAULT]` — uid, email, photoURL, the whole
+`providerData` array, and a `stsTokenManager` holding both tokens. A bare
+email/password account is around 1.5 KB; one Google identity with a long
+`photoURL` pushes it past `expo-secure-store`'s **2048-byte** ceiling.
+
+So `LargeSecureStore` puts a 256-bit AES key in the Keychain and the ciphertext
+in AsyncStorage:
+
+```ts title="lib/firebase.ts"
+initializeAuth(app, {
+  persistence: getReactNativePersistence(new LargeSecureStore()),
+});
+```
+
+<Callout title='Why getReactNativePersistence is not imported normally'>
+  It exists in `@firebase/auth`'s React Native build and only there. Metro picks
+  that build on iOS and Android, but TypeScript resolves the `types` condition,
+  which points at the browser build — so the symbol is real at runtime and
+  invisible to the compiler. `lib/firebase.ts` reads it off the namespace with a
+  typed lookup, and throws a readable error if it is ever absent rather than
+  falling back to in-memory persistence, which would sign every user out on
+  relaunch.
+</Callout>
+
+## Reading the signed-in user
+
+```tsx
+import { useAuth } from '@/providers/auth-provider';
+
+const { user, profile, loading, signOut } = useAuth();
+```
+
+There is no `session` field — Firebase has no session object; the `User` carries
+`getIdToken()` and the SDK refreshes behind it. There is also no `AppState`
+listener keeping tokens alive, which a Supabase project needs: Firebase
+refreshes lazily inside `getIdToken()`, and Firestore and Storage both pull
+through the same `Auth` instance.
+
+`profile` is the `users/{uid}` document, kept current over an `onSnapshot`
+subscription.
+
+## Profiles
+
+There is no Cloud Function creating the profile document — those need the paid
+Blaze plan. The provider writes it from its **snapshot listener** rather than
+once after sign-up:
+
+```ts title="providers/auth-provider.tsx"
+if (!snapshot.exists()) {
+  await ensureProfile(auth.currentUser);
+  return;
+}
+```
+
+That self-heals: if the first write never landed, the next launch fixes it. A
+post-sign-up write would not. `profile` being `null` therefore means "not
+created yet", never "not onboarded" — treating it as the latter would flash the
+onboarding flow at a returning user.
+
+## Account deletion
+
+`hooks/useDeleteAccount.ts` reauthenticates, deletes the avatar, batch-deletes
+tasks 500 at a time, deletes `users/{uid}`, and calls `deleteUser` **last** — so
+a failure part-way leaves a usable account rather than data no one can reach.
+
+It is best-effort. Firestore has no `ON DELETE CASCADE` and this runs on the
+user's device, so a crash mid-way leaves orphans. The robust version is
+Firebase's official "Delete User Data" extension or a Cloud Function on the
+`user.delete` trigger.
+
+Deletion also throws `auth/requires-recent-login` on a stale token, which is what
+the password prompt in the confirm dialog is for. A federated user is asked to
+sign out and back in instead.
+
+## Email links and in-app password reset
+
+Both are off by default and both work fine that way: the reset link opens
+Firebase's hosted page, the user sets a password, and returns to sign in.
+
+To bring them into the app, set `EXPO_PUBLIC_FIREBASE_LINK_URL` and claim the
+domain natively.
+
+<Callout type='warn' title='Firebase Dynamic Links shut down in August 2025'>
+  The old `page.link` bounce no longer exists, and `dynamicLinkDomain` is
+  deprecated in favour of `linkDomain`. The supported approach is a Firebase
+  Hosting domain plus Universal Links / App Links — both native entitlements, so
+  this needs a build and cannot work in Expo Go.
+</Callout>
+
+```json title="app.json"
+{
+  "ios": { "associatedDomains": ["applinks:your-project-id.firebaseapp.com"] },
+  "android": {
+    "intentFilters": [
+      {
+        "action": "VIEW",
+        "autoVerify": true,
+        "data": [
+          { "scheme": "https", "host": "your-project-id.firebaseapp.com" }
+        ],
+        "category": ["BROWSABLE", "DEFAULT"]
+      }
+    ]
+  }
+}
+```
+
+These are not in `app.json` already because a placeholder host claims nothing.
+`url` must also be **https** on a domain listed under Authentication → Settings
+→ Authorized domains; a custom scheme is rejected.
+
+## Environment reference
+
+| Variable                                   | Required              | Used for                     |
+| ------------------------------------------ | --------------------- | ---------------------------- |
+| `EXPO_PUBLIC_FIREBASE_API_KEY`             | Yes                   | Building the client          |
+| `EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN`         | Yes                   | Building the client          |
+| `EXPO_PUBLIC_FIREBASE_PROJECT_ID`          | Yes                   | Building the client          |
+| `EXPO_PUBLIC_FIREBASE_STORAGE_BUCKET`      | Yes                   | Avatars                      |
+| `EXPO_PUBLIC_FIREBASE_MESSAGING_SENDER_ID` | Yes                   | Building the client          |
+| `EXPO_PUBLIC_FIREBASE_APP_ID`              | Yes                   | Building the client          |
+| `EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID`         | For Google            | ID token `aud` must match it |
+| `EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID`         | For Google on iOS     | Tied to your bundle id       |
+| `EXPO_PUBLIC_GOOGLE_ANDROID_CLIENT_ID`     | For Google on Android | Tied to package + SHA-1      |
+| `EXPO_PUBLIC_FIREBASE_LINK_URL`            | For email links       | Action link destination      |
+| `EXPO_PUBLIC_FIREBASE_USE_EMULATOR`        | No                    | Point at local emulators     |
+
+Provider secrets — the Apple team key, an OAuth client secret, SMTP credentials
+— live in the Firebase console, never in a file in your repository.
+
+## Password rules
+
+`describePasswordProblem` in `sign-up.tsx` asks for 8 characters with mixed case
+and a digit. Firebase's own floor is **six characters and nothing else**;
+everything past that is this app's opinion, enforced only in the client.
+
+To make it real, configure a password policy under Authentication → Settings →
+Password policy (Identity Platform) and keep the two in step.
+
+## Local development
+
+```bash
+npm run emulators                          # UI at http://localhost:4000
+npm run emulators:seed -- --uid <your-uid>
+npm run rules:test                         # needs JDK 21+
+```
+
+The seed script requires a uid because every task needs an owner — find yours in
+the Emulator UI's Authentication tab after signing up.
+
+## Before you ship
+
+- Read `firestore.rules` and `storage.rules` properly, and run
+  `npm run rules:test`.
+- Decide whether email verification should be mandatory. It is not by default —
+  Firebase signs a new user in immediately, verified or not, and a card in
+  Settings does the nagging. Gate the `(tabs)` guard on `user.emailVerified` if
+  you want it enforced.
+- Set a real password policy if you rely on the client-side rules.
+- Add `ios.bundleIdentifier` and `android.package` before an EAS build — the
+  Google OAuth clients are tied to them.
+- Remember there is no offline disk cache: Firestore's persistent cache is
+  IndexedDB, which React Native does not have.
+
+## Next
+
+- [Authentication](/docs/firebase/auth) · [Google](/docs/firebase/google) ·
+  [Apple](/docs/firebase/apple) · [Email](/docs/firebase/email)
+- [Security rules](/docs/firebase/rules) · [Firestore](/docs/firebase/firestore)
+- [Deployment](/docs/firebase/deployment) ·
+  [Troubleshooting](/docs/firebase/troubleshooting)

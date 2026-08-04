@@ -37,7 +37,7 @@ pnpm test
 | -------------------- | --------------------------------------------------------------------- |
 | `packages/registry/` | **The only copy** of every component, hook, theme file and demo       |
 | `packages/cli/`      | The published `bna-ui` CLI                                            |
-| `packages/starters/` | Scaffolds for `bna-ui init`, `bna-ui convex` and `bna-ui supabase`    |
+| `packages/starters/` | Scaffolds for `bna-ui init`, `convex`, `supabase` and `firebase`      |
 | `apps/docs/`         | The documentation site, which also serves the registry at `/r/*.json` |
 | `apps/playground/`   | An Expo app for building and manually testing components              |
 

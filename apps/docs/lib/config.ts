@@ -28,6 +28,10 @@ export const siteConfig = {
       label: 'Supabase',
       href: '/docs/supabase',
     },
+    {
+      label: 'Firebase',
+      href: '/docs/firebase',
+    },
   ],
 };
 

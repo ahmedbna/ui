@@ -5,6 +5,8 @@
     "convex-auth",
     "supabase",
     "supabase-auth",
+    "firebase",
+    "firebase-auth",
     "manual"
   ]
 }

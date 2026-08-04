@@ -1,0 +1,14 @@
+{
+  "pages": [
+    "auth",
+    "firestore",
+    "realtime",
+    "storage",
+    "rules",
+    "google",
+    "apple",
+    "email",
+    "deployment",
+    "troubleshooting"
+  ]
+}

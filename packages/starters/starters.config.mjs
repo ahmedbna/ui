@@ -63,6 +63,43 @@ export const overlays = {
       'toast',
     ],
   },
+  /** Firebase only: Firestore, Storage, security rules and rules tests. */
+  'start-firebase': {
+    base: 'start',
+    overlay: 'overlays/firebase',
+    components: [
+      'badge',
+      'checkbox',
+      'image',
+      'media-picker',
+      // Not in the supabase list: `uploadBytesResumable` reports bytes
+      // transferred as they go, which Supabase's `upload()` cannot, so the
+      // settings tab can show a real bar rather than a spinner.
+      'progress',
+      'separator',
+      'skeleton',
+      'toast',
+    ],
+  },
+  /** Firebase plus Auth — password, email link, Google, Apple. */
+  'start-firebase-auth': {
+    base: 'start',
+    overlay: 'overlays/firebase-auth',
+    components: [
+      'alert-dialog',
+      // Pulls `image` transitively via its own registryDependencies, so unlike
+      // the no-auth entry above this list does not name it.
+      'avatar',
+      'badge',
+      'checkbox',
+      'media-picker',
+      'onboarding',
+      'progress',
+      'separator',
+      'skeleton',
+      'toast',
+    ],
+  },
   /** Supabase plus auth — password, magic link, email OTP, Google, Apple. */
   'start-supabase-auth': {
     base: 'start',

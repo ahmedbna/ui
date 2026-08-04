@@ -1,6 +1,6 @@
 ---
 title: Installation
-description: Pick the stack you are building on and follow the guide for it — plain Expo, or Expo with a Convex or Supabase backend, with or without authentication.
+description: Pick the stack you are building on and follow the guide for it — plain Expo, or Expo with a Convex, Supabase or Firebase backend, with or without authentication.
 ---
 
 <Callout title='Recommended for new projects'>
@@ -111,29 +111,73 @@ Choose the setup that matches what you are building.
   </div>
 </LinkedCard>
 
+<LinkedCard
+  href='/docs/installation/firebase'
+  className='items-start gap-1 p-6 text-sm sm:p-6'
+>
+  <img
+    src='/images/firebase.svg'
+    alt='Firebase'
+    className='mb-2 size-8 rounded-none object-contain'
+  />
+  <div className='font-medium'>Expo + Firebase</div>
+  <div className='text-muted-foreground leading-relaxed'>
+    Firestore, Cloud Storage and security rules with tests. No sign-in.
+  </div>
+</LinkedCard>
+
+<LinkedCard
+  href='/docs/installation/firebase-auth'
+  className='items-start gap-1 p-6 text-sm sm:p-6'
+>
+  <img
+    src='/images/firebase.svg'
+    alt='Firebase'
+    className='mb-2 size-8 rounded-none object-contain'
+  />
+  <div className='font-medium'>Expo + Firebase + Auth</div>
+  <div className='text-muted-foreground leading-relaxed'>
+    Password, Google and Apple sign-in, with owner-scoped rules.
+  </div>
+</LinkedCard>
+
 </div>
 
 ## Which one should I pick?
 
-| You want to…                                            | Start with                                                                                             |
-| ------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
-| Build a UI and ship it, no server                       | [Expo](/docs/installation/expo)                                                                        |
-| Store data and sync it live across devices, no accounts | [Convex](/docs/installation/convex) or [Supabase](/docs/installation/supabase)                         |
-| Have users sign in on day one                           | [Convex + Auth](/docs/installation/convex-auth) or [Supabase + Auth](/docs/installation/supabase-auth) |
+| You want to…                                            | Start with                                                                                                                                                  |
+| ------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Build a UI and ship it, no server                       | [Expo](/docs/installation/expo)                                                                                                                             |
+| Store data and sync it live across devices, no accounts | [Convex](/docs/installation/convex), [Supabase](/docs/installation/supabase) or [Firebase](/docs/installation/firebase)                                     |
+| Have users sign in on day one                           | [Convex + Auth](/docs/installation/convex-auth), [Supabase + Auth](/docs/installation/supabase-auth) or [Firebase + Auth](/docs/installation/firebase-auth) |
 
-### Convex or Supabase?
+### Convex, Supabase or Firebase?
 
-Both are real-time backends and both starters give you the same app. They differ
-in where your logic lives and how authorization works.
+All three are real-time backends and all three starters give you the same app.
+They differ in where your logic lives and how authorization works.
 
-|                   | Convex                                    | Supabase                                            |
-| ----------------- | ----------------------------------------- | --------------------------------------------------- |
-| Data model        | Documents, schema in TypeScript           | Postgres, schema in SQL migrations                  |
-| Queries           | TypeScript functions on the server        | Direct queries from the client, plus edge functions |
-| Authorization     | Checked inside each function              | Row level security policies, enforced by Postgres   |
-| Realtime          | Every query is a live subscription        | Opt in per table                                    |
-| Local dev         | Cloud dev deployment                      | Cloud, or the whole stack in Docker                 |
-| Reach for it when | You want end-to-end TypeScript and no SQL | You want Postgres, SQL and a relational schema      |
+|                   | Convex                                    | Supabase                                       | Firebase                                      |
+| ----------------- | ----------------------------------------- | ---------------------------------------------- | --------------------------------------------- |
+| Data model        | Documents, schema in TypeScript           | Postgres, schema in SQL migrations             | Documents, no schema                          |
+| Queries           | TypeScript functions on the server        | Direct from the client, plus edge functions    | Direct from the client                        |
+| Authorization     | Checked inside each function              | Row level security, enforced by Postgres       | Security rules, evaluated against the _query_ |
+| Realtime          | Every query is a live subscription        | Opt in per table                               | Every listener is live                        |
+| Search            | Built-in full-text index                  | `ilike`, or a `tsvector` column                | Whole-word tokens, or an extension            |
+| Offline cache     | In-memory                                 | In-memory                                      | In-memory (no IndexedDB on RN)                |
+| Local dev         | Cloud dev deployment                      | Cloud, or the whole stack in Docker            | Emulator suite (needs a JDK)                  |
+| Reach for it when | You want end-to-end TypeScript and no SQL | You want Postgres, SQL and a relational schema | You are already in the Google ecosystem       |
+
+<Callout title='One difference worth knowing before you choose'>
+  Firestore evaluates a read rule against the **query**, not the documents it
+  would return — it refuses any query it cannot prove is scoped to rows you are
+  allowed to read. Postgres row level security does the opposite and silently
+  narrows the result. Code that moves between the Supabase and Firebase starters
+  has to account for that.
+</Callout>
+
+The Firebase auth starter also has no email OTP and no GitHub provider, and its
+Google and Apple buttons need a development build.
+[The details are here.](/docs/installation/firebase-auth)
 
 Nothing in the component library depends on either, so you can start on the plain
 Expo path and add a backend later.

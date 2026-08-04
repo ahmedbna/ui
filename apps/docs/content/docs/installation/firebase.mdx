@@ -1,0 +1,200 @@
+---
+title: Expo + Firebase
+description: Scaffold an Expo app with BNA UI and a Firebase backend — Cloud Firestore with live listeners, Cloud Storage with upload progress, and security rules with tests that run them. No sign-in.
+---
+
+## Create a project
+
+```bash
+npx bna-ui firebase my-app --no-auth
+```
+
+Without `--no-auth` you get [the auth starter](/docs/installation/firebase-auth)
+instead — email and password, Google, Apple, onboarding and a profile.
+
+The CLI asks for your Firebase web config, writes `.env.local`, sets the default
+project in `.firebaserc`, and — if `firebase-tools` is installed — deploys the
+security rules and indexes for you. Skip any of it and it prints the commands.
+
+<Callout title='Create the Firebase project first'>
+  You need a project with a **Web** app added to it, plus Firestore and Storage
+  enabled from the console's Build menu. The CLI cannot create those for you.
+  [console.firebase.google.com](https://console.firebase.google.com)
+</Callout>
+
+## Run it
+
+```bash
+cd my-app
+npm start
+```
+
+Expo Go works. The Firebase JS SDK is pure JavaScript with no native module, so
+there is no config plugin, no `google-services.json`, and no development build
+needed — the whole config comes from `EXPO_PUBLIC_*` environment variables. That
+changes if you move to `@react-native-firebase`.
+
+<Callout type='warn' title='Deploy the rules first, or nothing loads'>
+  Until `firebase deploy --only firestore,storage` runs, Firestore serves
+  whatever rules the console last had — usually locked down — and the search
+  query has no index. Both show up as an error toast, not an empty screen.
+</Callout>
+
+## What you get
+
+Everything in the [Expo starter](/docs/installation/expo), plus:
+
+```
+lib/
+├── firebase.ts          app + Firestore + Storage. Imports no auth code at all
+├── documents.ts         pure: snapshot → plain object, byNewest, tokenize
+└── errors.ts            pure: Firebase error code → prose
+hooks/
+├── useTasks.ts          one onSnapshot subscription + mutations
+└── useUpload.ts         file URI → Blob → Storage → download URL, with progress
+app/(tabs)/
+├── (home)/index.tsx     live task list
+├── search/index.tsx     array-contains query
+└── settings/index.tsx   storage upload + getCountFromServer
+firestore.rules          open on /tasks only
+firestore.indexes.json   the one composite index the search query needs
+storage.rules            public read, validated create, no delete
+rules-tests/             the rules, executed against the emulator
+```
+
+## The client
+
+```ts title="lib/firebase.ts"
+const existing = getApps()[0];
+const app = existing ?? initializeApp(firebaseConfig);
+
+export const db = existing
+  ? getFirestore(app)
+  : initializeFirestore(app, { experimentalAutoDetectLongPolling: true });
+
+export const storage = getStorage(app);
+```
+
+The `existing` guard is not defensive programming. Fast Refresh re-executes this
+module whenever you edit it, and `initializeApp` throws `app/duplicate-app` on a
+second call while `initializeFirestore` throws _"settings can no longer be
+changed"_. One condition covers both.
+
+There is **no `metro.config.js`** and this project does not need one. The
+`sourceExts.push('cjs')` and `unstable_enablePackageExports = true` advice in
+older Firebase + Expo threads describes defaults that Expo SDK 57 and Metro 0.84
+already set.
+
+## Realtime
+
+One `onSnapshot` subscription is the whole thing:
+
+```ts title="hooks/useTasks.ts"
+return onSnapshot(
+  query(collection(db, 'tasks'), orderBy('createdAt', 'desc'), limit(50)),
+  { includeMetadataChanges: true },
+  (snapshot) => {
+    setTasks(tasksFromSnapshot(snapshot));
+    setConnected(!snapshot.metadata.fromCache);
+  },
+  (caught) => setError(messageFor(caught))
+);
+```
+
+Three habits worth unlearning if you are arriving from a REST or Supabase
+codebase:
+
+- **No initial fetch.** `onSnapshot` delivers the current result set itself, from
+  cache first and then the server.
+- **No optimistic apply, and no rollback.** `addDoc` and `updateDoc` mutate the
+  local cache synchronously, and the SDK reverts them itself if the server says
+  no. What you _do_ still have to handle is telling the user — the awaited
+  promise is the only place a rejection surfaces.
+- **No refetch on reconnect.** The stream resumes from a token.
+
+`includeMetadataChanges: true` is load-bearing for the connection indicator:
+without it the listener never re-fires on a metadata-only change, so
+`fromCache` stays true forever after the first response.
+
+## Security rules
+
+**Every rule in `firestore.rules` is open.** Your Firebase config ships inside
+the app bundle, so anyone with the app can read, create and delete every task.
+That is deliberate for a demo and wrong for real data.
+
+They are _not_ the console's 30-day "test mode" rules, on purpose — those expire
+into `permission-denied` on day 31, and a demo that breaks on a timer teaches
+the wrong lesson.
+
+The one thing pinned down even here:
+
+```
+allow create: if isValidTask(request.resource.data)
+              && request.resource.data.createdAt == request.time;
+```
+
+A client cannot forge a creation time. See [Security rules](/docs/firebase/rules)
+for the full picture, and run them:
+
+```bash
+npm run rules:test
+```
+
+Needs a JDK 21 or newer — the emulators are Java processes.
+
+## Search
+
+Firestore has no `LIKE`, no substring matching and no full-text index. The
+starter writes a `searchTokens` array at insert time and queries it with
+`array-contains`:
+
+```ts
+where('searchTokens', 'array-contains', term);
+```
+
+This matches **whole words only** — "migra" finds nothing where a Postgres
+`ilike '%migra%'` would find "migration". When that stops being enough, put an
+Algolia, Typesense or Elastic extension in front of the collection. Do not fetch
+everything and filter in JS; you pay per document read.
+
+## Environment
+
+| Variable                                   | Set by            | Used for                         |
+| ------------------------------------------ | ----------------- | -------------------------------- |
+| `EXPO_PUBLIC_FIREBASE_API_KEY`             | `bna-ui firebase` | Building the client              |
+| `EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN`         | `bna-ui firebase` | Building the client              |
+| `EXPO_PUBLIC_FIREBASE_PROJECT_ID`          | `bna-ui firebase` | Building the client              |
+| `EXPO_PUBLIC_FIREBASE_STORAGE_BUCKET`      | `bna-ui firebase` | Cloud Storage                    |
+| `EXPO_PUBLIC_FIREBASE_MESSAGING_SENDER_ID` | `bna-ui firebase` | Building the client              |
+| `EXPO_PUBLIC_FIREBASE_APP_ID`              | `bna-ui firebase` | Building the client              |
+| `EXPO_PUBLIC_FIREBASE_USE_EMULATOR`        | You               | Point the app at local emulators |
+
+<Callout title='A Firebase web config is public by design'>
+  Unlike a Supabase key, these values identify your project rather than granting
+  access to it. What guards your data is `firestore.rules` and `storage.rules`,
+  which is why this starter ships both with tests. What must *never* go in
+  `.env.local` is a service account JSON or an Admin SDK private key.
+</Callout>
+
+Projects created before October 2024 use `your-project.appspot.com` for the
+storage bucket rather than `.firebasestorage.app`. Copy whatever the console
+shows; the CLI offers the newer form as a default but lets you override it.
+
+## Local development
+
+```bash
+npm run emulators        # UI at http://localhost:4000
+npm run emulators:seed   # three demo tasks
+```
+
+Then set `EXPO_PUBLIC_FIREBASE_USE_EMULATOR=1`. The app reads the dev server's
+LAN address from Expo, so this works from a real device and not just the
+simulator.
+
+## Next
+
+- [Firestore](/docs/firebase/firestore) · [Realtime](/docs/firebase/realtime) ·
+  [Storage](/docs/firebase/storage)
+- [Security rules](/docs/firebase/rules) — read this one before you ship
+- [Adding auth later](/docs/installation/firebase-auth)
+- [Browse components](/docs/components)

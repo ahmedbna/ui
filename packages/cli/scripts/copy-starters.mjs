@@ -34,6 +34,8 @@ async function main() {
     'start-convex-auth',
     'start-supabase',
     'start-supabase-auth',
+    'start-firebase',
+    'start-firebase-auth',
   ];
 
   for (const name of names) {

@@ -1,0 +1,207 @@
+---
+title: Security rules
+description: How Firestore and Storage rules actually work — why a query is checked instead of its results, the delete trap in Storage, and how to test both against the emulator.
+---
+
+Security rules are the boundary. Your Firebase config ships inside the app
+bundle, so anyone with the app can call the API directly; the route guards in
+`app/_layout.tsx` are there so users are not looking at empty screens, not to
+keep anyone out.
+
+Both starters ship rules **and tests that execute them**. That combination is
+unusual and it is the point: rules are a separate language that fails open in
+ways your app code cannot reveal.
+
+## The one thing to internalise
+
+**A read rule is evaluated against the query, not against the documents it would
+return.**
+
+Firestore refuses any query it cannot prove _in advance_ is limited to documents
+the rule allows. It does not run the query and filter the results.
+
+```ts
+// rule: allow read: if isOwner(resource.data.ownerId);
+
+// permission-denied — Firestore cannot prove this is scoped
+query(collection(db, 'tasks'), orderBy('createdAt', 'desc'));
+
+// fine — the filter matches the rule
+query(collection(db, 'tasks'), where('ownerId', '==', uid));
+```
+
+This is the exact inverse of Postgres row level security, where the `WHERE`
+clause is optional and the policy silently narrows the result set. Code ported
+from the Supabase starter will fail loudly here, which is better than the
+alternative but still surprising.
+
+<Callout title='Why the search screen carries a filter the Supabase one omits'>
+  `overlays/supabase-auth/app/(tabs)/search/index.tsx` deliberately leaves the
+  user filter off and lets RLS handle it. The Firebase search screen carries
+  `where('ownerId', '==', uid)` and a comment saying the opposite, because
+  without it the query returns nothing at all.
+</Callout>
+
+## Firestore rules
+
+### The auth starter
+
+```
+match /users/{userId} {
+  allow get:    if isOwner(userId);
+  allow create: if isOwner(userId)
+                && request.resource.data.onboarded == false
+                && request.resource.data.keys().hasOnly([...]);
+  allow update: if isOwner(userId)
+                && request.resource.data.diff(resource.data).affectedKeys()
+                     .hasOnly(['displayName', 'photoURL', 'onboarded', 'updatedAt']);
+}
+```
+
+Three things doing real work:
+
+- **The document id is the uid**, so `isOwner(userId)` is checkable without
+  reading the document first. A `userId` field inside the document would cost a
+  read on every rule evaluation.
+- **No `list`.** Nothing in the app queries this collection, and allowing it
+  would let any signed-in user enumerate every account.
+- **`diff().affectedKeys().hasOnly(...)`** is how you say "these fields and no
+  others" — the equivalent of leaving a column out of an `UPDATE` policy.
+  `email` is excluded deliberately: it mirrors the Firebase Auth record, and
+  letting the client edit it here would put the two out of step permanently.
+
+For tasks, both sides of an update are checked:
+
+```
+allow update: if isOwner(resource.data.ownerId)
+              && request.resource.data.ownerId == resource.data.ownerId
+```
+
+`resource` stops you editing someone else's task; `request.resource` stops you
+handing yours to someone else. Dropping either half is a real hole.
+
+### The no-auth starter
+
+Every rule is open, and the file says so in a comment. One thing is still pinned
+down:
+
+```
+allow create: if isValidTask(request.resource.data)
+              && request.resource.data.createdAt == request.time;
+```
+
+A client cannot forge a creation time — no backdating a document to win an
+ordering, even in a demo.
+
+<Callout title='Not the console’s test-mode rules, on purpose'>
+  The 30-day "test mode" rules the console offers expire into
+  `permission-denied` on day 31. A demo that breaks on a timer teaches the wrong
+  lesson, so these are honestly open instead.
+</Callout>
+
+### No catch-all match
+
+Neither starter has `match /{document=**}`. Anything not explicitly named is
+denied — the Firestore equivalent of leaving RLS on with no policy, and the
+single most common way a Firebase project leaks.
+
+Adding one back "to fix a permission error" opens every collection you ever
+create. The rules tests assert its absence for that reason.
+
+## Storage rules
+
+### The delete trap
+
+In Storage rules, `write` means **create + update + delete**, and on a delete
+`request.resource` is `null`. So this:
+
+```
+allow write: if isOwner(userId) && request.resource.size < 2 * 1024 * 1024;
+```
+
+silently denies every delete — `null` has no `.size`. Both starters split the
+methods:
+
+```
+allow create, update: if isOwner(userId)
+  && request.resource.size < 2 * 1024 * 1024
+  && request.resource.contentType.matches('image/(jpeg|png|webp)');
+
+allow delete: if isOwner(userId);
+```
+
+`hooks/useDeleteAccount.ts` depends on that split working, and there is a test
+asserting it.
+
+### The uid in the path
+
+```
+match /avatars/{userId}/{fileName} { ... }
+```
+
+That path segment is the whole access check, exactly as
+`(storage.foldername(name))[1] = auth.uid()::text` is in a Supabase policy. It
+is why `useAvatarUpload` builds the path from `user.uid` rather than anything
+the picker returned.
+
+### Download URLs are capabilities
+
+`getDownloadURL()` returns a URL carrying an access token. **Tightening the rule
+later does not invalidate a URL already in the wild** — you have to rotate the
+object's download token in the console. Treat those URLs as shared links, not as
+permission checks.
+
+## Testing the rules
+
+```bash
+npm run rules:test
+```
+
+This starts the emulators, runs `rules-tests/` under a separate Node jest
+project, and shuts them down again. It needs a **JDK 21 or newer** — the
+emulators are Java processes, and firebase-tools 15 refuses to start on anything
+older.
+
+The tests use `@firebase/rules-unit-testing`:
+
+```ts title="rules-tests/firestore.test.ts"
+it('rejects an UNSCOPED query even for a signed-in user', async () => {
+  await assertFails(
+    getDocs(query(collection(alice(), 'tasks'), orderBy('createdAt', 'desc')))
+  );
+});
+
+it('accepts the same query once it is scoped to the owner', async () => {
+  await assertSucceeds(
+    getDocs(query(collection(alice(), 'tasks'), where('ownerId', '==', ALICE)))
+  );
+});
+```
+
+`testEnv.withSecurityRulesDisabled()` seeds fixtures that the rules would
+otherwise reject — the admin escape hatch, used only for setup.
+
+<Callout type='warn' title='The client SDK will lie to you'>
+  Firestore applies writes to its local cache before the server sees them, so a
+  write your rules reject still appears in the UI for a moment. Only the awaited
+  promise — and these tests — tell you what the server actually did.
+</Callout>
+
+## Deploying
+
+```bash
+npm run deploy:rules     # rules only
+npm run deploy:indexes   # indexes only
+npm run deploy           # both
+```
+
+Until you do this, Firestore uses whatever the console last had, which for a new
+project is usually locked down. Every screen showing an error toast on a fresh
+scaffold almost always means the rules were never deployed.
+
+## Learn more
+
+- [Firestore](/docs/firebase/firestore) — the queries these rules have to allow
+- [Storage](/docs/firebase/storage)
+- [Firestore rules reference](https://firebase.google.com/docs/firestore/security/get-started)
+- [Storage rules reference](https://firebase.google.com/docs/storage/security)

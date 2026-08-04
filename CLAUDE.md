@@ -11,8 +11,8 @@ whose histories are preserved here via `git subtree`.
 | Path                          | Package                     | What it is                                                                |
 | ----------------------------- | --------------------------- | ------------------------------------------------------------------------- |
 | `packages/registry/`          | `@bna-ui/registry`          | **Single source of truth** for every component, hook, theme file and demo |
-| `packages/cli/`               | `bna-ui` (published)        | `npx bna-ui init\|convex\|supabase\|add`                                  |
-| `packages/starters/`          | `@bna-ui/starters`          | Scaffolds for `init`, `convex` and `supabase`                             |
+| `packages/cli/`               | `bna-ui` (published)        | `npx bna-ui init\|convex\|supabase\|firebase\|add`                        |
+| `packages/starters/`          | `@bna-ui/starters`          | Scaffolds for `init`, `convex`, `supabase` and `firebase`                 |
 | `apps/docs/`                  | `docs`                      | Next.js + Fumadocs site at ui.ahmedbna.com; also hosts `/r/*.json`        |
 | `apps/playground/`            | `playground`                | Expo app for building and manually verifying components                   |
 | `packages/eslint-config/`     | `@bna-ui/eslint-config`     | Shared `expo` / `next` / `node` presets                                   |
@@ -94,7 +94,7 @@ file plus one definition file; nothing else needs editing.
 Every payload carries `$schemaVersion`; a CLI that sees a higher version refuses
 it and tells the user to upgrade.
 
-`init`, `convex` and `supabase` scaffolds stay **bundled** in the npm tarball — they must
+`init`, `convex`, `supabase` and `firebase` scaffolds stay **bundled** in the npm tarball — they must
 work before any network trust exists, and are mostly binary assets.
 
 To test an unreleased component end to end:

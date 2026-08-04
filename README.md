@@ -36,16 +36,17 @@ Already have an Expo project? Skip `init` and run `add` inside it.
 
 ### Commands
 
-| Command                  | What it does                                                       |
-| ------------------------ | ------------------------------------------------------------------ |
-| `bna-ui init [name]`     | Scaffold a new Expo app with routing, theming and a tab layout     |
-| `bna-ui convex [name]`   | Same, plus a Convex backend with auth and OTP email flows          |
-| `bna-ui supabase [name]` | Same, plus a Supabase backend with auth, RLS, realtime and storage |
-| `bna-ui add [...names]`  | Add components, with their hooks, theme files and npm deps         |
-| `bna-ui list`            | List every component, chart, hook and theme file                   |
-| `bna-ui search <query>`  | Find something by name or description                              |
-| `bna-ui info <name>`     | Print a component's props, source and examples                     |
-| `bna-ui mcp`             | Run an MCP server so AI assistants can browse the registry         |
+| Command                  | What it does                                                          |
+| ------------------------ | --------------------------------------------------------------------- |
+| `bna-ui init [name]`     | Scaffold a new Expo app with routing, theming and a tab layout        |
+| `bna-ui convex [name]`   | Same, plus a Convex backend with auth and OTP email flows             |
+| `bna-ui supabase [name]` | Same, plus a Supabase backend with auth, RLS, realtime and storage    |
+| `bna-ui firebase [name]` | Same, plus a Firebase backend with auth, Firestore, storage and rules |
+| `bna-ui add [...names]`  | Add components, with their hooks, theme files and npm deps            |
+| `bna-ui list`            | List every component, chart, hook and theme file                      |
+| `bna-ui search <query>`  | Find something by name or description                                 |
+| `bna-ui info <name>`     | Print a component's props, source and examples                        |
+| `bna-ui mcp`             | Run an MCP server so AI assistants can browse the registry            |
 
 Requires Node.js 22.12 or newer. Run `bna-ui <command> --help` for the flags
 and worked examples of any command.
@@ -134,7 +135,7 @@ This is a pnpm + Turborepo monorepo.
 | ------------------- | ------------------ | ------------------------------------------------------ |
 | `packages/registry` | `@bna-ui/registry` | Source of truth for every component, hook, theme, demo |
 | `packages/cli`      | `bna-ui`           | The published CLI                                      |
-| `packages/starters` | `@bna-ui/starters` | `init`, `convex` and `supabase` scaffolds              |
+| `packages/starters` | `@bna-ui/starters` | `init`, `convex`, `supabase` and `firebase` scaffolds  |
 | `apps/docs`         | —                  | Docs site, and the registry at `/r/*.json`             |
 | `apps/playground`   | —                  | Expo app for developing components                     |
 

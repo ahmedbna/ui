@@ -1,0 +1,273 @@
+---
+title: Troubleshooting
+description: The failures this stack actually produces — permission-denied on a valid query, sessions that expire on relaunch, Metro resolution errors — and a Supabase to Firebase migration guide.
+---
+
+## permission-denied on a query that looks fine
+
+The single most common one, and it is usually not a rules bug.
+
+**A read rule is evaluated against the query, not against the documents it would
+return.** Firestore refuses any query it cannot prove in advance is limited to
+documents the rule allows:
+
+```ts
+// rule: allow read: if isOwner(resource.data.ownerId);
+
+query(collection(db, 'tasks'), orderBy('createdAt', 'desc')); // ❌
+query(collection(db, 'tasks'), where('ownerId', '==', uid)); // ✅
+```
+
+If you added a screen and it fails, check the query carries the same filter the
+rule keys on. See [Security rules](/docs/firebase/rules).
+
+The other cause: **the rules were never deployed.** A fresh project uses
+whatever the console last set.
+
+```bash
+npm run deploy:rules
+```
+
+## Everything is empty on a fresh scaffold
+
+Almost always one of two things:
+
+```bash
+npx firebase-tools deploy --only firestore,storage   # rules and indexes
+```
+
+or `.env.local` was never filled in. The client throws a readable error at
+import time when the config is missing, so check the Metro logs rather than the
+screen.
+
+## "The query requires an index"
+
+Expected, and the error is doing you a favour — it carries a console URL that
+creates exactly the right index. `lib/errors.ts` passes that message through
+verbatim rather than replacing it with prose.
+
+Do not click through in production. Paste the generated definition into
+`firestore.indexes.json`, commit it, and:
+
+```bash
+npm run deploy:indexes
+```
+
+A new index on an existing collection has to backfill, so queries keep failing
+until Firestore → Indexes shows it enabled.
+
+## Users are signed out on every relaunch
+
+Persistence is not working. Either:
+
+- `lib/firebase.ts` threw its `getReactNativePersistence` error — check the
+  logs. That is deliberate: the silent fallback is in-memory persistence, and
+  failing loudly at startup beats a bug that reads as "sessions randomly
+  expire".
+- Or you replaced `LargeSecureStore` with plain `expo-secure-store`. Firebase's
+  user record exceeds its 2048-byte limit as soon as a Google identity with a
+  long `photoURL` is attached — which is why it works with your test account and
+  breaks for real users.
+
+## createdAt.toMillis is not a function
+
+`serverTimestamp()` resolves to `null` in the local echo of a write — the
+snapshot delivered before the server acknowledges it. That is **every write**,
+not an edge case.
+
+Use the mapper in `lib/documents.ts`, or handle null in your own:
+
+```ts
+createdAt: millisOf(doc.data().createdAt); // number | null
+```
+
+## Metro cannot resolve firebase/auth
+
+If you hit this on Expo SDK 57, look for a `metro.config.js` you added.
+
+The `sourceExts.push('cjs')` and `unstable_enablePackageExports = true` advice in
+older Firebase + Expo threads describes defaults that `@expo/metro-config@57` and
+Metro 0.84 **already set**. Re-applying them by hand, particularly overwriting
+`unstable_conditionsByPlatform`, is now more likely to break resolution than fix
+it. Neither starter ships a `metro.config.js`.
+
+## Firestore has already been started
+
+```
+FirebaseError: Firestore has already been started and its settings can no
+longer be changed
+```
+
+Something called `initializeFirestore` twice — usually a second module doing its
+own initialization, or a Fast Refresh re-run of an unguarded file. The starter
+derives everything from one `getApps()[0]` check:
+
+```ts
+const existing = getApps()[0];
+export const db = existing
+  ? getFirestore(app)
+  : initializeFirestore(app, settings);
+```
+
+Keep all initialization in `lib/firebase.ts`.
+
+## Could not reach Cloud Firestore backend
+
+Usually a network path that blocks gRPC — a corporate proxy, some VPNs, or an
+awkward emulator setup. Swap the long-polling setting:
+
+```ts
+initializeFirestore(app, { experimentalForceLongPolling: true });
+```
+
+The two settings are **mutually exclusive** — remove
+`experimentalAutoDetectLongPolling` first or Firestore throws.
+
+## Google sign-in does nothing
+
+| Symptom                         | Cause                                                             |
+| ------------------------------- | ----------------------------------------------------------------- |
+| Browser opens, redirect fails   | Running in Expo Go. Needs a development build.                    |
+| `auth/invalid-credential`       | ID token `aud` does not match `EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID`. |
+| No `id_token` in the result     | Used `useAuthRequest` instead of `useIdTokenAuthRequest`.         |
+| Works locally, fails in preview | Different signing key — add its SHA-1 as another Android client.  |
+| Button does not appear          | A client ID is unset. That is intended.                           |
+
+See [Google](/docs/firebase/google).
+
+## Apple sign-in returns auth/invalid-credential
+
+The nonce is almost certainly swapped. Apple gets the **SHA-256 hash**; Firebase
+gets the **plaintext** as `rawNonce`. See [Apple](/docs/firebase/apple).
+
+## The emulator will not start
+
+```
+firebase-tools no longer supports Java version before 21
+```
+
+Install a JDK 21 or newer. The Firestore and Storage emulators are Java
+processes.
+
+```bash
+java -version
+```
+
+## Search finds nothing for a partial word
+
+Working as designed. Firestore has no `LIKE`, so search matches whole words
+against a `searchTokens` array — "migra" will not find "migration".
+
+If it finds nothing for a **whole** word, the tokens were not written: check
+that `add` calls `tokenize(text)`, and that any edit path rewrites
+`searchTokens` in the same `updateDoc`.
+
+## Account deletion fails
+
+`auth/requires-recent-login`. Firebase refuses to delete an account on a token
+older than a few minutes. The confirm dialog asks a password user to type it;
+a federated user has to sign out and back in first.
+
+## Data is left behind after deleting an account
+
+Expected, up to a point. Firestore has no `ON DELETE CASCADE`, so
+`useDeleteAccount` walks the data on the device — and a crash mid-way leaves
+orphans.
+
+For guarantees, use Firebase's "Delete User Data" extension or a Cloud Function
+on the `user.delete` trigger. Both need the Blaze plan, which is why neither
+ships here.
+
+## Nothing is cached offline
+
+Firestore's `persistentLocalCache` is backed by IndexedDB, which React Native
+does not have. The cache is per-session memory only.
+
+This is the main limitation of the `firebase` JS SDK versus
+`@react-native-firebase`, and the most common reason to migrate later.
+
+---
+
+# Moving from Supabase to Firebase
+
+The two starters build the same app, so most screens port with only import
+changes. These are the differences that matter.
+
+## Authorization is inverted
+
+|               | Supabase                    | Firebase                        |
+| ------------- | --------------------------- | ------------------------------- |
+| Where it runs | Postgres, per row           | Google's servers, per **query** |
+| Unscoped read | Silently returns fewer rows | Fails with `permission-denied`  |
+| The filter    | Optional                    | **Mandatory**                   |
+
+This is the one that breaks ported code. A Supabase query relies on RLS to
+narrow the result; the Firebase equivalent must state the scope itself.
+
+```ts
+// Supabase — RLS narrows this
+await supabase.from('tasks').select('*');
+
+// Firebase — must be explicit or it fails outright
+query(collection(db, 'tasks'), where('ownerId', '==', uid));
+```
+
+Note the Supabase starter's search screen deliberately _omits_ the user filter
+and says why; the Firebase one carries it and says the opposite.
+
+## Schema and queries
+
+| Supabase                             | Firebase                                           |
+| ------------------------------------ | -------------------------------------------------- |
+| SQL migrations                       | No schema — validate in `firestore.rules`          |
+| `lib/database.types.ts` from codegen | Hand-written types in `lib/documents.ts`           |
+| `is_complete`, `created_at`          | `isComplete`, `createdAt`                          |
+| `ilike '%term%'`                     | `array-contains` over `searchTokens` — whole words |
+| Joins                                | Denormalise, or read twice                         |
+| `count()`                            | `getCountFromServer`                               |
+
+There is no `npm run db:types` equivalent because there is no schema to generate
+from. The CI job that checks generated types are current is replaced by one that
+executes the security rules.
+
+## Realtime
+
+`onSnapshot` replaces the `postgres_changes` channel, and it does more:
+
+- No initial `select` — the listener delivers it.
+- No optimistic apply or rollback — the SDK handles both.
+- No refetch on reconnect — the stream resumes from a token.
+- **Errors are terminal.** A Supabase channel reconnects; a Firestore listener
+  is torn down and needs an explicit retry.
+
+`lib/realtime.ts` has no counterpart and the starter ships none.
+See [Realtime](/docs/firebase/realtime).
+
+## Auth
+
+| Supabase                             | Firebase                                     |
+| ------------------------------------ | -------------------------------------------- |
+| `session` object                     | `User` with `getIdToken()`                   |
+| `AppState` refresh listener          | Not needed                                   |
+| Email OTP                            | **None** — SMS only                          |
+| GitHub via `signInWithOAuth`         | **None** — needs a client secret             |
+| Browser PKCE OAuth, works in Expo Go | Native ID token, needs a dev build           |
+| `handle_new_user()` trigger          | Client-side write from the snapshot listener |
+| `delete-account` edge function       | Client-side `deleteUser`, best-effort        |
+| Reset link returns to the app        | Returns to a hosted page unless configured   |
+
+`LargeSecureStore` carries over verbatim — Firebase's user record is over 2 KB
+for the same reason a Supabase session is.
+
+## Functions
+
+Supabase edge functions have no free-tier equivalent: Cloud Functions require
+the Blaze plan. Before reaching for one, check whether the work can move to a
+security rule, a client-side call, or a Firebase extension — account deletion,
+for instance, needs no server at all here.
+
+## Learn more
+
+- [Security rules](/docs/firebase/rules) — read this first
+- [Firestore](/docs/firebase/firestore) · [Authentication](/docs/firebase/auth)
+- [Report an issue](https://github.com/ahmedbna/ui/issues)

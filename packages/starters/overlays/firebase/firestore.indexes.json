@@ -1,0 +1,26 @@
+{
+  "//": [
+    "Composite indexes. Firestore builds single-field indexes automatically, so",
+    "only queries that combine fields need an entry here.",
+    "",
+    "The home query — orderBy('createdAt','desc') alone — is deliberately NOT",
+    "listed: it is served by the automatic single-field index, and adding it",
+    "would cost write throughput for nothing.",
+    "",
+    "The search query is listed because array-contains combined with an orderBy",
+    "on a different field cannot be. If you add a query and Firestore rejects it,",
+    "the error carries a console URL that creates exactly the right index — paste",
+    "the result here and commit it, rather than clicking through in production."
+  ],
+  "indexes": [
+    {
+      "collectionGroup": "tasks",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "searchTokens", "arrayConfig": "CONTAINS" },
+        { "fieldPath": "createdAt", "order": "DESCENDING" }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}

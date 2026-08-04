@@ -1,0 +1,38 @@
+{
+  "//": [
+    "Composite indexes. Firestore builds single-field indexes automatically, so",
+    "only queries that combine fields need an entry here.",
+    "",
+    "Both entries exist because every query in this app is scoped with",
+    "where('ownerId','==',uid) — which firestore.rules requires, not merely",
+    "prefers. An equality filter combined with an orderBy on a different field",
+    "always needs a composite index.",
+    "",
+    "Reading a single users/{uid} document needs no index: document reads are",
+    "never indexed queries.",
+    "",
+    "If you add a query and Firestore rejects it, the error carries a console",
+    "URL that creates exactly the right index — paste the result here and commit",
+    "it, rather than clicking through in production."
+  ],
+  "indexes": [
+    {
+      "collectionGroup": "tasks",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "ownerId", "order": "ASCENDING" },
+        { "fieldPath": "createdAt", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "tasks",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "ownerId", "order": "ASCENDING" },
+        { "fieldPath": "searchTokens", "arrayConfig": "CONTAINS" },
+        { "fieldPath": "createdAt", "order": "DESCENDING" }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}

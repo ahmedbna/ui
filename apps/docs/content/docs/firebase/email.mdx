@@ -1,0 +1,209 @@
+---
+title: Email and links
+description: Password reset, address verification and email-link sign-in — what works out of the box, and what the Dynamic Links shutdown changed.
+---
+
+Firebase sends three kinds of action email: password reset, address
+verification, and sign-in links. All three arrive as a URL carrying `mode` and
+`oobCode` parameters.
+
+## What works out of the box
+
+| Flow               | Default behaviour                         | Needs setup |
+| ------------------ | ----------------------------------------- | ----------- |
+| Password reset     | Opens Firebase's hosted page in a browser | No          |
+| Email verification | Opens Firebase's hosted page              | No          |
+| Email-link sign-in | Button is hidden                          | Yes         |
+
+Password reset and verification work with zero configuration. The user changes
+their password on Google's page and comes back to the app to sign in — a
+perfectly good experience, and the one the starter ships with.
+
+Email-link sign-in cannot degrade that way: the whole point is landing back in
+the app, so `sign-in.tsx` hides the entry point until it is configured.
+
+## Password reset
+
+```ts title="app/(auth)/forgot-password.tsx"
+await sendPasswordResetEmail(
+  auth,
+  email.trim(),
+  linkUrl ? { url: linkUrl, handleCodeInApp: true } : undefined
+);
+```
+
+With enumeration protection on — the default since September 2023 — this
+resolves successfully even for an address with no account, so the form cannot be
+used to discover who has one. The screen says "if an account exists" for the
+same reason.
+
+### In the app
+
+When `EXPO_PUBLIC_FIREBASE_LINK_URL` is set and the domain is claimed, the link
+opens `/reset-password` instead:
+
+```ts title="app/(auth)/reset-password.tsx"
+const address = await verifyPasswordResetCode(auth, oobCode);
+// …show the form, tell the user which account this is for
+await confirmPasswordReset(auth, oobCode, password);
+router.replace('/sign-in');
+```
+
+<Callout title='The user is never signed in during this flow'>
+  This is the biggest difference from the Supabase starter, where the recovery
+  link is exchanged for a session first and `updateUser({password})` then works
+  without an old password. Firebase hands you a one-time `oobCode` instead:
+  verify it, spend it, and the user signs in normally afterwards.
+</Callout>
+
+`verifyPasswordResetCode` runs before the form renders so an expired link shows
+"that link has expired" rather than a form that fails on submit.
+
+## Email verification
+
+Firebase signs a new user in immediately, verified or not, so there is no
+blocked state to hold them in:
+
+```ts title="app/(auth)/sign-up.tsx"
+await sendEmailVerification(user).catch(() => {});
+```
+
+A card in Settings does the nagging and offers a resend. To make verification
+mandatory, gate the `(tabs)` guard on `user.emailVerified`.
+
+When the link comes back into the app:
+
+```ts title="providers/auth-provider.tsx"
+await applyActionCode(auth, link.oobCode);
+await auth.currentUser?.reload(); // emailVerified is cached on the User
+setUser(auth.currentUser);
+```
+
+The `reload()` is not optional. The `User` object caches `emailVerified`, so
+without it the app keeps showing the unverified card after a successful
+verification.
+
+## Email-link sign-in
+
+Firebase's name for what Supabase calls a magic link.
+
+```ts title="app/(auth)/email-link.tsx"
+await sendSignInLinkToEmail(auth, address, {
+  url: linkUrl,
+  handleCodeInApp: true,
+});
+
+await SecureStore.setItemAsync(PENDING_EMAIL_KEY, address);
+```
+
+The address is persisted because `signInWithEmailLink` needs it back, and the
+link may be opened from a mail app rather than this one.
+
+<Callout title='Why the address is never re-prompted for'>
+  Asking "which address was this?" when a link is opened is a phishing pattern.
+  So a link opened on a different device from the one that requested it is a
+  dead end by design — the provider reads the stored address, finds nothing, and
+  stops.
+</Callout>
+
+Completion happens in the provider:
+
+```ts
+if (isSignInWithEmailLink(auth, url)) {
+  const email = await SecureStore.getItemAsync(PENDING_EMAIL_KEY);
+  if (!email) return;
+  await signInWithEmailLink(auth, email, url);
+  await SecureStore.deleteItemAsync(PENDING_EMAIL_KEY);
+}
+```
+
+`isSignInWithEmailLink` is asked rather than parsing `mode=signIn` by hand — the
+SDK is the authority, and `lib/auth-link.ts` deliberately returns `null` for
+those so the two never double-handle a link.
+
+## Getting links back into the app
+
+<Callout type='warn' title='Firebase Dynamic Links shut down on 25 August 2025'>
+  The old behaviour — FDL wrapping the action link so a `page.link` domain could
+  bounce it into your app — is gone, and `ActionCodeSettings.dynamicLinkDomain`
+  is deprecated in favour of `linkDomain`.
+</Callout>
+
+The supported approach now:
+
+1. Firebase mints the link on your project's **Firebase Hosting** domain
+   (`<project>.firebaseapp.com` by default, or a custom one via `linkDomain`).
+2. Your app claims that domain through **Universal Links** on iOS and **App
+   Links** on Android.
+
+```json title="app.json"
+{
+  "ios": { "associatedDomains": ["applinks:your-project-id.firebaseapp.com"] },
+  "android": {
+    "intentFilters": [
+      {
+        "action": "VIEW",
+        "autoVerify": true,
+        "data": [
+          { "scheme": "https", "host": "your-project-id.firebaseapp.com" }
+        ],
+        "category": ["BROWSABLE", "DEFAULT"]
+      }
+    ]
+  }
+}
+```
+
+Then set the destination:
+
+```bash title=".env.local"
+EXPO_PUBLIC_FIREBASE_LINK_URL=https://your-project-id.firebaseapp.com/finish-sign-in
+```
+
+Three constraints worth stating plainly:
+
+- **`url` must be https.** A custom scheme (`myapp://`) is rejected outright.
+- **The domain must be listed** under Authentication → Settings → Authorized
+  domains. `<project>.firebaseapp.com` and `<project>.web.app` are there by
+  default.
+- **This needs a build.** Associated domains are a native entitlement and
+  `assetlinks.json` verification happens at install time, so it cannot work in
+  Expo Go.
+
+The scaffold does **not** put those blocks in `app.json` — a placeholder host
+claims nothing, and the CLI writes `expo.scheme` as a string, so a scheme array
+would be clobbered on the next scaffold.
+
+`firebase.json` already ships a `hosting` block pointed at `public/`, so
+`firebase deploy --only hosting` works the moment you want a custom
+`linkDomain`.
+
+## Parsing the link
+
+`lib/auth-link.ts` is pure and unit-tested, because deep-link bugs otherwise
+only surface on a real device with a real email:
+
+```ts
+export function parseAuthLink(url: string): AuthLink | null;
+```
+
+It handles two shapes the naive version misses: a custom-scheme deep link, which
+`new URL()` parses inconsistently across platforms, and a link nested inside a
+`link=` parameter, which is what a Hosting domain produces — the outer URL has
+no `oobCode` of its own.
+
+## Customising the emails
+
+Authentication → Templates in the console. You can change the sender name,
+subject, body and reply-to.
+
+To send from your own domain, set up a custom SMTP provider under
+Authentication → Templates → SMTP settings. Firebase's default sender is
+`noreply@<project>.firebaseapp.com`, which is fine for development and reaches
+spam folders more often than a verified domain in production.
+
+## Learn more
+
+- [Authentication](/docs/firebase/auth)
+- [Firebase email link sign-in](https://firebase.google.com/docs/auth/web/email-link-auth)
+- [Dynamic Links migration](https://firebase.google.com/support/dynamic-links-faq)

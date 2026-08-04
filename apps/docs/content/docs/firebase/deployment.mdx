@@ -1,0 +1,175 @@
+---
+title: Deployment
+description: Shipping a Firebase app — deploying rules and indexes from CI with a service account, EAS builds, and the production checklist.
+---
+
+Two things ship separately: your **rules and indexes** go to Firebase, and your
+**app** goes to the stores through EAS.
+
+## Deploying rules and indexes
+
+```bash
+npm run deploy:rules     # firestore.rules + storage.rules
+npm run deploy:indexes   # firestore.indexes.json
+npm run deploy           # both
+```
+
+Rules and indexes are code. Deploy them from CI on merge, not from a laptop —
+editing rules in the console means your repository and your production
+configuration disagree, and nothing tells you.
+
+<Callout type='warn' title='Deploy before you ship a build'>
+  A client rolled out with a query whose index is missing fails for every user
+  at once. Deploy rules and indexes first, then submit the build.
+</Callout>
+
+### Indexes take time to build
+
+A new composite index on an existing collection is not instant — Firestore
+backfills it, which on a large collection can take minutes to hours. Queries
+that need it fail with `failed-precondition` until it is ready. Check progress
+under Firestore → Indexes.
+
+## CI
+
+Both starters ship `.github/workflows/ci.yml` with four jobs:
+
+| Job      | What it does                                                    |
+| -------- | --------------------------------------------------------------- |
+| `verify` | `tsc --noEmit`, lint, and the unit tests                        |
+| `rules`  | Runs `firestore.rules` and `storage.rules` against the emulator |
+| `deploy` | Pushes rules and indexes on merge to `main`                     |
+| `build`  | EAS build                                                       |
+
+The `rules` job is the one worth keeping. Everything else runs against mocks or
+the client SDK's local cache, both of which accept writes the server would
+reject.
+
+```yaml
+- uses: actions/setup-java@v4
+  with:
+    distribution: temurin
+    java-version: 21
+```
+
+The emulators are Java processes, and **firebase-tools 15 requires JDK 21 or
+newer** — it refuses to start on anything older.
+
+### Authenticating the deploy
+
+```yaml
+env:
+  GOOGLE_APPLICATION_CREDENTIALS: ${{ github.workspace }}/service-account.json
+steps:
+  - name: Write the service account key
+    run: echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}' > "$GOOGLE_APPLICATION_CREDENTIALS"
+
+  - run: npx firebase-tools deploy --only firestore,storage --project "${{ secrets.FIREBASE_PROJECT_ID }}"
+
+  - name: Remove the key
+    if: always()
+    run: rm -f "$GOOGLE_APPLICATION_CREDENTIALS"
+```
+
+<Callout title='Not FIREBASE_TOKEN'>
+  `firebase login:ci` tokens are deprecated in firebase-tools 13 and later, and
+  most tutorials still show them. Use a service account: IAM → Service accounts
+  → create one with the **Firebase Admin** role, download the JSON key, and
+  paste it whole into a repository secret.
+</Callout>
+
+That key grants full admin access to your project and bypasses every rule in
+`firestore.rules`. The `if: always()` cleanup step matters — a private key
+written to a runner outlives the step that wrote it otherwise. It must never be
+committed, and `.gitignore` blocks `service-account*.json` for that reason.
+
+## Environments
+
+The simplest split is two Firebase projects — `my-app-dev` and `my-app-prod` —
+with `.firebaserc` naming both:
+
+```json title=".firebaserc"
+{
+  "projects": {
+    "default": "my-app-dev",
+    "production": "my-app-prod"
+  }
+}
+```
+
+```bash
+npx firebase-tools deploy --only firestore,storage --project production
+```
+
+The app picks its project from `EXPO_PUBLIC_FIREBASE_*`, so the corresponding
+split lives on the EAS build profile.
+
+## EAS builds
+
+```bash
+eas build --platform all --profile preview
+```
+
+`EXPO_PUBLIC_` variables are **inlined into the bundle at build time**, so they
+must be set where the build runs — on the EAS build profile in `eas.json`, or as
+EAS environment variables. Setting them only in CI's shell environment produces
+a build with an undefined Firebase config, which fails at the first import with
+the error `lib/firebase.ts` throws.
+
+### Before your first build
+
+```json title="app.json"
+{
+  "ios": { "bundleIdentifier": "com.yourcompany.myapp" },
+  "android": { "package": "com.yourcompany.myapp" }
+}
+```
+
+Not in the scaffold, because a placeholder breaks the build. The Google iOS and
+Android OAuth clients are tied to these values, so set them before creating
+those clients.
+
+### Signing keys and Google sign-in
+
+An Android OAuth client is bound to a package name **and** a signing SHA-1. A
+development build signed with the debug keystore and a preview build signed with
+the EAS keystore are different fingerprints, so each needs its own client.
+
+This is why Google sign-in commonly works locally and fails in a preview build.
+`eas credentials` prints the SHA-1 for each profile.
+
+## Production checklist
+
+- [ ] Rules deployed, and `npm run rules:test` passing in CI.
+- [ ] Indexes deployed and finished building.
+- [ ] Read `firestore.rules` line by line. On the no-auth starter it is **open**
+      — anyone with the app can read and delete everything.
+- [ ] Confirm there is no `match /{document=**}`.
+- [ ] Decide whether email verification is mandatory. It is not by default.
+- [ ] Set a real password policy if you rely on the client-side rules.
+- [ ] Enable App Check if abuse is a concern — it attests that requests come
+      from your app rather than a script with your config.
+- [ ] Set a budget alert. Firestore bills per document read, and a listener
+      without `limit()` on a growing collection is the usual surprise.
+- [ ] If you offer Google sign-in on iOS, ship Apple sign-in too. App Store
+      Review Guideline 4.8.
+- [ ] Confirm no service account JSON is in the repository.
+
+## What this starter does not deploy
+
+**Cloud Functions.** They require the paid Blaze plan, and a starter should not
+force a billing account. The two places you would reach for one:
+
+- **Creating the profile document.** Handled client-side from the provider's
+  snapshot listener, which self-heals.
+- **Cascading deletes on account deletion.** Handled best-effort on the device.
+  Firebase's official "Delete User Data" extension is the robust version.
+
+Both are documented in [Authentication](/docs/firebase/auth).
+
+## Learn more
+
+- [Security rules](/docs/firebase/rules) ·
+  [Troubleshooting](/docs/firebase/troubleshooting)
+- [EAS Build](https://docs.expo.dev/build/introduction/)
+- [Firebase CLI reference](https://firebase.google.com/docs/cli)

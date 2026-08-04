@@ -21,7 +21,8 @@ const INTRO = `> BNA UI is a collection of accessible, customisable components f
 > Tailwind and no Radix. \`npx bna-ui add <component>\` copies a component and its
 > dependency closure into your project, where you own and edit it. Built with
 > TypeScript, Expo SDK 57 and React Native 0.86, with an iOS/Android/web theme
-> system, 18 chart components, and Convex starters for backend and auth.`;
+> system, 18 chart components, and Convex, Supabase and Firebase starters for
+> backend and auth.`;
 
 const CONVENTIONS = `## Conventions
 

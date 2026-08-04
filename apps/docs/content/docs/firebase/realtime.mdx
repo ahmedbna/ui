@@ -1,0 +1,201 @@
+---
+title: Realtime
+description: How onSnapshot works, why there is no applyChange reducer, and the three habits to unlearn when arriving from a REST or Supabase codebase.
+---
+
+Every Firestore read can be a live subscription. `onSnapshot` delivers the
+current result set and then re-delivers it on every change — to the query, from
+any device.
+
+```ts title="hooks/useTasks.ts"
+return onSnapshot(
+  query(
+    collection(db, 'tasks'),
+    where('ownerId', '==', userId),
+    orderBy('createdAt', 'desc'),
+    limit(50)
+  ),
+  { includeMetadataChanges: true },
+  (snapshot) => {
+    setTasks(tasksFromSnapshot(snapshot));
+    setConnected(!snapshot.metadata.fromCache);
+    setLoading(false);
+  },
+  (caught) => {
+    setError(messageFor(caught));
+    setLoading(false);
+  }
+);
+```
+
+`onSnapshot` returns its own unsubscribe function, which is why the effect
+returns it directly.
+
+## Three habits to unlearn
+
+### 1. No initial fetch
+
+`onSnapshot` delivers the current result set itself — from cache first if it has
+one, then from the server. A `select` before subscribing is a slower duplicate
+of the first callback.
+
+The Supabase starter's `useTasks` does one `select` on mount and then
+subscribes; the Firebase one has no equivalent line.
+
+### 2. No optimistic apply, and no rollback
+
+`addDoc`, `updateDoc` and `deleteDoc` mutate the local cache **synchronously**.
+The listener re-fires with `hasPendingWrites: true` before the network is
+touched, and if the server rejects the write the SDK reverts the local mutation
+and fires again.
+
+That is roughly forty lines of bookkeeping in the Supabase hook that simply do
+not exist here. Compare:
+
+```ts
+// Supabase: apply, then roll back on failure
+setTasks((prev) =>
+  prev.map((t) => (t.id === task.id ? { ...t, is_complete: next } : t))
+);
+const { error } = await supabase
+  .from('tasks')
+  .update({ is_complete: next })
+  .eq('id', task.id);
+if (error) setTasks((prev) => prev.map((t) => (t.id === task.id ? task : t)));
+
+// Firestore: the SDK does both
+await updateDoc(doc(db, 'tasks', task.id), { isComplete: !task.isComplete });
+```
+
+What the SDK does **not** do is tell the user a write was rejected. The awaited
+promise is the only place a `permission-denied` surfaces, so every mutation is
+wrapped:
+
+```ts
+try {
+  await updateDoc(/* … */);
+} catch (caught) {
+  setError(messageFor(caught));
+}
+```
+
+Forget that `try/catch` and a rejected write looks like a UI that flickers and
+reverts for no reason.
+
+### 3. No refetch on reconnect
+
+The stream resumes from a resume token and the server sends what was missed. The
+Supabase hook refetches when the channel status returns to `SUBSCRIBED`; there
+is nothing equivalent to do here.
+
+## There is no applyChange reducer
+
+The Supabase starter has `lib/realtime.ts` — a pure `applyChange(tasks, payload)`
+that folds one `postgres_changes` event into a local array, deduplicating
+inserts the device already applied.
+
+**Firestore has no honest counterpart, and the starter does not ship one.**
+`onSnapshot` hands back the entire ordered result set on every change.
+`docChanges()` exists so you can _animate_ a diff, not so you can stay correct.
+Folding it into an array by hand would redo work the SDK just did, and
+reintroduce a dedup problem Firestore does not have — latency compensation puts
+your own write into the very first snapshot.
+
+The whole realtime layer is this:
+
+```ts title="lib/documents.ts"
+export function tasksFromSnapshot(
+  snapshot: QuerySnapshot<DocumentData>
+): Task[] {
+  return snapshot.docs.map(taskFromDoc);
+}
+```
+
+The query's `orderBy` already sorted them. Re-sorting here would be a second,
+disagreeing source of truth.
+
+<Callout title='What the pure module tests instead'>
+  `lib/documents.ts` still exists and is still unit-tested, but it covers the
+  boundary that actually breaks: snapshot → plain object. The
+  pending-`serverTimestamp` case, `doc.id` versus `data().id`, and the tokenizer
+  round trip search depends on. See [Firestore](/docs/firebase/firestore).
+</Callout>
+
+## The connection indicator
+
+```ts
+setConnected(!snapshot.metadata.fromCache);
+```
+
+Firestore has no channel status to read, so the honest equivalent is "am I being
+served from the server or from cache".
+
+`includeMetadataChanges: true` is load-bearing here. Without it the listener
+does not re-fire when _only_ metadata changed — so `fromCache` never flips and
+the indicator stays grey forever after the first response.
+
+## Errors are terminal
+
+This is the sharpest difference from a Supabase channel. When the error callback
+fires, Firestore has **already torn the listener down** and will not retry:
+
+```ts
+(caught) => {
+  setError(messageFor(caught));
+  setConnected(false);
+  setLoading(false);
+};
+```
+
+A `permission-denied` or a missing-index failure fires once and never again.
+There is no reconnect loop to hook into, which is why the hook exposes a
+`retry()` that bumps an `attempt` dependency and re-runs the effect:
+
+```ts
+const retry = useCallback(() => {
+  setError(null);
+  setLoading(true);
+  setAttempt((n) => n + 1);
+}, []);
+```
+
+The home screen renders a card with that button when `error` is set. Without it,
+a transient failure leaves the list permanently dead.
+
+## Listening to a single document
+
+The auth provider watches the profile document the same way:
+
+```ts title="providers/auth-provider.tsx"
+return onSnapshot(doc(db, 'users', userId), async (snapshot) => {
+  if (!snapshot.exists()) {
+    await ensureProfile(auth.currentUser);
+    return;
+  }
+  setProfile(profileFromDoc(snapshot));
+});
+```
+
+This is the direct analogue of the `profiles:{id}` postgres_changes channel, and
+it earns its place for the same reason: the onboarding screen writes to this
+document from elsewhere, and the route guard has to see that without polling.
+
+Creating the document from the _listener_ rather than once after sign-up is what
+makes it self-healing — if the first write never landed, the next launch fixes
+it.
+
+## Cost
+
+Every document a listener delivers is a billed read, including the initial set
+and every re-delivery of a changed document. Two habits that matter:
+
+- **`limit()` every query.** The task list caps at 50.
+- **Use `getDocs`, not `onSnapshot`, for point-in-time answers.** The search
+  screen does — a listener per keystroke would leak subscriptions and bill for
+  each one.
+
+## Learn more
+
+- [Firestore](/docs/firebase/firestore) — queries, indexes and the data model
+- [Security rules](/docs/firebase/rules) — why an unscoped query fails outright
+- [Firestore realtime documentation](https://firebase.google.com/docs/firestore/query-data/listen)

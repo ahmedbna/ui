@@ -1,0 +1,152 @@
+---
+title: Storage
+description: Uploading to Cloud Storage from React Native — resumable uploads with progress, the uid path convention, and why download URLs are capabilities.
+---
+
+Cloud Storage holds files; `storage.rules` decides who may touch them. Both
+starters upload images from the media picker.
+
+## Uploading
+
+```ts title="hooks/useUpload.ts"
+const blob = await fetch(asset.uri).then((res) => res.blob());
+
+const task = uploadBytesResumable(ref(storage, path), blob, { contentType });
+
+task.on('state_changed', (snapshot) => {
+  setProgress(
+    snapshot.totalBytes ? snapshot.bytesTransferred / snapshot.totalBytes : 0
+  );
+});
+
+const downloadUrl = await getDownloadURL(task.snapshot.ref);
+```
+
+Three details that matter:
+
+- **`fetch(uri).blob()`, not base64.** Base64 inflates the payload by a third
+  and has to be held in JS memory in one piece, which is what makes large images
+  crash on Android.
+- **`uploadBytesResumable`, not `uploadBytes`.** It reports bytes transferred as
+  they go, which `uploadBytes` cannot, and it resumes rather than restarting
+  when a large upload is interrupted. This is the one place the Firebase starter
+  has something the Supabase one does not — hence the `progress` component in
+  the settings tab.
+- **`contentType` set explicitly.** Storage otherwise infers
+  `application/octet-stream`, which makes the object download instead of render
+  _and_ fails the `contentType.matches('image/…')` condition in the rules.
+
+The `totalBytes` guard is not paranoia — it is 0 for a beat on some platforms,
+and dividing by it yields `NaN` straight into the progress bar.
+
+## The uid in the path
+
+```ts title="hooks/useAvatarUpload.ts"
+const path = `avatars/${user.uid}/avatar.${extension}`;
+```
+
+That first path segment is the entire access check:
+
+```
+match /avatars/{userId}/{fileName} {
+  allow create, update: if isOwner(userId) && /* … */;
+}
+```
+
+It is the direct equivalent of
+`(storage.foldername(name))[1] = auth.uid()::text` in a Supabase storage policy.
+Build the path from anything other than `user.uid` and the server rejects it.
+
+A fixed filename also means one avatar per user, replaced in place rather than
+accumulating.
+
+## Download URLs are capabilities
+
+`getDownloadURL()` returns a URL carrying an access token. That token grants read
+access to the object **regardless of what `storage.rules` says afterwards**:
+
+- Tightening the rule does not invalidate a URL already in circulation.
+- To actually revoke one, rotate the object's download token in the Firebase
+  console.
+
+Treat these as shared links, not as permission checks. If a file must stay
+private, keep it under a path only its owner can read (`files/{uid}/…` in the
+auth starter) and do not hand the URL out.
+
+<Callout title='No cache-buster needed'>
+  The Supabase starter appends `?v=${Date.now()}` because its public URL is
+  stable across uploads, so the CDN keeps serving the old image. Firebase mints
+  a fresh download token per upload, so `getDownloadURL` already returns a
+  different URL and `useAvatarUpload` has no equivalent line.
+</Callout>
+
+## Keeping photoURL in step
+
+```ts title="hooks/useAvatarUpload.ts"
+if (auth.currentUser) {
+  await updateProfile(auth.currentUser, { photoURL: downloadUrl }).catch(
+    () => {}
+  );
+}
+```
+
+The Firestore `users/{uid}` document is what the app renders from, but several
+Firebase features read the Auth record's `photoURL`, so both are updated. The
+`.catch` is deliberate: the Firestore write is the source of truth, and a
+failure here is not worth failing the upload over.
+
+## Rules
+
+The no-auth starter allows public read and validated create under `uploads/`,
+with **no update and no delete** — with no signed-in user there is no way to
+tell whose object is whose.
+
+The auth starter has two prefixes:
+
+| Path              | Read       | Write                    |
+| ----------------- | ---------- | ------------------------ |
+| `avatars/{uid}/…` | Anyone     | Owner, images under 2 MB |
+| `files/{uid}/…`   | Owner only | Owner, under 10 MB       |
+
+Avatars are public because they appear next to names, and signing every one of
+those URLs is a lot of round trips for a picture of a face.
+
+### The delete trap
+
+`write` covers create + update + delete, and on a delete `request.resource` is
+`null`. So a combined rule with a `request.resource.size` condition silently
+denies every delete. Both starters split the methods:
+
+```
+allow create, update: if isOwner(userId) && request.resource.size < 2 * 1024 * 1024;
+allow delete: if isOwner(userId);
+```
+
+`useDeleteAccount` depends on this, and there is a test asserting it.
+
+## Deleting
+
+`listAll` rather than a known filename, because the extension depends on what
+was uploaded and a leftover `avatar.png` beside a newer `avatar.jpg` would
+survive a targeted delete:
+
+```ts title="hooks/useDeleteAccount.ts"
+const listing = await listAll(ref(storage, `avatars/${uid}`));
+await Promise.all(listing.items.map((item) => deleteObject(item)));
+```
+
+## Local development
+
+```bash
+npm run emulators
+```
+
+With `EXPO_PUBLIC_FIREBASE_USE_EMULATOR=1`, uploads go to the Storage emulator
+and are visible in the Emulator UI at `http://localhost:4000`. Nothing touches
+your real bucket, and nothing is billed.
+
+## Learn more
+
+- [Security rules](/docs/firebase/rules) — the delete trap, in full
+- [Firestore](/docs/firebase/firestore)
+- [Cloud Storage documentation](https://firebase.google.com/docs/storage)

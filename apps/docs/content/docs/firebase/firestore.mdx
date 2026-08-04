@@ -1,0 +1,218 @@
+---
+title: Firestore
+description: The data model both starters use, how queries and composite indexes work, and the serverTimestamp behaviour that crashes naive mappers.
+---
+
+Cloud Firestore is a document database. There is no schema, no migrations and no
+SQL — a collection holds documents, a document holds fields, and every read can
+be a live subscription.
+
+## The data model
+
+```
+tasks/{taskId}
+  text          string, 1..500
+  isComplete    boolean
+  createdAt     Timestamp     — always serverTimestamp()
+  searchTokens  string[]      — tokenize(text)
+  ownerId       string        — the uid (auth starter only)
+
+users/{uid}                   — auth starter only
+  email         string | null
+  displayName   string | null
+  photoURL      string | null
+  onboarded     boolean
+  createdAt     Timestamp
+  updatedAt     Timestamp
+```
+
+Two deliberate choices:
+
+- **Fields are camelCase**, not `is_complete` / `created_at`. Snake case in a
+  Firestore document is SQL cosplay; `photoURL` in particular mirrors the
+  Firebase `User` field it is kept in step with.
+- **`tasks` is top-level**, not `users/{uid}/tasks/{id}`. A subcollection would
+  make the rules trivial and drop an index, but it pushes search onto
+  `collectionGroup()` and makes the model harder to compare with the Supabase
+  starter's table. Swap it if your access pattern is always per-user.
+
+The `users` document id **is** the uid. That is what lets `firestore.rules` say
+`request.auth.uid == userId` without reading the document first.
+
+## serverTimestamp is null locally
+
+This is the single most common Firestore crash, and it is not an edge case:
+
+```ts
+// 💥 on the first task anyone adds
+const createdAt = doc.data().createdAt.toMillis();
+```
+
+`serverTimestamp()` is a sentinel. Firestore applies your write to the local
+cache immediately and delivers a snapshot for it **before** the server has
+resolved the timestamp — so `createdAt` is `null` in that first echo. Every
+single write goes through this state.
+
+`lib/documents.ts` handles it, and the tests assert it:
+
+```ts title="lib/documents.ts"
+export function taskFromDoc(doc: QueryDocumentSnapshot<DocumentData>): Task {
+  return {
+    id: doc.id, // never data().id — Firestore does not store it in the document
+    createdAt: millisOf(doc.data().createdAt), // null while pending
+    pending: doc.metadata.hasPendingWrites,
+    // …
+  };
+}
+```
+
+`byNewest` then sorts a null `createdAt` **first**: the thing you just typed is
+the newest thing you did, and sorting it to the bottom makes the app look like
+it ignored you.
+
+<Callout title='Why lib/documents.ts imports nothing at runtime'>
+  It uses `import type` only, so `__tests__/documents.test.ts` runs with no
+  mocks, no emulator and no environment variables. That is also why the
+  Timestamp check is structural rather than `instanceof Timestamp`, which is
+  unreliable the moment two copies of the SDK end up in a bundle.
+</Callout>
+
+## Queries and indexes
+
+Firestore builds single-field indexes automatically. Anything that **combines**
+fields needs a composite index declared in `firestore.indexes.json`:
+
+| Query                                                                 | Composite index?                    |
+| --------------------------------------------------------------------- | ----------------------------------- |
+| `orderBy('createdAt', 'desc')`                                        | No — automatic                      |
+| `where('ownerId', '==', uid)` + `orderBy('createdAt')`                | **Yes**                             |
+| `where('searchTokens', 'array-contains', t)` + `orderBy('createdAt')` | **Yes**                             |
+| `getCountFromServer(collection(db, 'tasks'))`                         | No                                  |
+| `doc(db, 'users', uid)`                                               | No — document reads are not queries |
+
+If you add a query Firestore cannot serve, the error carries a console URL that
+creates exactly the right index. `lib/errors.ts` passes that message through
+verbatim rather than replacing it with friendly prose, because it is the most
+useful thing the SDK ever tells you:
+
+```ts title="lib/errors.ts"
+if (isMissingIndex(error)) {
+  return (
+    'This query needs a composite index. Firestore generated one for you:\n\n' +
+    String(error.message) +
+    '\n\nAdd it to firestore.indexes.json…'
+  );
+}
+```
+
+Paste the result into `firestore.indexes.json` and run `npm run deploy:indexes`
+so it lives in your repository, rather than clicking through in production.
+
+## Search
+
+Firestore has no `LIKE`, no substring matching and no full-text index. The
+standard workaround is to write searchable words alongside the document:
+
+```ts title="lib/documents.ts"
+export function tokenize(text: string): string[] {
+  const words = text
+    .toLowerCase()
+    .split(/[^\p{L}\p{N}]+/u)
+    .filter(Boolean);
+  return Array.from(new Set(words)).slice(0, 20);
+}
+```
+
+Written at insert time, queried with `array-contains`:
+
+```ts
+where('searchTokens', 'array-contains', term);
+```
+
+**This matches whole words only.** "migra" finds nothing where a Postgres
+`ilike '%migra%'` would find "migration". The empty state in the search screen
+says so, because a silent zero-result is worse than an honest one.
+
+The cap at 20 is not arbitrary — `array-contains` indexes every entry, and
+`firestore.rules` rejects a longer array outright.
+
+When this stops being enough, put a real search service in front of the
+collection; the Firestore console lists official Algolia, Typesense and Elastic
+extensions that mirror writes for you. Do not fetch the collection and filter in
+JS — you pay per document read.
+
+## Aggregation
+
+```ts
+const snapshot = await getCountFromServer(collection(db, 'tasks'));
+snapshot.data().count;
+```
+
+Counted server-side, with only the number coming back, so it costs a handful of
+reads rather than one per document. Never fetch a collection just to call
+`.length` on it.
+
+## Writes
+
+```ts title="hooks/useTasks.ts"
+await addDoc(collection(db, 'tasks'), {
+  text: trimmed,
+  isComplete: false,
+  createdAt: serverTimestamp(),
+  searchTokens: tokenize(trimmed),
+  ownerId: userId,
+});
+```
+
+A partial `updateDoc` is still validated against the **merged** document, so
+`isValidTask(request.resource.data)` holds even when you send one field. The
+corollary: if you ever let users edit `text`, rewrite `searchTokens` in the same
+`updateDoc` or the search index goes quietly stale.
+
+### Batches
+
+Firestore caps a batch at 500 operations, which is why `useDeleteAccount` pages:
+
+```ts title="hooks/useDeleteAccount.ts"
+const batch = writeBatch(db);
+snapshot.docs.forEach((task) => batch.delete(task.ref));
+await batch.commit();
+```
+
+### undefined is an error
+
+`ignoreUndefinedProperties` is left at its default (`false`) and the hooks write
+explicit `null`s. Silently dropping a field is a worse failure mode than a loud
+throw — you find out months later that half your documents are missing a key.
+
+## Offline
+
+There is **no offline disk cache**. Firestore's `persistentLocalCache` is backed
+by IndexedDB, which React Native does not have, so the cache here is per-session
+memory only.
+
+This is the main thing you give up by using the `firebase` JS SDK rather than
+`@react-native-firebase`, and it is the most likely reason to migrate later.
+
+## Local development
+
+```bash
+npm run emulators        # UI at http://localhost:4000
+npm run emulators:seed
+```
+
+Set `EXPO_PUBLIC_FIREBASE_USE_EMULATOR=1` and the client wires itself up:
+
+```ts title="lib/firebase.ts"
+const host = Constants.expoConfig?.hostUri?.split(':')[0] ?? 'localhost';
+connectFirestoreEmulator(db, host, 8080);
+```
+
+Reading the LAN address from Expo rather than hardcoding `localhost` is what
+makes this work from a real device, where `localhost` is the phone itself.
+
+## Learn more
+
+- [Security rules](/docs/firebase/rules) — the rules these queries have to satisfy
+- [Realtime](/docs/firebase/realtime) — `onSnapshot` in detail
+- [Firestore documentation](https://firebase.google.com/docs/firestore)

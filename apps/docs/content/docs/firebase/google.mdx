@@ -1,0 +1,153 @@
+---
+title: Google sign-in
+description: Wiring Google sign-in with expo-auth-session and signInWithCredential — the three client IDs, why a development build is required, and what fails when one is missing.
+---
+
+Google sign-in works by getting an ID token from Google, wrapping it in a
+Firebase credential, and handing that to `signInWithCredential`.
+
+```ts title="components/auth/oauth-buttons.tsx"
+const result = await promptAsync();
+if (result?.type !== 'success') return; // cancelled
+
+const idToken = result.params?.id_token;
+await signInWithCredential(auth, GoogleAuthProvider.credential(idToken));
+```
+
+<Callout type='warn' title='This needs a development build'>
+  Not Expo Go. `expo-auth-session`'s hosted proxy (`auth.expo.io`) was removed
+  in SDK 48, so under Expo Go the redirect is `exp://…`, which no Google OAuth
+  client type accepts. And there is no browser escape hatch: `signInWithPopup`
+  and `signInWithRedirect` throw
+  `auth/operation-not-supported-in-this-environment` on React Native.
+</Callout>
+
+```bash
+npx expo run:ios      # or run:android, or an EAS development build
+```
+
+## Enable the provider
+
+Firebase console → Authentication → Sign-in method → **Google** → Enable.
+
+That automatically creates a **Web application** OAuth client in the Google
+Cloud project your Firebase project owns. You will need two more.
+
+## The three client IDs
+
+All from Google Cloud console → APIs & Services → **Credentials**, in the same
+project.
+
+| Variable                               | OAuth client type | Tied to                                    |
+| -------------------------------------- | ----------------- | ------------------------------------------ |
+| `EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID`     | Web application   | Nothing — created by enabling the provider |
+| `EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID`     | iOS               | `ios.bundleIdentifier`                     |
+| `EXPO_PUBLIC_GOOGLE_ANDROID_CLIENT_ID` | Android           | `android.package` + signing SHA-1          |
+
+```bash title=".env.local"
+EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID=000000000000-xxxx.apps.googleusercontent.com
+EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID=000000000000-yyyy.apps.googleusercontent.com
+EXPO_PUBLIC_GOOGLE_ANDROID_CLIENT_ID=000000000000-zzzz.apps.googleusercontent.com
+```
+
+These are client **IDs**, not secrets — they are public by design, which is why
+`EXPO_PUBLIC_` is correct here. A client _secret_ would not be.
+
+<Callout title='The web client ID is load-bearing on native too'>
+  It is the one Firebase lists under the Google provider's "Web SDK
+  configuration", and the ID token's `aud` claim must match it or
+  `signInWithCredential` rejects the credential. Setting only the iOS client ID
+  produces a token Firebase refuses, with an error that does not point at the
+  cause.
+</Callout>
+
+## Set the identifiers first
+
+The iOS and Android OAuth clients cannot be created without them:
+
+```json title="app.json"
+{
+  "ios": { "bundleIdentifier": "com.yourcompany.myapp" },
+  "android": { "package": "com.yourcompany.myapp" }
+}
+```
+
+They are not in the scaffold already because a placeholder would break your
+first EAS build.
+
+For the Android client you also need the signing certificate's SHA-1. For a
+development build:
+
+```bash
+eas credentials
+```
+
+Pick Android → the build profile → **Keystore: Manage everything** to see the
+SHA-1. A build signed with a different key — the debug keystore versus the EAS
+one — needs its own client, which is why Google sign-in often works locally and
+fails in a preview build.
+
+## useIdTokenAuthRequest, not useAuthRequest
+
+```ts
+const [request, , promptAsync] = Google.useIdTokenAuthRequest({
+  webClientId,
+  iosClientId,
+  androidClientId,
+});
+```
+
+Firebase wants an **ID token**. Asking Google for an access token instead — the
+`useAuthRequest` default — is the single most common reason
+`signInWithCredential` rejects a Google credential.
+
+The `response` slot is deliberately unused: `promptAsync()` resolves with the
+same result, so the whole flow fits in the press handler rather than being split
+across an effect that watches it. That also avoids calling `setState`
+synchronously inside an effect, which the React compiler's lint rules reject.
+
+## When nothing is configured
+
+`OAuthButtons` builds its list from what is actually available and renders
+`null` when the list is empty — including the "or" separator, which lives inside
+the component so `sign-in.tsx` does not have to know:
+
+```ts
+const platformClientId =
+  Platform.OS === 'ios'
+    ? iosClientId
+    : Platform.OS === 'android'
+      ? androidClientId
+      : webClientId;
+
+const googleConfigured = Boolean(webClientId && platformClientId);
+```
+
+A missing client ID is never a runtime error and never a button that fails when
+pressed. The app runs fine with email and password alone.
+
+## Troubleshooting
+
+| Symptom                         | Cause                                                                |
+| ------------------------------- | -------------------------------------------------------------------- |
+| Browser opens, redirect fails   | Running in Expo Go. Use a development build.                         |
+| `auth/invalid-credential`       | The ID token's `aud` does not match the web client ID.               |
+| No `id_token` in the result     | Using `useAuthRequest` instead of `useIdTokenAuthRequest`.           |
+| Works on iOS, fails on Android  | Missing Android client, or the SHA-1 does not match the signing key. |
+| Works locally, fails in preview | Different signing key — add its SHA-1 as another Android client.     |
+| `auth/unauthorized-domain`      | Add the domain under Authentication → Settings → Authorized domains. |
+| Button does not appear          | A client ID is unset. That is the intended behaviour.                |
+
+## A native sign-in sheet
+
+`@react-native-google-signin/google-signin` gives the system account picker
+rather than a browser, and returns an ID token you feed to the same
+`GoogleAuthProvider.credential(idToken)` call — so only the token-acquisition
+half changes. It needs its own config plugin and a development build, which the
+starter already assumes for this flow.
+
+## Learn more
+
+- [Authentication](/docs/firebase/auth) · [Apple](/docs/firebase/apple)
+- [Firebase Google sign-in](https://firebase.google.com/docs/auth/web/google-signin)
+- [expo-auth-session](https://docs.expo.dev/versions/latest/sdk/auth-session/)

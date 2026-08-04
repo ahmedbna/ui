@@ -86,8 +86,9 @@ This copies the component's source into the project along with everything it
 imports, and prints the npm packages to install. Components are *owned* by the
 project after that — edit them freely.
 
-To scaffold a new app: \`npx bna-ui init my-app\`, or \`npx bna-ui convex my-app\`
-for one with a Convex backend and authentication.
+To scaffold a new app: \`npx bna-ui init my-app\`, or one of
+\`npx bna-ui convex|supabase|firebase my-app\` for a backend with authentication
+already wired up. Add \`--no-auth\` for the backend without sign-in.
 
 ## Import contract
 

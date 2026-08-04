@@ -161,6 +161,33 @@ examples(
   commonOptions(
     packageManagerOptions(
       program
+        .command('firebase')
+        .description('Scaffold a new Expo app with a Firebase backend')
+        .argument('[project-name]', 'Name of the project')
+    )
+  )
+    .option(
+      '--skip-install',
+      'Create the project without installing dependencies'
+    )
+    .option(
+      '--skip-firebase',
+      'Skip collecting the config and deploying the rules'
+    )
+    .option('--no-auth', 'Scaffold Firebase without authentication'),
+  [
+    'bna-ui firebase my-app',
+    'bna-ui firebase my-app --no-auth',
+    'bna-ui firebase my-app --skip-firebase',
+  ]
+).action(
+  lazy(async () => (await import('./commands/firebase.js')).initFirebaseCommand)
+);
+
+examples(
+  commonOptions(
+    packageManagerOptions(
+      program
         .command('add')
         .description('Add components to an existing project')
         .argument(

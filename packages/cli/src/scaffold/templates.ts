@@ -16,6 +16,8 @@ export const TEMPLATES = [
   'start-convex-auth',
   'start-supabase',
   'start-supabase-auth',
+  'start-firebase',
+  'start-firebase-auth',
 ] as const;
 
 export type TemplateName = (typeof TEMPLATES)[number];

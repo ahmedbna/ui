@@ -140,6 +140,66 @@ Examples
   $ bna-ui supabase my-app --skip-supabase
 ```
 
+## firebase
+
+Use the `firebase` command to initialize a new BNA project with a Firebase
+backend — Cloud Firestore, Cloud Storage, and security rules with tests that
+execute them.
+
+```bash
+npx bna-ui firebase [project-name]
+```
+
+By default this scaffolds the full authentication setup — email and password,
+Google and Apple, onboarding and a profile. Pass `--no-auth` for a backend with
+no sign-in: a live task list, storage uploads with progress, and open rules.
+
+```bash
+npx bna-ui firebase [project-name] --no-auth
+```
+
+After copying files it asks for your Firebase web config — deriving the auth
+domain and storage bucket from the project ID as defaults — writes `.env.local`,
+sets the default project in `.firebaserc`, and then, only if
+[firebase-tools](https://firebase.google.com/docs/cli) is on your `PATH`,
+selects the project and deploys the rules and indexes. If it is not installed,
+those commands are printed as next steps instead. Nothing fails either way.
+
+<Callout title='Create the Firebase project first'>
+  The CLI cannot create a project for you. You need one with a **Web** app added
+  to it, plus Firestore and Storage enabled from the console's Build menu.
+</Callout>
+
+See [Expo + Firebase](/docs/installation/firebase) and [Expo + Firebase +
+Auth](/docs/installation/firebase-auth) for what each one gives you.
+
+### Options
+
+```bash
+Usage: bna-ui firebase [options] [project-name]
+
+Scaffold a new Expo app with a Firebase backend
+
+Arguments:
+  project-name     Name of the project
+
+Options:
+  --npm            Install with npm
+  --yarn           Install with yarn
+  --pnpm           Install with pnpm
+  --bun            Install with bun
+  --verbose        Print the full error stack on failure
+  --skip-install   Create the project without installing dependencies
+  --skip-firebase  Skip collecting the config and deploying the rules
+  --no-auth        Scaffold Firebase without authentication
+  -h, --help       display help for command
+
+Examples
+  $ bna-ui firebase my-app
+  $ bna-ui firebase my-app --no-auth
+  $ bna-ui firebase my-app --skip-firebase
+```
+
 ## add
 
 Use the `add` command to add components and dependencies to your React Native or Expo project.
@@ -364,6 +424,12 @@ npx bna-ui convex my-convex-app
 
 ```bash
 npx bna-ui supabase my-supabase-app
+```
+
+### Initialize with Firebase backend
+
+```bash
+npx bna-ui firebase my-firebase-app
 ```
 
 ### Initialize using specific package manager

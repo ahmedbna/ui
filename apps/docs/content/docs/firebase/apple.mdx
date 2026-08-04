@@ -1,0 +1,146 @@
+---
+title: Apple sign-in
+description: Sign in with Apple through expo-apple-authentication and signInWithCredential — the nonce dance, the one-shot name, and what App Store review requires.
+---
+
+Apple sign-in follows the same shape as Google: get an identity token from the
+platform, wrap it in a Firebase credential, hand it to `signInWithCredential`.
+
+```ts title="components/auth/oauth-buttons.tsx"
+const rawNonce = Crypto.randomUUID();
+const hashedNonce = await Crypto.digestStringAsync(
+  Crypto.CryptoDigestAlgorithm.SHA256,
+  rawNonce
+);
+
+const appleCredential = await AppleAuthentication.signInAsync({
+  requestedScopes: [FULL_NAME, EMAIL],
+  nonce: hashedNonce,
+});
+
+const credential = new OAuthProvider('apple.com').credential({
+  idToken: appleCredential.identityToken,
+  rawNonce,
+});
+
+await signInWithCredential(auth, credential);
+```
+
+## The nonce dance
+
+This is the part that goes wrong, and the error tells you nothing.
+
+Apple embeds a **hash** of the nonce in the identity token. Firebase compares
+that hash against the **raw** value you hand it. So:
+
+- Send the SHA-256 to Apple, as `nonce`.
+- Keep the plaintext for Firebase, as `rawNonce`.
+
+Swap them and you get `auth/invalid-credential` with no indication why. The
+comment in `oauth-buttons.tsx` says exactly this for the same reason.
+
+The nonce is not ceremony: it binds the token to this specific sign-in attempt,
+so a token intercepted from another session is useless.
+
+## The name arrives once
+
+```ts
+const given = appleCredential.fullName?.givenName;
+const family = appleCredential.fullName?.familyName;
+if ((given || family) && !result.user.displayName) {
+  await updateProfile(result.user, {
+    displayName: [given, family].filter(Boolean).join(' '),
+  });
+}
+```
+
+Apple sends `fullName` and `email` on the **very first authorization** for a
+given Apple ID and never again. Every subsequent sign-in returns `null` for
+both. If you do not capture the name there, it is gone.
+
+To test the first-time path again: Settings → your Apple ID → Sign in with Apple
+→ your app → **Stop using Apple ID**.
+
+<Callout title='Private relay addresses'>
+  A user who chooses "Hide My Email" gets a `something@privaterelay.appleid.com`
+  address. It is real and deliverable, but it is not the address they use
+  elsewhere — so do not treat email as a stable identity key across providers.
+  Firebase's account-linking settings decide whether that becomes a separate
+  account.
+</Callout>
+
+## Setup
+
+### In the app
+
+Already done by the scaffold:
+
+```json title="app.json"
+{
+  "ios": { "usesAppleSignIn": true },
+  "plugins": ["expo-apple-authentication"]
+}
+```
+
+`usesAppleSignIn` writes the `com.apple.developer.applesignin` entitlement,
+which is what makes the native sheet appear.
+
+### In the Apple Developer portal
+
+1. Enable **Sign In with Apple** on your App ID.
+2. Create a **Services ID** for the web/OAuth flow.
+3. Create a **Key** with Sign In with Apple enabled, and download the `.p8`.
+
+You need a paid Apple Developer account for all three.
+
+### In the Firebase console
+
+Authentication → Sign-in method → **Apple** → Enable, then fill in the Services
+ID, Apple Team ID, Key ID and the contents of the `.p8`.
+
+<Callout
+  type='warn'
+  title='Expo Go will not work, even though the API runs there'
+>
+  `expo-apple-authentication` does function in Expo Go, but the token is issued
+  to Expo Go's bundle identifier — which your Firebase Apple provider does not
+  trust. Expo's own docs note the identifiers "will likely be different than in
+  standalone apps". Use a development build.
+</Callout>
+
+## Availability
+
+```ts
+AppleAuthentication.isAvailableAsync().then(setAppleAvailable);
+```
+
+False on Android, on web, and on iOS below 13. The button only renders when this
+resolves true, so nothing to hide by hand.
+
+Cancellation arrives as an exception with `code === 'ERR_REQUEST_CANCELED'`,
+which the handler swallows rather than showing a toast — tapping Cancel is not
+an error.
+
+## App Store review
+
+**If your app offers any third-party sign-in — Google included — Apple requires
+Sign in with Apple as an option on iOS.** App Store Review Guideline 4.8.
+Shipping Google-only is a common rejection.
+
+Email and password alone does not trigger the requirement.
+
+## Troubleshooting
+
+| Symptom                                  | Cause                                                               |
+| ---------------------------------------- | ------------------------------------------------------------------- |
+| `auth/invalid-credential`                | Nonce swapped — `rawNonce` must be the plaintext.                   |
+| `auth/invalid-credential`, nonce correct | Services ID, Team ID or key mismatch in the console.                |
+| Name is null on second sign-in           | Expected. Apple sends it once. Revoke to re-test.                   |
+| Button missing on a simulator            | `isAvailableAsync` is false. Sign into an Apple ID first.           |
+| Works in dev build, fails in TestFlight  | The App ID capability or the key was not configured for that build. |
+
+## Learn more
+
+- [Authentication](/docs/firebase/auth) · [Google](/docs/firebase/google)
+- [Firebase Apple sign-in](https://firebase.google.com/docs/auth/web/apple)
+- [expo-apple-authentication](https://docs.expo.dev/versions/latest/sdk/apple-authentication/)

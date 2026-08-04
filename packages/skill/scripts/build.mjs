@@ -84,7 +84,8 @@ and prints the npm packages to install. The project owns the code afterwards —
 edit it freely.
 
 Scaffold a new app with \`npx bna-ui init my-app\`, or add a backend with auth:
-\`npx bna-ui convex my-app\` or \`npx bna-ui supabase my-app\`.
+\`npx bna-ui convex|supabase|firebase my-app\`. Add \`--no-auth\` for the
+backend without sign-in.
 
 ## Imports and theming
 

@@ -1,0 +1,57 @@
+# Learn more https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
+
+# dependencies
+node_modules/
+
+# Expo
+.expo/
+dist/
+web-build/
+expo-env.d.ts
+
+# Native
+.kotlin/
+*.orig.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+
+# Metro
+.metro-health-check*
+
+# debug
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+
+# macOS
+.DS_Store
+*.pem
+
+# local env files
+.env*.local
+
+# typescript
+*.tsbuildinfo
+
+app-example
+
+# generated native folders
+/ios
+/android
+
+# Firebase CLI
+# Deploy caches and emulator state. `.firebaserc` is NOT here — it names your
+# project and belongs in the repo.
+.firebase/
+firebase-debug.log*
+firestore-debug.log*
+ui-debug.log*
+storage-debug.log*
+
+# A service account private key grants full admin access to your project,
+# bypassing every rule in firestore.rules. It must never be committed.
+service-account*.json
+*-firebase-adminsdk-*.json

@@ -1,0 +1,264 @@
+---
+title: Authentication
+description: How the Firebase auth starter persists a session, guards routes, handles deep links, creates profiles and deletes accounts.
+---
+
+The auth starter uses Firebase Authentication through the `firebase` JS SDK.
+Email and password work in Expo Go; Google and Apple need a development build.
+
+## Session persistence
+
+Firebase writes one JSON blob per user under
+`firebase:authUser:<apiKey>:[DEFAULT]` — uid, email, `photoURL`, the whole
+`providerData` array, and a `stsTokenManager` holding the access and refresh
+tokens.
+
+A bare email/password account is around 1.5 KB. Add a Google identity with a
+long CDN `photoURL` and it goes past `expo-secure-store`'s **2048-byte** ceiling.
+
+That failure mode is worth naming precisely: **it works with your test account
+and breaks when a real user signs in with Google.**
+
+So `LargeSecureStore` puts a 256-bit AES key in the Keychain (or the
+EncryptedSharedPreferences-backed Keystore on Android) and the ciphertext in
+AsyncStorage, which has no size limit:
+
+```ts title="lib/firebase.ts"
+initializeAuth(app, {
+  persistence: getReactNativePersistence(new LargeSecureStore()),
+});
+```
+
+The class already implements Firebase's `ReactNativeAsyncStorage` interface —
+`getItem` / `setItem` / `removeItem`, all promise-returning — so no adapter sits
+between them.
+
+### The typed lookup
+
+```ts title="lib/firebase.ts"
+const getReactNativePersistence = (
+  firebaseAuth as unknown as {
+    getReactNativePersistence?: (s: ReactNativeAsyncStorage) => Persistence;
+  }
+).getReactNativePersistence;
+```
+
+This looks like a hack and is not. `getReactNativePersistence` is declared only
+in `@firebase/auth/dist/rn/index.rn.d.ts`. Metro picks that build on iOS and
+Android — the package's `exports` map has a `react-native` condition and
+`@expo/metro-config` enables it — but TypeScript resolves the `types` condition,
+which is listed first and points at the browser build.
+
+So the symbol is real at runtime and invisible to the compiler, and
+
+```ts
+import { getReactNativePersistence } from 'firebase/auth'; // does not compile
+```
+
+If it is ever genuinely absent, `lib/firebase.ts` **throws**:
+
+<Callout type='warn' title='Why throwing beats falling back'>
+  The silent fallback is in-memory persistence, which signs every user out on
+  relaunch. That surfaces as "sessions randomly expire" and takes a day to
+  trace. A loud error at startup takes a minute.
+</Callout>
+
+### No AppState listener
+
+A Supabase project needs one, because `supabase-js` refreshes tokens on a JS
+timer that iOS suspends in the background. Firebase refreshes proactively and
+again lazily inside `getIdToken()`, and Firestore and Storage both pull their
+token through the same `Auth` instance. There is nothing to wire up, and
+`lib/firebase.ts` has a comment saying so — otherwise its absence reads as an
+oversight.
+
+## The provider
+
+```tsx
+const { user, profile, loading, signOut } = useAuth();
+```
+
+There is no `session` field. Firebase has no session object; the `User` carries
+`getIdToken()`.
+
+`loading` starts `true` and flips in the first `onAuthStateChanged` callback,
+which fires exactly once after the SDK has finished reading persistence:
+
+```ts title="providers/auth-provider.tsx"
+return onAuthStateChanged(auth, (nextUser) => {
+  setUser(nextUser);
+  setLoading(false);
+});
+```
+
+Everything renders a spinner until then, so a returning user never sees the
+sign-in screen flash before their session loads. There is no `getSession()`
+equivalent and none is needed.
+
+## Route guards
+
+```tsx title="app/_layout.tsx"
+<Stack.Protected guard={!signedIn}>
+  <Stack.Screen name='(auth)' />
+</Stack.Protected>
+<Stack.Protected guard={needsOnboarding}>
+  <Stack.Screen name='(onboarding)' />
+</Stack.Protected>
+<Stack.Protected guard={signedIn && !needsOnboarding}>
+  <Stack.Screen name='(tabs)' />
+</Stack.Protected>
+```
+
+`Stack.Protected` unmounts the screens whose guard is false and redirects away
+from them, so this is not a cosmetic hide — with no signed-in user there is no
+navigation path into `(tabs)` at all, deep link or otherwise. The guards are
+mutually exclusive, so exactly one group is mounted.
+
+They are still a **convenience, not the boundary**.
+[`firestore.rules`](/docs/firebase/rules) says the same thing server-side, where
+a modified client cannot argue.
+
+No screen calls `router.replace('/')` after signing in. The user lands,
+`onAuthStateChanged` fires, and the guards swap the groups.
+
+## Profiles
+
+There is no Cloud Function creating `users/{uid}` — those require the paid Blaze
+plan. The provider writes it from its **snapshot listener**:
+
+```ts title="providers/auth-provider.tsx"
+return onSnapshot(doc(db, 'users', userId), async (snapshot) => {
+  if (!snapshot.exists()) {
+    await ensureProfile(auth.currentUser);
+    return;
+  }
+  setProfile(profileFromDoc(snapshot));
+});
+```
+
+Driving it off the listener rather than a one-shot write after sign-up makes it
+self-healing: if the first attempt never landed, the next launch fixes it.
+
+The consequence for the guards:
+
+```ts
+const needsOnboarding = signedIn && profile?.onboarded === false;
+```
+
+`profile` being `null` means **"not created yet"**, never "not onboarded".
+Treating null as `false` would flash the onboarding flow at a returning user on
+a slow connection.
+
+`profile` is also derived (`user ? profile : null`) so a signed-out render can
+never briefly expose the previous user's document.
+
+## Deep links
+
+Password resets, email verification and email-link sign-in all come back as a
+deep link. The handler lives on the provider rather than a `callback` route
+because a link can arrive while any screen is mounted, and on a cold start
+before the router has settled anywhere:
+
+```ts title="providers/auth-provider.tsx"
+if (isSignInWithEmailLink(auth, url)) {
+  const email = await SecureStore.getItemAsync(PENDING_EMAIL_KEY);
+  if (!email) return; // opened on another device — a dead end by design
+  await signInWithEmailLink(auth, email, url);
+  return;
+}
+
+const link = parseAuthLink(url);
+if (link?.kind === 'resetPassword') {
+  router.push({
+    pathname: '/reset-password',
+    params: { oobCode: link.oobCode },
+  });
+}
+if (link?.kind === 'verifyEmail') {
+  await applyActionCode(auth, link.oobCode);
+  await auth.currentUser?.reload(); // emailVerified is cached on the User
+}
+```
+
+`isSignInWithEmailLink` is asked first because the SDK is the authority on those.
+Everything else is parsed by `lib/auth-link.ts`, a pure function with its own
+tests — deep-link bugs otherwise only surface on a real device with a real
+email.
+
+<Callout title='Why a link opened on another device is a dead end'>
+  `signInWithEmailLink` needs the address back, and prompting "which address was
+  this?" when a link is opened is a phishing pattern. So the address is stashed
+  in SecureStore when the link is sent, and a link opened elsewhere simply does
+  nothing.
+</Callout>
+
+## Sign-up
+
+Firebase signs a new user in **immediately, verified or not**. There is no
+"check your email before you continue" state the way there is with Supabase's
+email confirmation:
+
+```ts title="app/(auth)/sign-up.tsx"
+const { user } = await createUserWithEmailAndPassword(auth, email, password);
+if (name) await updateProfile(user, { displayName: name });
+await sendEmailVerification(user).catch(() => {});
+```
+
+So the route guards take over straight away, and an unverified-email card in
+Settings does the nagging. To make verification mandatory, gate the `(tabs)`
+guard on `user.emailVerified` as well as on `user`.
+
+### Password rules
+
+`describePasswordProblem` asks for 8 characters with mixed case and a digit.
+Firebase's own floor is **six characters and nothing else** — everything past
+that is the app's opinion, enforced only in the client. Configure a policy under
+Authentication → Settings → Password policy (Identity Platform) to make it real,
+and keep the two in step.
+
+### Enumeration protection
+
+Firebase returns `auth/invalid-credential` for both a wrong password and an
+unknown address when email enumeration protection is on — the default for
+projects created since September 2023. `lib/errors.ts` maps it to one message
+that is true either way, and a test asserts it never says "no such account":
+
+```ts
+'invalid-credential': 'That email and password do not match an account.',
+```
+
+## Account deletion
+
+Firebase lets a user delete their own account from the client, so unlike the
+Supabase starter no server function is needed. But Firestore has no
+`ON DELETE CASCADE`, so the data has to be walked by hand:
+
+```ts title="hooks/useDeleteAccount.ts"
+await deleteTasks(user.uid); // batched, 500 at a time
+await deleteAvatars(user.uid);
+await deleteDoc(doc(db, 'users', user.uid));
+await deleteUser(user); // last
+```
+
+The order matters. A failure part-way leaves a **usable account** the user can
+retry with; the reverse order would leave documents nobody can ever reach or
+delete, because the rules key on a uid that no longer exists.
+
+<Callout type='warn' title='This is best-effort'>
+  It runs on the user's device, so a crash mid-way leaves orphans. The robust
+  version is server-side: Firebase's official "Delete User Data" extension, or a
+  Cloud Function on the `user.delete` trigger. Neither ships here because Cloud
+  Functions require the paid Blaze plan.
+</Callout>
+
+`deleteUser` also throws `auth/requires-recent-login` on a token older than a
+few minutes, which is what the password prompt in the confirm dialog is for. A
+federated user has no password to type, so the dialog asks them to sign out and
+back in instead.
+
+## Learn more
+
+- [Google](/docs/firebase/google) · [Apple](/docs/firebase/apple) ·
+  [Email and links](/docs/firebase/email)
+- [Security rules](/docs/firebase/rules)
+- [Firebase Auth documentation](https://firebase.google.com/docs/auth)

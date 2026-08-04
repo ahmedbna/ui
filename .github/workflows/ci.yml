@@ -172,16 +172,30 @@ jobs:
           grep -q 'sb://' sb/supabase/config.toml \
             || { echo "::error::config.toml scheme was not rewritten"; exit 1; }
 
+          bna firebase fb --no-auth --skip-firebase --skip-install
+          test -f fb/firestore.rules || { echo "::error::firebase scaffold has no rules"; exit 1; }
+          # `.firebaserc` starts with a dot but is NOT in RENAME_ON_SCAFFOLD —
+          # npm only strips .gitignore/.npmrc/.npmignore, so it ships as-is.
+          # If that ever changes, the scaffold silently loses its project name.
+          test -f fb/.firebaserc || { echo "::error::.firebaserc did not survive packaging"; exit 1; }
+
           bna convex cxa --skip-convex --skip-install
           bna supabase sba --skip-supabase --skip-install
           test -f sba/app/\(auth\)/sign-in.tsx || { echo "::error::auth scaffold missing sign-in"; exit 1; }
 
-          # Every overlay replaces package.json wholesale and two of them ship
+          bna firebase fba --skip-firebase --skip-install
+          test -f fba/app/\(auth\)/sign-in.tsx || { echo "::error::firebase auth scaffold missing sign-in"; exit 1; }
+          # Firebase has no email OTP, so unlike the supabase auth scaffold this
+          # one must NOT ship a verify-otp route.
+          test ! -f fba/app/\(auth\)/verify-otp.tsx \
+            || { echo "::error::firebase auth scaffold ships a verify-otp screen Firebase cannot support"; exit 1; }
+
+          # Every overlay replaces package.json wholesale and four of them ship
           # their own `gitignore`, so a base file surviving into the variants is
           # not something to assume — the linker config is what makes the
           # project installable at all, and .DS_Store is never the user's to
           # receive.
-          for p in cx cxa sb sba; do
+          for p in cx cxa sb sba fb fba; do
             for f in .gitignore .npmrc .yarnrc.yml pnpm-workspace.yaml components.json; do
               test -f "$p/$f" || { echo "::error::$p is missing $f"; exit 1; }
             done

@@ -1,0 +1,100 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  verify:
+    name: Typecheck, lint, test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      # The pure modules in lib/ use `import type` only, so these run with no
+      # emulator, no credentials and no network.
+      - run: npx tsc --noEmit
+      - run: npm run lint
+      - run: npm test
+
+  rules:
+    name: Security rules
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      # The emulators are Java processes, and firebase-tools 15 requires a JDK
+      # of at least 21 — it refuses to start on anything older.
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - run: npm ci
+
+      # Executes firestore.rules and storage.rules for real. This is the only
+      # job that tests the actual security boundary — the client SDK's local
+      # cache happily accepts writes the server would reject.
+      - run: npx firebase-tools emulators:exec --only firestore,storage "npm run test:rules"
+
+  deploy:
+    name: Deploy rules and indexes
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    needs: [verify, rules]
+    runs-on: ubuntu-latest
+    env:
+      GOOGLE_APPLICATION_CREDENTIALS: ${{ github.workspace }}/service-account.json
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # `firebase login:ci` tokens are deprecated in firebase-tools 13+, so this
+      # authenticates with a service account instead. Create one under
+      # IAM → Service accounts with the "Firebase Admin" role, download the JSON
+      # key, and paste it whole into a repository secret named
+      # FIREBASE_SERVICE_ACCOUNT.
+      - name: Write the service account key
+        run: echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}' > "$GOOGLE_APPLICATION_CREDENTIALS"
+
+      - run: npx firebase-tools deploy --only firestore,storage --project "${{ secrets.FIREBASE_PROJECT_ID }}"
+
+      # A private key on a runner outlives the step that wrote it unless you
+      # say otherwise.
+      - name: Remove the key
+        if: always()
+        run: rm -f "$GOOGLE_APPLICATION_CREDENTIALS"
+
+  build:
+    name: EAS build
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    needs: [verify]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          # https://expo.dev/settings/access-tokens
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      - run: npm ci
+      # EXPO_PUBLIC_ variables are baked into the bundle at build time, so they
+      # belong on the EAS build profile (eas.json / EAS environment variables),
+      # not here.
+      - run: eas build --platform all --profile preview --non-interactive --no-wait
