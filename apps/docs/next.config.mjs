@@ -12,6 +12,13 @@ const nextConfig = {
   //
   // The cost of saying it: `rewrites`, `redirects` and `headers` are unsupported
   // in this file under export, so they all live in `vercel.json` instead.
+  //
+  // Note `vercel.json` still points `outputDirectory` at `.next`, not at `out`.
+  // Vercel runs the Next.js builder, which reads `routes-manifest.json` out of
+  // that directory — and that manifest is only ever written to `.next`. It finds
+  // the exported files on its own, via the `outDirectory` in the
+  // `.next/export-detail.json` that this option produces. Pointing Vercel at
+  // `out/` instead fails the deploy with "routes-manifest.json couldn't be found".
   output: 'export',
   // Component source is no longer read off disk at request time — it comes from
   // @bna-ui/registry's generated payloads — so the templates/ tracing hack that
