@@ -1,5 +1,12 @@
 # @bna-ui/mcp
 
+## 1.0.1
+
+### Patch Changes
+
+- Updated dependencies [[`19bf23f`](https://github.com/ahmedbna/ui/commit/19bf23f966ef7e0dc5ecdc808ef5a018049777ac)]:
+  - bna-ui@3.0.1
+
 ## 1.0.0
 
 First published release. The package existed in the repository at 1.0.0, 1.1.0 and
