@@ -5,12 +5,15 @@ import { CORNERS, FONT_SIZE } from '@/theme/globals';
 import React, {
   forwardRef,
   useCallback,
+  useEffect,
   useImperativeHandle,
   useRef,
   useState,
 } from 'react';
 import {
+  Keyboard,
   NativeSyntheticEvent,
+  Platform,
   Pressable,
   TextInput,
   TextInputKeyPressEventData,
@@ -84,7 +87,52 @@ export const InputOTP = forwardRef<InputOTPRef, InputOTPProps>(
     const [isFocused, setIsFocused] = useState(false);
     const [activeIndex, setActiveIndex] = useState(0);
     const inputRef = useRef<TextInput>(null);
+    const refocusTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+    // Android dismisses the keyboard (back button, swipe down) without blurring
+    // the input, so tracking it is the only way to tell "still typing" from
+    // "focused, keyboard gone" when a slot is pressed. See focusInput below.
+    const keyboardVisible = useRef(false);
     const feedback = useHaptics(haptic);
+
+    useEffect(() => {
+      const subscriptions =
+        Platform.OS === 'android'
+          ? [
+              Keyboard.addListener('keyboardDidShow', () => {
+                keyboardVisible.current = true;
+              }),
+              Keyboard.addListener('keyboardDidHide', () => {
+                keyboardVisible.current = false;
+              }),
+            ]
+          : [];
+
+      return () => {
+        subscriptions.forEach((subscription) => subscription.remove());
+        if (refocusTimeout.current) clearTimeout(refocusTimeout.current);
+      };
+    }, []);
+
+    const focusInput = useCallback(() => {
+      // On Android the input stays focused after the keyboard is dismissed and
+      // no onBlur fires, which makes focus() a no-op — the keyboard never comes
+      // back. Cycling blur -> focus reopens it. Guarded on the keyboard being
+      // down so pressing a slot mid-entry doesn't flash the keyboard closed.
+      if (
+        Platform.OS === 'android' &&
+        !keyboardVisible.current &&
+        inputRef.current?.isFocused()
+      ) {
+        inputRef.current.blur();
+        if (refocusTimeout.current) clearTimeout(refocusTimeout.current);
+        refocusTimeout.current = setTimeout(() => {
+          inputRef.current?.focus();
+        }, 50);
+        return;
+      }
+
+      inputRef.current?.focus();
+    }, []);
 
     // Theme colors
     const cardColor = useColor('card');
@@ -103,8 +151,11 @@ export const InputOTP = forwardRef<InputOTPRef, InputOTPProps>(
 
     // Expose methods via ref
     useImperativeHandle(ref, () => ({
-      focus: () => inputRef.current?.focus(),
-      blur: () => inputRef.current?.blur(),
+      focus: focusInput,
+      blur: () => {
+        if (refocusTimeout.current) clearTimeout(refocusTimeout.current);
+        inputRef.current?.blur();
+      },
       clear: () => {
         onChangeText?.('');
         setActiveIndex(0);
@@ -165,9 +216,9 @@ export const InputOTP = forwardRef<InputOTPRef, InputOTPProps>(
 
     const handleSlotPress = useCallback(() => {
       if (!disabled) {
-        inputRef.current?.focus();
+        focusInput();
       }
-    }, [disabled]);
+    }, [disabled, focusInput]);
 
     // Generate slots
     const slots = Array.from({ length }, (_, index) => {

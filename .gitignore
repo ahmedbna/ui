@@ -64,3 +64,7 @@ lerna-debug.log*
 packages/registry/generated/
 packages/starters/dist/
 packages/skill/dist/
+
+
+# local development
+todo.md
